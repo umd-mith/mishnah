@@ -19,18 +19,23 @@ Directory structure
 This repository contains (or will contain) the following files and
 directories:
 
-    .gitignore         (Indicates files not under version control)
-    incoming/          (Legacy data)
-    data/
-        tei/           (TEI sources)
-        odd/           (TEI ODD specifications)
-        rng/           (RELAX NG schemas generated from ODD files; DO NOT EDIT)
-        xsl/           (Stylesheets)
-    src/
-        main/   
-            java/      (Java code)
-            scala/     (Scala code)
-            resources/ (Additional project resources such as Cocoon sitemaps)
-        test/          (Unit tests)
-    lib/               (Unmanaged libraries)
+    mishnah/
+        .gitignore         (Indicates files not under version control)
+        incoming/          (Legacy data)
+        data/
+            tei/           (TEI sources)
+            odd/           (TEI ODD specifications)
+            xsl/           (Stylesheets)
+            derivative/    (Automatically generated; DO NOT EDIT)
+                rng/       (RELAX NG schemas generated from ODD files)
+        src/
+            main/   
+                java/      (Java code)
+                scala/     (Scala code)
+                resources/ (Additional project resources such as Cocoon sitemaps)
+            test/          (Unit tests)
+        lib/               (Unmanaged libraries)
+
+The `data/derivative` directory is only included for the sake of convenience for
+transcribers who are not using Roma. Please do not edit these files directly.
 
