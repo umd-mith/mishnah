@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components>
+  <component logger="core.xslt-processor"
+    role="org.apache.excalibur.xml.xslt.XSLTProcessor/saxon"
+    class="org.apache.cocoon.components.xslt.TraxProcessor">
+    <parameter name="use-store" value="true"/>
+    <parameter name="incremental-processing" value="false"/>
+    <parameter name="transformer-factory"
+      value="net.sf.saxon.TransformerFactoryImpl"/>
+  </component>
+</components>
+
