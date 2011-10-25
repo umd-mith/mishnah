@@ -28,6 +28,7 @@ directories:
             xsl/                   (Stylesheets)
             derivative/            (Automatically generated; DO NOT EDIT)
                 rng/               (RELAX NG schemas generated from ODD files)
+        lib/                       (Unmanaged libraries)
         cocoon/
             pom.xml                (General build configuration)
             text/                  (Block for text transformation logic)
@@ -38,7 +39,6 @@ directories:
                     scala/         (Scala code)
                     resources/     (Additional resources, such as sitemaps)
                 test/              (Unit tests)
-                lib/               (Unmanaged libraries)
             viewer/                (Block for web application)
                 pom.xml
                 src/
