@@ -19,61 +19,45 @@
  xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
  xmlns:map="http://apache.org/cocoon/sitemap/1.0">
 
-  <!--+
-      | Definition of the control flow implementation.
-      +-->
-  <map:flow language="javascript"/>
+  <map:components>
+    <map:serializers>
+      <map:serializer name="tei"
+        mime-type="application/xml"
+        src="org.apache.cocoon.serialization.XMLSerializer"/>
+    </map:serializers>
+  </map:components>
 
   <map:pipelines>
-    <!--+
-        | Demo pipelines
-        +-->
-    <map:pipeline id="demo">
-      <!-- Simple demo showing a Cocoon pipeline with multiple stylesheets. -->
-      <map:match pattern="">
-        <map:generate src="resource://tei/GTSNS329.286.xml"/>
-        <map:transform src="resource://xsl/TEIStructuretoFlat.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://xsl/FlattoTEICompliantPages.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://xsl/TEIPagestoHTML.xsl" type="xslt-saxon"/>
+    <map:pipeline id="text-viewer">
+
+      <map:match pattern="*.flat.xml">
+        <map:generate src="resource://tei/{1}.xml"/>
+        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+        <map:serialize type="tei"/>
+      </map:match>
+
+      <map:match pattern="*.pages.xml">
+        <map:generate src="resource://tei/{1}.xml"/>
+        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+        <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
+        <map:serialize type="tei"/>
+      </map:match>
+
+      <map:match pattern="*.pages.html">
+        <map:generate src="resource://tei/{1}.xml"/>
+        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+        <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
+        <map:transform src="resource://xsl/pages-to-html.xsl" type="xslt-saxon"/>
         <map:serialize type="html"/>
       </map:match>
-      <!-- Implement application logic using a Flowscript function.
-        Flowscripts in ./flow are loaded automatically in alphabetical order. -->
-      <!--<map:match pattern="spring-bean">
-        <map:call function="demo"/>
-      </map:match>-->
-    </map:pipeline>
-    <!--<map:pipeline id="demo-internal" internal-only="true">-->
-      <!-- This pipeline is invoked by the above flowscript. -->
-      <!--<map:match pattern="screens/spring-bean">
-        <map:generate src="demo/spring-bean.jx.xml" type="jx"/>
-        <map:serialize type="xml"/>
-      </map:match>
-    </map:pipeline>-->
 
-    <!--+
-        | Default pipelines
-        +-->
-    <!--<map:pipeline id="internal-resource" internal-only="true">-->
-      <!-- Put matchers for internal (accessible only to Cocoon blocks) resources here
-        More details: http://cocoon.zones.apache.org/daisy/cdocs-site-main/g2/1345.html -->
-      <!--<map:match pattern="resource/internal/**">
-        <map:read src="resource/internal/{1}"/>
+      <map:match pattern="*.xml">
+        <map:generate src="resource://tei/{1}.xml"/>
+        <map:serialize type="tei"/>
       </map:match>
-    </map:pipeline>
 
-    <map:pipeline id="external-resource">-->
-      <!-- Put matchers for external (accessible to the outside world, e.g. browser) resources here.
-        More details: http://cocoon.zones.apache.org/daisy/cdocs-site-main/g2/1345.html -->
-      <!--<map:match pattern="resource/external/**">
-        <map:read src="resource/external/{1}"/>
-      </map:match>
     </map:pipeline>
-
-    <map:pipeline id="service">-->
-      <!-- Put your servlet service matchers here.
-        More details: http://cocoon.zones.apache.org/daisy/cdocs-site-main/g2/1345.html -->
-    <!--</map:pipeline>-->
   </map:pipelines>
 
 </map:sitemap>
+
