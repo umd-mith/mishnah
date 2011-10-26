@@ -59,5 +59,14 @@ The following commands will build the web application and run it in Jetty:
     cd viewer/
     mvn jetty:run
 
-The application will be available at `http://localhost:8888/text/`.
+The application will be available at `http://localhost:8888/text/`. You can
+also build a `war` file that can be run in any servlet container by entering
+the following:
+
+    cd cocoon/
+    mvn install
+    cd viewer/
+    mvn package
+
+The file will be created in `cocoon/viewer/target/`.
 
