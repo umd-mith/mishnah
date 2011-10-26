@@ -32,15 +32,16 @@ xmlns="http://www.tei-c.org/ns/1.0"
 
 
    
-    <xsl:template match="tei:choice" mode="strip">
-        <xsl:copy-of select="node() except ."></xsl:copy-of>
-        
+    <xsl:template match="//tei:choice" mode="strip" exclude-result-prefixes="#all">
+        <xsl:choose><xsl:when test="./tei:abbr/not(descendant::text())"><xsl:copy-of select="node() except ."/></xsl:when>
+        <xsl:when test="./tei:abbr/child::node()">
+            <abbr><xsl:value-of
+                select="./tei:abbr/descendant::text()"/></abbr><expan><xsl:value-of
+                    select="./tei:expan"></xsl:value-of></expan>
+        </xsl:when></xsl:choose>
     </xsl:template>
       <xsl:template match="tei:lb | tei:milestone | tei:label" mode="strip">
-
     </xsl:template>
-    <xsl:template match="tei:c" mode="strip">
-   <xsl:value-of select="."/>
+    
         
-    </xsl:template>
 </xsl:stylesheet>
