@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+h1 { font-size:larger; direction:ltr; margin-top:1em; text-align:center}
+h2 { font-size: medium; direction:ltr; margin-top:1em; text-align:center}
+
+body { line-height:12pt}
+
+
+p { direction: ltr;
+text-align:left;
+margin-left:8em;
+}
+	
+div{ 
+	padding-top:12pt;
+  margin-left: 4em;
+  margin-right: 8em;
+ 
+}
+
+span.add:before{content:"«"}
+span.add:after {content:"»"}
+
+span.del:before{content:"{{"}
+span.del:after {content:"}}"}
+
+
+span.missing {
+	color:#ccc
+}
+
+span.traces {
+	border-top:dotted thin; 
+	color:#999
+	}
+
+span.unclear {
+	border-top:dotted thin; 
+	}
+
+span.lb {
+  position: absolute;
+  top: auto;
+  right: 4em;
+  }
+  
+  span.expan {display: none}
+
+span.pageNo {
+  direction:ltr;
+  position: absolute;
+  top: auto;
+  right: 4em;
+  }
+  
+span.ch {
+	position:absolute;
+	top:auto;
+	left:1em;
+}
+span.mishnah {
+	position:absolute;
+	top:auto;
+	left:1em;
+}
+
+span.label {
+	font-size:larger;
+	letter-spacing:2px;
+	padding-left:1em;
+	padding-right:1em; 
+ 
+}
+
+
+
+/* CSS Document */
+

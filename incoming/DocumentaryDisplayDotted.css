@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+h1 { font-size:larger; direction:ltr; margin-top:1em; text-align:center}
+
+body { line-height:12pt}
+div{ 
+	padding-top:12pt;
+  margin-left: 4em;
+  margin-right: 8em;
+ 
+}
+
+span.add:before{content:"«"}
+span.add:after {content:"»"}
+
+span.del:before{content:"{{"}
+span.del:after {content:"}}"}
+
+span.missing:before{content:"["}
+span.missing:after {content:"]"}
+
+span.lb {
+  position: absolute;
+  top: auto;
+  right: 4em;
+  }
+  
+  span.expan {display: none}
+
+span.pageNo {
+  direction:ltr;
+  position: absolute;
+  top: auto;
+  right: 4em;
+  }
+  
+span.ch {
+	position:absolute;
+	top:auto;
+	left:1em;
+}
+span.mishnah {
+	position:absolute;
+	top:auto;
+	left:1em;
+}
+
+span.label {
+	font-size:larger;
+	letter-spacing:2px;
+	padding-left:1em;
+	padding-right:1em; 
+ 
+}
+
+
+/* CSS Document */
+

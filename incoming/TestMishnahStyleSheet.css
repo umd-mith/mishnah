@@ -1,0 +1,45 @@
+@charset "utf-8"
+
+html{ direction:rtl; text-align:right}
+link:before{content:attr(target); font-size:x-small}
+emph{ font:italic}
+emph {text-decoration:underline;}
+label {direction:rtl; text-decoration:underline; padding:0 5px; }
+quote {color:brown}
+ref:before { content:" ("}
+ref:after {content:")"}					  
+note { display:none }
+surplus:before {content:"/"}
+surplus:after {content:"/"}
+item {display:block; line-height:normal; margin-right:10px; margin-left:10px }
+tr {vertical-align:top; }
+ab:before {content:"[" attr(n) "]"}
+ab {display:block; line-height:30px; margin-right:10px; direction:rtl; }
+p { display:block; line-height:normal; margin-right:10px; }
+abbr { text-decoration:underline }
+choice:after { content:"*"; font-size: 12px; vertical-align:super; }
+expan { display:none }
+heading {display:block; direction:rtl; text-align:right; line-height:normal; margin-right:10px;} 
+persName {color:#00F}
+lb {display:block;}
+
+head {display:block; direction:rtl; text-align:right; margin-right:10px;}
+trailer {display:block; direction:rtl; text-align:right; margin-right:10px;}
+gap:before { content:"[ " attr(extent);}
+gap:after {content:" ]";}					  
+gap { direction:inherit; margin-right:10px; direction:rtl}
+del:before { content:"(" attr(extent);}
+del:after { content: ")";}
+add:before { content:"["; }
+add:after {  content:"]"; }
+unclear:before {text-decoration:overline; content:attr(extent); }
+unclear { text-decoration:overline; }
+cb:before{ content:"[" attr(n); }
+cb:after{ content:"]"; }
+cb{direction:rtl; display:block; margin-right:10px; }
+pb:before{ content:"[" attr(n); }
+pb:after{ content:"]"; }
+pb{display:block; direction:rtl; margin-right:10px; }
+expan{ display:none; }
+supplied{ display:none; }
+corr {display:none}
