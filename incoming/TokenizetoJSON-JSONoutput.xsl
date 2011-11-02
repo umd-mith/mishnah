@@ -18,10 +18,13 @@
         [
             <xsl:for-each select="./tei:item"> {"id" : "<xsl:value-of select="."/>", <xsl:variable
                 name="mRef">
-                <xsl:text>BM_Ch2_</xsl:text><xsl:value-of select="."
-                    /><xsl:text>.xml#M.</xsl:text><xsl:value-of select=". "/><xsl:value-of
+                <xsl:choose><xsl:when test=" substring-before(., '.')!='G'"><xsl:text>BM_Ch2_</xsl:text><xsl:value-of select="."
+                /><xsl:text>.xml#M.</xsl:text></xsl:when>
+                    <xsl:when test="substring-before(., '.')='G'"><xsl:value-of select="."
+                    /><xsl:text>.xml#</xsl:text></xsl:when></xsl:choose><xsl:value-of select="."/><xsl:value-of
                     select="tei:item"/>.<xsl:value-of select="parent::node()/@n"/>
             </xsl:variable>
+               
             <xsl:variable name="mExtract">
                 <xsl:copy-of select="document($mRef)/node()|@*"/>
             </xsl:variable>
@@ -39,6 +42,8 @@
     <xsl:template match="//tei:milestone" mode="strip"/>
     <xsl:template match="//tei:label" mode="strip"/>
     <xsl:template match="//tei:pc" mode="strip"/>
+    <xsl:template match="//tei:note" mode="strip"/>
+    <xsl:template match="//tei:supplied" mode="strip"/>
     <!-- Choose to remove additions by second hand, etc. 
         Temp Solution. Will need refining to add <choice to
     encoding of <add><del> etc., to allow for processing of internal corrections -->
