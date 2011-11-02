@@ -28,7 +28,7 @@
         <html>
             <head>
                 <link rel="stylesheet" type="text/css"
-                    href="MishnahRepos/incoming/FormattingforHTML.css"
+                    href="FormattingforHTML.css"
                     title="Documentary" alternate="no"/>
             </head>
             <body lang="he" dir="rtl">
