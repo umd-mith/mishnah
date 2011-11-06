@@ -105,7 +105,7 @@
     </xsl:template>
     <xsl:template match="tei:div[@type='page']">
         <div class="page">
-            <xsl:apply-templates/>
+            
             <xsl:if test="not(descendant::tei:div[@type='column'])">
                 <div class="OneCol">
                     <span class="pageNo">Folio <xsl:value-of select="./@n"/></span>
