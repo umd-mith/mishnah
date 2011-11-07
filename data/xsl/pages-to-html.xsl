@@ -106,7 +106,7 @@
     <xsl:template match="tei:div[@type='page']">
         <div class="page">
             
-            <xsl:if test="not(descendant::tei:div[@type='column'])">
+            <xsl:if test="not(descendant::tei:div[1][@type='column'])">
                 <div class="OneCol">
                     <span class="pageNo">Folio <xsl:value-of select="./@n"/></span>
                     <xsl:apply-templates/>
@@ -120,6 +120,7 @@
                     </xsl:if>
                 </div>
             </xsl:if>
+            <xsl:if test="descendant::tei:div[1][@type='column']"><xsl:apply-templates></xsl:apply-templates></xsl:if>
         </div>
         <div class="hr">
             <hr/>
