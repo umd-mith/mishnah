@@ -30,6 +30,10 @@
   <map:pipelines>
     <map:pipeline id="text-viewer">
 
+      <map:match pattern="css/*.css">
+        <map:read src="resource://css/{1}.css" mime-type="text/css"/>
+      </map:match>
+
       <map:match pattern="*.flat.xml">
         <map:generate src="resource://tei/{1}.xml"/>
         <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>

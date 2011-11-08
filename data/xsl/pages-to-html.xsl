@@ -28,7 +28,7 @@
         <html>
             <head>
                 <link rel="stylesheet" type="text/css"
-                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    href="css/FormattingforHTML.css"
                     title="Documentary" alternate="no"/>
             </head>
             <body lang="he" dir="rtl">
