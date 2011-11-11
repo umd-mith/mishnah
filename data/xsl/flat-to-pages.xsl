@@ -19,16 +19,23 @@
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="tei:body">
+<xsl:template match="tei:div[@ana='temp']">
+    <xsl:apply-templates/>
+</xsl:template>
+    
+    <xsl:template match="tei:body/tei:div/tei:p">
         
-        <xsl:copy>
+        
             
             <xsl:for-each-group select="element()|comment()|processing-instruction()|text()"
-                group-starting-with="tei:pb">
+                group-starting-with="tei:pb[ancestor::tei:div]">
+                
                 <xsl:apply-templates select="." mode="group"/>
             </xsl:for-each-group>
-        </xsl:copy>
+        
     </xsl:template>
+    
+   
     <xsl:template match="tei:pb" mode="group">
         <div type="page">
             
@@ -45,6 +52,7 @@
                 </xsl:if>
             
         </div>
+        
     </xsl:template>
     <xsl:template match="tei:cb[preceding-sibling::tei:pb]" mode="group-cb">
         <div type="column">

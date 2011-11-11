@@ -16,12 +16,19 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
+   <xsl:template match="tei:body">
+       <!-- Wraps whole body in div and p to create valid tei/xml on output -->
+       <body><div ana="temp">
+           <p ana="temp"><xsl:apply-templates></xsl:apply-templates></p>
+       </div></body>
+   </xsl:template>
     <xsl:template match="tei:div1[position()=1]">
         <pb>
             <xsl:attribute name="n">
                 <xsl:value-of select=" descendant-or-self::tei:pb[1]/@n"/>
             </xsl:attribute>
         </pb>
+        
         
 <xsl:if test="//tei:cb">            <cb>
                 <xsl:attribute name="n">
