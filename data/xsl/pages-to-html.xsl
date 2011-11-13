@@ -51,7 +51,7 @@
             </body>
         </html>
     </xsl:template>
-    <xsl:template match="tei:body |tei:text | tei:c | tei:g | tei:pc">
+    <xsl:template match="tei:body |tei:text | tei:c | tei:g | tei:pc |tei:c">
         <xsl:apply-templates/>
     </xsl:template>
     <!-- Hide in CSS. Eventually, extract order name and tractate name from id. -->
@@ -176,6 +176,9 @@
         <span class="surplus">
             <xsl:value-of select="."/>
         </span>
+    </xsl:template>
+    <xsl:template match="tei:seg">
+        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:add">
         <span class="add">
