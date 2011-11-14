@@ -308,8 +308,11 @@
                 </xsl:attribute>
                 <xsl:text> Fol. </xsl:text>
                 <xsl:value-of select="ancestor::tei:div[@type='page']/@n"/>
-                <xsl:text>,
-                l. </xsl:text>
+                <xsl:if test="ancestor::tei:div[@type='column']">
+                    <xsl:text>, col. </xsl:text><xsl:value-of
+                        select="ancestor::tei:div[@type='column']/@n"/>
+                </xsl:if>
+                <xsl:text>, l. </xsl:text>
                 <xsl:value-of select="following::tei:lb[1]/@n"/>
             </a>
             <xsl:text>. </xsl:text>
