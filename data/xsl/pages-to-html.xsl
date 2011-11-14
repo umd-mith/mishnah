@@ -309,8 +309,10 @@
                 <xsl:text> Fol. </xsl:text>
                 <xsl:value-of select="ancestor::tei:div[@type='page']/@n"/>
                 <xsl:if test="ancestor::tei:div[@type='column']">
-                    <xsl:text>, col. </xsl:text><xsl:value-of
-                        select="ancestor::tei:div[@type='column']/@n"/>
+                    <xsl:choose>
+                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'A')">A</xsl:when>
+                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'B')">B</xsl:when>
+                    </xsl:choose>
                 </xsl:if>
                 <xsl:text>, l. </xsl:text>
                 <xsl:value-of select="following::tei:lb[1]/@n"/>
