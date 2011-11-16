@@ -22,7 +22,7 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template
-        match="//tei:anchor | //tei:damageSpan | //tei:gap |
+        match="//tei:anchor | //tei:damageSpan |
         tei:milestone[@unit='MSMishnah'] | tei:milestone[@unit='fragment']"> </xsl:template>
     <xsl:template match="tei:ab | tei:w">
         <xsl:apply-templates select="node()"/>
@@ -112,12 +112,27 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template name="add-br">
+    <xsl:template match="tei:gap[@reason='Maimonides']">
+        <xsl:if test="./@unit='chars'">
+        <xsl:call-template name="add-char">
+            <xsl:with-param name="howMany" select="./@extent"></xsl:with-param>
+            <xsl:with-param name="char" select="'&#160;'"></xsl:with-param>
+        </xsl:call-template></xsl:if>
+        <xsl:if test="./@unit='lines'">
+            <xsl:variable name="char"><br/></xsl:variable>
+            <xsl:call-template name="add-char">
+                <xsl:with-param name="howMany" select="./@extent"></xsl:with-param>
+                <xsl:with-param name="char" select="$char"></xsl:with-param>
+            </xsl:call-template></xsl:if>
+    </xsl:template>
+    <xsl:template name="add-char">
         <xsl:param name="howMany">1</xsl:param>
-        <xsl:if test="$howMany &gt; 0">
-            <br/>
-            <xsl:call-template name="add-br">
+        <xsl:param name="char">-</xsl:param>
+        <xsl:if test="$howMany &gt; 0 and $char !='^'">
+            <xsl:copy-of select="$char"></xsl:copy-of>
+            <xsl:call-template name="add-char">
                 <xsl:with-param name="howMany" select="$howMany - 1"/>
+                <xsl:with-param name="char" select="$char"></xsl:with-param>
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
@@ -131,8 +146,10 @@
                         <xsl:variable name="firstline">
                             <xsl:value-of select="descendant::tei:lb[position() = 1]/@n"/>
                         </xsl:variable>
-                        <xsl:call-template name="add-br">
+                        <xsl:variable name="char"><br/></xsl:variable>
+                        <xsl:call-template name="add-char">
                             <xsl:with-param name="howMany" select="$firstline - 1"/>
+                            <xsl:with-param name="char" select="$char"></xsl:with-param>
                         </xsl:call-template>
                     </xsl:if>
                 </div>
@@ -165,8 +182,10 @@
                 <xsl:variable name="firstline">
                     <xsl:value-of select="descendant::tei:lb[position() = 1]/@n"/>
                 </xsl:variable>
-                <xsl:call-template name="add-br">
+                <xsl:variable name="char"><br/></xsl:variable>
+                <xsl:call-template name="add-char">
                     <xsl:with-param name="howMany" select="$firstline - 1"/>
+                    <xsl:with-param name="char" select="$char"></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
             <xsl:apply-templates/>
@@ -217,7 +236,7 @@
                     <xsl:apply-templates/>
                 </span>
             </xsl:when>
-            <xsl:when test="preceding::tei:gap and not(parent::tei:unclear)">
+            <xsl:when test="preceding::tei:gap[not(@reason='Maimonides')] and not(parent::tei:unclear)">
                 <span class="missing">
                     <xsl:apply-templates/>
                 </span>
