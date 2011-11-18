@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.umd.mith.mishnah</groupId>
+  <artifactId>mishnah</artifactId>
+  <version>0.1</version>          
+  <name>Digital Mishnah</name>
+  <packaging>pom</packaging>
+  <modules>
+    <module>validation</module>
+    <module>cocoon</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.3.1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <id>install-saxon9he</id>
+            <configuration>
+              <file>${basedir}/lib/saxon9he.jar</file>
+              <groupId>net.sf.saxon</groupId>
+              <artifactId>saxon</artifactId>
+              <version>9.2</version>
+              <packaging>jar</packaging>
+              <generatePom>true</generatePom>
+            </configuration>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
