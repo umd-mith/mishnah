@@ -33,9 +33,7 @@
         </revisionDesc>
     </teiHeader>
     <!-- TODO:
-           * Eliminate damageSpan, use damage with text, <unclear> and <gap> in the content model
            * Eliminate supplied?
-           * Include seg with content model text, and members of model.pPart.transcriptional
            * Add decl with pointer to header on orders, tractates
            * Add rendition with pointer to header for scribal conventions on things like mishnah titles and verse separators
     -->
@@ -59,9 +57,9 @@
 
                     <!-- Additional modules -->
                     <moduleRef key="transcr"
-                        except="addSpan am delSpan ex facsimile fw gb handNotes handShift surface zone"/>
+                        except="addSpan am damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
                     <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
-                    <moduleRef key="linking" include="ab anchor"/>
+                    <moduleRef key="linking" include="ab anchor seg"/>
 
                     <!-- Including a few elements from modules not otherwise required -->
                     <elementRef key="persName"/>
@@ -114,6 +112,32 @@
                                 </datatype>
                             </attDef>
                         </attList>
+                    </elementSpec>
+                    
+                    <!-- Constrain the content model of damage. Covers three cases: 1) damaged but still readable text (unadorned inside <damage>);
+                    2) damaged text that cannot be read (inside <unclear>); and 3) damage that completely removes text, e.g., holes, etc. (indicated with <gap>)-->
+                    <elementSpec module="transcr" ident="damage" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:choice>
+                                    <rng:text/>
+                                    <rng:ref name="unclear"/>
+                                    <rng:ref name="gap"/>
+                                </rng:choice>
+                            </rng:zeroOrMore>
+                        </content>
+                    </elementSpec>
+                    
+                    <!-- seg will be used to group add, del and other transcriptional elements -->
+                    <elementSpec module="linking" ident="seg" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:choice>
+                                    <rng:text/>
+                                    <rng:ref name="model.pPart.transcriptional"/>
+                                </rng:choice>
+                            </rng:zeroOrMore>
+                        </content>
                     </elementSpec>
 
                 </schemaSpec>
