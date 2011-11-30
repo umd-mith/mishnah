@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/Users/libraries/Code/shelley-godwin/schema/brown_odds.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../shelley-godwin/schema/brown_odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="brown_odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="brown_odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <teiHeader>
         <fileDesc>
@@ -29,10 +29,15 @@
         </fileDesc>
         <revisionDesc>
             <change who="tmunoz" when="2011-10-16">First draft</change>
+            <change who="tmunoz" when="2011-11-30">First set of changes to split witness and reference schemas</change>
         </revisionDesc>
     </teiHeader>
     <!-- TODO:
-           
+           * Eliminate damageSpan, use damage with text, <unclear> and <gap> in the content model
+           * Eliminate supplied?
+           * Include seg with content model text, and members of model.pPart.transcriptional
+           * Add decl with pointer to header on orders, tractates
+           * Add rendition with pointer to header for scribal conventions on things like mishnah titles and verse separators
     -->
     <text>
         <body>
@@ -96,6 +101,9 @@
                     </elementSpec>
                     <elementSpec module="textstructure" ident="div3" mode="change">
                         <altIdent>chapter</altIdent>
+                    </elementSpec>
+                    <elementSpec module="linking" ident="ab" mode="change">
+                        <altIdent>mishnah</altIdent>
                     </elementSpec>
                     
                     <elementSpec module="core" ident="gap" mode="change" >
