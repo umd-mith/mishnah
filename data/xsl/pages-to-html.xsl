@@ -72,9 +72,9 @@
         <span>
             <xsl:attribute name="class">chapter</xsl:attribute>
             <xsl:analyze-string select="$ref"
-                regex="^P_([A-Z]{{1,2}})\.(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+                regex="^P_(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                 <xsl:matching-substring>
-                    <xsl:value-of select="regex-group(5)"/>
+                    <xsl:value-of select="regex-group(4)"/>
                 </xsl:matching-substring>
             </xsl:analyze-string>
         </span>
@@ -90,9 +90,9 @@
         <span>
             <xsl:attribute name="class">mishnah</xsl:attribute>
             <xsl:analyze-string select="$ref"
-                regex="^P_([A-Z]{{1,2}})\.(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
+                regex="^P_(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
                 <xsl:matching-substring>
-                    <xsl:value-of select="regex-group(6)"/>
+                    <xsl:value-of select="regex-group(5)"/>
                 </xsl:matching-substring>
             </xsl:analyze-string>
         </span>
