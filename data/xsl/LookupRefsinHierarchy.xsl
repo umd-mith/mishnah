@@ -20,7 +20,7 @@
         </xsl:variable>
         <xsl:variable name="witlist">
             <xsl:copy-of
-                select="document('../tei/mishnahhierarchy.xml',
+                select="document('../tei/ref.xml',
                 document(''))//tei:listWit except ."
             />
         </xsl:variable>
