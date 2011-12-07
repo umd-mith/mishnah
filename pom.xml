@@ -36,6 +36,67 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <transformationSets>
+            <transformationSet>
+              <dir>${basedir}/data/odd/</dir>
+              <includes>
+                <include>mishnah-reference.odd</include>
+              </includes>
+              <excludes>
+                <exclude>mishnah-witness.odd</exclude>
+              </excludes>
+              <stylesheet>${basedir}/cocoon/text/src/main/resources/roma/xsl/odds2/odd2odd.xsl</stylesheet>
+              <fileMappers>
+                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                  <pattern>\.odd$</pattern>
+                  <replacement>.odd-simple.xml</replacement>
+                </fileMapper>
+              </fileMappers>
+              <outputDir>${basedir}/data/derivative/odd</outputDir>
+            </transformationSet>
+            <transformationSet>
+              <dir>${basedir}/data/derivative/odd</dir>
+              <stylesheet>${basedir}/cocoon/text/src/main/resources/roma/xsl/odds2/odd2relax.xsl</stylesheet>
+              <fileMappers>
+                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                  <pattern>\.odd-simple\.xml$</pattern>
+                  <replacement>.rng</replacement>
+                </fileMapper>
+              </fileMappers>
+              <outputDir>${basedir}/data/derivative/rng</outputDir>
+            </transformationSet>
+            <transformationSet>
+              <dir>${basedir}/data/derivative/odd</dir>
+              <stylesheet>${basedir}/cocoon/text/src/main/resources/roma/xsl/odds2/extract-isosch.xsl</stylesheet>
+              <fileMappers>
+                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                  <pattern>\.odd-simple\.xml$</pattern>
+                  <replacement>.isosch</replacement>
+                </fileMapper>
+              </fileMappers>
+              <outputDir>${basedir}/data/derivative/isosch</outputDir>
+            </transformationSet>
+          </transformationSets>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.2</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
   </build>
 </project>

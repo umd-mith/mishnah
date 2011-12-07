@@ -25,7 +25,7 @@ abstract class ValidatingTestBase(name: String) extends XMLTestCase(name) {
 
   override def setUp() {
     System.setProperty(classOf[SchemaFactory].getName() + ":" + XMLConstants.RELAXNG_NS_URI,
-      "com.thaiopensource.relaxng.jaxp.CompactSyntaxSchemaFactory")
+      "com.thaiopensource.relaxng.jaxp.XMLSyntaxSchemaFactory")
     XMLUnit.setControlParser("org.apache.xerces.jaxp.DocumentBuilderFactoryImpl")
     XMLUnit.setSAXParserFactory("org.apache.xerces.jaxp.SAXParserFactoryImpl")
     XMLUnit.setTransformerFactory("net.sf.saxon.TransformerFactoryImpl")

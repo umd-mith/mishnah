@@ -34,6 +34,15 @@
   </map:components>
 
   <map:pipelines>
+    <map:pipeline id="roma">
+      <map:match pattern="*.rng">
+        <map:generate src="resource://odd/{1}.odd.xml"/>
+        <map:transform src="resource://roma/odds2/odd2odd.xsl" type="xslt-saxon"/>
+        <map:transform src="resource://roma/odds2/odd2relax.xsl" type="xslt-saxon"/>
+        <map:serialize type="xml"/>
+      </map:match>
+    </map:pipeline>
+
     <map:pipeline id="text-viewer">
 
       <map:match pattern="collate-demo">
