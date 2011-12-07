@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+
 
 <?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 
@@ -15,10 +15,51 @@
                     with m. B. Mes. Ch. 2), slightly normalized and all punctuation removed, as the
                     basis for the alignment of the witnesses to the text of the Mishnah. The text
                     below uses the unvocalized text at <link target="http://he.wikisource.org/wiki"
-                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography !></--></p>
+                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography !></-->
+                </p>
             </publicationStmt>
             <sourceDesc>
-                <p> </p>
+                <listWit>
+                    <!-- on <ptr/> tag: the preface "bm_ch2_" is temporary, for this pilot in which only Ch2 of Bava Metsia is
+                        transcribed. Eventually will be dropped.-->
+                    <!-- Mishnah Texts -->
+                    <witness xml:id="Kauf" ana="M"><ptr target="bm_ch2_kauf.xml"/>National Museum of
+                        Hungary, Kaufmann A50.</witness>
+                    <witness xml:id="ParmA" ana="M"><ptr target="bm_ch2_parm-a.xml"/>De Rossi
+                        138-139</witness>
+                    <witness xml:id="Camb" ana="M"><ptr target="bm_ch2_camb.xml"/>Cambridge Add.
+                            470.1<desc>Based on Lowe edition; for Ch. 2, checked against photos of
+                            the original ref.</desc></witness>
+                    <witness xml:id="Maim" ana="M"><ptr target="bm_ch2_maim.xml"/>Maimonides
+                        Autograph MS</witness>
+                    <witness xml:id="ParmB" ana="M">
+                        <ptr/>
+                    </witness>
+                    <witness xml:id="Paris" ana="M">Bibliothèque nationale de France. MS Hébreu
+                        328-329, 230b-231b<ptr target="bm_ch2_paris.xml"/></witness>
+                    <witness xml:id="Nap" ana="M"><ptr target="bm_ch2_nap.xml"/>Mishnah, Editio
+                        Princeps, Naples 1492</witness>
+                    <witness xml:id="Vilna" ana="M"><ptr target="bm_ch2_vilna.xml"/>Mishnah, Yakhin
+                        u-vo'az, Vilna</witness>
+                    <!-- Babylonian Talmud Texts -->
+                    <witness xml:id="Mun" ana="B"><ptr target="bm_ch2_mun.xml"/>Bayerische
+                        Staatsbibliothek Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript of
+                            the Babylonian Talmud</desc></witness>
+                    <!-- Palestinian Talmud Texts -->
+                    <witness xml:id="Leid" ana="Y"><ptr/>Leiden Scaliger Or. 4720, 1289
+                            <!-- Ch. 2 begins at II 191r see: http://www.yerushalmionline.org/leiden_manuscript.html
+                        --><desc>Manuscript
+                            of the Palestinian Talmud</desc></witness>
+                    <!-- Genizah Mishnah Texts. -->
+                    <!-- Naming: G+1, 2, 3 in order that they were transcribed/registered. -->
+                    <witness xml:id="G1" ana="G"><ptr target="g1.xml"/>Cairo Genizah TS E1.99 f. 1r
+                        - 2v (Cambridge)<desc>Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 -
+                            2:5</desc>
+                    </witness>
+                    <witness xml:id="G2" ana="G"><ptr target="g2.xml"/>Cairo Genizah TS NS 329.286
+                        f. 1r - 1v (Cambridge)<desc>Bava Qamma 10:8 - 10; Bava Metsi'a 1:1 -
+                            2:10</desc></witness>
+                </listWit>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
@@ -28,6 +69,94 @@
                 <rendition xml:id="ornamented" scheme="free">Text is ornamented in some
                     way</rendition>
             </tagsDecl>
+            <refsDecl>
+                <p>The following describes the structure of the Mishnah, to be referenced by xml:id.
+                    The Mishnah is divided into six orders, each divided into tractates, each of
+                    which is further divided into chapters and mishnayot (mishnahs). 
+                    Full references to an individual section uses the following system:
+                    ref.order.tractate.chapter.mishnah. Order and tractate refs are numerical and
+                    follow the outline below. By convention, references to chapter and mishnah are
+                    numerical. When looking up a specific witness, "ref." is replaced by the
+                    relevant /TEI/teiHeader/fileDesc/sourceDesc/listWit/witness@xml:id
+                    <list ana="order">
+                    <item n="1">Zeraim <list ana="tractate">
+                        <item n="1.1">Berakhot</item>
+                        <item n="1.2">Peah</item>
+                        <item n="1.3">Demai</item>
+                        <item n="1.4">Kilayim</item>
+                        <item n="1.5">Sheviit</item>
+                        <item n="1.6">Terumot</item>
+                        <item n="1.7">Maaserot</item>
+                        <item n="1.8">MaaserSheni</item>
+                        <item n="1.9">Hallah</item>
+                        <item n="1.10">Orla</item>
+                        <item n="1.11">Bikkurim</item>
+                    </list></item>
+                    <item n="2">Moed<list ana="tractate">
+                        <item n="2.1">Shabbat</item>
+                        <item n="2.2">Eruvin</item>
+                        <item n="2.3">Pesahim</item>
+                        <item n="2.4">Sheqalim</item>
+                        <item n="2.5">Yoma</item>
+                        <item n="2.6">Sukkah</item>
+                        <item n="2.7">Besah</item>
+                        <item n="2.8">RoshHashanah</item>
+                        <item n="2.9">Taanit</item>
+                        <item n="2.10">Megillah</item>
+                        <item n="2.11">MoedQatan</item>
+                        <item n="2.12">Hagigah</item>
+                    </list></item>
+                    <item n="3">Nashim <list ana="tractate">
+                        <item n="3.1">Yebamot</item>
+                        <item n="3.2">Ketubot</item>
+                        <item n="3.3">Nedarim</item>
+                        <item n="3.4">Nazir</item>
+                        <item n="3.5">Sotah</item>
+                        <item n="3.6">Gitin</item>
+                        <item n="3.7">Qiddushin</item>
+                    </list></item>
+                    <item n="4">Neziqin<list ana="tractate">
+                        <item n="4.1">Bava Qamma</item>
+                        <item n="4.2">Bava Metsia</item>
+                        <item n="4.3">Bava Batra</item>
+                        <item n="4.4">Sanhedrin</item>
+                        <item n="4.5">Makkot</item>
+                        <item n="4.6">Shevuot</item>
+                        <item n="4.7">Eduyot</item>
+                        <item n="4.8">AvodahZarah</item>
+                        <item n="4.9">Avot</item>
+                        <item n="4.10">Horayot</item>
+                    </list></item>
+                    <item n="5">Qodashim<list ana="tractate">
+                        <item n="5.1">Zevahim</item>
+                        <item n="5.2">Menahot</item>
+                        <item n="5.3">Hulin</item>
+                        <item n="5.4">Bekhorot</item>
+                        <item n="5.5">Arakhin</item>
+                        <item n="5.6">Temurah</item>
+                        <item n="5.7">Meilah</item>
+                        <item n="5.8">Keritot</item>
+                        <item n="5.9">Tamid</item>
+                        <item n="5.10">Middot</item>
+                        <item n="5.11">Qinnim</item>
+                    </list></item>
+                    <item n="6">Teharot<list ana="tractate">
+                        <item n="6.1">Kelim</item>
+                        <item n="6.2">Ohalot</item>
+                        <item n="6.3">Negaim</item>
+                        <item n="6.4">Parah</item>
+                        <item n="6.5">Teharot</item>
+                        <item n="6.6">Miqvaot</item>
+                        <item n="6.7">Niddah</item>
+                        <item n="6.8">Makhshirin</item>
+                        <item n="6.9">Zabim</item>
+                        <item n="6.10">TevulYom</item>
+                        <item n="6.11">Yadayim</item>
+                        <item n="6.12">Uqtsim</item>
+                    </list></item>
+                    </list></p>
+                <p></p>
+            </refsDecl>
         </encodingDesc>
         <revisionDesc>
             <list>
@@ -44,90 +173,50 @@
     </teiHeader>
     <text>
         <body>
-            <listWit>
-                <!-- on <ptr/> tag: the preface "bm_ch2_" is temporary, for this pilot in which only Ch2 of Bava Metsia is
- transcribed. Eventually will be dropped.-->
-                <!-- Mishnah Texts -->
-                <witness xml:id="Kauf" ana="M"><ptr target="bm_ch2_kauf.xml"/>National Museum of
-                    Hungary, Kaufmann A50.</witness>
-                <witness xml:id="ParmA" ana="M"><ptr target="bm_ch2_parm-a.xml"/>De Rossi
-                    138-139</witness>
-                <witness xml:id="Camb" ana="M"><ptr target="bm_ch2_camb.xml"/>Cambridge Add.
-                        470.1<desc>Based on Lowe edition; for Ch. 2, checked against photos of the
-                        original ms.</desc></witness>
-                <witness xml:id="Maim" ana="M"><ptr target="bm_ch2_maim.xml"/>Maimonides Autograph
-                    MS</witness>
-                <witness xml:id="ParmB" ana="M">
-                    <ptr/>
-                </witness>
-                <witness xml:id="Paris" ana="M">Bibliothèque nationale de France. MS Hébreu 328-329,
-                        230b-231b<ptr target="bm_ch2_paris.xml"/></witness>
-                <witness xml:id="Nap" ana="M"><ptr target="bm_ch2_nap.xml"/>Mishnah, Editio
-                    Princeps, Naples 1492</witness>
-                <witness xml:id="Vilna" ana="M"><ptr target="bm_ch2_vilna.xml"/>Mishnah, Yakhin
-                    u-vo'az, Vilna</witness>
-                <!-- Babylonian Talmud Texts -->
-                <witness xml:id="Mun" ana="B"><ptr target="bm_ch2_mun.xml"/>Bayerische
-                    Staatsbibliothek Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript of the
-                        Babylonian Talmud</desc></witness>
-                <!-- Palestinian Talmud Texts -->
-                <witness xml:id="Leid" ana="Y"><ptr/>Leiden Scaliger Or. 4720, 1289
-                        <!-- Ch. 2 begins at II 191r see: http://www.yerushalmionline.org/leiden_manuscript.html
- --><desc>Manuscript
-                        of the Palestinian Talmud</desc></witness>
-                <!-- Genizah Mishnah Texts. -->
-                <!-- Naming: G+1, 2, 3 in order that they were transcribed/registered. -->
-                <witness xml:id="G1" ana="G"><ptr target="g1.xml"/>Cairo Genizah TS E1.99 f. 1r - 2v
-                        (Cambridge)<desc>Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 -
-                        2:5</desc>
-                </witness>
-                <witness xml:id="G2" ana="G"><ptr target="g2.xml"/>Cairo Genizah TS NS 329.286 f. 1r
-                    - 1v (Cambridge)<desc>Bava Qamma 10:8 - 10; Bava Metsi'a 1:1 -
-                    2:10</desc></witness>
-            </listWit>
-            <div1 xml:id="MS.Zeraim">
-                <!-- "MS." means: Replace with witness identifier -->
-                <div2 xml:id="MS.Berakhot" type="tractate"/>
-                <div2 xml:id="MS.Peah" type="tractate"/>
-                <div2 xml:id="MS.Demai" type="tractate"/>
-                <div2 xml:id="MS.Kilayim" type="tractate"/>
-                <div2 xml:id="MS.Sheviit" type="tractate"/>
-                <div2 xml:id="MS.Terumot" type="tractate"/>
-                <div2 xml:id="MS.Maaserot" type="tractate"/>
-                <div2 xml:id="MS.MaaserSheni" type="tractate"/>
-                <div2 xml:id="MS.Hallah" type="tractate"/>
-                <div2 xml:id="MS.Orla" type="tractate"/>
-                <div2 xml:id="MS.Bikkurim" type="tractate"/>
+            <div1 xml:id="ref.Zeraim">
+                <!-- "ref." means: Replace with witness identifier -->
+                <div2 xml:id="ref.Berakhot" type="tractate"/>
+                <div2 xml:id="ref.Peah" type="tractate"/>
+                <div2 xml:id="ref.Demai" type="tractate"/>
+                <div2 xml:id="ref.Kilayim" type="tractate"/>
+                <div2 xml:id="ref.Sheviit" type="tractate"/>
+                <div2 xml:id="ref.Terumot" type="tractate"/>
+                <div2 xml:id="ref.Maaserot" type="tractate"/>
+                <div2 xml:id="ref.MaaserSheni" type="tractate"/>
+                <div2 xml:id="ref.Hallah" type="tractate"/>
+                <div2 xml:id="ref.Orla" type="tractate"/>
+                <div2 xml:id="ref.Bikkurim" type="tractate"/>
             </div1>
-            <div1 xml:id="MS.Moed" type="Order">
-                <div2 xml:id="MS.Shabbat" type="tractate"/>
-                <div2 xml:id="MS.Eruvin" type="tractate"/>
-                <div2 xml:id="MS.Pesahim" type="tractate"/>
-                <div2 xml:id="MS.Sheqalim" type="tractate"/>
-                <div2 xml:id="MS.Yoma" type="tractate"/>
-                <div2 xml:id="MS.Sukkah" type="tractate"/>
-                <div2 xml:id="MS.Besah" type="tractate"/>
-                <div2 xml:id="MS.RoshHashanah" type="tractate"/>
-                <div2 xml:id="MS.Taanit" type="tractate"/>
-                <div2 xml:id="MS.Megillah" type="tractate"/>
-                <div2 xml:id="MS.MoedQatan" type="tractate"/>
-                <div2 xml:id="MS.Hagigah" type="tractate"/>
+            <div1 xml:id="ref.Moed" type="Order">
+                <div2 xml:id="ref.Shabbat" type="tractate"/>
+                <div2 xml:id="ref.Eruvin" type="tractate"/>
+                <div2 xml:id="ref.Pesahim" type="tractate"/>
+                <div2 xml:id="ref.Sheqalim" type="tractate"/>
+                <div2 xml:id="ref.Yoma" type="tractate"/>
+                <div2 xml:id="ref.Sukkah" type="tractate"/>
+                <div2 xml:id="ref.Besah" type="tractate"/>
+                <div2 xml:id="ref.RoshHashanah" type="tractate"/>
+                <div2 xml:id="ref.Taanit" type="tractate"/>
+                <div2 xml:id="ref.Megillah" type="tractate"/>
+                <div2 xml:id="ref.MoedQatan" type="tractate"/>
+                <div2 xml:id="ref.Hagigah" type="tractate"/>
             </div1>
-            <div1 xml:id="MS.Nashim" type="Order">
-                <div2 xml:id="MS.Yebamot" type="tractate"/>
-                <div2 xml:id="MS.Ketubot" type="tractate"/>
-                <div2 xml:id="MS.Nedarim" type="tractate"/>
-                <div2 xml:id="MS.Nazir" type="tractate"/>
-                <div2 xml:id="MS.Sotah" type="tractate"/>
-                <div2 xml:id="MS.Gitin" type="tractate"/>
-                <div2 xml:id="MS.Qiddushin" type="tractate"/>
+            <div1 xml:id="ref.Nashim" type="Order">
+                <div2 xml:id="ref.Yebamot" type="tractate"/>
+                <div2 xml:id="ref.Ketubot" type="tractate"/>
+                <div2 xml:id="ref.Nedarim" type="tractate"/>
+                <div2 xml:id="ref.Nazir" type="tractate"/>
+                <div2 xml:id="ref.Sotah" type="tractate"/>
+                <div2 xml:id="ref.Gitin" type="tractate"/>
+                <div2 xml:id="ref.Qiddushin" type="tractate"/>
             </div1>
-            <div1 xml:id="MS.4" type="Order">
-                <div2 xml:id="MS.4.1">
+            <div1 xml:id="ref.4" type="Order">
+                <div2 xml:id="ref.4.1">
                     <head/>
-                    <div3 xml:id="MS.4.1.1">
-                        <head xml:id="MS.4.1.1.H"/>
-                        <ab xml:id="MS.4.1.1.1">
+                    <div3 xml:id="ref.4.1.1">
+                        <head xml:id="ref.4.1.1.H"><w>פרק</w>
+                            <w>א</w></head>
+                        <ab xml:id="ref.4.1.1.1">
                             <label>א</label>
                             <w>ארבעה</w>
                             <w>אבות</w>
@@ -187,7 +276,7 @@
                             <w>במיטב</w>
                             <w>הארץ</w>
                         </ab>
-                        <ab xml:id="MS.4.1.1.2">
+                        <ab xml:id="ref.4.1.1.2">
                             <label>ב</label>
                             <w>כל</w>
                             <w>שחבתי</w>
@@ -231,7 +320,7 @@
                             <w>במיטב</w>
                             <w>הארץ</w>
                         </ab>
-                        <ab xml:id="MS.4.1.1.3">
+                        <ab xml:id="ref.4.1.1.3">
                             <label>ג</label>
                             <w>שום</w>
                             <w>כסף</w>
@@ -254,7 +343,7 @@
                             <w>והמזיק</w>
                             <w>בתשלומין</w>
                         </ab>
-                        <ab xml:id="MS.4.1.1.4">
+                        <ab xml:id="ref.4.1.1.4">
                             <label>ד</label>
                             <w>חמשה</w>
                             <w>תמין</w>
@@ -329,11 +418,12 @@
                             <w>מן</w>
                             <w>העליה</w>
                         </ab>
-                        <trailer xml:id="MS.4.1.1.T"/>
+                        <trailer xml:id="ref.4.1.1.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.2">
-                        <head xml:id="MS.4.1.2.H">פרק ב</head>
-                        <ab xml:id="MS.4.1.2.1">
+                    <div3 xml:id="ref.4.1.2">
+                        <head xml:id="ref.4.1.2.H"><w>פרק</w>
+                            <w>ב</w></head>
+                        <ab xml:id="ref.4.1.2.1">
                             <label>א</label>
                             <w>כיצד</w>
                             <w>הרגל</w>
@@ -401,7 +491,7 @@
                             <w>חצי</w>
                             <w>נזק</w>
                         </ab>
-                        <ab xml:id="MS.4.1.2.2">
+                        <ab xml:id="ref.4.1.2.2">
                             <label>ב</label>
                             <w>כיצד</w>
                             <w>ה<link target="g1.xml#damBeg.2v.3"/>שן</w>
@@ -467,7 +557,7 @@
                             <w>מה</w>
                             <w>שהזיק<link target="g1.xml#damBeg.2v.9"/>ה</w>
                         </ab>
-                        <ab xml:id="MS.4.1.2.3">
+                        <ab xml:id="ref.4.1.2.3">
                             <label>ג</label>
                             <link target="g1.xml#damEnd.2v.9"/>
                             <w>הכלב</w>
@@ -506,7 +596,7 @@
                             <w>נזק</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.2.4">
+                        <ab xml:id="ref.4.1.2.4">
                             <label>ד</label>
                             <w>איזה</w>
                             <w>הוא</w>
@@ -548,7 +638,7 @@
                             <w>נוגח</w>
                         </ab>
                         <!-- thru here -->
-                        <ab xml:id="MS.4.1.2.5">
+                        <ab xml:id="ref.4.1.2.5">
                             <label>ה</label>
                             <w>שור</w>
                             <w>המזיק</w>
@@ -649,12 +739,14 @@
                             <w>אני</w>
                             <w>לא</w>
                             <w>אדון</w>
-                            <link target="g1.xml#damBeg.2r.2a"/><w>קרן</w>
+                            <link target="g1.xml#damBeg.2r.2a"/>
+                            <w>קרן</w>
                             <w>מקרן</w>
                             <w>אני</w>
                             <w>אדון</w>
                             <w>קרן</w>
-                            <w>מ<link target="g1.xml#damEnd.2r.2a"/>רג<link target="g1.damBeg.2r.2b"/>ל</w>
+                            <w>מ<link target="g1.xml#damEnd.2r.2a"/>רג<link target="g1.damBeg.2r.2b"
+                                />ל</w>
                             <w>ומה</w>
                             <link target="g1.xml#damEnd.2r.2b"/>
                             <w>במקום</w>
@@ -703,7 +795,7 @@
                             <w>נזק</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.2.6">
+                        <ab xml:id="ref.4.1.2.6">
                             <label>ו</label>
                             <w>אדם</w>
                             <w>מועד</w>
@@ -732,16 +824,16 @@
                             <w>שלם</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.2.T"/>
+                        <trailer xml:id="ref.4.1.2.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.3">
-                        <head xml:id="MS.4.1.3.H">
+                    <div3 xml:id="ref.4.1.3">
+                        <head xml:id="ref.4.1.3.H">
                             <link target="g1.xml#damBeg.2r.7b"/>
                             <w>פרק</w>
                             <link target="g1.xml#damEnd.2r.7b"/>
                             <w>ג</w>
                         </head>
-                        <ab xml:id="MS.4.1.3.1">
+                        <ab xml:id="ref.4.1.3.1">
                             <link target="g1.xml#damBeg.2r.8"/>
                             <label>א</label>
                             <w>המניח</w>
@@ -787,7 +879,7 @@
                             <w>מתכוין</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.3.2">
+                        <ab xml:id="ref.4.1.3.2">
                             <label>ב</label>
                             <w>השופך</w>
                             <w>מים</w>
@@ -818,7 +910,7 @@
                             <w>בנזקן</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.3">
+                        <ab xml:id="ref.4.1.3.3">
                             <label>ג</label>
                             <w>המוציא</w>
                             <w>את</w>
@@ -865,7 +957,7 @@
                             <w>חייב</w>
                             <w>בנזקו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.3.4">
+                        <ab xml:id="ref.4.1.3.4">
                             <label>ד</label>
                             <w>שני</w>
                             <w>קדרין</w>
@@ -887,7 +979,7 @@
                             <w>שני</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.5">
+                        <ab xml:id="ref.4.1.3.5">
                             <label>ה</label>
                             <link target="g1.xml#damBeg.2r.18b"/>
                             <w>זה</w>
@@ -973,7 +1065,7 @@
                             <w>בפשתנו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.6">
+                        <ab xml:id="ref.4.1.3.6">
                             <label>ו</label>
                             <w>שנים</w>
                             <w>שהיו</w>
@@ -996,7 +1088,7 @@
                             <w>פטורין</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.7">
+                        <ab xml:id="ref.4.1.3.7">
                             <label>ז</label>
                             <w>המבקע</w>
                             <w>ברשות</w>
@@ -1018,7 +1110,7 @@
                             <w>חייב</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.8">
+                        <ab xml:id="ref.4.1.3.8">
                             <label>ח</label>
                             <w>שני</w>
                             <w>שוורים</w>
@@ -1100,7 +1192,7 @@
                             <w>שלם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.9">
+                        <ab xml:id="ref.4.1.3.9">
                             <label>ט</label>
                             <w>שור</w>
                             <w>שוה</w>
@@ -1187,7 +1279,7 @@
                             <w>המת</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.10">
+                        <ab xml:id="ref.4.1.3.10">
                             <label>י</label>
                             <w>יש</w>
                             <w>חייב</w>
@@ -1258,7 +1350,7 @@
                             <w>בנפשו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.3.11">
+                        <ab xml:id="ref.4.1.3.11">
                             <label>יא</label>
                             <w>שור</w>
                             <w>שהיה</w>
@@ -1403,11 +1495,12 @@
                             <w>הראיה</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.3.T"/>
+                        <trailer xml:id="ref.4.1.3.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.4">
-                        <head xml:id="MS.4.1.4.H">פרק ד</head>
-                        <ab xml:id="MS.4.1.4.1">
+                    <div3 xml:id="ref.4.1.4">
+                        <head xml:id="ref.4.1.4.H"><w>פרק</w>
+                            <w>ד</w></head>
+                        <ab xml:id="ref.4.1.4.1">
                             <label>א</label>
                             <w>שור</w>
                             <w>שנגח</w>
@@ -1494,7 +1587,7 @@
                             <w>דינר</w>
                             <w>זהב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.2">
+                        <ab xml:id="ref.4.1.4.2">
                             <label>ב</label>
                             <w>שור</w>
                             <w>שהוא</w>
@@ -1559,7 +1652,7 @@
                             <w>ימי</w>
                             <w>שבתות</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.3">
+                        <ab xml:id="ref.4.1.4.3">
                             <label>ג</label>
                             <w>שור</w>
                             <w>של</w>
@@ -1606,7 +1699,7 @@
                             <w>נזק</w>
                             <w>שלם</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.4">
+                        <ab xml:id="ref.4.1.4.4">
                             <label>ד</label>
                             <w>שור</w>
                             <w>של</w>
@@ -1670,7 +1763,7 @@
                             <w>ולא</w>
                             <w>שיגיחוהו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.5">
+                        <ab xml:id="ref.4.1.4.5">
                             <label>ה</label>
                             <w>שור</w>
                             <w>שנגח</w>
@@ -1710,7 +1803,7 @@
                             <w>דינר</w>
                             <w>אחד</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.6">
+                        <ab xml:id="ref.4.1.4.6">
                             <label>ו</label>
                             <w>שור</w>
                             <w>שהיה</w>
@@ -1737,7 +1830,7 @@
                             <w>קיימא</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.7">
+                        <ab xml:id="ref.4.1.4.7">
                             <label>ז</label>
                             <w>שור</w>
                             <w>האשה</w>
@@ -1777,7 +1870,7 @@
                             <w>להם</w>
                             <w>בעלים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.8">
+                        <ab xml:id="ref.4.1.4.8">
                             <label>ח</label>
                             <w>שור</w>
                             <w>שהוא</w>
@@ -1803,7 +1896,7 @@
                             <w>בשרו</w>
                             <w>מותר</w>
                         </ab>
-                        <ab xml:id="MS.4.1.4.9">
+                        <ab xml:id="ref.4.1.4.9">
                             <label>ט</label>
                             <w>מסרו</w>
                             <w>לשומר</w>
@@ -1863,11 +1956,12 @@
                             <w>סכין</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.4.T"/>
+                        <trailer xml:id="ref.4.1.4.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.5">
-                        <head xml:id="MS.4.1.5.H">פרק ה</head>
-                        <ab xml:id="MS.4.1.5.1">
+                    <div3 xml:id="ref.4.1.5">
+                        <head xml:id="ref.4.1.5.H"><w>פרק</w>
+                            <w>ה</w></head>
+                        <ab xml:id="ref.4.1.5.1">
                             <label>א</label>
                             <w>שור</w>
                             <w>שנגח</w>
@@ -1921,7 +2015,7 @@
                             <w>מן</w>
                             <w>הולד</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.2">
+                        <ab xml:id="ref.4.1.5.2">
                             <label>ב</label>
                             <w>הקדר</w>
                             <w>שהכניס</w>
@@ -1975,7 +2069,7 @@
                             <w>החצר</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.3">
+                        <ab xml:id="ref.4.1.5.3">
                             <label>ג</label>
                             <w>הכניס</w>
                             <w>שורו</w>
@@ -2032,7 +2126,7 @@
                             <w>עליו</w>
                             <w>לשמור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.4">
+                        <ab xml:id="ref.4.1.5.4">
                             <label>ד</label>
                             <w>שור</w>
                             <w>שהיה</w>
@@ -2107,7 +2201,7 @@
                             <w>גיורת</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.5">
+                        <ab xml:id="ref.4.1.5.5">
                             <label>ה</label>
                             <w>החופר</w>
                             <w>בור</w>
@@ -2185,7 +2279,7 @@
                             <w>בו</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.6">
+                        <ab xml:id="ref.4.1.5.6">
                             <label>ו</label>
                             <w>בור</w>
                             <w>של</w>
@@ -2268,7 +2362,7 @@
                             <w>אמה</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.5.7">
+                        <ab xml:id="ref.4.1.5.7">
                             <label>ז</label>
                             <w>אחד</w>
                             <w>שור</w>
@@ -2306,11 +2400,12 @@
                             <w>בהווה</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.5.T"/>
+                        <trailer xml:id="ref.4.1.5.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.6">
-                        <head xml:id="MS.4.1.6.H"/>
-                        <ab xml:id="MS.4.1.6.1">
+                    <div3 xml:id="ref.4.1.6">
+                        <head xml:id="ref.4.1.6.H"><w>פרק</w>
+                            <w>ו</w></head>
+                        <ab xml:id="ref.4.1.6.1">
                             <label>א</label>
                             <w>הכונס</w>
                             <w>צאן</w>
@@ -2341,7 +2436,7 @@
                             <w>לסטים</w>
                             <w>חייבים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.6.2">
+                        <ab xml:id="ref.4.1.6.2">
                             <label>ב</label>
                             <w>הניחה</w>
                             <w>בחמה</w>
@@ -2401,7 +2496,7 @@
                             <w>סאתים</w>
                             <w>סאתים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.6.3">
+                        <ab xml:id="ref.4.1.6.3">
                             <label>ג</label>
                             <w>המגדיש</w>
                             <w>בתוך</w>
@@ -2429,7 +2524,7 @@
                             <w>השדה</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.6.4">
+                        <ab xml:id="ref.4.1.6.4">
                             <label>ד</label>
                             <w>השולח</w>
                             <w>את</w>
@@ -2566,7 +2661,7 @@
                             <w>לפי</w>
                             <w>הדליקה</w>
                         </ab>
-                        <ab xml:id="MS.4.1.6.5">
+                        <ab xml:id="ref.4.1.6.5">
                             <label>ה</label>
                             <w>המדליק</w>
                             <w>את</w>
@@ -2630,7 +2725,7 @@
                             <w>להניח</w>
                             <w>בבתים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.6.6">
+                        <ab xml:id="ref.4.1.6.6">
                             <label>ו</label>
                             <w>גץ</w>
                             <w>שיצא</w>
@@ -2673,11 +2768,12 @@
                             <w>פטור</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.6.T"/>
+                        <trailer xml:id="ref.4.1.6.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.7">
-                        <head xml:id="MS.4.1.7.H">פרק ז</head>
-                        <ab xml:id="MS.4.1.7.1">
+                    <div3 xml:id="ref.4.1.7">
+                        <head xml:id="ref.4.1.7.H"><w>פרק</w>
+                            <w>ז</w></head>
+                        <ab xml:id="ref.4.1.7.1">
                             <label>א</label>
                             <w>מרבה</w>
                             <w>מדת</w>
@@ -2742,7 +2838,7 @@
                             <w>ארבעה</w>
                             <w>וחמשה</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.2">
+                        <ab xml:id="ref.4.1.7.2">
                             <label>ב</label>
                             <w>גנב</w>
                             <w>על</w>
@@ -2812,7 +2908,7 @@
                             <w>בשני</w>
                             <w>אלו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.3">
+                        <ab xml:id="ref.4.1.7.3">
                             <label>ג</label>
                             <w>גנב</w>
                             <w>על</w>
@@ -2881,7 +2977,7 @@
                             <w>ואין</w>
                             <w>מכירה</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.4">
+                        <ab xml:id="ref.4.1.7.4">
                             <label>ד</label>
                             <w>גנב</w>
                             <w>על</w>
@@ -2950,7 +3046,7 @@
                             <w>באחריותם</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.5">
+                        <ab xml:id="ref.4.1.7.5">
                             <label>ה</label>
                             <w>מכרו</w>
                             <w>חוץ</w>
@@ -3006,7 +3102,7 @@
                             <w>ברשותם</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.6">
+                        <ab xml:id="ref.4.1.7.6">
                             <label>ו</label>
                             <w>היה</w>
                             <w>מושכו</w>
@@ -3048,7 +3144,7 @@
                             <w>ומת</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.7.7">
+                        <ab xml:id="ref.4.1.7.7">
                             <label>ז</label>
                             <w>אין</w>
                             <w>מגדלין</w>
@@ -3104,11 +3200,12 @@
                             <w>שלשים</w>
                             <w>ריס</w>
                         </ab>
-                        <trailer xml:id="MS.4.1.7.T"/>
+                        <trailer xml:id="ref.4.1.7.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.8">
-                        <head xml:id="MS.4.1.8.H">פרק ח</head>
-                        <ab xml:id="MS.4.1.8.1">
+                    <div3 xml:id="ref.4.1.8">
+                        <head xml:id="ref.4.1.8.H"><w>פרק</w>
+                            <w>ח</w></head>
+                        <ab xml:id="ref.4.1.8.1">
                             <label>א</label>
                             <w>החובל</w>
                             <w>בחבירו</w>
@@ -3252,7 +3349,7 @@
                             <w>שיהא</w>
                             <w>מתכוין</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.2">
+                        <ab xml:id="ref.4.1.8.2">
                             <label>ב</label>
                             <w>זה</w>
                             <w>חומר</w>
@@ -3277,7 +3374,7 @@
                             <w>מדמי</w>
                             <w>ולדות</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.3">
+                        <ab xml:id="ref.4.1.8.3">
                             <label>ג</label>
                             <w>המכה</w>
                             <w>את</w>
@@ -3319,7 +3416,7 @@
                             <w>לעבדים</w>
                             <w>בושת</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.4">
+                        <ab xml:id="ref.4.1.8.4">
                             <label>ד</label>
                             <w>חרש</w>
                             <w>שוטה</w>
@@ -3355,7 +3452,7 @@
                             <w>חייבין</w>
                             <w>לשלם</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.5">
+                        <ab xml:id="ref.4.1.8.5">
                             <label>ה</label>
                             <w>המכה</w>
                             <w>אביו</w>
@@ -3379,7 +3476,7 @@
                             <w>פטור</w>
                             <w>מכולן</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.6">
+                        <ab xml:id="ref.4.1.8.6">
                             <label>ו</label>
                             <w>התוקע</w>
                             <w>לחבירו</w>
@@ -3542,7 +3639,7 @@
                             <w>נטיעותיו</w>
                             <w>חייבים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.8.7">
+                        <ab xml:id="ref.4.1.8.7">
                             <label>ז</label>
                             <w>אף</w>
                             <w>על</w>
@@ -3616,11 +3713,12 @@
                             <w>בממונו</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.8.T"/>
+                        <trailer xml:id="ref.4.1.8.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.9">
-                        <head xml:id="MS.4.1.9.H"/>
-                        <ab xml:id="MS.4.1.9.1">
+                    <div3 xml:id="ref.4.1.9">
+                        <head xml:id="ref.4.1.9.H"><w>פרק</w>
+                            <w>ט</w></head>
+                        <ab xml:id="ref.4.1.9.1">
                             <label>א</label>
                             <w>הגוזל</w>
                             <w>עצים</w>
@@ -3668,7 +3766,7 @@
                             <w>כשעת</w>
                             <w>הגזלה</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.2">
+                        <ab xml:id="ref.4.1.9.2">
                             <label>ב</label>
                             <w>גזל</w>
                             <w>בהמה</w>
@@ -3724,7 +3822,7 @@
                             <w>שלך</w>
                             <w>לפניך</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.3">
+                        <ab xml:id="ref.4.1.9.3">
                             <label>ג</label>
                             <w>נתן</w>
                             <w>לאומנין</w>
@@ -3767,7 +3865,7 @@
                             <w>המכה</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.4">
+                        <ab xml:id="ref.4.1.9.4">
                             <label>ד</label>
                             <w>הנותן</w>
                             <w>צמר</w>
@@ -3835,7 +3933,7 @@
                             <w>את</w>
                             <w>השבח</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.5">
+                        <ab xml:id="ref.4.1.9.5">
                             <label>ה</label>
                             <w>הגוזל</w>
                             <w>את</w>
@@ -3864,7 +3962,7 @@
                             <w>יחזיר</w>
                             <w>ליורשיו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.6">
+                        <ab xml:id="ref.4.1.9.6">
                             <label>ו</label>
                             <w>נתן</w>
                             <w>לו</w>
@@ -3931,7 +4029,7 @@
                             <w>לילך</w>
                             <w>אחריו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.7">
+                        <ab xml:id="ref.4.1.9.7">
                             <label>ז</label>
                             <w>נתן</w>
                             <w>לו</w>
@@ -4002,7 +4100,7 @@
                             <w>וחמש</w>
                             <w>ואשם</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.8">
+                        <ab xml:id="ref.4.1.9.8">
                             <label>ח</label>
                             <w>היכן</w>
                             <w>פקדוני</w>
@@ -4027,7 +4125,7 @@
                             <w>וחומש</w>
                             <w>ואשם</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.9">
+                        <ab xml:id="ref.4.1.9.9">
                             <label>ט</label>
                             <w>הגוזל</w>
                             <w>את</w>
@@ -4055,7 +4153,7 @@
                             <w>באים</w>
                             <w>ונפרעים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.10">
+                        <ab xml:id="ref.4.1.9.10">
                             <label>י</label>
                             <w>האומר</w>
                             <w>לבנו</w>
@@ -4086,7 +4184,7 @@
                             <w>באים</w>
                             <w>ונפרעים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.9.11">
+                        <ab xml:id="ref.4.1.9.11">
                             <label>יא</label>
                             <w>הגוזל</w>
                             <w>את</w>
@@ -4141,7 +4239,7 @@
                             <w>לנדבה</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.1.9.12">
+                        <ab xml:id="ref.4.1.9.12">
                             <label>יב</label>
                             <w>נתן</w>
                             <w>הכסף</w>
@@ -4208,11 +4306,13 @@
                             <w>מעכב</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.1.9.T"/>
+                        <trailer xml:id="ref.4.1.9.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.1.10">
-                        <head xml:id="MS.4.1.10.H"> פרק י</head>
-                        <ab xml:id="MS.4.1.10.1">
+                    <div3 xml:id="ref.4.1.10">
+                        <head xml:id="ref.4.1.10.H">
+                            <w>פרק</w>
+                            <w>י</w></head>
+                        <ab xml:id="ref.4.1.10.1">
                             <label>א</label>
                             <w>הגוזל</w>
                             <w>ומאכיל</w>
@@ -4252,7 +4352,7 @@
                             <w>מן</w>
                             <w>השוק</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.2">
+                        <ab xml:id="ref.4.1.10.2">
                             <label>ב</label>
                             <w>נטלו</w>
                             <w>מוכסין</w>
@@ -4353,7 +4453,7 @@
                             <w>את</w>
                             <w>הדמים</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.3">
+                        <ab xml:id="ref.4.1.10.3">
                             <label>ג</label>
                             <w>המכיר</w>
                             <w>כליו</w>
@@ -4384,7 +4484,7 @@
                             <w>זה</w>
                             <w>הימנו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.4">
+                        <ab xml:id="ref.4.1.10.4">
                             <label>ד</label>
                             <w>זה</w>
                             <w>בא</w>
@@ -4464,7 +4564,7 @@
                             <w>לתן</w>
                             <w>לו</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.5">
+                        <ab xml:id="ref.4.1.10.5">
                             <label>ה</label>
                             <w>הגוזל</w>
                             <w>שדה</w>
@@ -4496,7 +4596,7 @@
                             <w>שלך</w>
                             <w>לפניך</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.6">
+                        <ab xml:id="ref.4.1.10.6">
                             <label>ו</label>
                             <w>הגוזל</w>
                             <w>את</w>
@@ -4520,7 +4620,7 @@
                             <w>לו</w>
                             <w>במדבר</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.7">
+                        <ab xml:id="ref.4.1.10.7">
                             <label>ז</label>
                             <w>האומר</w>
                             <w>לחברו</w>
@@ -4555,7 +4655,7 @@
                             <w>פטור</w>
                             <w>מלשלם</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.8">
+                        <ab xml:id="ref.4.1.10.8">
                             <label>ח</label>
                             <w>הגונב</w>
                             <w>טלה</w>
@@ -4584,7 +4684,7 @@
                             <w>היא</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.9">
+                        <ab xml:id="ref.4.1.10.9">
                             <label>ט</label>
                             <w>אין</w>
                             <w>לוקחין</w>
@@ -4624,7 +4724,7 @@
                             <w>מכל</w>
                             <w>מקום</w>
                         </ab>
-                        <ab xml:id="MS.4.1.10.10">
+                        <ab xml:id="ref.4.1.10.10">
                             <label>י</label>
                             <link target="g1.xml#damEnd.1v.5a"/>
                             <w>מ<link target="g1.xml#damBeg.1v.5b"/>וכי<link
@@ -4710,12 +4810,13 @@
                             <w>הבית</w>
                         </ab>
                     </div3>
-                    <trailer xml:id="MS.4.1.10.T"/>
+                    <trailer xml:id="ref.4.1.10.T"/>
                 </div2>
-                <div2 xml:id="MS.BavaMetsia" type="tractate">
-                    <div3 xml:id="MS.4.2.1">
-                        <head xml:id="MS.4.2.1.H"> פרק א</head>
-                        <ab xml:id="MS.4.2.1.1">
+                <div2 xml:id="ref.BavaMetsia" type="tractate">
+                    <div3 xml:id="ref.4.2.1">
+                        <head xml:id="ref.4.2.1.H"><w>פרק</w>
+                            <w>א</w></head>
+                        <ab xml:id="ref.4.2.1.1">
                             <label>א</label>
                             <w>שנים</w>
                             <w>אוחזין</w>
@@ -4787,7 +4888,7 @@
                             <w>רביע</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.1.2">
+                        <ab xml:id="ref.4.2.1.2">
                             <label>ב</label>
                             <w>היו</w>
                             <w>שנים</w>
@@ -4836,7 +4937,7 @@
                             <w>שבועה</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.1.3">
+                        <ab xml:id="ref.4.2.1.3">
                             <label>ג</label>
                             <w>היה</w>
                             <w>רוכב</w>
@@ -4870,7 +4971,7 @@
                             <w>כלום</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.1.4">
+                        <ab xml:id="ref.4.2.1.4">
                             <label>ד</label>
                             <w>ראה</w>
                             <w>את</w>
@@ -4925,7 +5026,7 @@
                             <w>כלום</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.1.5">
+                        <ab xml:id="ref.4.2.1.5">
                             <label>ה</label>
                             <w>מציאת</w>
                             <w>בנו</w>
@@ -4964,7 +5065,7 @@
                             <w>אלו</w>
                             <w>של<link target="g1.xml#damEnd.1v.26"/>הן</w>
                         </ab>
-                        <ab xml:id="MS.4.2.1.6">
+                        <ab xml:id="ref.4.2.1.6">
                             <label>ו</label>
                             <w>מצא</w>
                             <w>שטרי</w>
@@ -5010,7 +5111,7 @@
                             <w>נפרעין</w>
                             <w>מ<link target="g1.xml#damBeg.1r.1"/>הן</w>
                         </ab>
-                        <ab xml:id="MS.4.2.1.7">
+                        <ab xml:id="ref.4.2.1.7">
                             <label>ז</label>
                             <w>מצא</w>
                             <w>גטי</w>
@@ -5038,7 +5139,7 @@
                             <w>לתנם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.1.8">
+                        <ab xml:id="ref.4.2.1.8">
                             <label>ח</label>
                             <link target="g1.xml#damEnd.1r.2"/>
                             <w>מצא</w>
@@ -5122,9 +5223,10 @@
                             <w/>
                         </ab>
                     </div3>
-                    <div3 xml:id="MS.4.2.2">
-                        <head xml:id="MS.4.2.2.H">פרק ב</head>
-                        <ab xml:id="MS.4.2.2.1">
+                    <div3 xml:id="ref.4.2.2">
+                        <head xml:id="ref.4.2.2.H"><w>פרק</w>
+                            <w>ב</w></head>
+                        <ab xml:id="ref.4.2.2.1">
                             <label>א</label>
                             <w>אלו</w>
                             <w>מציאות</w>
@@ -5198,7 +5300,7 @@
                             <w>חייב</w>
                             <w>להכריז</w>
                         </ab>
-                        <ab xml:id="MS.4.2.2.2">
+                        <ab xml:id="ref.4.2.2.2">
                             <label>ב</label>
                             <w>ואלו</w>
                             <w>חייב</w>
@@ -5248,7 +5350,7 @@
                             <w>להכריז</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.3">
+                        <ab xml:id="ref.4.2.2.3">
                             <label>ג</label>
                             <w>מצא</w>
                             <w>אחר</w>
@@ -5312,7 +5414,7 @@
                             <w>שלו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.4">
+                        <ab xml:id="ref.4.2.2.4">
                             <label>ד</label>
                             <w>מצא</w>
                             <w>בחנות</w>
@@ -5359,7 +5461,7 @@
                             <w>נוטל</w>
                             <w>ומכריז</w>
                         </ab>
-                        <ab xml:id="MS.4.2.2.5">
+                        <ab xml:id="ref.4.2.2.5">
                             <label>ה</label>
                             <w>אף</w>
                             <w>השמלה</w>
@@ -5397,7 +5499,7 @@
                             <w>חייב</w>
                             <w>להכריז</w>
                         </ab>
-                        <ab xml:id="MS.4.2.2.6">
+                        <ab xml:id="ref.4.2.2.6">
                             <label>ו</label>
                             <w>ועד</w>
                             <w>מתי</w>
@@ -5432,7 +5534,7 @@
                             <w>אחד</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.7">
+                        <ab xml:id="ref.4.2.2.7">
                             <label>ז</label>
                             <w>אמר</w>
                             <w>את</w>
@@ -5512,7 +5614,7 @@
                             <w>באחריות</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.8">
+                        <ab xml:id="ref.4.2.2.8">
                             <label>ח</label>
                             <w>אחת</w>
                             <w>לשלשים</w>
@@ -5577,7 +5679,7 @@
                             <w>יטול</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.9">
+                        <ab xml:id="ref.4.2.2.9">
                             <label>ט</label>
                             <w>איזו</w>
                             <w>היא</w>
@@ -5650,7 +5752,7 @@
                             <w>קודם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.10">
+                        <ab xml:id="ref.4.2.2.10">
                             <label>י</label>
                             <w>מצאה</w>
                             <w>ברפת</w>
@@ -5747,7 +5849,7 @@
                             <w>בו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.2.11">
+                        <ab xml:id="ref.4.2.2.11">
                             <label>יא</label>
                             <w>אבדתו</w>
                             <w>ואבדת</w>
@@ -5825,11 +5927,12 @@
                             <w>רבו</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.2.T"/>
+                        <trailer xml:id="ref.4.2.2.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.3">
-                        <head xml:id="MS.4.2.3.H">פרק ג</head>
-                        <ab xml:id="MS.4.2.3.1">
+                    <div3 xml:id="ref.4.2.3">
+                        <head xml:id="ref.4.2.3.H"><w>פרק</w>
+                            <w>ג</w></head>
+                        <ab xml:id="ref.4.2.3.1">
                             <label>א</label>
                             <w>המפקיד</w>
                             <w>אצל</w>
@@ -5886,7 +5989,7 @@
                             <w>לבעל</w>
                             <w>הפקדון</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.2">
+                        <ab xml:id="ref.4.2.3.2">
                             <label>ב</label>
                             <w>השוכר</w>
                             <w>פרה</w>
@@ -5917,7 +6020,7 @@
                             <w>פרה</w>
                             <w>לבעלים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.3">
+                        <ab xml:id="ref.4.2.3.3">
                             <label>ג</label>
                             <w>אמר</w>
                             <w>לשנים</w>
@@ -5951,7 +6054,7 @@
                             <w>עצמו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.3.4">
+                        <ab xml:id="ref.4.2.3.4">
                             <label>ד</label>
                             <w>שנים</w>
                             <w>שהפקידו</w>
@@ -5996,7 +6099,7 @@
                             <w>שיבא</w>
                             <w>אליהו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.5">
+                        <ab xml:id="ref.4.2.3.5">
                             <label>ה</label>
                             <w>וכן</w>
                             <w>שני</w>
@@ -6049,7 +6152,7 @@
                             <w>שיבא</w>
                             <w>אליהו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.6">
+                        <ab xml:id="ref.4.2.3.6">
                             <label>ו</label>
                             <w>המפקיד</w>
                             <w>פירות</w>
@@ -6076,7 +6179,7 @@
                             <w>אבידה</w>
                             <w>לבעלים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.7">
+                        <ab xml:id="ref.4.2.3.7">
                             <label>ז</label>
                             <w>המפקיד</w>
                             <w>פירות</w>
@@ -6149,7 +6252,7 @@
                             <w>מפני</w>
                             <w>שמותירות</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.8">
+                        <ab xml:id="ref.4.2.3.8">
                             <label>ח</label>
                             <w>יוציא</w>
                             <w>לו</w>
@@ -6207,7 +6310,7 @@
                             <w>שמרים</w>
                             <w>למאה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.9">
+                        <ab xml:id="ref.4.2.3.9">
                             <label>ט</label>
                             <w>המפקיד</w>
                             <w>חבית</w>
@@ -6252,7 +6355,7 @@
                             <w>לצרכה</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.10">
+                        <ab xml:id="ref.4.2.3.10">
                             <label>י</label>
                             <w>המפקיד</w>
                             <w>מעות</w>
@@ -6281,7 +6384,7 @@
                             <w>השומרים</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.11">
+                        <ab xml:id="ref.4.2.3.11">
                             <label>יא</label>
                             <w>המפקיד</w>
                             <w>מעות</w>
@@ -6334,7 +6437,7 @@
                             <w>חנוני</w>
                             <w>כשולחני</w>
                         </ab>
-                        <ab xml:id="MS.4.2.3.12">
+                        <ab xml:id="ref.4.2.3.12">
                             <label>יב</label>
                             <w>השולח</w>
                             <w>יד</w>
@@ -6401,11 +6504,12 @@
                             <w>כולה</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.3.T"/>
+                        <trailer xml:id="ref.4.2.3.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.4">
-                        <head xml:id="MS.4.2.4.H">פרק ד</head>
-                        <ab xml:id="MS.4.2.4.1">
+                    <div3 xml:id="ref.4.2.4">
+                        <head xml:id="ref.4.2.4.H"><w>פרק</w>
+                            <w>ד</w></head>
+                        <ab xml:id="ref.4.2.4.1">
                             <label>א</label>
                             <w>הזהב</w>
                             <w>קונה</w>
@@ -6462,7 +6566,7 @@
                             <w>את</w>
                             <w>זה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.2">
+                        <ab xml:id="ref.4.2.4.2">
                             <label>ב</label>
                             <w>כיצד</w>
                             <w>משך</w>
@@ -6512,7 +6616,7 @@
                             <w>על</w>
                             <w>העליונה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.3">
+                        <ab xml:id="ref.4.2.4.3">
                             <label>ג</label>
                             <w>האונאה</w>
                             <w>ארבעה</w>
@@ -6563,7 +6667,7 @@
                             <w>לדברי</w>
                             <w>חכמים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.4">
+                        <ab xml:id="ref.4.2.4.4">
                             <label>ד</label>
                             <w>אחד</w>
                             <w>הלוקח</w>
@@ -6601,7 +6705,7 @@
                             <w>מה</w>
                             <w>שאוניתני</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.5">
+                        <ab xml:id="ref.4.2.4.5">
                             <label>ה</label>
                             <w>כמה</w>
                             <w>תהא</w>
@@ -6634,7 +6738,7 @@
                             <w>פונדיונות</w>
                             <w>לדינר</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.6">
+                        <ab xml:id="ref.4.2.4.6">
                             <label>ו</label>
                             <w>עד</w>
                             <w>מתי</w>
@@ -6674,7 +6778,7 @@
                             <w>נפש</w>
                             <w>רעה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.7">
+                        <ab xml:id="ref.4.2.4.7">
                             <label>ז</label>
                             <w>האונאה</w>
                             <w>ארבע</w>
@@ -6719,7 +6823,7 @@
                             <w>למדי</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.4.8">
+                        <ab xml:id="ref.4.2.4.8">
                             <label>ח</label>
                             <w>חמשה</w>
                             <w>חומשין</w>
@@ -6766,7 +6870,7 @@
                             <w>מוסיף</w>
                             <w>חומש</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.9">
+                        <ab xml:id="ref.4.2.4.9">
                             <label>ט</label>
                             <w>אלו</w>
                             <w>דברים</w>
@@ -6830,7 +6934,7 @@
                             <w>את</w>
                             <w>אלו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.10">
+                        <ab xml:id="ref.4.2.4.10">
                             <label>י</label>
                             <w>כשם</w>
                             <w>שאונאה</w>
@@ -6876,7 +6980,7 @@
                             <w>ולא</w>
                             <w>תלחצנו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.11">
+                        <ab xml:id="ref.4.2.4.11">
                             <label>יא</label>
                             <w>אין</w>
                             <w>מערבין</w>
@@ -6937,7 +7041,7 @@
                             <w>ביין</w>
                             <w>יטילו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.4.12">
+                        <ab xml:id="ref.4.2.4.12">
                             <label>יב</label>
                             <w>התגר</w>
                             <w>נוטל</w>
@@ -7015,11 +7119,12 @@
                             <w>הכלים</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.4.T"/>
+                        <trailer xml:id="ref.4.2.4.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.5">
-                        <head xml:id="MS.4.2.5.H">פרק ה</head>
-                        <ab xml:id="MS.4.2.5.1">
+                    <div3 xml:id="ref.4.2.5">
+                        <head xml:id="ref.4.2.5.H"><w>פרק</w>
+                            <w>ה</w></head>
+                        <ab xml:id="ref.4.2.5.1">
                             <label>א</label>
                             <w>איזהו</w>
                             <w>נשך</w>
@@ -7081,7 +7186,7 @@
                             <w>אין</w>
                             <w>לו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.2">
+                        <ab xml:id="ref.4.2.5.2">
                             <label>ב</label>
                             <w>המלוה</w>
                             <w>את</w>
@@ -7152,7 +7257,7 @@
                             <w>מנה</w>
                             <w>אסור</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.3">
+                        <ab xml:id="ref.4.2.5.3">
                             <label>ג</label>
                             <w>מכר</w>
                             <w>לו</w>
@@ -7202,7 +7307,7 @@
                             <w>פי</w>
                             <w>חכמים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.4">
+                        <ab xml:id="ref.4.2.5.4">
                             <label>ד</label>
                             <w>אין</w>
                             <w>מושיבין</w>
@@ -7256,7 +7361,7 @@
                             <w>שתהא</w>
                             <w>טוענת</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.5">
+                        <ab xml:id="ref.4.2.5.5">
                             <label>ה</label>
                             <w>שמין</w>
                             <w>פרה</w>
@@ -7298,7 +7403,7 @@
                             <w>משום</w>
                             <w>רבית</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.6">
+                        <ab xml:id="ref.4.2.5.6">
                             <label>ו</label>
                             <w>אין</w>
                             <w>מקבלין</w>
@@ -7334,7 +7439,7 @@
                             <w>מדעת</w>
                             <w>ישראל</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.7">
+                        <ab xml:id="ref.4.2.5.7">
                             <label>ז</label>
                             <w>אין</w>
                             <w>פוסקין</w>
@@ -7426,7 +7531,7 @@
                             <w>מעותי</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.5.8">
+                        <ab xml:id="ref.4.2.5.8">
                             <label>ח</label>
                             <w>מלוה</w>
                             <w>אדם</w>
@@ -7466,7 +7571,7 @@
                             <w>על</w>
                             <w>עצמו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.9">
+                        <ab xml:id="ref.4.2.5.9">
                             <label>ט</label>
                             <w>לא</w>
                             <w>יאמר</w>
@@ -7512,7 +7617,7 @@
                             <w>לידי</w>
                             <w>רבית</w>
                         </ab>
-                        <ab xml:id="MS.4.2.5.10">
+                        <ab xml:id="ref.4.2.5.10">
                             <label>י</label>
                             <w>אומר</w>
                             <w>אדם</w>
@@ -7615,7 +7720,7 @@
                             <w>פלוני</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.5.11">
+                        <ab xml:id="ref.4.2.5.11">
                             <label>יא</label>
                             <w>ואלו</w>
                             <w>עוברין</w>
@@ -7658,11 +7763,12 @@
                             <w>אני</w>
                             <w>ה׳</w>
                         </ab>
-                        <trailer xml:id="MS.4.2.5.T"/>
+                        <trailer xml:id="ref.4.2.5.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.6">
-                        <head xml:id="MS.4.2.6.H">פרק ו</head>
-                        <ab xml:id="MS.4.2.6.1">
+                    <div3 xml:id="ref.4.2.6">
+                        <head xml:id="ref.4.2.6.H"><w>פרק</w>
+                            <w>ו</w></head>
+                        <ab xml:id="ref.4.2.6.1">
                             <label>א</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -7708,7 +7814,7 @@
                             <w>או</w>
                             <w>מטען</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.2">
+                        <ab xml:id="ref.4.2.6.2">
                             <label>ב</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -7738,7 +7844,7 @@
                             <w>על</w>
                             <w>התחתונה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.3">
+                        <ab xml:id="ref.4.2.6.3">
                             <label>ג</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -7806,7 +7912,7 @@
                             <w>המעלה</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.4">
+                        <ab xml:id="ref.4.2.6.4">
                             <label>ד</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -7840,7 +7946,7 @@
                             <w>שהקטנית</w>
                             <w>מחלקת</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.5">
+                        <ab xml:id="ref.4.2.6.5">
                             <label>ה</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -7890,7 +7996,7 @@
                             <w>קבין</w>
                             <w>לחמור</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.6">
+                        <ab xml:id="ref.4.2.6.6">
                             <label>ו</label>
                             <w>כל</w>
                             <w>האומנין</w>
@@ -7921,7 +8027,7 @@
                             <w>שומר</w>
                             <w>חנם</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.7">
+                        <ab xml:id="ref.4.2.6.7">
                             <label>ז</label>
                             <w>הלוהו</w>
                             <w>על</w>
@@ -7957,7 +8063,7 @@
                             <w>כמשיב</w>
                             <w>אבדה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.6.8">
+                        <ab xml:id="ref.4.2.6.8">
                             <label>ח</label>
                             <w>המעביר</w>
                             <w>חבית</w>
@@ -7986,11 +8092,12 @@
                             <w>לישבע</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.6.T"/>
+                        <trailer xml:id="ref.4.2.6.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.7">
-                        <head xml:id="MS.4.2.7.H">פרק ז</head>
-                        <ab xml:id="MS.4.2.7.1">
+                    <div3 xml:id="ref.4.2.7">
+                        <head xml:id="ref.4.2.7.H"><w>פרק</w>
+                            <w>ז</w></head>
+                        <ab xml:id="ref.4.2.7.1">
                             <label>א</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -8087,7 +8194,7 @@
                             <w>כמנהג</w>
                             <w>המדינה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.2">
+                        <ab xml:id="ref.4.2.7.2">
                             <label>ב</label>
                             <w>ואלו</w>
                             <w>אוכלין</w>
@@ -8132,7 +8239,7 @@
                             <w>מן</w>
                             <w>הארץ</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.3">
+                        <ab xml:id="ref.4.2.7.3">
                             <label>ג</label>
                             <w>היה</w>
                             <w>עושה</w>
@@ -8162,7 +8269,7 @@
                             <w>בידיו</w>
                             <w>וברגליו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.4">
+                        <ab xml:id="ref.4.2.7.4">
                             <label>ד</label>
                             <w>היה</w>
                             <w>עושה</w>
@@ -8207,7 +8314,7 @@
                             <w>כשהיא</w>
                             <w>פורקת</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.5">
+                        <ab xml:id="ref.4.2.7.5">
                             <label>ה</label>
                             <w>אוכל</w>
                             <w>פועל</w>
@@ -8242,7 +8349,7 @@
                             <w>הפתח</w>
                             <w>בפניו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.6">
+                        <ab xml:id="ref.4.2.7.6">
                             <label>ו</label>
                             <w>קוצץ</w>
                             <w>אדם</w>
@@ -8289,7 +8396,7 @@
                             <w>בהן</w>
                             <w>דעת</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.7">
+                        <ab xml:id="ref.4.2.7.7">
                             <label>ז</label>
                             <w>השוכר</w>
                             <w>את</w>
@@ -8321,7 +8428,7 @@
                             <w>מעשר</w>
                             <w>ומאכילן</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.8">
+                        <ab xml:id="ref.4.2.7.8">
                             <label>ח</label>
                             <w>שומרי</w>
                             <w>פירות</w>
@@ -8366,7 +8473,7 @@
                             <w>ואת</w>
                             <w>הגנבה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.9">
+                        <ab xml:id="ref.4.2.7.9">
                             <label>ט</label>
                             <w>זאב</w>
                             <w>אחד</w>
@@ -8428,7 +8535,7 @@
                             <w>אינו</w>
                             <w>אונס</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.10">
+                        <ab xml:id="ref.4.2.7.10">
                             <label>י</label>
                             <w>מתה</w>
                             <w>כדרכה</w>
@@ -8472,7 +8579,7 @@
                             <w>משבועה</w>
                             <w>ומלשלם</w>
                         </ab>
-                        <ab xml:id="MS.4.2.7.11">
+                        <ab xml:id="ref.4.2.7.11">
                             <label>יא</label>
                             <w>כל</w>
                             <w>המתנה</w>
@@ -8500,11 +8607,12 @@
                             <w>תנאו</w>
                             <w>קיים</w>
                         </ab>
-                        <trailer xml:id="MS.4.2.7.T"/>
+                        <trailer xml:id="ref.4.2.7.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.8">
-                        <head xml:id="MS.4.2.8.H">פרק ח</head>
-                        <ab xml:id="MS.4.2.8.1">
+                    <div3 xml:id="ref.4.2.8">
+                        <head xml:id="ref.4.2.8.H"><w>פרק</w>
+                            <w>ח</w></head>
+                        <ab xml:id="ref.4.2.8.1">
                             <label>א</label>
                             <w>השואל</w>
                             <w>את</w>
@@ -8554,7 +8662,7 @@
                             <w>ישלם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.8.2">
+                        <ab xml:id="ref.4.2.8.2">
                             <label>ב</label>
                             <w>השואל</w>
                             <w>את</w>
@@ -8629,7 +8737,7 @@
                             <w>יחלוקו</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.2.8.3">
+                        <ab xml:id="ref.4.2.8.3">
                             <label>ג</label>
                             <w>השואל</w>
                             <w>את</w>
@@ -8702,7 +8810,7 @@
                             <w>בשעה</w>
                             <w>שמחזירה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.4">
+                        <ab xml:id="ref.4.2.8.4">
                             <label>ד</label>
                             <w>המחליף</w>
                             <w>פרה</w>
@@ -8778,7 +8886,7 @@
                             <w>יודע</w>
                             <w>יחלוקו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.5">
+                        <ab xml:id="ref.4.2.8.5">
                             <label>ה</label>
                             <w>המוכר</w>
                             <w>זיתיו</w>
@@ -8821,7 +8929,7 @@
                             <w>גדלה</w>
                             <w>יחלוקו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.6">
+                        <ab xml:id="ref.4.2.8.6">
                             <label>ו</label>
                             <w>המשכיר</w>
                             <w>בית</w>
@@ -8870,7 +8978,7 @@
                             <w>שלש</w>
                             <w>שנים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.7">
+                        <ab xml:id="ref.4.2.8.7">
                             <label>ז</label>
                             <w>המשכיר</w>
                             <w>בית</w>
@@ -8905,7 +9013,7 @@
                             <w>הכירים</w>
                             <w>בלבד</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.8">
+                        <ab xml:id="ref.4.2.8.8">
                             <label>ח</label>
                             <w>המשכיר</w>
                             <w>בית</w>
@@ -8951,7 +9059,7 @@
                             <w>חדש</w>
                             <w>העבור</w>
                         </ab>
-                        <ab xml:id="MS.4.2.8.9">
+                        <ab xml:id="ref.4.2.8.9">
                             <label>ט</label>
                             <w>המשכיר</w>
                             <w>בית</w>
@@ -8988,11 +9096,12 @@
                             <w>מדעת</w>
                             <w>שניהם</w>
                         </ab>
-                        <trailer xml:id="MS.4.2.8.T"/>
+                        <trailer xml:id="ref.4.2.8.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.9">
-                        <head xml:id="MS.4.2.9.H">פרק ט</head>
-                        <ab xml:id="MS.4.2.9.1">
+                    <div3 xml:id="ref.4.2.9">
+                        <head xml:id="ref.4.2.9.H"><w>פרק</w>
+                            <w>ט</w></head>
+                        <ab xml:id="ref.4.2.9.1">
                             <label>א</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9028,7 +9137,7 @@
                             <w>את</w>
                             <w>הקנים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.2">
+                        <ab xml:id="ref.4.2.9.2">
                             <label>ב</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9071,7 +9180,7 @@
                             <w>מן</w>
                             <w>חכורו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.3">
+                        <ab xml:id="ref.4.2.9.3">
                             <label>ג</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9094,7 +9203,7 @@
                             <w>אשלם</w>
                             <w>במיטבא</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.4">
+                        <ab xml:id="ref.4.2.9.4">
                             <label>ד</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9127,7 +9236,7 @@
                             <w>לפני</w>
                             <w>עשבים</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.5">
+                        <ab xml:id="ref.4.2.9.5">
                             <label>ה</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9156,7 +9265,7 @@
                             <w>כדי</w>
                             <w>נפילה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.6">
+                        <ab xml:id="ref.4.2.9.6">
                             <label>ו</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9198,7 +9307,7 @@
                             <w>לו</w>
                             <w>מחכורו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.7">
+                        <ab xml:id="ref.4.2.9.7">
                             <label>ז</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9226,7 +9335,7 @@
                             <w>לו</w>
                             <w>מתוכה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.8">
+                        <ab xml:id="ref.4.2.9.8">
                             <label>ח</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9257,7 +9366,7 @@
                             <w>גמליאל</w>
                             <w>אוסר</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.9">
+                        <ab xml:id="ref.4.2.9.9">
                             <label>ט</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9284,7 +9393,7 @@
                             <w>בקורת</w>
                             <w>שקמה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.10">
+                        <ab xml:id="ref.4.2.9.10">
                             <label>י</label>
                             <w>המקבל</w>
                             <w>שדה</w>
@@ -9309,7 +9418,7 @@
                             <w>מן</w>
                             <w>המנין</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.11">
+                        <ab xml:id="ref.4.2.9.11">
                             <label>יא</label>
                             <w>שכיר</w>
                             <w>יום</w>
@@ -9349,7 +9458,7 @@
                             <w>וכל</w>
                             <w>היום</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.12">
+                        <ab xml:id="ref.4.2.9.12">
                             <label>יב</label>
                             <w>אחד</w>
                             <w>שכר</w>
@@ -9430,7 +9539,7 @@
                             <w>עד</w>
                             <w>בוקר</w>
                         </ab>
-                        <ab xml:id="MS.4.2.9.13">
+                        <ab xml:id="ref.4.2.9.13">
                             <label>יג</label>
                             <w>המלוה</w>
                             <w>את</w>
@@ -9536,11 +9645,12 @@
                             <w>חבל</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.9.T"/>
+                        <trailer xml:id="ref.4.2.9.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.2.10">
-                        <head xml:id="MS.4.2.10.H">פרק י</head>
-                        <ab xml:id="MS.4.2.10.1">
+                    <div3 xml:id="ref.4.2.10">
+                        <head xml:id="ref.4.2.10.H"><w>פרק</w>
+                            <w>י</w></head>
+                        <ab xml:id="ref.4.2.10.1">
                             <label>א</label>
                             <w>הבית</w>
                             <w>והעליה</w>
@@ -9570,7 +9680,7 @@
                             <w>מן</w>
                             <w>החשבון</w>
                         </ab>
-                        <ab xml:id="MS.4.2.10.2">
+                        <ab xml:id="ref.4.2.10.2">
                             <label>ב</label>
                             <w>הבית</w>
                             <w>והעליה</w>
@@ -9605,7 +9715,7 @@
                             <w>את</w>
                             <w>המעזיבה</w>
                         </ab>
-                        <ab xml:id="MS.4.2.10.3">
+                        <ab xml:id="ref.4.2.10.3">
                             <label>ג</label>
                             <w>הבית</w>
                             <w>והעליה</w>
@@ -9667,7 +9777,7 @@
                             <w>את</w>
                             <w>יציאותיו</w>
                         </ab>
-                        <ab xml:id="MS.4.2.10.4">
+                        <ab xml:id="ref.4.2.10.4">
                             <label>ד</label>
                             <w>וכן</w>
                             <w>בית</w>
@@ -9716,7 +9826,7 @@
                             <w>הזמן</w>
                             <w>חייב</w>
                         </ab>
-                        <ab xml:id="MS.4.2.10.5">
+                        <ab xml:id="ref.4.2.10.5">
                             <label>ה</label>
                             <w>מי</w>
                             <w>שהיה</w>
@@ -9834,7 +9944,7 @@
                             <w>שלשים</w>
                             <w>יום</w>
                         </ab>
-                        <ab xml:id="MS.4.2.10.6">
+                        <ab xml:id="ref.4.2.10.6">
                             <label>ו</label>
                             <w>שתי</w>
                             <w>גנות</w>
@@ -9911,13 +10021,14 @@
                             <w>תחתון</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.2.10.T"/>
+                        <trailer xml:id="ref.4.2.10.T"/>
                     </div3>
                 </div2>
-                <div2 xml:id="MS.4.3" type="tractate">
-                    <div3 xml:id="MS.4.3.1">
-                        <head xml:id="MS.4.3.1.H">פרק א</head>
-                        <ab xml:id="MS.4.3.1.1">
+                <div2 xml:id="ref.4.3" type="tractate">
+                    <div3 xml:id="ref.4.3.1">
+                        <head xml:id="ref.4.3.1.H"><w>פרק</w>
+                            <w>א</w></head>
+                        <ab xml:id="ref.4.3.1.1">
                             <label>א</label>
                             <w>השותפין</w>
                             <w>שרצו</w>
@@ -9983,7 +10094,7 @@
                             <w>שניהם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.3.1.2">
+                        <ab xml:id="ref.4.3.1.2">
                             <label>ב</label>
                             <w>וכן</w>
                             <w>בגנה</w>
@@ -10040,7 +10151,7 @@
                             <w>שניהם</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.3.1.3">
+                        <ab xml:id="ref.4.3.1.3">
                             <label>ג</label>
                             <w>המקיף</w>
                             <w>את</w>
@@ -10070,7 +10181,7 @@
                             <w>את</w>
                             <w>הכל</w>
                         </ab>
-                        <ab xml:id="MS.4.3.1.4">
+                        <ab xml:id="ref.4.3.1.4">
                             <label>ד</label>
                             <w>כותל</w>
                             <w>חצר</w>
@@ -10118,7 +10229,7 @@
                             <w>ראיה</w>
                             <w>שנתן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.1.5">
+                        <ab xml:id="ref.4.3.1.5">
                             <label>ה</label>
                             <w>כופין</w>
                             <w>אותו</w>
@@ -10175,7 +10286,7 @@
                             <w>מיד</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.3.1.6">
+                        <ab xml:id="ref.4.3.1.6">
                             <label>ו</label>
                             <w>אין</w>
                             <w>חולקין</w>
@@ -10293,11 +10404,12 @@
                             <w>יחלוקו</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.3.1.T"/>
+                        <trailer xml:id="ref.4.3.1.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.2">
-                        <head xml:id="MS.4.3.2.H">פרק ב</head>
-                        <ab xml:id="MS.4.3.2.1">
+                    <div3 xml:id="ref.4.3.2">
+                        <head xml:id="ref.4.3.2.H"><w>פרק</w>
+                            <w>ב</w></head>
+                        <ab xml:id="ref.4.3.2.1">
                             <label>א</label>
                             <w>לא</w>
                             <w>יחפור</w>
@@ -10377,7 +10489,7 @@
                             <w>מן</w>
                             <w>השפה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.2">
+                        <ab xml:id="ref.4.3.2.2">
                             <label>ב</label>
                             <w>לא</w>
                             <w>יעמיד</w>
@@ -10424,7 +10536,7 @@
                             <w>פטור</w>
                             <w>מלשלם</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.3">
+                        <ab xml:id="ref.4.3.2.3">
                             <label>ג</label>
                             <w>לא</w>
                             <w>יפתח</w>
@@ -10489,7 +10601,7 @@
                             <w>מקול</w>
                             <w>התינוקות</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.4">
+                        <ab xml:id="ref.4.3.2.4">
                             <label>ד</label>
                             <w>מי</w>
                             <w>שהיה</w>
@@ -10516,7 +10628,7 @@
                             <w>ארבע</w>
                             <w>אמות</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.5">
+                        <ab xml:id="ref.4.3.2.5">
                             <label>ה</label>
                             <w>מרחיקין</w>
                             <w>את</w>
@@ -10580,7 +10692,7 @@
                             <w>הוא</w>
                             <w>בחזקתו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.6">
+                        <ab xml:id="ref.4.3.2.6">
                             <label>ו</label>
                             <w>ניפול</w>
                             <w>הנמצא</w>
@@ -10615,7 +10727,7 @@
                             <w>שניהם</w>
                             <w>יחלוקו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.7">
+                        <ab xml:id="ref.4.3.2.7">
                             <label>ז</label>
                             <w>מרחיקין</w>
                             <w>את</w>
@@ -10661,7 +10773,7 @@
                             <w>נותן</w>
                             <w>דמים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.8">
+                        <ab xml:id="ref.4.3.2.8">
                             <label>ח</label>
                             <w>מרחיקין</w>
                             <w>גורן</w>
@@ -10695,7 +10807,7 @@
                             <w>שלא</w>
                             <w>יזיק</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.9">
+                        <ab xml:id="ref.4.3.2.9">
                             <label>ט</label>
                             <w>מרחיקין</w>
                             <w>את</w>
@@ -10727,7 +10839,7 @@
                             <w>חמשים</w>
                             <w>אמה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.10">
+                        <ab xml:id="ref.4.3.2.10">
                             <label>י</label>
                             <w>מרחיקין</w>
                             <w>את</w>
@@ -10747,7 +10859,7 @@
                             <w>מתיר</w>
                             <w>בחרדל</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.11">
+                        <ab xml:id="ref.4.3.2.11">
                             <label>יא</label>
                             <w>מרחיקין</w>
                             <w>את</w>
@@ -10805,7 +10917,7 @@
                             <w>בתוך</w>
                             <w>שלו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.12">
+                        <ab xml:id="ref.4.3.2.12">
                             <label>יב</label>
                             <w>לא</w>
                             <w>יטע</w>
@@ -10861,7 +10973,7 @@
                             <w>והעצים</w>
                             <w>שלו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.13">
+                        <ab xml:id="ref.4.3.2.13">
                             <label>יג</label>
                             <w>אילן</w>
                             <w>שהוא</w>
@@ -10893,7 +11005,7 @@
                             <w>כנגד</w>
                             <w>המשקולת</w>
                         </ab>
-                        <ab xml:id="MS.4.3.2.14">
+                        <ab xml:id="ref.4.3.2.14">
                             <label>יד</label>
                             <w>אילן</w>
                             <w>שהוא</w>
@@ -10925,11 +11037,12 @@
                             <w>מפני</w>
                             <w>הטומאה</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.2.T"/>
+                        <trailer xml:id="ref.4.3.2.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.3">
-                        <head xml:id="MS.4.3.3.H">פרק ג</head>
-                        <ab xml:id="MS.4.3.3.1">
+                    <div3 xml:id="ref.4.3.3">
+                        <head xml:id="ref.4.3.3.H"><w>פרק</w>
+                            <w>ג</w></head>
+                        <ab xml:id="ref.4.3.3.1">
                             <label>א</label>
                             <w>חזקת</w>
                             <w>הבתים</w>
@@ -11018,7 +11131,7 @@
                             <w>שלש</w>
                             <w>שנים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.2">
+                        <ab xml:id="ref.4.3.3.2">
                             <label>ב</label>
                             <w>שלש</w>
                             <w>ארצות</w>
@@ -11060,7 +11173,7 @@
                             <w>לשנה</w>
                             <w>אחרת</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.3">
+                        <ab xml:id="ref.4.3.3.3">
                             <label>ג</label>
                             <w>כל</w>
                             <w>חזקה</w>
@@ -11155,7 +11268,7 @@
                             <w>זו</w>
                             <w>חזקה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.4">
+                        <ab xml:id="ref.4.3.3.4">
                             <label>ד</label>
                             <w>היו</w>
                             <w>שנים</w>
@@ -11192,7 +11305,7 @@
                             <w>אחת</w>
                             <w>להזמה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.5">
+                        <ab xml:id="ref.4.3.3.5">
                             <label>ה</label>
                             <w>אלו</w>
                             <w>דברים</w>
@@ -11247,7 +11360,7 @@
                             <w>זו</w>
                             <w>חזקה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.6">
+                        <ab xml:id="ref.4.3.3.6">
                             <label>ו</label>
                             <w>המרזב</w>
                             <w>אין</w>
@@ -11327,7 +11440,7 @@
                             <w>יכול</w>
                             <w>למחות</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.7">
+                        <ab xml:id="ref.4.3.3.7">
                             <label>ז</label>
                             <w>לא</w>
                             <w>יפתח</w>
@@ -11409,7 +11522,7 @@
                             <w>אותו</w>
                             <w>שנים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.3.8">
+                        <ab xml:id="ref.4.3.3.8">
                             <label>ח</label>
                             <w>אין</w>
                             <w>עושין</w>
@@ -11451,11 +11564,12 @@
                             <w>זו</w>
                             <w>בחזקתה</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.3.T"/>
+                        <trailer xml:id="ref.4.3.3.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.4">
-                        <head xml:id="MS.4.3.4.H"/>
-                        <ab xml:id="MS.4.3.4.1">
+                    <div3 xml:id="ref.4.3.4">
+                        <head xml:id="ref.4.3.4.H"><w>פרק</w>
+                            <w>ד</w></head>
+                        <ab xml:id="ref.4.3.4.1">
                             <label>א</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11502,7 +11616,7 @@
                             <w>אינו</w>
                             <w>מכור</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.2">
+                        <ab xml:id="ref.4.3.4.2">
                             <label>ב</label>
                             <w>לא</w>
                             <w>את</w>
@@ -11561,7 +11675,7 @@
                             <w>לו</w>
                             <w>דרך</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.3">
+                        <ab xml:id="ref.4.3.4.3">
                             <label>ג</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11605,7 +11719,7 @@
                             <w>כולן</w>
                             <w>מכורין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.4">
+                        <ab xml:id="ref.4.3.4.4">
                             <label>ד</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11655,7 +11769,7 @@
                             <w>של</w>
                             <w>חצר</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.5">
+                        <ab xml:id="ref.4.3.4.5">
                             <label>ה</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11697,7 +11811,7 @@
                             <w>את</w>
                             <w>הקורה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.6">
+                        <ab xml:id="ref.4.3.4.6">
                             <label>ו</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11736,7 +11850,7 @@
                             <w>של</w>
                             <w>עצים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.7">
+                        <ab xml:id="ref.4.3.4.7">
                             <label>ז</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11783,7 +11897,7 @@
                             <w>את</w>
                             <w>הסנטר</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.8">
+                        <ab xml:id="ref.4.3.4.8">
                             <label>ח</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -11823,7 +11937,7 @@
                             <w>בתולת</w>
                             <w>השקמה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.4.9">
+                        <ab xml:id="ref.4.3.4.9">
                             <label>ט</label>
                             <w>אבל</w>
                             <w>לא</w>
@@ -11982,11 +12096,12 @@
                             <w>השקמה</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.3.4.T"/>
+                        <trailer xml:id="ref.4.3.4.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.5">
-                        <head xml:id="MS.4.3.5.H">פרק ה</head>
-                        <ab xml:id="MS.4.3.5.1">
+                    <div3 xml:id="ref.4.3.5">
+                        <head xml:id="ref.4.3.5.H"><w>פרק</w>
+                            <w>ה</w></head>
+                        <ab xml:id="ref.4.3.5.1">
                             <label>א</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -12077,7 +12192,7 @@
                             <w>הדמים</w>
                             <w>ראיה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.2">
+                        <ab xml:id="ref.4.3.5.2">
                             <label>ב</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -12119,7 +12234,7 @@
                             <w>כליו</w>
                             <w>מכורין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.3">
+                        <ab xml:id="ref.4.3.5.3">
                             <label>ג</label>
                             <w>המוכר</w>
                             <w>את</w>
@@ -12174,7 +12289,7 @@
                             <w>שתי</w>
                             <w>גרופיות</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.4">
+                        <ab xml:id="ref.4.3.5.4">
                             <label>ד</label>
                             <w>הקונה</w>
                             <w>שני</w>
@@ -12227,7 +12342,7 @@
                             <w>לו</w>
                             <w>קרקע</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.5">
+                        <ab xml:id="ref.4.3.5.5">
                             <label>ה</label>
                             <w>המוכר</w>
                             <w>ראש</w>
@@ -12287,7 +12402,7 @@
                             <w>את</w>
                             <w>הקנה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.6">
+                        <ab xml:id="ref.4.3.5.6">
                             <label>ו</label>
                             <w>ארבע</w>
                             <w>מדות</w>
@@ -12349,7 +12464,7 @@
                             <w>לחזור</w>
                             <w>בהן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.7">
+                        <ab xml:id="ref.4.3.5.7">
                             <label>ז</label>
                             <w>המוכר</w>
                             <w>פירות</w>
@@ -12389,7 +12504,7 @@
                             <w>שהוא</w>
                             <w>קנה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.8">
+                        <ab xml:id="ref.4.3.5.8">
                             <label>ח</label>
                             <w>המוכר</w>
                             <w>יין</w>
@@ -12441,7 +12556,7 @@
                             <w>חשכה</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.9">
+                        <ab xml:id="ref.4.3.5.9">
                             <label>ט</label>
                             <w>השולח</w>
                             <w>את</w>
@@ -12487,7 +12602,7 @@
                             <w>חנוני</w>
                             <w>פטור</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.10">
+                        <ab xml:id="ref.4.3.5.10">
                             <label>י</label>
                             <w>הסיטון</w>
                             <w>מקנח</w>
@@ -12525,7 +12640,7 @@
                             <w>משקל</w>
                             <w>ומשקל</w>
                         </ab>
-                        <ab xml:id="MS.4.3.5.11">
+                        <ab xml:id="ref.4.3.5.11">
                             <label>יא</label>
                             <w>אמר</w>
                             <w>רבן</w>
@@ -12577,11 +12692,12 @@
                             <w>ימחוק</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="MS.4.3.5.T"/>
+                        <trailer xml:id="ref.4.3.5.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.6">
-                        <head xml:id="MS.4.3.6.H">פרק ו</head>
-                        <ab xml:id="MS.4.3.6.">
+                    <div3 xml:id="ref.4.3.6">
+                        <head xml:id="ref.4.3.6.H"><w>פרק</w>
+                            <w>ו</w></head>
+                        <ab xml:id="ref.4.3.6.">
                             <label>א</label>
                             <w>המוכר</w>
                             <w>פירות</w>
@@ -12606,7 +12722,7 @@
                             <w>חייב</w>
                             <w>באחריותן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.2">
+                        <ab xml:id="ref.4.3.6.2">
                             <label>ב</label>
                             <w>המוכר</w>
                             <w>פירות</w>
@@ -12640,7 +12756,7 @@
                             <w>פיטסיאות</w>
                             <w>למאה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.3">
+                        <ab xml:id="ref.4.3.6.3">
                             <label>ג</label>
                             <w>המוכר</w>
                             <w>יין</w>
@@ -12678,7 +12794,7 @@
                             <w>שלש</w>
                             <w>שנים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.4">
+                        <ab xml:id="ref.4.3.6.4">
                             <label>ד</label>
                             <w>המוכר</w>
                             <w>מקום</w>
@@ -12751,7 +12867,7 @@
                             <w>כבנין</w>
                             <w>ההיכל</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.5">
+                        <ab xml:id="ref.4.3.6.5">
                             <label>ה</label>
                             <w>מי</w>
                             <w>שיש</w>
@@ -12791,7 +12907,7 @@
                             <w>לו</w>
                             <w>פותחת</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.6">
+                        <ab xml:id="ref.4.3.6.6">
                             <label>ו</label>
                             <w>מי</w>
                             <w>שיש</w>
@@ -12857,7 +12973,7 @@
                             <w>רשאים</w>
                             <w>לזורעה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.7">
+                        <ab xml:id="ref.4.3.6.7">
                             <label>ז</label>
                             <w>מי</w>
                             <w>שהיתה</w>
@@ -12904,7 +13020,7 @@
                             <w>ארבעת</w>
                             <w>קבין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.6.8">
+                        <ab xml:id="ref.4.3.6.8">
                             <label>ח</label>
                             <w>המוכר</w>
                             <w>מקום</w>
@@ -13007,11 +13123,12 @@
                             <w>הסלע</w>
                             <w>משנה</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.6.T"/>
+                        <trailer xml:id="ref.4.3.6.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.7">
-                        <head xml:id="MS.4.3.7.H">פרק ז</head>
-                        <ab xml:id="MS.4.3.7.1">
+                    <div3 xml:id="ref.4.3.7">
+                        <head xml:id="ref.4.3.7.H"><w>פרק</w>
+                            <w>ז</w></head>
+                        <ab xml:id="ref.4.3.7.1">
                             <label>א</label>
                             <w>האומר</w>
                             <w>לחבירו</w>
@@ -13064,7 +13181,7 @@
                             <w>נמדדין</w>
                             <w>עמה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.7.2">
+                        <ab xml:id="ref.4.3.7.2">
                             <label>ב</label>
                             <w>בית</w>
                             <w>כור</w>
@@ -13150,7 +13267,7 @@
                             <w>כל</w>
                             <w>המותר</w>
                         </ab>
-                        <ab xml:id="MS.4.3.7.3">
+                        <ab xml:id="ref.4.3.7.3">
                             <label>ג</label>
                             <w>מדה</w>
                             <w>בחבל</w>
@@ -13193,7 +13310,7 @@
                             <w>שתות</w>
                             <w>ינכה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.7.4">
+                        <ab xml:id="ref.4.3.7.4">
                             <label>ד</label>
                             <w>האומר</w>
                             <w>לחבירו</w>
@@ -13234,11 +13351,12 @@
                             <w>חריץ</w>
                             <w>שלשה</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.7.T"/>
+                        <trailer xml:id="ref.4.3.7.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.8">
-                        <head xml:id="MS.4.3.8.H">פרק ח</head>
-                        <ab xml:id="MS.4.3.8.1">
+                    <div3 xml:id="ref.4.3.8">
+                        <head xml:id="ref.4.3.8.H"><w>פרק</w>
+                            <w>ח</w></head>
+                        <ab xml:id="ref.4.3.8.1">
                             <label>א</label>
                             <w>יש</w>
                             <w>נוחלין</w>
@@ -13298,7 +13416,7 @@
                             <w>ולא</w>
                             <w>מנחילין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.2">
+                        <ab xml:id="ref.4.3.8.2">
                             <label>ב</label>
                             <w>סדר</w>
                             <w>נחלות</w>
@@ -13358,7 +13476,7 @@
                             <w>יוצאי</w>
                             <w>יריכו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.3">
+                        <ab xml:id="ref.4.3.8.3">
                             <label>ג</label>
                             <w>בנות</w>
                             <w>צלפחד</w>
@@ -13383,7 +13501,7 @@
                             <w>שני</w>
                             <w>חלקים</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.4">
+                        <ab xml:id="ref.4.3.8.4">
                             <label>ד</label>
                             <w>אחד</w>
                             <w>הבן</w>
@@ -13412,7 +13530,7 @@
                             <w>מנכסי</w>
                             <w>האם</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.5">
+                        <ab xml:id="ref.4.3.8.5">
                             <label>ה</label>
                             <w>האומר</w>
                             <w>איש</w>
@@ -13543,7 +13661,7 @@
                             <w>זכור</w>
                             <w>לטוב</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.6">
+                        <ab xml:id="ref.4.3.8.6">
                             <label>ו</label>
                             <w>האומר</w>
                             <w>זה</w>
@@ -13592,7 +13710,7 @@
                             <w>דבריו</w>
                             <w>קיימין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.7">
+                        <ab xml:id="ref.4.3.8.7">
                             <label>ז</label>
                             <w>הכותב</w>
                             <w>נכסיו</w>
@@ -13698,7 +13816,7 @@
                             <w>אביהם</w>
                             <w>נתן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.8.8">
+                        <ab xml:id="ref.4.3.8.8">
                             <label>ח</label>
                             <w>הניח</w>
                             <w>בנות</w>
@@ -13746,11 +13864,12 @@
                             <w>על</w>
                             <w>הבנות</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.8.T"/>
+                        <trailer xml:id="ref.4.3.8.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.9">
-                        <head xml:id="MS.4.3.9.H">פרק ט</head>
-                        <ab xml:id="MS.4.3.9.1">
+                    <div3 xml:id="ref.4.3.9">
+                        <head xml:id="ref.4.3.9.H"><w>פרק</w>
+                            <w>ט</w></head>
+                        <ab xml:id="ref.4.3.9.1">
                             <label>א</label>
                             <w>מי</w>
                             <w>שמת</w>
@@ -13787,7 +13906,7 @@
                             <w>דברי</w>
                             <w>אדמון</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.2">
+                        <ab xml:id="ref.4.3.9.2">
                             <label>ב</label>
                             <w>הניח</w>
                             <w>בנים</w>
@@ -13864,7 +13983,7 @@
                             <w>את</w>
                             <w>הכל</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.3">
+                        <ab xml:id="ref.4.3.9.3">
                             <label>ג</label>
                             <w>הניח</w>
                             <w>בנים</w>
@@ -13910,7 +14029,7 @@
                             <w>השביחה</w>
                             <w>לעצמה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.4">
+                        <ab xml:id="ref.4.3.9.4">
                             <label>ד</label>
                             <w>האחין</w>
                             <w>השותפין</w>
@@ -13956,7 +14075,7 @@
                             <w>חסדים</w>
                             <w/>
                         </ab>
-                        <ab xml:id="MS.4.3.9.5">
+                        <ab xml:id="ref.4.3.9.5">
                             <label>ה</label>
                             <w>השולח</w>
                             <w>סבלונות</w>
@@ -14001,7 +14120,7 @@
                             <w>אינן</w>
                             <w>נגבין</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.6">
+                        <ab xml:id="ref.4.3.9.6">
                             <label>ו</label>
                             <w>שכיב</w>
                             <w>מרע</w>
@@ -14053,7 +14172,7 @@
                             <w>עליו</w>
                             <w>הראיה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.7">
+                        <ab xml:id="ref.4.3.9.7">
                             <label>ז</label>
                             <w>המחלק</w>
                             <w>נכסיו</w>
@@ -14144,7 +14263,7 @@
                             <w>וחומר</w>
                             <w>לגדול</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.8">
+                        <ab xml:id="ref.4.3.9.8">
                             <label>ח</label>
                             <w>נפל</w>
                             <w>הבית</w>
@@ -14191,7 +14310,7 @@
                             <w>נכסים</w>
                             <w>בחזקתן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.9">
+                        <ab xml:id="ref.4.3.9.9">
                             <label>ט</label>
                             <w>נפל</w>
                             <w>הבית</w>
@@ -14239,7 +14358,7 @@
                             <w>יורשי</w>
                             <w>האב</w>
                         </ab>
-                        <ab xml:id="MS.4.3.9.10">
+                        <ab xml:id="ref.4.3.9.10">
                             <label>י</label>
                             <w>נפל</w>
                             <w>הבית</w>
@@ -14273,11 +14392,12 @@
                             <w>את</w>
                             <w>השוין</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.9.T"/>
+                        <trailer xml:id="ref.4.3.9.T"/>
                     </div3>
-                    <div3 xml:id="MS.4.3.10">
-                        <head xml:id="MS.4.3.10.H">פרק י</head>
-                        <ab xml:id="MS.4.3.10.1">
+                    <div3 xml:id="ref.4.3.10">
+                        <head xml:id="ref.4.3.10.H"><w>פרק</w>
+                            <w>י</w></head>
+                        <ab xml:id="ref.4.3.10.1">
                             <label>א</label>
                             <w>גט</w>
                             <w>פשוט</w>
@@ -14319,7 +14439,7 @@
                             <w>כמנהג</w>
                             <w>המדינה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.2">
+                        <ab xml:id="ref.4.3.10.2">
                             <label>ב</label>
                             <w>גט</w>
                             <w>פשוט</w>
@@ -14409,7 +14529,7 @@
                             <w>מן</w>
                             <w>העליון</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.3">
+                        <ab xml:id="ref.4.3.10.3">
                             <label>ג</label>
                             <w>כותבין</w>
                             <w>גט</w>
@@ -14473,7 +14593,7 @@
                             <w>נותן</w>
                             <w>שכר</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.4">
+                        <ab xml:id="ref.4.3.10.4">
                             <label>ד</label>
                             <w>אין</w>
                             <w>כותבין</w>
@@ -14524,7 +14644,7 @@
                             <w>ולזה</w>
                             <w>לעצמו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.5">
+                        <ab xml:id="ref.4.3.10.5">
                             <label>ה</label>
                             <w>מי</w>
                             <w>שפרע</w>
@@ -14560,7 +14680,7 @@
                             <w>לא</w>
                             <w>יתן</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.6">
+                        <ab xml:id="ref.4.3.10.6">
                             <label>ו</label>
                             <w>מי</w>
                             <w>שנמחק</w>
@@ -14624,7 +14744,7 @@
                             <w>של</w>
                             <w>זה</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.7">
+                        <ab xml:id="ref.4.3.10.7">
                             <label>ז</label>
                             <w>שני</w>
                             <w>אחין</w>
@@ -14799,7 +14919,7 @@
                             <w>את</w>
                             <w>אשתו</w>
                         </ab>
-                        <ab xml:id="MS.4.3.10.8">
+                        <ab xml:id="ref.4.3.10.8">
                             <label>ח</label>
                             <w>המלוה</w>
                             <w>את</w>
@@ -14920,43 +15040,43 @@
                             <w>בן</w>
                             <w>ננס</w>
                         </ab>
-                        <trailer xml:id="MS.4.3.10.T"/>
+                        <trailer xml:id="ref.4.3.10.T"/>
                     </div3>
                 </div2>
-                <div2 xml:id="MS.Sanhedrin" type="tractate"/>
-                <div2 xml:id="MS.Makkot" type="tractate"/>
-                <div2 xml:id="MS.Shevuot" type="tractate"/>
-                <div2 xml:id="MS.Eduyot" type="tractate"/>
-                <div2 xml:id="MS.AvodahZarah" type="tractate"/>
-                <div2 xml:id="MS.Avot" type="tractate"/>
-                <div2 xml:id="MS.Horayot" type="tractate"/>
+                <div2 xml:id="ref.Sanhedrin" type="tractate"/>
+                <div2 xml:id="ref.Makkot" type="tractate"/>
+                <div2 xml:id="ref.Shevuot" type="tractate"/>
+                <div2 xml:id="ref.Eduyot" type="tractate"/>
+                <div2 xml:id="ref.AvodahZarah" type="tractate"/>
+                <div2 xml:id="ref.Avot" type="tractate"/>
+                <div2 xml:id="ref.Horayot" type="tractate"/>
             </div1>
-            <div1 xml:id="MS.Qodashin" type="Order">
-                <div2 xml:id="MS.Zevahim" type="tractate"/>
-                <div2 xml:id="MS.Menahot" type="tractate"/>
-                <div2 xml:id="MS.Hulin" type="tractate"/>
-                <div2 xml:id="MS.Bekhorot" type="tractate"/>
-                <div2 xml:id="MS.Arakhin" type="tractate"/>
-                <div2 xml:id="MS.Temurah" type="tractate"/>
-                <div2 xml:id="MS.Keritot" type="tractate"/>
-                <div2 xml:id="MS.Meilah" type="tractate"/>
-                <div2 xml:id="MS.Tamid" type="tractate"/>
-                <div2 xml:id="MS.Middot" type="tractate"/>
-                <div2 xml:id="MS.Qinnim" type="tractate"/>
+            <div1 xml:id="ref.Qodashin" type="Order">
+                <div2 xml:id="ref.Zevahim" type="tractate"/>
+                <div2 xml:id="ref.Menahot" type="tractate"/>
+                <div2 xml:id="ref.Hulin" type="tractate"/>
+                <div2 xml:id="ref.Bekhorot" type="tractate"/>
+                <div2 xml:id="ref.Arakhin" type="tractate"/>
+                <div2 xml:id="ref.Temurah" type="tractate"/>
+                <div2 xml:id="ref.Keritot" type="tractate"/>
+                <div2 xml:id="ref.Meilah" type="tractate"/>
+                <div2 xml:id="ref.Tamid" type="tractate"/>
+                <div2 xml:id="ref.Middot" type="tractate"/>
+                <div2 xml:id="ref.Qinnim" type="tractate"/>
             </div1>
-            <div1 xml:id="MS.Toharot" type="Order">
-                <div2 xml:id="MS.Kelim" type="Tractate"/>
-                <div2 xml:id="MS.Ohalot" type="Tractate"/>
-                <div2 xml:id="MS.Negaim" type="Tractate"/>
-                <div2 xml:id="MS.Parah" type="Tractate"/>
-                <div2 xml:id="MS.trToharot" type="Tractate"/>
-                <div2 xml:id="MS.Miqvaot" type="Tractate"/>
-                <div2 xml:id="MS.Niddah" type="Tractate"/>
-                <div2 xml:id="MS.Makhshirin" type="Tractate"/>
-                <div2 xml:id="MS.Zabim" type="Tractate"/>
-                <div2 xml:id="MS.TevulYom" type="Tractate"/>
-                <div2 xml:id="MS.Yadayim" type="Tractate"/>
-                <div2 xml:id="MS.Uqtsim" type="Tractate"/>
+            <div1 xml:id="ref.Toharot" type="Order">
+                <div2 xml:id="ref.Kelim" type="Tractate"/>
+                <div2 xml:id="ref.Ohalot" type="Tractate"/>
+                <div2 xml:id="ref.Negaim" type="Tractate"/>
+                <div2 xml:id="ref.Parah" type="Tractate"/>
+                <div2 xml:id="ref.trToharot" type="Tractate"/>
+                <div2 xml:id="ref.Miqvaot" type="Tractate"/>
+                <div2 xml:id="ref.Niddah" type="Tractate"/>
+                <div2 xml:id="ref.Makhshirin" type="Tractate"/>
+                <div2 xml:id="ref.Zabim" type="Tractate"/>
+                <div2 xml:id="ref.TevulYom" type="Tractate"/>
+                <div2 xml:id="ref.Yadayim" type="Tractate"/>
+                <div2 xml:id="ref.Uqtsim" type="Tractate"/>
             </div1>
         </body>
     </text>
