@@ -61,7 +61,12 @@
                     
                     <!-- Additional modules needed for collation -->
                     <moduleRef key="textcrit"/>
-                    <moduleRef key="linking" include="ab anchor seg"/>
+                    <moduleRef key="linking" include="ab anchor link"/>
+                    
+                    <!-- Including <w> for recording tokenization -->
+                    <elementRef key="w"/>
+                    
+                    <classRef key="att.global.analytic"/>
                     
                 </schemaSpec>
             </div>
