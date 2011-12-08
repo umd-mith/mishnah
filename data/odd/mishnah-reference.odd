@@ -5,7 +5,7 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>TEI Customization for MISHNAH</title>
+                <title>TEI Customization for the MISHNAH reference file</title>
                 <author>Trevor Muñoz</author>
             </titleStmt>
             <publicationStmt>
@@ -29,7 +29,10 @@
         </fileDesc>
         <revisionDesc>
             <change who="tmunoz" when="2011-10-16">First draft</change>
-            <change who="tmunoz" when="2011-11-30">First set of changes to split witness and reference schemas</change>
+            <change who="tmunoz" when="2011-11-30">First set of changes to split witness and
+                reference schemas</change>
+            <change who="tmunoz" when="2011-12-08">Moving witness specific markup to
+                mishnah-witness.odd</change>
         </revisionDesc>
     </teiHeader>
     <!-- TODO:
@@ -44,102 +47,22 @@
                 <p>To be added</p>
             </div>
             <div>
-                <head>TEI Customizations for the Digital MISHNAH</head>
-                <p>The prefix in this schema stands for <expan>Digital MISHNAH</expan>, the project
-                    for which this customization was developed.</p>
-                <schemaSpec ident="digital_mishnah_odd" prefix="mishnah_" start="TEI teiCorpus">
-
+                <head>TEI Customizations for the Digital MISHNAH reference file</head>
+                <p>The prefix in this schema stands for <expan>Digital MISHNAH reference</expan>,
+                    the reference text used for aligning the various witnesses to the Mishnah.</p>
+            </div>
+            <div>
+                <schemaSpec ident="digital_mishnah_reference" prefix="mishnahr" start="TEI">
                     <!-- Required modules, these need to be restricted further to get rid of unused elements -->
                     <moduleRef key="tei"/>
                     <moduleRef key="header"/>
                     <moduleRef key="core"/>
                     <moduleRef key="textstructure"/>
-
-                    <!-- Additional modules -->
-                    <moduleRef key="transcr"
-                        except="addSpan am damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
-                    <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
+                    
+                    <!-- Additional modules needed for collation -->
+                    <moduleRef key="textcrit"/>
                     <moduleRef key="linking" include="ab anchor seg"/>
-
-                    <!-- Including a few elements from modules not otherwise required -->
-                    <elementRef key="persName"/>
-                    <elementRef key="pc"/>
-                    <elementRef key="g"/>
-                    <elementRef key="c"/>
-                    <elementRef key="w"/>
                     
-                    <!-- Eliminating unwanted elements from included modules -->
-                    <elementSpec module="textstructure" ident="div4" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div5" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div6" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div7" mode="delete"/>
-
-                    <!-- Begin adjusting content models of specific elements -->
-                    
-                    <!-- Make encodingDesc mandatory, profileDesc optional -->
-                    <elementSpec module="header" ident="teiHeader" mode="change">
-                        <content>
-                            <rng:group>
-                                <rng:ref name="fileDesc"/>
-                                <rng:ref name="encodingDesc"/>
-                                <rng:zeroOrMore>
-                                    <rng:ref name="profileDesc"/>
-                                </rng:zeroOrMore>
-                                <rng:ref name="revisionDesc"/>
-                            </rng:group>
-                        </content>
-                    </elementSpec>
-                    
-                    <!-- Renaming numbered divs to have meaningful names -->
-                    <elementSpec module="textstructure" ident="div1" mode="change">
-                        <altIdent>order</altIdent>
-                    </elementSpec>
-                    <elementSpec module="textstructure" ident="div2" mode="change">
-                        <altIdent>tractate</altIdent>
-                    </elementSpec>
-                    <elementSpec module="textstructure" ident="div3" mode="change">
-                        <altIdent>chapter</altIdent>
-                    </elementSpec>
-                    <elementSpec module="linking" ident="ab" mode="change">
-                        <altIdent>mishnah</altIdent>
-                    </elementSpec>
-                    
-                    <elementSpec module="core" ident="gap" mode="change" >
-                        <attList>
-                            <attDef ident="extent" mode="change">
-                                <datatype>
-                                    <rng:ref name="data.count"/>
-                                </datatype>
-                            </attDef>
-                        </attList>
-                    </elementSpec>
-                    
-                    <!-- Constrain the content model of damage. Covers three cases: 1) damaged but still readable text (unadorned inside <damage>);
-                    2) damaged text that cannot be read (inside <unclear>); and 3) damage that completely removes text, e.g., holes, etc. (indicated with <gap>)-->
-                    <elementSpec module="transcr" ident="damage" mode="change">
-                        <content>
-                            <rng:zeroOrMore>
-                                <rng:choice>
-                                    <rng:text/>
-                                    <rng:ref name="unclear"/>
-                                    <rng:ref name="gap"/>
-                                </rng:choice>
-                            </rng:zeroOrMore>
-                        </content>
-                    </elementSpec>
-                    
-                    <!-- seg will be used to group add, del and other transcriptional elements -->
-                    <elementSpec module="linking" ident="seg" mode="change">
-                        <content>
-                            <rng:zeroOrMore>
-                                <rng:choice>
-                                    <rng:text/>
-                                    <rng:ref name="model.pPart.transcriptional"/>
-                                </rng:choice>
-                            </rng:zeroOrMore>
-                        </content>
-                    </elementSpec>
-
                 </schemaSpec>
             </div>
         </body>
