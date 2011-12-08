@@ -18,7 +18,7 @@
     <!-- Copy names and URIs to lookup list -->
     <xsl:strip-space elements="*"/>
     <xsl:variable name="URIlist">
-        <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:listWit/tei:witness">
+        <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit/tei:witness">
             <xsl:variable name="checkURI">
                 <xsl:value-of select="tei:ptr/@target"/>
                 <xsl:text>#</xsl:text>
@@ -35,7 +35,6 @@
                     </xsl:element>
                     <xsl:element name="siglum"><xsl:value-of select="normalize-space(./@xml:id)"/></xsl:element>
                 </xsl:element>
-                
             </xsl:if>
         </xsl:for-each>
     </xsl:variable>
@@ -53,21 +52,26 @@
                     <h1 lang="en" dir="ltr" align="center">Mishnah Text Bava Metsi'a Ch2</h1>
                     <h2 lang="en" dir="ltr" align="center">Synopsis</h2>
                     <xsl:apply-templates
-                        select="tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='MS.4.2.2']"
+                        select="tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='ref.4.2.2']"
                     />
                 </body>
             </div>
         </html>
     </xsl:template>
     <xsl:template match="tei:div3">
-        
         <table dir="rtl" align="right">
+
             <tr><xsl:for-each select="$URIlist/tei:item">
-                <td dir="ltr" align="center" lang="en"><xsl:value-of select="./tei:witName"></xsl:value-of></td>
+                
+                <td dir="ltr" align="center" lang="en">
+                    
+                    <xsl:value-of select="./tei:witName"></xsl:value-of></td>
             </xsl:for-each></tr>
+
             <xsl:for-each select="child::element()">
                 <xsl:variable name="temp" as="text()"><xsl:value-of
-                    select="translate(current()/@xml:id,'MS', '')"/></xsl:variable>
+                    select="translate(current()/@xml:id,'ref', '')"/></xsl:variable>
+
                 <tr padding-bottom="2em">
                     <xsl:for-each select="$URIlist/tei:item">
                         <td>
@@ -81,7 +85,7 @@
                         <!-- Why do I need to fix the relative URI here and not in the variable
                             above?-->
                         <xsl:value-of
-                            select="concat('../tei/',$mURI,'#',tei:ifMishnah,tei:siglum,$temp)"/>
+                            select="concat('../tei/',$mURI,'#',tei:siglum,$temp)"/>
                         </xsl:variable>
                            <xsl:copy-of select="document($lookup)"></xsl:copy-of>
                         </td>

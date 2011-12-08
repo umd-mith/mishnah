@@ -21,8 +21,7 @@
         <xsl:variable name="witlist">
             <xsl:copy-of
                 select="document('../tei/ref.xml',
-                document(''))//tei:listWit except ."
-            />
+                document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."/>
         </xsl:variable>
         <results>
             <!-- build URI for each reference to variable mref -->
@@ -30,34 +29,24 @@
                 <xsl:variable name="Wit">
                     <xsl:value-of select="."/>
                 </xsl:variable>
-                <xsl:variable name="buildURI">
-                    <!-- This condition is temporary. M. and G. etc. indicators on xml:ids are going
-                    to be removed-->
-                    <xsl:choose>
-                        <xsl:when test="substring($Wit,1,1)!='G'">
+                
+              <xsl:variable name="buildURI">
+                        
                             <xsl:value-of
-                                select="$witlist//tei:witness[@xml:id=$Wit]/tei:ptr/@target"/>
-                            <xsl:text>#M.</xsl:text>
+                                select="$witlist//tei:witness[@xml:id=$Wit]/tei:ptr/@target"/><xsl:text>#</xsl:text>
                             <xsl:value-of select="$Wit"/>
                             <xsl:text>.</xsl:text>
                             <xsl:value-of select="$mcite"/>
-                        </xsl:when>
-                        <xsl:when test="substring($Wit,1,1)='G'">
-                            <xsl:value-of
-                                select="$witlist//tei:witness[@xml:id=$Wit]/tei:ptr/@target"/>
-                            <xsl:text>#</xsl:text>
-                            <xsl:value-of select="$Wit"/>
-                            <xsl:text>.</xsl:text>
-                            <xsl:value-of select="$mcite"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="mRef">
+                        
+                       
+                    
+              </xsl:variable>
+               <xsl:variable name="mRef">
                     <xsl:value-of select="resolve-uri($buildURI,document-uri(/))"/>
                 </xsl:variable>
-                <xsl:variable name="mExtract">
-                    <xsl:copy-of select="document($mRef)/node()|@*"/>
-                </xsl:variable>
+
+                    <mExtract><xsl:copy-of select="document($mRef)/node()|@*"/></mExtract>
+                
             </xsl:for-each>
         </results>
     </xsl:template>
