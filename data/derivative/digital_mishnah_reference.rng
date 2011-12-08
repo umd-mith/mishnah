@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-08T18:35:46Z. 
+Schema generated from ODD source 2011-12-08T18:48:08Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -592,6 +592,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
   </define>
   <define name="mishnahratt.global.attributes">
     <ref name="mishnahratt.global.linking.attributes"/>
+    <ref name="mishnahratt.global.analytic.attributes"/>
     <ref name="mishnahratt.global.attribute.xmlid"/>
     <ref name="mishnahratt.global.attribute.n"/>
     <ref name="mishnahratt.global.attribute.xmllang"/>
@@ -1149,30 +1150,30 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   </define>
   <define name="mishnahrmodel.segLike">
     <choice>
-      <ref name="mishnahrseg"/>
+      <ref name="mishnahrw"/>
     </choice>
   </define>
   <define name="mishnahrmodel.segLike_alternation">
     <choice>
-      <ref name="mishnahrseg"/>
+      <ref name="mishnahrw"/>
     </choice>
   </define>
   <define name="mishnahrmodel.segLike_sequence">
-    <ref name="mishnahrseg"/>
+    <ref name="mishnahrw"/>
   </define>
   <define name="mishnahrmodel.segLike_sequenceOptional">
     <optional>
-      <ref name="mishnahrseg"/>
+      <ref name="mishnahrw"/>
     </optional>
   </define>
   <define name="mishnahrmodel.segLike_sequenceOptionalRepeatable">
     <zeroOrMore>
-      <ref name="mishnahrseg"/>
+      <ref name="mishnahrw"/>
     </zeroOrMore>
   </define>
   <define name="mishnahrmodel.segLike_sequenceRepeatable">
     <oneOrMore>
-      <ref name="mishnahrseg"/>
+      <ref name="mishnahrw"/>
     </oneOrMore>
   </define>
   <define name="mishnahrmodel.hiLike">
@@ -1749,32 +1750,62 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahrref"/>
     </oneOrMore>
   </define>
+  <define name="mishnahrmodel.lPart">
+    <notAllowed/>
+  </define>
+  <define name="mishnahrmodel.lPart_alternation">
+    <notAllowed/>
+  </define>
+  <define name="mishnahrmodel.lPart_sequence">
+    <empty/>
+  </define>
+  <define name="mishnahrmodel.lPart_sequenceOptional">
+    <empty/>
+  </define>
+  <define name="mishnahrmodel.lPart_sequenceOptionalRepeatable">
+    <empty/>
+  </define>
+  <define name="mishnahrmodel.lPart_sequenceRepeatable">
+    <notAllowed/>
+  </define>
   <define name="mishnahrmodel.global.meta">
     <choice>
       <ref name="mishnahrindex"/>
+      <ref name="mishnahrlink"/>
     </choice>
   </define>
   <define name="mishnahrmodel.global.meta_alternation">
     <choice>
       <ref name="mishnahrindex"/>
+      <ref name="mishnahrlink"/>
     </choice>
   </define>
   <define name="mishnahrmodel.global.meta_sequence">
     <ref name="mishnahrindex"/>
+    <ref name="mishnahrlink"/>
   </define>
   <define name="mishnahrmodel.global.meta_sequenceOptional">
     <optional>
       <ref name="mishnahrindex"/>
+    </optional>
+    <optional>
+      <ref name="mishnahrlink"/>
     </optional>
   </define>
   <define name="mishnahrmodel.global.meta_sequenceOptionalRepeatable">
     <zeroOrMore>
       <ref name="mishnahrindex"/>
     </zeroOrMore>
+    <zeroOrMore>
+      <ref name="mishnahrlink"/>
+    </zeroOrMore>
   </define>
   <define name="mishnahrmodel.global.meta_sequenceRepeatable">
     <oneOrMore>
       <ref name="mishnahrindex"/>
+    </oneOrMore>
+    <oneOrMore>
+      <ref name="mishnahrlink"/>
     </oneOrMore>
   </define>
   <define name="mishnahrmodel.milestoneLike">
@@ -2782,7 +2813,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahrunclear"/>
       <ref name="mishnahrabbr"/>
       <ref name="mishnahrexpan"/>
-      <ref name="mishnahrseg"/>
     </choice>
   </define>
   <define name="mishnahrmodel.imprintPart">
@@ -3143,6 +3173,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahrmodel.graphicLike"/>
       <ref name="mishnahrmodel.pPart.edit"/>
       <ref name="mishnahrmodel.ptrLike"/>
+      <ref name="mishnahrmodel.lPart"/>
       <ref name="mishnahrmodel.pPart.data"/>
     </choice>
   </define>
@@ -7551,16 +7582,96 @@ witness.</a:documentation>
       <empty/>
     </element>
   </define>
-  <define name="mishnahrseg">
-    <element name="seg">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(arbitrary segment) represents any segmentation of text below the chunk level. 16.3. Blocks, Segments, and Anchors 6.2. Components of the Verse Line 7.2.4. Speech Contents</a:documentation>
-      <ref name="mishnahrmacro.paraContent"/>
+  <define name="mishnahrlink">
+    <element name="link">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. 16.1. Links</a:documentation>
+      <empty/>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="link-constraint-linkTargets1">
+        <rule context="tei:link">
+          <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target and @targets">You may not supply both 
+	@target and @targets</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="link-constraint-linkTargets2">
+        <rule context="tei:link">
+          <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" test="not(@target) and not(@targets)">You must
+	supply either @target or @targets</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="link-constraint-linkTargets3">
+        <rule context="tei:link">
+          <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" test="contains(@target,' ')">You must supply at least two
+values for @target</sch:assert>
+        </rule>
+      </pattern>
+      <ref name="mishnahratt.global.attributes"/>
+      <ref name="mishnahratt.pointing.attributes"/>
+      <ref name="mishnahratt.typed.attributes"/>
+      <optional>
+        <attribute name="targets">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the identifiers of the elements or passages to be linked or associated. </a:documentation>
+          <list>
+            <ref name="mishnahrdata.pointer"/>
+            <ref name="mishnahrdata.pointer"/>
+            <zeroOrMore>
+              <ref name="mishnahrdata.pointer"/>
+            </zeroOrMore>
+          </list>
+        </attribute>
+      </optional>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahrw">
+    <element name="w">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(word) represents a grammatical (not necessarily orthographic) word. 17.1. Linguistic Segment Categories</a:documentation>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="mishnahrmodel.gLike"/>
+          <ref name="mishnahrw"/>
+          <ref name="mishnahrmodel.global"/>
+          <ref name="mishnahrmodel.lPart"/>
+          <ref name="mishnahrmodel.hiLike"/>
+          <ref name="mishnahrmodel.pPart.edit"/>
+        </choice>
+      </zeroOrMore>
       <ref name="mishnahratt.global.attributes"/>
       <ref name="mishnahratt.segLike.attributes"/>
       <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.responsibility.attributes"/>
+      <optional>
+        <attribute name="lemma">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a lemma for the word, such as an uninflected
+      dictionary entry form.</a:documentation>
+          <ref name="mishnahrdata.key"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="lemmaRef">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a pointer to a definition of the lemma for the
+      word, for example in an online lexicon. </a:documentation>
+          <ref name="mishnahrdata.pointer"/>
+        </attribute>
+      </optional>
       <empty/>
     </element>
+  </define>
+  <define name="mishnahratt.global.analytic.attributes">
+    <ref name="mishnahratt.global.analytic.attribute.ana"/>
+  </define>
+  <define name="mishnahratt.global.analytic.attribute.ana">
+    <optional>
+      <attribute name="ana">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(analysis) indicates one or more elements containing interpretations of the
+element on which the ana attribute appears.</a:documentation>
+        <list>
+          <ref name="mishnahrdata.pointer"/>
+          <zeroOrMore>
+            <ref name="mishnahrdata.pointer"/>
+          </zeroOrMore>
+        </list>
+      </attribute>
+    </optional>
   </define>
   <start>
     <ref name="mishnahrTEI"/>

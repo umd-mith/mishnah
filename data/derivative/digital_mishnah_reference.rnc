@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-08T18:35:46Z. 
+# Schema generated from ODD source 2011-12-08T18:48:08Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -375,6 +375,7 @@ mishnahratt.editLike.attribute.source =
   }?
 mishnahratt.global.attributes =
   mishnahratt.global.linking.attributes,
+  mishnahratt.global.analytic.attributes,
   mishnahratt.global.attribute.xmlid,
   mishnahratt.global.attribute.n,
   mishnahratt.global.attribute.xmllang,
@@ -783,12 +784,12 @@ mishnahrmodel.nameLike.agent_sequence = mishnahrname
 mishnahrmodel.nameLike.agent_sequenceOptional = mishnahrname?
 mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable = mishnahrname*
 mishnahrmodel.nameLike.agent_sequenceRepeatable = mishnahrname+
-mishnahrmodel.segLike = mishnahrseg
-mishnahrmodel.segLike_alternation = mishnahrseg
-mishnahrmodel.segLike_sequence = mishnahrseg
-mishnahrmodel.segLike_sequenceOptional = mishnahrseg?
-mishnahrmodel.segLike_sequenceOptionalRepeatable = mishnahrseg*
-mishnahrmodel.segLike_sequenceRepeatable = mishnahrseg+
+mishnahrmodel.segLike = mishnahrw
+mishnahrmodel.segLike_alternation = mishnahrw
+mishnahrmodel.segLike_sequence = mishnahrw
+mishnahrmodel.segLike_sequenceOptional = mishnahrw?
+mishnahrmodel.segLike_sequenceOptionalRepeatable = mishnahrw*
+mishnahrmodel.segLike_sequenceRepeatable = mishnahrw+
 mishnahrmodel.hiLike = mishnahrhi
 mishnahrmodel.hiLike_alternation = mishnahrhi
 mishnahrmodel.hiLike_sequence = mishnahrhi
@@ -990,12 +991,21 @@ mishnahrmodel.ptrLike_sequenceOptional = mishnahrptr?, mishnahrref?
 mishnahrmodel.ptrLike_sequenceOptionalRepeatable =
   mishnahrptr*, mishnahrref*
 mishnahrmodel.ptrLike_sequenceRepeatable = mishnahrptr+, mishnahrref+
-mishnahrmodel.global.meta = mishnahrindex
-mishnahrmodel.global.meta_alternation = mishnahrindex
-mishnahrmodel.global.meta_sequence = mishnahrindex
-mishnahrmodel.global.meta_sequenceOptional = mishnahrindex?
-mishnahrmodel.global.meta_sequenceOptionalRepeatable = mishnahrindex*
-mishnahrmodel.global.meta_sequenceRepeatable = mishnahrindex+
+mishnahrmodel.lPart = notAllowed
+mishnahrmodel.lPart_alternation = notAllowed
+mishnahrmodel.lPart_sequence = empty
+mishnahrmodel.lPart_sequenceOptional = empty
+mishnahrmodel.lPart_sequenceOptionalRepeatable = empty
+mishnahrmodel.lPart_sequenceRepeatable = notAllowed
+mishnahrmodel.global.meta = mishnahrindex | mishnahrlink
+mishnahrmodel.global.meta_alternation = mishnahrindex | mishnahrlink
+mishnahrmodel.global.meta_sequence = mishnahrindex, mishnahrlink
+mishnahrmodel.global.meta_sequenceOptional =
+  mishnahrindex?, mishnahrlink?
+mishnahrmodel.global.meta_sequenceOptionalRepeatable =
+  mishnahrindex*, mishnahrlink*
+mishnahrmodel.global.meta_sequenceRepeatable =
+  mishnahrindex+, mishnahrlink+
 mishnahrmodel.milestoneLike =
   mishnahrmilestone
   | mishnahrpb
@@ -1345,7 +1355,6 @@ mishnahrmodel.choicePart =
   | mishnahrunclear
   | mishnahrabbr
   | mishnahrexpan
-  | mishnahrseg
 mishnahrmodel.imprintPart =
   mishnahrpublisher
   | mishnahrbiblScope
@@ -1503,6 +1512,7 @@ mishnahrmodel.phrase =
   | mishnahrmodel.graphicLike
   | mishnahrmodel.pPart.edit
   | mishnahrmodel.ptrLike
+  | mishnahrmodel.lPart
   | mishnahrmodel.pPart.data
 mishnahrmodel.limitedPhrase =
   mishnahrmodel.emphLike
@@ -4455,15 +4465,113 @@ mishnahranchor =
     mishnahratt.typed.attributes,
     empty
   }
-mishnahrseg =
+mishnahrlink =
   
-  ## (arbitrary segment) represents any segmentation of text below the chunk level. 16.3. Blocks, Segments, and Anchors 6.2. Components of the Verse Line 7.2.4. Speech Contents
-  element seg {
-    mishnahrmacro.paraContent,
+  ## defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. 16.1. Links
+  element link {
+    empty
+    >> sch:pattern [
+         id = "link-constraint-linkTargets1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @targets"
+             "You may not supply both \x{a}" ~
+             "	@target and @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(@target) and not(@targets)"
+             "You must\x{a}" ~
+             "	supply either @target or @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "contains(@target,' ')"
+             "You must supply at least two\x{a}" ~
+             "values for @target"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## specifies the identifiers of the elements or passages to be linked or associated. 
+    attribute targets {
+      list {
+        mishnahrdata.pointer,
+        mishnahrdata.pointer,
+        mishnahrdata.pointer*
+      }
+    }?,
+    empty
+  }
+mishnahrw =
+  
+  ## (word) represents a grammatical (not necessarily orthographic) word. 17.1. Linguistic Segment Categories
+  element w {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrw
+     | mishnahrmodel.global
+     | mishnahrmodel.lPart
+     | mishnahrmodel.hiLike
+     | mishnahrmodel.pPart.edit)*,
     mishnahratt.global.attributes,
     mishnahratt.segLike.attributes,
     mishnahratt.typed.attributes,
-    mishnahratt.responsibility.attributes,
+    
+    ## provides a lemma for the word, such as an uninflected
+    ##       dictionary entry form.
+    attribute lemma { mishnahrdata.key }?,
+    
+    ## provides a pointer to a definition of the lemma for the
+    ##       word, for example in an online lexicon. 
+    attribute lemmaRef { mishnahrdata.pointer }?,
     empty
   }
+mishnahratt.global.analytic.attributes =
+  mishnahratt.global.analytic.attribute.ana
+mishnahratt.global.analytic.attribute.ana =
+  
+  ## (analysis) indicates one or more elements containing interpretations of the
+  ## element on which the ana attribute appears.
+  attribute ana {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
 start = mishnahrTEI

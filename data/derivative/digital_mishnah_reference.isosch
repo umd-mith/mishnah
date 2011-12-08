@@ -30,4 +30,22 @@
       element or within it.</assert>
       </rule>
    </pattern>
+   <pattern id="link-constraint-linkTargets1">
+      <rule context="tei:link">
+         <report test="@target and @targets">You may not supply both 
+	@target and @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="link-constraint-linkTargets2">
+      <rule context="tei:link">
+         <report test="not(@target) and not(@targets)">You must
+	supply either @target or @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="link-constraint-linkTargets3">
+      <rule context="tei:link">
+         <assert test="contains(@target,' ')">You must supply at least two
+values for @target</assert>
+      </rule>
+   </pattern>
 </schema>
