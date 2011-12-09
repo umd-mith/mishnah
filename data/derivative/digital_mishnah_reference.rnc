@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-08T19:14:55Z. 
+# Schema generated from ODD source 2011-12-08T19:52:19Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1521,6 +1521,9 @@ mishnahrmodel.limitedPhrase =
   | mishnahrmodel.pPart.data
 mishnahrmodel.divLike = mishnahrdiv
 mishnahrmodel.divGenLike = mishnahrdivGen
+mishnahrmodel.div1Like = mishnahrdiv1
+mishnahrmodel.div2Like = mishnahrdiv2
+mishnahrmodel.div3Like = mishnahrdiv3
 mishnahrmodel.applicationLike = mishnahrapplication
 mishnahrmodel.teiHeaderPart = mishnahrencodingDesc | mishnahrprofileDesc
 mishnahrmodel.sourceDescPart = notAllowed
@@ -3649,19 +3652,8 @@ mishnahrbody =
   
   ## (text body) contains the whole body of a single unitary text, excluding any front or back matter. 4. Default Text Structure
   element body {
-    (mishnahrmodel.global*,
-     (mishnahrmodel.divTop,
-      (mishnahrmodel.global | mishnahrmodel.divTop)*)?,
-     (mishnahrmodel.divGenLike,
-      (mishnahrmodel.global | mishnahrmodel.divGenLike)*)?,
-     ((mishnahrmodel.divLike,
-       (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+
-      | (mishnahrmodel.global | mishnahrmodel.divGenLike)*
-      | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-         ((mishnahrmodel.divLike,
-           (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+
-          | (mishnahrmodel.global | mishnahrmodel.divGenLike)*)?)),
-     (mishnahrmodel.divBottom, mishnahrmodel.global*)*),
+    mishnahrmodel.global*,
+    mishnahrmodel.div1Like+,
     mishnahratt.global.attributes,
     mishnahratt.declaring.attributes,
     empty
@@ -3706,6 +3698,47 @@ mishnahrdiv =
           ((mishnahrmodel.divLike | mishnahrmodel.divGenLike),
            mishnahrmodel.global*)*)),
       (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv1 =
+  
+  ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
+  element div1 {
+    mishnahrmodel.global*,
+    mishnahrmodel.div2Like+,
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv2 =
+  
+  ## (level-2 text division) contains a second-level subdivision of the front, body, or back of a
+  ##  text. 4.1.2. Numbered Divisions
+  element div2 {
+    mishnahrmodel.global*,
+    (mishnahrmodel.headLike*,
+     mishnahrmodel.div3Like*,
+     mishnahrmodel.divBottomPart*),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv3 =
+  
+  ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
+  element div3 {
+    mishnahrmodel.global*,
+    (mishnahrmodel.headLike*,
+     mishnahrab*,
+     mishnahrmodel.divBottomPart*),
     mishnahratt.global.attributes,
     mishnahratt.divLike.attributes,
     mishnahratt.typed.attributes,
@@ -3932,7 +3965,10 @@ mishnahrfront =
     ((mishnahrmodel.frontPart
       | mishnahrmodel.pLike.front
       | mishnahrmodel.global)*,
-     ((mishnahrmodel.frontPart | mishnahrmodel.global)*
+     ((mishnahrmodel.div1Like,
+       (mishnahrmodel.frontPart
+        | mishnahrmodel.div1Like
+        | mishnahrmodel.global)*)
       | (mishnahrmodel.divLike,
          (mishnahrmodel.frontPart
           | mishnahrmodel.divLike
@@ -3950,7 +3986,10 @@ mishnahrback =
     ((mishnahrmodel.frontPart
       | mishnahrmodel.pLike.front
       | mishnahrmodel.global)*,
-     ((mishnahrmodel.frontPart | mishnahrmodel.global)*
+     ((mishnahrmodel.div1Like,
+       (mishnahrmodel.frontPart
+        | mishnahrmodel.div1Like
+        | mishnahrmodel.global)*)
       | (mishnahrmodel.divLike,
          (mishnahrmodel.frontPart
           | mishnahrmodel.divLike
@@ -4298,10 +4337,8 @@ mishnahrab =
   
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
   element ab {
-    mishnahrmacro.paraContent,
-    mishnahratt.global.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
+    mishnahrmodel.global*,
+    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
     
     ## specifies whether or not the block is complete. 
     [ a:defaultValue = "N" ]
@@ -4322,6 +4359,9 @@ mishnahrab =
         ## (final) the final part of an incomplete block
         "F"
     }?,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
     empty
   }
 mishnahranchor =
