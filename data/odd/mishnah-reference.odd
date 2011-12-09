@@ -69,14 +69,23 @@
                     <!-- Including this class to permit use of @ana -->
                     <classRef key="att.global.analytic"/>
                     
-                    <!-- Removing unwanted classes; Suggest not using numbered divs in reference text for explicit division-->
-                    <classSpec module="textstructure" ident="model.div1Like" type="model" mode="delete"/>
-                    <classSpec module="textstructure" ident="model.div2Like" type="model" mode="delete"/>
-                    <classSpec module="textstructure" ident="model.div3Like" type="model" mode="delete"/>
+                    <!-- Removing unwanted classes; Suggest not using numbered divs in reference text for explicit division between ref & witnesses-->
                     <classSpec module="textstructure" ident="model.div4Like" type="model" mode="delete"/>
                     <classSpec module="textstructure" ident="model.div5Like" type="model" mode="delete"/>
                     <classSpec module="textstructure" ident="model.div6Like" type="model" mode="delete"/>
                     <classSpec module="textstructure" ident="model.div7Like" type="model" mode="delete"/>
+                    
+                    <!-- Tightly constraining the content model of body for the reference text -->
+                    <elementSpec module="textstructure" ident="body" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.div1Like"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
                     
                 </schemaSpec>
             </div>
