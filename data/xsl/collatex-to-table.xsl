@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:cx="http://interedition.eu/collatex/ns/1.0"
-    exclude-result-prefixes="xd" version="2.0">
+    exclude-result-prefixes="xd cx" version="2.0">
     <xsl:output method="html" indent="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -34,15 +34,12 @@
                             </td>
                        
                         <xsl:for-each select="cx:cell">
-                            <xsl:choose>
-                                <!-- If invariant-->
-                                <xsl:when test="./@state ='invariant'">
-                                <!-- then if empty; after testing probably skip this -->
+
+    <!-- if empty add emdash -->
                                     <xsl:if test=".=''"><td><xsl:text>–</xsl:text></td></xsl:if>
                                     <!-- else, if not empty, insert token -->
-                                    <xsl:if test=".!=''"><td><xsl:value-of select="."></xsl:value-of></td></xsl:if></xsl:when>
-                                <xsl:when test="./@state='variant'"><td><xsl:value-of select="."/></td></xsl:when>
-                            </xsl:choose>
+                                    <xsl:if test=".!=''"><td><xsl:value-of select="."></xsl:value-of></td></xsl:if>
+                            
                             
                         </xsl:for-each>
                             <td>

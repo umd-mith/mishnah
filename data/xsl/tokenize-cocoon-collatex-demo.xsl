@@ -67,6 +67,8 @@
     <xsl:template match="//tei:del" mode="strip">
         <xsl:apply-templates/>
     </xsl:template>
+    <!-- Decide to deal only with original writing of scribe, omitting all scribal corrections by
+        same or later hand. -->
     <xsl:template match="//tei:add" mode="strip"/>
     <xsl:template match="//tei:supplied" mode="strip">
         <xsl:text>[ ]</xsl:text>
