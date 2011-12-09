@@ -22,33 +22,20 @@
         <xsl:variable name="witlist">
             <xsl:copy-of
                 select="document('../tei/ref.xml',
-                document(''))//tei:listWit except ."
+                document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
             />
         </xsl:variable> { "witnesses" : [ <xsl:for-each select="./tei:item">
             <xsl:variable name="Wit"><xsl:copy-of select="."/></xsl:variable>
              {"id" : "<xsl:value-of select="$Wit"/><xsl:text>", </xsl:text>
             <!-- Build URI from hierarchy, assemble in buildURI -->
             <xsl:variable name="buildURI">
-                <!-- This condition is temporary. M. and G. etc. indicators on xml:ids are going
-                    to be removed-->
-                <xsl:choose>
-                    <xsl:when test="substring($Wit,1,1)!='G'">
-                        <xsl:value-of
-                            select="$witlist//tei:witness[@xml:id=$Wit]/tei:ptr/@target"/>
-                        <xsl:text>#M.</xsl:text>
-                        <xsl:value-of select="$Wit"/>
-                        <xsl:text>.</xsl:text>
-                        <xsl:value-of select="$mcite"/>
-                    </xsl:when>
-                    <xsl:when test="substring($Wit,1,1)='G'">
                         <xsl:value-of
                             select="$witlist//tei:witness[@xml:id=$Wit]/tei:ptr/@target"/>
                         <xsl:text>#</xsl:text>
                         <xsl:value-of select="$Wit"/>
                         <xsl:text>.</xsl:text>
                         <xsl:value-of select="$mcite"/>
-                    </xsl:when>
-                </xsl:choose>
+                 
             </xsl:variable>
             
            <!-- construct the actual URI to mRef -->
