@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-08T18:48:08Z. 
+# Schema generated from ODD source 2011-12-08T19:14:55Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1521,13 +1521,6 @@ mishnahrmodel.limitedPhrase =
   | mishnahrmodel.pPart.data
 mishnahrmodel.divLike = mishnahrdiv
 mishnahrmodel.divGenLike = mishnahrdivGen
-mishnahrmodel.div1Like = mishnahrdiv1
-mishnahrmodel.div2Like = mishnahrdiv2
-mishnahrmodel.div3Like = mishnahrdiv3
-mishnahrmodel.div4Like = mishnahrdiv4
-mishnahrmodel.div5Like = mishnahrdiv5
-mishnahrmodel.div6Like = mishnahrdiv6
-mishnahrmodel.div7Like = mishnahrdiv7
 mishnahrmodel.applicationLike = mishnahrapplication
 mishnahrmodel.teiHeaderPart = mishnahrencodingDesc | mishnahrprofileDesc
 mishnahrmodel.sourceDescPart = notAllowed
@@ -3663,13 +3656,11 @@ mishnahrbody =
       (mishnahrmodel.global | mishnahrmodel.divGenLike)*)?,
      ((mishnahrmodel.divLike,
        (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+
-      | (mishnahrmodel.div1Like,
-         (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+
+      | (mishnahrmodel.global | mishnahrmodel.divGenLike)*
       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
          ((mishnahrmodel.divLike,
            (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+
-          | (mishnahrmodel.div1Like,
-             (mishnahrmodel.global | mishnahrmodel.divGenLike)*)+)?)),
+          | (mishnahrmodel.global | mishnahrmodel.divGenLike)*)?)),
      (mishnahrmodel.divBottom, mishnahrmodel.global*)*),
     mishnahratt.global.attributes,
     mishnahratt.declaring.attributes,
@@ -3714,123 +3705,6 @@ mishnahrdiv =
        | ((mishnahrmodel.common, mishnahrmodel.global*)+,
           ((mishnahrmodel.divLike | mishnahrmodel.divGenLike),
            mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv1 =
-  
-  ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element div1 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div2Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div2Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv2 =
-  
-  ## (level-2 text division) contains a second-level subdivision of the front, body, or back of a
-  ##  text. 4.1.2. Numbered Divisions
-  element div2 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div3Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div3Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv3 =
-  
-  ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element div3 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div4Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div4Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv4 =
-  
-  ## (level-4 text division) contains a fourth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element div4 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div5Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div5Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv5 =
-  
-  ## (level-5 text division) contains a fifth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element div5 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div6Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div6Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv6 =
-  
-  ## (level-6 text division) contains a sixth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element div6 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((((mishnahrmodel.div7Like | mishnahrmodel.divGenLike),
-        mishnahrmodel.global*)+
-       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
-          ((mishnahrmodel.div7Like | mishnahrmodel.divGenLike),
-           mishnahrmodel.global*)*)),
-      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
-    mishnahratt.global.attributes,
-    mishnahratt.divLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahrdiv7 =
-  
-  ## (level-7 text division) contains the smallest possible subdivision of the front, body or back of a text, larger than
-  ##     a paragraph. 4.1.2. Numbered Divisions
-  element div7 {
-    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
-     ((mishnahrmodel.common, mishnahrmodel.global*)+,
       (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
     mishnahratt.global.attributes,
     mishnahratt.divLike.attributes,
@@ -4058,10 +3932,7 @@ mishnahrfront =
     ((mishnahrmodel.frontPart
       | mishnahrmodel.pLike.front
       | mishnahrmodel.global)*,
-     ((mishnahrmodel.div1Like,
-       (mishnahrmodel.frontPart
-        | mishnahrmodel.div1Like
-        | mishnahrmodel.global)*)
+     ((mishnahrmodel.frontPart | mishnahrmodel.global)*
       | (mishnahrmodel.divLike,
          (mishnahrmodel.frontPart
           | mishnahrmodel.divLike
@@ -4079,10 +3950,7 @@ mishnahrback =
     ((mishnahrmodel.frontPart
       | mishnahrmodel.pLike.front
       | mishnahrmodel.global)*,
-     ((mishnahrmodel.div1Like,
-       (mishnahrmodel.frontPart
-        | mishnahrmodel.div1Like
-        | mishnahrmodel.global)*)
+     ((mishnahrmodel.frontPart | mishnahrmodel.global)*
       | (mishnahrmodel.divLike,
          (mishnahrmodel.frontPart
           | mishnahrmodel.divLike

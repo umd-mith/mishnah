@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-08T18:48:08Z. 
+Schema generated from ODD source 2011-12-08T19:14:55Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -3195,41 +3195,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahrdivGen"/>
     </choice>
   </define>
-  <define name="mishnahrmodel.div1Like">
-    <choice>
-      <ref name="mishnahrdiv1"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div2Like">
-    <choice>
-      <ref name="mishnahrdiv2"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div3Like">
-    <choice>
-      <ref name="mishnahrdiv3"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div4Like">
-    <choice>
-      <ref name="mishnahrdiv4"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div5Like">
-    <choice>
-      <ref name="mishnahrdiv5"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div6Like">
-    <choice>
-      <ref name="mishnahrdiv6"/>
-    </choice>
-  </define>
-  <define name="mishnahrmodel.div7Like">
-    <choice>
-      <ref name="mishnahrdiv7"/>
-    </choice>
-  </define>
   <define name="mishnahrmodel.applicationLike">
     <choice>
       <ref name="mishnahrapplication"/>
@@ -6044,19 +6009,14 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
                 </zeroOrMore>
               </group>
             </oneOrMore>
-            <oneOrMore>
-              <group>
-                <group>
-                  <ref name="mishnahrmodel.div1Like"/>
-                </group>
-                <zeroOrMore>
-                  <choice>
-                    <ref name="mishnahrmodel.global"/>
-                    <ref name="mishnahrmodel.divGenLike"/>
-                  </choice>
-                </zeroOrMore>
-              </group>
-            </oneOrMore>
+            <group>
+              <zeroOrMore>
+                <choice>
+                  <ref name="mishnahrmodel.global"/>
+                  <ref name="mishnahrmodel.divGenLike"/>
+                </choice>
+              </zeroOrMore>
+            </group>
             <group>
               <oneOrMore>
                 <group>
@@ -6081,19 +6041,14 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
                       </zeroOrMore>
                     </group>
                   </oneOrMore>
-                  <oneOrMore>
-                    <group>
-                      <group>
-                        <ref name="mishnahrmodel.div1Like"/>
-                      </group>
-                      <zeroOrMore>
-                        <choice>
-                          <ref name="mishnahrmodel.global"/>
-                          <ref name="mishnahrmodel.divGenLike"/>
-                        </choice>
-                      </zeroOrMore>
-                    </group>
-                  </oneOrMore>
+                  <group>
+                    <zeroOrMore>
+                      <choice>
+                        <ref name="mishnahrmodel.global"/>
+                        <ref name="mishnahrmodel.divGenLike"/>
+                      </choice>
+                    </zeroOrMore>
+                  </group>
                 </choice>
               </optional>
             </group>
@@ -6226,392 +6181,6 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
               </zeroOrMore>
             </group>
           </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv1">
-    <element name="div1">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-1 text division) contains a first-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div2Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div2Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv2">
-    <element name="div2">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-2 text division) contains a second-level subdivision of the front, body, or back of a
- text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div3Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div3Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv3">
-    <element name="div3">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div4Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div4Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv4">
-    <element name="div4">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-4 text division) contains a fourth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div5Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div5Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv5">
-    <element name="div5">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-5 text division) contains a fifth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div6Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div6Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv6">
-    <element name="div6">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-6 text division) contains a sixth-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <choice>
-            <oneOrMore>
-              <choice>
-                <ref name="mishnahrmodel.div7Like"/>
-                <ref name="mishnahrmodel.divGenLike"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="mishnahrmodel.global"/>
-              </zeroOrMore>
-            </oneOrMore>
-            <group>
-              <oneOrMore>
-                <group>
-                  <ref name="mishnahrmodel.common"/>
-                </group>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </oneOrMore>
-              <zeroOrMore>
-                <choice>
-                  <ref name="mishnahrmodel.div7Like"/>
-                  <ref name="mishnahrmodel.divGenLike"/>
-                </choice>
-                <zeroOrMore>
-                  <ref name="mishnahrmodel.global"/>
-                </zeroOrMore>
-              </zeroOrMore>
-            </group>
-          </choice>
-          <zeroOrMore>
-            <group>
-              <ref name="mishnahrmodel.divBottom"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </zeroOrMore>
-        </optional>
-      </group>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.divLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.declaring.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahrdiv7">
-    <element name="div7">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-7 text division) contains the smallest possible subdivision of the front, body or back of a text, larger than
-    a paragraph. 4.1.2. Numbered Divisions</a:documentation>
-      <group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahrmodel.divTop"/>
-            <ref name="mishnahrmodel.global"/>
-          </choice>
-        </zeroOrMore>
-        <optional>
-          <oneOrMore>
-            <group>
-              <ref name="mishnahrmodel.common"/>
-            </group>
-            <zeroOrMore>
-              <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-          </oneOrMore>
           <zeroOrMore>
             <group>
               <ref name="mishnahrmodel.divBottom"/>
@@ -6936,13 +6505,9 @@ found  at the start of a document, before the main body. 4.6. Title Pages 4. Def
           <optional>
             <choice>
               <group>
-                <group>
-                  <ref name="mishnahrmodel.div1Like"/>
-                </group>
                 <zeroOrMore>
                   <choice>
                     <ref name="mishnahrmodel.frontPart"/>
-                    <ref name="mishnahrmodel.div1Like"/>
                     <ref name="mishnahrmodel.global"/>
                   </choice>
                 </zeroOrMore>
@@ -6996,13 +6561,9 @@ found  at the start of a document, before the main body. 4.6. Title Pages 4. Def
           <optional>
             <choice>
               <group>
-                <group>
-                  <ref name="mishnahrmodel.div1Like"/>
-                </group>
                 <zeroOrMore>
                   <choice>
                     <ref name="mishnahrmodel.frontPart"/>
-                    <ref name="mishnahrmodel.div1Like"/>
                     <ref name="mishnahrmodel.global"/>
                   </choice>
                 </zeroOrMore>
