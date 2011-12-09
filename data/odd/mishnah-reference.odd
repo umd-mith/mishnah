@@ -58,24 +58,28 @@
                     <moduleRef key="header"/>
                     <moduleRef key="core"/>
                     <moduleRef key="textstructure"/>
-                    
+
                     <!-- Additional modules needed for collation -->
                     <moduleRef key="textcrit"/>
                     <moduleRef key="linking" include="ab anchor link"/>
-                    
+
                     <!-- Including <w> for recording tokenization -->
                     <elementRef key="w"/>
-                    
+
                     <!-- Including this class to permit use of @ana -->
                     <classRef key="att.global.analytic"/>
-                    
-                    <!-- Removing unwanted classes; Suggest not using numbered divs in reference text for explicit division between ref & witnesses-->
-                    <classSpec module="textstructure" ident="model.div4Like" type="model" mode="delete"/>
-                    <classSpec module="textstructure" ident="model.div5Like" type="model" mode="delete"/>
-                    <classSpec module="textstructure" ident="model.div6Like" type="model" mode="delete"/>
-                    <classSpec module="textstructure" ident="model.div7Like" type="model" mode="delete"/>
-                    
-                    <!-- Tightly constraining the content model of body for the reference text -->
+
+                    <!-- Removing unwanted classes -->
+                    <classSpec module="textstructure" ident="model.div4Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div5Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div6Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div7Like" type="model"
+                        mode="delete"/>
+
+                    <!-- Tightly constraining the content model of body for the reference text; body may only contain div1 -->
                     <elementSpec module="textstructure" ident="body" mode="change">
                         <content>
                             <rng:zeroOrMore>
@@ -86,7 +90,78 @@
                             </rng:oneOrMore>
                         </content>
                     </elementSpec>
-                    
+
+                    <!-- div1 may only contain div2 -->
+                    <elementSpec module="textstructure" ident="div1" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.div2Like"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
+
+                    <!-- div2 may contain header, div3, and trailer -->
+                    <elementSpec module="textstructure" ident="div2" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.headLike"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.div3Like"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.divBottomPart"/>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                    <elementSpec module="textstructure" ident="div3" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.headLike"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="ab"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.divBottomPart"/>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                    <!-- Only tokenized content inside <w> and <label> are allowed inside ab -->
+                    <elementSpec module="linking" ident="ab" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="label"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:choice>
+                                        <rng:ref name="w"/>
+                                        <rng:ref name="link"/>
+                                    </rng:choice>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
                 </schemaSpec>
             </div>
         </body>
