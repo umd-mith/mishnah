@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-08T19:52:19Z. 
+# Schema generated from ODD source 2011-12-10T13:17:11Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -491,6 +491,22 @@ mishnahratt.internetMedia.attribute.mimeType =
   
   ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
   attribute mimeType { mishnahrdata.word }?
+mishnahratt.interpLike.attributes =
+  mishnahratt.responsibility.attributes,
+  mishnahratt.interpLike.attribute.type,
+  mishnahratt.interpLike.attribute.inst
+mishnahratt.interpLike.attribute.type =
+  
+  ## indicates what kind of phenomenon is being noted in the passage.
+  ## Sample values include: 1] image; 2] character; 3] theme; 4] allusion
+  attribute type { mishnahrdata.enumerated }?
+mishnahratt.interpLike.attribute.inst =
+  
+  ## (instances) points to instances of the analysis or interpretation represented
+  ## by the current element.
+  attribute inst {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
 mishnahratt.measurement.attributes =
   mishnahratt.measurement.attribute.unit,
   mishnahratt.measurement.attribute.quantity,
@@ -997,15 +1013,18 @@ mishnahrmodel.lPart_sequence = empty
 mishnahrmodel.lPart_sequenceOptional = empty
 mishnahrmodel.lPart_sequenceOptionalRepeatable = empty
 mishnahrmodel.lPart_sequenceRepeatable = notAllowed
-mishnahrmodel.global.meta = mishnahrindex | mishnahrlink
-mishnahrmodel.global.meta_alternation = mishnahrindex | mishnahrlink
-mishnahrmodel.global.meta_sequence = mishnahrindex, mishnahrlink
+mishnahrmodel.global.meta =
+  mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
+mishnahrmodel.global.meta_alternation =
+  mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
+mishnahrmodel.global.meta_sequence =
+  mishnahrindex, mishnahrinterp, mishnahrinterpGrp, mishnahrlink
 mishnahrmodel.global.meta_sequenceOptional =
-  mishnahrindex?, mishnahrlink?
+  mishnahrindex?, mishnahrinterp?, mishnahrinterpGrp?, mishnahrlink?
 mishnahrmodel.global.meta_sequenceOptionalRepeatable =
-  mishnahrindex*, mishnahrlink*
+  mishnahrindex*, mishnahrinterp*, mishnahrinterpGrp*, mishnahrlink*
 mishnahrmodel.global.meta_sequenceRepeatable =
-  mishnahrindex+, mishnahrlink+
+  mishnahrindex+, mishnahrinterp+, mishnahrinterpGrp+, mishnahrlink+
 mishnahrmodel.milestoneLike =
   mishnahrmilestone
   | mishnahrpb
@@ -4000,6 +4019,209 @@ mishnahrback =
     mishnahratt.declaring.attributes,
     empty
   }
+mishnahratt.global.analytic.attributes =
+  mishnahratt.global.analytic.attribute.ana
+mishnahratt.global.analytic.attribute.ana =
+  
+  ## (analysis) indicates one or more elements containing interpretations of the
+  ## element on which the ana attribute appears.
+  attribute ana {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahrinterp =
+  
+  ## (interpretation) summarizes a specific interpretative annotation which can be linked to a span of text. 17.3. Spans and Interpretations
+  element interp {
+    (text | mishnahrmodel.gLike | mishnahrmodel.glossLike)*,
+    mishnahratt.global.attributes,
+    mishnahratt.interpLike.attributes,
+    empty
+  }
+mishnahrinterpGrp =
+  
+  ## (interpretation group) collects together a set of related interpretations which share responsibility or type. 17.3. Spans and Interpretations
+  element interpGrp {
+    (mishnahrmodel.glossLike*, mishnahrinterp+),
+    mishnahratt.global.attributes,
+    mishnahratt.interpLike.attributes,
+    empty
+  }
+mishnahratt.global.linking.attributes =
+  mishnahratt.global.linking.attribute.corresp,
+  mishnahratt.global.linking.attribute.synch,
+  mishnahratt.global.linking.attribute.sameAs,
+  mishnahratt.global.linking.attribute.copyOf,
+  mishnahratt.global.linking.attribute.next,
+  mishnahratt.global.linking.attribute.prev,
+  mishnahratt.global.linking.attribute.exclude,
+  mishnahratt.global.linking.attribute.select
+mishnahratt.global.linking.attribute.corresp =
+  
+  ## (corresponds) points to elements that correspond to the current
+  ##       element in some way.
+  attribute corresp {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.synch =
+  
+  ## (synchronous) points to elements that are synchronous with the current
+  ##       element.
+  attribute synch {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.sameAs =
+  
+  ## points to an element that is the same as the current
+  ##       element.
+  attribute sameAs { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.copyOf =
+  
+  ## points to an element of which the current element is a
+  ##	copy.
+  attribute copyOf { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.next =
+  
+  ## points to the next element of a virtual aggregate of which
+  ##       the current element is part.
+  attribute next { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.prev =
+  
+  ## (previous) points to the previous element of a virtual aggregate of
+  ##       which the current element is part.
+  attribute prev { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.exclude =
+  
+  ## points to elements that are in exclusive alternation
+  ##       with the current element.
+  attribute exclude {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.select =
+  
+  ## selects one or more alternants; if one alternant is
+  ##       selected, the ambiguity or uncertainty is marked as resolved. If
+  ##       more than one alternant is selected, the degree of ambiguity or
+  ##       uncertainty is marked as reduced by the number of alternants not
+  ##       selected.
+  attribute select {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahrab =
+  
+  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
+  element ab {
+    mishnahrmodel.global*,
+    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
+    
+    ## specifies whether or not the block is complete. 
+    [ a:defaultValue = "N" ]
+    attribute part {
+      
+      ## (yes) the block is incomplete
+      "Y"
+      | 
+        ## (no) either the block is complete, or no claim is made as to its completeness
+        "N"
+      | 
+        ## (initial) the initial part of an incomplete block
+        "I"
+      | 
+        ## (medial) a medial part of an incomplete block
+        "M"
+      | 
+        ## (final) the final part of an incomplete block
+        "F"
+    }?,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahranchor =
+  
+  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. 8.4.2. Synchronization and Overlap 16.4. Correspondence and Alignment
+  element anchor {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrlink =
+  
+  ## defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. 16.1. Links
+  element link {
+    empty
+    >> sch:pattern [
+         id = "link-constraint-linkTargets1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @targets"
+             "You may not supply both \x{a}" ~
+             "	@target and @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(@target) and not(@targets)"
+             "You must\x{a}" ~
+             "	supply either @target or @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "contains(@target,' ')"
+             "You must supply at least two\x{a}" ~
+             "values for @target"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## specifies the identifiers of the elements or passages to be linked or associated. 
+    attribute targets {
+      list {
+        mishnahrdata.pointer,
+        mishnahrdata.pointer,
+        mishnahrdata.pointer*
+      }
+    }?,
+    empty
+  }
 mishnahrmodel.rdgLike = mishnahrrdg
 mishnahrapp =
   
@@ -4273,182 +4495,6 @@ mishnahratt.textCritical.attribute.hand =
   ## signifies the hand responsible for a particular reading in the
   ## witness.
   attribute hand { mishnahrdata.pointer }?
-mishnahratt.global.linking.attributes =
-  mishnahratt.global.linking.attribute.corresp,
-  mishnahratt.global.linking.attribute.synch,
-  mishnahratt.global.linking.attribute.sameAs,
-  mishnahratt.global.linking.attribute.copyOf,
-  mishnahratt.global.linking.attribute.next,
-  mishnahratt.global.linking.attribute.prev,
-  mishnahratt.global.linking.attribute.exclude,
-  mishnahratt.global.linking.attribute.select
-mishnahratt.global.linking.attribute.corresp =
-  
-  ## (corresponds) points to elements that correspond to the current
-  ##       element in some way.
-  attribute corresp {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
-  }?
-mishnahratt.global.linking.attribute.synch =
-  
-  ## (synchronous) points to elements that are synchronous with the current
-  ##       element.
-  attribute synch {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
-  }?
-mishnahratt.global.linking.attribute.sameAs =
-  
-  ## points to an element that is the same as the current
-  ##       element.
-  attribute sameAs { mishnahrdata.pointer }?
-mishnahratt.global.linking.attribute.copyOf =
-  
-  ## points to an element of which the current element is a
-  ##	copy.
-  attribute copyOf { mishnahrdata.pointer }?
-mishnahratt.global.linking.attribute.next =
-  
-  ## points to the next element of a virtual aggregate of which
-  ##       the current element is part.
-  attribute next { mishnahrdata.pointer }?
-mishnahratt.global.linking.attribute.prev =
-  
-  ## (previous) points to the previous element of a virtual aggregate of
-  ##       which the current element is part.
-  attribute prev { mishnahrdata.pointer }?
-mishnahratt.global.linking.attribute.exclude =
-  
-  ## points to elements that are in exclusive alternation
-  ##       with the current element.
-  attribute exclude {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
-  }?
-mishnahratt.global.linking.attribute.select =
-  
-  ## selects one or more alternants; if one alternant is
-  ##       selected, the ambiguity or uncertainty is marked as resolved. If
-  ##       more than one alternant is selected, the degree of ambiguity or
-  ##       uncertainty is marked as reduced by the number of alternants not
-  ##       selected.
-  attribute select {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
-  }?
-mishnahrab =
-  
-  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
-  element ab {
-    mishnahrmodel.global*,
-    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
-    
-    ## specifies whether or not the block is complete. 
-    [ a:defaultValue = "N" ]
-    attribute part {
-      
-      ## (yes) the block is incomplete
-      "Y"
-      | 
-        ## (no) either the block is complete, or no claim is made as to its completeness
-        "N"
-      | 
-        ## (initial) the initial part of an incomplete block
-        "I"
-      | 
-        ## (medial) a medial part of an incomplete block
-        "M"
-      | 
-        ## (final) the final part of an incomplete block
-        "F"
-    }?,
-    mishnahratt.global.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.declaring.attributes,
-    empty
-  }
-mishnahranchor =
-  
-  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. 8.4.2. Synchronization and Overlap 16.4. Correspondence and Alignment
-  element anchor {
-    empty,
-    mishnahratt.global.attributes,
-    mishnahratt.typed.attributes,
-    empty
-  }
-mishnahrlink =
-  
-  ## defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. 16.1. Links
-  element link {
-    empty
-    >> sch:pattern [
-         id = "link-constraint-linkTargets1"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:link"
-           "\x{a}" ~
-           "               "
-           sch:report [
-             test = "@target and @targets"
-             "You may not supply both \x{a}" ~
-             "	@target and @targets"
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ]
-    >> sch:pattern [
-         id = "link-constraint-linkTargets2"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:link"
-           "\x{a}" ~
-           "               "
-           sch:report [
-             test = "not(@target) and not(@targets)"
-             "You must\x{a}" ~
-             "	supply either @target or @targets"
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ]
-    >> sch:pattern [
-         id = "link-constraint-linkTargets3"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:link"
-           "\x{a}" ~
-           "               "
-           sch:assert [
-             test = "contains(@target,' ')"
-             "You must supply at least two\x{a}" ~
-             "values for @target"
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ],
-    mishnahratt.global.attributes,
-    mishnahratt.pointing.attributes,
-    mishnahratt.typed.attributes,
-    
-    ## specifies the identifiers of the elements or passages to be linked or associated. 
-    attribute targets {
-      list {
-        mishnahrdata.pointer,
-        mishnahrdata.pointer,
-        mishnahrdata.pointer*
-      }
-    }?,
-    empty
-  }
 mishnahrw =
   
   ## (word) represents a grammatical (not necessarily orthographic) word. 17.1. Linguistic Segment Categories
@@ -4473,13 +4519,4 @@ mishnahrw =
     attribute lemmaRef { mishnahrdata.pointer }?,
     empty
   }
-mishnahratt.global.analytic.attributes =
-  mishnahratt.global.analytic.attribute.ana
-mishnahratt.global.analytic.attribute.ana =
-  
-  ## (analysis) indicates one or more elements containing interpretations of the
-  ## element on which the ana attribute appears.
-  attribute ana {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
-  }?
 start = mishnahrTEI

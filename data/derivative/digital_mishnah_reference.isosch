@@ -23,13 +23,6 @@
         or a child element to indicate the related bibliographic item</assert>
       </rule>
    </pattern>
-   <pattern id="app-constraint-only1lem">
-      <rule context="tei:app">
-         <assert test="count( descendant::tei:lem[ generate-id(       current() ) = generate-id( ancestor::tei:app[1] ) ]) &lt;       2">Only one &lt;lem&gt; element may appear within a single
-      apparatus entry, whether it appears outside a &lt;rdgGrp&gt;
-      element or within it.</assert>
-      </rule>
-   </pattern>
    <pattern id="link-constraint-linkTargets1">
       <rule context="tei:link">
          <report test="@target and @targets">You may not supply both 
@@ -46,6 +39,13 @@
       <rule context="tei:link">
          <assert test="contains(@target,' ')">You must supply at least two
 values for @target</assert>
+      </rule>
+   </pattern>
+   <pattern id="app-constraint-only1lem">
+      <rule context="tei:app">
+         <assert test="count( descendant::tei:lem[ generate-id(       current() ) = generate-id( ancestor::tei:app[1] ) ]) &lt;       2">Only one &lt;lem&gt; element may appear within a single
+      apparatus entry, whether it appears outside a &lt;rdgGrp&gt;
+      element or within it.</assert>
       </rule>
    </pattern>
 </schema>
