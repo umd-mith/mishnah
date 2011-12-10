@@ -3,9 +3,9 @@
 
 <?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 
-<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>
-<!--<?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
---><TEI xmlns="http://www.tei-c.org/ns/1.0">
+<!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
+<?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -64,88 +64,103 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
+            <editorialDecl>
+                <segmentation>
+                    <ab>
+                        <interpGrp>
+                            <desc>The following describes the structure of the Mishnah, to be referenced by xml:id.
+                                The Mishnah is divided into six orders, each divided into tractates, each of
+                                which is further divided into chapters and mishnayot (mishnahs). Full references
+                                to an individual section uses the following system:
+                                ref.order.tractate.chapter.mishnah. Order and tractate refs are numerical and
+                                follow the outline below. By convention, references to chapter and mishnah are
+                                numerical. When looking up a specific witness, "ref." is replaced by the
+                                relevant /TEI/teiHeader/fileDesc/sourceDesc/listWit/witness@xml:id</desc>
+                            <interp type="structuralunit" xml:id="berakhot">Berakhot</interp>
+                        </interpGrp>
+                    </ab>
+                </segmentation>
+            </editorialDecl>
             <tagsDecl>
                 <rendition xml:id="displacing" scheme="free">Text padding extends into lines below
                     displacing text. Use CSS to render</rendition>
                 <rendition xml:id="ornamented" scheme="free">Text is ornamented in some
-                way</rendition>
-                
-
+                    way</rendition>
             </tagsDecl>
             <refsDecl>
                 <p><interpGrp>
-                    <interp ana="order" corresp="div1" n="1">Zeraim</interp>
-                    <!-- alternatively
+                        <interp ana="order" corresp="div1" n="1">Zeraim</interp>
+                        <!-- alternatively
                         ana="div1" corresp="order" etc -->
-                    <interp ana="tractate" n="1.1">Berakhot</interp>
-                    <interp ana="tractate" n="1.2">Peah</interp>
-                    <interp ana="tractate" n="1.3">Demai</interp>
-                    <interp ana="tractate" n="1.4">Kilayim</interp>
-                    <interp ana="tractate" n="1.5">Sheviit</interp>
-                    <interp ana="tractate" n="1.6">Terumot</interp>
-                    <interp ana="tractate" n="1.7">Maaserot</interp>
-                    <interp ana="tractate" n="1.8">MaaserSheni</interp>
-                    <interp ana="tractate" n="1.9">Hallah</interp>
-                    <interp ana="tractate" n="1.10">Orla</interp>
-                    <interp ana="tractate" n="1.11">Bikkurim</interp>
-                    <interp ana="order" n="2">Moed</interp>
-                    <interp ana="tractate" n="2.1">Shabbat</interp>
-                    <interp ana="tractate" n="2.2">Eruvin</interp>
-                    <interp ana="tractate" n="2.3">Pesahim</interp>
-                    <interp ana="tractate" n="2.4">Sheqalim</interp>
-                    <interp ana="tractate" n="2.5">Yoma</interp>
-                    <interp ana="tractate" n="2.6">Sukkah</interp>
-                    <interp ana="tractate" n="2.7">Besah</interp>
-                    <interp ana="tractate" n="2.8">RoshHashanah</interp>
-                    <interp ana="tractate" n="2.9">Taanit</interp>
-                    <interp ana="tractate" n="2.10">Megillah</interp>
-                    <interp ana="tractate" n="2.11">MoedQatan</interp>
-                    <interp ana="tractate" n="2.12">Hagigah</interp>
-                    <interp ana="order" n="3">Nashim</interp>
-                    <interp ana="tractate" n="3.1">Yebamot</interp>
-                    <interp ana="tractate" n="3.2">Ketubot</interp>
-                    <interp ana="tractate" n="3.3">Nedarim</interp>
-                    <interp ana="tractate" n="3.4">Nazir</interp>
-                    <interp ana="tractate" n="3.5">Sotah</interp>
-                    <interp ana="tractate" n="3.6">Gitin</interp>
-                    <interp ana="tractate" n="3.7">Qiddushin</interp>
-                    <interp ana="order" n="4">Neziqin</interp>
-                    <interp ana="tractate" n="4.1">Bava Qamma</interp>
-                    <interp ana="tractate" n="4.2">Bava Metsia</interp>
-                    <interp ana="tractate" n="4.3">Bava Batra</interp>
-                    <interp ana="tractate" n="4.4">Sanhedrin</interp>
-                    <interp ana="tractate" n="4.5">Makkot</interp>
-                    <interp ana="tractate" n="4.6">Shevuot</interp>
-                    <interp ana="tractate" n="4.7">Eduyot</interp>
-                    <interp ana="tractate" n="4.8">AvodahZarah</interp>
-                    <interp ana="tractate" n="4.9">Avot</interp>
-                    <interp ana="tractate" n="4.10">Horayot</interp>
-                    <interp ana="order" n="5">Qodashim</interp>
-                    <interp ana="tractate" n="5.1">Zevahim</interp>
-                    <interp ana="tractate" n="5.2">Menahot</interp>
-                    <interp ana="tractate" n="5.3">Hulin</interp>
-                    <interp ana="tractate" n="5.4">Bekhorot</interp>
-                    <interp ana="tractate" n="5.5">Arakhin</interp>
-                    <interp ana="tractate" n="5.6">Temurah</interp>
-                    <interp ana="tractate" n="5.7">Meilah</interp>
-                    <interp ana="tractate" n="5.8">Keritot</interp>
-                    <interp ana="tractate" n="5.9">Tamid</interp>
-                    <interp ana="tractate" n="5.10">Middot</interp>
-                    <interp ana="tractate" n="5.11">Qinnim</interp>
-                    <interp ana="order" n="6">Teharot</interp>
-                    <interp ana="tractate" n="6.1">Kelim</interp>
-                    <interp ana="tractate" n="6.2">Ohalot</interp>
-                    <interp ana="tractate" n="6.3">Negaim</interp>
-                    <interp ana="tractate" n="6.4">Parah</interp>
-                    <interp ana="tractate" n="6.5">Teharot</interp>
-                    <interp ana="tractate" n="6.6">Miqvaot</interp>
-                    <interp ana="tractate" n="6.7">Niddah</interp>
-                    <interp ana="tractate" n="6.8">Makhshirin</interp>
-                    <interp ana="tractate" n="6.9">Zabim</interp>
-                    <interp ana="tractate" n="6.10">TevulYom</interp>
-                    <interp ana="tractate" n="6.11">Yadayim</interp>
-                    <interp ana="tractate" n="6.12">Uqtsim</interp>
-                </interpGrp></p>
+                        <interp ana="tractate" n="1.1">Berakhot</interp>
+                        <interp ana="tractate" n="1.2">Peah</interp>
+                        <interp ana="tractate" n="1.3">Demai</interp>
+                        <interp ana="tractate" n="1.4">Kilayim</interp>
+                        <interp ana="tractate" n="1.5">Sheviit</interp>
+                        <interp ana="tractate" n="1.6">Terumot</interp>
+                        <interp ana="tractate" n="1.7">Maaserot</interp>
+                        <interp ana="tractate" n="1.8">MaaserSheni</interp>
+                        <interp ana="tractate" n="1.9">Hallah</interp>
+                        <interp ana="tractate" n="1.10">Orla</interp>
+                        <interp ana="tractate" n="1.11">Bikkurim</interp>
+                        <interp ana="order" n="2">Moed</interp>
+                        <interp ana="tractate" n="2.1">Shabbat</interp>
+                        <interp ana="tractate" n="2.2">Eruvin</interp>
+                        <interp ana="tractate" n="2.3">Pesahim</interp>
+                        <interp ana="tractate" n="2.4">Sheqalim</interp>
+                        <interp ana="tractate" n="2.5">Yoma</interp>
+                        <interp ana="tractate" n="2.6">Sukkah</interp>
+                        <interp ana="tractate" n="2.7">Besah</interp>
+                        <interp ana="tractate" n="2.8">RoshHashanah</interp>
+                        <interp ana="tractate" n="2.9">Taanit</interp>
+                        <interp ana="tractate" n="2.10">Megillah</interp>
+                        <interp ana="tractate" n="2.11">MoedQatan</interp>
+                        <interp ana="tractate" n="2.12">Hagigah</interp>
+                        <interp ana="order" n="3">Nashim</interp>
+                        <interp ana="tractate" n="3.1">Yebamot</interp>
+                        <interp ana="tractate" n="3.2">Ketubot</interp>
+                        <interp ana="tractate" n="3.3">Nedarim</interp>
+                        <interp ana="tractate" n="3.4">Nazir</interp>
+                        <interp ana="tractate" n="3.5">Sotah</interp>
+                        <interp ana="tractate" n="3.6">Gitin</interp>
+                        <interp ana="tractate" n="3.7">Qiddushin</interp>
+                        <interp ana="order" n="4">Neziqin</interp>
+                        <interp ana="tractate" n="4.1">Bava Qamma</interp>
+                        <interp ana="tractate" n="4.2">Bava Metsia</interp>
+                        <interp ana="tractate" n="4.3">Bava Batra</interp>
+                        <interp ana="tractate" n="4.4">Sanhedrin</interp>
+                        <interp ana="tractate" n="4.5">Makkot</interp>
+                        <interp ana="tractate" n="4.6">Shevuot</interp>
+                        <interp ana="tractate" n="4.7">Eduyot</interp>
+                        <interp ana="tractate" n="4.8">AvodahZarah</interp>
+                        <interp ana="tractate" n="4.9">Avot</interp>
+                        <interp ana="tractate" n="4.10">Horayot</interp>
+                        <interp ana="order" n="5">Qodashim</interp>
+                        <interp ana="tractate" n="5.1">Zevahim</interp>
+                        <interp ana="tractate" n="5.2">Menahot</interp>
+                        <interp ana="tractate" n="5.3">Hulin</interp>
+                        <interp ana="tractate" n="5.4">Bekhorot</interp>
+                        <interp ana="tractate" n="5.5">Arakhin</interp>
+                        <interp ana="tractate" n="5.6">Temurah</interp>
+                        <interp ana="tractate" n="5.7">Meilah</interp>
+                        <interp ana="tractate" n="5.8">Keritot</interp>
+                        <interp ana="tractate" n="5.9">Tamid</interp>
+                        <interp ana="tractate" n="5.10">Middot</interp>
+                        <interp ana="tractate" n="5.11">Qinnim</interp>
+                        <interp ana="order" n="6">Teharot</interp>
+                        <interp ana="tractate" n="6.1">Kelim</interp>
+                        <interp ana="tractate" n="6.2">Ohalot</interp>
+                        <interp ana="tractate" n="6.3">Negaim</interp>
+                        <interp ana="tractate" n="6.4">Parah</interp>
+                        <interp ana="tractate" n="6.5">Teharot</interp>
+                        <interp ana="tractate" n="6.6">Miqvaot</interp>
+                        <interp ana="tractate" n="6.7">Niddah</interp>
+                        <interp ana="tractate" n="6.8">Makhshirin</interp>
+                        <interp ana="tractate" n="6.9">Zabim</interp>
+                        <interp ana="tractate" n="6.10">TevulYom</interp>
+                        <interp ana="tractate" n="6.11">Yadayim</interp>
+                        <interp ana="tractate" n="6.12">Uqtsim</interp>
+                    </interpGrp></p>
                 <p>The following describes the structure of the Mishnah, to be referenced by xml:id.
                     The Mishnah is divided into six orders, each divided into tractates, each of
                     which is further divided into chapters and mishnayot (mishnahs). Full references
@@ -249,7 +264,7 @@
     </teiHeader>
     <text>
         <body>
-            
+
             <div1 xml:id="ref.Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
                 <div2 xml:id="ref.Berakhot" type="tractate"/>
