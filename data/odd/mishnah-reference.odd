@@ -59,9 +59,10 @@
                     <moduleRef key="core"/>
                     <moduleRef key="textstructure"/>
 
-                    <!-- Additional modules needed for collation -->
-                    <moduleRef key="textcrit"/>
+                    <!-- Additional modules needed -->
+                   <moduleRef key="analysis" include="interp interpGrp"/>
                     <moduleRef key="linking" include="ab anchor link"/>
+                    <moduleRef key="textcrit"/>
 
                     <!-- Including <w> for recording tokenization -->
                     <elementRef key="w"/>
