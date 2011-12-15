@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-15T12:54:20Z. 
+# Schema generated from ODD source 2011-12-15T16:21:20Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1369,17 +1369,18 @@ mishnahw_model.persStateLike_sequenceOptional = mishnahw_persName?
 mishnahw_model.persStateLike_sequenceOptionalRepeatable =
   mishnahw_persName*
 mishnahw_model.persStateLike_sequenceRepeatable = mishnahw_persName+
-mishnahw_model.placeNamePart = mishnahw_placeName | mishnahw_settlement
+mishnahw_model.placeNamePart =
+  mishnahw_placeName | mishnahw_settlement | mishnahw_region
 mishnahw_model.placeNamePart_alternation =
-  mishnahw_placeName | mishnahw_settlement
+  mishnahw_placeName | mishnahw_settlement | mishnahw_region
 mishnahw_model.placeNamePart_sequence =
-  mishnahw_placeName, mishnahw_settlement
+  mishnahw_placeName, mishnahw_settlement, mishnahw_region
 mishnahw_model.placeNamePart_sequenceOptional =
-  mishnahw_placeName?, mishnahw_settlement?
+  mishnahw_placeName?, mishnahw_settlement?, mishnahw_region?
 mishnahw_model.placeNamePart_sequenceOptionalRepeatable =
-  mishnahw_placeName*, mishnahw_settlement*
+  mishnahw_placeName*, mishnahw_settlement*, mishnahw_region*
 mishnahw_model.placeNamePart_sequenceRepeatable =
-  mishnahw_placeName+, mishnahw_settlement+
+  mishnahw_placeName+, mishnahw_settlement+, mishnahw_region+
 mishnahw_model.placeStateLike = mishnahw_model.placeNamePart
 mishnahw_model.placeStateLike_alternation =
   mishnahw_model.placeNamePart_alternation
@@ -5569,6 +5570,18 @@ mishnahw_settlement =
   
   ## contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. 13.2.3. Place Names
   element settlement {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.datable.attributes,
+    empty
+  }
+mishnahw_region =
+  
+  ## contains the name of an administrative unit such as a state, province, or county, larger
+  ##     than a settlement, but smaller than a country. 13.2.3. Place Names
+  element region {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
     mishnahw_att.naming.attributes,

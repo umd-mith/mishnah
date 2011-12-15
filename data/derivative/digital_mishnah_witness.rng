@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-15T12:54:20Z. 
+Schema generated from ODD source 2011-12-15T16:21:20Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -2710,17 +2710,20 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     <choice>
       <ref name="mishnahw_placeName"/>
       <ref name="mishnahw_settlement"/>
+      <ref name="mishnahw_region"/>
     </choice>
   </define>
   <define name="mishnahw_model.placeNamePart_alternation">
     <choice>
       <ref name="mishnahw_placeName"/>
       <ref name="mishnahw_settlement"/>
+      <ref name="mishnahw_region"/>
     </choice>
   </define>
   <define name="mishnahw_model.placeNamePart_sequence">
     <ref name="mishnahw_placeName"/>
     <ref name="mishnahw_settlement"/>
+    <ref name="mishnahw_region"/>
   </define>
   <define name="mishnahw_model.placeNamePart_sequenceOptional">
     <optional>
@@ -2728,6 +2731,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </optional>
     <optional>
       <ref name="mishnahw_settlement"/>
+    </optional>
+    <optional>
+      <ref name="mishnahw_region"/>
     </optional>
   </define>
   <define name="mishnahw_model.placeNamePart_sequenceOptionalRepeatable">
@@ -2737,6 +2743,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     <zeroOrMore>
       <ref name="mishnahw_settlement"/>
     </zeroOrMore>
+    <zeroOrMore>
+      <ref name="mishnahw_region"/>
+    </zeroOrMore>
   </define>
   <define name="mishnahw_model.placeNamePart_sequenceRepeatable">
     <oneOrMore>
@@ -2744,6 +2753,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_settlement"/>
+    </oneOrMore>
+    <oneOrMore>
+      <ref name="mishnahw_region"/>
     </oneOrMore>
   </define>
   <define name="mishnahw_model.placeStateLike">
@@ -9085,6 +9097,18 @@ distinct manuscript or part of a manuscript, now forming part of a composite man
   <define name="mishnahw_settlement">
     <element name="settlement">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. 13.2.3. Place Names</a:documentation>
+      <ref name="mishnahw_macro.phraseSeq"/>
+      <ref name="mishnahw_att.global.attributes"/>
+      <ref name="mishnahw_att.naming.attributes"/>
+      <ref name="mishnahw_att.typed.attributes"/>
+      <ref name="mishnahw_att.datable.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_region">
+    <element name="region">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of an administrative unit such as a state, province, or county, larger
+    than a settlement, but smaller than a country. 13.2.3. Place Names</a:documentation>
       <ref name="mishnahw_macro.phraseSeq"/>
       <ref name="mishnahw_att.global.attributes"/>
       <ref name="mishnahw_att.naming.attributes"/>
