@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-08T18:37:05Z. 
+# Schema generated from ODD source 2011-12-15T12:54:20Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -70,6 +70,16 @@ mishnahw_data.word =
 mishnahw_data.code = xsd:anyURI
 mishnahw_data.name = xsd:Name
 mishnahw_data.enumerated = mishnahw_data.name
+mishnahw_data.temporal.iso =
+  xsd:date
+  | xsd:gYear
+  | xsd:gMonth
+  | xsd:gDay
+  | xsd:gYearMonth
+  | xsd:gMonthDay
+  | xsd:time
+  | xsd:dateTime
+  | xsd:token { pattern = "[0-9.,DHMPRSTWYZ/:+\-]+" }
 mishnahw_att.ascribed.attributes = mishnahw_att.ascribed.attribute.who
 mishnahw_att.ascribed.attribute.who =
   
@@ -246,7 +256,9 @@ mishnahw_att.datable.w3c.attribute.to =
   ## indicates the ending point of the period in standard
   ##	  form, e.g. yyyy-mm-dd.
   attribute to { mishnahw_data.temporal.w3c }?
-mishnahw_att.datable.attributes = mishnahw_att.datable.w3c.attributes
+mishnahw_att.datable.attributes =
+  mishnahw_att.datable.w3c.attributes,
+  mishnahw_att.datable.iso.attributes
 mishnahw_att.declarable.attributes =
   mishnahw_att.declarable.attribute.default
 mishnahw_att.declarable.attribute.default =
@@ -920,18 +932,56 @@ mishnahw_model.dateLike_sequenceOptionalRepeatable =
   mishnahw_date*, mishnahw_time*
 mishnahw_model.dateLike_sequenceRepeatable =
   mishnahw_date+, mishnahw_time+
+mishnahw_model.dimLike =
+  mishnahw_height | mishnahw_depth | mishnahw_width
 mishnahw_model.measureLike =
-  mishnahw_num | mishnahw_measure | mishnahw_measureGrp
+  mishnahw_num
+  | mishnahw_measure
+  | mishnahw_measureGrp
+  | mishnahw_dim
+  | mishnahw_height
+  | mishnahw_depth
+  | mishnahw_width
 mishnahw_model.measureLike_alternation =
-  mishnahw_num | mishnahw_measure | mishnahw_measureGrp
+  mishnahw_num
+  | mishnahw_measure
+  | mishnahw_measureGrp
+  | mishnahw_dim
+  | mishnahw_height
+  | mishnahw_depth
+  | mishnahw_width
 mishnahw_model.measureLike_sequence =
-  mishnahw_num, mishnahw_measure, mishnahw_measureGrp
+  mishnahw_num,
+  mishnahw_measure,
+  mishnahw_measureGrp,
+  mishnahw_dim,
+  mishnahw_height,
+  mishnahw_depth,
+  mishnahw_width
 mishnahw_model.measureLike_sequenceOptional =
-  mishnahw_num?, mishnahw_measure?, mishnahw_measureGrp?
+  mishnahw_num?,
+  mishnahw_measure?,
+  mishnahw_measureGrp?,
+  mishnahw_dim?,
+  mishnahw_height?,
+  mishnahw_depth?,
+  mishnahw_width?
 mishnahw_model.measureLike_sequenceOptionalRepeatable =
-  mishnahw_num*, mishnahw_measure*, mishnahw_measureGrp*
+  mishnahw_num*,
+  mishnahw_measure*,
+  mishnahw_measureGrp*,
+  mishnahw_dim*,
+  mishnahw_height*,
+  mishnahw_depth*,
+  mishnahw_width*
 mishnahw_model.measureLike_sequenceRepeatable =
-  mishnahw_num+, mishnahw_measure+, mishnahw_measureGrp+
+  mishnahw_num+,
+  mishnahw_measure+,
+  mishnahw_measureGrp+,
+  mishnahw_dim+,
+  mishnahw_height+,
+  mishnahw_depth+,
+  mishnahw_width+
 mishnahw_model.egLike = notAllowed
 mishnahw_model.egLike_alternation = notAllowed
 mishnahw_model.egLike_sequence = empty
@@ -949,6 +999,90 @@ mishnahw_model.graphicLike_sequenceOptionalRepeatable =
   mishnahw_graphic*, mishnahw_binaryObject*
 mishnahw_model.graphicLike_sequenceRepeatable =
   mishnahw_graphic+, mishnahw_binaryObject+
+mishnahw_model.pPart.msdesc =
+  mishnahw_catchwords
+  | mishnahw_dimensions
+  | mishnahw_heraldry
+  | mishnahw_locus
+  | mishnahw_locusGrp
+  | mishnahw_material
+  | mishnahw_objectType
+  | mishnahw_origDate
+  | mishnahw_origPlace
+  | mishnahw_secFol
+  | mishnahw_signatures
+  | mishnahw_stamp
+  | mishnahw_watermark
+mishnahw_model.pPart.msdesc_alternation =
+  mishnahw_catchwords
+  | mishnahw_dimensions
+  | mishnahw_heraldry
+  | mishnahw_locus
+  | mishnahw_locusGrp
+  | mishnahw_material
+  | mishnahw_objectType
+  | mishnahw_origDate
+  | mishnahw_origPlace
+  | mishnahw_secFol
+  | mishnahw_signatures
+  | mishnahw_stamp
+  | mishnahw_watermark
+mishnahw_model.pPart.msdesc_sequence =
+  mishnahw_catchwords,
+  mishnahw_dimensions,
+  mishnahw_heraldry,
+  mishnahw_locus,
+  mishnahw_locusGrp,
+  mishnahw_material,
+  mishnahw_objectType,
+  mishnahw_origDate,
+  mishnahw_origPlace,
+  mishnahw_secFol,
+  mishnahw_signatures,
+  mishnahw_stamp,
+  mishnahw_watermark
+mishnahw_model.pPart.msdesc_sequenceOptional =
+  mishnahw_catchwords?,
+  mishnahw_dimensions?,
+  mishnahw_heraldry?,
+  mishnahw_locus?,
+  mishnahw_locusGrp?,
+  mishnahw_material?,
+  mishnahw_objectType?,
+  mishnahw_origDate?,
+  mishnahw_origPlace?,
+  mishnahw_secFol?,
+  mishnahw_signatures?,
+  mishnahw_stamp?,
+  mishnahw_watermark?
+mishnahw_model.pPart.msdesc_sequenceOptionalRepeatable =
+  mishnahw_catchwords*,
+  mishnahw_dimensions*,
+  mishnahw_heraldry*,
+  mishnahw_locus*,
+  mishnahw_locusGrp*,
+  mishnahw_material*,
+  mishnahw_objectType*,
+  mishnahw_origDate*,
+  mishnahw_origPlace*,
+  mishnahw_secFol*,
+  mishnahw_signatures*,
+  mishnahw_stamp*,
+  mishnahw_watermark*
+mishnahw_model.pPart.msdesc_sequenceRepeatable =
+  mishnahw_catchwords+,
+  mishnahw_dimensions+,
+  mishnahw_heraldry+,
+  mishnahw_locus+,
+  mishnahw_locusGrp+,
+  mishnahw_material+,
+  mishnahw_objectType+,
+  mishnahw_origDate+,
+  mishnahw_origPlace+,
+  mishnahw_secFol+,
+  mishnahw_signatures+,
+  mishnahw_stamp+,
+  mishnahw_watermark+
 mishnahw_model.pPart.editorial =
   mishnahw_choice | mishnahw_abbr | mishnahw_expan | mishnahw_subst
 mishnahw_model.pPart.editorial_alternation =
@@ -1107,17 +1241,32 @@ mishnahw_model.milestoneLike_sequenceRepeatable =
   mishnahw_anchor+
 mishnahw_model.gLike = mishnahw_g
 mishnahw_model.biblLike =
-  mishnahw_bibl | mishnahw_biblStruct | mishnahw_biblFull
+  mishnahw_bibl
+  | mishnahw_biblStruct
+  | mishnahw_biblFull
+  | mishnahw_msDesc
 mishnahw_model.biblLike_alternation =
-  mishnahw_bibl | mishnahw_biblStruct | mishnahw_biblFull
+  mishnahw_bibl
+  | mishnahw_biblStruct
+  | mishnahw_biblFull
+  | mishnahw_msDesc
 mishnahw_model.biblLike_sequence =
-  mishnahw_bibl, mishnahw_biblStruct, mishnahw_biblFull
+  mishnahw_bibl, mishnahw_biblStruct, mishnahw_biblFull, mishnahw_msDesc
 mishnahw_model.biblLike_sequenceOptional =
-  mishnahw_bibl?, mishnahw_biblStruct?, mishnahw_biblFull?
+  mishnahw_bibl?,
+  mishnahw_biblStruct?,
+  mishnahw_biblFull?,
+  mishnahw_msDesc?
 mishnahw_model.biblLike_sequenceOptionalRepeatable =
-  mishnahw_bibl*, mishnahw_biblStruct*, mishnahw_biblFull*
+  mishnahw_bibl*,
+  mishnahw_biblStruct*,
+  mishnahw_biblFull*,
+  mishnahw_msDesc*
 mishnahw_model.biblLike_sequenceRepeatable =
-  mishnahw_bibl+, mishnahw_biblStruct+, mishnahw_biblFull+
+  mishnahw_bibl+,
+  mishnahw_biblStruct+,
+  mishnahw_biblFull+,
+  mishnahw_msDesc+
 mishnahw_model.headLike = mishnahw_head
 mishnahw_model.headLike_alternation = mishnahw_head
 mishnahw_model.headLike_sequence = mishnahw_head
@@ -1220,6 +1369,28 @@ mishnahw_model.persStateLike_sequenceOptional = mishnahw_persName?
 mishnahw_model.persStateLike_sequenceOptionalRepeatable =
   mishnahw_persName*
 mishnahw_model.persStateLike_sequenceRepeatable = mishnahw_persName+
+mishnahw_model.placeNamePart = mishnahw_placeName | mishnahw_settlement
+mishnahw_model.placeNamePart_alternation =
+  mishnahw_placeName | mishnahw_settlement
+mishnahw_model.placeNamePart_sequence =
+  mishnahw_placeName, mishnahw_settlement
+mishnahw_model.placeNamePart_sequenceOptional =
+  mishnahw_placeName?, mishnahw_settlement?
+mishnahw_model.placeNamePart_sequenceOptionalRepeatable =
+  mishnahw_placeName*, mishnahw_settlement*
+mishnahw_model.placeNamePart_sequenceRepeatable =
+  mishnahw_placeName+, mishnahw_settlement+
+mishnahw_model.placeStateLike = mishnahw_model.placeNamePart
+mishnahw_model.placeStateLike_alternation =
+  mishnahw_model.placeNamePart_alternation
+mishnahw_model.placeStateLike_sequence =
+  mishnahw_model.placeNamePart_sequence
+mishnahw_model.placeStateLike_sequenceOptional =
+  mishnahw_model.placeNamePart_sequenceOptional?
+mishnahw_model.placeStateLike_sequenceOptionalRepeatable =
+  mishnahw_model.placeNamePart_sequenceOptionalRepeatable*
+mishnahw_model.placeStateLike_sequenceRepeatable =
+  mishnahw_model.placeNamePart_sequenceRepeatable+
 mishnahw_model.publicationStmtPart =
   mishnahw_address
   | mishnahw_date
@@ -1429,12 +1600,59 @@ mishnahw_model.titlepagePart =
   | mishnahw_docEdition
   | mishnahw_docImprint
   | mishnahw_docDate
-mishnahw_model.msQuoteLike = mishnahw_title
-mishnahw_model.msQuoteLike_alternation = mishnahw_title
-mishnahw_model.msQuoteLike_sequence = mishnahw_title
-mishnahw_model.msQuoteLike_sequenceOptional = mishnahw_title?
-mishnahw_model.msQuoteLike_sequenceOptionalRepeatable = mishnahw_title*
-mishnahw_model.msQuoteLike_sequenceRepeatable = mishnahw_title+
+mishnahw_model.msQuoteLike =
+  mishnahw_title
+  | mishnahw_colophon
+  | mishnahw_explicit
+  | mishnahw_finalRubric
+  | mishnahw_incipit
+  | mishnahw_rubric
+mishnahw_model.msQuoteLike_alternation =
+  mishnahw_title
+  | mishnahw_colophon
+  | mishnahw_explicit
+  | mishnahw_finalRubric
+  | mishnahw_incipit
+  | mishnahw_rubric
+mishnahw_model.msQuoteLike_sequence =
+  mishnahw_title,
+  mishnahw_colophon,
+  mishnahw_explicit,
+  mishnahw_finalRubric,
+  mishnahw_incipit,
+  mishnahw_rubric
+mishnahw_model.msQuoteLike_sequenceOptional =
+  mishnahw_title?,
+  mishnahw_colophon?,
+  mishnahw_explicit?,
+  mishnahw_finalRubric?,
+  mishnahw_incipit?,
+  mishnahw_rubric?
+mishnahw_model.msQuoteLike_sequenceOptionalRepeatable =
+  mishnahw_title*,
+  mishnahw_colophon*,
+  mishnahw_explicit*,
+  mishnahw_finalRubric*,
+  mishnahw_incipit*,
+  mishnahw_rubric*
+mishnahw_model.msQuoteLike_sequenceRepeatable =
+  mishnahw_title+,
+  mishnahw_colophon+,
+  mishnahw_explicit+,
+  mishnahw_finalRubric+,
+  mishnahw_incipit+,
+  mishnahw_rubric+
+mishnahw_model.msItemPart =
+  mishnahw_model.quoteLike
+  | mishnahw_model.respLike
+  | mishnahw_model.msQuoteLike
+  | mishnahw_bibl
+  | mishnahw_listBibl
+  | mishnahw_filiation
+  | mishnahw_msItem
+  | mishnahw_msItemStruct
+  | mishnahw_textLang
+  | mishnahw_decoNote
 mishnahw_model.choicePart =
   mishnahw_sic
   | mishnahw_corr
@@ -1475,6 +1693,17 @@ mishnahw_model.imprintPart_sequenceRepeatable =
   mishnahw_pubPlace+,
   mishnahw_distributor+
 mishnahw_model.catDescPart = notAllowed
+mishnahw_model.physDescPart_sequenceOptional =
+  mishnahw_objectDesc?,
+  mishnahw_handDesc?,
+  mishnahw_typeDesc?,
+  mishnahw_scriptDesc?,
+  mishnahw_musicNotation?,
+  mishnahw_decoDesc?,
+  mishnahw_additions?,
+  mishnahw_bindingDesc?,
+  mishnahw_sealDesc?,
+  mishnahw_accMat?
 mishnahw_model.addressLike = mishnahw_email | mishnahw_address
 mishnahw_model.addressLike_alternation =
   mishnahw_email | mishnahw_address
@@ -1486,23 +1715,33 @@ mishnahw_model.addressLike_sequenceOptionalRepeatable =
 mishnahw_model.addressLike_sequenceRepeatable =
   mishnahw_email+, mishnahw_address+
 mishnahw_model.nameLike =
-  mishnahw_model.nameLike.agent | mishnahw_rs | mishnahw_idno
+  mishnahw_model.nameLike.agent
+  | mishnahw_model.placeStateLike
+  | mishnahw_rs
+  | mishnahw_idno
 mishnahw_model.nameLike_alternation =
   mishnahw_model.nameLike.agent_alternation
+  | mishnahw_model.placeStateLike_alternation
   | mishnahw_rs
   | mishnahw_idno
 mishnahw_model.nameLike_sequence =
-  mishnahw_model.nameLike.agent_sequence, mishnahw_rs, mishnahw_idno
+  mishnahw_model.nameLike.agent_sequence,
+  mishnahw_model.placeStateLike_sequence,
+  mishnahw_rs,
+  mishnahw_idno
 mishnahw_model.nameLike_sequenceOptional =
   mishnahw_model.nameLike.agent_sequenceOptional?,
+  mishnahw_model.placeStateLike_sequenceOptional?,
   mishnahw_rs?,
   mishnahw_idno?
 mishnahw_model.nameLike_sequenceOptionalRepeatable =
   mishnahw_model.nameLike.agent_sequenceOptionalRepeatable*,
+  mishnahw_model.placeStateLike_sequenceOptionalRepeatable*,
   mishnahw_rs*,
   mishnahw_idno*
 mishnahw_model.nameLike_sequenceRepeatable =
   mishnahw_model.nameLike.agent_sequenceRepeatable+,
+  mishnahw_model.placeStateLike_sequenceRepeatable+,
   mishnahw_rs+,
   mishnahw_idno+
 mishnahw_model.global =
@@ -1518,6 +1757,7 @@ mishnahw_model.biblPart =
   | mishnahw_relatedItem
   | mishnahw_edition
   | mishnahw_extent
+  | mishnahw_msIdentifier
 mishnahw_model.frontPart = mishnahw_divGen | mishnahw_titlePage
 mishnahw_model.addrPart =
   mishnahw_model.nameLike
@@ -1602,12 +1842,14 @@ mishnahw_model.phrase =
   mishnahw_model.segLike
   | mishnahw_model.highlighted
   | mishnahw_model.graphicLike
+  | mishnahw_model.pPart.msdesc
   | mishnahw_model.pPart.edit
   | mishnahw_model.ptrLike
   | mishnahw_model.lPart
   | mishnahw_model.pPart.data
 mishnahw_model.limitedPhrase =
   mishnahw_model.emphLike
+  | mishnahw_model.pPart.msdesc
   | mishnahw_model.pPart.editorial
   | mishnahw_model.ptrLike
   | mishnahw_model.pPart.data
@@ -1618,7 +1860,6 @@ mishnahw_model.div2Like = mishnahw_div2
 mishnahw_model.div3Like = mishnahw_div3
 mishnahw_model.div4Like = notAllowed
 mishnahw_model.applicationLike = mishnahw_application
-mishnahw_model.sourceDescPart = notAllowed
 mishnahw_model.encodingDescPart =
   mishnahw_projectDesc
   | mishnahw_samplingDecl
@@ -1749,6 +1990,7 @@ mishnahw_quote =
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
     mishnahw_att.typed.attributes,
+    mishnahw_att.msExcerpt.attributes,
     empty
   }
 mishnahw_q =
@@ -3053,7 +3295,7 @@ mishnahw_publicationStmt =
   ##     text.  2.2.4. Publication, Distribution,
   ## Licencing, etc. 2.2. The File Description
   element publicationStmt {
-    (mishnahw_model.pLike+ | mishnahw_model.publicationStmtPart+),
+    mishnahw_model.publicationStmtPart+,
     mishnahw_att.global.attributes,
     empty
   }
@@ -3152,10 +3394,7 @@ mishnahw_sourceDesc =
   ##     bibliographic description in the case of a digitized text, or a phrase such as "born digital"
   ##     for a text which has no previous existence. 2.2.7. The Source Description
   element sourceDesc {
-    (mishnahw_model.pLike+
-     | (mishnahw_model.biblLike
-        | mishnahw_model.sourceDescPart
-        | mishnahw_model.listLike)+),
+    mishnahw_msDesc+,
     mishnahw_att.global.attributes,
     mishnahw_att.declarable.attributes,
     empty
@@ -3596,6 +3835,15 @@ mishnahw_profileDesc =
     mishnahw_att.global.attributes,
     empty
   }
+mishnahw_handNote =
+  
+  ## (note on hand) describes a particular style or hand distinguished within a manuscript. 10.7.2. Writing, Decoration, and Other Notations
+  element handNote {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.handFeatures.attributes,
+    empty
+  }
 mishnahw_creation =
   
   ## contains information about the creation of a text. 2.4.1. Creation 2.4. The Profile Description
@@ -3716,6 +3964,26 @@ mishnahw_change =
     mishnahw_att.ascribed.attributes,
     mishnahw_att.datable.attributes,
     mishnahw_att.docStatus.attributes,
+    empty
+  }
+mishnahw_typeNote =
+  
+  ## describes a particular font or other significant typographic feature distinguished within
+  ##     the description of a printed resource. 10.7.2. Writing, Decoration, and Other Notations
+  element typeNote {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.handFeatures.attributes,
+    empty
+  }
+mishnahw_scriptNote =
+  
+  ## describes a particular script distinguished within
+  ##     the description of a manuscript or similar resource. 10.7.2. Writing, Decoration, and Other Notations
+  element scriptNote {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.handFeatures.attributes,
     empty
   }
 mishnahw_geoDecl =
@@ -3856,7 +4124,7 @@ mishnahw_div =
 mishnahw_div1 =
   
   ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element order {
+  element div1 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div2Like | mishnahw_model.divGenLike),
         mishnahw_model.global*)+
@@ -3874,7 +4142,7 @@ mishnahw_div2 =
   
   ## (level-2 text division) contains a second-level subdivision of the front, body, or back of a
   ##  text. 4.1.2. Numbered Divisions
-  element tractate {
+  element div2 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div3Like | mishnahw_model.divGenLike),
         mishnahw_model.global*)+
@@ -3891,7 +4159,7 @@ mishnahw_div2 =
 mishnahw_div3 =
   
   ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
-  element chapter {
+  element div3 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div4Like | mishnahw_model.divGenLike),
         mishnahw_model.global*)+
@@ -4317,8 +4585,11 @@ mishnahw_att.global.linking.attribute.select =
 mishnahw_ab =
   
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
-  element mishnah {
+  element ab {
     mishnahw_macro.paraContent,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.declaring.attributes,
     
     ## specifies whether or not the block is complete. 
     [ a:defaultValue = "N" ]
@@ -4339,9 +4610,6 @@ mishnahw_ab =
         ## (final) the final part of an incomplete block
         "F"
     }?,
-    mishnahw_att.global.attributes,
-    mishnahw_att.typed.attributes,
-    mishnahw_att.declaring.attributes,
     empty
   }
 mishnahw_anchor =
@@ -4362,6 +4630,950 @@ mishnahw_seg =
     mishnahw_att.segLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.responsibility.attributes,
+    empty
+  }
+mishnahw_msDesc =
+  
+  ## (manuscript description) contains a description of a single identifiable
+  ## manuscript or other text-bearing object. 10.1. Overview
+  element msDesc {
+    (mishnahw_msIdentifier,
+     mishnahw_model.headLike*,
+     (mishnahw_model.pLike+
+      | (mishnahw_msContents?,
+         mishnahw_physDesc?,
+         mishnahw_history?,
+         mishnahw_additional?,
+         mishnahw_msPart*))),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_catchwords =
+  
+  ## describes the system used to ensure
+  ## correct ordering of the quires making up a codex or incunable,
+  ## typically by means of annotations at the foot of the page. 10.3.7. Catchwords, Signatures, Secundo Folio
+  element catchwords {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_dimensions =
+  
+  ## contains a dimensional specification. 10.3.4. Dimensions
+  element dimensions {
+    ((mishnahw_dim | mishnahw_model.dimLike)*)
+    >> sch:pattern [
+         id = "dimensions-constraint-duplicateDim1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:dimensions"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "count(tei:width)> 1"
+             "\x{a}" ~
+             "	Width element may appear once only\x{a}" ~
+             "      "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "dimensions-constraint-duplicateDim2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:dimensions"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "count(tei:height)> 1"
+             "\x{a}" ~
+             "	Height element may appear once only\x{a}" ~
+             "      "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "dimensions-constraint-duplicateDim3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:dimensions"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "count(tei:depth)> 1"
+             "\x{a}" ~
+             "	Depth element may appear once only\x{a}" ~
+             "      "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahw_att.global.attributes,
+    mishnahw_att.dimensions.attributes,
+    
+    ## indicates which aspect of the object is being measured. 
+    ## Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniatures; 6] binding; 7] box
+    attribute type { mishnahw_data.enumerated }?,
+    empty
+  }
+mishnahw_dim =
+  
+  ## contains any single measurement forming part of a dimensional
+  ## specification of some sort. 10.3.4. Dimensions
+  element dim {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.dimensions.attributes,
+    empty
+  }
+mishnahw_height =
+  
+  ## contains a measurement measured along the
+  ##   axis at right angles to the bottom of the written surface,
+  ##   i.e. parallel to the spine for a codex or book.  10.3.4. Dimensions
+  element height {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.dimensions.attributes,
+    empty
+  }
+mishnahw_depth =
+  
+  ## contains a measurement measured across the
+  ##   spine of a book or codex, or (for other text-bearing objects) perpendicular to the measurement given by the
+  ##   width element.  10.3.4. Dimensions
+  element depth {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.dimensions.attributes,
+    empty
+  }
+mishnahw_width =
+  
+  ## contains a measurement measured along the
+  ##   axis parallel to the bottom of the written surface, i.e. 
+  ## perpendicular to the spine of a book or codex.  10.3.4. Dimensions
+  element width {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.dimensions.attributes,
+    empty
+  }
+mishnahw_heraldry =
+  
+  ## contains a heraldic formula
+  ## or phrase, typically found as part of a blazon, coat of arms, etc. 
+  ##  10.3.8. Heraldry
+  element heraldry {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_locus =
+  
+  ## defines a location within a manuscript or manuscript part, usually as a
+  ##     (possibly discontinuous) sequence of folio references.  10.3.5. References to Locations within a Manuscript
+  element locus {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.pointing.attributes,
+    
+    ## identifies the foliation scheme in terms of which the location is being
+    ##         specified.
+    attribute scheme { mishnahw_data.pointer }?,
+    
+    ## specifies the starting point of the location in a normalized form.
+    attribute from { mishnahw_data.word }?,
+    
+    ## specifies the end-point of the location in a normalized form.
+    attribute to { mishnahw_data.word }?,
+    empty
+  }
+mishnahw_locusGrp =
+  
+  ## groups a number of locations which together form a
+  ##   distinct but discontinuous item within a manuscript or manuscript
+  ##   part, according to a specific foliation.
+  ##    10.3.5. References to Locations within a Manuscript
+  element locusGrp {
+    mishnahw_locus+,
+    mishnahw_att.global.attributes,
+    
+    ## identifies the foliation scheme in terms of which all the
+    ##       locations contained by the group are specified.
+    attribute scheme { mishnahw_data.pointer }?,
+    empty
+  }
+mishnahw_material =
+  
+  ## contains a word or phrase describing the
+  ##   material of which  the object being described is composed.
+  ##    10.3.2. Material and object type
+  element material {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.canonical.attributes,
+    empty
+  }
+mishnahw_objectType =
+  
+  ## contains a word or phrase describing the type of object being refered to.
+  ##    10.3.2. Material and object type
+  element objectType {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.canonical.attributes,
+    empty
+  }
+mishnahw_origDate =
+  
+  ## (origin date) contains any form of date, used to
+  ##   identify the date of origin for a manuscript or manuscript part.
+  ##    10.3.1. Origination
+  element origDate {
+    (text
+     | mishnahw_model.gLike
+     | mishnahw_model.phrase
+     | mishnahw_model.global)*,
+    mishnahw_att.global.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.editLike.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_origPlace =
+  
+  ## (origin place) contains any form of place name, used to identify the
+  ## place of origin for a manuscript or manuscript part.  10.3.1. Origination
+  element origPlace {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.editLike.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_secFol =
+  
+  ## (second folio) The word or words taken from a fixed point
+  ## in a codex (typically the beginning of the
+  ## second leaf) in order
+  ## to provide a unique identifier for it.
+  ## 
+  ##  10.3.7. Catchwords, Signatures, Secundo Folio
+  element secFol {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_signatures =
+  
+  ## contains discussion of the leaf or quire signatures found within a codex. 10.3.7. Catchwords, Signatures, Secundo Folio
+  element signatures {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_stamp =
+  
+  ## contains a word or phrase describing a
+  ## stamp or similar device. 10.3.3. Watermarks and Stamps
+  element stamp {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.datable.attributes,
+    empty
+  }
+mishnahw_watermark =
+  
+  ## contains a word or phrase describing a
+  ## watermark or similar device. 10.3.3. Watermarks and Stamps
+  element watermark {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_msIdentifier =
+  
+  ## (manuscript identifier) contains the information required to identify
+  ## the  manuscript being described.  10.4. The Manuscript Identifier
+  element msIdentifier {
+    ((mishnahw_model.placeNamePart_sequenceOptional,
+      mishnahw_institution?,
+      mishnahw_repository?,
+      mishnahw_collection*,
+      mishnahw_idno?),
+     (mishnahw_msName | mishnahw_altIdentifier)*)
+    >> sch:pattern [
+         id = "msIdentifier-constraint-msId_minimal"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:msIdentifier"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test =
+               "local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' "
+             "\x{a}" ~
+             "	    You must supply either a locator of some type or a\x{a}" ~
+             "	    name"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_institution =
+  
+  ## contains the name of an organization such as a university or
+  ##   library, with which a manuscript is identified, generally its
+  ##   holding institution. 10.4. The Manuscript Identifier
+  element institution {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    empty
+  }
+mishnahw_repository =
+  
+  ## contains the name of a repository within which manuscripts are stored, possibly forming part of an institution. 10.4. The Manuscript Identifier
+  element repository {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    empty
+  }
+mishnahw_collection =
+  
+  ## contains the name of a collection of
+  ## manuscripts, not necessarily located within a single repository.  10.4. The Manuscript Identifier
+  element collection {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_altIdentifier =
+  
+  ## (alternative identifier) contains an alternative or former structured identifier used for
+  ## a manuscript, such as a former catalogue number. 10.4. The Manuscript Identifier
+  element altIdentifier {
+    (mishnahw_model.placeNamePart_sequenceOptional,
+     mishnahw_institution?,
+     mishnahw_repository?,
+     mishnahw_collection?,
+     mishnahw_idno,
+     mishnahw_note?),
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_msName =
+  
+  ## (alternative name) contains any form of unstructured alternative
+  ## name used for a manuscript, such as an  ocellus
+  ## nominum, or nickname.  10.4. The Manuscript Identifier
+  element msName {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_colophon =
+  
+  ## contains the  colophon
+  ## of a  manuscript item: that is, a statement providing information regarding the date, place, agency, or reason for production of the manuscript. 10.6.1. The msItem and msItemStruct Elements
+  element colophon {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_explicit =
+  
+  ## contains the  explicit of a
+  ## manuscript item, that is, the closing words of the text proper,
+  ## exclusive of any rubric or colophon which might follow it.
+  ##    10.6.1. The msItem and msItemStruct Elements
+  element explicit {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    empty
+  }
+mishnahw_filiation =
+  
+  ## contains information concerning the manuscript's filiation, i.e. its relationship to other surviving manuscripts of the same text, its protographs, antigraphs and apographs. 10.6.1. The msItem and msItemStruct Elements
+  element filiation {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_finalRubric =
+  
+  ## contains the string of words that denotes the end of a text division, often with an assertion as to its author and title, usually set off from the text itself by red ink, by a different size or type of script, or by some other such visual device. 10.6.1. The msItem and msItemStruct Elements
+  element finalRubric {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_incipit =
+  
+  ## contains the incipit of a manuscript item, that is the opening words of the text proper, exclusive of any rubric which might precede it, of sufficient length to identify the work uniquely; such incipts were, in fomer times, frequently used a means of reference to a work, in place of a title. 10.6.1. The msItem and msItemStruct Elements
+  element incipit {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    empty
+  }
+mishnahw_msContents =
+  
+  ## (manuscript contents) describes the intellectual content of a manuscript or manuscript
+  ##     part, either as a series of paragraphs or as a series of structured manuscript items. 10.6. Intellectual Content
+  element msContents {
+    (mishnahw_model.pLike+
+     | (mishnahw_summary?,
+        mishnahw_textLang?,
+        mishnahw_titlePage?,
+        (mishnahw_msItem | mishnahw_msItemStruct)*)),
+    mishnahw_att.global.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    
+    ## identifies the text types or classifications applicable to this object.
+    attribute class {
+      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    }?,
+    empty
+  }
+mishnahw_msItem =
+  
+  ## (manuscript item) describes an individual work or item within the intellectual
+  ##   content of a manuscript or manuscript part.  10.6.1. The msItem and msItemStruct Elements
+  element msItem {
+    ((mishnahw_locus | mishnahw_locusGrp)*,
+     (mishnahw_model.pLike+
+      | (mishnahw_model.titlepagePart
+         | mishnahw_model.msItemPart
+         | mishnahw_model.global)+)),
+    mishnahw_att.global.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    
+    ## identifies the text types or classifications applicable to this
+    ## item
+    attribute class {
+      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    }?,
+    empty
+  }
+mishnahw_msItemStruct =
+  
+  ## (structured manuscript item) contains a structured description for an
+  ##   individual work or item within the intellectual content of a
+  ##   manuscript or manuscript part. 10.6.1. The msItem and msItemStruct Elements
+  element msItemStruct {
+    (mishnahw_locus?,
+     (mishnahw_model.pLike+
+      | (mishnahw_author*,
+         mishnahw_respStmt*,
+         mishnahw_title*,
+         mishnahw_rubric?,
+         mishnahw_incipit?,
+         mishnahw_msItemStruct*,
+         mishnahw_explicit?,
+         mishnahw_finalRubric?,
+         mishnahw_colophon*,
+         mishnahw_decoNote*,
+         mishnahw_listBibl*,
+         mishnahw_bibl*,
+         mishnahw_filiation*,
+         mishnahw_model.noteLike*,
+         mishnahw_textLang?))),
+    mishnahw_att.global.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    
+    ## identifies the text types or classifications applicable to this
+    ## item
+    attribute class {
+      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    }?,
+    empty
+  }
+mishnahw_rubric =
+  
+  ## contains the text of any rubric or heading attached to a particular manuscript item, that is, a string of words through which a
+  ## manuscript signals the beginning of a text division, often with an assertion as to its author and title, which is in some way set off from the text itself, usually in red ink, or by use of different size or type of script, or some other such visual device. 10.6.1. The msItem and msItemStruct Elements
+  element rubric {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_summary =
+  
+  ## contains an overview of the available
+  ##   information concerning some aspect of an item (for example, its
+  ## intellectual content, history, layout, typography etc.) as a
+  ## complement or alternative to the  more detailed information  carried by
+  ##   more specific elements.
+  element summary {
+    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+  }
+mishnahw_textLang =
+  
+  ## (text language) in a manuscript description, describes
+  ##   the languages and writing systems identified within the manuscript
+  ##   being described.  10.6.6. Languages and Writing Systems
+  element textLang {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    
+    ## (main language) supplies a code which identifies the chief language used in the manuscript.
+    attribute mainLang { mishnahw_data.language }?,
+    
+    ## (other languages) one or more codes identifying any other languages used in the manuscript.
+    attribute otherLangs {
+      list { mishnahw_data.language* }
+    }?,
+    empty
+  }
+mishnahw_att.msExcerpt.attributes =
+  mishnahw_att.msExcerpt.attribute.defective
+mishnahw_att.msExcerpt.attribute.defective =
+  
+  ## indicates whether the passage being quoted is defective,
+  ##       i.e. incomplete through loss or damage.
+  [ a:defaultValue = "false" ]
+  attribute defective { mishnahw_data.xTruthValue }?
+mishnahw_physDesc =
+  
+  ## (physical description) contains a full physical description of a
+  ## manuscript or manuscript part, optionally subdivided using more
+  ## specialised elements from the model.physDescPart class. 10.7. Physical Description
+  element physDesc {
+    (mishnahw_model.pLike*,
+     mishnahw_model.physDescPart_sequenceOptional),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_objectDesc =
+  
+  ## contains a description of the physical
+  ##   components making up the object which is being described. 10.7.1. Object Description
+  element objectDesc {
+    (mishnahw_model.pLike+
+     | (mishnahw_supportDesc?, mishnahw_layoutDesc?)),
+    mishnahw_att.global.attributes,
+    
+    ## a short  project-specific name identifying the physical form of
+    ##       the carrier, for example as a codex, roll, fragment, partial leaf,
+    ##       cutting etc.
+    attribute form { mishnahw_data.enumerated }?,
+    empty
+  }
+mishnahw_supportDesc =
+  
+  ## (support description) groups elements describing the physical support for the written part of a manuscript. 10.7.1. Object Description
+  element supportDesc {
+    (mishnahw_model.pLike+
+     | (mishnahw_support?,
+        mishnahw_extent?,
+        mishnahw_foliation*,
+        mishnahw_collation?,
+        mishnahw_condition?)),
+    mishnahw_att.global.attributes,
+    
+    ## a short project-defined name for the material composing
+    ##       the majority of the support
+    ## Suggested values include: 1] paper (paper) ; 2] parch(parchment) ; 3] mixed
+    attribute material {
+      
+      ##  (paper) 
+      "paper"
+      | 
+        ## (parchment) 
+        "parch"
+      | 
+        ##
+        "mixed"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahw_support =
+  
+  ## contains a description of the materials
+  ## etc. which make up the physical support for the written part of a manuscript. 10.7.1. Object Description
+  element support {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_collation =
+  
+  ## contains a description of how the leaves or bifolia are physically
+  ## arranged. 10.7.1. Object Description
+  element collation {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_foliation =
+  
+  ## describes the numbering system or systems used to 
+  ## count the leaves or pages in a codex. 10.7.1.4. Foliation
+  element foliation {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_condition =
+  
+  ## contains a description of the physical
+  ## condition of the manuscript.  10.7.1.5. Condition
+  element condition {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_layoutDesc =
+  
+  ## (layout description) collects the set of layout descriptions applicable to a manuscript. 10.7.2. Writing, Decoration, and Other Notations
+  element layoutDesc {
+    (mishnahw_model.pLike+ | (mishnahw_summary?, mishnahw_layout+)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_layout =
+  
+  ## describes how text is laid out on the
+  ##   page, including information about any ruling, pricking, or other
+  ##   evidence of page-preparation techniques. 10.7.2. Writing, Decoration, and Other Notations
+  element layout {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    
+    ## specifies the number of columns per page
+    attribute columns {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    
+    ## specifies the number of ruled lines per column
+    attribute ruledLines {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    
+    ## specifies the number of written lines per
+    ##       column
+    attribute writtenLines {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    empty
+  }
+mishnahw_handDesc =
+  
+  ## (description of hands) contains a description of all the different kinds of writing  used in a manuscript. 10.7.2. Writing, Decoration, and Other Notations
+  element handDesc {
+    (mishnahw_model.pLike+ | (mishnahw_summary?, mishnahw_handNote+)),
+    mishnahw_att.global.attributes,
+    
+    ## specifies the number of distinct hands identified within the manuscript
+    attribute hands { mishnahw_data.count }?,
+    empty
+  }
+mishnahw_typeDesc =
+  
+  ## contains a description of the typefaces or other aspects of
+  ##   the printing of an incunable or other printed source. 10.7.2.1. Writing
+  element typeDesc {
+    (mishnahw_model.pLike+ | (mishnahw_summary?, mishnahw_typeNote+)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_scriptDesc =
+  
+  ## contains a description of the scripts used in a manuscript or similar source. 10.7.2.1. Writing
+  element scriptDesc {
+    (mishnahw_model.pLike+ | (mishnahw_summary?, mishnahw_scriptNote+)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_musicNotation =
+  
+  ## contains description of type of musical notation. 10.7.2. Writing, Decoration, and Other Notations
+  element musicNotation {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_decoDesc =
+  
+  ## (decoration description) contains a description of the decoration of a manuscript, either as a sequence of paragraphs, or as a sequence of topically organised decoNote elements. 10.7.3. Bindings, Seals, and Additional Material
+  element decoDesc {
+    (mishnahw_model.pLike+ | (mishnahw_summary?, mishnahw_decoNote+)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_decoNote =
+  
+  ## (note on decoration) contains a note describing either a
+  ## decorative component of a manuscript, or a fairly homogenous class of
+  ## such components. 10.7.3. Bindings, Seals, and Additional Material
+  element decoNote {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_additions =
+  
+  ## contains a description of any significant additions found
+  ## within a manuscript, such as marginalia or other annotations.  10.7.2. Writing, Decoration, and Other Notations
+  element additions {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_bindingDesc =
+  
+  ## (binding description) describes the present and former bindings of a manuscript, either
+  ## as a series of paragraphs or as a series of distinct binding elements,
+  ## one for each binding of the manuscript.  10.7.3.1. Binding Descriptions
+  element bindingDesc {
+    ((mishnahw_model.pLike | mishnahw_decoNote | mishnahw_condition)+
+     | mishnahw_binding+),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_binding =
+  
+  ## contains a description of one binding, i.e. type of covering, boards,
+  ##     etc. applied to a manuscript. 10.7.3.1. Binding Descriptions
+  element binding {
+    (mishnahw_model.pLike | mishnahw_condition | mishnahw_decoNote)+,
+    mishnahw_att.global.attributes,
+    mishnahw_att.datable.attributes,
+    
+    ## specifies whether or not the binding is contemporary with the majority of its
+    ##         contents
+    attribute contemporary { mishnahw_data.xTruthValue }?,
+    empty
+  }
+mishnahw_sealDesc =
+  
+  ## (seal description) describes the seals or other external items attached to a manuscript, either
+  ## as a series of paragraphs or as a series of distinct seal elements,
+  ## possibly with additional decoNotes.  10.7.3.2. Seals
+  element sealDesc {
+    (mishnahw_model.pLike+
+     | (mishnahw_decoNote | mishnahw_seal | mishnahw_condition)+),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_seal =
+  
+  ## contains a description of one seal or similar
+  ##   attachment applied to a manuscript. 10.7.3.2. Seals
+  element seal {
+    (mishnahw_model.pLike | mishnahw_decoNote)+,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.datable.attributes,
+    
+    ## specifies whether or not the seal is contemporary with the
+    ##       item to which it is affixed
+    attribute contemporary { mishnahw_data.xTruthValue }?,
+    empty
+  }
+mishnahw_accMat =
+  
+  ## (accompanying material) contains details of any significant additional
+  ## material which may be closely associated with the manuscript being
+  ## described, such as non-contemporaneous documents or fragments bound in
+  ## with the manuscript at some earlier historical period. 10.7.3.3. Accompanying Material
+  element accMat {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_history =
+  
+  ##  groups elements
+  ## describing the full history of a manuscript or manuscript part. 10.8. History
+  element history {
+    (mishnahw_model.pLike+
+     | (mishnahw_summary?,
+        mishnahw_origin?,
+        mishnahw_provenance*,
+        mishnahw_acquisition?)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_origin =
+  
+  ## contains any descriptive or other information
+  ## concerning the origin of  a manuscript or manuscript part.  10.8. History
+  element origin {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.editLike.attributes,
+    mishnahw_att.datable.attributes,
+    empty
+  }
+mishnahw_provenance =
+  
+  ## contains any descriptive or other information
+  ## concerning a single identifiable episode during the history of a manuscript
+  ## or manuscript part, after its creation but before its acquisition.  10.8. History
+  element provenance {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.responsibility.attributes,
+    empty
+  }
+mishnahw_acquisition =
+  
+  ## contains any descriptive or other information
+  ## concerning the process by which a manuscript or manuscript part entered the holding
+  ## institution.  10.8. History
+  element acquisition {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.datable.attributes,
+    empty
+  }
+mishnahw_additional =
+  
+  ## groups additional information, combining
+  ## bibliographic information about a manuscript, or surrogate copies of
+  ## it with  curatorial or administrative information.  10.9. Additional information
+  element additional {
+    (mishnahw_adminInfo?, mishnahw_surrogates?, mishnahw_listBibl?),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_adminInfo =
+  
+  ## (administrative information) contains information about the present
+  ## custody and availability of the manuscript, and also about the record
+  ## description itself.  10.9.1. Administrative information
+  element adminInfo {
+    (mishnahw_recordHist?,
+     mishnahw_availability?,
+     mishnahw_custodialHist?,
+     mishnahw_model.noteLike?),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_recordHist =
+  
+  ## (recorded history) provides information about the source and
+  ## revision status of the parent manuscript description itself.  10.9.1. Administrative information
+  element recordHist {
+    (mishnahw_model.pLike+ | (mishnahw_source, mishnahw_change*)),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_source =
+  
+  ## describes the original source for the information contained with a manuscript description.  10.9.1.1. Record History
+  element source {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_custodialHist =
+  
+  ## (custodial history) contains a description of a manuscript's custodial history, either
+  ## as running prose or as a series of dated custodial events.  10.9.1.2. Availability and Custodial History
+  element custodialHist {
+    (mishnahw_model.pLike+ | mishnahw_custEvent+),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_custEvent =
+  
+  ## (custodial event) describes a single event during the custodial history of a manuscript. 10.9.1.2. Availability and Custodial History
+  element custEvent {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.typed.attributes,
+    empty
+  }
+mishnahw_surrogates =
+  
+  ## contains information about any representations of the manuscript being described which
+  ## may exist in the holding institution or elsewhere.  10.9. Additional information
+  element surrogates {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_msPart =
+  
+  ## (manuscript part) contains information about an originally
+  ## distinct manuscript or part of a manuscript, now forming part of a composite manuscript. 10.10. Manuscript Parts
+  element msPart {
+    ((mishnahw_altIdentifier | mishnahw_msIdentifier),
+     mishnahw_model.headLike*,
+     (mishnahw_model.pLike+
+      | (mishnahw_msContents?,
+         mishnahw_physDesc?,
+         mishnahw_history?,
+         mishnahw_additional?,
+         mishnahw_msPart*))),
+    mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_att.datable.iso.attributes =
+  mishnahw_att.datable.iso.attribute.when-iso,
+  mishnahw_att.datable.iso.attribute.notBefore-iso,
+  mishnahw_att.datable.iso.attribute.notAfter-iso,
+  mishnahw_att.datable.iso.attribute.from-iso,
+  mishnahw_att.datable.iso.attribute.to-iso
+mishnahw_att.datable.iso.attribute.when-iso =
+  
+  ## supplies the value of a date or time in a standard form.
+  attribute when-iso { mishnahw_data.temporal.iso }?
+mishnahw_att.datable.iso.attribute.notBefore-iso =
+  
+  ## specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notBefore-iso { mishnahw_data.temporal.iso }?
+mishnahw_att.datable.iso.attribute.notAfter-iso =
+  
+  ## specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notAfter-iso { mishnahw_data.temporal.iso }?
+mishnahw_att.datable.iso.attribute.from-iso =
+  
+  ## indicates the starting point of the period in standard form.
+  attribute from-iso { mishnahw_data.temporal.iso }?
+mishnahw_att.datable.iso.attribute.to-iso =
+  
+  ## indicates the ending point of the period in standard form.
+  attribute to-iso { mishnahw_data.temporal.iso }?
+mishnahw_placeName =
+  
+  ## contains an absolute or relative place name.  13.2.3. Place Names
+  element placeName {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.editLike.attributes,
+    empty
+  }
+mishnahw_settlement =
+  
+  ## contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. 13.2.3. Place Names
+  element settlement {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.datable.attributes,
     empty
   }
 mishnahw_persName =
