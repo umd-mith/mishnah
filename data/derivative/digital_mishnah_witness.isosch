@@ -23,4 +23,24 @@
         or a child element to indicate the related bibliographic item</assert>
       </rule>
    </pattern>
+   <pattern id="dimensions-constraint-duplicateDim">
+      <rule context="tei:dimensions">
+         <report test="count(tei:width)&gt; 1">
+	Width element may appear once only
+      </report>
+         <report test="count(tei:height)&gt; 1">
+	Height element may appear once only
+      </report>
+         <report test="count(tei:depth)&gt; 1">
+	Depth element may appear once only
+      </report>
+      </rule>
+   </pattern>
+   <pattern id="msIdentifier-constraint-msId_minimal">
+      <rule context="tei:msIdentifier">
+         <report test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
+	    You must supply either a locator of some type or a
+	    name</report>
+      </rule>
+   </pattern>
 </schema>

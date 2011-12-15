@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Genizah Fragment Cambridge University TS AS 81.75</title>
+                <title>An electronic transcription of the Genizah Fragment Cambridge University TS AS 81.75</title><!-- title in fileDesc is intended to identify the digital file -->
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
             </titleStmt>
             <publicationStmt>
-                <p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
-                <p>TRANSCRIPTION: Nurit Ezer</p>
-                <p>EDITED: Hayim Lapin</p>
-                <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                    Covers Bava Metsi׳a 2:11 - 3:7.</p>
-                <p>Transcription from online images of the manuscript, available at
-                    https://fgp.genizah.org. FGP nos. C101629-C101630. Recto and verso are
-                    registered in reverse order.</p>
-                <p>Dimensions: ca. 11.6x16 cm; Written surface,ca. 8.5 approximately 8.5 cm; ca. 30
-                    chars to a line (3.5 char/cm). Nineteen-twenty lines per page</p>
-                <p>Hand and format are similar to TS AS 81.74</p>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">g3</idno>
             </publicationStmt>
             <sourceDesc>
                 <msDesc>
                     <msIdentifier>
                         <settlement>Cambridge</settlement>
-                        <repository>Univerity Library</repository>
+                        <repository>Cambridge Univerity Library</repository>
                         <idno type="genizah-CUL">TS AS 81.75</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
+                            <!-- Still considering this use of locus -->
                             <locusGrp>
                                 <locus n="1r" facs="www.genizah.org">C101630</locus>
                                 <locus n="1v" facs="www.genizah.org">C101629</locus>
@@ -40,11 +46,11 @@
                     <physDesc>
                         <objectDesc form="codex">
                             <supportDesc>
-                                <extent>1</extent>
-                                <!-- unit="leaves" -->
+                                <extent>1 leaf</extent>
                             </supportDesc>
                             <layoutDesc>
                                 <layout>
+                                    <note>Recto and verso are registered in reverse order.</note>
                                     <dimensions scope="sheet">
                                         <width unit="cm">11.6</width>
                                         <height unit="cm">16</height>
@@ -54,7 +60,7 @@
                                         <width unit="chars">30</width>
                                         <height unit="cm">12.8</height>
                                         <height unit="lines">19</height>
-                                        <dim type="char-p-cm">3.5</dim>
+                                        <dim type="char-per-cm">3.5</dim>
                                     </dimensions>
                                 </layout>
                                 <layout/>
@@ -62,9 +68,7 @@
                         </objectDesc>
                         <handDesc>
                             <handNote>
-                                <date>?</date>
-                                <region>?</region>
-                                <desc>Similar to TS AS 81.74</desc>
+                                <desc>Hand is similar to <idno type="genizah-CUL">TS AS 81.74</idno></desc>
                             </handNote>
                         </handDesc>
                     </physDesc>
