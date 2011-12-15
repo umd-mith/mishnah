@@ -13,7 +13,7 @@
                 <p>TRANSCRIPTION: Nurit Ezer</p>
                 <p>EDITED: Hayim Lapin</p>
                 <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                    Covers Bava Metsi׳a 2:11 - 3:7.</p>
+                    Covers Bava Metsi'a 2:11 - 3:7.</p>
                 <p>Transcription from online images of the manuscript, available at
                     https://fgp.genizah.org. FGP nos. C101629-C101630. Recto and verso are
                     registered in reverse order.</p>
@@ -44,12 +44,13 @@
                                 <!-- unit="leaves" -->
                             </supportDesc>
                             <layoutDesc>
-                                <layout>
+                                <layout columns="1">
                                     <dimensions scope="sheet">
                                         <width unit="cm">11.6</width>
                                         <height unit="cm">16</height>
                                     </dimensions>
-                                    <dimensions scope="writing">
+                                    <dimensions scope="col">
+
                                         <width unit="cm">8.5</width>
                                         <width unit="chars">30</width>
                                         <height unit="cm">12.8</height>
@@ -84,7 +85,7 @@
             </list>
         </revisionDesc>
     </teiHeader>
-    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+    <text>
         <body>
             <div1 xml:id="G3.4">
                 <div2 xml:id="G3.4.1">
@@ -101,7 +102,16 @@
                             </damage><lb n="2"/>העולם הזה רבו שלימד<damage>ו ח<unclear extent="1"
                                     >כ</unclear></damage>מ<damage>ה מביאו</damage> לחיי <lb n="3"
                             />העולם הבא<pc type="unitEnd">:</pc></ab>
-                        <trailer>סל׳ פר׳</trailer>
+                        <trailer>
+                            <choice>
+                                <abbr>סל<am rend="overdot">׳</am></abbr>
+                                <expan>סליק</expan>
+                            </choice>
+                            <choice>
+                                <abbr>פר<am rend="overdot">׳</am></abbr>
+                                <expan/>
+                            </choice>
+                        </trailer>
                     </div3>
                     <div3 xml:id="G3.4.1.3">
                         <ab xml:id="G3.4.1.3.1"><space extent="4" unit="chars"/>
@@ -154,8 +164,11 @@
                                 n="14"/><choice>
                                 <orig>לָשּׂ</orig>
                                 <reg>לש</reg>
-                            </choice>וכ <damage><unclear extent="1" unit="chars"
-                                >ר</unclear></damage> אמ<damage>׳ ר׳ יוסי כאי<gap extent="4"/>
+                            </choice>וכ <damage><unclear extent="1" unit="chars">ר</unclear>
+                                <choice><abbr>אמ<am rend="overdot"
+                                    >׳</am></abbr><expan>אמר</expan></choice>
+                                <unclear extent="1" unit="chars">ר׳</unclear> יו<unclear extent="1"
+                                    unit="chars">ס</unclear>י כאי<gap extent="4"/>
                                 <unclear extent="1" unit="chars">ה</unclear>ל<unclear extent="5"
                                     unit="chars">ה עושה</unclear>
                             </damage>
@@ -186,12 +199,14 @@
                                     <orig>נֵ</orig>
                                     <reg>נ</reg>
                                 </choice>א ואיני י</damage>ודע א<damage>י <unclear>זה</unclear>
-                                ה</damage>וא נו<choice><orig>תֿ</orig><reg>ת</reg></choice><damage>ן</damage>
+                                ה</damage>וא
+                                נו<choice><orig>תֿ</orig><reg>ת</reg></choice><damage>ן</damage>
                             <lb n="20"/><pb n="1r"/><damage> ל<unclear extent="2" unit="chars"
                                     >זה</unclear>
                                 <unclear extent="4" unit="chars">מנא ולז</unclear>ה<unclear
                                     unit="chars" extent="6"> מנא שהו</unclear>דה מ<unclear
-                                    extent="2" unit="chars">פי</unclear> עצ</damage>מו </ab>
+                                    extent="2" unit="chars">פי</unclear> עצ</damage>מו<pc
+                                type="unitEnd" rend="none">:</pc></ab>
                         <ab xml:id="G3.4.2.3.4">שנים <lb n="1"/><damage>שה<unclear extent="5"
                                     unit="chars">פקידו א</unclear>צל א<unclear extent="7"
                                     unit="chars">חד זה מנה</unclear> ו<unclear extent="1"
@@ -216,63 +231,74 @@
                                     /><unclear extent="3" unit="chars"> ??ש</unclear><gap extent="2"
                                     /><unclear>א</unclear></damage>
                             <c rend="lig">אל</c>י<damage>הו</damage></ab>
-                       
                         <ab xml:id="G3.4.2.3.5"><c rend="lig">וכן</c> שני <lb n="6"/>
-                            <damage>כלי<unclear extent="2" unit="chars">ם
-                                ?</unclear>ח<unclear extent="13" unit="chars">ד יפה מנא ואחד
-                                    יפ</unclear>ה <unclear extent="1" unit="chars">א</unclear>ל<unclear>ף</unclear>
-                                    זוז</damage> זה <damage>א<unclear extent="3"
-                                        unit="chars">ומר</unclear></damage>
-                                <lb n="7"/>
-                                <damage><gap extent="1"/>פה</damage> שלי וזה אומר
-                                    <damage>יפ</damage>ה ש<damage>ל<unclear extent="5" unit="chars">י נותן</unclear> את
-                                        <unclear extent="2" unit="chars">הק</unclear>טן</damage>
-                                <lb n="8"/>
-                                <damage>לאחד</damage> מהם <damage><unclear>ו</unclear>מת</damage>וך גדול
+                            <damage>כלי<unclear extent="2" unit="chars">ם ?</unclear>ח<unclear
+                                    extent="13" unit="chars">ד יפה מנא ואחד יפ</unclear>ה <unclear
+                                    extent="1" unit="chars">א</unclear>ל<unclear>ף</unclear>
+                                זוז</damage> זה <damage>א<unclear extent="3" unit="chars"
+                                    >ומר</unclear></damage>
+                            <lb n="7"/>
+                            <damage><gap extent="1"/>פה</damage> שלי וזה אומר <damage>יפ</damage>ה
+                                    ש<damage>ל<unclear extent="5" unit="chars">י נותן</unclear> את
+                                    <unclear extent="2" unit="chars">הק</unclear>טן</damage>
+                            <lb n="8"/>
+                            <damage>לאחד</damage> מהם <damage><unclear>ו</unclear>מת</damage>וך גדול
                             נותן דמ<damage><unclear extent="2" unit="chars">י ק</unclear>טן
-                                ל<unclear extent="3" unit="chars">שני</unclear></damage>
+                                    ל<unclear extent="3" unit="chars">שני</unclear></damage>
                             <lb n="9"/>
                             <damage><unclear>והשא</unclear>ר</damage> יהא
-                            <damage>מ</damage>ו<choice><orig>נָּ</orig><reg>נ</reg></choice>ח עד
-                                    <damage>ש<unclear>י</unclear></damage>בוא <damage><c rend="lig"
-                                        >אל</c><unclear>יה</unclear>ו</damage> אמ׳ <lb n="10"/>
-                            <damage><gap extent="2"/><unclear extent="1" unit="chars"/><gap extent="3"
-                                    /></damage> אם כן מה הפסיד
-                            <choice><orig>הָרַמָוי</orig><reg>הרמוי</reg></choice>
-                            <damage><unclear extent="2" unit="chars">אי</unclear>ל</damage>א הכל <lb n="11"/>
-                            <damage><unclear>י</unclear>הא מו</damage>נח <damage><unclear extent="2" unit="chars">עד</unclear></damage> שיבוא
-                                <c rend="lig">אל</c>יהו:<space/></ab>
+                                    <damage>מ</damage>ו<choice><orig>נָּ</orig><reg>נ</reg></choice>ח
+                            עד <damage>ש<unclear>י</unclear></damage>בוא <damage><c rend="lig"
+                                    >אל</c><unclear>יה</unclear>ו</damage>
+                            <choice><abbr>אמ<am rend="overdot"
+                                >׳</am></abbr><expan>אמר</expan></choice>
+                            <lb n="10"/>
+                            <damage><gap extent="2"/><unclear extent="1" unit="chars"/><gap
+                                    extent="3"/></damage> אם כן מה הפסיד
+                                    <choice><orig>הָרַמָוי</orig><reg>הרמוי</reg></choice>
+                            <damage><unclear extent="2" unit="chars">אי</unclear>ל</damage>א הכל <lb
+                                n="11"/>
+                            <damage><unclear>י</unclear>הא מו</damage>נח <damage><unclear extent="2"
+                                    unit="chars">עד</unclear></damage> שיבוא <c rend="lig"
+                            >אל</c>יהו:<space/></ab>
                         <ab xml:id="G3.4.2.3.6"> המפקיד <lb n="12"/>
                             <damage>פירו<unclear extent="2" unit="chars">ת א</unclear></damage>צל
-                            <damage><unclear extent="2" unit="chars">חב</unclear>ירו</damage>
-                            אפי<damage><unclear extent="4" unit="chars">לו הן</unclear> א</damage>ובדין <damage>ל</damage>א
+                                    <damage><unclear extent="2" unit="chars"
+                                >חב</unclear>ירו</damage> אפי<damage><unclear extent="4"
+                                    unit="chars">לו הן</unclear> א</damage>ובדין <damage>ל</damage>א
                             יגע <lb n="13"/>
-                            <damage>בהן רב<unclear extent="1" unit="chars">ן</unclear> שמ<gap extent="3"
-                            /><unclear extent="2" unit="chars">1</unclear> גמ׳</damage> אומ׳ <damage>ימ</damage>כרם
-                                <damage>ב</damage>בית דין <lb n="14"/>
-                            <damage>מפנ<unclear extent="7" unit="chars"/> שי</damage>ב אבדה
-                        </ab>
+                            <damage>בהן רב<unclear extent="1" unit="chars">ן</unclear> שמ<gap
+                                    extent="3"/><unclear extent="1" unit="chars"/>
+                                <abbr>גמ<am rend="unknown"
+                                >׳</am></abbr><expan>גמליאל</expan></damage>
+                            <abbr rend="overdot">אומ<am>׳</am></abbr><expan>אומר</expan>
+                            <damage>ימ</damage>כרם <damage>ב</damage>בית דין <lb n="14"/>
+                            <damage>מפנ<unclear extent="7" unit="chars"/> שי</damage>ב אבדה </ab>
                         <ab xml:id="G3.4.2.3.7"><space/> המפקיד פירו<damage>ת</damage>
-                            <lb n="15"/><damage> אצל חבי<unclear  extent="6" unit="chars">רו ???? </unclear>
-                                ל<unclear extent="1" unit="chars">ו</unclear> חי</damage>סרונ<unclear>ו</unclear>
-                            <choice><orig>לַחִיטִין</orig><reg>לחיטין</reg></choice> ו<damage>ל</damage>אור<damage><unclear extent="1" unit="chars">ז</unclear></damage>
+                            <lb n="15"/><damage> אצל חבי<unclear extent="6" unit="chars">רו ????
+                                </unclear> ל<unclear extent="1" unit="chars">ו</unclear>
+                                חי</damage>סרונ<unclear>ו</unclear>
+                            <choice><orig>לַחִיטִין</orig><reg>לחיטין</reg></choice>
+                                ו<damage>ל</damage>אור<damage><unclear extent="1" unit="chars"
+                                    >ז</unclear></damage>
                             <lb n="16"/> תשע<damage>ת</damage>
                             <add place="above">חצאי</add>
-                            <damage>קב<unclear  extent="2" unit="chars">י?</unclear>
+                            <damage>קב<unclear extent="2" unit="chars">י?</unclear>
                                 <gap extent="3"/>ר</damage> ל<orig>שׂ</orig><reg>ש</reg>עורים
-                            ולד<choice><orig>וֹ</orig><reg>ו</reg></choice><damage><choice><orig>חַ</orig><reg>ח</reg></choice>ן</damage>
-                            תשעת
-                                <lb n="17"/>
-                            <damage><del rend="overline"><choice><orig>חצָאֵי</orig><reg>חצאי</reg></choice></del>
+                                    ולד<choice><orig>וֹ</orig><reg>ו</reg></choice><damage><choice><orig>חַ</orig><reg>ח</reg></choice>ן</damage>
+                            תשעת <lb n="17"/>
+                            <damage><del rend="overline"
+                                        ><choice><orig>חצָאֵי</orig><reg>חצאי</reg></choice></del>
                                 <unclear extent="4" unit="chars">קבין</unclear>
                                 <gap extent="5"/><note>Some traced of ink
-                                    present</note><choice><orig>לְכוסמין</orig><reg>לכוסמין</reg></choice>
-                                ו<unclear extent="4" unit="chars">לזרע</unclear></damage> פשתן <lb n="18"/>
+                                        present</note><choice><orig>לְכוסמין</orig><reg>לכוסמין</reg></choice>
+                                    ו<unclear extent="4" unit="chars">לזרע</unclear></damage> פשתן
+                                <lb n="18"/>
                             <damage>ש<unclear extent="9" unit="chars">לשת סאין לכ</unclear>ור
-                                <unclear extent="1" unit="chars">ה</unclear></damage>כל ל<damage>פי
-                                    ה<unclear extent="4" unit="chars">מדה ו</unclear></damage>הכל   <lb n="19"/>
-                        </ab>
-                        <milestone xml:id="G3.witEnd" unit="fragment"/>
+                                    <unclear extent="1" unit="chars">ה</unclear></damage>כל
+                                ל<damage>פי ה<unclear extent="4" unit="chars">מדה
+                                ו</unclear></damage>הכל   <lb n="19"/>
+                            <milestone xml:id="G3.witEnd" unit="fragment"/></ab>
                     </div3>
                 </div2>
             </div1>
