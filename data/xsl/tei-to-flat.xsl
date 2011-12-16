@@ -11,37 +11,70 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
+    
+    
+    <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+    <!-- Still having problem of duplicating, rather then copying first pb [and column break?] -->
+    <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
-   <xsl:template match="tei:body">
-       <!-- Wraps whole body in div and p to create valid tei/xml on output -->
-       <body><div ana="temp">
-           <p ana="temp"><xsl:apply-templates></xsl:apply-templates></p>
-       </div></body>
-   </xsl:template>
+    <xsl:template match="tei:body">
+        <!-- Wraps whole body in div and p to create valid tei/xml on output -->
+        <body>
+            <div ana="temp">
+                <p ana="temp">
+                    <xsl:apply-templates/>
+                </p>
+            </div>
+        </body>
+    </xsl:template>
     <xsl:template match="tei:div1[position()=1]">
         <pb>
             <xsl:attribute name="n">
                 <xsl:value-of select=" descendant-or-self::tei:pb[1]/@n"/>
             </xsl:attribute>
         </pb>
-        
-        
-<xsl:if test="//tei:cb">            <cb>
+        <xsl:if test="//tei:cb">
+            <cb>
                 <xsl:attribute name="n">
                     <xsl:value-of select=" descendant-or-self::tei:cb[1]/@n"/>
                 </xsl:attribute>
-            </cb></xsl:if>
-        
+            </cb>
+        </xsl:if>
         <milestone unit="Order">
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
         </milestone>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
-    <xsl:template match="tei:pb[position()=1]|tei:cb[position()=1]"/>
+    <xsl:template match="tei:pb[not(.[position()=1]/ancestor::div1[position()=1])]">
+        <xsl:choose>
+            <xsl:when test=".[position()=1]">
+            </xsl:when>
+            <xsl:when test="not(.[position()=1]/ancestor::div1[position()=1])">
+                <pb>
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="./@n"/>
+                    </xsl:attribute>
+                </pb>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:pb">
+        <xsl:choose>
+            <xsl:when test=".[position()=1]/ancestor::div1[position()=1]">
+            </xsl:when>
+            <xsl:when test="not(.[position()=1]/ancestor::div1[position()=1])">
+                <pb>
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="./@n"/>
+                    </xsl:attribute>
+                </pb>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
     <xsl:template match="tei:div1[not(position()=1)]">
         <milestone unit="Order">
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
@@ -69,9 +102,8 @@
     <xsl:template match="tei:head">
         <label>
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-   <xsl:copy-of select="node()"/>
+            <xsl:copy-of select="node()"/>
         </label>
-        
     </xsl:template>
     <xsl:template match="tei:trailer">
         <label>
