@@ -45,6 +45,12 @@
 
     <map:pipeline id="text-viewer">
 
+      <map:match pattern="synopsis/*">
+        <map:generate src="resource://tei/ref.xml"/>
+        <map:transform src="resource://xsl/ch{1}synopsis.xsl" type="xslt-saxon"/>
+        <map:serialize type="html"/>
+      </map:match>
+
       <map:match pattern="collate-demo">
         <map:generate src="resource://tei/collate-demo.xml"/>
         <map:transform type="collatex"/>

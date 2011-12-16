@@ -79,9 +79,9 @@
                                 <xsl:value-of select="tei:mURI"></xsl:value-of></xsl:variable>
                            
                             <xsl:variable name="lookup">
-                          <xsl:text>
+                          <!-- Commenting out text element for Cocoon (TB): <xsl:text>
                               
-                          </xsl:text>
+                          </xsl:text>-->
                         <!-- Why do I need to fix the relative URI here and not in the variable
                             above?-->
                         <xsl:value-of
