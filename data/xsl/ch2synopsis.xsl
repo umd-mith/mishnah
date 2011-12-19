@@ -13,12 +13,13 @@
         </xd:desc>
     </xd:doc>
     <!-- Creates Synopsis for Ch2 of Bava Metsi'a from pointers on witness list in
-    mishnahhierachy.xml tests if text exists. then builds table. -->
+    ref.xml tests if text exists. then builds table. -->
     <!-- create a list of URIs first checking whether there is text at Ch2 -->
     <!-- Copy names and URIs to lookup list -->
     <xsl:strip-space elements="*"/>
     <xsl:variable name="URIlist">
-        <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit/tei:witness">
+        <xsl:for-each
+            select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit/tei:witness">
             <xsl:variable name="checkURI">
                 <xsl:value-of select="tei:ptr/@target"/>
                 <xsl:text>#</xsl:text>
@@ -33,7 +34,9 @@
                     <xsl:element name="witName">
                         <xsl:value-of select="./text()"/>
                     </xsl:element>
-                    <xsl:element name="siglum"><xsl:value-of select="normalize-space(./@xml:id)"/></xsl:element>
+                    <xsl:element name="siglum">
+                        <xsl:value-of select="normalize-space(./@xml:id)"/>
+                    </xsl:element>
                 </xsl:element>
             </xsl:if>
         </xsl:for-each>
@@ -44,6 +47,9 @@
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/ParColumnStylesheet.css"
                     title="Mishnah Style Sheet" alternate="no"/>
+                <link rel="stylesheet" type="text/css"
+                    href="/Users/hlapin/Sites/JewishStudies/faculty/Lapin/MishnahProject/ParColumnStylesheet.css"
+                    alternate="yes"/>
             </head>
             <title>Sample Synoptic Text</title>
             <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
@@ -60,34 +66,29 @@
     </xsl:template>
     <xsl:template match="tei:div3">
         <table dir="rtl" align="right">
-
-            <tr><xsl:for-each select="$URIlist/tei:item">
-                
-                <td dir="ltr" align="center" lang="en">
-                    
-                    <xsl:value-of select="./tei:witName"></xsl:value-of></td>
-            </xsl:for-each></tr>
-
+            <tr>
+                <xsl:for-each select="$URIlist/tei:item">
+                    <td dir="ltr" align="center" lang="en">
+                        <xsl:value-of select="./tei:witName"/>
+                    </td>
+                </xsl:for-each>
+            </tr>
             <xsl:for-each select="child::element()">
-                <xsl:variable name="temp" as="text()"><xsl:value-of
-                    select="translate(current()/@xml:id,'ref', '')"/></xsl:variable>
-
+                <xsl:variable name="temp" as="text()">
+                    <xsl:value-of select="translate(current()/@xml:id,'ref', '')"/>
+                </xsl:variable>
                 <tr padding-bottom="2em">
                     <xsl:for-each select="$URIlist/tei:item">
                         <td>
                             <xsl:variable name="mURI">
-                                <xsl:value-of select="tei:mURI"></xsl:value-of></xsl:variable>
-                           
+                                <xsl:value-of select="tei:mURI"/>
+                            </xsl:variable>
                             <xsl:variable name="lookup">
-                          <!-- Commenting out text element for Cocoon (TB): <xsl:text>
-                              
-                          </xsl:text>-->
-                        <!-- Why do I need to fix the relative URI here and not in the variable
-                            above?-->
-                        <xsl:value-of
-                            select="concat('../tei/',$mURI,'#',tei:siglum,$temp)"/>
-                        </xsl:variable>
-                           <xsl:copy-of select="document($lookup)"></xsl:copy-of>
+
+                                <xsl:value-of select="concat('../tei/',$mURI,'#',tei:siglum,$temp)"
+                                />
+                            </xsl:variable>
+                            <xsl:copy-of select="document($lookup)"/>
                         </td>
                     </xsl:for-each>
                 </tr>

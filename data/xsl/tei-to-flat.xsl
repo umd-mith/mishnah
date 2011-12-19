@@ -13,9 +13,6 @@
     </xd:doc>
     
     
-    <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
-    <!-- Still having problem of duplicating, rather then copying first pb [and column break?] -->
-    <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
@@ -31,6 +28,8 @@
             </div>
         </body>
     </xsl:template>
+    <!-- Moves pb and cb to first position -->
+    <!-- Not sure this is the best way to do this -->
     <xsl:template match="tei:div1[position()=1]">
         <pb>
             <xsl:attribute name="n">
@@ -49,32 +48,10 @@
         </milestone>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
-    <xsl:template match="tei:pb[not(.[position()=1]/ancestor::div1[position()=1])]">
-        <xsl:choose>
-            <xsl:when test=".[position()=1]">
-            </xsl:when>
-            <xsl:when test="not(.[position()=1]/ancestor::div1[position()=1])">
-                <pb>
-                    <xsl:attribute name="n">
-                        <xsl:value-of select="./@n"/>
-                    </xsl:attribute>
-                </pb>
-            </xsl:when>
-        </xsl:choose>
+    <xsl:template match="tei:pb[not(preceding::tei:pb)]">
     </xsl:template>
-    <xsl:template match="tei:pb">
-        <xsl:choose>
-            <xsl:when test=".[position()=1]/ancestor::div1[position()=1]">
-            </xsl:when>
-            <xsl:when test="not(.[position()=1]/ancestor::div1[position()=1])">
-                <pb>
-                    <xsl:attribute name="n">
-                        <xsl:value-of select="./@n"/>
-                    </xsl:attribute>
-                </pb>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
+    <xsl:template match="tei:cb[not(preceding::tei:cb)]">
+     </xsl:template>
     <xsl:template match="tei:div1[not(position()=1)]">
         <milestone unit="Order">
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
