@@ -52,7 +52,7 @@
 
                     <!-- Additional modules -->
                     <moduleRef key="transcr"
-                        except="addSpan am damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
+                        except="addSpan damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
                     <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
                     <moduleRef key="linking" include="ab anchor seg"/>
 
@@ -115,6 +115,7 @@
                         <content>
                             <rng:zeroOrMore>
                                 <rng:choice>
+                                    <rng:ref name="choice"/>
                                     <rng:text/>
                                     <rng:ref name="unclear"/>
                                     <rng:ref name="gap"/>
