@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-23T12:09:59Z. 
+Schema generated from ODD source 2011-12-23T12:40:21Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -3664,18 +3664,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_application"/>
     </choice>
   </define>
-  <define name="mishnahw_model.encodingDescPart">
-    <choice>
-      <ref name="mishnahw_projectDesc"/>
-      <ref name="mishnahw_samplingDecl"/>
-      <ref name="mishnahw_editorialDecl"/>
-      <ref name="mishnahw_tagsDecl"/>
-      <ref name="mishnahw_refsDecl"/>
-      <ref name="mishnahw_classDecl"/>
-      <ref name="mishnahw_appInfo"/>
-      <ref name="mishnahw_geoDecl"/>
-    </choice>
-  </define>
   <define name="mishnahw_model.editorialDeclPart">
     <choice>
       <ref name="mishnahw_correction"/>
@@ -5623,7 +5611,7 @@ Licencing, etc.</a:documentation>
       </oneOrMore>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="notesStmt-constraint-linter">
         <rule context="tei:notesStmt">
-          <sch:assert xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:note/tei:p)">The notesStmt is provided as
+          <sch:assert xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="tei:note/tei:p">The notesStmt is provided as
                                     a convenience to permit a prose description of the physical
                                     manuscript. Please also complete the structured elements for
                                     manuscript description within sourceDesc </sch:assert>
@@ -5680,14 +5668,16 @@ Licencing, etc.</a:documentation>
     <element name="encodingDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(encoding description) documents the relationship between an electronic text and the
 source or sources from which it was derived. 2.3. The Encoding Description 2.1.1. The TEI Header and its Components</a:documentation>
-      <group>
-        <oneOrMore>
-          <choice>
-            <ref name="mishnahw_model.encodingDescPart"/>
-            <ref name="mishnahw_model.pLike"/>
-          </choice>
-        </oneOrMore>
-      </group>
+      <zeroOrMore>
+        <ref name="mishnahw_editorialDecl"/>
+      </zeroOrMore>
+      <ref name="mishnahw_tagsDecl"/>
+      <optional>
+        <ref name="mishnahw_refsDecl"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="mishnahw_appInfo"/>
+      </zeroOrMore>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -5697,18 +5687,6 @@ source or sources from which it was derived. 2.3. The Encoding Description 2.1.1
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(project description) describes in detail the aim or purpose for which an electronic file was encoded, together
     with any other relevant information concerning the process by which it was assembled or
     collected. 2.3.1. The Project Description 2.3. The Encoding Description 15.3.2. Declarable Elements</a:documentation>
-      <oneOrMore>
-        <ref name="mishnahw_model.pLike"/>
-      </oneOrMore>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.declarable.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_samplingDecl">
-    <element name="samplingDecl">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(sampling declaration) contains a prose description of the rationale and methods used in sampling texts in the
-    creation of a corpus or collection. 2.3.2. The Sampling Declaration 2.3. The Encoding Description 15.3.2. Declarable Elements</a:documentation>
       <oneOrMore>
         <ref name="mishnahw_model.pLike"/>
       </oneOrMore>

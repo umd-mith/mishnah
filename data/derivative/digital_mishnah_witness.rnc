@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-23T12:09:59Z. 
+# Schema generated from ODD source 2011-12-23T12:40:21Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1769,15 +1769,6 @@ mishnahw_model.div2Like = mishnahw_div2
 mishnahw_model.div3Like = mishnahw_div3
 mishnahw_model.div4Like = notAllowed
 mishnahw_model.applicationLike = mishnahw_application
-mishnahw_model.encodingDescPart =
-  mishnahw_projectDesc
-  | mishnahw_samplingDecl
-  | mishnahw_editorialDecl
-  | mishnahw_tagsDecl
-  | mishnahw_refsDecl
-  | mishnahw_classDecl
-  | mishnahw_appInfo
-  | mishnahw_geoDecl
 mishnahw_model.editorialDeclPart =
   mishnahw_correction
   | mishnahw_normalization
@@ -3389,7 +3380,7 @@ mishnahw_notesStmt =
            "\x{a}" ~
            "               "
            sch:assert [
-             test = "not(tei:note/tei:p)"
+             test = "tei:note/tei:p"
              "The notesStmt is provided as\x{a}" ~
              "                                    a convenience to permit a prose description of the physical\x{a}" ~
              "                                    manuscript. Please also complete the structured elements for\x{a}" ~
@@ -3436,7 +3427,10 @@ mishnahw_encodingDesc =
   ## (encoding description) documents the relationship between an electronic text and the
   ## source or sources from which it was derived. 2.3. The Encoding Description 2.1.1. The TEI Header and its Components
   element encodingDesc {
-    (mishnahw_model.encodingDescPart | mishnahw_model.pLike)+,
+    mishnahw_editorialDecl*,
+    mishnahw_tagsDecl,
+    mishnahw_refsDecl?,
+    mishnahw_appInfo*,
     mishnahw_att.global.attributes,
     empty
   }
@@ -3446,16 +3440,6 @@ mishnahw_projectDesc =
   ##     with any other relevant information concerning the process by which it was assembled or
   ##     collected. 2.3.1. The Project Description 2.3. The Encoding Description 15.3.2. Declarable Elements
   element projectDesc {
-    mishnahw_model.pLike+,
-    mishnahw_att.global.attributes,
-    mishnahw_att.declarable.attributes,
-    empty
-  }
-mishnahw_samplingDecl =
-  
-  ## (sampling declaration) contains a prose description of the rationale and methods used in sampling texts in the
-  ##     creation of a corpus or collection. 2.3.2. The Sampling Declaration 2.3. The Encoding Description 15.3.2. Declarable Elements
-  element samplingDecl {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
     mishnahw_att.declarable.attributes,
