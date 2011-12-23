@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-22T22:05:50Z. 
+# Schema generated from ODD source 2011-12-23T12:09:59Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1373,8 +1373,6 @@ mishnahw_model.publicationStmtPart =
   | mishnahw_date
   | mishnahw_publisher
   | mishnahw_pubPlace
-  | mishnahw_distributor
-  | mishnahw_authority
   | mishnahw_idno
   | mishnahw_availability
 mishnahw_model.availabilityPart = mishnahw_p | mishnahw_licence
@@ -1601,35 +1599,17 @@ mishnahw_model.choicePart =
   | mishnahw_am
   | mishnahw_seg
 mishnahw_model.imprintPart =
-  mishnahw_publisher
-  | mishnahw_biblScope
-  | mishnahw_pubPlace
-  | mishnahw_distributor
+  mishnahw_publisher | mishnahw_biblScope | mishnahw_pubPlace
 mishnahw_model.imprintPart_alternation =
-  mishnahw_publisher
-  | mishnahw_biblScope
-  | mishnahw_pubPlace
-  | mishnahw_distributor
+  mishnahw_publisher | mishnahw_biblScope | mishnahw_pubPlace
 mishnahw_model.imprintPart_sequence =
-  mishnahw_publisher,
-  mishnahw_biblScope,
-  mishnahw_pubPlace,
-  mishnahw_distributor
+  mishnahw_publisher, mishnahw_biblScope, mishnahw_pubPlace
 mishnahw_model.imprintPart_sequenceOptional =
-  mishnahw_publisher?,
-  mishnahw_biblScope?,
-  mishnahw_pubPlace?,
-  mishnahw_distributor?
+  mishnahw_publisher?, mishnahw_biblScope?, mishnahw_pubPlace?
 mishnahw_model.imprintPart_sequenceOptionalRepeatable =
-  mishnahw_publisher*,
-  mishnahw_biblScope*,
-  mishnahw_pubPlace*,
-  mishnahw_distributor*
+  mishnahw_publisher*, mishnahw_biblScope*, mishnahw_pubPlace*
 mishnahw_model.imprintPart_sequenceRepeatable =
-  mishnahw_publisher+,
-  mishnahw_biblScope+,
-  mishnahw_pubPlace+,
-  mishnahw_distributor+
+  mishnahw_publisher+, mishnahw_biblScope+, mishnahw_pubPlace+
 mishnahw_model.catDescPart = notAllowed
 mishnahw_model.physDescPart_sequenceOptional =
   mishnahw_handDesc?, mishnahw_objectDesc?
@@ -3135,10 +3115,7 @@ mishnahw_teiHeader =
   ## (TEI Header) supplies the descriptive and declarative information making up an electronic title page
   ##     prefixed to every TEI-conformant text. 2.1.1. The TEI Header and its Components 15.1. Varieties of Composite Text
   element teiHeader {
-    (mishnahw_fileDesc,
-     mishnahw_encodingDesc,
-     mishnahw_profileDesc*,
-     mishnahw_revisionDesc),
+    (mishnahw_fileDesc, mishnahw_encodingDesc, mishnahw_revisionDesc),
     
     ## specifies the kind of document to which the header is attached, for example whether it
     ##         is a corpus or individual text.
@@ -3152,13 +3129,11 @@ mishnahw_fileDesc =
   
   ## (file description) contains a full bibliographic description of an electronic file. 2.2. The File Description 2.1.1. The TEI Header and its Components
   element fileDesc {
-    ((mishnahw_titleStmt,
-      mishnahw_editionStmt?,
-      mishnahw_extent?,
-      mishnahw_publicationStmt,
-      mishnahw_seriesStmt?,
-      mishnahw_notesStmt?),
-     mishnahw_sourceDesc+),
+    (mishnahw_titleStmt,
+     mishnahw_editionStmt?,
+     mishnahw_publicationStmt,
+     mishnahw_notesStmt?),
+    mishnahw_sourceDesc+,
     mishnahw_att.global.attributes,
     empty
   }
@@ -3167,7 +3142,8 @@ mishnahw_titleStmt =
   ## (title statement) groups information about the title of a work and those responsible for its intellectual
   ##     content. 2.2.1. The Title Statement 2.2. The File Description
   element titleStmt {
-    (mishnahw_title+, mishnahw_model.respLike*),
+    mishnahw_title+,
+    mishnahw_model.respLike+,
     mishnahw_att.global.attributes,
     empty
   }
@@ -3257,8 +3233,7 @@ mishnahw_publicationStmt =
            "               "
            sch:report [
              test = "not(tei:pubPlace/following-sibling::tei:address)"
-             "It is\x{a}" ~
-             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "It is a requirement for TEI conformance that information about\x{a}" ~
              "                                    publication place, address, identifier, availability, and date\x{a}" ~
              "                                    be given in that order, following the name of the publisher,\x{a}" ~
              "                                    distributor, or authority concerned"
@@ -3279,8 +3254,8 @@ mishnahw_publicationStmt =
            "               "
            sch:report [
              test = "not(tei:address/following-sibling::tei:idno)"
-             "It is\x{a}" ~
-             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "It\x{a}" ~
+             "                                    is a requirement for TEI conformance that information about\x{a}" ~
              "                                    publication place, address, identifier, availability, and date\x{a}" ~
              "                                    be given in that order, following the name of the publisher,\x{a}" ~
              "                                    distributor, or authority concerned"
@@ -3301,8 +3276,7 @@ mishnahw_publicationStmt =
            "               "
            sch:report [
              test = "not(tei:idno/following-sibling::tei:availability)"
-             "It is\x{a}" ~
-             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "It is a requirement for TEI conformance that information about\x{a}" ~
              "                                    publication place, address, identifier, availability, and date\x{a}" ~
              "                                    be given in that order, following the name of the publisher,\x{a}" ~
              "                                    distributor, or authority concerned"
@@ -3323,8 +3297,7 @@ mishnahw_publicationStmt =
            "               "
            sch:report [
              test = "not(tei:availability/following-sibling::tei:date)"
-             "It is\x{a}" ~
-             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "It is a requirement for TEI conformance that information about\x{a}" ~
              "                                    publication place, address, identifier, availability, and date\x{a}" ~
              "                                    be given in that order, following the name of the publisher,\x{a}" ~
              "                                    distributor, or authority concerned"
@@ -3335,25 +3308,6 @@ mishnahw_publicationStmt =
          "\x{a}" ~
          "         "
        ],
-    mishnahw_att.global.attributes,
-    empty
-  }
-mishnahw_distributor =
-  
-  ## supplies the name of a person or other agency responsible for the
-  ## distribution of a text. 2.2.4. Publication, Distribution,
-  ## Licencing, etc.
-  element distributor {
-    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
-  }
-mishnahw_authority =
-  
-  ## (release authority) supplies the name of a person or other agency responsible for
-  ##   making an electronic file available, other than a publisher or
-  ##   distributor. 2.2.4. Publication, Distribution,
-  ## Licencing, etc.
-  element authority {
-    mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
     empty
   }
@@ -3425,7 +3379,30 @@ mishnahw_notesStmt =
   ## (notes statement) collects together any notes providing information about a text additional to that recorded
   ##     in other parts of the bibliographic description. 2.2.6. The Notes Statement 2.2. The File Description
   element notesStmt {
-    mishnahw_model.noteLike+, mishnahw_att.global.attributes, empty
+    (mishnahw_model.noteLike+)
+    >> sch:pattern [
+         id = "notesStmt-constraint-linter"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:notesStmt"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "not(tei:note/tei:p)"
+             "The notesStmt is provided as\x{a}" ~
+             "                                    a convenience to permit a prose description of the physical\x{a}" ~
+             "                                    manuscript. Please also complete the structured elements for\x{a}" ~
+             "                                    manuscript description within sourceDesc "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahw_att.global.attributes,
+    empty
   }
 mishnahw_sourceDesc =
   

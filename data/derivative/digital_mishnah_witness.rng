@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-22T22:05:50Z. 
+Schema generated from ODD source 2011-12-23T12:09:59Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -2733,8 +2733,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_date"/>
       <ref name="mishnahw_publisher"/>
       <ref name="mishnahw_pubPlace"/>
-      <ref name="mishnahw_distributor"/>
-      <ref name="mishnahw_authority"/>
       <ref name="mishnahw_idno"/>
       <ref name="mishnahw_availability"/>
     </choice>
@@ -3257,7 +3255,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_publisher"/>
       <ref name="mishnahw_biblScope"/>
       <ref name="mishnahw_pubPlace"/>
-      <ref name="mishnahw_distributor"/>
     </choice>
   </define>
   <define name="mishnahw_model.imprintPart_alternation">
@@ -3265,14 +3262,12 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_publisher"/>
       <ref name="mishnahw_biblScope"/>
       <ref name="mishnahw_pubPlace"/>
-      <ref name="mishnahw_distributor"/>
     </choice>
   </define>
   <define name="mishnahw_model.imprintPart_sequence">
     <ref name="mishnahw_publisher"/>
     <ref name="mishnahw_biblScope"/>
     <ref name="mishnahw_pubPlace"/>
-    <ref name="mishnahw_distributor"/>
   </define>
   <define name="mishnahw_model.imprintPart_sequenceOptional">
     <optional>
@@ -3283,9 +3278,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </optional>
     <optional>
       <ref name="mishnahw_pubPlace"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_distributor"/>
     </optional>
   </define>
   <define name="mishnahw_model.imprintPart_sequenceOptionalRepeatable">
@@ -3298,9 +3290,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     <zeroOrMore>
       <ref name="mishnahw_pubPlace"/>
     </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_distributor"/>
-    </zeroOrMore>
   </define>
   <define name="mishnahw_model.imprintPart_sequenceRepeatable">
     <oneOrMore>
@@ -3311,9 +3300,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_pubPlace"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_distributor"/>
     </oneOrMore>
   </define>
   <define name="mishnahw_model.catDescPart">
@@ -5380,9 +5366,6 @@ Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist</a:documentation
       <group>
         <ref name="mishnahw_fileDesc"/>
         <ref name="mishnahw_encodingDesc"/>
-        <zeroOrMore>
-          <ref name="mishnahw_profileDesc"/>
-        </zeroOrMore>
         <ref name="mishnahw_revisionDesc"/>
       </group>
       <optional>
@@ -5401,26 +5384,18 @@ Sample values include: 1] text; 2] corpus</a:documentation>
     <element name="fileDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(file description) contains a full bibliographic description of an electronic file. 2.2. The File Description 2.1.1. The TEI Header and its Components</a:documentation>
       <group>
-        <group>
-          <ref name="mishnahw_titleStmt"/>
-          <optional>
-            <ref name="mishnahw_editionStmt"/>
-          </optional>
-          <optional>
-            <ref name="mishnahw_extent"/>
-          </optional>
-          <ref name="mishnahw_publicationStmt"/>
-          <optional>
-            <ref name="mishnahw_seriesStmt"/>
-          </optional>
-          <optional>
-            <ref name="mishnahw_notesStmt"/>
-          </optional>
-        </group>
-        <oneOrMore>
-          <ref name="mishnahw_sourceDesc"/>
-        </oneOrMore>
+        <ref name="mishnahw_titleStmt"/>
+        <optional>
+          <ref name="mishnahw_editionStmt"/>
+        </optional>
+        <ref name="mishnahw_publicationStmt"/>
+        <optional>
+          <ref name="mishnahw_notesStmt"/>
+        </optional>
       </group>
+      <oneOrMore>
+        <ref name="mishnahw_sourceDesc"/>
+      </oneOrMore>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -5429,14 +5404,12 @@ Sample values include: 1] text; 2] corpus</a:documentation>
     <element name="titleStmt">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(title statement) groups information about the title of a work and those responsible for its intellectual
     content. 2.2.1. The Title Statement 2.2. The File Description</a:documentation>
-      <group>
-        <oneOrMore>
-          <ref name="mishnahw_title"/>
-        </oneOrMore>
-        <zeroOrMore>
-          <ref name="mishnahw_model.respLike"/>
-        </zeroOrMore>
-      </group>
+      <oneOrMore>
+        <ref name="mishnahw_title"/>
+      </oneOrMore>
+      <oneOrMore>
+        <ref name="mishnahw_model.respLike"/>
+      </oneOrMore>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -5521,8 +5494,7 @@ Licencing, etc. 2.2. The File Description</a:documentation>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter2">
         <rule context="tei:publicationStmt">
-          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:pubPlace/following-sibling::tei:address)">It is
-                                    a requirement for TEI conformance that information about
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:pubPlace/following-sibling::tei:address)">It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
@@ -5530,8 +5502,8 @@ Licencing, etc. 2.2. The File Description</a:documentation>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter3">
         <rule context="tei:publicationStmt">
-          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:address/following-sibling::tei:idno)">It is
-                                    a requirement for TEI conformance that information about
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:address/following-sibling::tei:idno)">It
+                                    is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
@@ -5539,8 +5511,7 @@ Licencing, etc. 2.2. The File Description</a:documentation>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter4">
         <rule context="tei:publicationStmt">
-          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:idno/following-sibling::tei:availability)">It is
-                                    a requirement for TEI conformance that information about
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:idno/following-sibling::tei:availability)">It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
@@ -5548,34 +5519,12 @@ Licencing, etc. 2.2. The File Description</a:documentation>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter5">
         <rule context="tei:publicationStmt">
-          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:availability/following-sibling::tei:date)">It is
-                                    a requirement for TEI conformance that information about
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:availability/following-sibling::tei:date)">It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
         </rule>
       </pattern>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_distributor">
-    <element name="distributor">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies the name of a person or other agency responsible for the
-distribution of a text. 2.2.4. Publication, Distribution,
-Licencing, etc.</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_authority">
-    <element name="authority">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(release authority) supplies the name of a person or other agency responsible for
-  making an electronic file available, other than a publisher or
-  distributor. 2.2.4. Publication, Distribution,
-Licencing, etc.</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq.limited"/>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -5672,6 +5621,14 @@ Licencing, etc.</a:documentation>
       <oneOrMore>
         <ref name="mishnahw_model.noteLike"/>
       </oneOrMore>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="notesStmt-constraint-linter">
+        <rule context="tei:notesStmt">
+          <sch:assert xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:note/tei:p)">The notesStmt is provided as
+                                    a convenience to permit a prose description of the physical
+                                    manuscript. Please also complete the structured elements for
+                                    manuscript description within sourceDesc </sch:assert>
+        </rule>
+      </pattern>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
