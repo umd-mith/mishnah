@@ -85,7 +85,7 @@
     <xsl:template match="tei:trailer">
         <label>
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-            <xsl:apply-templates select="node|text()"/>
+            <xsl:copy-of select="node()"/>
         </label>
     </xsl:template>
 </xsl:stylesheet>
