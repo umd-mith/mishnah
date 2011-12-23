@@ -132,10 +132,12 @@
                         <content>
                             <rng:zeroOrMore>
                                 <rng:choice>
-                                    <rng:ref name="choice"/>
                                     <rng:text/>
-                                    <rng:ref name="unclear"/>
+                                    <rng:ref name="model.pPart.editorial"/><!-- allows choice, abbr, expan, ex, am, subst -->
+                                    <rng:ref name="del"/>                                   
                                     <rng:ref name="gap"/>
+                                    <rng:ref name="note"/>
+                                    <rng:ref name="unclear"/>
                                 </rng:choice>
                             </rng:zeroOrMore>
                         </content>
