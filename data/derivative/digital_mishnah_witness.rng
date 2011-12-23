@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-22T20:18:34Z. 
+Schema generated from ODD source 2011-12-22T20:51:39Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -1548,7 +1548,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   <define name="mishnahw_model.dimLike">
     <choice>
       <ref name="mishnahw_height"/>
-      <ref name="mishnahw_depth"/>
       <ref name="mishnahw_width"/>
     </choice>
   </define>
@@ -1559,7 +1558,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_measureGrp"/>
       <ref name="mishnahw_dim"/>
       <ref name="mishnahw_height"/>
-      <ref name="mishnahw_depth"/>
       <ref name="mishnahw_width"/>
     </choice>
   </define>
@@ -1570,7 +1568,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_measureGrp"/>
       <ref name="mishnahw_dim"/>
       <ref name="mishnahw_height"/>
-      <ref name="mishnahw_depth"/>
       <ref name="mishnahw_width"/>
     </choice>
   </define>
@@ -1580,7 +1577,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     <ref name="mishnahw_measureGrp"/>
     <ref name="mishnahw_dim"/>
     <ref name="mishnahw_height"/>
-    <ref name="mishnahw_depth"/>
     <ref name="mishnahw_width"/>
   </define>
   <define name="mishnahw_model.measureLike_sequenceOptional">
@@ -1598,9 +1594,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </optional>
     <optional>
       <ref name="mishnahw_height"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_depth"/>
     </optional>
     <optional>
       <ref name="mishnahw_width"/>
@@ -1623,9 +1616,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_height"/>
     </zeroOrMore>
     <zeroOrMore>
-      <ref name="mishnahw_depth"/>
-    </zeroOrMore>
-    <zeroOrMore>
       <ref name="mishnahw_width"/>
     </zeroOrMore>
   </define>
@@ -1644,9 +1634,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_height"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_depth"/>
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_width"/>
@@ -1712,174 +1699,54 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   </define>
   <define name="mishnahw_model.pPart.msdesc">
     <choice>
-      <ref name="mishnahw_catchwords"/>
       <ref name="mishnahw_dimensions"/>
-      <ref name="mishnahw_heraldry"/>
       <ref name="mishnahw_locus"/>
       <ref name="mishnahw_locusGrp"/>
-      <ref name="mishnahw_material"/>
-      <ref name="mishnahw_objectType"/>
-      <ref name="mishnahw_origDate"/>
-      <ref name="mishnahw_origPlace"/>
-      <ref name="mishnahw_secFol"/>
-      <ref name="mishnahw_signatures"/>
-      <ref name="mishnahw_stamp"/>
-      <ref name="mishnahw_watermark"/>
     </choice>
   </define>
   <define name="mishnahw_model.pPart.msdesc_alternation">
     <choice>
-      <ref name="mishnahw_catchwords"/>
       <ref name="mishnahw_dimensions"/>
-      <ref name="mishnahw_heraldry"/>
       <ref name="mishnahw_locus"/>
       <ref name="mishnahw_locusGrp"/>
-      <ref name="mishnahw_material"/>
-      <ref name="mishnahw_objectType"/>
-      <ref name="mishnahw_origDate"/>
-      <ref name="mishnahw_origPlace"/>
-      <ref name="mishnahw_secFol"/>
-      <ref name="mishnahw_signatures"/>
-      <ref name="mishnahw_stamp"/>
-      <ref name="mishnahw_watermark"/>
     </choice>
   </define>
   <define name="mishnahw_model.pPart.msdesc_sequence">
-    <ref name="mishnahw_catchwords"/>
     <ref name="mishnahw_dimensions"/>
-    <ref name="mishnahw_heraldry"/>
     <ref name="mishnahw_locus"/>
     <ref name="mishnahw_locusGrp"/>
-    <ref name="mishnahw_material"/>
-    <ref name="mishnahw_objectType"/>
-    <ref name="mishnahw_origDate"/>
-    <ref name="mishnahw_origPlace"/>
-    <ref name="mishnahw_secFol"/>
-    <ref name="mishnahw_signatures"/>
-    <ref name="mishnahw_stamp"/>
-    <ref name="mishnahw_watermark"/>
   </define>
   <define name="mishnahw_model.pPart.msdesc_sequenceOptional">
     <optional>
-      <ref name="mishnahw_catchwords"/>
-    </optional>
-    <optional>
       <ref name="mishnahw_dimensions"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_heraldry"/>
     </optional>
     <optional>
       <ref name="mishnahw_locus"/>
     </optional>
     <optional>
       <ref name="mishnahw_locusGrp"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_material"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_objectType"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_origDate"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_origPlace"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_secFol"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_signatures"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_stamp"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_watermark"/>
     </optional>
   </define>
   <define name="mishnahw_model.pPart.msdesc_sequenceOptionalRepeatable">
     <zeroOrMore>
-      <ref name="mishnahw_catchwords"/>
-    </zeroOrMore>
-    <zeroOrMore>
       <ref name="mishnahw_dimensions"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_heraldry"/>
     </zeroOrMore>
     <zeroOrMore>
       <ref name="mishnahw_locus"/>
     </zeroOrMore>
     <zeroOrMore>
       <ref name="mishnahw_locusGrp"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_material"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_objectType"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_origDate"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_origPlace"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_secFol"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_signatures"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_stamp"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_watermark"/>
     </zeroOrMore>
   </define>
   <define name="mishnahw_model.pPart.msdesc_sequenceRepeatable">
     <oneOrMore>
-      <ref name="mishnahw_catchwords"/>
-    </oneOrMore>
-    <oneOrMore>
       <ref name="mishnahw_dimensions"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_heraldry"/>
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_locus"/>
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_locusGrp"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_material"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_objectType"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_origDate"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_origPlace"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_secFol"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_signatures"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_stamp"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_watermark"/>
     </oneOrMore>
   </define>
   <define name="mishnahw_model.pPart.editorial">
@@ -3337,89 +3204,29 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   <define name="mishnahw_model.msQuoteLike">
     <choice>
       <ref name="mishnahw_title"/>
-      <ref name="mishnahw_colophon"/>
-      <ref name="mishnahw_explicit"/>
-      <ref name="mishnahw_finalRubric"/>
-      <ref name="mishnahw_incipit"/>
-      <ref name="mishnahw_rubric"/>
     </choice>
   </define>
   <define name="mishnahw_model.msQuoteLike_alternation">
     <choice>
       <ref name="mishnahw_title"/>
-      <ref name="mishnahw_colophon"/>
-      <ref name="mishnahw_explicit"/>
-      <ref name="mishnahw_finalRubric"/>
-      <ref name="mishnahw_incipit"/>
-      <ref name="mishnahw_rubric"/>
     </choice>
   </define>
   <define name="mishnahw_model.msQuoteLike_sequence">
     <ref name="mishnahw_title"/>
-    <ref name="mishnahw_colophon"/>
-    <ref name="mishnahw_explicit"/>
-    <ref name="mishnahw_finalRubric"/>
-    <ref name="mishnahw_incipit"/>
-    <ref name="mishnahw_rubric"/>
   </define>
   <define name="mishnahw_model.msQuoteLike_sequenceOptional">
     <optional>
       <ref name="mishnahw_title"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_colophon"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_explicit"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_finalRubric"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_incipit"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_rubric"/>
     </optional>
   </define>
   <define name="mishnahw_model.msQuoteLike_sequenceOptionalRepeatable">
     <zeroOrMore>
       <ref name="mishnahw_title"/>
     </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_colophon"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_explicit"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_finalRubric"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_incipit"/>
-    </zeroOrMore>
-    <zeroOrMore>
-      <ref name="mishnahw_rubric"/>
-    </zeroOrMore>
   </define>
   <define name="mishnahw_model.msQuoteLike_sequenceRepeatable">
     <oneOrMore>
       <ref name="mishnahw_title"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_colophon"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_explicit"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_finalRubric"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_incipit"/>
-    </oneOrMore>
-    <oneOrMore>
-      <ref name="mishnahw_rubric"/>
     </oneOrMore>
   </define>
   <define name="mishnahw_model.msItemPart">
@@ -3429,11 +3236,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_model.msQuoteLike"/>
       <ref name="mishnahw_bibl"/>
       <ref name="mishnahw_listBibl"/>
-      <ref name="mishnahw_filiation"/>
       <ref name="mishnahw_msItem"/>
-      <ref name="mishnahw_msItemStruct"/>
-      <ref name="mishnahw_textLang"/>
-      <ref name="mishnahw_decoNote"/>
     </choice>
   </define>
   <define name="mishnahw_model.choicePart">
@@ -3518,34 +3321,10 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   </define>
   <define name="mishnahw_model.physDescPart_sequenceOptional">
     <optional>
-      <ref name="mishnahw_objectDesc"/>
-    </optional>
-    <optional>
       <ref name="mishnahw_handDesc"/>
     </optional>
     <optional>
-      <ref name="mishnahw_typeDesc"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_scriptDesc"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_musicNotation"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_decoDesc"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_additions"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_bindingDesc"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_sealDesc"/>
-    </optional>
-    <optional>
-      <ref name="mishnahw_accMat"/>
+      <ref name="mishnahw_objectDesc"/>
     </optional>
   </define>
   <define name="mishnahw_model.addressLike">
@@ -6595,26 +6374,6 @@ represented within a text. 2.4.2. Language Usage 2.4. The Profile Description 15
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_typeNote">
-    <element name="typeNote">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes a particular font or other significant typographic feature distinguished within
-    the description of a printed resource. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.handFeatures.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_scriptNote">
-    <element name="scriptNote">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes a particular script distinguished within
-    the description of a manuscript or similar resource. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.handFeatures.attributes"/>
-      <empty/>
-    </element>
-  </define>
   <define name="mishnahw_geoDecl">
     <element name="geoDecl">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
@@ -7939,49 +7698,26 @@ values for @target</assert>
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_msDesc">
-    <element name="msDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript description) contains a description of a single identifiable
-manuscript or other text-bearing object. 10.1. Overview</a:documentation>
-      <group>
-        <ref name="mishnahw_msIdentifier"/>
-        <zeroOrMore>
-          <ref name="mishnahw_model.headLike"/>
-        </zeroOrMore>
-        <choice>
-          <oneOrMore>
-            <ref name="mishnahw_model.pLike"/>
-          </oneOrMore>
-          <group>
-            <optional>
-              <ref name="mishnahw_msContents"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_physDesc"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_history"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_additional"/>
-            </optional>
-            <zeroOrMore>
-              <ref name="mishnahw_msPart"/>
-            </zeroOrMore>
-          </group>
-        </choice>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
+  <define name="mishnahw_att.msExcerpt.attributes">
+    <ref name="mishnahw_att.msExcerpt.attribute.defective"/>
   </define>
-  <define name="mishnahw_catchwords">
-    <element name="catchwords">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the system used to ensure
-correct ordering of the quires making up a codex or incunable,
-typically by means of annotations at the foot of the page. 10.3.7. Catchwords, Signatures, Secundo Folio</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
+  <define name="mishnahw_att.msExcerpt.attribute.defective">
+    <optional>
+      <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="defective" a:defaultValue="false">
+        <a:documentation>indicates whether the passage being quoted is defective,
+      i.e. incomplete through loss or damage.</a:documentation>
+        <ref name="mishnahw_data.xTruthValue"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="mishnahw_dim">
+    <element name="dim">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any single measurement forming part of a dimensional
+specification of some sort. 10.3.4. Dimensions</a:documentation>
+      <ref name="mishnahw_macro.xtext"/>
       <ref name="mishnahw_att.global.attributes"/>
+      <ref name="mishnahw_att.typed.attributes"/>
+      <ref name="mishnahw_att.dimensions.attributes"/>
       <empty/>
     </element>
   </define>
@@ -8029,14 +7765,29 @@ Sample values include: 1] leaves; 2] ruled; 3] pricked; 4] written; 5] miniature
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_dim">
-    <element name="dim">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any single measurement forming part of a dimensional
-specification of some sort. 10.3.4. Dimensions</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
+  <define name="mishnahw_handDesc">
+    <element name="handDesc">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(description of hands) contains a description of all the different kinds of writing  used in a manuscript. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
+      <choice>
+        <oneOrMore>
+          <ref name="mishnahw_model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <empty/>
+          </optional>
+          <oneOrMore>
+            <ref name="mishnahw_handNote"/>
+          </oneOrMore>
+        </group>
+      </choice>
       <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.dimensions.attributes"/>
+      <optional>
+        <attribute name="hands">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of distinct hands identified within the manuscript</a:documentation>
+          <ref name="mishnahw_data.count"/>
+        </attribute>
+      </optional>
       <empty/>
     </element>
   </define>
@@ -8051,34 +7802,66 @@ specification of some sort. 10.3.4. Dimensions</a:documentation>
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_depth">
-    <element name="depth">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a measurement measured across the
-  spine of a book or codex, or (for other text-bearing objects) perpendicular to the measurement given by the
-  width element.  10.3.4. Dimensions</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
+  <define name="mishnahw_layout">
+    <element name="layout">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes how text is laid out on the
+  page, including information about any ruling, pricking, or other
+  evidence of page-preparation techniques. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
+      <ref name="mishnahw_macro.specialPara"/>
       <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.dimensions.attributes"/>
+      <optional>
+        <attribute name="columns">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of columns per page</a:documentation>
+          <list>
+            <ref name="mishnahw_data.count"/>
+            <optional>
+              <ref name="mishnahw_data.count"/>
+            </optional>
+          </list>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="ruledLines">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of ruled lines per column</a:documentation>
+          <list>
+            <ref name="mishnahw_data.count"/>
+            <optional>
+              <ref name="mishnahw_data.count"/>
+            </optional>
+          </list>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="writtenLines">
+          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of written lines per
+      column</a:documentation>
+          <list>
+            <ref name="mishnahw_data.count"/>
+            <optional>
+              <ref name="mishnahw_data.count"/>
+            </optional>
+          </list>
+        </attribute>
+      </optional>
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_width">
-    <element name="width">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a measurement measured along the
-  axis parallel to the bottom of the written surface, i.e. 
-perpendicular to the spine of a book or codex.  10.3.4. Dimensions</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.dimensions.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_heraldry">
-    <element name="heraldry">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a heraldic formula
-or phrase, typically found as part of a blazon, coat of arms, etc. 
- 10.3.8. Heraldry</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
+  <define name="mishnahw_layoutDesc">
+    <element name="layoutDesc">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(layout description) collects the set of layout descriptions applicable to a manuscript. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
+      <choice>
+        <oneOrMore>
+          <ref name="mishnahw_model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <empty/>
+          </optional>
+          <oneOrMore>
+            <ref name="mishnahw_layout"/>
+          </oneOrMore>
+        </group>
+      </choice>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -8132,256 +7915,6 @@ or phrase, typically found as part of a blazon, coat of arms, etc.
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_material">
-    <element name="material">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a word or phrase describing the
-  material of which  the object being described is composed.
-   10.3.2. Material and object type</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.canonical.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_objectType">
-    <element name="objectType">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a word or phrase describing the type of object being refered to.
-   10.3.2. Material and object type</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.canonical.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_origDate">
-    <element name="origDate">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(origin date) contains any form of date, used to
-  identify the date of origin for a manuscript or manuscript part.
-   10.3.1. Origination</a:documentation>
-      <zeroOrMore>
-        <choice>
-          <text/>
-          <ref name="mishnahw_model.gLike"/>
-          <ref name="mishnahw_model.phrase"/>
-          <ref name="mishnahw_model.global"/>
-        </choice>
-      </zeroOrMore>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <ref name="mishnahw_att.editLike.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_origPlace">
-    <element name="origPlace">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(origin place) contains any form of place name, used to identify the
-place of origin for a manuscript or manuscript part.  10.3.1. Origination</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.naming.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <ref name="mishnahw_att.editLike.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_secFol">
-    <element name="secFol">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(second folio) The word or words taken from a fixed point
-in a codex (typically the beginning of the
-second leaf) in order
-to provide a unique identifier for it.
-
- 10.3.7. Catchwords, Signatures, Secundo Folio</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_signatures">
-    <element name="signatures">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains discussion of the leaf or quire signatures found within a codex. 10.3.7. Catchwords, Signatures, Secundo Folio</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_stamp">
-    <element name="stamp">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a word or phrase describing a
-stamp or similar device. 10.3.3. Watermarks and Stamps</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_watermark">
-    <element name="watermark">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a word or phrase describing a
-watermark or similar device. 10.3.3. Watermarks and Stamps</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_msIdentifier">
-    <element name="msIdentifier">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript identifier) contains the information required to identify
-the  manuscript being described.  10.4. The Manuscript Identifier</a:documentation>
-      <group>
-        <group>
-          <ref name="mishnahw_model.placeNamePart_sequenceOptional"/>
-          <optional>
-            <ref name="mishnahw_institution"/>
-          </optional>
-          <optional>
-            <ref name="mishnahw_repository"/>
-          </optional>
-          <zeroOrMore>
-            <ref name="mishnahw_collection"/>
-          </zeroOrMore>
-          <optional>
-            <ref name="mishnahw_idno"/>
-          </optional>
-        </group>
-        <zeroOrMore>
-          <choice>
-            <ref name="mishnahw_msName"/>
-            <ref name="mishnahw_altIdentifier"/>
-          </choice>
-        </zeroOrMore>
-      </group>
-      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="msIdentifier-constraint-msId_minimal">
-        <rule context="tei:msIdentifier">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
-	    You must supply either a locator of some type or a
-	    name</report>
-        </rule>
-      </pattern>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_institution">
-    <element name="institution">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of an organization such as a university or
-  library, with which a manuscript is identified, generally its
-  holding institution. 10.4. The Manuscript Identifier</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.naming.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_repository">
-    <element name="repository">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a repository within which manuscripts are stored, possibly forming part of an institution. 10.4. The Manuscript Identifier</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.naming.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_collection">
-    <element name="collection">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a collection of
-manuscripts, not necessarily located within a single repository.  10.4. The Manuscript Identifier</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.naming.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_altIdentifier">
-    <element name="altIdentifier">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(alternative identifier) contains an alternative or former structured identifier used for
-a manuscript, such as a former catalogue number. 10.4. The Manuscript Identifier</a:documentation>
-      <group>
-        <ref name="mishnahw_model.placeNamePart_sequenceOptional"/>
-        <optional>
-          <ref name="mishnahw_institution"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_repository"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_collection"/>
-        </optional>
-        <ref name="mishnahw_idno"/>
-        <optional>
-          <ref name="mishnahw_note"/>
-        </optional>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_msName">
-    <element name="msName">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(alternative name) contains any form of unstructured alternative
-name used for a manuscript, such as an  ocellus
-nominum, or nickname.  10.4. The Manuscript Identifier</a:documentation>
-      <ref name="mishnahw_macro.xtext"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_colophon">
-    <element name="colophon">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the  colophon
-of a  manuscript item: that is, a statement providing information regarding the date, place, agency, or reason for production of the manuscript. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_explicit">
-    <element name="explicit">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the  explicit of a
-manuscript item, that is, the closing words of the text proper,
-exclusive of any rubric or colophon which might follow it.
-   10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.msExcerpt.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_filiation">
-    <element name="filiation">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains information concerning the manuscript's filiation, i.e. its relationship to other surviving manuscripts of the same text, its protographs, antigraphs and apographs. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_finalRubric">
-    <element name="finalRubric">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the string of words that denotes the end of a text division, often with an assertion as to its author and title, usually set off from the text itself by red ink, by a different size or type of script, or by some other such visual device. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_incipit">
-    <element name="incipit">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the incipit of a manuscript item, that is the opening words of the text proper, exclusive of any rubric which might precede it, of sufficient length to identify the work uniquely; such incipts were, in fomer times, frequently used a means of reference to a work, in place of a title. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.msExcerpt.attributes"/>
-      <empty/>
-    </element>
-  </define>
   <define name="mishnahw_msContents">
     <element name="msContents">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript contents) describes the intellectual content of a manuscript or manuscript
@@ -8392,10 +7925,10 @@ exclusive of any rubric or colophon which might follow it.
         </oneOrMore>
         <group>
           <optional>
-            <ref name="mishnahw_summary"/>
+            <empty/>
           </optional>
           <optional>
-            <ref name="mishnahw_textLang"/>
+            <empty/>
           </optional>
           <optional>
             <ref name="mishnahw_titlePage"/>
@@ -8403,7 +7936,6 @@ exclusive of any rubric or colophon which might follow it.
           <zeroOrMore>
             <choice>
               <ref name="mishnahw_msItem"/>
-              <ref name="mishnahw_msItemStruct"/>
             </choice>
           </zeroOrMore>
         </group>
@@ -8421,6 +7953,77 @@ exclusive of any rubric or colophon which might follow it.
           </list>
         </attribute>
       </optional>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_msDesc">
+    <element name="msDesc">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript description) contains a description of a single identifiable
+manuscript or other text-bearing object. 10.1. Overview</a:documentation>
+      <group>
+        <ref name="mishnahw_msIdentifier"/>
+        <zeroOrMore>
+          <ref name="mishnahw_model.headLike"/>
+        </zeroOrMore>
+        <choice>
+          <oneOrMore>
+            <ref name="mishnahw_model.pLike"/>
+          </oneOrMore>
+          <group>
+            <optional>
+              <ref name="mishnahw_msContents"/>
+            </optional>
+            <optional>
+              <ref name="mishnahw_physDesc"/>
+            </optional>
+            <optional>
+              <empty/>
+            </optional>
+            <optional>
+              <empty/>
+            </optional>
+            <zeroOrMore>
+              <empty/>
+            </zeroOrMore>
+          </group>
+        </choice>
+      </group>
+      <ref name="mishnahw_att.global.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_msIdentifier">
+    <element name="msIdentifier">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript identifier) contains the information required to identify
+the  manuscript being described.  10.4. The Manuscript Identifier</a:documentation>
+      <group>
+        <group>
+          <ref name="mishnahw_model.placeNamePart_sequenceOptional"/>
+          <optional>
+            <empty/>
+          </optional>
+          <optional>
+            <ref name="mishnahw_repository"/>
+          </optional>
+          <zeroOrMore>
+            <empty/>
+          </zeroOrMore>
+          <optional>
+            <ref name="mishnahw_idno"/>
+          </optional>
+        </group>
+        <zeroOrMore>
+          <empty/>
+        </zeroOrMore>
+      </group>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="msIdentifier-constraint-msId_minimal">
+        <rule context="tei:msIdentifier">
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
+	    You must supply either a locator of some type or a
+	    name</report>
+        </rule>
+      </pattern>
+      <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
   </define>
@@ -8465,162 +8068,6 @@ item</a:documentation>
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_msItemStruct">
-    <element name="msItemStruct">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(structured manuscript item) contains a structured description for an
-  individual work or item within the intellectual content of a
-  manuscript or manuscript part. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <group>
-        <optional>
-          <ref name="mishnahw_locus"/>
-        </optional>
-        <choice>
-          <oneOrMore>
-            <ref name="mishnahw_model.pLike"/>
-          </oneOrMore>
-          <group>
-            <zeroOrMore>
-              <ref name="mishnahw_author"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_respStmt"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_title"/>
-            </zeroOrMore>
-            <optional>
-              <ref name="mishnahw_rubric"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_incipit"/>
-            </optional>
-            <zeroOrMore>
-              <ref name="mishnahw_msItemStruct"/>
-            </zeroOrMore>
-            <optional>
-              <ref name="mishnahw_explicit"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_finalRubric"/>
-            </optional>
-            <zeroOrMore>
-              <ref name="mishnahw_colophon"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_decoNote"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_listBibl"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_bibl"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_filiation"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="mishnahw_model.noteLike"/>
-            </zeroOrMore>
-            <optional>
-              <ref name="mishnahw_textLang"/>
-            </optional>
-          </group>
-        </choice>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.msExcerpt.attributes"/>
-      <optional>
-        <attribute name="class">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the text types or classifications applicable to this
-item</a:documentation>
-          <list>
-            <ref name="mishnahw_data.pointer"/>
-            <zeroOrMore>
-              <ref name="mishnahw_data.pointer"/>
-            </zeroOrMore>
-          </list>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_rubric">
-    <element name="rubric">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the text of any rubric or heading attached to a particular manuscript item, that is, a string of words through which a
-manuscript signals the beginning of a text division, often with an assertion as to its author and title, which is in some way set off from the text itself, usually in red ink, or by use of different size or type of script, or some other such visual device. 10.6.1. The msItem and msItemStruct Elements</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_summary">
-    <element name="summary">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an overview of the available
-  information concerning some aspect of an item (for example, its
-intellectual content, history, layout, typography etc.) as a
-complement or alternative to the  more detailed information  carried by
-  more specific elements.</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_textLang">
-    <element name="textLang">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(text language) in a manuscript description, describes
-  the languages and writing systems identified within the manuscript
-  being described.  10.6.6. Languages and Writing Systems</a:documentation>
-      <ref name="mishnahw_macro.phraseSeq"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <optional>
-        <attribute name="mainLang">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(main language) supplies a code which identifies the chief language used in the manuscript.</a:documentation>
-          <ref name="mishnahw_data.language"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="otherLangs">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(other languages) one or more codes identifying any other languages used in the manuscript.</a:documentation>
-          <list>
-            <zeroOrMore>
-              <ref name="mishnahw_data.language"/>
-            </zeroOrMore>
-          </list>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_att.msExcerpt.attributes">
-    <ref name="mishnahw_att.msExcerpt.attribute.defective"/>
-  </define>
-  <define name="mishnahw_att.msExcerpt.attribute.defective">
-    <optional>
-      <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="defective" a:defaultValue="false">
-        <a:documentation>indicates whether the passage being quoted is defective,
-      i.e. incomplete through loss or damage.</a:documentation>
-        <ref name="mishnahw_data.xTruthValue"/>
-      </attribute>
-    </optional>
-  </define>
-  <define name="mishnahw_physDesc">
-    <element name="physDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(physical description) contains a full physical description of a
-manuscript or manuscript part, optionally subdivided using more
-specialised elements from the model.physDescPart class. 10.7. Physical Description</a:documentation>
-      <group>
-        <zeroOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </zeroOrMore>
-        <group>
-          <ref name="mishnahw_model.physDescPart_sequenceOptional"/>
-        </group>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
   <define name="mishnahw_objectDesc">
     <element name="objectDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the physical
@@ -8650,6 +8097,41 @@ specialised elements from the model.physDescPart class. 10.7. Physical Descripti
       <empty/>
     </element>
   </define>
+  <define name="mishnahw_physDesc">
+    <element name="physDesc">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(physical description) contains a full physical description of a
+manuscript or manuscript part, optionally subdivided using more
+specialised elements from the model.physDescPart class. 10.7. Physical Description</a:documentation>
+      <group>
+        <zeroOrMore>
+          <ref name="mishnahw_model.pLike"/>
+        </zeroOrMore>
+        <group>
+          <ref name="mishnahw_model.physDescPart_sequenceOptional"/>
+        </group>
+      </group>
+      <ref name="mishnahw_att.global.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_repository">
+    <element name="repository">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a repository within which manuscripts are stored, possibly forming part of an institution. 10.4. The Manuscript Identifier</a:documentation>
+      <ref name="mishnahw_macro.xtext"/>
+      <ref name="mishnahw_att.global.attributes"/>
+      <ref name="mishnahw_att.naming.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_support">
+    <element name="support">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the materials
+etc. which make up the physical support for the written part of a manuscript. 10.7.1. Object Description</a:documentation>
+      <ref name="mishnahw_macro.specialPara"/>
+      <ref name="mishnahw_att.global.attributes"/>
+      <empty/>
+    </element>
+  </define>
   <define name="mishnahw_supportDesc">
     <element name="supportDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(support description) groups elements describing the physical support for the written part of a manuscript. 10.7.1. Object Description</a:documentation>
@@ -8665,13 +8147,13 @@ specialised elements from the model.physDescPart class. 10.7. Physical Descripti
             <ref name="mishnahw_extent"/>
           </optional>
           <zeroOrMore>
-            <ref name="mishnahw_foliation"/>
+            <empty/>
           </zeroOrMore>
           <optional>
-            <ref name="mishnahw_collation"/>
+            <empty/>
           </optional>
           <optional>
-            <ref name="mishnahw_condition"/>
+            <empty/>
           </optional>
         </group>
       </choice>
@@ -8695,524 +8177,14 @@ Suggested values include: 1] paper (paper) ; 2] parch(parchment) ; 3] mixed</a:d
       <empty/>
     </element>
   </define>
-  <define name="mishnahw_support">
-    <element name="support">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the materials
-etc. which make up the physical support for the written part of a manuscript. 10.7.1. Object Description</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
+  <define name="mishnahw_width">
+    <element name="width">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a measurement measured along the
+  axis parallel to the bottom of the written surface, i.e. 
+perpendicular to the spine of a book or codex.  10.3.4. Dimensions</a:documentation>
+      <ref name="mishnahw_macro.xtext"/>
       <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_collation">
-    <element name="collation">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of how the leaves or bifolia are physically
-arranged. 10.7.1. Object Description</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_foliation">
-    <element name="foliation">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the numbering system or systems used to 
-count the leaves or pages in a codex. 10.7.1.4. Foliation</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_condition">
-    <element name="condition">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the physical
-condition of the manuscript.  10.7.1.5. Condition</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_layoutDesc">
-    <element name="layoutDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(layout description) collects the set of layout descriptions applicable to a manuscript. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <oneOrMore>
-            <ref name="mishnahw_layout"/>
-          </oneOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_layout">
-    <element name="layout">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes how text is laid out on the
-  page, including information about any ruling, pricking, or other
-  evidence of page-preparation techniques. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <optional>
-        <attribute name="columns">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of columns per page</a:documentation>
-          <list>
-            <ref name="mishnahw_data.count"/>
-            <optional>
-              <ref name="mishnahw_data.count"/>
-            </optional>
-          </list>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="ruledLines">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of ruled lines per column</a:documentation>
-          <list>
-            <ref name="mishnahw_data.count"/>
-            <optional>
-              <ref name="mishnahw_data.count"/>
-            </optional>
-          </list>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="writtenLines">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of written lines per
-      column</a:documentation>
-          <list>
-            <ref name="mishnahw_data.count"/>
-            <optional>
-              <ref name="mishnahw_data.count"/>
-            </optional>
-          </list>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_handDesc">
-    <element name="handDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(description of hands) contains a description of all the different kinds of writing  used in a manuscript. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <oneOrMore>
-            <ref name="mishnahw_handNote"/>
-          </oneOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <optional>
-        <attribute name="hands">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the number of distinct hands identified within the manuscript</a:documentation>
-          <ref name="mishnahw_data.count"/>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_typeDesc">
-    <element name="typeDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the typefaces or other aspects of
-  the printing of an incunable or other printed source. 10.7.2.1. Writing</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <oneOrMore>
-            <ref name="mishnahw_typeNote"/>
-          </oneOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_scriptDesc">
-    <element name="scriptDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of the scripts used in a manuscript or similar source. 10.7.2.1. Writing</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <oneOrMore>
-            <ref name="mishnahw_scriptNote"/>
-          </oneOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_musicNotation">
-    <element name="musicNotation">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains description of type of musical notation. 10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_decoDesc">
-    <element name="decoDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(decoration description) contains a description of the decoration of a manuscript, either as a sequence of paragraphs, or as a sequence of topically organised decoNote elements. 10.7.3. Bindings, Seals, and Additional Material</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <oneOrMore>
-            <ref name="mishnahw_decoNote"/>
-          </oneOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_decoNote">
-    <element name="decoNote">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(note on decoration) contains a note describing either a
-decorative component of a manuscript, or a fairly homogenous class of
-such components. 10.7.3. Bindings, Seals, and Additional Material</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_additions">
-    <element name="additions">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of any significant additions found
-within a manuscript, such as marginalia or other annotations.  10.7.2. Writing, Decoration, and Other Notations</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_bindingDesc">
-    <element name="bindingDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(binding description) describes the present and former bindings of a manuscript, either
-as a series of paragraphs or as a series of distinct binding elements,
-one for each binding of the manuscript.  10.7.3.1. Binding Descriptions</a:documentation>
-      <choice>
-        <oneOrMore>
-          <choice>
-            <ref name="mishnahw_model.pLike"/>
-            <ref name="mishnahw_decoNote"/>
-            <ref name="mishnahw_condition"/>
-          </choice>
-        </oneOrMore>
-        <oneOrMore>
-          <ref name="mishnahw_binding"/>
-        </oneOrMore>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_binding">
-    <element name="binding">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of one binding, i.e. type of covering, boards,
-    etc. applied to a manuscript. 10.7.3.1. Binding Descriptions</a:documentation>
-      <oneOrMore>
-        <choice>
-          <ref name="mishnahw_model.pLike"/>
-          <ref name="mishnahw_condition"/>
-          <ref name="mishnahw_decoNote"/>
-        </choice>
-      </oneOrMore>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <optional>
-        <attribute name="contemporary">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies whether or not the binding is contemporary with the majority of its
-        contents</a:documentation>
-          <ref name="mishnahw_data.xTruthValue"/>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_sealDesc">
-    <element name="sealDesc">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(seal description) describes the seals or other external items attached to a manuscript, either
-as a series of paragraphs or as a series of distinct seal elements,
-possibly with additional decoNotes.  10.7.3.2. Seals</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <oneOrMore>
-          <choice>
-            <ref name="mishnahw_decoNote"/>
-            <ref name="mishnahw_seal"/>
-            <ref name="mishnahw_condition"/>
-          </choice>
-        </oneOrMore>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_seal">
-    <element name="seal">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a description of one seal or similar
-  attachment applied to a manuscript. 10.7.3.2. Seals</a:documentation>
-      <oneOrMore>
-        <choice>
-          <ref name="mishnahw_model.pLike"/>
-          <ref name="mishnahw_decoNote"/>
-        </choice>
-      </oneOrMore>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <optional>
-        <attribute name="contemporary">
-          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies whether or not the seal is contemporary with the
-      item to which it is affixed</a:documentation>
-          <ref name="mishnahw_data.xTruthValue"/>
-        </attribute>
-      </optional>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_accMat">
-    <element name="accMat">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(accompanying material) contains details of any significant additional
-material which may be closely associated with the manuscript being
-described, such as non-contemporaneous documents or fragments bound in
-with the manuscript at some earlier historical period. 10.7.3.3. Accompanying Material</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_history">
-    <element name="history">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> groups elements
-describing the full history of a manuscript or manuscript part. 10.8. History</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <optional>
-            <ref name="mishnahw_summary"/>
-          </optional>
-          <optional>
-            <ref name="mishnahw_origin"/>
-          </optional>
-          <zeroOrMore>
-            <ref name="mishnahw_provenance"/>
-          </zeroOrMore>
-          <optional>
-            <ref name="mishnahw_acquisition"/>
-          </optional>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_origin">
-    <element name="origin">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any descriptive or other information
-concerning the origin of  a manuscript or manuscript part.  10.8. History</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.editLike.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_provenance">
-    <element name="provenance">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any descriptive or other information
-concerning a single identifiable episode during the history of a manuscript
-or manuscript part, after its creation but before its acquisition.  10.8. History</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.responsibility.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_acquisition">
-    <element name="acquisition">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any descriptive or other information
-concerning the process by which a manuscript or manuscript part entered the holding
-institution.  10.8. History</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_additional">
-    <element name="additional">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups additional information, combining
-bibliographic information about a manuscript, or surrogate copies of
-it with  curatorial or administrative information.  10.9. Additional information</a:documentation>
-      <group>
-        <optional>
-          <ref name="mishnahw_adminInfo"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_surrogates"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_listBibl"/>
-        </optional>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_adminInfo">
-    <element name="adminInfo">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(administrative information) contains information about the present
-custody and availability of the manuscript, and also about the record
-description itself.  10.9.1. Administrative information</a:documentation>
-      <group>
-        <optional>
-          <ref name="mishnahw_recordHist"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_availability"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_custodialHist"/>
-        </optional>
-        <optional>
-          <ref name="mishnahw_model.noteLike"/>
-        </optional>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_recordHist">
-    <element name="recordHist">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(recorded history) provides information about the source and
-revision status of the parent manuscript description itself.  10.9.1. Administrative information</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <group>
-          <ref name="mishnahw_source"/>
-          <zeroOrMore>
-            <ref name="mishnahw_change"/>
-          </zeroOrMore>
-        </group>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_source">
-    <element name="source">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the original source for the information contained with a manuscript description.  10.9.1.1. Record History</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_custodialHist">
-    <element name="custodialHist">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(custodial history) contains a description of a manuscript's custodial history, either
-as running prose or as a series of dated custodial events.  10.9.1.2. Availability and Custodial History</a:documentation>
-      <choice>
-        <oneOrMore>
-          <ref name="mishnahw_model.pLike"/>
-        </oneOrMore>
-        <oneOrMore>
-          <ref name="mishnahw_custEvent"/>
-        </oneOrMore>
-      </choice>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_custEvent">
-    <element name="custEvent">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(custodial event) describes a single event during the custodial history of a manuscript. 10.9.1.2. Availability and Custodial History</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.datable.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_surrogates">
-    <element name="surrogates">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains information about any representations of the manuscript being described which
-may exist in the holding institution or elsewhere.  10.9. Additional information</a:documentation>
-      <ref name="mishnahw_macro.specialPara"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <empty/>
-    </element>
-  </define>
-  <define name="mishnahw_msPart">
-    <element name="msPart">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(manuscript part) contains information about an originally
-distinct manuscript or part of a manuscript, now forming part of a composite manuscript. 10.10. Manuscript Parts</a:documentation>
-      <group>
-        <choice>
-          <ref name="mishnahw_altIdentifier"/>
-          <ref name="mishnahw_msIdentifier"/>
-        </choice>
-        <zeroOrMore>
-          <ref name="mishnahw_model.headLike"/>
-        </zeroOrMore>
-        <choice>
-          <oneOrMore>
-            <ref name="mishnahw_model.pLike"/>
-          </oneOrMore>
-          <group>
-            <optional>
-              <ref name="mishnahw_msContents"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_physDesc"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_history"/>
-            </optional>
-            <optional>
-              <ref name="mishnahw_additional"/>
-            </optional>
-            <zeroOrMore>
-              <ref name="mishnahw_msPart"/>
-            </zeroOrMore>
-          </group>
-        </choice>
-      </group>
-      <ref name="mishnahw_att.global.attributes"/>
+      <ref name="mishnahw_att.dimensions.attributes"/>
       <empty/>
     </element>
   </define>
