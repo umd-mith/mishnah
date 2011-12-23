@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-23T12:40:21Z. 
+Schema generated from ODD source 2011-12-23T12:46:06Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -5668,16 +5668,16 @@ Licencing, etc.</a:documentation>
     <element name="encodingDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(encoding description) documents the relationship between an electronic text and the
 source or sources from which it was derived. 2.3. The Encoding Description 2.1.1. The TEI Header and its Components</a:documentation>
-      <zeroOrMore>
+      <optional>
         <ref name="mishnahw_editorialDecl"/>
-      </zeroOrMore>
+      </optional>
       <ref name="mishnahw_tagsDecl"/>
       <optional>
-        <ref name="mishnahw_refsDecl"/>
+        <group>
+          <ref name="mishnahw_refsDecl"/>
+          <ref name="mishnahw_appInfo"/>
+        </group>
       </optional>
-      <zeroOrMore>
-        <ref name="mishnahw_appInfo"/>
-      </zeroOrMore>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -6324,12 +6324,9 @@ represented within a text. 2.4.2. Language Usage 2.4. The Profile Description 15
   <define name="mishnahw_revisionDesc">
     <element name="revisionDesc">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(revision description) summarizes the revision history for a file. 2.5. The Revision Description 2.1.1. The TEI Header and its Components</a:documentation>
-      <choice>
-        <ref name="mishnahw_list"/>
-        <oneOrMore>
-          <ref name="mishnahw_change"/>
-        </oneOrMore>
-      </choice>
+      <oneOrMore>
+        <ref name="mishnahw_change"/>
+      </oneOrMore>
       <ref name="mishnahw_att.global.attributes"/>
       <ref name="mishnahw_att.docStatus.attributes"/>
       <empty/>
