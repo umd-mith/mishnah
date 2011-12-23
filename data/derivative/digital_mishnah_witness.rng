@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-22T20:51:39Z. 
+Schema generated from ODD source 2011-12-22T22:05:50Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -4390,7 +4390,7 @@ Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscr
       <empty/>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="ptr-constraint-ptrAtts">
         <rule context="tei:ptr">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target and @cRef">Only one of the
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@target and @cRef">Only one of the
 	attributes 'target' and 'cRef' may be supplied.</report>
         </rule>
       </pattern>
@@ -4420,7 +4420,7 @@ Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscr
       <ref name="mishnahw_macro.paraContent"/>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="ref-constraint-refAtts">
         <rule context="tei:ref">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target and @cRef">Only one of the
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@target and @cRef">Only one of the
 	attributes 'target' and 'cRef' may be supplied.</report>
         </rule>
       </pattern>
@@ -5170,13 +5170,13 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
       </optional>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="relatedItem-constraint-targetorcontent11">
         <rule context="tei:relatedItem">
-          <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target and count( child::* ) &gt; 0">If the 'target' attribute is used, the
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@target and count( child::* ) &gt; 0">If the 'target' attribute is used, the
         relatedItem element must be empty</sch:report>
         </rule>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="relatedItem-constraint-targetorcontent11">
         <rule context="tei:relatedItem">
-          <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target or child::*">A relatedItem element should have either a 'target' attribute
+          <sch:assert xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@target or child::*">A relatedItem element should have either a 'target' attribute
         or a child element to indicate the related bibliographic item</sch:assert>
         </rule>
       </pattern>
@@ -5510,6 +5510,51 @@ Licencing, etc. 2.2. The File Description</a:documentation>
       <oneOrMore>
         <ref name="mishnahw_model.publicationStmtPart"/>
       </oneOrMore>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter1">
+        <rule context="tei:publicationStmt">
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter2">
+        <rule context="tei:publicationStmt">
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:pubPlace/following-sibling::tei:address)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter3">
+        <rule context="tei:publicationStmt">
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:address/following-sibling::tei:idno)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter4">
+        <rule context="tei:publicationStmt">
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:idno/following-sibling::tei:availability)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+        </rule>
+      </pattern>
+      <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="publicationStmt-constraint-linter5">
+        <rule context="tei:publicationStmt">
+          <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(tei:availability/following-sibling::tei:date)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+        </rule>
+      </pattern>
       <ref name="mishnahw_att.global.attributes"/>
       <empty/>
     </element>
@@ -7622,19 +7667,19 @@ the space.</a:documentation>
       </zeroOrMore>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="join-constraint-joinTargets1">
         <rule context="tei:join">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="@target and @targets">You may not supply both 
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@target and @targets">You may not supply both 
 	@target and @targets</report>
         </rule>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="join-constraint-joinTargets2">
         <rule context="tei:join">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="not(@target) and not(@targets)">You must
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="not(@target) and not(@targets)">You must
 	supply either @target or @targets</report>
         </rule>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="join-constraint-joinTargets3">
         <rule context="tei:join">
-          <assert xmlns:rng="http://relaxng.org/ns/structure/1.0" test="contains(@target,' ')">You must supply at least two
+          <assert xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="contains(@target,' ')">You must supply at least two
 values for @target</assert>
         </rule>
       </pattern>
@@ -7734,21 +7779,21 @@ specification of some sort. 10.3.4. Dimensions</a:documentation>
       </group>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="dimensions-constraint-duplicateDim1">
         <rule context="tei:dimensions">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="count(tei:width)&gt; 1">
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="count(tei:width)&gt; 1">
 	Width element may appear once only
       </report>
         </rule>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="dimensions-constraint-duplicateDim2">
         <rule context="tei:dimensions">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="count(tei:height)&gt; 1">
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="count(tei:height)&gt; 1">
 	Height element may appear once only
       </report>
         </rule>
       </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="dimensions-constraint-duplicateDim3">
         <rule context="tei:dimensions">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="count(tei:depth)&gt; 1">
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="count(tei:depth)&gt; 1">
 	Depth element may appear once only
       </report>
         </rule>
@@ -8018,7 +8063,7 @@ the  manuscript being described.  10.4. The Manuscript Identifier</a:documentati
       </group>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="msIdentifier-constraint-msId_minimal">
         <rule context="tei:msIdentifier">
-          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
+          <report xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
 	    You must supply either a locator of some type or a
 	    name</report>
         </rule>

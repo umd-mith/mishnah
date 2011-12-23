@@ -23,6 +23,35 @@
         or a child element to indicate the related bibliographic item</assert>
       </rule>
    </pattern>
+   <pattern id="publicationStmt-constraint-linter">
+      <rule context="tei:publicationStmt">
+         <report test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:pubPlace/following-sibling::tei:address)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:address/following-sibling::tei:idno)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:idno/following-sibling::tei:availability)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:availability/following-sibling::tei:date)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+      </rule>
+   </pattern>
    <pattern id="join-constraint-joinTargets1">
       <rule context="tei:join">
          <report test="@target and @targets">You may not supply both 

@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-22T20:51:39Z. 
+# Schema generated from ODD source 2011-12-22T22:05:50Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -3224,7 +3224,117 @@ mishnahw_publicationStmt =
   ##     text.  2.2.4. Publication, Distribution,
   ## Licencing, etc. 2.2. The File Description
   element publicationStmt {
-    mishnahw_model.publicationStmtPart+,
+    (mishnahw_model.publicationStmtPart+)
+    >> sch:pattern [
+         id = "publicationStmt-constraint-linter1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:publicationStmt"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(tei:publisher/following-sibling::tei:pubPlace)"
+             "It is\x{a}" ~
+             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "                                    publication place, address, identifier, availability, and date\x{a}" ~
+             "                                    be given in that order, following the name of the publisher,\x{a}" ~
+             "                                    distributor, or authority concerned"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "publicationStmt-constraint-linter2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:publicationStmt"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(tei:pubPlace/following-sibling::tei:address)"
+             "It is\x{a}" ~
+             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "                                    publication place, address, identifier, availability, and date\x{a}" ~
+             "                                    be given in that order, following the name of the publisher,\x{a}" ~
+             "                                    distributor, or authority concerned"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "publicationStmt-constraint-linter3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:publicationStmt"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(tei:address/following-sibling::tei:idno)"
+             "It is\x{a}" ~
+             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "                                    publication place, address, identifier, availability, and date\x{a}" ~
+             "                                    be given in that order, following the name of the publisher,\x{a}" ~
+             "                                    distributor, or authority concerned"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "publicationStmt-constraint-linter4"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:publicationStmt"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(tei:idno/following-sibling::tei:availability)"
+             "It is\x{a}" ~
+             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "                                    publication place, address, identifier, availability, and date\x{a}" ~
+             "                                    be given in that order, following the name of the publisher,\x{a}" ~
+             "                                    distributor, or authority concerned"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "publicationStmt-constraint-linter5"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:publicationStmt"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(tei:availability/following-sibling::tei:date)"
+             "It is\x{a}" ~
+             "                                    a requirement for TEI conformance that information about\x{a}" ~
+             "                                    publication place, address, identifier, availability, and date\x{a}" ~
+             "                                    be given in that order, following the name of the publisher,\x{a}" ~
+             "                                    distributor, or authority concerned"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
     mishnahw_att.global.attributes,
     empty
   }
