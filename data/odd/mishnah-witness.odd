@@ -47,7 +47,7 @@
 
                     <!-- Required modules, these need to be restricted further to get rid of unused elements -->
                     <moduleRef key="tei"/>
-                    <moduleRef key="header"/>
+                    <moduleRef key="header" except="authority distributor"/>
                     <moduleRef key="core"/>
                     <moduleRef key="textstructure"/>
 
@@ -76,6 +76,52 @@
                     <!-- Begin adjusting content models of specific elements -->
 
                     <!-- Make encodingDesc mandatory, profileDesc optional -->
+                    <elementSpec module="header" ident="teiHeader" mode="change">
+                        <content>
+                            <rng:group>
+                                <rng:ref name="fileDesc"/>
+                                <rng:ref name="encodingDesc"/>
+                                <!--<rng:zeroOrMore>
+                                    <rng:ref name="profileDesc"/>
+                                </rng:zeroOrMore>-->
+                                <rng:ref name="revisionDesc"/>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                    <elementSpec module="header" ident="fileDesc" mode="change">
+                        <content>
+                            <rng:group>
+                                <rng:ref name="titleStmt"/>
+                                <rng:optional>
+                                    <rng:ref name="editionStmt"/>
+                                    <!-- Leaving this for future stages of the project -->
+                                </rng:optional>
+                                <rng:ref name="publicationStmt"/>
+                                <!--<rng:optional>
+                                    <rng:ref name="seriesStmt"/>
+                                </rng:optional>-->
+                                <rng:optional>
+                                    <rng:ref name="notesStmt"/>
+                                </rng:optional>
+                            </rng:group>
+                            <rng:oneOrMore>
+                                <rng:ref name="sourceDesc"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
+
+                    <elementSpec module="header" ident="titleStmt" mode="change">
+                        <content>
+                            <rng:oneOrMore>
+                                <rng:ref name="title"/>
+                            </rng:oneOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.respLike"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
+
                     <elementSpec module="header" ident="publicationStmt" mode="change">
                         <content>
                             <rng:oneOrMore>
@@ -90,23 +136,23 @@
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:pubPlace/following-sibling::tei:address)">It is
-                                    a requirement for TEI conformance that information about
+                                <sch:report test="not(tei:pubPlace/following-sibling::tei:address)"
+                                    >It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:address/following-sibling::tei:idno)">It is
-                                    a requirement for TEI conformance that information about
+                                <sch:report test="not(tei:address/following-sibling::tei:idno)">It
+                                    is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:idno/following-sibling::tei:availability)">It is
-                                    a requirement for TEI conformance that information about
+                                <sch:report test="not(tei:idno/following-sibling::tei:availability)"
+                                    >It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:availability/following-sibling::tei:date)">It is
-                                    a requirement for TEI conformance that information about
+                                <sch:report test="not(tei:availability/following-sibling::tei:date)"
+                                    >It is a requirement for TEI conformance that information about
                                     publication place, address, identifier, availability, and date
                                     be given in that order, following the name of the publisher,
                                     distributor, or authority concerned</sch:report>
@@ -114,17 +160,15 @@
                         </constraintSpec>
                     </elementSpec>
 
-                    <elementSpec module="header" ident="teiHeader" mode="change">
-                        <content>
-                            <rng:group>
-                                <rng:ref name="fileDesc"/>
-                                <rng:ref name="encodingDesc"/>
-                                <rng:zeroOrMore>
-                                    <rng:ref name="profileDesc"/>
-                                </rng:zeroOrMore>
-                                <rng:ref name="revisionDesc"/>
-                            </rng:group>
-                        </content>
+                    <elementSpec module="header" ident="notesStmt" mode="change">
+                        <constraintSpec ident="linter" scheme="isoschematron">
+                            <constraint>
+                                <sch:assert test="not(tei:note/tei:p)">The notesStmt is provided as
+                                    a convenience to permit a prose description of the physical
+                                    manuscript. Please also complete the structured elements for
+                                    manuscript description within sourceDesc </sch:assert>
+                            </constraint>
+                        </constraintSpec>
                     </elementSpec>
 
                     <elementSpec module="header" ident="sourceDesc" mode="change">
