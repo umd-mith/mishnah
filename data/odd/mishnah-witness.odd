@@ -55,7 +55,8 @@
                         except="addSpan damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
                     <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
                     <moduleRef key="linking" include="ab anchor seg join joinGrp"/>
-                    <moduleRef key="msdescription"/> <!-- This probably needs to be thinned down later -->
+                    <moduleRef key="msdescription"
+                        include="dim dimensions handDesc height layout layoutDesc locus locusGrp msContents msDesc msIdentifier msItem objectDesc origin physDesc repository source support supportDesc width"/>
                     <moduleRef key="namesdates" include="placeName settlement region"/>
 
                     <!-- Including a few elements from modules not otherwise required -->
@@ -93,7 +94,7 @@
                             </rng:group>
                         </content>
                     </elementSpec>
-                    
+
                     <elementSpec module="header" ident="sourceDesc" mode="change">
                         <content>
                             <rng:oneOrMore>
@@ -103,7 +104,7 @@
                     </elementSpec>
 
                     <!-- Renaming numbered divs to have meaningful names -->
-                   <!-- <elementSpec module="textstructure" ident="div1" mode="change">
+                    <!-- <elementSpec module="textstructure" ident="div1" mode="change">
                         <altIdent>order</altIdent>
                     </elementSpec>
                     <elementSpec module="textstructure" ident="div2" mode="change">
@@ -133,9 +134,10 @@
                             <rng:zeroOrMore>
                                 <rng:choice>
                                     <rng:text/>
-                                    <rng:ref name="model.pPart.editorial"/><!-- allows choice, abbr, expan, ex, am, subst -->
+                                    <rng:ref name="model.pPart.editorial"/>
+                                    <!-- allows choice, abbr, expan, ex, am, subst -->
                                     <rng:ref name="c"/>
-                                    <rng:ref name="del"/>                                   
+                                    <rng:ref name="del"/>
                                     <rng:ref name="gap"/>
                                     <rng:ref name="lb"/>
                                     <rng:ref name="note"/>
