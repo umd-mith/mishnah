@@ -182,16 +182,26 @@
                     
                     <elementSpec module="header" ident="encodingDesc" mode="change">
                         <content>
-                            <rng:zeroOrMore>
+                            <rng:optional>
                                     <rng:ref name="editorialDecl"/>
-                            </rng:zeroOrMore>
+                            </rng:optional>
                             <rng:ref name="tagsDecl"/>
                             <rng:optional>
-                                    <rng:ref name="refsDecl"/>
+                                <rng:choice>
+                                    <rng:group>
+                                        <rng:ref name="refsDecl"/>
+                                        <rng:ref name="appInfo"/>
+                                    </rng:group>
+                                </rng:choice>
                             </rng:optional>
-                            <rng:zeroOrMore>
-                                <rng:ref name="appInfo"/>
-                            </rng:zeroOrMore>
+                        </content>
+                    </elementSpec>
+                    
+                    <elementSpec module="header" ident="revisionDesc" mode="change">
+                        <content>
+                            <rng:oneOrMore>
+                                <rng:ref name="change"/>
+                            </rng:oneOrMore>
                         </content>
                     </elementSpec>
                     <!-- end: Modification of teiHeader components -->
