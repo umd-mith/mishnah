@@ -23,6 +23,24 @@
         or a child element to indicate the related bibliographic item</assert>
       </rule>
    </pattern>
+   <pattern id="join-constraint-joinTargets1">
+      <rule context="tei:join">
+         <report test="@target and @targets">You may not supply both 
+	@target and @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="join-constraint-joinTargets2">
+      <rule context="tei:join">
+         <report test="not(@target) and not(@targets)">You must
+	supply either @target or @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="join-constraint-joinTargets3">
+      <rule context="tei:join">
+         <assert test="contains(@target,' ')">You must supply at least two
+values for @target</assert>
+      </rule>
+   </pattern>
    <pattern id="dimensions-constraint-duplicateDim">
       <rule context="tei:dimensions">
          <report test="count(tei:width)&gt; 1">

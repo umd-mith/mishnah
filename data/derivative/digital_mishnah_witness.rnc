@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-22T20:14:52Z. 
+# Schema generated from ODD source 2011-12-22T20:18:34Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -746,6 +746,31 @@ mishnahw_att.pointing.attribute.evaluate =
       ##	  pointer's target.
       "none"
   }?
+mishnahw_att.pointing.group.attributes =
+  mishnahw_att.pointing.attributes,
+  mishnahw_att.typed.attributes,
+  mishnahw_att.pointing.group.attribute.domains,
+  mishnahw_att.pointing.group.attribute.targFunc
+mishnahw_att.pointing.group.attribute.domains =
+  
+  ## optionally specifies the identifiers of the elements
+  ##       within which all elements indicated by the contents of this
+  ##       element lie.
+  attribute domains {
+    list {
+      mishnahw_data.pointer,
+      mishnahw_data.pointer,
+      mishnahw_data.pointer*
+    }
+  }?
+mishnahw_att.pointing.group.attribute.targFunc =
+  
+  ## (target function) describes the function of each of the values of the
+  ##       target attribute of the enclosed link,
+  ##       join, or alt tags.
+  attribute targFunc {
+    list { mishnahw_data.word, mishnahw_data.word, mishnahw_data.word* }
+  }?
 mishnahw_att.segLike.attributes =
   mishnahw_att.segLike.attribute.function,
   mishnahw_att.segLike.attribute.part
@@ -1221,12 +1246,18 @@ mishnahw_model.lPart_sequence = empty
 mishnahw_model.lPart_sequenceOptional = empty
 mishnahw_model.lPart_sequenceOptionalRepeatable = empty
 mishnahw_model.lPart_sequenceRepeatable = notAllowed
-mishnahw_model.global.meta = mishnahw_index
-mishnahw_model.global.meta_alternation = mishnahw_index
-mishnahw_model.global.meta_sequence = mishnahw_index
-mishnahw_model.global.meta_sequenceOptional = mishnahw_index?
-mishnahw_model.global.meta_sequenceOptionalRepeatable = mishnahw_index*
-mishnahw_model.global.meta_sequenceRepeatable = mishnahw_index+
+mishnahw_model.global.meta =
+  mishnahw_index | mishnahw_join | mishnahw_joinGrp
+mishnahw_model.global.meta_alternation =
+  mishnahw_index | mishnahw_join | mishnahw_joinGrp
+mishnahw_model.global.meta_sequence =
+  mishnahw_index, mishnahw_join, mishnahw_joinGrp
+mishnahw_model.global.meta_sequenceOptional =
+  mishnahw_index?, mishnahw_join?, mishnahw_joinGrp?
+mishnahw_model.global.meta_sequenceOptionalRepeatable =
+  mishnahw_index*, mishnahw_join*, mishnahw_joinGrp*
+mishnahw_model.global.meta_sequenceRepeatable =
+  mishnahw_index+, mishnahw_join+, mishnahw_joinGrp+
 mishnahw_model.milestoneLike =
   mishnahw_milestone
   | mishnahw_pb
@@ -4676,6 +4707,108 @@ mishnahw_seg =
     mishnahw_att.segLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.responsibility.attributes,
+    empty
+  }
+mishnahw_join =
+  
+  ## identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. 16.7. Aggregation
+  element join {
+    (mishnahw_model.glossLike*)
+    >> sch:pattern [
+         id = "join-constraint-joinTargets1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:join"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @targets"
+             "You may not supply both \x{a}" ~
+             "	@target and @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "join-constraint-joinTargets2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:join"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(@target) and not(@targets)"
+             "You must\x{a}" ~
+             "	supply either @target or @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "join-constraint-joinTargets3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:join"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "contains(@target,' ')"
+             "You must supply at least two\x{a}" ~
+             "values for @target"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahw_att.global.attributes,
+    mishnahw_att.pointing.attributes,
+    mishnahw_att.typed.attributes,
+    
+    ## specifies the identifiers of the elements or passages to be joined into a virtual element.
+    attribute targets {
+      list {
+        mishnahw_data.pointer,
+        mishnahw_data.pointer,
+        mishnahw_data.pointer*
+      }
+    }?,
+    
+    ## specifies the name of an element which this aggregation may be understood to represent.
+    attribute result { mishnahw_data.name }?,
+    
+    ## indicates whether the targets to be joined include the entire element indicated (the entire subtree including its root), or just the children of the target (the branches of the subtree).
+    [ a:defaultValue = "root" ]
+    attribute scope {
+      
+      ## the rooted subtrees indicated by the targets attribute are joined, each subtree become a child of the virtual element created by the join
+      "root"
+      | 
+        ## the children of the subtrees indicated by the targets attribute become the children of the virtual element (i.e. the roots of the subtrees are discarded)
+        "branches"
+    }?,
+    empty
+  }
+mishnahw_joinGrp =
+  
+  ## (join group) groups a collection of join elements and possibly pointers. 16.7. Aggregation
+  element joinGrp {
+    (mishnahw_model.glossLike*, (mishnahw_join | mishnahw_ptr)+),
+    mishnahw_att.global.attributes,
+    mishnahw_att.pointing.group.attributes,
+    
+    ## describes the result of the joins gathered in this collection.
+    attribute result { mishnahw_data.name }?,
     empty
   }
 mishnahw_msDesc =
