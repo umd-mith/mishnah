@@ -141,12 +141,26 @@
                 </xsl:if>
             </xsl:when>
             <xsl:when test="not(./@reason='Maimonides')">
-                <span class="missing"><xsl:text>[</xsl:text>
-                    <xsl:call-template name="add-char">
+                <xsl:choose>
+                    <!-- Need to fix last <gap> of div -->
+                    <xsl:when test="./following::*[1]/self::tei:lb "><span class="missing">[</span></xsl:when>
+                    <xsl:when test="./preceding::*[1]/self::tei:lb"><span class="missing"><xsl:call-template name="add-char">
                         <xsl:with-param name="howMany" select="./@extent"/>
                         <xsl:with-param name="char" select="'&#160;'"/>
-                    </xsl:call-template><xsl:text>]</xsl:text>
-                </span>
+                    </xsl:call-template>]</span></xsl:when>
+                    <xsl:when test=".[following::tei:lb[1]/@n='1'] and not(./preceding::*[1]/text())"><span class="missing"><xsl:call-template name="add-char">
+                        <xsl:with-param name="howMany" select="./@extent"/>
+                        <xsl:with-param name="char" select="'&#160;'"/>
+                    </xsl:call-template>]</span></xsl:when>
+                    <xsl:otherwise>
+                    <span class="missing"><xsl:text>[</xsl:text>
+                        <xsl:call-template name="add-char">
+                            <xsl:with-param name="howMany" select="./@extent"/>
+                            <xsl:with-param name="char" select="'&#160;'"/>
+                        </xsl:call-template><xsl:text>]</xsl:text>
+                    </span></xsl:otherwise>
+                </xsl:choose>
+               
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -272,10 +286,12 @@
             
         </xsl:variable>
         <span class="unclear">
+            <!-- replacement string of thin-space/period/thin-space -->
+            <xsl:variable name="dots"><xsl:text> . </xsl:text></xsl:variable>
             <xsl:choose>
                 <xsl:when test="./text()">
                     <!-- presents text; replaces question marks with dots -->
-                    <xsl:value-of select="translate(./text(),'?','.')"/>
+                    <xsl:value-of select="translate(./text(),'?',$dots)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates/>
@@ -291,7 +307,7 @@
                         <xsl:with-param name="howMany">
                             <xsl:value-of select="number(./@extent) - $adj-length"/>
                         </xsl:with-param>
-                        <xsl:with-param name="char">.</xsl:with-param>
+                        <xsl:with-param name="char"><xsl:value-of select="$dots"></xsl:value-of></xsl:with-param>
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
