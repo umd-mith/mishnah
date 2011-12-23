@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="brown_odds.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="brown_odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -81,7 +82,38 @@
                                 <rng:ref name="model.publicationStmtPart"/>
                             </rng:oneOrMore>
                         </content>
+                        <constraintSpec ident="linter" scheme="isoschematron">
+                            <constraint>
+                                <sch:report
+                                    test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+                                <sch:report test="not(tei:pubPlace/following-sibling::tei:address)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+                                <sch:report test="not(tei:address/following-sibling::tei:idno)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+                                <sch:report test="not(tei:idno/following-sibling::tei:availability)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+                                <sch:report test="not(tei:availability/following-sibling::tei:date)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</sch:report>
+                            </constraint>
+                        </constraintSpec>
                     </elementSpec>
+
                     <elementSpec module="header" ident="teiHeader" mode="change">
                         <content>
                             <rng:group>
