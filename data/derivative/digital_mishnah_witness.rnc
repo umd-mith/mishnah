@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-22T19:15:50Z. 
+# Schema generated from ODD source 2011-12-22T20:06:07Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -4466,7 +4466,12 @@ mishnahw_damage =
   
   ## contains an area of damage to the text witness. 11.5.1. Damage, Illegibility, and Supplied Text
   element damage {
-    (mishnahw_choice | text | mishnahw_unclear | mishnahw_gap)*,
+    (text
+     | mishnahw_model.pPart.editorial
+     | mishnahw_del
+     | mishnahw_gap
+     | mishnahw_note
+     | mishnahw_unclear)*,
     mishnahw_att.global.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.damaged.attributes,
