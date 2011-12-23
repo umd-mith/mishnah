@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-21T13:37:33Z. 
+# Schema generated from ODD source 2011-12-22T19:15:50Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -1084,17 +1084,41 @@ mishnahw_model.pPart.msdesc_sequenceRepeatable =
   mishnahw_stamp+,
   mishnahw_watermark+
 mishnahw_model.pPart.editorial =
-  mishnahw_choice | mishnahw_abbr | mishnahw_expan | mishnahw_subst
+  mishnahw_choice
+  | mishnahw_abbr
+  | mishnahw_expan
+  | mishnahw_am
+  | mishnahw_subst
 mishnahw_model.pPart.editorial_alternation =
-  mishnahw_choice | mishnahw_abbr | mishnahw_expan | mishnahw_subst
+  mishnahw_choice
+  | mishnahw_abbr
+  | mishnahw_expan
+  | mishnahw_am
+  | mishnahw_subst
 mishnahw_model.pPart.editorial_sequence =
-  mishnahw_choice, mishnahw_abbr, mishnahw_expan, mishnahw_subst
+  mishnahw_choice,
+  mishnahw_abbr,
+  mishnahw_expan,
+  mishnahw_am,
+  mishnahw_subst
 mishnahw_model.pPart.editorial_sequenceOptional =
-  mishnahw_choice?, mishnahw_abbr?, mishnahw_expan?, mishnahw_subst?
+  mishnahw_choice?,
+  mishnahw_abbr?,
+  mishnahw_expan?,
+  mishnahw_am?,
+  mishnahw_subst?
 mishnahw_model.pPart.editorial_sequenceOptionalRepeatable =
-  mishnahw_choice*, mishnahw_abbr*, mishnahw_expan*, mishnahw_subst*
+  mishnahw_choice*,
+  mishnahw_abbr*,
+  mishnahw_expan*,
+  mishnahw_am*,
+  mishnahw_subst*
 mishnahw_model.pPart.editorial_sequenceRepeatable =
-  mishnahw_choice+, mishnahw_abbr+, mishnahw_expan+, mishnahw_subst+
+  mishnahw_choice+,
+  mishnahw_abbr+,
+  mishnahw_expan+,
+  mishnahw_am+,
+  mishnahw_subst+
 mishnahw_model.pPart.transcriptional =
   mishnahw_sic
   | mishnahw_corr
@@ -1662,6 +1686,7 @@ mishnahw_model.choicePart =
   | mishnahw_unclear
   | mishnahw_abbr
   | mishnahw_expan
+  | mishnahw_am
   | mishnahw_seg
 mishnahw_model.imprintPart =
   mishnahw_publisher
@@ -4445,6 +4470,19 @@ mishnahw_damage =
     mishnahw_att.global.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.damaged.attributes,
+    empty
+  }
+mishnahw_am =
+  
+  ## (abbreviation marker) contains a sequence of letters or signs present in an
+  ##   abbreviation which are omitted or replaced in the expanded form of
+  ##   the abbreviation. 11.3.2. Abbreviation and Expansion
+  element am {
+    (text
+     | mishnahw_model.gLike
+     | mishnahw_model.pPart.transcriptional)*,
+    mishnahw_att.global.attributes,
+    mishnahw_att.editLike.attributes,
     empty
   }
 mishnahw_restore =

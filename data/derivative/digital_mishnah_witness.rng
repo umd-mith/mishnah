@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-21T13:37:33Z. 
+Schema generated from ODD source 2011-12-22T19:15:50Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -1849,6 +1849,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_choice"/>
       <ref name="mishnahw_abbr"/>
       <ref name="mishnahw_expan"/>
+      <ref name="mishnahw_am"/>
       <ref name="mishnahw_subst"/>
     </choice>
   </define>
@@ -1857,6 +1858,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_choice"/>
       <ref name="mishnahw_abbr"/>
       <ref name="mishnahw_expan"/>
+      <ref name="mishnahw_am"/>
       <ref name="mishnahw_subst"/>
     </choice>
   </define>
@@ -1864,6 +1866,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     <ref name="mishnahw_choice"/>
     <ref name="mishnahw_abbr"/>
     <ref name="mishnahw_expan"/>
+    <ref name="mishnahw_am"/>
     <ref name="mishnahw_subst"/>
   </define>
   <define name="mishnahw_model.pPart.editorial_sequenceOptional">
@@ -1875,6 +1878,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </optional>
     <optional>
       <ref name="mishnahw_expan"/>
+    </optional>
+    <optional>
+      <ref name="mishnahw_am"/>
     </optional>
     <optional>
       <ref name="mishnahw_subst"/>
@@ -1891,6 +1897,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_expan"/>
     </zeroOrMore>
     <zeroOrMore>
+      <ref name="mishnahw_am"/>
+    </zeroOrMore>
+    <zeroOrMore>
       <ref name="mishnahw_subst"/>
     </zeroOrMore>
   </define>
@@ -1903,6 +1912,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_expan"/>
+    </oneOrMore>
+    <oneOrMore>
+      <ref name="mishnahw_am"/>
     </oneOrMore>
     <oneOrMore>
       <ref name="mishnahw_subst"/>
@@ -3371,6 +3383,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahw_unclear"/>
       <ref name="mishnahw_abbr"/>
       <ref name="mishnahw_expan"/>
+      <ref name="mishnahw_am"/>
       <ref name="mishnahw_seg"/>
     </choice>
   </define>
@@ -7499,6 +7512,23 @@ found  at the start of a document, before the main body. 4.6. Title Pages 4. Def
       <ref name="mishnahw_att.global.attributes"/>
       <ref name="mishnahw_att.typed.attributes"/>
       <ref name="mishnahw_att.damaged.attributes"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="mishnahw_am">
+    <element name="am">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(abbreviation marker) contains a sequence of letters or signs present in an
+  abbreviation which are omitted or replaced in the expanded form of
+  the abbreviation. 11.3.2. Abbreviation and Expansion</a:documentation>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="mishnahw_model.gLike"/>
+          <ref name="mishnahw_model.pPart.transcriptional"/>
+        </choice>
+      </zeroOrMore>
+      <ref name="mishnahw_att.global.attributes"/>
+      <ref name="mishnahw_att.editLike.attributes"/>
       <empty/>
     </element>
   </define>
