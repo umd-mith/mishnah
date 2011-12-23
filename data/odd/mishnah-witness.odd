@@ -55,6 +55,8 @@
                         except="addSpan damageSpan delSpan ex facsimile fw gb handNotes handShift surface zone"/>
                     <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
                     <moduleRef key="linking" include="ab anchor seg"/>
+                    <moduleRef key="msdescription"/> <!-- This probably needs to be thinned down later -->
+                    <moduleRef key="namesdates" include="placeName settlement region"/>
 
                     <!-- Including a few elements from modules not otherwise required -->
                     <elementRef key="persName"/>
@@ -72,6 +74,13 @@
                     <!-- Begin adjusting content models of specific elements -->
 
                     <!-- Make encodingDesc mandatory, profileDesc optional -->
+                    <elementSpec module="header" ident="publicationStmt" mode="change">
+                        <content>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.publicationStmtPart"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
                     <elementSpec module="header" ident="teiHeader" mode="change">
                         <content>
                             <rng:group>
@@ -84,9 +93,17 @@
                             </rng:group>
                         </content>
                     </elementSpec>
+                    
+                    <elementSpec module="header" ident="sourceDesc" mode="change">
+                        <content>
+                            <rng:oneOrMore>
+                                <rng:ref name="msDesc"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
 
                     <!-- Renaming numbered divs to have meaningful names -->
-                    <elementSpec module="textstructure" ident="div1" mode="change">
+                   <!-- <elementSpec module="textstructure" ident="div1" mode="change">
                         <altIdent>order</altIdent>
                     </elementSpec>
                     <elementSpec module="textstructure" ident="div2" mode="change">
@@ -97,7 +114,7 @@
                     </elementSpec>
                     <elementSpec module="linking" ident="ab" mode="change">
                         <altIdent>mishnah</altIdent>
-                    </elementSpec>
+                        </elementSpec>-->
 
                     <elementSpec module="core" ident="gap" mode="change">
                         <attList>
