@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2011-12-23T12:46:06Z. 
+Schema generated from ODD source 2011-12-24T11:57:03Z. 
 Edition: 1.9.1. Last updated on March 5th 2011.
 Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 
@@ -6744,7 +6744,18 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
           </zeroOrMore>
         </optional>
       </group>
-      <ref name="mishnahw_att.global.attributes"/>
+      <attribute name="xml:id">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+        <data type="ID"/>
+      </attribute>
+      <ref name="mishnahw_att.global.attribute.n"/>
+      <ref name="mishnahw_att.global.attribute.xmllang"/>
+      <ref name="mishnahw_att.global.attribute.rend"/>
+      <ref name="mishnahw_att.global.attribute.rendition"/>
+      <ref name="mishnahw_att.global.attribute.xmlbase"/>
+      <ref name="mishnahw_att.global.attribute.xmlspace"/>
+      <ref name="mishnahw_att.global.linking.attributes"/>
+      <ref name="mishnahw_att.global.facs.attributes"/>
       <ref name="mishnahw_att.divLike.attributes"/>
       <ref name="mishnahw_att.typed.attributes"/>
       <ref name="mishnahw_att.declaring.attributes"/>
@@ -6803,7 +6814,18 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
           </zeroOrMore>
         </optional>
       </group>
-      <ref name="mishnahw_att.global.attributes"/>
+      <attribute name="xml:id">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+        <data type="ID"/>
+      </attribute>
+      <ref name="mishnahw_att.global.attribute.n"/>
+      <ref name="mishnahw_att.global.attribute.xmllang"/>
+      <ref name="mishnahw_att.global.attribute.rend"/>
+      <ref name="mishnahw_att.global.attribute.rendition"/>
+      <ref name="mishnahw_att.global.attribute.xmlbase"/>
+      <ref name="mishnahw_att.global.attribute.xmlspace"/>
+      <ref name="mishnahw_att.global.linking.attributes"/>
+      <ref name="mishnahw_att.global.facs.attributes"/>
       <ref name="mishnahw_att.divLike.attributes"/>
       <ref name="mishnahw_att.typed.attributes"/>
       <ref name="mishnahw_att.declaring.attributes"/>
@@ -6861,7 +6883,18 @@ teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text</
           </zeroOrMore>
         </optional>
       </group>
-      <ref name="mishnahw_att.global.attributes"/>
+      <attribute name="xml:id">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+        <data type="ID"/>
+      </attribute>
+      <ref name="mishnahw_att.global.attribute.n"/>
+      <ref name="mishnahw_att.global.attribute.xmllang"/>
+      <ref name="mishnahw_att.global.attribute.rend"/>
+      <ref name="mishnahw_att.global.attribute.rendition"/>
+      <ref name="mishnahw_att.global.attribute.xmlbase"/>
+      <ref name="mishnahw_att.global.attribute.xmlspace"/>
+      <ref name="mishnahw_att.global.linking.attributes"/>
+      <ref name="mishnahw_att.global.facs.attributes"/>
       <ref name="mishnahw_att.divLike.attributes"/>
       <ref name="mishnahw_att.typed.attributes"/>
       <ref name="mishnahw_att.declaring.attributes"/>
@@ -7543,9 +7576,6 @@ the space.</a:documentation>
     <element name="ab">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors</a:documentation>
       <ref name="mishnahw_macro.paraContent"/>
-      <ref name="mishnahw_att.global.attributes"/>
-      <ref name="mishnahw_att.typed.attributes"/>
-      <ref name="mishnahw_att.declaring.attributes"/>
       <optional>
         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part" a:defaultValue="N">
           <a:documentation>specifies whether or not the block is complete. </a:documentation>
@@ -7563,6 +7593,20 @@ the space.</a:documentation>
           </choice>
         </attribute>
       </optional>
+      <attribute name="xml:id">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+        <data type="ID"/>
+      </attribute>
+      <ref name="mishnahw_att.global.attribute.n"/>
+      <ref name="mishnahw_att.global.attribute.xmllang"/>
+      <ref name="mishnahw_att.global.attribute.rend"/>
+      <ref name="mishnahw_att.global.attribute.rendition"/>
+      <ref name="mishnahw_att.global.attribute.xmlbase"/>
+      <ref name="mishnahw_att.global.attribute.xmlspace"/>
+      <ref name="mishnahw_att.global.linking.attributes"/>
+      <ref name="mishnahw_att.global.facs.attributes"/>
+      <ref name="mishnahw_att.typed.attributes"/>
+      <ref name="mishnahw_att.declaring.attributes"/>
       <empty/>
     </element>
   </define>

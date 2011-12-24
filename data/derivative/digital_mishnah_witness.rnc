@@ -4,7 +4,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2011-12-23T12:46:06Z. 
+# Schema generated from ODD source 2011-12-24T11:57:03Z. 
 # Edition: 1.9.1. Last updated on March 5th 2011.
 # Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
 #
@@ -4111,7 +4111,17 @@ mishnahw_div1 =
           ((mishnahw_model.div2Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    mishnahw_att.global.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
+    mishnahw_att.global.attribute.n,
+    mishnahw_att.global.attribute.xmllang,
+    mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.rendition,
+    mishnahw_att.global.attribute.xmlbase,
+    mishnahw_att.global.attribute.xmlspace,
+    mishnahw_att.global.linking.attributes,
+    mishnahw_att.global.facs.attributes,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
@@ -4129,7 +4139,17 @@ mishnahw_div2 =
           ((mishnahw_model.div3Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    mishnahw_att.global.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
+    mishnahw_att.global.attribute.n,
+    mishnahw_att.global.attribute.xmllang,
+    mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.rendition,
+    mishnahw_att.global.attribute.xmlbase,
+    mishnahw_att.global.attribute.xmlspace,
+    mishnahw_att.global.linking.attributes,
+    mishnahw_att.global.facs.attributes,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
@@ -4146,7 +4166,17 @@ mishnahw_div3 =
           ((mishnahw_model.div4Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    mishnahw_att.global.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
+    mishnahw_att.global.attribute.n,
+    mishnahw_att.global.attribute.xmllang,
+    mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.rendition,
+    mishnahw_att.global.attribute.xmlbase,
+    mishnahw_att.global.attribute.xmlspace,
+    mishnahw_att.global.linking.attributes,
+    mishnahw_att.global.facs.attributes,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
@@ -4586,9 +4616,6 @@ mishnahw_ab =
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
   element ab {
     mishnahw_macro.paraContent,
-    mishnahw_att.global.attributes,
-    mishnahw_att.typed.attributes,
-    mishnahw_att.declaring.attributes,
     
     ## specifies whether or not the block is complete. 
     [ a:defaultValue = "N" ]
@@ -4609,6 +4636,19 @@ mishnahw_ab =
         ## (final) the final part of an incomplete block
         "F"
     }?,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
+    mishnahw_att.global.attribute.n,
+    mishnahw_att.global.attribute.xmllang,
+    mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.rendition,
+    mishnahw_att.global.attribute.xmlbase,
+    mishnahw_att.global.attribute.xmlspace,
+    mishnahw_att.global.linking.attributes,
+    mishnahw_att.global.facs.attributes,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.declaring.attributes,
     empty
   }
 mishnahw_anchor =
