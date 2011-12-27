@@ -2,7 +2,10 @@
 <?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
 <!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -10,16 +13,31 @@
                 <title>Genizah Fragment Cambridge University TS AS 78.69</title>
             </titleStmt>
             <publicationStmt>
-                <p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
-                <p>TRANSCRIPTION: Nurit Ezer</p>
-                <p>EDITED: Hayim Lapin</p>
-                <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                    Covers Bava Metsi'a 2:11 - 3:7.</p>
-                <p>Transcription from online images of the manuscript, available at
-                    https://fgp.genizah.org. FGP nos. C96701-C96702.</p>
-                <p>Joins G2=TS NS 329.286 <ptr target="g2.xml ref.xml#G2"/></p>
-                <p/>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">g3</idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
             </publicationStmt>
+            <notesStmt>
+                <note><p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
+                    <p>TRANSCRIPTION: Nurit Ezer</p>
+                    <p>EDITED: Hayim Lapin</p>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers Bava Metsi'a 2:11 - 3:7.</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        https://fgp.genizah.org. FGP nos. C96701-C96702.</p>
+                    <p>Joins G2=TS NS 329.286 <ptr target="g2.xml ref.xml#G2"/></p>
+                    <p/></note>
+            </notesStmt>
             <sourceDesc>
                 <msDesc>
                     <msIdentifier>
@@ -38,12 +56,19 @@
                         </msItem>
                     </msContents>
                     <physDesc>
+                        <handDesc>
+                            <handNote>
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
                         <objectDesc form="codex">
                             <supportDesc>
                                 <extent>1</extent>
                                 <!-- unit="leaves" -->
                             </supportDesc>
                             <layoutDesc>
+                                
                                 <layout columns="1">
                                     <dimensions scope="frag-sheet">
                                         <!-- at longest -->
@@ -52,11 +77,13 @@
                                     </dimensions>
                                     <dimensions scope="frag-col">
                                         <width unit="cm"/>
-                                        <width unit="chars"/>
+                                        
                                         <height unit="cm"/>
-                                        <height unit="lines"/>
+                                        
                                         <dim type="char-p-cm"/>
                                     </dimensions>
+                                    <dimensions scope="frag-chars"><width unit="chars"/><height
+                                        unit="lines"/></dimensions>
                                     <!-- Following assume join with G2 -->
                                     <dimensions scope="sheet">
                                         <!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
@@ -64,23 +91,22 @@
                                         <width unit="cm">24.4</width>
                                         <height unit="cm">28.4</height>
                                     </dimensions>
-                                    <dimensions scope="col">
+                                    <dimensions scope="col-cm">
                                         <width unit="cm">18.4</width>
-                                        <width unit="chars">50</width>
+                                        
                                         <height unit="cm">23.8</height>
-                                        <height unit="lines">37</height>
-                                        <dim type="char-p-cm">2.7</dim>
+                                        
+                                        
+                                    </dimensions>
+                                    <dimensions scope="col-chars">
+                                        <width unit="chars">50</width>
+                                        <height unit="lines">37</height><dim type="char-p-cm">2.7</dim>
                                     </dimensions>
                                 </layout>
                                 <layout/>
                             </layoutDesc>
                         </objectDesc>
-                        <handDesc>
-                            <handNote>
-                                <date>?</date>
-                                <region>?</region>
-                            </handNote>
-                        </handDesc>
+                        
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -118,9 +144,9 @@
                                     >?</unclear></damage>ים כ<damage><unclear extent="1"
                                     unit="chars">ל</unclear><gap extent="1"/></damage> פישתן
                                     <damage><unclear extent="1" unit="chars"
-                            >ב</unclear></damage>גל<damage><unclear extent="5"
-                                    >יל ועג</unclear><gap extent="5" unit="chars"/>רו<unclear extent="1" unit="chars"
-                                    >ן</unclear>
+                                    >ב</unclear></damage>גל<damage><unclear extent="5">יל
+                                    ועג</unclear><gap extent="5" unit="chars"/>רו<unclear extent="1"
+                                    unit="chars">ן</unclear>
                                 <gap extent="19"/></damage>
                             <lb n="3"/><gap extent="1"/>וקחין בצים ותרנוגלין <damage>מכל
                                 מקום</damage><pc type="unitEnd" rend="˙">:</pc></ab>
