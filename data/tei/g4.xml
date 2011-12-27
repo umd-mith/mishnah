@@ -11,6 +11,7 @@
         <fileDesc>
             <titleStmt>
                 <title>Genizah Fragment Cambridge University TS AS 78.69</title>
+                <editor>Hayim Lapin</editor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -28,15 +29,18 @@
                 <!-- A publication date is required for TEI conformance -->
             </publicationStmt>
             <notesStmt>
-                <note><p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
+                <note>
+                    <p>Published as a sample text for a digital edition of the Mishnah, using
+                        oXygen</p>
                     <p>TRANSCRIPTION: Nurit Ezer</p>
                     <p>EDITED: Hayim Lapin</p>
                     <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
                         Covers Bava Metsi'a 2:11 - 3:7.</p>
                     <p>Transcription from online images of the manuscript, available at
                         https://fgp.genizah.org. FGP nos. C96701-C96702.</p>
-                    <p>Joins G2=TS NS 329.286 <ptr target="g2.xml ref.xml#G2"/></p>
-                    <p/></note>
+                    <p>Joins G2=TS NS 329.286 <ptr target="g2.xml ref.xml"/></p>
+                    <p/>
+                </note>
             </notesStmt>
             <sourceDesc>
                 <msDesc>
@@ -51,7 +55,7 @@
                                 <locus n="1r" facs="www.genizah.org">C96702</locus>
                                 <locus n="1v" facs="www.genizah.org">C96701</locus>
                             </locusGrp>
-                            <join target="g2.xml ref.xml#G2"/>
+                            <join target="g2.xml ref.xml"/>
                             <title>Mishnah</title>
                         </msItem>
                     </msContents>
@@ -64,26 +68,28 @@
                         </handDesc>
                         <objectDesc form="codex">
                             <supportDesc>
-                                <extent>1</extent>
-                                <!-- unit="leaves" -->
+                                <support>
+                                    Vellum
+                                </support><extent>1 leaf</extent>
+                                
                             </supportDesc>
                             <layoutDesc>
-                                
-                                <layout columns="1">
+                                <layout columns="1" >
                                     <dimensions scope="frag-sheet">
-                                        <!-- at longest -->
+                                        <!-- at widest/longest -->
                                         <width unit="cm">10.7</width>
                                         <height unit="cm">7.9</height>
                                     </dimensions>
                                     <dimensions scope="frag-col">
-                                        <width unit="cm"/>
+                                        <width unit="cm">10.6</width>
+                                        <height unit="cm">6.6</height>
                                         
-                                        <height unit="cm"/>
-                                        
-                                        <dim type="char-p-cm"/>
                                     </dimensions>
-                                    <dimensions scope="frag-chars"><width unit="chars"/><height
-                                        unit="lines"/></dimensions>
+                                    <dimensions scope="frag-chars">
+                                        
+                                        <height unit="lines">10</height>
+                                        <dim type="char-p-cm">27.7</dim>
+                                    </dimensions>
                                     <!-- Following assume join with G2 -->
                                     <dimensions scope="sheet">
                                         <!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
@@ -93,35 +99,32 @@
                                     </dimensions>
                                     <dimensions scope="col-cm">
                                         <width unit="cm">18.4</width>
-                                        
                                         <height unit="cm">23.8</height>
-                                        
-                                        
                                     </dimensions>
                                     <dimensions scope="col-chars">
                                         <width unit="chars">50</width>
-                                        <height unit="lines">37</height><dim type="char-p-cm">2.7</dim>
+                                        <height unit="lines">37</height>
+                                        <dim type="char-p-cm">2.7</dim>
                                     </dimensions>
                                 </layout>
-                                <layout/>
+                                
                             </layoutDesc>
                         </objectDesc>
-                        
                     </physDesc>
                 </msDesc>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
-            <p/>
-            <tagsDecl/>
+            <tagsDecl><!-- Placeholder --></tagsDecl>
+            
         </encodingDesc>
         <revisionDesc>
-            <list>
-                <item>
-                    <date>November 29, 2011</date>Transcription, Nurit Ezer</item>
-                <item>
-                    <date>December 14, 2011</date>Begun XML tagging, HL</item>
-            </list>
+            
+                <change when="2011-11-29" who="Nurit Ezer">
+                    Transcription</change>
+                <change when="2011-12-14" who="Hayim Lapin">
+                    Begun XML tagging</change>
+            
         </revisionDesc>
     </teiHeader>
     <text>
