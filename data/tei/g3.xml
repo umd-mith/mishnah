@@ -1,17 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css"
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
 <!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of the Genizah Fragment Cambridge University TS
+                <title>An electronic transcription of Genizah Fragment Cambridge University TS
                     AS 81.75</title>
-                <!-- title in fileDesc is intended to identify the digital file -->
                 <editor>
                     <persName>Hayim Lapin</persName>
                 </editor>
@@ -51,7 +48,7 @@
                 <msDesc>
                     <msIdentifier>
                         <settlement>Cambridge</settlement>
-                        <repository>Cambridge Univerity Library</repository>
+                        <repository>Univerity Library</repository>
                         <idno type="genizah-CUL">TS AS 81.75</idno>
                     </msIdentifier>
                     <msContents>
@@ -74,7 +71,9 @@
                             </handNote>
                         </handDesc>
                         <objectDesc form="codex">
+                            
                             <supportDesc>
+                                <support><!-- placeholder --></support>
                                 <extent>1 leaf</extent>
                             </supportDesc>
                             <layoutDesc>
@@ -101,13 +100,12 @@
                 </msDesc>
             </sourceDesc>
         </fileDesc>
-        <encodingDesc>
-            <p/>
-            <tagsDecl/>
+        <encodingDesc> 
+            <tagsDecl><!-- Placeholder --></tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <change when="2011-11-29">Transcription, Nurit Ezer</change>
-            <change when="2011-12-06">Begun XML tagging, HL</change>
+            <change when="2011-11-29" who="Nurit Ezer">Transcription</change>
+            <change when="2011-12-06" who="Hayim Lapin">Begun XML tagging</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -246,10 +244,11 @@
                                 <reg>נותן</reg>
                             </choice> לזה מנא <lb n="3"/>ול<damage>זה <gap extent="2"/><unclear
                                     extent="3" unit="chars">א וה</unclear>שאר<unclear extent="5"
-                                    unit="chars"> יהא
-                                        מו</unclear><choice><orig>נַ</orig><reg>נ</reg></choice><unclear
-                                    extent="1" unit="chars">ח</unclear></damage> עד שיבוא <c
-                                rend="lig">אל</c>יהו<lb n="4"/><damage>
+                                    unit="chars"> יהא מו</unclear><choice>
+                                    <orig>נַ</orig>
+                                    <reg>נ</reg>
+                                </choice><unclear extent="1" unit="chars">ח</unclear></damage> עד
+                            שיבוא <c rend="lig">אל</c>יהו<lb n="4"/><damage>
                                 <unclear extent="2" unit="chars"/><gap extent="7"/><unclear
                                     extent="2" unit="chars"/><gap extent="2"/><unclear extent="8"
                                     unit="chars">?? הפסיד</unclear>

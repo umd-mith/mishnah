@@ -1,11 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css"
-    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
-
-<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-
-<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?><?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -23,10 +17,9 @@
                 </address>
                 <idno type="local">g3</idno>
                 <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                    <licence/>
                 </availability>
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <date/>
             </publicationStmt>
             <notesStmt>
                 <note>
@@ -62,38 +55,30 @@
                     <physDesc>
                         <handDesc>
                             <handNote>
-                                <date><!-- placeholder --></date>
-                                <region><!-- placeholder --></region>
+                                <date/>
+                                <region/>
                             </handNote>
                         </handDesc>
                         <objectDesc form="codex">
                             <supportDesc>
-                                <support>
-                                    Vellum
-                                </support><extent>1 leaf</extent>
-                                
+                                <support> Vellum </support>
+                                <extent>1 leaf</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="1" >
+                                <layout columns="1">
                                     <dimensions scope="frag-sheet">
-                                        <!-- at widest/longest -->
                                         <width unit="cm">10.7</width>
                                         <height unit="cm">7.9</height>
                                     </dimensions>
                                     <dimensions scope="frag-col">
                                         <width unit="cm">10.6</width>
                                         <height unit="cm">6.6</height>
-                                        
                                     </dimensions>
                                     <dimensions scope="frag-chars">
-                                        
                                         <height unit="lines">10</height>
                                         <dim type="char-p-cm">27.7</dim>
                                     </dimensions>
-                                    <!-- Following assume join with G2 -->
                                     <dimensions scope="sheet">
-                                        <!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
-                                            inside-->
                                         <width unit="cm">24.4</width>
                                         <height unit="cm">28.4</height>
                                     </dimensions>
@@ -107,7 +92,6 @@
                                         <dim type="char-p-cm">2.7</dim>
                                     </dimensions>
                                 </layout>
-                                
                             </layoutDesc>
                         </objectDesc>
                     </physDesc>
@@ -115,16 +99,11 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
-            <tagsDecl><!-- Placeholder --></tagsDecl>
-            
+            <tagsDecl/>
         </encodingDesc>
         <revisionDesc>
-            
-                <change when="2011-11-29" who="Nurit Ezer">
-                    Transcription</change>
-                <change when="2011-12-14" who="Hayim Lapin">
-                    Begun XML tagging</change>
-            
+            <change when="2011-11-29" who="Nurit Ezer"> Transcription</change>
+            <change when="2011-12-14" who="Hayim Lapin"> Begun XML tagging</change>
         </revisionDesc>
     </teiHeader>
     <text>
