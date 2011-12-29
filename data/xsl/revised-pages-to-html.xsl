@@ -54,8 +54,12 @@
             </body>
         </html>
     </xsl:template>
-    <xsl:template match="tei:body |tei:text | tei:c | tei:g | tei:pc |tei:c | tei:am">
+    <xsl:template match="tei:body |tei:text | tei:c | tei:g | //tei:pc |tei:c | tei:am">
         <xsl:apply-templates/>
+    </xsl:template>
+    <!-- remove the temporary supplied text -->
+    <xsl:template match="tei:supplied">
+
     </xsl:template>
     <!-- Hide in CSS. Eventually, extract order name and tractate name from id. -->
     <xsl:template match="tei:milestone[@unit='Order']">
@@ -142,8 +146,8 @@
             </xsl:when>
             <xsl:when test="not(./@reason='Maimonides')">
                 <xsl:choose>
-                    <!-- Need to fix last <gap> of div -->
-                    <xsl:when test="./following::*[1]/self::tei:lb "><span class="missing">[</span></xsl:when>
+                    <!-- NB: Need to fix last <gap> of div -->
+                    <xsl:when test="./following::*[1]/self::tei:lb"><span class="missing">[</span></xsl:when>
                     <xsl:when test="./preceding::*[1]/self::tei:lb"><span class="missing"><xsl:call-template name="add-char">
                         <xsl:with-param name="howMany" select="./@extent"/>
                         <xsl:with-param name="char" select="'&#160;'"/>
@@ -291,7 +295,10 @@
             <xsl:choose>
                 <xsl:when test="./text()">
                     <!-- presents text; replaces question marks with dots -->
-                    <xsl:value-of select="translate(./text(),'?',$dots)"/>
+                    <xsl:variable name="text-string">
+                        <xsl:value-of select="./text"></xsl:value-of>
+                    </xsl:variable>
+                    <xsl:value-of select="translate($text-string/text(),'?',$dots)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates/>
