@@ -46,11 +46,9 @@
                     <xsl:value-of select="//tei:title"/>
                 </h1>
                 <h2>Transcription</h2>
-               
                 <xsl:apply-templates select="//tei:text"/>
-                
                 <h2>Notes</h2>
-                <xsl:apply-templates select="//tei:note" mode="notes"/>
+                <xsl:apply-templates select="//tei:note[ancestor::tei:body]" mode="notes"/>
             </body>
         </html>
     </xsl:template>
@@ -58,9 +56,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <!-- remove the temporary supplied text -->
-    <xsl:template match="tei:supplied">
-
-    </xsl:template>
+    <xsl:template match="tei:supplied"> </xsl:template>
     <!-- Hide in CSS. Eventually, extract order name and tractate name from id. -->
     <xsl:template match="tei:milestone[@unit='Order']">
         <span class="ord"> Order <xsl:value-of select="./@xml:id"/>
@@ -147,24 +143,45 @@
             <xsl:when test="not(./@reason='Maimonides')">
                 <xsl:choose>
                     <!-- NB: Need to fix last <gap> of div -->
-                    <xsl:when test="./following::*[1]/self::tei:lb"><span class="missing">[</span></xsl:when>
-                    <xsl:when test="./preceding::*[1]/self::tei:lb"><span class="missing"><xsl:call-template name="add-char">
-                        <xsl:with-param name="howMany" select="./@extent"/>
-                        <xsl:with-param name="char" select="'&#160;'"/>
-                    </xsl:call-template>]</span></xsl:when>
-                    <xsl:when test=".[following::tei:lb[1]/@n='1'] and not(./preceding::*[1]/text())"><span class="missing"><xsl:call-template name="add-char">
-                        <xsl:with-param name="howMany" select="./@extent"/>
-                        <xsl:with-param name="char" select="'&#160;'"/>
-                    </xsl:call-template>]</span></xsl:when>
+                    <!--  -->
+                    <!-- Temporary transformation, for files still containing <supplied> -->
+                    <xsl:when test="./following-sibling::*[1]/self::tei:supplied">
+                        <xsl:for-each
+                            select="./following-sibling::*[1]/self::tei:supplied">
+                            <span class="supplied">
+                                <xsl:apply-templates/>
+                            </span>
+                        </xsl:for-each>
+                        
+                    </xsl:when>
+                    <!-- the other handlings of tei:gap -->
+                    <xsl:when test="./following::*[1]/self::tei:lb">
+                        <span class="missing">[</span>
+                    </xsl:when>
+                    <xsl:when test="./preceding::*[1]/self::tei:lb">
+                        <span class="missing"><xsl:call-template name="add-char">
+                                <xsl:with-param name="howMany" select="./@extent"/>
+                                <xsl:with-param name="char" select="'&#160;'"/>
+                            </xsl:call-template>]</span>
+                    </xsl:when>
+                    <xsl:when
+                        test=".[following::tei:lb[1]/@n='1'] and not(./preceding::*[1]/text())">
+                        <span class="missing"><xsl:call-template name="add-char">
+                                <xsl:with-param name="howMany" select="./@extent"/>
+                                <xsl:with-param name="char" select="'&#160;'"/>
+                            </xsl:call-template>]</span>
+                    </xsl:when>
                     <xsl:otherwise>
-                    <span class="missing"><xsl:text>[</xsl:text>
-                        <xsl:call-template name="add-char">
-                            <xsl:with-param name="howMany" select="./@extent"/>
-                            <xsl:with-param name="char" select="'&#160;'"/>
-                        </xsl:call-template><xsl:text>]</xsl:text>
-                    </span></xsl:otherwise>
+                        <span class="missing">
+                            <xsl:text>[</xsl:text>
+                            <xsl:call-template name="add-char">
+                                <xsl:with-param name="howMany" select="./@extent"/>
+                                <xsl:with-param name="char" select="'&#160;'"/>
+                            </xsl:call-template>
+                            <xsl:text>]</xsl:text>
+                        </span>
+                    </xsl:otherwise>
                 </xsl:choose>
-               
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -287,16 +304,17 @@
                 select="number(string-length(translate(normalize-space(.),'&#x32;&#1523;
                 ','')))"
             />
-            
         </xsl:variable>
         <span class="unclear">
             <!-- replacement string of thin-space/period/thin-space -->
-            <xsl:variable name="dots"><xsl:text> . </xsl:text></xsl:variable>
+            <xsl:variable name="dots">
+                <xsl:text> . </xsl:text>
+            </xsl:variable>
             <xsl:choose>
                 <xsl:when test="./text()">
                     <!-- presents text; replaces question marks with dots -->
                     <xsl:variable name="text-string">
-                        <xsl:value-of select="./text"></xsl:value-of>
+                        <xsl:value-of select=". except tei:note"/>
                     </xsl:variable>
                     <xsl:value-of select="translate($text-string/text(),'?',$dots)"/>
                 </xsl:when>
@@ -314,26 +332,24 @@
                         <xsl:with-param name="howMany">
                             <xsl:value-of select="number(./@extent) - $adj-length"/>
                         </xsl:with-param>
-                        <xsl:with-param name="char"><xsl:value-of select="$dots"></xsl:value-of></xsl:with-param>
+                        <xsl:with-param name="char">
+                            <xsl:value-of select="$dots"/>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </span>
     </xsl:template>
     <xsl:template match="tei:damage">
-<!-- based on a sample template at: http://www.w3.org/TR/xslt20/#grouping-examples -->
+        <!-- based on a sample template at: http://www.w3.org/TR/xslt20/#grouping-examples -->
         <xsl:for-each-group select="node()" group-adjacent="self::tei:unclear or self::tei:gap">
             <xsl:choose>
                 <xsl:when test="current-grouping-key()">
-                    
-                       <xsl:apply-templates select="current-group()"></xsl:apply-templates>
-                   
+                    <xsl:apply-templates select="current-group()"/>
                 </xsl:when>
-                
-                            
                 <xsl:otherwise>
                     <span class="damage">
-                        <xsl:apply-templates select="current-group()"></xsl:apply-templates>
+                        <xsl:apply-templates select="current-group()"/>
                     </span>
                 </xsl:otherwise>
             </xsl:choose>
@@ -382,15 +398,14 @@
             <xsl:apply-templates/>
         </span>
     </xsl:template>
-
-    <xsl:template match="//tei:note">
+    <xsl:template match="tei:note[ancestor::tei:body]">
         <xsl:variable name="id">
             <xsl:text>fnanc</xsl:text>
-            <xsl:value-of select="count(preceding::tei:note)+1"/>
+            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body])+1"/>
         </xsl:variable>
         <xsl:variable name="href">
             <xsl:text>#fn</xsl:text>
-            <xsl:value-of select="count(preceding::tei:note)+1"/>
+            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body])+1"/>
         </xsl:variable>
         <a>
             <xsl:attribute name="id">
@@ -404,14 +419,14 @@
             </span>
         </a>
     </xsl:template>
-    <xsl:template match="tei:note" mode="notes">
+    <xsl:template match="tei:note[ancestor::tei:body]" mode="notes">
         <xsl:variable name="id">
             <xsl:text>fn</xsl:text>
-            <xsl:value-of select="count(preceding::tei:note)+1"/>
+            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body])+1"/>
         </xsl:variable>
         <xsl:variable name="href">
             <xsl:text>#fnanc</xsl:text>
-            <xsl:value-of select="count(preceding::tei:note)+1"/>
+            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body])+1"/>
         </xsl:variable>
         <p>
             <a>
