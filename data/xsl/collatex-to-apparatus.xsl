@@ -42,23 +42,16 @@
                             </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
                             <xsl:for-each select="$data/cx:row[@sigil=$witness]">
-                                
-                                
                                 <!-- If empty insert emdash as null token -->
                                 <xsl:if test="./cx:cell[position()=$position] = ''">
-                                    
-                                        <xsl:text>–</xsl:text>
-                                    
+                                    <xsl:text>–</xsl:text>
                                 </xsl:if>
                                 <!-- else, if not empty, insert token -->
                                 <xsl:if
                                     test="./cx:cell[position()=$position]
                                     != ''">
-                                   
-                                        <xsl:value-of select="./cx:cell[position()=$position]"/>
-                                    
+                                    <xsl:value-of select="./cx:cell[position()=$position]"/>
                                 </xsl:if>
-                                
                             </xsl:for-each>
                         </xsl:element>
                     </xsl:for-each>
@@ -84,28 +77,26 @@
                             <xsl:value-of select="."/>
                         </xsl:variable>
                         <tr>
-                            <td>
-                                    <span class="wit"><xsl:value-of
-                                        select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"/></span>
-                                </td><xsl:for-each select="$readings-list/my:lemma">
-                                
-                                
-                                    
-                                    
-                                        <td>
-                                            <xsl:value-of select="./my:reading[@sort-order=$sort-order]"/>
-                                       </td>
-                                  
-                                </xsl:for-each>
                             <td class="wit">
+                                
                                     <xsl:value-of
-                                        select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"/>
+                                        select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"
+                                    />
+                                
+                            </td>
+                            <xsl:for-each select="$readings-list/my:lemma">
+                                <td>
+                                    <xsl:value-of select="./my:reading[@sort-order=$sort-order]"/>
                                 </td>
-                            
+                            </xsl:for-each>
+                            <td class="wit">
+                                <xsl:value-of
+                                    select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"
+                                />
+                            </td>
                         </tr>
                     </xsl:for-each>
                 </table>
-                
                 <div class="text" dir="rtl">
                     <h2 dir="ltr">2. Text of <xsl:value-of select="$sortlist/tei:item[1]"/></h2>
                     <xsl:for-each select="$readings-list/my:lemma/my:reading[./@sort-order='1']">
@@ -132,20 +123,21 @@
                                                 <xsl:when
                                                   test="current-group()/self::my:reading[@sort-order='1']">
                                                   <span class="lemma">
-                                                      <xsl:choose>
-                                                          <!--<xsl:text>–</xsl:text>-->
-                                                          <xsl:when
-                                                          test="self::my:reading[@sort-order='1'] =
+                                                  <xsl:choose>
+                                                  <!--<xsl:text>–</xsl:text>-->
+                                                  <xsl:when
+                                                  test="self::my:reading[@sort-order='1'] =
                                                           '–'">
-                                                          <xsl:value-of
-                                                              select="self::my:reading[@sort-order='1']/@witness"/><xsl:text>:
+                                                  <xsl:value-of
+                                                  select="self::my:reading[@sort-order='1']/@witness"/>
+                                                  <xsl:text>:
                                                               ח׳</xsl:text>
-                                                          
-                                                      </xsl:when>
-                                                      <xsl:otherwise>
-                                                          <xsl:value-of
-                                                              select="self::my:reading[@sort-order='1']"/>
-                                                      </xsl:otherwise></xsl:choose>
+                                                  </xsl:when>
+                                                  <xsl:otherwise>
+                                                  <xsl:value-of
+                                                  select="self::my:reading[@sort-order='1']"/>
+                                                  </xsl:otherwise>
+                                                  </xsl:choose>
                                                   </span>
                                                   <span class="matches">
                                                   <xsl:for-each-group select="current-group()"
