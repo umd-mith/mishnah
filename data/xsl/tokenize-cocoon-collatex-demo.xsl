@@ -59,11 +59,14 @@
     </xsl:template>
     <!-- Remove signposts, structural text, and extraneous text -->
     <xsl:template match="//tei:surplus" mode="strip"/>
-    <xsl:template match="//tei:lb" mode="strip"/>
+    <xsl:template match="//tei:lb" mode="strip">
+        <xsl:text> </xsl:text>
+    </xsl:template>
     <xsl:template match="//tei:milestone" mode="strip"/>
     <xsl:template match="//tei:label" mode="strip"/>
     <xsl:template match="//tei:pc" mode="strip"/>
     <xsl:template match="//tei:note" mode="strip"/>
+    <xsl:template match="//tei:corr" mode="strip"/>
     <xsl:template match="//tei:del" mode="strip">
         <xsl:apply-templates/>
     </xsl:template>
