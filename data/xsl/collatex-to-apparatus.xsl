@@ -78,11 +78,9 @@
                         </xsl:variable>
                         <tr>
                             <td class="wit">
-                                
-                                    <xsl:value-of
-                                        select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"
-                                    />
-                                
+                                <xsl:value-of
+                                    select="$readings-list/my:lemma[1]/my:reading[@sort-order = $sort-order]/@witness"
+                                />
                             </td>
                             <xsl:for-each select="$readings-list/my:lemma">
                                 <td>
@@ -118,13 +116,12 @@
                                     <xsl:choose>
                                         <xsl:when test="current-grouping-key()">
                                             <xsl:choose>
-                                                <!-- Not capturing when the first my:reading has no
-                                                text -->
+                                                
                                                 <xsl:when
                                                   test="current-group()/self::my:reading[@sort-order='1']">
                                                   <span class="lemma">
                                                   <xsl:choose>
-                                                  <!--<xsl:text>–</xsl:text>-->
+                                                 
                                                   <xsl:when
                                                   test="self::my:reading[@sort-order='1'] =
                                                           '–'">
