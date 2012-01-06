@@ -97,9 +97,21 @@
                 </table>
                 <div class="text" dir="rtl">
                     <h2 dir="ltr">2. Text of <xsl:value-of select="$sortlist/tei:item[1]"/></h2>
-                    <xsl:for-each select="$readings-list/my:lemma/my:reading[./@sort-order='1']">
-                        <xsl:value-of select="."/>
-                        <xsl:text> </xsl:text>
+                    <xsl:for-each select="$readings-list/my:lemma/my:reading[@sort-order='1']">
+                        <xsl:choose>
+                            <xsl:when test=". =
+                                '–'">
+                                <xsl:text>(</xsl:text>
+                                <xsl:value-of
+                                    select="count(preceding::my:lemma[my:reading[@sort-order
+                                    = 1] = '–'])+1"/>
+                                <xsl:text>) </xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="."/>
+                                <xsl:text> </xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:for-each>
                 </div>
                 <div class="apparatus" dir="rtl">
@@ -116,20 +128,28 @@
                                     <xsl:choose>
                                         <xsl:when test="current-grouping-key()">
                                             <xsl:choose>
-                                                
                                                 <xsl:when
                                                   test="current-group()/self::my:reading[@sort-order='1']">
                                                   <span class="lemma">
+                                                  <!-- Check if empty (emdash and process) -->
                                                   <xsl:choose>
-                                                 
+                                                  <!-- If empty -->
                                                   <xsl:when
                                                   test="self::my:reading[@sort-order='1'] =
                                                           '–'">
+                                                  <xsl:text>(</xsl:text>
                                                   <xsl:value-of
-                                                  select="self::my:reading[@sort-order='1']/@witness"/>
-                                                  <xsl:text>:
-                                                              ח׳</xsl:text>
+                                                  select="count(preceding::my:lemma[my:reading[@sort-order
+                                                          = 1] = '–'])+1"/>
+                                                  <xsl:text>) </xsl:text>
+                                                  <xsl:value-of
+                                                  select="
+                                                          self::my:reading[@sort-order='1']/@witness"/>
+                                                  <xsl:text>
+                                                          </xsl:text>
+                                                  <xsl:text>ח׳</xsl:text>
                                                   </xsl:when>
+                                                  <!-- If not empty -->
                                                   <xsl:otherwise>
                                                   <xsl:value-of
                                                   select="self::my:reading[@sort-order='1']"/>
@@ -152,7 +172,9 @@
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                   <span class="readings">
+                                                  <bdo dir="rtl">
                                                   <xsl:value-of select="current-group()[1]"/>
+                                                  </bdo>
                                                   </span>
                                                   <span class="witnesses">
                                                   <xsl:value-of select="current-group()/@witness"/>
