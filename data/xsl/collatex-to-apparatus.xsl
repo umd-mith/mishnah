@@ -40,6 +40,11 @@
                             <xsl:attribute name="witness">
                                 <xsl:value-of select="$witness"/>
                             </xsl:attribute>
+                            <xsl:attribute name="state">
+                                <xsl:value-of
+                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"
+                                />
+                            </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
                             <xsl:for-each select="$data/cx:row[@sigil=$witness]">
                                 <!-- If empty insert emdash as null token -->
@@ -70,8 +75,25 @@
             </head>
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
-                <h2 dir="ltr">1. Sample Collatex Output, Alignment Table Format</h2>
-                <table dir="rtl">
+                <h2>Sample Collatex Output</h2>
+                <h3>1. Sources Collated</h3>
+             
+    <table class="sources" dir="ltr">
+                    <xsl:for-each select="$sortlist/tei:item">
+                        <tr>
+                            <td class="ref-wit">
+                                <xsl:value-of select="."/>
+                            </td>
+                            <td class="ref-data"><xsl:value-of
+                                select="document(concat('../tei/ref.xml','#',.))/text()"></xsl:value-of></td>
+                        </tr>
+                    </xsl:for-each>
+                </table>
+                <h3 dir="ltr">2. Alignment Table Format</h3>
+                <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
+                    to see additional columns.
+                </p>
+                <div class="alignment-table"><table dir="rtl">
                     <xsl:for-each select="$readings-list/my:lemma[1]/my:reading/@sort-order">
                         <xsl:variable name="sort-order">
                             <xsl:value-of select="."/>
@@ -84,6 +106,11 @@
                             </td>
                             <xsl:for-each select="$readings-list/my:lemma">
                                 <td>
+                                    <xsl:if
+                                        test="./my:reading[@sort-order=$sort-order]/@state =
+                                        'variant'">
+                                        <xsl:attribute name="bgcolor" select="'#C0C0C0'"/>
+                                    </xsl:if>
                                     <xsl:value-of select="./my:reading[@sort-order=$sort-order]"/>
                                 </td>
                             </xsl:for-each>
@@ -94,9 +121,9 @@
                             </td>
                         </tr>
                     </xsl:for-each>
-                </table>
+                </table></div>
                 <div class="text" dir="rtl">
-                    <h2 dir="ltr">2. Text of <xsl:value-of select="$sortlist/tei:item[1]"/></h2>
+                    <h3 dir="ltr">3. Text of <xsl:value-of select="$sortlist/tei:item[1]"/></h3>
                     <xsl:for-each select="$readings-list/my:lemma/my:reading[@sort-order='1']">
                         <xsl:choose>
                             <xsl:when test=". =
@@ -115,8 +142,8 @@
                     </xsl:for-each>
                 </div>
                 <div class="apparatus" dir="rtl">
-                    <h2 dir="ltr">3. Sample Apparatus, Text of <xsl:value-of
-                            select="$sortlist/tei:item[1]"/> as Base Text </h2>
+                    <h3 dir="ltr">4. Sample Apparatus, Text of <xsl:value-of
+                            select="$sortlist/tei:item[1]"/> as Base Text </h3>
                     <xsl:for-each select="$readings-list/my:lemma">
                         <!-- Condition for processing: all readings are not identical -->
                         <xsl:variable name="string">
