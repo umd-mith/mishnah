@@ -109,7 +109,7 @@
                                     <xsl:if
                                         test="./my:reading[@sort-order=$sort-order]/@state =
                                         'variant'">
-                                        <xsl:attribute name="bgcolor" select="'#C0C0C0'"/>
+                                        <xsl:attribute name="class" select="'variant'"/>
                                     </xsl:if>
                                     <xsl:value-of select="./my:reading[@sort-order=$sort-order]"/>
                                 </td>
