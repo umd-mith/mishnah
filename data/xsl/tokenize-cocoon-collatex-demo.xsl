@@ -94,15 +94,15 @@
         <xsl:choose>
             <xsl:when test="contains($src,' ')">
                 <!-- build first token element -->
-                <xsl:value-of select="substring-before($src,' ')"/><xsl:text> </xsl:text>
+                <xsl:value-of select="translate(substring-before($src,' '),'?','*')"/><xsl:text> </xsl:text>
                 <!-- recurse -->
                 <xsl:call-template name="tokenize">
-                    <xsl:with-param name="src" select="substring-after($src,' ')"/>
+                    <xsl:with-param name="src" select="translate(substring-after($src,' '),'?','*')"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <!-- last token, end recursion -->
-                <xsl:value-of select="$src"/>
+                <xsl:value-of select="translate($src,'?','*')"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
