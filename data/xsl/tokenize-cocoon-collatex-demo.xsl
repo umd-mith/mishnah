@@ -36,20 +36,17 @@
                     </xsl:attribute>
                     <!-- Build URI from hierarchy, assemble in buildURI -->
                     <xsl:variable name="buildURI">
-                        <xsl:value-of select="$witlist//tei:witness[@xml:id=$Wit]/@corresp"/>
+                        <xsl:text>../tei/</xsl:text><xsl:value-of select="$witlist//tei:witness[@xml:id=$Wit]/@corresp"/>
                         <xsl:text>#</xsl:text>
                         <xsl:value-of select="$Wit"/>
                         <xsl:text>.</xsl:text>
                         <xsl:value-of select="$mcite"/>
                     </xsl:variable>
                     <!-- construct the actual URI to mRef -->
-                    <xsl:variable name="mRef">
-                        <xsl:text/>../<xsl:value-of select="$buildURI"/>
-                    </xsl:variable>
+                    
                     <!-- Extract text -->
-                    <xsl:value-of select="$mRef"></xsl:value-of>
                     <xsl:variable name="mExtract">
-                        <xsl:copy-of select="document($mRef)/node()|@*"/>
+                        <xsl:copy-of select="document($buildURI)/node()|@*"/>
                     </xsl:variable>
                     <xsl:variable name="mTokenized">
                         <tokens><xsl:apply-templates select="$mExtract" mode="strip"/></tokens>
