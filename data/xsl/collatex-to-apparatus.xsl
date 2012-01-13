@@ -76,6 +76,33 @@
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
                 <h2>Sample Collatex Output</h2>
+                <h2><xsl:variable name="ref-cit">
+                        <xsl:value-of
+                            select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/@n"
+                        />
+                    </xsl:variable>
+                    <xsl:variable name="look-up">
+                        <xsl:analyze-string select="$ref-cit"
+                            regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+                            <xsl:matching-substring>#ref.<xsl:value-of select="regex-group(1)"
+                                    />.<xsl:value-of select="regex-group(2)"/>
+                            </xsl:matching-substring>
+                        </xsl:analyze-string>
+                    </xsl:variable>
+                    <xsl:variable name="look-up-text">
+                        <xsl:copy-of
+                            select="document(normalize-space(concat('../tei/ref.xml',$look-up)),document(''))"
+                        />
+                    </xsl:variable>
+                    <span class="tractate"><xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/></span>
+                    <xsl:analyze-string select="$ref-cit"
+                        regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+                        <xsl:matching-substring><xsl:text> </xsl:text><xsl:value-of
+                                select="regex-group(3)"/>:<xsl:value-of select="regex-group(4)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </h2>
+             
                 <h3>1. Sources Collated</h3>
                 <table class="sources" dir="ltr">
                     <xsl:for-each select="$sortlist/tei:item">
@@ -161,7 +188,6 @@
                                 <!-- 3. Then copy the whole to a new variable, to process with
                                     grouping as with the single readings (below) -->
                                 <!-- There has got to be a better way of doing this! -->
-                                
                                 <xsl:variable name="complex-readings-group">
                                     <xsl:for-each
                                         select="$temp-group/my:lemma[1]/my:reading/@sort-order">
@@ -189,7 +215,6 @@
                                         </xsl:element>
                                     </xsl:for-each>
                                 </xsl:variable>
-                                
                                 <span class="reading-group">
                                     <xsl:for-each-group
                                         select="$complex-readings-group/my:complex-reading"
@@ -197,7 +222,6 @@
                                         <xsl:choose>
                                             <!-- process base text -->
                                             <xsl:when test="current-grouping-key()">
-                                                
                                                 <xsl:choose>
                                                   <xsl:when
                                                   test="current-group()/self::my:complex-reading[@sort-order='1']">
