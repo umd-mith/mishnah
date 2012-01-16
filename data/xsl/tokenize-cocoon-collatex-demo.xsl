@@ -24,6 +24,8 @@
                 document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
             />
         </xsl:variable>
+        <xsl:value-of select="$witlist"></xsl:value-of>
+        
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">
             
             <xsl:for-each select="./tei:item">
@@ -34,7 +36,7 @@
                     <xsl:attribute name="sigil">
                         <xsl:value-of select="$Wit"/>
                     </xsl:attribute>
-                    <!-- Build URI from hierarchy, assemble in buildURI -->
+                    <!-- Build URI from ref.xml, assemble in buildURI -->
                     <xsl:variable name="buildURI">
                         <xsl:text>../tei/</xsl:text><xsl:value-of select="$witlist//tei:witness[@xml:id=$Wit]/@corresp"/>
                         <xsl:text>#</xsl:text>
@@ -42,7 +44,6 @@
                         <xsl:text>.</xsl:text>
                         <xsl:value-of select="$mcite"/>
                     </xsl:variable>
-                    <!-- construct the actual URI to mRef -->
                     
                     <!-- Extract text -->
                     <xsl:variable name="mExtract">
