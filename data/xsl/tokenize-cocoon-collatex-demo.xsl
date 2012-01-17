@@ -24,7 +24,7 @@
                 document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
             />
         </xsl:variable>
-        <xsl:value-of select="$witlist"></xsl:value-of>
+        
         
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">
             
