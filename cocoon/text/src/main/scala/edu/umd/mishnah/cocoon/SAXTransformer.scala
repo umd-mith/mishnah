@@ -24,7 +24,7 @@ abstract class SAXTransformer(namespaceURI: String) extends AbstractSAXTransform
 
   def element(name: String, attrs: Map[String, String])(body: => Unit) {
     val a = new AttributesImpl
-    attrs.foreach { case (k, v) => a.addCDATAAttribute(namespaceURI, k, v) }
+    attrs.foreach { case (k, v) => a.addCDATAAttribute("", k, v) }
     sendStartElementEventNS(name, a)
     body
     sendEndElementEventNS(name)     

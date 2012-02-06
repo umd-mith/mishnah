@@ -38,13 +38,13 @@
                                 <xsl:value-of select="."/>
                             </xsl:variable>
                             <xsl:variable name="cell">
-                                <xsl:value-of select="$data/cx:row[@cx:sigil=$witness]/cx:cell[position()=$position]"/>
+                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]"/>
                             </xsl:variable>
                             <xsl:attribute name="witness">
                                 <xsl:value-of select="$witness"/>
                             </xsl:attribute>
                             <xsl:attribute name="state">
-                                <xsl:value-of select="$data/cx:row[@cx:sigil=$witness]/cx:cell[position()=$position]/@cx:state"/>
+                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"/>
                             </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
                             <xsl:choose>
