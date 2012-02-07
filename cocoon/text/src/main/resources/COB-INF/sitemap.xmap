@@ -57,6 +57,14 @@
         <map:serialize type="xml"/>
       </map:match>
 
+      <map:match pattern="collatex-demo">
+         <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+         <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl" type="xslt-saxon"/>
+         <map:transform type="collatex"/>
+         <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon"/>
+         <map:serialize type="tei"/>
+      </map:match>
+
       <map:match pattern="css/*.css">
         <map:read src="resource://css/{1}.css" mime-type="text/css"/>
       </map:match>
