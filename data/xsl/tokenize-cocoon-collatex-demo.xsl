@@ -20,10 +20,11 @@
         </xsl:variable>
         <xsl:variable name="witlist">
             <xsl:copy-of
-                select="document('../tei/ref.xml',
-                document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
+                select="document('../tei/ref.xml',document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
             />
+            
         </xsl:variable>
+        
         
         
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">
@@ -65,6 +66,9 @@
     </xsl:template>
     <xsl:template match="//tei:lb[parent::tei:w]" mode="strip"/>
     <xsl:template match="//tei:milestone" mode="strip"/>
+    <xsl:template match="//tei:c[@rend='lig']" mode="strip">
+        <xsl:apply-templates mode="strip"/>
+    </xsl:template>
     <xsl:template match="//tei:g" mode="strip"><xsl:apply-templates mode="strip"></xsl:apply-templates></xsl:template>
     <xsl:template match="//tei:label" mode="strip"/>
     <xsl:template match="//tei:pc" mode="strip"/>
@@ -79,9 +83,13 @@
     <xsl:template match="//tei:supplied" mode="strip">
         <xsl:text>[ ]</xsl:text>
     </xsl:template>
-    <!-- fix in files and replace the next line with:
-        <xsl:template match="//tei:choice/tei:expan" mode="strip"/> -->
-    <xsl:template match="//tei:expan" mode="strip"/>
+<!--    <!-\- If choose to tokenize with abbreviated fix in files and replace the next line with:
+        <xsl:template match="//tei:choice/tei:expan" mode="strip"/> -\->
+    <xsl:template match="//tei:expan" mode="strip"/>-->
+    <!-- Choose to tokenize with expanded forms not abbrev 
+      fix in files then replace next line with 
+      //tei:choice/tei:abbr" mode="strip"/>-->
+    <xsl:template match="//tei:abbr" mode="strip"/>
         <xsl:template match="*/text()" mode="tokenize">
         <xsl:choose>
             <xsl:when test=".[parent::tei:tokens]">

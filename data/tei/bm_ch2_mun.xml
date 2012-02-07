@@ -37,13 +37,15 @@
                 <date>2012-01-03</date>
             </publicationStmt>
             <notesStmt>
-                <note><p>Chapter 2 of tractate Bava Metsia from the Munich Manuscript (1342) folios
+                <note>
+                    <p>Chapter 2 of tractate Bava Metsia from the Munich Manuscript (1342) folios
                         296v-298v</p>
                     <p>Transcribed from the <ref
                             target="http://daten.digitale-sammlungen.de/~db/bsb00003409/images/index.html"
                             >digital edition published by the Bayerische Staatsbibliothek</ref></p>
                     <p> beginning at image 595.</p>
-                    <p>Transcription by Daniel Goldberg</p></note>
+                    <p>Transcription by Daniel Goldberg</p>
+                </note>
             </notesStmt>
             <sourceDesc>
                 <msDesc>
@@ -63,51 +65,48 @@
                             <handNote script="Ashkenazic Square">
                                 <date>1342</date>
                                 <region>Ashkenaz</region>
-                                <note>Mishnah is written in square script in the inside margins; Talmud is written in
-                                    smaller cursive script.</note>
+                                <note>Mishnah is written in square script in the inside margins;
+                                    Talmud is written in smaller cursive script.</note>
                             </handNote>
                         </handDesc>
                         <objectDesc form="codex">
                             <supportDesc material="parchment">
                                 <extent>573 leaves</extent>
                             </supportDesc>
-                            <layoutDesc><layout columns="1">
-                                <dimensions scope="sheet">
-                                    <width unit="cm">25</width>
-                                    <height unit="cm">36</height>
-                                </dimensions>
-                                <dimensions scope="talmud">
-                                    <width unit="cm">20</width>
-                                    <height unit="cm">32</height>
-                                </dimensions>
-                                <dimensions scope="mishnah-col">
-                                    <width unit="cm">2.5</width>
-                                    <height unit="cm">varies</height>
-                                </dimensions>
-                                <dimensions scope="mishnah-chars">
-                                    <width unit="char">16</width>
-                                    <height unit="lines">varies</height>
-                                    <dim type="char-p-cm">6.4</dim>
-                                </dimensions>
-                            </layout></layoutDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">25</width>
+                                        <height unit="cm">36</height>
+                                    </dimensions>
+                                    <dimensions scope="talmud">
+                                        <width unit="cm">20</width>
+                                        <height unit="cm">32</height>
+                                    </dimensions>
+                                    <dimensions scope="mishnah-col">
+                                        <width unit="cm">2.5</width>
+                                        <height unit="cm">varies</height>
+                                    </dimensions>
+                                    <dimensions scope="mishnah-chars">
+                                        <width unit="char">16</width>
+                                        <height unit="lines">varies</height>
+                                        <dim type="char-p-cm">6.4</dim>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
                         </objectDesc>
                     </physDesc>
                 </msDesc>
-                
             </sourceDesc>
         </fileDesc>
-        
         <encodingDesc>
             <tagsDecl> </tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            
-                <change when="2011-02-05" who="Daniel Goldberg">
-                    Original transcription begun</change>
+            <change when="2011-02-05" who="Daniel Goldberg"> Original transcription begun</change>
             <change when="2011-04-08" who="Hayim Lapin">Addition of choice and choice and expan
-            elements for abbreviations, and reviews other markup.</change>
+                elements for abbreviations, and reviews other markup.</change>
             <change when="2012-01-11" who="Hayim Lapin">Revision to comply new Schema</change>
-            
         </revisionDesc>
     </teiHeader>
     <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
@@ -180,10 +179,10 @@
                                 <abbr>נחתו<am rend="overmark">׳</am></abbr>
                                 <expan>נחתום</expan>
                             </choice>
-                            <sic><choice>
+                            <choice><sic>
                                     <abbr>ומהררו<am rend="overmark">׳</am></abbr>
                                     <expan/>
-                                </choice></sic><corr>ומחרוזות</corr><!-- Insert <sic> and <corr> need a policy -->
+                                </sic></choice><corr><expan>ומחרוזות</expan></corr><!-- Insert <sic> and <corr> need a policy -->
                             של <choice>
                                 <abbr>דגי<am rend="overmark">׳</am></abbr>
                                 <expan>דגים</expan>
@@ -330,7 +329,7 @@
                             </choice>
                             <lb/>שמן <choice>
                                 <abbr>חייבי<am rend="overmark">׳</am></abbr>
-                                <expan/>
+                                <expan>חייבים</expan>
                             </choice> להכריז<pc type="unitEnd" rend="˙">:</pc>
                             <lb/>
                         </ab>
@@ -422,7 +421,9 @@
                             <choice>
                                 <abbr>בתו<am rend="overmark">׳</am></abbr>
                                 <expan>בתוך</expan>
-                            </choice> הרי אלו שלו<pc type="unitEnd" rend="˙">:</pc><lb/>
+                            </choice><choice><abbr>הבי<am rend="overmark"
+                                    >׳</am></abbr><expan>הבית</expan></choice> הרי אלו שלו<pc
+                                type="unitEnd" rend="˙">:</pc><lb/>
                         </ab>
                         <ab xml:id="Mun.4.2.2.4" type="CanMishnah" n="4">
                             <choice>

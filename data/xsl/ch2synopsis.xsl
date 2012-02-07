@@ -19,9 +19,9 @@
     <xsl:strip-space elements="*"/>
     <xsl:variable name="URIlist">
         <xsl:for-each
-            select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit/tei:witness">
+            select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness">
             <xsl:variable name="checkURI">
-                <xsl:value-of select="tei:ptr/@target"/>
+                <xsl:value-of select="./@corresp"/>
                 <xsl:text>#</xsl:text>
                 <xsl:value-of select="./@xml:id"/>
                 <xsl:text>.4.2.2</xsl:text>
@@ -29,7 +29,7 @@
             <xsl:if test="(document($checkURI, .))">
                 <xsl:element name="item">
                     <xsl:element name="mURI">
-                        <xsl:value-of select="tei:ptr/@target"/>
+                        <xsl:value-of select="./@corresp"/>
                     </xsl:element>
                     <xsl:element name="witName">
                         <xsl:value-of select="./text()"/>
@@ -41,8 +41,9 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:variable>
+    
     <xsl:template match="/">
-        <html>
+       <html>
             <head>
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/ParColumnStylesheet.css"
@@ -94,5 +95,8 @@
                 </tr>
             </xsl:for-each>
         </table>
+    </xsl:template>
+    <xsl:template match="tei:choice">
+        <xsl:value-of select="*"></xsl:value-of>
     </xsl:template>
 </xsl:stylesheet>

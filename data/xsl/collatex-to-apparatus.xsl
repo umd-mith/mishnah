@@ -76,7 +76,8 @@
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
                 <h2>Sample Collatex Output</h2>
-                <h2><xsl:variable name="ref-cit">
+                <h2>
+                    <xsl:variable name="ref-cit">
                         <xsl:value-of
                             select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/@n"
                         />
@@ -94,7 +95,9 @@
                             select="document(normalize-space(concat('../tei/ref.xml',$look-up)),document(''))"
                         />
                     </xsl:variable>
-                    <span class="tractate"><xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/></span>
+                    <span class="tractate">
+                        <xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/>
+                    </span>
                     <xsl:analyze-string select="$ref-cit"
                         regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                         <xsl:matching-substring><xsl:text> </xsl:text><xsl:value-of
@@ -102,7 +105,6 @@
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
-             
                 <h3>1. Sources Collated</h3>
                 <table class="sources" dir="ltr">
                     <xsl:for-each select="$sortlist/tei:item">
