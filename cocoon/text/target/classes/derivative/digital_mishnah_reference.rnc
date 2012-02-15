@@ -1,0 +1,4522 @@
+default namespace = "http://www.tei-c.org/ns/1.0"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace sch = "http://purl.oclc.org/dsdl/schematron"
+namespace xlink = "http://www.w3.org/1999/xlink"
+
+# Schema generated from ODD source 2011-12-10T13:17:11Z. 
+# Edition: 1.9.1. Last updated on March 5th 2011.
+# Edition Location: http://www.tei-c.org/Vault/P5/1.9.1/
+#
+
+# This work is copyright Trevor Muñoz and Maryland Institute for Technology in
+#     the Humanities and licensed under a Creative Commons
+#         Attribution 3.0 Unported License.
+mishnahrmacro.paraContent =
+  (text
+   | mishnahrmodel.gLike
+   | mishnahrmodel.phrase
+   | mishnahrmodel.inter
+   | mishnahrmodel.global)*
+mishnahrmacro.limitedContent =
+  (text | mishnahrmodel.limitedPhrase | mishnahrmodel.inter)*
+mishnahrmacro.phraseSeq =
+  (text
+   | mishnahrmodel.gLike
+   | mishnahrmodel.phrase
+   | mishnahrmodel.global)*
+mishnahrmacro.phraseSeq.limited =
+  (text | mishnahrmodel.limitedPhrase | mishnahrmodel.global)*
+mishnahrmacro.specialPara =
+  (text
+   | mishnahrmodel.gLike
+   | mishnahrmodel.phrase
+   | mishnahrmodel.inter
+   | mishnahrmodel.divPart
+   | mishnahrmodel.global)*
+mishnahrmacro.xtext = (text | mishnahrmodel.gLike)*
+mishnahrdata.certainty = "high" | "medium" | "low" | "unknown"
+mishnahrdata.probability =
+  xsd:double { minInclusive = "0" maxInclusive = "1" }
+mishnahrdata.numeric =
+  xsd:double
+  | xsd:token { pattern = "(\-?[\d]+/\-?[\d]+)" }
+  | xsd:decimal
+mishnahrdata.count = xsd:nonNegativeInteger
+mishnahrdata.temporal.w3c =
+  xsd:date
+  | xsd:gYear
+  | xsd:gMonth
+  | xsd:gDay
+  | xsd:gYearMonth
+  | xsd:gMonthDay
+  | xsd:time
+  | xsd:dateTime
+mishnahrdata.truthValue = xsd:boolean
+mishnahrdata.xTruthValue = xsd:boolean | "unknown" | "inapplicable"
+mishnahrdata.language = xsd:language
+mishnahrdata.namespace = xsd:anyURI
+mishnahrdata.outputMeasurement =
+  xsd:token {
+    pattern =
+      "[\-+]?\d+(\.\d+)?(%|cm|mm|in|pt|pc|px|em|ex|gd|rem|vw|vh|vm)"
+  }
+mishnahrdata.pattern = xsd:token
+mishnahrdata.pointer = xsd:anyURI
+mishnahrdata.version = xsd:token { pattern = "[\d]+(\.[\d]+){0,2}" }
+mishnahrdata.key = xsd:string
+mishnahrdata.word = xsd:token { pattern = "(\p{L}|\p{N}|\p{P}|\p{S})+" }
+mishnahrdata.code = xsd:anyURI
+mishnahrdata.name = xsd:Name
+mishnahrdata.enumerated = mishnahrdata.name
+mishnahratt.ascribed.attributes = mishnahratt.ascribed.attribute.who
+mishnahratt.ascribed.attribute.who =
+  
+  ## indicates the person, or group of people, to whom the element content is ascribed.
+  attribute who {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.canonical.attributes =
+  mishnahratt.canonical.attribute.key,
+  mishnahratt.canonical.attribute.ref
+mishnahratt.canonical.attribute.key =
+  
+  ## provides an externally-defined means of identifying the entity (or entities) being
+  ##         named, using a coded value of some kind.
+  attribute key { mishnahrdata.key }?
+mishnahratt.canonical.attribute.ref =
+  
+  ## (reference) provides an explicit means of locating a full definition for the entity being named by
+  ##         means of one or more URIs.
+  attribute ref {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.ranging.attributes =
+  mishnahratt.ranging.attribute.atLeast,
+  mishnahratt.ranging.attribute.atMost,
+  mishnahratt.ranging.attribute.min,
+  mishnahratt.ranging.attribute.max,
+  mishnahratt.ranging.attribute.confidence
+mishnahratt.ranging.attribute.atLeast =
+  
+  ## gives a minimum estimated value for the approximate measurement.
+  attribute atLeast { mishnahrdata.numeric }?
+mishnahratt.ranging.attribute.atMost =
+  
+  ## gives a maximum estimated value for the approximate measurement.
+  attribute atMost { mishnahrdata.numeric }?
+mishnahratt.ranging.attribute.min =
+  
+  ## where the measurement summarizes more than one observation
+  ##       or a range, supplies the minimum value
+  ##         observed.
+  attribute min { mishnahrdata.numeric }?
+mishnahratt.ranging.attribute.max =
+  
+  ## where the measurement summarizes more than one observation
+  ##         or a range, supplies the maximum value
+  ##         observed.
+  attribute max { mishnahrdata.numeric }?
+mishnahratt.ranging.attribute.confidence =
+  
+  ## The degree of statistical confidence (between zero and one) that a value falls within the range
+  ##         specified by min and max, or the proportion of observed values that fall within that range.
+  attribute confidence { mishnahrdata.probability }?
+mishnahratt.dimensions.attributes =
+  mishnahratt.ranging.attributes,
+  mishnahratt.dimensions.attribute.unit,
+  mishnahratt.dimensions.attribute.quantity,
+  mishnahratt.dimensions.attribute.extent,
+  mishnahratt.dimensions.attribute.precision,
+  mishnahratt.dimensions.attribute.scope
+mishnahratt.dimensions.attribute.unit =
+  
+  ## names the unit used for the measurement
+  ## Suggested values include: 1] cm(centimetres) ; 2] mm(millimetres) ; 3] in(inches) ; 4] lines; 5] chars(characters) 
+  attribute unit {
+    
+    ## (centimetres) 
+    "cm"
+    | 
+      ## (millimetres) 
+      "mm"
+    | 
+      ## (inches) 
+      "in"
+    | 
+      ## lines of text
+      "lines"
+    | 
+      ## (characters) characters of text
+      "chars"
+    | xsd:Name
+  }?
+mishnahratt.dimensions.attribute.quantity =
+  
+  ## specifies the length in the units specified
+  attribute quantity { mishnahrdata.numeric }?
+mishnahratt.dimensions.attribute.extent =
+  
+  ## indicates the size of the object concerned using a project-specific vocabulary combining
+  ##         quantity and units in a single string of words. 
+  attribute extent {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.dimensions.attribute.precision =
+  
+  ## characterizes the precision of the values specified by the other attributes.
+  attribute precision { mishnahrdata.certainty }?
+mishnahratt.dimensions.attribute.scope =
+  
+  ## where the measurement summarizes more than one observation, specifies the applicability
+  ##         of this measurement.
+  ## Sample values include: 1] all; 2] most; 3] range
+  attribute scope { mishnahrdata.enumerated }?
+mishnahratt.breaking.attributes = mishnahratt.breaking.attribute.break
+mishnahratt.breaking.attribute.break =
+  
+  ## indicates whether or not the  element
+  ##	bearing this attribute should be considered to mark the end of
+  ##	an orthographic token in the same way as whitespace.
+  attribute break { mishnahrdata.enumerated }?
+mishnahratt.datable.w3c.attributes =
+  mishnahratt.datable.w3c.attribute.period,
+  mishnahratt.datable.w3c.attribute.when,
+  mishnahratt.datable.w3c.attribute.notBefore,
+  mishnahratt.datable.w3c.attribute.notAfter,
+  mishnahratt.datable.w3c.attribute.from,
+  mishnahratt.datable.w3c.attribute.to
+mishnahratt.datable.w3c.attribute.period =
+  
+  ## supplies a pointer to some location defining a named
+  ##       period of time within which the datable item is understood to
+  ##       have occurred.
+  attribute period { mishnahrdata.pointer }?
+mishnahratt.datable.w3c.attribute.when =
+  
+  ## supplies the value of the date or time in a standard form,
+  ##       e.g. yyyy-mm-dd.
+  attribute when { mishnahrdata.temporal.w3c }?
+mishnahratt.datable.w3c.attribute.notBefore =
+  
+  ## specifies the earliest possible date for the event in
+  ##	  standard form, e.g. yyyy-mm-dd.
+  attribute notBefore { mishnahrdata.temporal.w3c }?
+mishnahratt.datable.w3c.attribute.notAfter =
+  
+  ## specifies the latest possible date for the event in
+  ##	  standard form, e.g. yyyy-mm-dd.
+  attribute notAfter { mishnahrdata.temporal.w3c }?
+mishnahratt.datable.w3c.attribute.from =
+  
+  ## indicates the starting point of the period in standard form, e.g. yyyy-mm-dd.
+  attribute from { mishnahrdata.temporal.w3c }?
+mishnahratt.datable.w3c.attribute.to =
+  
+  ## indicates the ending point of the period in standard
+  ##	  form, e.g. yyyy-mm-dd.
+  attribute to { mishnahrdata.temporal.w3c }?
+mishnahratt.datable.attributes = mishnahratt.datable.w3c.attributes
+mishnahratt.declarable.attributes =
+  mishnahratt.declarable.attribute.default
+mishnahratt.declarable.attribute.default =
+  
+  ## indicates whether or not this element is selected by default when
+  ## its parent is selected.
+  [ a:defaultValue = "false" ]
+  attribute default {
+    
+    ## This element is selected if its parent is selected
+    "true"
+    | 
+      ## This element can only be selected explicitly, unless it is the
+      ## only one of its kind, in which case it is selected if its parent is selected.
+      "false"
+  }?
+mishnahratt.declaring.attributes = mishnahratt.declaring.attribute.decls
+mishnahratt.declaring.attribute.decls =
+  
+  ## identifies one or more declarable elements within the
+  ## header, which are understood to apply to the element bearing this
+  ## attribute and its content.
+  attribute decls {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.divLike.attributes =
+  mishnahratt.divLike.attribute.org,
+  mishnahratt.divLike.attribute.sample,
+  mishnahratt.divLike.attribute.part
+mishnahratt.divLike.attribute.org =
+  
+  ## (organization) specifies how the content of the division is organized.
+  [ a:defaultValue = "uniform" ]
+  attribute org {
+    
+    ## composite content: i.e. no claim is made about the
+    ##		  sequence in which the immediate contents of this division
+    ##		  are to be processed, or their inter-relationships.
+    "composite"
+    | 
+      ## uniform content: i.e. the immediate contents of this
+      ##		  element are regarded as forming a logical unit, to be
+      ##		  processed in sequence.
+      "uniform"
+  }?
+mishnahratt.divLike.attribute.sample =
+  
+  ## indicates whether this division is a sample of the
+  ##		original source and if so, from which part.
+  [ a:defaultValue = "complete" ]
+  attribute sample {
+    
+    ## division lacks material present at end in source.
+    "initial"
+    | 
+      ## division lacks material at start and end.
+      "medial"
+    | 
+      ## division lacks material at start.
+      "final"
+    | 
+      ## position of sampled material within original unknown.
+      "unknown"
+    | 
+      ## division is not a sample.
+      "complete"
+  }?
+mishnahratt.divLike.attribute.part =
+  
+  ## specifies whether or not the division is fragmented by
+  ##		some other structural element, for example a speech which is
+  ##		divided between two or more verse stanzas.
+  [ a:defaultValue = "N" ]
+  attribute part {
+    
+    ## (yes) the division is incomplete in some respect
+    "Y"
+    | 
+      ## (no) either the division is complete, or no claim is made as to its completeness.
+      "N"
+    | 
+      ## (initial) the initial part of an incomplete division
+      "I"
+    | 
+      ## (medial) a medial part of an incomplete division
+      "M"
+    | 
+      ## (final) the final part of an incomplete division
+      "F"
+  }?
+mishnahratt.docStatus.attributes =
+  mishnahratt.docStatus.attribute.status
+mishnahratt.docStatus.attribute.status =
+  
+  ## describes the status of a document either currently or, when
+  ## associated with a dated element, at the time indicated.
+  ## Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] draft; 6] embargoed; 7] expired; 8] frozen; 9] galley; 10] proposed; 11] published; 12] recommendation; 13] submitted; 14] unfinished; 15] withdrawn
+  [ a:defaultValue = "draft" ]
+  attribute status { mishnahrdata.enumerated }?
+mishnahratt.responsibility.attributes =
+  mishnahratt.responsibility.attribute.cert,
+  mishnahratt.responsibility.attribute.resp
+mishnahratt.responsibility.attribute.cert =
+  
+  ## (certainty) signifies the degree of certainty associated with the intervention or interpretation.
+  attribute cert { mishnahrdata.certainty }?
+mishnahratt.responsibility.attribute.resp =
+  
+  ## (responsible party) indicates the agency responsible for the intervention or interpretation, for example an
+  ##         editor or transcriber.
+  attribute resp {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.editLike.attributes =
+  mishnahratt.dimensions.attributes,
+  mishnahratt.responsibility.attributes,
+  mishnahratt.editLike.attribute.evidence,
+  mishnahratt.editLike.attribute.source
+mishnahratt.editLike.attribute.evidence =
+  
+  ## indicates the nature of the evidence supporting the reliability or accuracy of the
+  ##         intervention or interpretation.
+  ## Suggested values include: 1] internal; 2] external; 3] conjecture
+  attribute evidence {
+    list {
+      (
+       ## there is internal evidence to support the intervention.
+       "internal"
+       | 
+         ## there is external evidence to support the intervention.
+         "external"
+       | 
+         ## the intervention or interpretation has been made by the editor, cataloguer, or
+         ##             scholar on the basis of their expertise.
+         "conjecture"
+       | xsd:Name),
+      (
+       ## there is internal evidence to support the intervention.
+       "internal"
+       | 
+         ## there is external evidence to support the intervention.
+         "external"
+       | 
+         ## the intervention or interpretation has been made by the editor, cataloguer, or
+         ##             scholar on the basis of their expertise.
+         "conjecture"
+       | xsd:Name)*
+    }
+  }?
+mishnahratt.editLike.attribute.source =
+  
+  ## contains a list of one or more pointers indicating sources
+  ##       supporting the given  intervention or interpretation.
+  attribute source {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.attributes =
+  mishnahratt.global.linking.attributes,
+  mishnahratt.global.analytic.attributes,
+  mishnahratt.global.attribute.xmlid,
+  mishnahratt.global.attribute.n,
+  mishnahratt.global.attribute.xmllang,
+  mishnahratt.global.attribute.rend,
+  mishnahratt.global.attribute.rendition,
+  mishnahratt.global.attribute.xmlbase,
+  mishnahratt.global.attribute.xmlspace
+mishnahratt.global.attribute.xmlid =
+  
+  ## (identifier) provides a unique identifier for the element bearing the attribute.
+  attribute xml:id { xsd:ID }?
+mishnahratt.global.attribute.n =
+  
+  ## (number) gives a number (or other label) for an element, which is not necessarily unique within
+  ##         the document.
+  attribute n {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.global.attribute.xmllang =
+  
+  ## (language) indicates the language of the element content using a tag generated
+  ##         according to BCP 47
+  ##          
+  attribute xml:lang { mishnahrdata.language }?
+mishnahratt.global.attribute.rend =
+  
+  ## (rendition) indicates how the element in question was rendered or presented in the source text.
+  attribute rend {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.global.attribute.rendition =
+  
+  ## points to a description of the rendering or presentation used for this element in the
+  ##         source text.
+  attribute rendition {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.attribute.xmlbase =
+  
+  ## provides a base URI reference with which applications can resolve relative URI
+  ##         references into absolute URI references.
+  attribute xml:base { mishnahrdata.pointer }?
+mishnahratt.global.attribute.xmlspace =
+  
+  ## signals an intention about how white space should be 
+  ##       managed by  applications. 
+  attribute xml:space {
+    
+    ## the processor should treat white space according to the
+    ##	default XML white space handling rules
+    "default"
+    | 
+      ## the processor should preserve unchanged any and all
+      ##	white space in the source
+      "preserve"
+  }?
+mishnahratt.handFeatures.attributes =
+  mishnahratt.handFeatures.attribute.scribe,
+  mishnahratt.handFeatures.attribute.scribeRef,
+  mishnahratt.handFeatures.attribute.script,
+  mishnahratt.handFeatures.attribute.scriptRef,
+  mishnahratt.handFeatures.attribute.medium,
+  mishnahratt.handFeatures.attribute.scope
+mishnahratt.handFeatures.attribute.scribe =
+  
+  ## gives a name or other identifier for the scribe
+  ## believed to be responsible for this hand.
+  attribute scribe { mishnahrdata.name }?
+mishnahratt.handFeatures.attribute.scribeRef =
+  
+  ## points to a full description of the scribe concerned, typically supplied by a person element
+  ##       elsewhere in the description.
+  attribute scribeRef {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.handFeatures.attribute.script =
+  
+  ## characterizes the particular script or writing style used by
+  ## this hand, for example secretary, copperplate, Chancery, Italian, etc.
+  attribute script {
+    list { mishnahrdata.name, mishnahrdata.name* }
+  }?
+mishnahratt.handFeatures.attribute.scriptRef =
+  
+  ## points to a full description of the script or writing style used by
+  ## this hand, typically supplied by a scriptNote element
+  ##       elsewhere in the description.
+  attribute scriptRef {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.handFeatures.attribute.medium =
+  
+  ## describes the tint or type of ink, e.g. brown, or other
+  ## writing medium, e.g. pencil
+  attribute medium { mishnahrdata.enumerated }?
+mishnahratt.handFeatures.attribute.scope =
+  
+  ## specifies how widely this  hand is used in the manuscript.
+  attribute scope {
+    
+    ## only this hand is used throughout the manuscript
+    "sole"
+    | 
+      ## this hand is used through most of the manuscript
+      "major"
+    | 
+      ## this hand is used occasionally in the manuscript
+      "minor"
+  }?
+mishnahratt.internetMedia.attributes =
+  mishnahratt.internetMedia.attribute.mimeType
+mishnahratt.internetMedia.attribute.mimeType =
+  
+  ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
+  attribute mimeType { mishnahrdata.word }?
+mishnahratt.interpLike.attributes =
+  mishnahratt.responsibility.attributes,
+  mishnahratt.interpLike.attribute.type,
+  mishnahratt.interpLike.attribute.inst
+mishnahratt.interpLike.attribute.type =
+  
+  ## indicates what kind of phenomenon is being noted in the passage.
+  ## Sample values include: 1] image; 2] character; 3] theme; 4] allusion
+  attribute type { mishnahrdata.enumerated }?
+mishnahratt.interpLike.attribute.inst =
+  
+  ## (instances) points to instances of the analysis or interpretation represented
+  ## by the current element.
+  attribute inst {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.measurement.attributes =
+  mishnahratt.measurement.attribute.unit,
+  mishnahratt.measurement.attribute.quantity,
+  mishnahratt.measurement.attribute.commodity
+mishnahratt.measurement.attribute.unit =
+  
+  ## indicates the units used for the measurement, usually
+  ##       using the standard symbol for the desired units.
+  ## Suggested values include: 1] m(metre) ; 2] kg(kilogram) ; 3] s(second) ; 4] Hz(hertz) ; 5] Pa(pascal) ; 6] Ω(ohm) ; 7] L(litre) ; 8] t(tonne) ; 9] ha(hectare) ; 10] Å(ångström) ; 11] mL(millilitre) ; 12] cm(centimetre) ; 13] dB(decibel) ; 14] kbit(kilobit) ; 15] Kibit(kibibit) ; 16] kB(kilobyte) ; 17] KiB(kibibyte) ; 18] MB(megabyte) ; 19] MiB(mebibyte) 
+  attribute unit {
+    
+    ## (metre) SI base unit of length
+    "m"
+    | 
+      ## (kilogram) SI base unit of mass
+      "kg"
+    | 
+      ## (second) SI base unit of time
+      "s"
+    | 
+      ## (hertz) SI unit of frequency
+      "Hz"
+    | 
+      ## (pascal) SI unit of pressure or stress
+      "Pa"
+    | 
+      ## (ohm) SI unit of electric resistance
+      "Ω"
+    | 
+      ## (litre) 1 dm³
+      "L"
+    | 
+      ## (tonne) 10³ kg
+      "t"
+    | 
+      ## (hectare) 1 hm²
+      "ha"
+    | 
+      ## (ångström) 10⁻¹⁰ m
+      "Å"
+    | 
+      ## (millilitre) 
+      "mL"
+    | 
+      ## (centimetre) 
+      "cm"
+    | 
+      ## (decibel) see remarks, below
+      "dB"
+    | 
+      ## (kilobit) 10³ or 1000 bits
+      "kbit"
+    | 
+      ## (kibibit) 2¹⁰ or 1024 bits
+      "Kibit"
+    | 
+      ## (kilobyte) 10³ or 1000 bytes
+      "kB"
+    | 
+      ## (kibibyte) 2¹⁰ or 1024 bytes
+      "KiB"
+    | 
+      ## (megabyte) 10⁶ or 1 000 000 bytes
+      "MB"
+    | 
+      ## (mebibyte) 2²⁰ or 1 048 576 bytes
+      "MiB"
+    | xsd:Name
+  }?
+mishnahratt.measurement.attribute.quantity =
+  
+  ## specifies the number of the specified units that
+  ##       comprise the measurement
+  attribute quantity { mishnahrdata.numeric }?
+mishnahratt.measurement.attribute.commodity =
+  
+  ## indicates the substance that is being measured
+  attribute commodity {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.naming.attributes =
+  mishnahratt.canonical.attributes,
+  mishnahratt.naming.attribute.role,
+  mishnahratt.naming.attribute.nymRef
+mishnahratt.naming.attribute.role =
+  
+  ## may be used to specify further information about the entity referenced by
+  ## this name, for example the occupation of a person, or the status of a place. 
+  attribute role { mishnahrdata.enumerated }?
+mishnahratt.naming.attribute.nymRef =
+  
+  ## (reference to the canonical name) provides a means of locating the canonical form
+  ##       (nym) of the names associated with the object
+  ##        named by
+  ##       the element bearing it.
+  attribute nymRef {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.placement.attributes = mishnahratt.placement.attribute.place
+mishnahratt.placement.attribute.place =
+  
+  ## 
+  ## Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6] overleaf; 7] above; 8] end; 9] inline; 10] inspace
+  attribute place {
+    list {
+      (
+       ## below the line
+       "below"
+       | 
+         ## at the foot of the page
+         "bottom"
+       | 
+         ## in the margin (left, right, or both)
+         "margin"
+       | 
+         ## at the top of the page
+         "top"
+       | 
+         ## on the opposite, i.e. facing, page
+         "opposite"
+       | 
+         ## on the other side of the leaf
+         "overleaf"
+       | 
+         ## above the line
+         "above"
+       | 
+         ## at the end of e.g. chapter or volume.
+         "end"
+       | 
+         ## within the body of the text.
+         "inline"
+       | 
+         ##  in a predefined space, for example left by an earlier scribe.
+         "inspace"
+       | xsd:Name),
+      (
+       ## below the line
+       "below"
+       | 
+         ## at the foot of the page
+         "bottom"
+       | 
+         ## in the margin (left, right, or both)
+         "margin"
+       | 
+         ## at the top of the page
+         "top"
+       | 
+         ## on the opposite, i.e. facing, page
+         "opposite"
+       | 
+         ## on the other side of the leaf
+         "overleaf"
+       | 
+         ## above the line
+         "above"
+       | 
+         ## at the end of e.g. chapter or volume.
+         "end"
+       | 
+         ## within the body of the text.
+         "inline"
+       | 
+         ##  in a predefined space, for example left by an earlier scribe.
+         "inspace"
+       | xsd:Name)*
+    }
+  }?
+mishnahratt.typed.attributes =
+  mishnahratt.typed.attribute.type, mishnahratt.typed.attribute.subtype
+mishnahratt.typed.attribute.type =
+  
+  ## characterizes the element in some sense, using any convenient
+  ##  classification scheme or typology.
+  attribute type { mishnahrdata.enumerated }?
+mishnahratt.typed.attribute.subtype =
+  
+  ## provides a sub-categorization of the element, if needed
+  attribute subtype { mishnahrdata.enumerated }?
+mishnahratt.pointing.attributes =
+  mishnahratt.pointing.attribute.target,
+  mishnahratt.pointing.attribute.evaluate
+mishnahratt.pointing.attribute.target =
+  
+  ## specifies the destination of the reference by supplying one or more URI References
+  attribute target {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.pointing.attribute.evaluate =
+  
+  ## specifies the intended meaning when the target of a
+  ##       pointer is itself a pointer.
+  attribute evaluate {
+    
+    ## if the element pointed to is itself a pointer, then
+    ##	  the target of that pointer will be taken, and so on, until
+    ##	  an element is found which is not a pointer.
+    "all"
+    | 
+      ## if the element pointed to is itself a pointer, then
+      ##	  its target (whether a pointer or not) is taken as the target
+      ##	  of this pointer.
+      "one"
+    | 
+      ## no further evaluation of targets is carried out
+      ##	  beyond that needed to find the element specified in the
+      ##	  pointer's target.
+      "none"
+  }?
+mishnahratt.segLike.attributes =
+  mishnahratt.segLike.attribute.function,
+  mishnahratt.segLike.attribute.part
+mishnahratt.segLike.attribute.function =
+  
+  ## characterizes the function of the segment.
+  attribute function { mishnahrdata.enumerated }?
+mishnahratt.segLike.attribute.part =
+  
+  ## specifies whether or not the segment is fragmented by some other
+  ## structural element, for example a clause which is divided between two
+  ## or more sentences.
+  [ a:defaultValue = "N" ]
+  attribute part {
+    
+    ## (yes) the segment is incomplete in some respect
+    "Y"
+    | 
+      ## (no) either the segment is complete, or no claim is made as to
+      ## its completeness
+      "N"
+    | 
+      ## (initial) the initial part of an incomplete segment
+      "I"
+    | 
+      ## (medial) a medial part of an incomplete segment
+      "M"
+    | 
+      ## (final) the final part of an incomplete segment
+      "F"
+  }?
+mishnahratt.sourced.attributes = mishnahratt.sourced.attribute.ed
+mishnahratt.sourced.attribute.ed =
+  
+  ## (edition) supplies an arbitrary identifier for the source edition in which
+  ##       the associated feature (for example, a  page, column, or line
+  ##       break) occurs at this point in the text.
+  attribute ed {
+    list { mishnahrdata.code, mishnahrdata.code* }
+  }?
+mishnahratt.spanning.attributes = mishnahratt.spanning.attribute.spanTo
+mishnahratt.spanning.attribute.spanTo =
+  
+  ## indicates the end of a span initiated by the element
+  ##	bearing this attribute.
+  attribute spanTo { mishnahrdata.pointer }?
+mishnahratt.transcriptional.attributes =
+  mishnahratt.editLike.attributes,
+  mishnahratt.transcriptional.attribute.hand,
+  mishnahratt.transcriptional.attribute.status,
+  mishnahratt.transcriptional.attribute.seq
+mishnahratt.transcriptional.attribute.hand =
+  
+  ## signifies the hand of the agent which made the intervention.
+  attribute hand { mishnahrdata.pointer }?
+mishnahratt.transcriptional.attribute.status =
+  
+  ## indicates the effect of the intervention, for example in
+  ##       the case of a deletion, strikeouts
+  ##       which include too much or too little text, or in the case of an
+  ##       addition, an insertion which duplicates some of the text
+  ##       already present.
+  ## Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] excessEnd; 5] shortStart; 6] shortEnd; 7] partial; 8] unremarkable
+  [ a:defaultValue = "unremarkable" ]
+  attribute status { mishnahrdata.enumerated }?
+mishnahratt.transcriptional.attribute.seq =
+  
+  ## (sequence) assigns a sequence number related to the order in which
+  ##       the encoded features carrying this attribute are believed to have occurred.
+  attribute seq { mishnahrdata.count }?
+mishnahratt.translatable.attributes =
+  mishnahratt.translatable.attribute.version
+mishnahratt.translatable.attribute.version =
+  
+  ## specifies the version name or number of the source from
+  ##	which the translated version was derived
+  attribute version { mishnahrdata.word }?
+mishnahrmodel.nameLike.agent = mishnahrname
+mishnahrmodel.nameLike.agent_alternation = mishnahrname
+mishnahrmodel.nameLike.agent_sequence = mishnahrname
+mishnahrmodel.nameLike.agent_sequenceOptional = mishnahrname?
+mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable = mishnahrname*
+mishnahrmodel.nameLike.agent_sequenceRepeatable = mishnahrname+
+mishnahrmodel.segLike = mishnahrw
+mishnahrmodel.segLike_alternation = mishnahrw
+mishnahrmodel.segLike_sequence = mishnahrw
+mishnahrmodel.segLike_sequenceOptional = mishnahrw?
+mishnahrmodel.segLike_sequenceOptionalRepeatable = mishnahrw*
+mishnahrmodel.segLike_sequenceRepeatable = mishnahrw+
+mishnahrmodel.hiLike = mishnahrhi
+mishnahrmodel.hiLike_alternation = mishnahrhi
+mishnahrmodel.hiLike_sequence = mishnahrhi
+mishnahrmodel.hiLike_sequenceOptional = mishnahrhi?
+mishnahrmodel.hiLike_sequenceOptionalRepeatable = mishnahrhi*
+mishnahrmodel.hiLike_sequenceRepeatable = mishnahrhi+
+mishnahrmodel.emphLike =
+  mishnahrforeign
+  | mishnahremph
+  | mishnahrdistinct
+  | mishnahrmentioned
+  | mishnahrsoCalled
+  | mishnahrgloss
+  | mishnahrterm
+  | mishnahrtitle
+mishnahrmodel.emphLike_alternation =
+  mishnahrforeign
+  | mishnahremph
+  | mishnahrdistinct
+  | mishnahrmentioned
+  | mishnahrsoCalled
+  | mishnahrgloss
+  | mishnahrterm
+  | mishnahrtitle
+mishnahrmodel.emphLike_sequence =
+  mishnahrforeign,
+  mishnahremph,
+  mishnahrdistinct,
+  mishnahrmentioned,
+  mishnahrsoCalled,
+  mishnahrgloss,
+  mishnahrterm,
+  mishnahrtitle
+mishnahrmodel.emphLike_sequenceOptional =
+  mishnahrforeign?,
+  mishnahremph?,
+  mishnahrdistinct?,
+  mishnahrmentioned?,
+  mishnahrsoCalled?,
+  mishnahrgloss?,
+  mishnahrterm?,
+  mishnahrtitle?
+mishnahrmodel.emphLike_sequenceOptionalRepeatable =
+  mishnahrforeign*,
+  mishnahremph*,
+  mishnahrdistinct*,
+  mishnahrmentioned*,
+  mishnahrsoCalled*,
+  mishnahrgloss*,
+  mishnahrterm*,
+  mishnahrtitle*
+mishnahrmodel.emphLike_sequenceRepeatable =
+  mishnahrforeign+,
+  mishnahremph+,
+  mishnahrdistinct+,
+  mishnahrmentioned+,
+  mishnahrsoCalled+,
+  mishnahrgloss+,
+  mishnahrterm+,
+  mishnahrtitle+
+mishnahrmodel.highlighted =
+  mishnahrmodel.hiLike | mishnahrmodel.emphLike
+mishnahrmodel.highlighted_alternation =
+  mishnahrmodel.hiLike_alternation | mishnahrmodel.emphLike_alternation
+mishnahrmodel.highlighted_sequence =
+  mishnahrmodel.hiLike_sequence, mishnahrmodel.emphLike_sequence
+mishnahrmodel.highlighted_sequenceOptional =
+  mishnahrmodel.hiLike_sequenceOptional?,
+  mishnahrmodel.emphLike_sequenceOptional?
+mishnahrmodel.highlighted_sequenceOptionalRepeatable =
+  mishnahrmodel.hiLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.emphLike_sequenceOptionalRepeatable*
+mishnahrmodel.highlighted_sequenceRepeatable =
+  mishnahrmodel.hiLike_sequenceRepeatable+,
+  mishnahrmodel.emphLike_sequenceRepeatable+
+mishnahrmodel.dateLike = mishnahrdate | mishnahrtime
+mishnahrmodel.dateLike_alternation = mishnahrdate | mishnahrtime
+mishnahrmodel.dateLike_sequence = mishnahrdate, mishnahrtime
+mishnahrmodel.dateLike_sequenceOptional = mishnahrdate?, mishnahrtime?
+mishnahrmodel.dateLike_sequenceOptionalRepeatable =
+  mishnahrdate*, mishnahrtime*
+mishnahrmodel.dateLike_sequenceRepeatable = mishnahrdate+, mishnahrtime+
+mishnahrmodel.measureLike =
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+mishnahrmodel.measureLike_alternation =
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+mishnahrmodel.measureLike_sequence =
+  mishnahrnum, mishnahrmeasure, mishnahrmeasureGrp
+mishnahrmodel.measureLike_sequenceOptional =
+  mishnahrnum?, mishnahrmeasure?, mishnahrmeasureGrp?
+mishnahrmodel.measureLike_sequenceOptionalRepeatable =
+  mishnahrnum*, mishnahrmeasure*, mishnahrmeasureGrp*
+mishnahrmodel.measureLike_sequenceRepeatable =
+  mishnahrnum+, mishnahrmeasure+, mishnahrmeasureGrp+
+mishnahrmodel.egLike = notAllowed
+mishnahrmodel.egLike_alternation = notAllowed
+mishnahrmodel.egLike_sequence = empty
+mishnahrmodel.egLike_sequenceOptional = empty
+mishnahrmodel.egLike_sequenceOptionalRepeatable = empty
+mishnahrmodel.egLike_sequenceRepeatable = notAllowed
+mishnahrmodel.graphicLike = mishnahrgraphic | mishnahrbinaryObject
+mishnahrmodel.graphicLike_alternation =
+  mishnahrgraphic | mishnahrbinaryObject
+mishnahrmodel.graphicLike_sequence =
+  mishnahrgraphic, mishnahrbinaryObject
+mishnahrmodel.graphicLike_sequenceOptional =
+  mishnahrgraphic?, mishnahrbinaryObject?
+mishnahrmodel.graphicLike_sequenceOptionalRepeatable =
+  mishnahrgraphic*, mishnahrbinaryObject*
+mishnahrmodel.graphicLike_sequenceRepeatable =
+  mishnahrgraphic+, mishnahrbinaryObject+
+mishnahrmodel.pPart.editorial =
+  mishnahrchoice | mishnahrabbr | mishnahrexpan
+mishnahrmodel.pPart.editorial_alternation =
+  mishnahrchoice | mishnahrabbr | mishnahrexpan
+mishnahrmodel.pPart.editorial_sequence =
+  mishnahrchoice, mishnahrabbr, mishnahrexpan
+mishnahrmodel.pPart.editorial_sequenceOptional =
+  mishnahrchoice?, mishnahrabbr?, mishnahrexpan?
+mishnahrmodel.pPart.editorial_sequenceOptionalRepeatable =
+  mishnahrchoice*, mishnahrabbr*, mishnahrexpan*
+mishnahrmodel.pPart.editorial_sequenceRepeatable =
+  mishnahrchoice+, mishnahrabbr+, mishnahrexpan+
+mishnahrmodel.pPart.transcriptional =
+  mishnahrsic
+  | mishnahrcorr
+  | mishnahrreg
+  | mishnahrorig
+  | mishnahradd
+  | mishnahrdel
+  | mishnahrunclear
+  | mishnahrapp
+mishnahrmodel.pPart.transcriptional_alternation =
+  mishnahrsic
+  | mishnahrcorr
+  | mishnahrreg
+  | mishnahrorig
+  | mishnahradd
+  | mishnahrdel
+  | mishnahrunclear
+  | mishnahrapp
+mishnahrmodel.pPart.transcriptional_sequence =
+  mishnahrsic,
+  mishnahrcorr,
+  mishnahrreg,
+  mishnahrorig,
+  mishnahradd,
+  mishnahrdel,
+  mishnahrunclear,
+  mishnahrapp
+mishnahrmodel.pPart.transcriptional_sequenceOptional =
+  mishnahrsic?,
+  mishnahrcorr?,
+  mishnahrreg?,
+  mishnahrorig?,
+  mishnahradd?,
+  mishnahrdel?,
+  mishnahrunclear?,
+  mishnahrapp?
+mishnahrmodel.pPart.transcriptional_sequenceOptionalRepeatable =
+  mishnahrsic*,
+  mishnahrcorr*,
+  mishnahrreg*,
+  mishnahrorig*,
+  mishnahradd*,
+  mishnahrdel*,
+  mishnahrunclear*,
+  mishnahrapp*
+mishnahrmodel.pPart.transcriptional_sequenceRepeatable =
+  mishnahrsic+,
+  mishnahrcorr+,
+  mishnahrreg+,
+  mishnahrorig+,
+  mishnahradd+,
+  mishnahrdel+,
+  mishnahrunclear+,
+  mishnahrapp+
+mishnahrmodel.pPart.edit =
+  mishnahrmodel.pPart.editorial | mishnahrmodel.pPart.transcriptional
+mishnahrmodel.pPart.edit_alternation =
+  mishnahrmodel.pPart.editorial_alternation
+  | mishnahrmodel.pPart.transcriptional_alternation
+mishnahrmodel.pPart.edit_sequence =
+  mishnahrmodel.pPart.editorial_sequence,
+  mishnahrmodel.pPart.transcriptional_sequence
+mishnahrmodel.pPart.edit_sequenceOptional =
+  mishnahrmodel.pPart.editorial_sequenceOptional?,
+  mishnahrmodel.pPart.transcriptional_sequenceOptional?
+mishnahrmodel.pPart.edit_sequenceOptionalRepeatable =
+  mishnahrmodel.pPart.editorial_sequenceOptionalRepeatable*,
+  mishnahrmodel.pPart.transcriptional_sequenceOptionalRepeatable*
+mishnahrmodel.pPart.edit_sequenceRepeatable =
+  mishnahrmodel.pPart.editorial_sequenceRepeatable+,
+  mishnahrmodel.pPart.transcriptional_sequenceRepeatable+
+mishnahrmodel.ptrLike = mishnahrptr | mishnahrref
+mishnahrmodel.ptrLike_alternation = mishnahrptr | mishnahrref
+mishnahrmodel.ptrLike_sequence = mishnahrptr, mishnahrref
+mishnahrmodel.ptrLike_sequenceOptional = mishnahrptr?, mishnahrref?
+mishnahrmodel.ptrLike_sequenceOptionalRepeatable =
+  mishnahrptr*, mishnahrref*
+mishnahrmodel.ptrLike_sequenceRepeatable = mishnahrptr+, mishnahrref+
+mishnahrmodel.lPart = notAllowed
+mishnahrmodel.lPart_alternation = notAllowed
+mishnahrmodel.lPart_sequence = empty
+mishnahrmodel.lPart_sequenceOptional = empty
+mishnahrmodel.lPart_sequenceOptionalRepeatable = empty
+mishnahrmodel.lPart_sequenceRepeatable = notAllowed
+mishnahrmodel.global.meta =
+  mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
+mishnahrmodel.global.meta_alternation =
+  mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
+mishnahrmodel.global.meta_sequence =
+  mishnahrindex, mishnahrinterp, mishnahrinterpGrp, mishnahrlink
+mishnahrmodel.global.meta_sequenceOptional =
+  mishnahrindex?, mishnahrinterp?, mishnahrinterpGrp?, mishnahrlink?
+mishnahrmodel.global.meta_sequenceOptionalRepeatable =
+  mishnahrindex*, mishnahrinterp*, mishnahrinterpGrp*, mishnahrlink*
+mishnahrmodel.global.meta_sequenceRepeatable =
+  mishnahrindex+, mishnahrinterp+, mishnahrinterpGrp+, mishnahrlink+
+mishnahrmodel.milestoneLike =
+  mishnahrmilestone
+  | mishnahrpb
+  | mishnahrlb
+  | mishnahrcb
+  | mishnahranchor
+mishnahrmodel.milestoneLike_alternation =
+  mishnahrmilestone
+  | mishnahrpb
+  | mishnahrlb
+  | mishnahrcb
+  | mishnahranchor
+mishnahrmodel.milestoneLike_sequence =
+  mishnahrmilestone, mishnahrpb, mishnahrlb, mishnahrcb, mishnahranchor
+mishnahrmodel.milestoneLike_sequenceOptional =
+  mishnahrmilestone?,
+  mishnahrpb?,
+  mishnahrlb?,
+  mishnahrcb?,
+  mishnahranchor?
+mishnahrmodel.milestoneLike_sequenceOptionalRepeatable =
+  mishnahrmilestone*,
+  mishnahrpb*,
+  mishnahrlb*,
+  mishnahrcb*,
+  mishnahranchor*
+mishnahrmodel.milestoneLike_sequenceRepeatable =
+  mishnahrmilestone+,
+  mishnahrpb+,
+  mishnahrlb+,
+  mishnahrcb+,
+  mishnahranchor+
+mishnahrmodel.gLike = notAllowed
+mishnahrmodel.biblLike =
+  mishnahrbibl | mishnahrbiblStruct | mishnahrbiblFull
+mishnahrmodel.biblLike_alternation =
+  mishnahrbibl | mishnahrbiblStruct | mishnahrbiblFull
+mishnahrmodel.biblLike_sequence =
+  mishnahrbibl, mishnahrbiblStruct, mishnahrbiblFull
+mishnahrmodel.biblLike_sequenceOptional =
+  mishnahrbibl?, mishnahrbiblStruct?, mishnahrbiblFull?
+mishnahrmodel.biblLike_sequenceOptionalRepeatable =
+  mishnahrbibl*, mishnahrbiblStruct*, mishnahrbiblFull*
+mishnahrmodel.biblLike_sequenceRepeatable =
+  mishnahrbibl+, mishnahrbiblStruct+, mishnahrbiblFull+
+mishnahrmodel.headLike = mishnahrhead
+mishnahrmodel.headLike_alternation = mishnahrhead
+mishnahrmodel.headLike_sequence = mishnahrhead
+mishnahrmodel.headLike_sequenceOptional = mishnahrhead?
+mishnahrmodel.headLike_sequenceOptionalRepeatable = mishnahrhead*
+mishnahrmodel.headLike_sequenceRepeatable = mishnahrhead+
+mishnahrmodel.labelLike = mishnahrdesc | mishnahrlabel
+mishnahrmodel.labelLike_alternation = mishnahrdesc | mishnahrlabel
+mishnahrmodel.labelLike_sequence = mishnahrdesc, mishnahrlabel
+mishnahrmodel.labelLike_sequenceOptional = mishnahrdesc?, mishnahrlabel?
+mishnahrmodel.labelLike_sequenceOptionalRepeatable =
+  mishnahrdesc*, mishnahrlabel*
+mishnahrmodel.labelLike_sequenceRepeatable =
+  mishnahrdesc+, mishnahrlabel+
+mishnahrmodel.listLike =
+  mishnahrlist | mishnahrlistBibl | mishnahrlistWit
+mishnahrmodel.listLike_alternation =
+  mishnahrlist | mishnahrlistBibl | mishnahrlistWit
+mishnahrmodel.listLike_sequence =
+  mishnahrlist, mishnahrlistBibl, mishnahrlistWit
+mishnahrmodel.listLike_sequenceOptional =
+  mishnahrlist?, mishnahrlistBibl?, mishnahrlistWit?
+mishnahrmodel.listLike_sequenceOptionalRepeatable =
+  mishnahrlist*, mishnahrlistBibl*, mishnahrlistWit*
+mishnahrmodel.listLike_sequenceRepeatable =
+  mishnahrlist+, mishnahrlistBibl+, mishnahrlistWit+
+mishnahrmodel.noteLike = mishnahrnote | mishnahrwitDetail
+mishnahrmodel.noteLike_alternation = mishnahrnote | mishnahrwitDetail
+mishnahrmodel.noteLike_sequence = mishnahrnote, mishnahrwitDetail
+mishnahrmodel.noteLike_sequenceOptional =
+  mishnahrnote?, mishnahrwitDetail?
+mishnahrmodel.noteLike_sequenceOptionalRepeatable =
+  mishnahrnote*, mishnahrwitDetail*
+mishnahrmodel.noteLike_sequenceRepeatable =
+  mishnahrnote+, mishnahrwitDetail+
+mishnahrmodel.lLike = mishnahrl
+mishnahrmodel.lLike_alternation = mishnahrl
+mishnahrmodel.lLike_sequence = mishnahrl
+mishnahrmodel.lLike_sequenceOptional = mishnahrl?
+mishnahrmodel.lLike_sequenceOptionalRepeatable = mishnahrl*
+mishnahrmodel.lLike_sequenceRepeatable = mishnahrl+
+mishnahrmodel.pLike = mishnahrp | mishnahrab
+mishnahrmodel.pLike_alternation = mishnahrp | mishnahrab
+mishnahrmodel.pLike_sequence = mishnahrp, mishnahrab
+mishnahrmodel.pLike_sequenceOptional = mishnahrp?, mishnahrab?
+mishnahrmodel.pLike_sequenceOptionalRepeatable = mishnahrp*, mishnahrab*
+mishnahrmodel.pLike_sequenceRepeatable = mishnahrp+, mishnahrab+
+mishnahrmodel.stageLike = mishnahrstage
+mishnahrmodel.stageLike_alternation = mishnahrstage
+mishnahrmodel.stageLike_sequence = mishnahrstage
+mishnahrmodel.stageLike_sequenceOptional = mishnahrstage?
+mishnahrmodel.stageLike_sequenceOptionalRepeatable = mishnahrstage*
+mishnahrmodel.stageLike_sequenceRepeatable = mishnahrstage+
+mishnahrmodel.entryPart = notAllowed
+mishnahrmodel.global.edit = mishnahrgap
+mishnahrmodel.global.edit_alternation = mishnahrgap
+mishnahrmodel.global.edit_sequence = mishnahrgap
+mishnahrmodel.global.edit_sequenceOptional = mishnahrgap?
+mishnahrmodel.global.edit_sequenceOptionalRepeatable = mishnahrgap*
+mishnahrmodel.global.edit_sequenceRepeatable = mishnahrgap+
+mishnahrmodel.divPart =
+  mishnahrmodel.lLike
+  | mishnahrmodel.pLike
+  | mishnahrlg
+  | mishnahrsp
+  | mishnahrfloatingText
+mishnahrmodel.divPart_alternation =
+  mishnahrmodel.lLike_alternation
+  | mishnahrmodel.pLike_alternation
+  | mishnahrlg
+  | mishnahrsp
+  | mishnahrfloatingText
+mishnahrmodel.divPart_sequence =
+  mishnahrmodel.lLike_sequence,
+  mishnahrmodel.pLike_sequence,
+  mishnahrlg,
+  mishnahrsp,
+  mishnahrfloatingText
+mishnahrmodel.divPart_sequenceOptional =
+  mishnahrmodel.lLike_sequenceOptional?,
+  mishnahrmodel.pLike_sequenceOptional?,
+  mishnahrlg?,
+  mishnahrsp?,
+  mishnahrfloatingText?
+mishnahrmodel.divPart_sequenceOptionalRepeatable =
+  mishnahrmodel.lLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.pLike_sequenceOptionalRepeatable*,
+  mishnahrlg*,
+  mishnahrsp*,
+  mishnahrfloatingText*
+mishnahrmodel.divPart_sequenceRepeatable =
+  mishnahrmodel.lLike_sequenceRepeatable+,
+  mishnahrmodel.pLike_sequenceRepeatable+,
+  mishnahrlg+,
+  mishnahrsp+,
+  mishnahrfloatingText+
+mishnahrmodel.publicationStmtPart =
+  mishnahraddress
+  | mishnahrdate
+  | mishnahrpublisher
+  | mishnahrpubPlace
+  | mishnahrdistributor
+  | mishnahrauthority
+  | mishnahridno
+  | mishnahravailability
+mishnahrmodel.availabilityPart = mishnahrp | mishnahrlicence
+mishnahrmodel.glossLike = mishnahrdesc | mishnahrgloss
+mishnahrmodel.quoteLike = mishnahrquote | mishnahrcit
+mishnahrmodel.quoteLike_alternation = mishnahrquote | mishnahrcit
+mishnahrmodel.quoteLike_sequence = mishnahrquote, mishnahrcit
+mishnahrmodel.quoteLike_sequenceOptional = mishnahrquote?, mishnahrcit?
+mishnahrmodel.quoteLike_sequenceOptionalRepeatable =
+  mishnahrquote*, mishnahrcit*
+mishnahrmodel.quoteLike_sequenceRepeatable =
+  mishnahrquote+, mishnahrcit+
+mishnahrmodel.qLike = mishnahrmodel.quoteLike | mishnahrsaid | mishnahrq
+mishnahrmodel.qLike_alternation =
+  mishnahrmodel.quoteLike_alternation | mishnahrsaid | mishnahrq
+mishnahrmodel.qLike_sequence =
+  mishnahrmodel.quoteLike_sequence, mishnahrsaid, mishnahrq
+mishnahrmodel.qLike_sequenceOptional =
+  mishnahrmodel.quoteLike_sequenceOptional?, mishnahrsaid?, mishnahrq?
+mishnahrmodel.qLike_sequenceOptionalRepeatable =
+  mishnahrmodel.quoteLike_sequenceOptionalRepeatable*,
+  mishnahrsaid*,
+  mishnahrq*
+mishnahrmodel.qLike_sequenceRepeatable =
+  mishnahrmodel.quoteLike_sequenceRepeatable+, mishnahrsaid+, mishnahrq+
+mishnahrmodel.respLike =
+  mishnahrauthor
+  | mishnahreditor
+  | mishnahrrespStmt
+  | mishnahrmeeting
+  | mishnahrsponsor
+  | mishnahrfunder
+  | mishnahrprincipal
+mishnahrmodel.respLike_alternation =
+  mishnahrauthor
+  | mishnahreditor
+  | mishnahrrespStmt
+  | mishnahrmeeting
+  | mishnahrsponsor
+  | mishnahrfunder
+  | mishnahrprincipal
+mishnahrmodel.respLike_sequence =
+  mishnahrauthor,
+  mishnahreditor,
+  mishnahrrespStmt,
+  mishnahrmeeting,
+  mishnahrsponsor,
+  mishnahrfunder,
+  mishnahrprincipal
+mishnahrmodel.respLike_sequenceOptional =
+  mishnahrauthor?,
+  mishnahreditor?,
+  mishnahrrespStmt?,
+  mishnahrmeeting?,
+  mishnahrsponsor?,
+  mishnahrfunder?,
+  mishnahrprincipal?
+mishnahrmodel.respLike_sequenceOptionalRepeatable =
+  mishnahrauthor*,
+  mishnahreditor*,
+  mishnahrrespStmt*,
+  mishnahrmeeting*,
+  mishnahrsponsor*,
+  mishnahrfunder*,
+  mishnahrprincipal*
+mishnahrmodel.respLike_sequenceRepeatable =
+  mishnahrauthor+,
+  mishnahreditor+,
+  mishnahrrespStmt+,
+  mishnahrmeeting+,
+  mishnahrsponsor+,
+  mishnahrfunder+,
+  mishnahrprincipal+
+mishnahrmodel.divWrapper =
+  mishnahrmeeting
+  | mishnahrbyline
+  | mishnahrdateline
+  | mishnahrargument
+  | mishnahrepigraph
+  | mishnahrsalute
+  | mishnahrdocAuthor
+  | mishnahrdocDate
+mishnahrmodel.divWrapper_alternation =
+  mishnahrmeeting
+  | mishnahrbyline
+  | mishnahrdateline
+  | mishnahrargument
+  | mishnahrepigraph
+  | mishnahrsalute
+  | mishnahrdocAuthor
+  | mishnahrdocDate
+mishnahrmodel.divWrapper_sequence =
+  mishnahrmeeting,
+  mishnahrbyline,
+  mishnahrdateline,
+  mishnahrargument,
+  mishnahrepigraph,
+  mishnahrsalute,
+  mishnahrdocAuthor,
+  mishnahrdocDate
+mishnahrmodel.divWrapper_sequenceOptional =
+  mishnahrmeeting?,
+  mishnahrbyline?,
+  mishnahrdateline?,
+  mishnahrargument?,
+  mishnahrepigraph?,
+  mishnahrsalute?,
+  mishnahrdocAuthor?,
+  mishnahrdocDate?
+mishnahrmodel.divWrapper_sequenceOptionalRepeatable =
+  mishnahrmeeting*,
+  mishnahrbyline*,
+  mishnahrdateline*,
+  mishnahrargument*,
+  mishnahrepigraph*,
+  mishnahrsalute*,
+  mishnahrdocAuthor*,
+  mishnahrdocDate*
+mishnahrmodel.divWrapper_sequenceRepeatable =
+  mishnahrmeeting+,
+  mishnahrbyline+,
+  mishnahrdateline+,
+  mishnahrargument+,
+  mishnahrepigraph+,
+  mishnahrsalute+,
+  mishnahrdocAuthor+,
+  mishnahrdocDate+
+mishnahrmodel.divTopPart = mishnahrmodel.headLike | mishnahropener
+mishnahrmodel.divTopPart_alternation =
+  mishnahrmodel.headLike_alternation | mishnahropener
+mishnahrmodel.divTopPart_sequence =
+  mishnahrmodel.headLike_sequence, mishnahropener
+mishnahrmodel.divTopPart_sequenceOptional =
+  mishnahrmodel.headLike_sequenceOptional?, mishnahropener?
+mishnahrmodel.divTopPart_sequenceOptionalRepeatable =
+  mishnahrmodel.headLike_sequenceOptionalRepeatable*, mishnahropener*
+mishnahrmodel.divTopPart_sequenceRepeatable =
+  mishnahrmodel.headLike_sequenceRepeatable+, mishnahropener+
+mishnahrmodel.divTop =
+  mishnahrmodel.divWrapper | mishnahrmodel.divTopPart
+mishnahrmodel.pLike.front =
+  mishnahrhead
+  | mishnahrbyline
+  | mishnahrargument
+  | mishnahrepigraph
+  | mishnahrdocTitle
+  | mishnahrtitlePart
+  | mishnahrdocAuthor
+  | mishnahrdocEdition
+  | mishnahrdocImprint
+  | mishnahrdocDate
+mishnahrmodel.divBottomPart =
+  mishnahrtrailer | mishnahrcloser | mishnahrsigned | mishnahrpostscript
+mishnahrmodel.divBottomPart_alternation =
+  mishnahrtrailer | mishnahrcloser | mishnahrsigned | mishnahrpostscript
+mishnahrmodel.divBottomPart_sequence =
+  mishnahrtrailer, mishnahrcloser, mishnahrsigned, mishnahrpostscript
+mishnahrmodel.divBottomPart_sequenceOptional =
+  mishnahrtrailer?,
+  mishnahrcloser?,
+  mishnahrsigned?,
+  mishnahrpostscript?
+mishnahrmodel.divBottomPart_sequenceOptionalRepeatable =
+  mishnahrtrailer*,
+  mishnahrcloser*,
+  mishnahrsigned*,
+  mishnahrpostscript*
+mishnahrmodel.divBottomPart_sequenceRepeatable =
+  mishnahrtrailer+,
+  mishnahrcloser+,
+  mishnahrsigned+,
+  mishnahrpostscript+
+mishnahrmodel.divBottom =
+  mishnahrmodel.divWrapper | mishnahrmodel.divBottomPart
+mishnahrmodel.titlepagePart =
+  mishnahrgraphic
+  | mishnahrbinaryObject
+  | mishnahrbyline
+  | mishnahrargument
+  | mishnahrepigraph
+  | mishnahrdocTitle
+  | mishnahrtitlePart
+  | mishnahrdocAuthor
+  | mishnahrimprimatur
+  | mishnahrdocEdition
+  | mishnahrdocImprint
+  | mishnahrdocDate
+mishnahrmodel.msQuoteLike = mishnahrtitle
+mishnahrmodel.msQuoteLike_alternation = mishnahrtitle
+mishnahrmodel.msQuoteLike_sequence = mishnahrtitle
+mishnahrmodel.msQuoteLike_sequenceOptional = mishnahrtitle?
+mishnahrmodel.msQuoteLike_sequenceOptionalRepeatable = mishnahrtitle*
+mishnahrmodel.msQuoteLike_sequenceRepeatable = mishnahrtitle+
+mishnahrmodel.choicePart =
+  mishnahrsic
+  | mishnahrcorr
+  | mishnahrreg
+  | mishnahrorig
+  | mishnahrunclear
+  | mishnahrabbr
+  | mishnahrexpan
+mishnahrmodel.imprintPart =
+  mishnahrpublisher
+  | mishnahrbiblScope
+  | mishnahrpubPlace
+  | mishnahrdistributor
+mishnahrmodel.imprintPart_alternation =
+  mishnahrpublisher
+  | mishnahrbiblScope
+  | mishnahrpubPlace
+  | mishnahrdistributor
+mishnahrmodel.imprintPart_sequence =
+  mishnahrpublisher,
+  mishnahrbiblScope,
+  mishnahrpubPlace,
+  mishnahrdistributor
+mishnahrmodel.imprintPart_sequenceOptional =
+  mishnahrpublisher?,
+  mishnahrbiblScope?,
+  mishnahrpubPlace?,
+  mishnahrdistributor?
+mishnahrmodel.imprintPart_sequenceOptionalRepeatable =
+  mishnahrpublisher*,
+  mishnahrbiblScope*,
+  mishnahrpubPlace*,
+  mishnahrdistributor*
+mishnahrmodel.imprintPart_sequenceRepeatable =
+  mishnahrpublisher+,
+  mishnahrbiblScope+,
+  mishnahrpubPlace+,
+  mishnahrdistributor+
+mishnahrmodel.catDescPart = notAllowed
+mishnahrmodel.addressLike = mishnahremail | mishnahraddress
+mishnahrmodel.addressLike_alternation = mishnahremail | mishnahraddress
+mishnahrmodel.addressLike_sequence = mishnahremail, mishnahraddress
+mishnahrmodel.addressLike_sequenceOptional =
+  mishnahremail?, mishnahraddress?
+mishnahrmodel.addressLike_sequenceOptionalRepeatable =
+  mishnahremail*, mishnahraddress*
+mishnahrmodel.addressLike_sequenceRepeatable =
+  mishnahremail+, mishnahraddress+
+mishnahrmodel.nameLike =
+  mishnahrmodel.nameLike.agent | mishnahrrs | mishnahridno
+mishnahrmodel.nameLike_alternation =
+  mishnahrmodel.nameLike.agent_alternation | mishnahrrs | mishnahridno
+mishnahrmodel.nameLike_sequence =
+  mishnahrmodel.nameLike.agent_sequence, mishnahrrs, mishnahridno
+mishnahrmodel.nameLike_sequenceOptional =
+  mishnahrmodel.nameLike.agent_sequenceOptional?,
+  mishnahrrs?,
+  mishnahridno?
+mishnahrmodel.nameLike_sequenceOptionalRepeatable =
+  mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable*,
+  mishnahrrs*,
+  mishnahridno*
+mishnahrmodel.nameLike_sequenceRepeatable =
+  mishnahrmodel.nameLike.agent_sequenceRepeatable+,
+  mishnahrrs+,
+  mishnahridno+
+mishnahrmodel.global =
+  mishnahrmodel.global.meta
+  | mishnahrmodel.milestoneLike
+  | mishnahrmodel.noteLike
+  | mishnahrmodel.global.edit
+mishnahrmodel.biblPart =
+  mishnahrmodel.respLike
+  | mishnahrmodel.imprintPart
+  | mishnahrseries
+  | mishnahrbibl
+  | mishnahrrelatedItem
+  | mishnahredition
+  | mishnahrextent
+mishnahrmodel.frontPart = mishnahrdivGen | mishnahrtitlePage
+mishnahrmodel.addrPart =
+  mishnahrmodel.nameLike
+  | mishnahraddrLine
+  | mishnahrstreet
+  | mishnahrpostCode
+  | mishnahrpostBox
+mishnahrmodel.pPart.data =
+  mishnahrmodel.dateLike
+  | mishnahrmodel.measureLike
+  | mishnahrmodel.addressLike
+  | mishnahrmodel.nameLike
+mishnahrmodel.pPart.data_alternation =
+  mishnahrmodel.dateLike_alternation
+  | mishnahrmodel.measureLike_alternation
+  | mishnahrmodel.addressLike_alternation
+  | mishnahrmodel.nameLike_alternation
+mishnahrmodel.pPart.data_sequence =
+  mishnahrmodel.dateLike_sequence,
+  mishnahrmodel.measureLike_sequence,
+  mishnahrmodel.addressLike_sequence,
+  mishnahrmodel.nameLike_sequence
+mishnahrmodel.pPart.data_sequenceOptional =
+  mishnahrmodel.dateLike_sequenceOptional?,
+  mishnahrmodel.measureLike_sequenceOptional?,
+  mishnahrmodel.addressLike_sequenceOptional?,
+  mishnahrmodel.nameLike_sequenceOptional?
+mishnahrmodel.pPart.data_sequenceOptionalRepeatable =
+  mishnahrmodel.dateLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.measureLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.addressLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.nameLike_sequenceOptionalRepeatable*
+mishnahrmodel.pPart.data_sequenceRepeatable =
+  mishnahrmodel.dateLike_sequenceRepeatable+,
+  mishnahrmodel.measureLike_sequenceRepeatable+,
+  mishnahrmodel.addressLike_sequenceRepeatable+,
+  mishnahrmodel.nameLike_sequenceRepeatable+
+mishnahrmodel.inter =
+  mishnahrmodel.egLike
+  | mishnahrmodel.biblLike
+  | mishnahrmodel.labelLike
+  | mishnahrmodel.listLike
+  | mishnahrmodel.stageLike
+  | mishnahrmodel.qLike
+mishnahrmodel.inter_alternation =
+  mishnahrmodel.egLike_alternation
+  | mishnahrmodel.biblLike_alternation
+  | mishnahrmodel.labelLike_alternation
+  | mishnahrmodel.listLike_alternation
+  | mishnahrmodel.stageLike_alternation
+  | mishnahrmodel.qLike_alternation
+mishnahrmodel.inter_sequence =
+  mishnahrmodel.egLike_sequence,
+  mishnahrmodel.biblLike_sequence,
+  mishnahrmodel.labelLike_sequence,
+  mishnahrmodel.listLike_sequence,
+  mishnahrmodel.stageLike_sequence,
+  mishnahrmodel.qLike_sequence
+mishnahrmodel.inter_sequenceOptional =
+  mishnahrmodel.egLike_sequenceOptional?,
+  mishnahrmodel.biblLike_sequenceOptional?,
+  mishnahrmodel.labelLike_sequenceOptional?,
+  mishnahrmodel.listLike_sequenceOptional?,
+  mishnahrmodel.stageLike_sequenceOptional?,
+  mishnahrmodel.qLike_sequenceOptional?
+mishnahrmodel.inter_sequenceOptionalRepeatable =
+  mishnahrmodel.egLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.biblLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.labelLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.listLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.stageLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.qLike_sequenceOptionalRepeatable*
+mishnahrmodel.inter_sequenceRepeatable =
+  mishnahrmodel.egLike_sequenceRepeatable+,
+  mishnahrmodel.biblLike_sequenceRepeatable+,
+  mishnahrmodel.labelLike_sequenceRepeatable+,
+  mishnahrmodel.listLike_sequenceRepeatable+,
+  mishnahrmodel.stageLike_sequenceRepeatable+,
+  mishnahrmodel.qLike_sequenceRepeatable+
+mishnahrmodel.common = mishnahrmodel.divPart | mishnahrmodel.inter
+mishnahrmodel.phrase =
+  mishnahrmodel.segLike
+  | mishnahrmodel.highlighted
+  | mishnahrmodel.graphicLike
+  | mishnahrmodel.pPart.edit
+  | mishnahrmodel.ptrLike
+  | mishnahrmodel.lPart
+  | mishnahrmodel.pPart.data
+mishnahrmodel.limitedPhrase =
+  mishnahrmodel.emphLike
+  | mishnahrmodel.pPart.editorial
+  | mishnahrmodel.ptrLike
+  | mishnahrmodel.pPart.data
+mishnahrmodel.divLike = mishnahrdiv
+mishnahrmodel.divGenLike = mishnahrdivGen
+mishnahrmodel.div1Like = mishnahrdiv1
+mishnahrmodel.div2Like = mishnahrdiv2
+mishnahrmodel.div3Like = mishnahrdiv3
+mishnahrmodel.applicationLike = mishnahrapplication
+mishnahrmodel.teiHeaderPart = mishnahrencodingDesc | mishnahrprofileDesc
+mishnahrmodel.sourceDescPart = notAllowed
+mishnahrmodel.encodingDescPart =
+  mishnahrprojectDesc
+  | mishnahrsamplingDecl
+  | mishnahreditorialDecl
+  | mishnahrtagsDecl
+  | mishnahrrefsDecl
+  | mishnahrclassDecl
+  | mishnahrappInfo
+  | mishnahrgeoDecl
+  | mishnahrvariantEncoding
+mishnahrmodel.editorialDeclPart =
+  mishnahrcorrection
+  | mishnahrnormalization
+  | mishnahrquotation
+  | mishnahrhyphenation
+  | mishnahrsegmentation
+  | mishnahrstdVals
+  | mishnahrinterpretation
+mishnahrmodel.profileDescPart =
+  mishnahrcreation
+  | mishnahrlangUsage
+  | mishnahrtextClass
+  | mishnahrcalendarDesc
+mishnahrmodel.resourceLike = notAllowed
+mishnahrp =
+  
+  ## (paragraph) marks paragraphs in prose. 3.1. Paragraphs 7.2.4. Speech Contents
+  element p {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrforeign =
+  
+  ## (foreign) identifies a word or phrase as belonging to some language other than that of the
+  ##                 surrounding text.  3.3.2.1. Foreign Words or Expressions
+  element foreign {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahremph =
+  
+  ## (emphasized) marks words or phrases which are stressed or emphasized for
+  ##         linguistic or rhetorical effect. 3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language
+  element emph {
+    mishnahrmacro.paraContent, mishnahratt.global.attributes, empty
+  }
+mishnahrhi =
+  
+  ## (highlighted) marks a word or phrase as graphically distinct from the
+  ##         surrounding text, for reasons concerning which no claim is
+  ##         made.  3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language
+  element hi {
+    mishnahrmacro.paraContent, mishnahratt.global.attributes, empty
+  }
+mishnahrdistinct =
+  
+  ## identifies any word or phrase which is regarded as linguistically distinct, for example as
+  ##         archaic, technical, dialectal, non-preferred, etc., or as forming part of a sublanguage.  3.3.2.3. Other Linguistically Distinct Material
+  element distinct {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    
+    ## specifies the sublanguage or register to which the word or phrase is being
+    ##                 assigned
+    attribute type { mishnahrdata.enumerated }?,
+    
+    ## specifies how the phrase is distinct diachronically
+    attribute time { mishnahrdata.key }?,
+    
+    ## specifies how the phrase is distinct diatopically
+    attribute space { mishnahrdata.key }?,
+    
+    ## specifies how the phrase is distinct diastatically
+    attribute social { mishnahrdata.key }?,
+    empty
+  }
+mishnahrsaid =
+  
+  ## (speech or thought) indicates passages thought or spoken aloud, whether explicitly indicated in the source or
+  ##     not, whether directly or indirectly reported, whether by real people or fictional characters. 3.3.3. Quotation
+  element said {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    mishnahratt.ascribed.attributes,
+    
+    ## may be used to indicate whether the quoted matter is regarded as having been vocalized
+    ##         or signed.
+    [ a:defaultValue = "unknown" ]
+    attribute aloud { mishnahrdata.xTruthValue }?,
+    
+    ## may be used to indicate whether the quoted matter is regarded as direct or indirect
+    ##         speech.
+    [ a:defaultValue = "true" ]
+    attribute direct { mishnahrdata.xTruthValue }?,
+    empty
+  }
+mishnahrquote =
+  
+  ## (quotation) contains a phrase or passage attributed by the narrator or author to some agency external
+  ##         to the text. 3.3.3. Quotation 4.3.1. Grouped Texts
+  element quote {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrq =
+  
+  ## (separated from the surrounding text with quotation marks) contains material which is marked as (ostensibly) being somehow different than the
+  ##     surrounding text, for any one of a variety of reasons including, but not limited to: direct
+  ##     speech or thought, technical terms or jargon, authorial distance, quotations from elsewhere, and
+  ##     passages that are mentioned but not used. 3.3.3. Quotation
+  element q {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    mishnahratt.ascribed.attributes,
+    
+    ## may be used to indicate whether the offset passage is spoken or thought, or to
+    ##         characterize it more finely.
+    ## Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] foreign(foreign words) ; 6] distinct(linguistically distinct) ; 7] term(technical term) ; 8] emph(rhetorically emphasized) ; 9] mentioned
+    attribute type {
+      
+      ## representation of speech
+      "spoken"
+      | 
+        ## representation of thought, e.g. internal monologue
+        "thought"
+      | 
+        ## quotation from a written source
+        "written"
+      | 
+        ## authorial distance
+        "soCalled"
+      | 
+        ## (foreign words) 
+        "foreign"
+      | 
+        ## (linguistically distinct) 
+        "distinct"
+      | 
+        ## (technical term) 
+        "term"
+      | 
+        ## (rhetorically emphasized) 
+        "emph"
+      | 
+        ## refering to itself, not its normal referant
+        "mentioned"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahrcit =
+  
+  ## (cited quotation) contains a quotation from some other document, together with a bibliographic reference to
+  ##     its source. In a dictionary it may contain an example text with at least one occurrence of the
+  ##     word form, used in the sense being described, or a translation of the headword, or an example.  3.3.3. Quotation 4.3.1. Grouped Texts 9.3.5.1. Examples
+  element cit {
+    (mishnahrmodel.qLike
+     | mishnahrmodel.egLike
+     | mishnahrmodel.biblLike
+     | mishnahrmodel.ptrLike
+     | mishnahrmodel.global
+     | mishnahrmodel.entryPart)+,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrmentioned =
+  
+  ## marks words or phrases mentioned, not used. 3.3.4. Terms, Glosses, Equivalents, and Descriptions
+  element mentioned {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrsoCalled =
+  
+  ## contains a word or phrase for which the author or narrator indicates a disclaiming of
+  ##     responsibility, for example by the use of scare quotes or italics. 3.3.3. Quotation
+  element soCalled {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrdesc =
+  
+  ## (description) contains a brief description of the object documented by its parent element, including its
+  ##     intended usage, purpose, or application where this is appropriate. 22.4.4. Element Specifications 22.4.5. Attribute List Specification 22.4.6. Element Classes 22.4.7. Pattern Documentation
+  element desc {
+    mishnahrmacro.limitedContent,
+    mishnahratt.global.attributes,
+    mishnahratt.translatable.attributes,
+    empty
+  }
+mishnahrgloss =
+  
+  ## identifies a phrase or word used to provide a gloss or definition for some other word or
+  ##     phrase. 3.3.4. Terms, Glosses, Equivalents, and Descriptions
+  element gloss {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    mishnahratt.translatable.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.pointing.attributes,
+    
+    ## (canonical reference) identifies the associated term element using a canonical reference from a
+    ##         scheme defined in a refsDecl element in the TEI header
+    attribute cRef { mishnahrdata.pointer }?,
+    empty
+  }
+mishnahrterm =
+  
+  ## contains a single-word, multi-word, or symbolic designation which is regarded as a technical
+  ##     term. 3.3.4. Terms, Glosses, Equivalents, and Descriptions
+  element term {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.canonical.attributes,
+    
+    ## identifies the associated gloss element using a canonical reference from a
+    ##           scheme defined in a refsDecl element in the TEI header
+    attribute cRef { mishnahrdata.pointer }?,
+    
+    ## supplies the sort key for this term in an index.
+    attribute sortKey { mishnahrdata.word }?,
+    empty
+  }
+mishnahrsic =
+  
+  ## (latin for thus or so
+  ##   ) contains text reproduced although apparently incorrect or inaccurate. 3.4.1. Apparent Errors
+  element sic {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.responsibility.attributes,
+    empty
+  }
+mishnahrcorr =
+  
+  ## (correction) contains the correct form of a passage apparently erroneous in the copy text. 3.4.1. Apparent Errors
+  element corr {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrchoice =
+  
+  ## groups a number of alternative encodings for the same point in
+  ##         a text. 3.4. Simple Editorial Changes
+  element choice {
+    (mishnahrmodel.choicePart | mishnahrchoice)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrreg =
+  
+  ## (regularization) contains a reading which has been regularized or normalized in some sense. 3.4.2. Regularization and
+  ## Normalization 12. Critical Apparatus
+  element reg {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrorig =
+  
+  ## (original form) contains a reading which is marked as following the original, rather than being normalized
+  ##         or corrected. 3.4.2. Regularization and
+  ## Normalization 12. Critical Apparatus
+  element orig {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.responsibility.attributes,
+    empty
+  }
+mishnahrgap =
+  
+  ## (gap) indicates a point where material has been omitted in a transcription, whether for editorial
+  ##     reasons described in the TEI header, as part of sampling practice, or because the material is
+  ##     illegible, invisible, or inaudible. 3.4.3. Additions, Deletions, and Omissions
+  element gap {
+    mishnahrmodel.glossLike*,
+    mishnahratt.global.attributes,
+    mishnahratt.editLike.attributes,
+    
+    ## gives the reason for omission. Sample values include sampling,
+    ##         inaudible, irrelevant, cancelled.
+    attribute reason {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    
+    ## in the case of text omitted from the transcription because of deliberate deletion by an
+    ##         identifiable hand, signifies the hand which made the deletion.
+    attribute hand { mishnahrdata.pointer }?,
+    
+    ## In the case of text omitted because of damage, categorizes the cause of the damage, if
+    ##         it can be identified.
+    ## Sample values include: 1] rubbing; 2] mildew; 3] smoke
+    attribute agent { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahradd =
+  
+  ## (addition) contains letters, words, or phrases inserted in the text by an
+  ##         author, scribe, annotator, or corrector. 3.4.3. Additions, Deletions, and Omissions
+  element add {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.transcriptional.attributes,
+    mishnahratt.placement.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrdel =
+  
+  ## (deletion) contains a letter, word, or passage deleted, marked as deleted, or otherwise indicated as
+  ##     superfluous or spurious in the copy text by an author, scribe, annotator, or corrector. 3.4.3. Additions, Deletions, and Omissions
+  element del {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.transcriptional.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrunclear =
+  
+  ## contains a word, phrase, or passage which cannot be transcribed with certainty because it
+  ##         is illegible or inaudible in the source. 11.5.1. Damage, Illegibility, and Supplied Text 3.4.3. Additions, Deletions, and Omissions
+  element unclear {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.editLike.attributes,
+    
+    ## indicates why the material is hard to transcribe.
+    attribute reason {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    
+    ## Where the difficulty in transcription arises from action (partial deletion, etc.)
+    ##                 assignable to an identifiable hand, signifies the hand responsible for the action.
+    attribute hand { mishnahrdata.pointer }?,
+    
+    ## Where the difficulty in transcription arises from damage, categorizes the cause of
+    ##                 the damage, if it can be identified.
+    ## Sample values include: 1] rubbing; 2] mildew; 3] smoke
+    attribute agent { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrname =
+  
+  ## (name, proper noun) contains a proper noun or noun phrase. 3.5.1. Referring Strings
+  element name {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrrs =
+  
+  ## (referencing string) contains a general purpose name or referring string. 13.2.1. Personal Names 3.5.1. Referring Strings
+  element rs {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    
+    ## indicates more specifically the object referred to by the referencing string.
+    ##                 Values might include person, place, ship,
+    ##                     element etc.
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahremail =
+  
+  ## (electronic mail address) contains an e-mail address identifying a location to which
+  ##         e-mail messages can be delivered.
+  ##      3.5.2. Addresses
+  element email {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahraddress =
+  
+  ## contains a postal  address, for example of a
+  ##         publisher, an organization, or an individual. 3.5.2. Addresses 2.2.4. Publication, Distribution,
+  ## Licencing, etc. 3.11.2.3. Imprint, Pagination, and Other Details
+  element address {
+    (mishnahrmodel.global*,
+     (mishnahrmodel.addrPart, mishnahrmodel.global*)+),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahraddrLine =
+  
+  ## (address line) contains one line of a postal address. 3.5.2. Addresses 2.2.4. Publication, Distribution,
+  ## Licencing, etc. 3.11.2.3. Imprint, Pagination, and Other Details
+  element addrLine {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrstreet =
+  
+  ## a full street address including any name or number identifying a
+  ##         building as well as the name of the street or route on which it is
+  ##         located. 3.5.2. Addresses
+  element street {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrpostCode =
+  
+  ## (postal code) contains a numerical or alphanumeric code used as part of a postal address to simplify
+  ##         sorting or delivery of mail.  3.5.2. Addresses
+  element postCode { text, mishnahratt.global.attributes, empty }
+mishnahrpostBox =
+  
+  ## (postal box or post office box) contains a number or other identifier for some postal delivery point other than a street
+  ##     address.  3.5.2. Addresses
+  element postBox { text, mishnahratt.global.attributes, empty }
+mishnahrnum =
+  
+  ## (number) contains a number, written in any form. 3.5.3. Numbers and
+  ## Measures
+  element num {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.ranging.attributes,
+    
+    ## indicates the type of numeric value.
+    ## Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage
+    attribute type {
+      
+      ## absolute number, e.g. 21, 21.5
+      "cardinal"
+      | 
+        ## ordinal number, e.g. 21st
+        "ordinal"
+      | 
+        ## fraction, e.g. one half or three-quarters
+        "fraction"
+      | 
+        ## a percentage
+        "percentage"
+      | xsd:Name
+    }?,
+    
+    ## supplies the value of the number in standard form.
+    attribute value { mishnahrdata.numeric }?,
+    empty
+  }
+mishnahrmeasure =
+  
+  ## contains a word or phrase referring to some quantity of an object or commodity, usually
+  ##         comprising a number, a unit, and a commodity name. 3.5.3. Numbers and
+  ## Measures
+  element measure {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.measurement.attributes,
+    
+    ## specifies the type of measurement in any convenient typology.
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrmeasureGrp =
+  
+  ## (measure group) contains a group of dimensional specifications which relate to the same object, for example
+  ##     the height and width of a manuscript page. 10.3.4. Dimensions
+  element measureGrp {
+    (text | mishnahrmodel.gLike | mishnahrmodel.measureLike)*,
+    mishnahratt.global.attributes,
+    mishnahratt.measurement.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrdate =
+  
+  ## contains a date in any format. 3.5.4. Dates and Times 2.2.4. Publication, Distribution,
+  ## Licencing, etc. 2.5. The Revision Description 3.11.2.3. Imprint, Pagination, and Other Details 15.2.3. The Setting Description 13.3.6. Dates and Times
+  element date {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## indicates the system or calendar to which the date represented by the content of this
+    ##         element belongs.
+    attribute calendar { mishnahrdata.pointer }?,
+    empty
+  }
+mishnahrtime =
+  
+  ## contains a phrase defining a time of day in any format. 3.5.4. Dates and Times
+  element time {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrabbr =
+  
+  ## (abbreviation) contains an abbreviation of any sort. 3.5.5. Abbreviations and Their Expansions
+  element abbr {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.responsibility.attributes,
+    
+    ## allows the encoder to classify the abbreviation according to some convenient
+    ##                 typology.
+    ## Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscription; 5] acronym; 6] title; 7] organization; 8] geographic
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrexpan =
+  
+  ## (expansion) contains the expansion of an abbreviation. 3.5.5. Abbreviations and Their Expansions
+  element expan {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.editLike.attributes,
+    empty
+  }
+mishnahrptr =
+  
+  ## (pointer) defines a pointer to another location. 3.6. Simple Links and Cross-References 16.1. Links
+  element ptr {
+    empty
+    >> sch:pattern [
+         id = "ptr-constraint-ptrAtts"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:ptr"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @cRef"
+             "Only one of the\x{a}" ~
+             "	attributes 'target' and 'cRef' may be supplied."
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.internetMedia.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    
+    ## (canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
+    ##         scheme defined in a refsDecl element in the TEI header
+    attribute cRef {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrref =
+  
+  ## (reference) defines a reference to another location, possibly modified by additional text or comment. 3.6. Simple Links and Cross-References 16.1. Links
+  element ref {
+    mishnahrmacro.paraContent
+    >> sch:pattern [
+         id = "ref-constraint-refAtts"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:ref"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @cRef"
+             "Only one of the\x{a}" ~
+             "	attributes 'target' and 'cRef' may be supplied."
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.internetMedia.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    
+    ## (canonical reference) specifies the destination of the reference by supplying a canonical reference from a
+    ##         scheme defined in a refsDecl element in the TEI header
+    attribute cRef {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrlist =
+  
+  ## (list) contains any sequence of items organized as a list. 3.7. Lists
+  element list {
+    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
+     ((mishnahritem, mishnahrmodel.global*)+
+      | (mishnahrheadLabel?,
+         mishnahrheadItem?,
+         (mishnahrlabel,
+          mishnahrmodel.global*,
+          mishnahritem,
+          mishnahrmodel.global*)+)),
+     (mishnahrmodel.divBottom, mishnahrmodel.global*)*),
+    mishnahratt.global.attributes,
+    
+    ## describes the form of the list.
+    ## Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss
+    [ a:defaultValue = "simple" ]
+    attribute type {
+      
+      ## list items are numbered or lettered. 
+      "ordered"
+      | 
+        ## list items are marked with a bullet or other typographic device. 
+        "bulleted"
+      | 
+        ## list items are not numbered or bulleted. 
+        "simple"
+      | 
+        ## each list item glosses some term or concept, which is given by a label element
+        ##             preceding the list item.
+        "gloss"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahritem =
+  
+  ## contains one component of a list. 3.7. Lists 2.5. The Revision Description
+  element item {
+    mishnahrmacro.specialPara, mishnahratt.global.attributes, empty
+  }
+mishnahrlabel =
+  
+  ## contains the label associated with an item in a list; in glossaries, marks the term being
+  ##     defined. 3.7. Lists
+  element label {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrhead =
+  
+  ## (heading) contains any type of heading, for example the title of a section, or the heading of a list,
+  ##     glossary, manuscript description, etc. 4.2.1. Headings and Trailers
+  element head {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrheadLabel =
+  
+  ## (heading for list labels) contains the heading for the label or term column in a glossary list or similar structured
+  ##         list. 3.7. Lists
+  element headLabel {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrheadItem =
+  
+  ## (heading for list items) contains the heading for the item or gloss column in a glossary list or similar structured
+  ##         list. 3.7. Lists
+  element headItem {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrnote =
+  
+  ## contains a note or annotation. 3.8.1. Notes and Simple Annotation 2.2.6. The Notes Statement 3.11.2.6. Notes and Other Additional Information 9.3.5.4. Notes within Entries
+  element note {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    mishnahratt.placement.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.responsibility.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## indicates whether the copy text shows the exact place of reference for the note.
+    [ a:defaultValue = "true" ]
+    attribute anchored { mishnahrdata.truthValue }?,
+    
+    ## points to the end of the span to which the note is attached, if the note is not embedded
+    ##         in the text at that point.
+    attribute targetEnd {
+      list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    }?,
+    empty
+  }
+mishnahrindex =
+  
+  ## (index entry) marks a location to be indexed for whatever purpose. 3.8.2. Index Entries
+  element index {
+    (mishnahrterm, mishnahrindex?)*,
+    mishnahratt.global.attributes,
+    mishnahratt.spanning.attributes,
+    
+    ## supplies a name to specify which index (of several) the index entry belongs to.
+    attribute indexName { mishnahrdata.name }?,
+    empty
+  }
+mishnahrgraphic =
+  
+  ## indicates the location of an inline graphic, illustration, or figure. 3.9. Graphics and other non-textual components
+  element graphic {
+    mishnahrmodel.glossLike*,
+    mishnahratt.global.attributes,
+    mishnahratt.internetMedia.attributes,
+    mishnahratt.declaring.attributes,
+    
+    ## The display width of the image
+    attribute width { mishnahrdata.outputMeasurement }?,
+    
+    ## The display height of the image
+    attribute height { mishnahrdata.outputMeasurement }?,
+    
+    ## A scale factor to be applied to the image to make it the desired display size
+    attribute scale { mishnahrdata.numeric }?,
+    
+    ## (uniform resource locator) A URL which refers to the image itself.
+    attribute url { mishnahrdata.pointer },
+    empty
+  }
+mishnahrbinaryObject =
+  
+  ## provides encoded binary data representing an inline graphic or other object.
+  element binaryObject {
+    text,
+    mishnahratt.global.attributes,
+    mishnahratt.internetMedia.attributes,
+    
+    ## The display width of the object
+    attribute width { mishnahrdata.outputMeasurement }?,
+    
+    ## The display height of the object
+    attribute height { mishnahrdata.outputMeasurement }?,
+    
+    ## A scale factor to be applied to the object to make it the desired display size
+    attribute scale { mishnahrdata.numeric }?,
+    
+    ## The encoding used to encode the binary data. If not specified, this is assumed to be
+    ##           Base64.
+    attribute encoding {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrmilestone =
+  
+  ## marks a boundary point separating any kind of section of a text, typically but not
+  ##     necessarily indicating a point at which some part of a standard reference system changes, where
+  ##     the change is not represented by a structural element. 3.10.3. Milestone
+  ## Elements
+  element milestone {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.sourced.attributes,
+    mishnahratt.spanning.attributes,
+    mishnahratt.breaking.attributes,
+    
+    ## provides a conventional name for the kind of section changing at this milestone.
+    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered
+    attribute unit {
+      
+      ## physical page breaks (synonymous with the pb element).
+      "page"
+      | 
+        ## column breaks.
+        "column"
+      | 
+        ## line breaks (synonymous with the lb element).
+        "line"
+      | 
+        ## any units termed book, liber, etc.
+        "book"
+      | 
+        ## individual poems in a collection.
+        "poem"
+      | 
+        ## cantos or other major sections of a poem.
+        "canto"
+      | 
+        ## changes of speaker or narrator.
+        "speaker"
+      | 
+        ## stanzas within a poem, book, or canto.
+        "stanza"
+      | 
+        ## acts within a play.
+        "act"
+      | 
+        ## scenes within a play or act.
+        "scene"
+      | 
+        ## sections of any kind.
+        "section"
+      | 
+        ## passages not present in the reference edition.
+        "absent"
+      | 
+        ## passages present in the text, but not to be included as part of the reference.
+        "unnumbered"
+      | xsd:Name
+    },
+    empty
+  }
+mishnahrpb =
+  
+  ## (page break) marks the boundary between one page of a text and the next in a standard reference system. 3.10.3. Milestone
+  ## Elements
+  element pb {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.sourced.attributes,
+    mishnahratt.spanning.attributes,
+    mishnahratt.breaking.attributes,
+    empty
+  }
+mishnahrlb =
+  
+  ## (line break) marks the start of a new (typographic) line in some edition or version of a text. 3.10.3. Milestone
+  ## Elements 7.2.4. Speech Contents
+  element lb {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.sourced.attributes,
+    mishnahratt.spanning.attributes,
+    mishnahratt.breaking.attributes,
+    empty
+  }
+mishnahrcb =
+  
+  ## (column break) marks the boundary between one column of a text and the next
+  ##         in a standard reference system. 3.10.3. Milestone
+  ## Elements
+  element cb {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.sourced.attributes,
+    mishnahratt.spanning.attributes,
+    mishnahratt.breaking.attributes,
+    empty
+  }
+mishnahranalytic =
+  
+  ## (analytic level) contains bibliographic elements describing an item (e.g. an article or poem) published
+  ##     within a monograph or journal and not as an independent publication. 3.11.2.1. Analytic, Monographic, and Series Levels
+  element analytic {
+    (mishnahrauthor
+     | mishnahreditor
+     | mishnahrrespStmt
+     | mishnahrtitle
+     | mishnahrref
+     | mishnahrdate)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrmonogr =
+  
+  ## (monographic level) contains bibliographic elements describing an item (e.g. a book or journal) published as an
+  ##     independent item (i.e. as a separate physical object). 3.11.2.1. Analytic, Monographic, and Series Levels
+  element monogr {
+    ((((mishnahrauthor | mishnahreditor | mishnahrrespStmt),
+       (mishnahrauthor | mishnahreditor | mishnahrrespStmt)*,
+       mishnahrtitle+,
+       (mishnahridno | mishnahreditor | mishnahrrespStmt)*)
+      | ((mishnahrtitle | mishnahrref)+,
+         (mishnahridno
+          | mishnahrauthor
+          | mishnahreditor
+          | mishnahrrespStmt)*))?,
+     (mishnahrmodel.noteLike | mishnahrmeeting)*,
+     (mishnahredition,
+      (mishnahridno | mishnahreditor | mishnahrrespStmt)*)*,
+     mishnahrimprint,
+     (mishnahrimprint | mishnahrextent | mishnahrbiblScope)*),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrseries =
+  
+  ## (series information) contains information about the series in which a book or other bibliographic item has
+  ##     appeared. 3.11.2.1. Analytic, Monographic, and Series Levels
+  element series {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrtitle
+     | mishnahrref
+     | mishnahreditor
+     | mishnahrrespStmt
+     | mishnahrbiblScope
+     | mishnahridno
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrauthor =
+  
+  ## in a bibliographic reference, contains the name(s) of the
+  ##   author(s), personal or corporate, of a work; for example in the same
+  ##   form as that provided by a recognized bibliographic name authority.  3.11.2.2. Authors, Titles, and Editors 2.2.1. The Title Statement
+  element author {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    empty
+  }
+mishnahreditor =
+  
+  ## secondary statement of responsibility for a bibliographic item, for example the name of an
+  ##     individual, institution or organization, (or of several such) acting as editor, compiler,
+  ##     translator, etc.  3.11.2.2. Authors, Titles, and Editors
+  element editor {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    empty
+  }
+mishnahrrespStmt =
+  
+  ## (statement of responsibility) supplies a statement of responsibility for the intellectual content of a text, edition,
+  ##     recording, or series, where the specialized elements for authors, editors, etc. do not suffice
+  ##     or do not apply. 3.11.2.2. Authors, Titles, and Editors 2.2.1. The Title Statement 2.2.2. The Edition Statement 2.2.5. The Series Statement
+  element respStmt {
+    ((mishnahrresp+, mishnahrmodel.nameLike.agent+)
+     | (mishnahrmodel.nameLike.agent+, mishnahrresp+)),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrresp =
+  
+  ## (responsibility) contains a phrase describing the nature of a person's intellectual responsibility. 3.11.2.2. Authors, Titles, and Editors 2.2.1. The Title Statement 2.2.2. The Edition Statement 2.2.5. The Series Statement
+  element resp {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    mishnahratt.canonical.attributes,
+    empty
+  }
+mishnahrtitle =
+  
+  ## contains a title for any kind of work. 3.11.2.2. Authors, Titles, and Editors 2.2.1. The Title Statement 2.2.5. The Series Statement
+  element title {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    mishnahratt.canonical.attributes,
+    
+    ## indicates the bibliographic level for a title, that is, whether
+    ##                                         it identifies an article, book, journal, series, or
+    ##                                         unpublished material.
+    attribute level {
+      
+      ## (analytic) analytic title (article, poem, or other item
+      ##                                                   published as part of a larger item) 
+      "a"
+      | 
+        ## (monographic) monographic title (book, collection, or
+        ##                                                   other item published as a distinct item,
+        ##                                                   including single volumes of multi-volume
+        ##                                                   works) 
+        "m"
+      | 
+        ## (journal) journal title 
+        "j"
+      | 
+        ## (series) series title 
+        "s"
+      | 
+        ## (unpublished) title of unpublished material (including
+        ##                                                   theses and dissertations unless
+        ##                                                   published by a commercial press)
+        "u"
+    }?,
+    
+    ## classifies the title according to some convenient typology.
+    ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrmeeting =
+  
+  ## contains the formalized descriptive title for a meeting or conference, for use in a
+  ##     bibliographic description for an item derived from such a meeting, or as a heading or preamble
+  ##     to publications emanating from it. 3.11.2.2. Authors, Titles, and Editors
+  element meeting {
+    mishnahrmacro.limitedContent, mishnahratt.global.attributes, empty
+  }
+mishnahrimprint =
+  
+  ## groups information relating to the publication or distribution
+  ##         of a bibliographic item. 3.11.2.3. Imprint, Pagination, and Other Details
+  element imprint {
+    ((mishnahrmodel.imprintPart | mishnahrmodel.dateLike),
+     mishnahrmodel.global*)+,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrpublisher =
+  
+  ## provides the name of the organization responsible for the publication or distribution of a
+  ##         bibliographic item. 3.11.2.3. Imprint, Pagination, and Other Details 2.2.4. Publication, Distribution,
+  ## Licencing, etc.
+  element publisher {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrbiblScope =
+  
+  ## (scope of citation) defines the scope of a bibliographic reference, for example as a
+  ##         list of page numbers, or a named subdivision of a larger work. 3.11.2.3. Imprint, Pagination, and Other Details
+  element biblScope {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    
+    ## identifies the type of information conveyed by the element, e.g.
+    ##                 columns, pages, volume.
+    ## Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines) ; 5] chap(chapter) ; 6] part
+    attribute type {
+      
+      ## (volume) the element contains a volume number.
+      "vol"
+      | 
+        ## the element contains an issue number, or volume and
+        ##                         issue numbers.
+        "issue"
+      | 
+        ## (pages) the element contains a page number or page range.
+        "pp"
+      | 
+        ##  (lines) the element contains a line number or line range.
+        "ll"
+      | 
+        ## (chapter) the element contains a chapter indication (number
+        ##                         and/or title)
+        "chap"
+      | 
+        ## the element identifies a part of a book or collection.
+        "part"
+      | xsd:Name
+    }?,
+    
+    ## specifies the starting point of the range of units indicated by the type attribute.
+    attribute from { mishnahrdata.word }?,
+    
+    ## specifies the end-point of the range of units indicated by the type attribute.
+    attribute to { mishnahrdata.word }?,
+    empty
+  }
+mishnahrpubPlace =
+  
+  ## (publication place) contains the name of the place where a bibliographic item was published. 3.11.2.3. Imprint, Pagination, and Other Details
+  element pubPlace {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    empty
+  }
+mishnahrbibl =
+  
+  ## (bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may
+  ##     not be explicitly tagged.  3.11.1. Elements of Bibliographic References 2.2.7. The Source Description 15.3.2. Declarable Elements
+  element bibl {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.highlighted
+     | mishnahrmodel.pPart.data
+     | mishnahrmodel.pPart.edit
+     | mishnahrmodel.segLike
+     | mishnahrmodel.ptrLike
+     | mishnahrmodel.biblPart
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrbiblStruct =
+  
+  ## (structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements
+  ##     appear and in a specified order.  3.11.1. Elements of Bibliographic References 2.2.7. The Source Description 15.3.2. Declarable Elements
+  element biblStruct {
+    (mishnahranalytic*,
+     (mishnahrmonogr, mishnahrseries*)+,
+     (mishnahrmodel.noteLike | mishnahridno | mishnahrrelatedItem)*),
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrlistBibl =
+  
+  ## (citation list) contains a list of bibliographic citations of any kind.  3.11.1. Elements of Bibliographic References 2.2.7. The Source Description 15.3.2. Declarable Elements
+  element listBibl {
+    (mishnahrmodel.headLike*,
+     (mishnahrmodel.biblLike
+      | mishnahrmodel.milestoneLike
+      | mishnahrlistBibl)+),
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrrelatedItem =
+  
+  ## contains or references some other bibliographic item which is related to the present one in
+  ##     some specified manner, for example as a constituent or alternative version of it. 3.11.2.5. Related items
+  element relatedItem {
+    ((mishnahrmodel.biblLike | mishnahrmodel.ptrLike)?)
+    >> sch:pattern [
+         id = "relatedItem-constraint-targetorcontent11"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:relatedItem"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and count( child::* ) > 0"
+             "If the 'target' attribute is used, the\x{a}" ~
+             "        relatedItem element must be empty"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "relatedItem-constraint-targetorcontent11"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:relatedItem"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "@target or child::*"
+             "A relatedItem element should have either a 'target' attribute\x{a}" ~
+             "        or a child element to indicate the related bibliographic item"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## points to the related bibliographic element by means of an
+    ##       absolute or relative URI reference
+    attribute target { mishnahrdata.pointer }?,
+    empty
+  }
+mishnahrl =
+  
+  ## (verse line) contains a single, possibly incomplete, line of verse. 3.12.1. Core Tags for Verse 3.12. Passages of Verse or Drama 7.2.4. Speech Contents
+  element l {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    
+    ## specifies whether or not the line is metrically complete. 
+    [ a:defaultValue = "N" ]
+    attribute part {
+      
+      ## (yes) the line is metrically incomplete
+      "Y"
+      | 
+        ## (no) either the line is complete, or no claim is made as to its completeness
+        "N"
+      | 
+        ## (initial) the initial part of an incomplete line
+        "I"
+      | 
+        ## (medial) a medial part of an incomplete line
+        "M"
+      | 
+        ## (final) the final part of an incomplete line
+        "F"
+    }?,
+    empty
+  }
+mishnahrlg =
+  
+  ## (line group) contains a group of verse lines functioning as a formal unit, e.g. a stanza, refrain,
+  ##         verse paragraph, etc. 3.12.1. Core Tags for Verse 3.12. Passages of Verse or Drama 7.2.4. Speech Contents
+  element lg {
+    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
+     (mishnahrmodel.lLike | mishnahrlg),
+     (mishnahrmodel.lLike | mishnahrlg | mishnahrmodel.global)*,
+     (mishnahrmodel.divBottom, mishnahrmodel.global*)*),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrsp =
+  
+  ## (speech) An individual speech in a performance text, or a passage presented as such in a prose or
+  ##     verse text. 3.12.2. Core Tags for Drama 3.12. Passages of Verse or Drama 7.2.2. Speeches and Speakers
+  element sp {
+    (mishnahrmodel.global*,
+     (mishnahrspeaker, mishnahrmodel.global*)?,
+     ((mishnahrmodel.lLike
+       | mishnahrlg
+       | mishnahrmodel.pLike
+       | mishnahrmodel.stageLike
+       | mishnahrmodel.qLike),
+      mishnahrmodel.global*)+),
+    mishnahratt.global.attributes,
+    mishnahratt.ascribed.attributes,
+    empty
+  }
+mishnahrspeaker =
+  
+  ## A specialized form of heading or label, giving the name of one or more speakers in a
+  ##         dramatic text or fragment. 3.12.2. Core Tags for Drama
+  element speaker {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrstage =
+  
+  ## (stage direction) contains any kind of stage direction within a dramatic text or fragment. 3.12.2. Core Tags for Drama 3.12. Passages of Verse or Drama 7.2.3. Stage Directions
+  element stage {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    
+    ## indicates the kind of stage direction.
+    ## Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] novelistic; 6] delivery; 7] modifier; 8] location; 9] mixed
+    attribute type {
+      
+      ## describes a setting.
+      "setting"
+      | 
+        ## describes an entrance.
+        "entrance"
+      | 
+        ## describes an exit.
+        "exit"
+      | 
+        ## describes stage business.
+        "business"
+      | 
+        ## is a narrative, motivating stage direction.
+        "novelistic"
+      | 
+        ## describes how a character speaks.
+        "delivery"
+      | 
+        ## gives some detail about a character.
+        "modifier"
+      | 
+        ## describes a location.
+        "location"
+      | 
+        ## more than one of the above
+        "mixed"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahrteiCorpus =
+  
+  ## contains the whole of a TEI encoded corpus, comprising a single corpus header and one or
+  ##     more TEI elements, each containing a single text header and a text. 4. Default Text Structure 15.1. Varieties of Composite Text
+  element teiCorpus {
+    (mishnahrteiHeader, (mishnahrTEI | mishnahrteiCorpus)+),
+    mishnahratt.global.attributes,
+    
+    ## The version of the TEI scheme
+    [ a:defaultValue = "5.0" ]
+    attribute version { mishnahrdata.version }?,
+    empty
+  }
+mishnahrdivGen =
+  
+  ## (automatically generated text division) indicates the location at which a textual division generated
+  ##         automatically by a text-processing application is to appear. 3.8.2. Index Entries
+  element divGen {
+    mishnahrmodel.headLike*,
+    mishnahratt.global.attributes,
+    
+    ## specifies what type of generated text division (e.g. index,
+    ##                 table of contents, etc.) is to appear.
+    ## Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrteiHeader =
+  
+  ## (TEI Header) supplies the descriptive and declarative information making up an electronic title page
+  ##     prefixed to every TEI-conformant text. 2.1.1. The TEI Header and its Components 15.1. Varieties of Composite Text
+  element teiHeader {
+    (mishnahrfileDesc,
+     mishnahrmodel.teiHeaderPart*,
+     mishnahrrevisionDesc?),
+    mishnahratt.global.attributes,
+    
+    ## specifies the kind of document to which the header is attached, for example whether it
+    ##         is a corpus or individual text.
+    ## Sample values include: 1] text; 2] corpus
+    [ a:defaultValue = "text" ]
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrfileDesc =
+  
+  ## (file description) contains a full bibliographic description of an electronic file. 2.2. The File Description 2.1.1. The TEI Header and its Components
+  element fileDesc {
+    ((mishnahrtitleStmt,
+      mishnahreditionStmt?,
+      mishnahrextent?,
+      mishnahrpublicationStmt,
+      mishnahrseriesStmt?,
+      mishnahrnotesStmt?),
+     mishnahrsourceDesc+),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrtitleStmt =
+  
+  ## (title statement) groups information about the title of a work and those responsible for its intellectual
+  ##     content. 2.2.1. The Title Statement 2.2. The File Description
+  element titleStmt {
+    (mishnahrtitle+, mishnahrmodel.respLike*),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrsponsor =
+  
+  ## specifies the name of a sponsoring organization or institution. 2.2.1. The Title Statement
+  element sponsor {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrfunder =
+  
+  ## (funding body) specifies the name of an individual, institution, or organization responsible for the
+  ##     funding of a project or text. 2.2.1. The Title Statement
+  element funder {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrprincipal =
+  
+  ## (principal researcher) supplies the name of the principal researcher responsible for the
+  ## creation of an electronic text. 2.2.1. The Title Statement
+  element principal {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahreditionStmt =
+  
+  ## (edition statement) groups information relating to one edition of a text. 2.2.2. The Edition Statement 2.2. The File Description
+  element editionStmt {
+    (mishnahrmodel.pLike+ | (mishnahredition, mishnahrrespStmt*)),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahredition =
+  
+  ## (edition) describes the particularities of one edition of a text. 2.2.2. The Edition Statement
+  element edition {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrextent =
+  
+  ## describes the approximate size of a text as stored on some carrier medium, whether digital
+  ##     or non-digital, specified in any convenient units. 2.2.3. Type and Extent of File 2.2. The File Description 3.11.2.3. Imprint, Pagination, and Other Details
+  element extent {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrpublicationStmt =
+  
+  ## (publication statement) groups information concerning the publication or distribution of an electronic or other
+  ##     text.  2.2.4. Publication, Distribution,
+  ## Licencing, etc. 2.2. The File Description
+  element publicationStmt {
+    (mishnahrmodel.pLike+ | mishnahrmodel.publicationStmtPart+),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrdistributor =
+  
+  ## supplies the name of a person or other agency responsible for the
+  ## distribution of a text. 2.2.4. Publication, Distribution,
+  ## Licencing, etc.
+  element distributor {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrauthority =
+  
+  ## (release authority) supplies the name of a person or other agency responsible for
+  ##   making an electronic file available, other than a publisher or
+  ##   distributor. 2.2.4. Publication, Distribution,
+  ## Licencing, etc.
+  element authority {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahridno =
+  
+  ## (identifier) supplies any form of identifier used to identify some object,
+  ##   such as a bibliographic item, a person, a title, an organization,
+  ##   etc. in a standardized way. 2.2.4. Publication, Distribution,
+  ## Licencing, etc. 2.2.5. The Series Statement 3.11.2.3. Imprint, Pagination, and Other Details
+  element idno {
+    mishnahrmacro.xtext,
+    mishnahratt.global.attributes,
+    
+    ## categorizes the identifier, for example as an ISBN, Social
+    ##       Security number, etc. 
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahravailability =
+  
+  ## supplies information about the availability of a text, for example any restrictions on its
+  ##     use or distribution, its copyright status, etc. 2.2.4. Publication, Distribution,
+  ## Licencing, etc.
+  element availability {
+    mishnahrmodel.availabilityPart+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## supplies a code identifying the current availability of the text. 
+    [ a:defaultValue = "unknown" ]
+    attribute status {
+      
+      ## the text is freely available. 
+      "free"
+      | 
+        ## the status of the text is unknown. 
+        "unknown"
+      | 
+        ## the text is not freely available. 
+        "restricted"
+    }?,
+    empty
+  }
+mishnahrlicence =
+  
+  ## contains information about a licence or other legal agreement
+  ##   applicable to the text. 2.2.4. Publication, Distribution,
+  ## Licencing, etc.
+  element licence {
+    mishnahrmacro.specialPara,
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.datable.attributes,
+    empty
+  }
+mishnahrseriesStmt =
+  
+  ## (series statement) groups information about the series, if any, to which a publication belongs. 2.2.5. The Series Statement 2.2. The File Description
+  element seriesStmt {
+    (mishnahrmodel.pLike+
+     | (mishnahrtitle+,
+        (mishnahreditor | mishnahrrespStmt)*,
+        (mishnahridno | mishnahrbiblScope)*)),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrnotesStmt =
+  
+  ## (notes statement) collects together any notes providing information about a text additional to that recorded
+  ##     in other parts of the bibliographic description. 2.2.6. The Notes Statement 2.2. The File Description
+  element notesStmt {
+    mishnahrmodel.noteLike+, mishnahratt.global.attributes, empty
+  }
+mishnahrsourceDesc =
+  
+  ## (source description) describes the source from which an electronic text was derived or generated, typically a
+  ##     bibliographic description in the case of a digitized text, or a phrase such as "born digital"
+  ##     for a text which has no previous existence. 2.2.7. The Source Description
+  element sourceDesc {
+    (mishnahrmodel.pLike+
+     | (mishnahrmodel.biblLike
+        | mishnahrmodel.sourceDescPart
+        | mishnahrmodel.listLike)+),
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrbiblFull =
+  
+  ## (fully-structured bibliographic citation) contains a fully-structured bibliographic citation, in which all components of the TEI file
+  ##     description are present. 3.11.1. Elements of Bibliographic References 2.2. The File Description 2.2.7. The Source Description 15.3.2. Declarable Elements
+  element biblFull {
+    ((mishnahrtitleStmt,
+      mishnahreditionStmt?,
+      mishnahrextent?,
+      mishnahrpublicationStmt,
+      mishnahrseriesStmt?,
+      mishnahrnotesStmt?),
+     mishnahrsourceDesc*),
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrencodingDesc =
+  
+  ## (encoding description) documents the relationship between an electronic text and the
+  ## source or sources from which it was derived. 2.3. The Encoding Description 2.1.1. The TEI Header and its Components
+  element encodingDesc {
+    (mishnahrmodel.encodingDescPart | mishnahrmodel.pLike)+,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrprojectDesc =
+  
+  ## (project description) describes in detail the aim or purpose for which an electronic file was encoded, together
+  ##     with any other relevant information concerning the process by which it was assembled or
+  ##     collected. 2.3.1. The Project Description 2.3. The Encoding Description 15.3.2. Declarable Elements
+  element projectDesc {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrsamplingDecl =
+  
+  ## (sampling declaration) contains a prose description of the rationale and methods used in sampling texts in the
+  ##     creation of a corpus or collection. 2.3.2. The Sampling Declaration 2.3. The Encoding Description 15.3.2. Declarable Elements
+  element samplingDecl {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahreditorialDecl =
+  
+  ## (editorial practice declaration) provides details of editorial principles and practices applied
+  ## during the encoding of a text. 2.3.3. The Editorial Practices Declaration 2.3. The Encoding Description 15.3.2. Declarable Elements
+  element editorialDecl {
+    (mishnahrmodel.pLike | mishnahrmodel.editorialDeclPart)+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrcorrection =
+  
+  ## (correction principles) states how and under what circumstances corrections have been made in the text. 2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element correction {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## indicates the degree of correction applied to the text. 
+    [ a:defaultValue = "unknown" ]
+    attribute status {
+      
+      ## the text has been thoroughly checked and proofread. 
+      "high"
+      | 
+        ## the text has been checked at least once. 
+        "medium"
+      | 
+        ## the text has not been checked. 
+        "low"
+      | 
+        ## the correction status of the text is unknown. 
+        "unknown"
+    }?,
+    
+    ## indicates the method adopted to indicate corrections within the text. 
+    [ a:defaultValue = "silent" ]
+    attribute method {
+      
+      ## corrections have been made silently 
+      "silent"
+      | 
+        ## corrections have been represented using markup
+        "markup"
+    }?,
+    empty
+  }
+mishnahrnormalization =
+  
+  ## indicates the extent of normalization or regularization of the original source carried out
+  ##     in converting it to electronic form. 2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element normalization {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## indicates the authority for any normalization carried out. 
+    attribute source { mishnahrdata.pointer }?,
+    
+    ## indicates the method adopted to indicate normalizations within the text. 
+    [ a:defaultValue = "silent" ]
+    attribute method {
+      
+      ## normalization made silently 
+      "silent"
+      | 
+        ## normalization represented using markup 
+        "markup"
+    }?,
+    empty
+  }
+mishnahrquotation =
+  
+  ## specifies editorial practice adopted with respect to quotation marks in the original.  2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element quotation {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## (quotation marks) indicates whether or not quotation marks have been retained as content within the text. 
+    [ a:defaultValue = "all" ]
+    attribute marks {
+      
+      ## no quotation marks have been retained 
+      "none"
+      | 
+        ## some quotation marks have been retained 
+        "some"
+      | 
+        ## all quotation marks have been retained 
+        "all"
+    }?,
+    
+    ## specifies how quotation marks are indicated within the text.
+    [ a:defaultValue = "unknown" ] attribute form { text }?,
+    empty
+  }
+mishnahrhyphenation =
+  
+  ## summarizes the way in which hyphenation in a source text has been treated in an encoded
+  ##     version of it. 2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element hyphenation {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## (end-of-line) indicates whether or not end-of-line hyphenation has been retained in a text.
+    [ a:defaultValue = "some" ]
+    attribute eol {
+      
+      ## all end-of-line hyphenation has been retained, even though the lineation of the
+      ##             original may not have been. 
+      "all"
+      | 
+        ## end-of-line hyphenation has been retained in some cases. 
+        "some"
+      | 
+        ## all soft end-of-line hyphenation has been removed: any remaining end-od-line
+        ##             hyphenation should be retained. 
+        "hard"
+      | 
+        ## all end-of-line hyphenation has been removed: any remaining hyphenation occurred
+        ##             within the line. 
+        "none"
+    }?,
+    empty
+  }
+mishnahrsegmentation =
+  
+  ## describes the principles according to which the text has been segmented, for example into
+  ##     sentences, tone-units, graphemic strata, etc. 2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element segmentation {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrstdVals =
+  
+  ## (standard values) specifies the format used when standardized date or number values are supplied. 2.3.3. The Editorial Practices Declaration 15.3.2. Declarable Elements
+  element stdVals {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrinterpretation =
+  
+  ## describes the scope of any analytic or interpretive information added to the text in
+  ##     addition to the transcription.  2.3.3. The Editorial Practices Declaration
+  element interpretation {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrtagsDecl =
+  
+  ## (tagging declaration) provides detailed information about the tagging applied to a document. 2.3.4. The Tagging Declaration 2.3. The Encoding Description
+  element tagsDecl {
+    (mishnahrrendition*, mishnahrnamespace*),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrtagUsage =
+  
+  ## supplies information about the usage of a specific element within a text.  2.3.4. The Tagging Declaration
+  element tagUsage {
+    mishnahrmacro.limitedContent,
+    mishnahratt.global.attributes,
+    
+    ## (element name) the name (generic identifier) of the element indicated by the tag.
+    attribute gi { mishnahrdata.name },
+    
+    ## specifies the number of occurrences of this element within the text.
+    attribute occurs { mishnahrdata.count }?,
+    
+    ## (with unique identifier) specifies the number of occurrences of this element within the text which bear a
+    ##         distinct value for the global xml:id attribute. 
+    attribute withId { mishnahrdata.count }?,
+    
+    ## specifies the identifier of a rendition element which defines how this element
+    ##         is to be rendered.
+    attribute render { mishnahrdata.pointer }?,
+    empty
+  }
+mishnahrnamespace =
+  
+  ## supplies the formal name of the namespace to which the elements documented by its children
+  ##     belong.  2.3.4. The Tagging Declaration
+  element namespace {
+    mishnahrtagUsage+,
+    mishnahratt.global.attributes,
+    
+    ## the full formal name of the namespace concerned.
+    attribute name { mishnahrdata.namespace },
+    empty
+  }
+mishnahrrendition =
+  
+  ## supplies information about the rendition or appearance of one or more elements in the source
+  ##     text. 2.3.4. The Tagging Declaration
+  element rendition {
+    mishnahrmacro.limitedContent,
+    mishnahratt.global.attributes,
+    
+    ## identifies the language used to describe the rendition.
+    attribute scheme {
+      
+      ## Cascading Stylesheet Language
+      "css"
+      | 
+        ## Extensible Stylesheet Language Formatting Objects
+        "xslfo"
+      | 
+        ## Informal free text description
+        "free"
+      | 
+        ## A user-defined rendition description language
+        "other"
+    }?,
+    
+    ## where CSS is used, provides a way of defining
+    ## pseudo-elements, that is, styling rules
+    ## applicable to specific sub-portions of an element.
+    attribute scope { text }?,
+    empty
+  }
+mishnahrrefsDecl =
+  
+  ## (references declaration) specifies how canonical references are constructed for this
+  ##   text. 2.3.5.3. Milestone Method 2.3. The Encoding Description 2.3.5. The Reference System Declaration
+  element refsDecl {
+    (mishnahrmodel.pLike+ | mishnahrcRefPattern+ | mishnahrrefState+),
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrcRefPattern =
+  
+  ## (canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into
+  ##     a URI.  2.3.5.3. Milestone Method 2.3.5. The Reference System Declaration 2.3.5.2. Search-and-Replace Method
+  element cRefPattern {
+    mishnahrmodel.pLike*,
+    mishnahratt.global.attributes,
+    
+    ## specifies a regular expression against which the values of cRef attributes
+    ##         can be matched.
+    attribute matchPattern { mishnahrdata.pattern },
+    
+    ## specifies a replacement pattern which, once subpattern substitution
+    ##         has been performed, provides a URI.
+    attribute replacementPattern { text },
+    empty
+  }
+mishnahrrefState =
+  
+  ## (reference state) specifies one component of a canonical reference defined by the milestone method. 2.3.5.3. Milestone Method 2.3.5. The Reference System Declaration
+  element refState {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.sourced.attributes,
+    
+    ## indicates what kind of state is changing at this milestone.
+    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] stanza; 8] act; 9] scene; 10] section; 11] absent
+    attribute unit {
+      
+      ## page breaks in the reference edition. 
+      "page"
+      | 
+        ## column breaks. 
+        "column"
+      | 
+        ## line breaks. 
+        "line"
+      | 
+        ## any units termed book, liber, etc. 
+        "book"
+      | 
+        ## individual poems in a collection. 
+        "poem"
+      | 
+        ## cantos or other major sections of a poem. 
+        "canto"
+      | 
+        ## stanzas within a poem, book, or canto. 
+        "stanza"
+      | 
+        ## acts within a play. 
+        "act"
+      | 
+        ## scenes within a play or act. 
+        "scene"
+      | 
+        ## sections of any kind. 
+        "section"
+      | 
+        ## passages not present in the reference edition.
+        "absent"
+      | xsd:Name
+    },
+    
+    ## specifies the fixed length of the reference component.
+    attribute length { mishnahrdata.count }?,
+    
+    ## (delimiter) supplies a delimiting string following the reference component.
+    attribute delim { text }?,
+    empty
+  }
+mishnahrclassDecl =
+  
+  ## (classification declarations) contains one or more taxonomies defining any classificatory
+  ## codes used elsewhere in the text. 2.3.6. The Classification Declaration 2.3. The Encoding Description
+  element classDecl {
+    mishnahrtaxonomy+, mishnahratt.global.attributes, empty
+  }
+mishnahrtaxonomy =
+  
+  ## defines a typology used to classify texts either implicitly, by means of a bibliographic
+  ##     citation, or explicitly by a structured taxonomy. 2.3.6. The Classification Declaration
+  element taxonomy {
+    (mishnahrmodel.glossLike*
+     | mishnahrcategory+
+     | (mishnahrmodel.biblLike, mishnahrcategory*)),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrcategory =
+  
+  ## contains an individual descriptive category, possibly nested within a superordinate
+  ##     category, within a user-defined taxonomy. 2.3.6. The Classification Declaration
+  element category {
+    ((mishnahrcatDesc+ | mishnahrmodel.glossLike*), mishnahrcategory*),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrcatDesc =
+  
+  ## (category description) describes some category within a taxonomy or text typology, either in the form of a brief
+  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. 2.3.6. The Classification Declaration
+  element catDesc {
+    (text | mishnahrmodel.limitedPhrase | mishnahrmodel.catDescPart)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrappInfo =
+  
+  ## (application information) records information about an application which has
+  ##   edited the TEI file. 
+  element appInfo {
+    mishnahrmodel.applicationLike+, mishnahratt.global.attributes, empty
+  }
+mishnahrapplication =
+  
+  ## provides information about an application which has acted upon the document.
+  element application {
+    (mishnahrmodel.labelLike+,
+     (mishnahrmodel.ptrLike* | mishnahrmodel.pLike*)),
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.datable.attributes,
+    
+    ## Supplies an identifier for the application, independent of its version number or display
+    ##         name.
+    attribute ident { mishnahrdata.name },
+    
+    ## Supplies a version number for the application, independent of its identifier or display
+    ##         name.
+    attribute version {
+      xsd:token {
+        pattern = "[\d]+[a-z]*[\d]*(\.[\d]+[a-z]*[\d]*){0,3}"
+      }
+    },
+    empty
+  }
+mishnahrprofileDesc =
+  
+  ## (text-profile description) provides a detailed description of non-bibliographic aspects of a text, specifically the
+  ##     languages and sublanguages used, the situation in which it was produced, the participants and
+  ##     their setting. 2.4. The Profile Description 2.1.1. The TEI Header and its Components
+  element profileDesc {
+    mishnahrmodel.profileDescPart*, mishnahratt.global.attributes, empty
+  }
+mishnahrcreation =
+  
+  ## contains information about the creation of a text. 2.4.1. Creation 2.4. The Profile Description
+  element creation {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrlangUsage =
+  
+  ## (language usage) describes the languages, sublanguages, registers, dialects, etc.
+  ## represented within a text. 2.4.2. Language Usage 2.4. The Profile Description 15.3.2. Declarable Elements
+  element langUsage {
+    mishnahrlanguage+,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrlanguage =
+  
+  ## characterizes a single language or sublanguage used within a text. 2.4.2. Language Usage
+  element language {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    
+    ## (identifier) Supplies a language code constructed as defined in BCP 47 which is used to identify the
+    ##         language documented by this element, and which is referenced by the global
+    ##         xml:lang attribute.
+    attribute ident { mishnahrdata.language },
+    
+    ## specifies the approximate percentage (by volume) of the text which uses this language. 
+    attribute usage {
+      xsd:nonNegativeInteger { maxInclusive = "100" }
+    }?,
+    empty
+  }
+mishnahrtextClass =
+  
+  ## (text classification) groups information which describes the nature or topic of a text in terms of a standard
+  ##     classification scheme, thesaurus, etc. 2.4.3. The Text Classification
+  element textClass {
+    (mishnahrclassCode | mishnahrcatRef | mishnahrkeywords)*,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    empty
+  }
+mishnahrkeywords =
+  
+  ## contains a list of keywords or phrases identifying the topic or nature of a text. 2.4.3. The Text Classification
+  element keywords {
+    (mishnahrterm+ | mishnahrlist),
+    mishnahratt.global.attributes,
+    
+    ## identifies the controlled vocabulary within which the set of keywords concerned is
+    ##         defined. 
+    attribute scheme { mishnahrdata.pointer },
+    empty
+  }
+mishnahrclassCode =
+  
+  ## (classification code) contains the classification code used for this text in some standard classification system. 2.4.3. The Text Classification
+  element classCode {
+    mishnahrmacro.phraseSeq.limited,
+    mishnahratt.global.attributes,
+    
+    ## identifies the classification system or taxonomy in use.
+    attribute scheme { mishnahrdata.pointer },
+    empty
+  }
+mishnahrcatRef =
+  
+  ## (category reference) specifies one or more defined categories within some taxonomy or text typology. 2.4.3. The Text Classification
+  element catRef {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    
+    ## identifies the classification scheme within which the set of categories concerned is
+    ##         defined 
+    attribute scheme { mishnahrdata.pointer }?,
+    empty
+  }
+mishnahrcalendarDesc =
+  
+  ## (calendar description) contains a description of the calendar system used in any
+  ##   dating expression found in the text. 2.4. The Profile Description 2.4.4. Calendar Description
+  element calendarDesc {
+    mishnahrcalendar+, mishnahratt.global.attributes, empty
+  }
+mishnahrcalendar =
+  
+  ## describes a calendar or dating system used in a dating formula in the text. 2.4.4. Calendar Description
+  element calendar {
+    mishnahrmodel.pLike+,
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    empty
+  }
+mishnahrrevisionDesc =
+  
+  ## (revision description) summarizes the revision history for a file. 2.5. The Revision Description 2.1.1. The TEI Header and its Components
+  element revisionDesc {
+    (mishnahrlist | mishnahrchange+),
+    mishnahratt.global.attributes,
+    mishnahratt.docStatus.attributes,
+    empty
+  }
+mishnahrchange =
+  
+  ## summarizes a particular change or correction made to a particular version of an electronic
+  ##     text which is shared between several researchers. 2.5. The Revision Description
+  element change {
+    (text
+     | mishnahrmodel.limitedPhrase
+     | mishnahrmodel.inter
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    mishnahratt.ascribed.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.docStatus.attributes,
+    empty
+  }
+mishnahrgeoDecl =
+  
+  ## (geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
+  ##     the geo element elsewhere within the document.
+  element geoDecl {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## supplies a commonly used code name for the datum employed.
+    ## Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) 
+    [ a:defaultValue = "WGS84" ]
+    attribute datum {
+      
+      ## (World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
+      ##             the World Geodetic System.
+      "WGS84"
+      | 
+        ## (Military Grid Reference System) the values supplied are geospatial entity object codes, based on
+        "MGRS"
+      | 
+        ## (ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.
+        "OSGB36"
+      | 
+        ## (European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
+        ##             to the European Datum coordinate system.
+        "ED50"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahrTEI =
+  
+  ## (TEI document) contains a single TEI-conformant document,
+  ## comprising a TEI header and a text, either in isolation or as part of a
+  ## teiCorpus element. 4. Default Text Structure 15.1. Varieties of Composite Text
+  element TEI {
+    (mishnahrteiHeader,
+     ((mishnahrmodel.resourceLike+, mishnahrtext?) | mishnahrtext))
+    >> sch:ns [ prefix = "tei" uri = "http://www.tei-c.org/ns/1.0" ]
+    >> sch:ns [
+         prefix = "rng"
+         uri = "http://relaxng.org/ns/structure/1.0"
+       ],
+    mishnahratt.global.attributes,
+    
+    ## specifies the version number of the TEI Guidelines against
+    ##       which this document is valid.
+    attribute version { mishnahrdata.version }?,
+    empty
+  }
+mishnahrtext =
+  
+  ## contains a single text of any kind, whether unitary or composite, for example a poem or
+  ##     drama, a collection of essays, a novel, a dictionary, or a corpus sample. 4. Default Text Structure 15.1. Varieties of Composite Text
+  element text {
+    (mishnahrmodel.global*,
+     (mishnahrfront, mishnahrmodel.global*)?,
+     (mishnahrbody | mishnahrgroup),
+     mishnahrmodel.global*,
+     (mishnahrback, mishnahrmodel.global*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrbody =
+  
+  ## (text body) contains the whole body of a single unitary text, excluding any front or back matter. 4. Default Text Structure
+  element body {
+    mishnahrmodel.global*,
+    mishnahrmodel.div1Like+,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrgroup =
+  
+  ## contains the body of a composite text, grouping together a sequence of distinct texts (or
+  ##     groups of such texts) which are regarded as a unit for some purpose, for example the collected
+  ##     works of an author, a sequence of prose essays, etc. 4. Default Text Structure 4.3.1. Grouped Texts 15.1. Varieties of Composite Text
+  element group {
+    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
+     ((mishnahrtext | mishnahrgroup),
+      (mishnahrtext | mishnahrgroup | mishnahrmodel.global)*),
+     mishnahrmodel.divBottom*),
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrfloatingText =
+  
+  ## contains a single text of any kind, whether unitary or composite, which interrupts the text
+  ##     containing it at any point and after which the surrounding text resumes. 4.3.2. Floating Texts
+  element floatingText {
+    (mishnahrmodel.global*,
+     (mishnahrfront, mishnahrmodel.global*)?,
+     (mishnahrbody | mishnahrgroup),
+     mishnahrmodel.global*,
+     (mishnahrback, mishnahrmodel.global*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrdiv =
+  
+  ## (text division) contains a subdivision of the front, body, or back of a text. 4.1. Divisions of the Body
+  element div {
+    ((mishnahrmodel.divTop | mishnahrmodel.global)*,
+     ((((mishnahrmodel.divLike | mishnahrmodel.divGenLike),
+        mishnahrmodel.global*)+
+       | ((mishnahrmodel.common, mishnahrmodel.global*)+,
+          ((mishnahrmodel.divLike | mishnahrmodel.divGenLike),
+           mishnahrmodel.global*)*)),
+      (mishnahrmodel.divBottom, mishnahrmodel.global*)*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv1 =
+  
+  ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
+  element div1 {
+    mishnahrmodel.global*,
+    mishnahrmodel.div2Like+,
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv2 =
+  
+  ## (level-2 text division) contains a second-level subdivision of the front, body, or back of a
+  ##  text. 4.1.2. Numbered Divisions
+  element div2 {
+    mishnahrmodel.global*,
+    (mishnahrmodel.headLike*,
+     mishnahrmodel.div3Like*,
+     mishnahrmodel.divBottomPart*),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrdiv3 =
+  
+  ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. Numbered Divisions
+  element div3 {
+    mishnahrmodel.global*,
+    (mishnahrmodel.headLike*,
+     mishnahrab*,
+     mishnahrmodel.divBottomPart*),
+    mishnahratt.global.attributes,
+    mishnahratt.divLike.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrtrailer =
+  
+  ## contains a closing title or footer appearing at the end of a division of a text.  4.2.4. Content of Textual Divisions 4.2. Elements Common to All Divisions
+  element trailer {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrbyline =
+  
+  ## contains the primary statement of responsibility given for a work
+  ## on its title page or at the head or end of the work. 4.2.2. Openers and Closers 4.5. Front Matter
+  element byline {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrdocAuthor
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrdateline =
+  
+  ## contains a brief description of the place, date, time, etc. of production of a letter,
+  ##     newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  4.2.4. Content of Textual Divisions 4.2.2. Openers and Closers
+  element dateline {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrargument =
+  
+  ## A formal list or prose description of the topics addressed by
+  ##	a subdivision of a text. 4.2. Elements Common to All Divisions 4.6. Title Pages
+  element argument {
+    ((mishnahrmodel.global | mishnahrmodel.headLike)*,
+     (mishnahrmodel.common, mishnahrmodel.global*)+),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrepigraph =
+  
+  ## contains a quotation, anonymous or attributed, appearing at the start of a section or
+  ##     chapter, or on a title page.  4.2.3. Arguments, Epigraphs, and Postscripts 4.2. Elements Common to All Divisions 4.6. Title Pages
+  element epigraph {
+    (mishnahrmodel.common | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahropener =
+  
+  ## groups together dateline, byline, salutation, and similar phrases appearing as a preliminary
+  ##     group at the start of a division, especially of a letter. 4.2.4. Content of Textual Divisions 4.2. Elements Common to All Divisions
+  element opener {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrargument
+     | mishnahrbyline
+     | mishnahrdateline
+     | mishnahrepigraph
+     | mishnahrsalute
+     | mishnahrsigned
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrcloser =
+  
+  ## groups together salutations, datelines, and similar phrases appearing as a final group at
+  ##     the end of a division, especially of a letter. 4.2.2. Openers and Closers 4.2. Elements Common to All Divisions
+  element closer {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrsigned
+     | mishnahrdateline
+     | mishnahrsalute
+     | mishnahrmodel.phrase
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrsalute =
+  
+  ## (salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other
+  ##     division of a text, or the salutation in the closing of a letter, preface, etc. 4.2.4. Content of Textual Divisions 4.2.2. Openers and Closers
+  element salute {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrsigned =
+  
+  ## (signature) contains the closing salutation, etc., appended to a foreword,
+  ## dedicatory epistle, or other division of a text.  4.2.4. Content of Textual Divisions 4.2.2. Openers and Closers
+  element signed {
+    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+  }
+mishnahrpostscript =
+  
+  ## contains a postscript, e.g. to a letter. 4.2. Elements Common to All Divisions
+  element postscript {
+    (mishnahrmodel.common | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrtitlePage =
+  
+  ## (title page) contains the title page of a text, appearing within the front or back matter.  4.6. Title Pages
+  element titlePage {
+    (mishnahrmodel.global*,
+     mishnahrmodel.titlepagePart,
+     (mishnahrmodel.titlepagePart | mishnahrmodel.global)*),
+    mishnahratt.global.attributes,
+    
+    ## classifies the title page according to any convenient typology.
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrdocTitle =
+  
+  ## (document title) contains the title of a document, including all its
+  ## constituents, as given on a title page. 4.6. Title Pages
+  element docTitle {
+    (mishnahrmodel.global*,
+     (mishnahrtitlePart, mishnahrmodel.global*)+),
+    mishnahratt.global.attributes,
+    mishnahratt.canonical.attributes,
+    empty
+  }
+mishnahrtitlePart =
+  
+  ## contains a subsection or division of the title of a work, as
+  ## indicated on a title page. 4.6. Title Pages
+  element titlePart {
+    mishnahrmacro.paraContent,
+    mishnahratt.global.attributes,
+    
+    ## specifies the role of this subdivision of the title.
+    ## Suggested values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
+    [ a:defaultValue = "main" ]
+    attribute type {
+      
+      ## main title of the work
+      ##         
+      "main"
+      | 
+        ## (subordinate) subtitle  of the work
+        ##         
+        "sub"
+      | 
+        ## (alternate) alternative title  of the work
+        ##         
+        "alt"
+      | 
+        ## abbreviated form of title
+        "short"
+      | 
+        ## (descriptive) descriptive paraphrase of the work 
+        ##    
+        "desc"
+      | xsd:Name
+    }?,
+    empty
+  }
+mishnahrdocAuthor =
+  
+  ## (document author) contains the name of the author of the document, as given on the
+  ## title page (often but not always contained in a byline). 4.6. Title Pages
+  element docAuthor {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.canonical.attributes,
+    empty
+  }
+mishnahrimprimatur =
+  
+  ## contains a formal statement authorizing the publication of a work, sometimes required to
+  ##     appear on a title page or its verso. 4.6. Title Pages
+  element imprimatur {
+    mishnahrmacro.paraContent, mishnahratt.global.attributes, empty
+  }
+mishnahrdocEdition =
+  
+  ## (document edition) contains an edition statement as presented on a title page of a
+  ## document. 4.6. Title Pages
+  element docEdition {
+    mishnahrmacro.paraContent, mishnahratt.global.attributes, empty
+  }
+mishnahrdocImprint =
+  
+  ## (document imprint) contains the imprint statement (place and date of publication,
+  ## publisher name), as given
+  ## (usually) at the foot of a title page. 4.6. Title Pages
+  element docImprint {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrpubPlace
+     | mishnahrdocDate
+     | mishnahrpublisher
+     | mishnahrmodel.global)*,
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrdocDate =
+  
+  ## (document date) contains the date of a document, as given
+  ## (usually) on a title page. 4.6. Title Pages
+  element docDate {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    
+    ## gives the value of the date in standard form, i.e. YYYY-MM-DD.
+    attribute when { mishnahrdata.temporal.w3c }?,
+    empty
+  }
+mishnahrfront =
+  
+  ## (front matter) contains any prefatory matter (headers,
+  ## title page, prefaces, dedications, etc.)
+  ## found  at the start of a document, before the main body. 4.6. Title Pages 4. Default Text Structure
+  element front {
+    ((mishnahrmodel.frontPart
+      | mishnahrmodel.pLike.front
+      | mishnahrmodel.global)*,
+     ((mishnahrmodel.div1Like,
+       (mishnahrmodel.frontPart
+        | mishnahrmodel.div1Like
+        | mishnahrmodel.global)*)
+      | (mishnahrmodel.divLike,
+         (mishnahrmodel.frontPart
+          | mishnahrmodel.divLike
+          | mishnahrmodel.global)*))?,
+     (mishnahrmodel.divBottomPart,
+      (mishnahrmodel.divBottomPart | mishnahrmodel.global)*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahrback =
+  
+  ## (back matter) contains any appendixes, etc. following the main part of a text. 4.7. Back Matter 4. Default Text Structure
+  element back {
+    ((mishnahrmodel.frontPart
+      | mishnahrmodel.pLike.front
+      | mishnahrmodel.global)*,
+     ((mishnahrmodel.div1Like,
+       (mishnahrmodel.frontPart
+        | mishnahrmodel.div1Like
+        | mishnahrmodel.global)*)
+      | (mishnahrmodel.divLike,
+         (mishnahrmodel.frontPart
+          | mishnahrmodel.divLike
+          | mishnahrmodel.global)*))?,
+     (mishnahrmodel.divBottomPart,
+      (mishnahrmodel.divBottomPart | mishnahrmodel.global)*)?),
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahratt.global.analytic.attributes =
+  mishnahratt.global.analytic.attribute.ana
+mishnahratt.global.analytic.attribute.ana =
+  
+  ## (analysis) indicates one or more elements containing interpretations of the
+  ## element on which the ana attribute appears.
+  attribute ana {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahrinterp =
+  
+  ## (interpretation) summarizes a specific interpretative annotation which can be linked to a span of text. 17.3. Spans and Interpretations
+  element interp {
+    (text | mishnahrmodel.gLike | mishnahrmodel.glossLike)*,
+    mishnahratt.global.attributes,
+    mishnahratt.interpLike.attributes,
+    empty
+  }
+mishnahrinterpGrp =
+  
+  ## (interpretation group) collects together a set of related interpretations which share responsibility or type. 17.3. Spans and Interpretations
+  element interpGrp {
+    (mishnahrmodel.glossLike*, mishnahrinterp+),
+    mishnahratt.global.attributes,
+    mishnahratt.interpLike.attributes,
+    empty
+  }
+mishnahratt.global.linking.attributes =
+  mishnahratt.global.linking.attribute.corresp,
+  mishnahratt.global.linking.attribute.synch,
+  mishnahratt.global.linking.attribute.sameAs,
+  mishnahratt.global.linking.attribute.copyOf,
+  mishnahratt.global.linking.attribute.next,
+  mishnahratt.global.linking.attribute.prev,
+  mishnahratt.global.linking.attribute.exclude,
+  mishnahratt.global.linking.attribute.select
+mishnahratt.global.linking.attribute.corresp =
+  
+  ## (corresponds) points to elements that correspond to the current
+  ##       element in some way.
+  attribute corresp {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.synch =
+  
+  ## (synchronous) points to elements that are synchronous with the current
+  ##       element.
+  attribute synch {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.sameAs =
+  
+  ## points to an element that is the same as the current
+  ##       element.
+  attribute sameAs { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.copyOf =
+  
+  ## points to an element of which the current element is a
+  ##	copy.
+  attribute copyOf { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.next =
+  
+  ## points to the next element of a virtual aggregate of which
+  ##       the current element is part.
+  attribute next { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.prev =
+  
+  ## (previous) points to the previous element of a virtual aggregate of
+  ##       which the current element is part.
+  attribute prev { mishnahrdata.pointer }?
+mishnahratt.global.linking.attribute.exclude =
+  
+  ## points to elements that are in exclusive alternation
+  ##       with the current element.
+  attribute exclude {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.global.linking.attribute.select =
+  
+  ## selects one or more alternants; if one alternant is
+  ##       selected, the ambiguity or uncertainty is marked as resolved. If
+  ##       more than one alternant is selected, the degree of ambiguity or
+  ##       uncertainty is marked as reduced by the number of alternants not
+  ##       selected.
+  attribute select {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahrab =
+  
+  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. 16.3. Blocks, Segments, and Anchors
+  element ab {
+    mishnahrmodel.global*,
+    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
+    
+    ## specifies whether or not the block is complete. 
+    [ a:defaultValue = "N" ]
+    attribute part {
+      
+      ## (yes) the block is incomplete
+      "Y"
+      | 
+        ## (no) either the block is complete, or no claim is made as to its completeness
+        "N"
+      | 
+        ## (initial) the initial part of an incomplete block
+        "I"
+      | 
+        ## (medial) a medial part of an incomplete block
+        "M"
+      | 
+        ## (final) the final part of an incomplete block
+        "F"
+    }?,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declaring.attributes,
+    empty
+  }
+mishnahranchor =
+  
+  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. 8.4.2. Synchronization and Overlap 16.4. Correspondence and Alignment
+  element anchor {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrlink =
+  
+  ## defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. 16.1. Links
+  element link {
+    empty
+    >> sch:pattern [
+         id = "link-constraint-linkTargets1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and @targets"
+             "You may not supply both \x{a}" ~
+             "	@target and @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets2"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(@target) and not(@targets)"
+             "You must\x{a}" ~
+             "	supply either @target or @targets"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id = "link-constraint-linkTargets3"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:link"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "contains(@target,' ')"
+             "You must supply at least two\x{a}" ~
+             "values for @target"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## specifies the identifiers of the elements or passages to be linked or associated. 
+    attribute targets {
+      list {
+        mishnahrdata.pointer,
+        mishnahrdata.pointer,
+        mishnahrdata.pointer*
+      }
+    }?,
+    empty
+  }
+mishnahrmodel.rdgLike = mishnahrrdg
+mishnahrapp =
+  
+  ## (apparatus entry) contains one entry in a critical apparatus, with an optional
+  ## lemma and at least one reading. 12.1.1. The Apparatus Entry
+  element app {
+    (mishnahrmodel.global*,
+     (mishnahrlem,
+      mishnahrmodel.global*,
+      (mishnahrwit, mishnahrmodel.global*)?)?,
+     ((mishnahrmodel.rdgLike,
+       mishnahrmodel.global*,
+       (mishnahrwit, mishnahrmodel.global*)?)
+      | (mishnahrrdgGrp,
+         mishnahrmodel.global*,
+         (mishnahrwit, mishnahrmodel.global*)?))*)
+    >> sch:pattern [
+         id = "app-constraint-only1lem"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:app"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test =
+               "count( descendant::tei:lem[ generate-id(       current() ) = generate-id( ancestor::tei:app[1] ) ]) <       2"
+             "Only one <lem> element may appear within a single\x{a}" ~
+             "      apparatus entry, whether it appears outside a <rdgGrp>\x{a}" ~
+             "      element or within it."
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    mishnahratt.global.attributes,
+    
+    ## classifies the variation contained in this element according to
+    ## some convenient typology.
+    attribute type { mishnahrdata.enumerated }?,
+    
+    ## identifies the beginning of the lemma in the base text, if
+    ## necessary.
+    attribute from { mishnahrdata.pointer }?,
+    
+    ## identifies the endpoint of the lemma in the base text, if
+    ## necessary.
+    attribute to { mishnahrdata.pointer }?,
+    
+    ## (location) indicates the location of the variation, when the
+    ## location-referenced method of apparatus markup is used.
+    attribute loc {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrlem =
+  
+  ## (lemma) contains the lemma, or base text, of a textual variation. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element lem {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrmodel.inter
+     | mishnahrmodel.global
+     | mishnahrmodel.rdgPart)*,
+    mishnahratt.global.attributes,
+    mishnahratt.textCritical.attributes,
+    empty
+  }
+mishnahrrdg =
+  
+  ## (reading) contains a single reading within a textual variation. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element rdg {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.phrase
+     | mishnahrmodel.inter
+     | mishnahrmodel.global
+     | mishnahrmodel.rdgPart)*,
+    mishnahratt.global.attributes,
+    mishnahratt.textCritical.attributes,
+    empty
+  }
+mishnahrrdgGrp =
+  
+  ## (reading group) within a textual variation,
+  ## groups two or more readings perceived to have a genetic
+  ## relationship or other affinity. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element rdgGrp {
+    ((mishnahrrdgGrp, mishnahrwit?)
+     | ((mishnahrlem, mishnahrwit?)?,
+        (mishnahrmodel.rdgLike, mishnahrwit?))*)+,
+    mishnahratt.global.attributes,
+    mishnahratt.textCritical.attributes,
+    empty
+  }
+mishnahrwitDetail =
+  
+  ## (witness detail) gives further information about a particular witness, or
+  ## witnesses, to a particular reading. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element witDetail {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.placement.attributes,
+    mishnahratt.responsibility.attributes,
+    mishnahratt.pointing.attributes,
+    
+    ## (witnesses) indicates the sigil or sigla for the witnesses to which the
+    ## detail refers.
+    attribute wit {
+      list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    },
+    
+    ## describes the type of information given about the witness.
+    attribute type { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrwit =
+  
+  ## contains a list of one or more sigla of witnesses attesting a
+  ## given reading, in a textual variation. 12.1.4. Witness Information
+  element wit {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.rdgPart.attributes,
+    empty
+  }
+mishnahrlistWit =
+  
+  ## (witness list) lists definitions for all the witnesses referred to by a critical
+  ##   apparatus, optionally grouped hierarchically. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element listWit {
+    (mishnahrmodel.headLike?, (mishnahrwitness | mishnahrlistWit)+),
+    mishnahratt.global.attributes,
+    empty
+  }
+mishnahrwitness =
+  
+  ## contains either a description of a single witness referred to
+  ## within the critical apparatus, or a list of witnesses which is to be
+  ## referred to by a single sigil. 12.1. The Apparatus Entry, Readings, and Witnesses
+  element witness {
+    mishnahrmacro.limitedContent, mishnahratt.global.attributes, empty
+  }
+mishnahrwitStart =
+  
+  ## (fragmented witness start) indicates the beginning, or resumption, of the text of a
+  ## fragmentary witness. 12.1.5. Fragmentary Witnesses
+  element witStart {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.rdgPart.attributes,
+    empty
+  }
+mishnahrwitEnd =
+  
+  ## (fragmented witness end) indicates the end, or suspension, of the text of a fragmentary
+  ## witness. 12.1.5. Fragmentary Witnesses
+  element witEnd {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.rdgPart.attributes,
+    empty
+  }
+mishnahrlacunaStart =
+  
+  ## indicates the beginning of a lacuna in the text of a mostly
+  ## complete textual witness. 12.1.5. Fragmentary Witnesses
+  element lacunaStart {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.rdgPart.attributes,
+    empty
+  }
+mishnahrlacunaEnd =
+  
+  ## indicates the end of a lacuna in a mostly complete textual
+  ## witness. 12.1.5. Fragmentary Witnesses
+  element lacunaEnd {
+    empty,
+    mishnahratt.global.attributes,
+    mishnahratt.rdgPart.attributes,
+    empty
+  }
+mishnahrvariantEncoding =
+  
+  ## declares the method used to encode text-critical variants. 12.1.1. The Apparatus Entry
+  element variantEncoding {
+    empty,
+    mishnahratt.global.attributes,
+    
+    ## indicates which method is used to encode the apparatus of
+    ## variants.
+    attribute method {
+      
+      ## apparatus uses line numbers or other canonical reference scheme
+      ## referenced in a base text.
+      "location-referenced"
+      | 
+        ## apparatus indicates the precise locations of the beginning and
+        ## ending of each lemma relative to a base text.
+        "double-end-point"
+      | 
+        ## alternate readings of a passage are given in parallel in the
+        ## text; no notion of a base text is necessary.
+        "parallel-segmentation"
+    },
+    
+    ## indicates whether the apparatus appears within the running text
+    ## or external to it.
+    attribute location {
+      
+      ## apparatus appears within the running text.
+      "internal"
+      | 
+        ## apparatus appears outside the base text.
+        "external"
+    },
+    empty
+  }
+mishnahrmodel.rdgPart =
+  mishnahrwit
+  | mishnahrwitStart
+  | mishnahrwitEnd
+  | mishnahrlacunaStart
+  | mishnahrlacunaEnd
+mishnahratt.rdgPart.attributes = mishnahratt.rdgPart.attribute.wit
+mishnahratt.rdgPart.attribute.wit =
+  
+  ## (witness or witnesses) contains a list of one or more sigla indicating the witnesses
+  ## which begin or end at this point.
+  attribute wit {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.textCritical.attributes =
+  mishnahratt.responsibility.attributes,
+  mishnahratt.textCritical.attribute.wit,
+  mishnahratt.textCritical.attribute.type,
+  mishnahratt.textCritical.attribute.cause,
+  mishnahratt.textCritical.attribute.varSeq,
+  mishnahratt.textCritical.attribute.hand
+mishnahratt.textCritical.attribute.wit =
+  
+  ## (witness or witnesses) contains a list of one or more pointers indicating the witnesses
+  ## which attest to a given reading.
+  attribute wit {
+    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+  }?
+mishnahratt.textCritical.attribute.type =
+  
+  ## classifies the reading according to some useful typology.
+  ## Sample values include: 1] substantive; 2] orthographic
+  attribute type { mishnahrdata.enumerated }?
+mishnahratt.textCritical.attribute.cause =
+  
+  ## classifies the cause for the variant reading, according to
+  ## any appropriate typology of possible origins.
+  ## Sample values include: 1] homeoteleuton; 2] homeoarchy; 3] paleographicConfusion; 4] haplography; 5] dittography; 6] falseEmendation
+  attribute cause { mishnahrdata.enumerated }?
+mishnahratt.textCritical.attribute.varSeq =
+  
+  ## (variant sequence) provides a number indicating the position of this reading in a
+  ## sequence, when there is reason to presume a sequence to the variants
+  ## on any one lemma.
+  attribute varSeq { mishnahrdata.count }?
+mishnahratt.textCritical.attribute.hand =
+  
+  ## signifies the hand responsible for a particular reading in the
+  ## witness.
+  attribute hand { mishnahrdata.pointer }?
+mishnahrw =
+  
+  ## (word) represents a grammatical (not necessarily orthographic) word. 17.1. Linguistic Segment Categories
+  element w {
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrw
+     | mishnahrmodel.global
+     | mishnahrmodel.lPart
+     | mishnahrmodel.hiLike
+     | mishnahrmodel.pPart.edit)*,
+    mishnahratt.global.attributes,
+    mishnahratt.segLike.attributes,
+    mishnahratt.typed.attributes,
+    
+    ## provides a lemma for the word, such as an uninflected
+    ##       dictionary entry form.
+    attribute lemma { mishnahrdata.key }?,
+    
+    ## provides a pointer to a definition of the lemma for the
+    ##       word, for example in an online lexicon. 
+    attribute lemmaRef { mishnahrdata.pointer }?,
+    empty
+  }
+start = mishnahrTEI

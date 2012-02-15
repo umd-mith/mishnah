@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
+   <title>ISO Schematron rules</title>
+   <ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+   <ns prefix="rng" uri="http://relaxng.org/ns/structure/1.0"/>
+   <pattern id="ptr-constraint-ptrAtts">
+      <rule context="tei:ptr">
+         <report test="@target and @cRef">Only one of the
+	attributes 'target' and 'cRef' may be supplied.</report>
+      </rule>
+   </pattern>
+   <pattern id="ref-constraint-refAtts">
+      <rule context="tei:ref">
+         <report test="@target and @cRef">Only one of the
+	attributes 'target' and 'cRef' may be supplied.</report>
+      </rule>
+   </pattern>
+   <pattern id="relatedItem-constraint-targetorcontent1">
+      <rule context="tei:relatedItem">
+         <report test="@target and count( child::* ) &gt; 0">If the 'target' attribute is used, the
+        relatedItem element must be empty</report>
+         <assert test="@target or child::*">A relatedItem element should have either a 'target' attribute
+        or a child element to indicate the related bibliographic item</assert>
+      </rule>
+   </pattern>
+   <pattern id="publicationStmt-constraint-linter">
+      <rule context="tei:publicationStmt">
+         <report test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
+                                    a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:pubPlace/following-sibling::tei:address)">It is a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:address/following-sibling::tei:idno)">It
+                                    is a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:idno/following-sibling::tei:availability)">It is a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+         <report test="not(tei:availability/following-sibling::tei:date)">It is a requirement for TEI conformance that information about
+                                    publication place, address, identifier, availability, and date
+                                    be given in that order, following the name of the publisher,
+                                    distributor, or authority concerned</report>
+      </rule>
+   </pattern>
+   <pattern id="notesStmt-constraint-linter">
+      <rule context="tei:notesStmt">
+         <assert test="tei:note/tei:p">The notesStmt is provided as
+                                    a convenience to permit a prose description of the physical
+                                    manuscript. Please also complete the structured elements for
+                                    manuscript description within sourceDesc </assert>
+      </rule>
+   </pattern>
+   <pattern id="join-constraint-joinTargets1">
+      <rule context="tei:join">
+         <report test="@target and @targets">You may not supply both 
+	@target and @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="join-constraint-joinTargets2">
+      <rule context="tei:join">
+         <report test="not(@target) and not(@targets)">You must
+	supply either @target or @targets</report>
+      </rule>
+   </pattern>
+   <pattern id="join-constraint-joinTargets3">
+      <rule context="tei:join">
+         <assert test="contains(@target,' ')">You must supply at least two
+values for @target</assert>
+      </rule>
+   </pattern>
+   <pattern id="dimensions-constraint-duplicateDim">
+      <rule context="tei:dimensions">
+         <report test="count(tei:width)&gt; 1">
+	Width element may appear once only
+      </report>
+         <report test="count(tei:height)&gt; 1">
+	Height element may appear once only
+      </report>
+         <report test="count(tei:depth)&gt; 1">
+	Depth element may appear once only
+      </report>
+      </rule>
+   </pattern>
+   <pattern id="msIdentifier-constraint-msId_minimal">
+      <rule context="tei:msIdentifier">
+         <report test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
+	    You must supply either a locator of some type or a
+	    name</report>
+      </rule>
+   </pattern>
+</schema>

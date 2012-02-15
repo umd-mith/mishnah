@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of the Cairo Genizah Fragment TS NS
+                    329.286</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName>Hayim Lapin</persName>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">g2</idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Published as a sample text for a digital edition of the Mishnah, using
+                        oXygen</p>
+                    <p>TRANSCRIPTION: Hayim Lapin</p>
+                    <p>EDITED: Hayim Lapin</p>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection
+                        (New Series). Covers Bava Qamma 10:8 - 10; Bava Metsi'a 1:1 - 2:10</p>
+                    <p>Transcription from online images of the manuscript, available at the
+                        Friedenberg Genizah Project, https://fgp.genizah.org, FGP nos.
+                        C102610-C102611</p>
+                    <p>Joins G4=TS AS 78.69 </p>
+                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
+                        Sciences, Kaufmann A50, except when preserved remains make such restoration
+                        unlikely.</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS NS 329.286</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <!-- Still considering this use of locus -->
+                            <locusGrp>
+                                <locus n="1r" facs="www.genizah.org">C102610</locus>
+                                <locus n="1v" facs="www.genizah.org">C102611</locus>
+                            </locusGrp>
+                            <join target="g4.xml ref.xml"/>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <handDesc>
+                            <handNote script="Oriental Square">
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                        <objectDesc form="codex">
+                            <supportDesc material="vellum">
+                                
+                                <extent>1 leaf</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm">14</width>
+                                        <height unit="cm">23.8</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm">11</width>
+                                        <height unit="cm">23.8</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-chars">
+                                        <height unit="lines">37</height>
+                                        <dim type="char-p-cm">2.7</dim>
+                                    </dimensions>
+                                    <!-- Following assume join with G4 -->
+                                    <dimensions scope="sheet">
+                                        <!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
+                                        inside-->
+                                        <width unit="cm">24.4</width>
+                                        <height unit="cm">28.4</height>
+                                    </dimensions>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">18.4</width>
+                                        <height unit="cm">23.8</height>
+                                    </dimensions>
+                                    <dimensions scope="col-chars">
+                                        <width unit="chars">50</width>
+                                        <height unit="lines">37</height>
+                                        <dim type="char-p-cm">2.7</dim>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2011-08-25" who="Hayim Lapin"> Transcription</change>
+            <change when="2011-12-27" who="Hayim Lapin">Revision to new schema</change>
+        </revisionDesc>
+    </teiHeader>
+    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+        <body>
+            <div1 xml:id="G2.Neziqin">
+                <div2 xml:id="G2.BavaQamma">
+                    <div3 xml:id="G2.4.1.10">
+                        <pb n="1r"/>
+                        <ab xml:id="G2.4.1.10.8">
+                            <milestone xml:id="G2.witStart" unit="fragment" next="#G2.witEnd"/>
+                            <damage><damageSpan xml:id="damBeg.1r.1a" spanTo="#damEnd.1r.1a"/><gap
+                                    reason="damage" extent="31"/><supplied>... והיא
+                                    שלי</supplied><unclear extent="1">מ</unclear><anchor
+                                    xml:id="damEnd.1r.1a"/></damage>ה פ<damage><damageSpan
+                                    xml:id="damBeg.1r.1b" spanTo="#damEnd.1r.1b"/><gap
+                                    reason="damage" extent="1"/><supplied>ט</supplied><anchor
+                                    xml:id="damEnd.1r.1b"/></damage>ור מלשלם<pc type="unitEnd"
+                                rend="°">:</pc>
+                        </ab>
+                        <ab xml:id="G2.4.1.10.9"><label rend="size() align() pad (r)"/>אין לוקחין
+                                <lb n="1"/><damage><damageSpan xml:id="damBeg.1r.2"
+                                    spanTo="#damEnd.1r.2"/><gap reason="damage" extent="30"
+                                    /><supplied>מן הרועים צמר וחלב וגידים ולא משומרי
+                                    פ</supplied><anchor xml:id="damEnd.1r.2"/>ירות</damage> עיצים
+                            ופירות אבל לוקחין <lb n="2"/>
+                            <damage><damageSpan xml:id="damBeg.1r.3a" spanTo="#damEnd.1r.3a"/><gap
+                                    reason="damage" extent="30"/><supplied>מן הנשים כלי פשתן בגליל
+                                    ועגלים בשרו</supplied><unclear extent="1">ן</unclear><anchor
+                                    xml:id="damEnd.1r.3a"/></damage> ו<damage>כו</damage>לם
+                                    שא<damage><damageSpan xml:id="damBeg.1r.3b"
+                                    spanTo="#damEnd.1r.3b"/>מ<unclear extent="1">ר</unclear>
+                                <gap extent="4"/><supplied>ו להט</supplied><unclear extent="1"
+                                    >מן</unclear><anchor xml:id="damEnd.1r.3b"/></damage> אסור
+                                <surplus>?</surplus>
+                            <lb n="3"/><damage><damageSpan xml:id="damBeg.1r.4a"
+                                    spanTo="#damEnd.1r.4a"/><gap extent="30"/><supplied>לוקחים ביצים
+                                    ותורנגלים מכל מקום מוכ</supplied><anchor xml:id="damEnd.1r.4a"
+                                />י</damage>ם שהכובס <damage>מ<damageSpan xml:id="damBeg.1r.4b"
+                                    spanTo="#damEnd.1r.4b"/><gap extent="6"/><supplied>וציא
+                                    הר</supplied>י<anchor xml:id="damEnd.1r.4b"/></damage> הן שלו<lb
+                                n="4"/>
+                            <damage><damageSpan xml:id="damBeg.1r.5a" spanTo="#damEnd.1r.5a"/><gap
+                                    extent="34"/><supplied>שהסרוק מוציא הרי הן שלבעל הבית הכובס
+                                    נוטל</supplied>
+                                <unclear extent="1">ש</unclear><anchor xml:id="damEnd.1r.5a"
+                                />ל</damage>שה חו<damage><damageSpan xml:id="damBeg.1r.5b"
+                                    spanTo="#damEnd.1r.5b"/><gap extent="9"/><supplied>טין והן
+                                    שלו</supplied><note>Some traces visible.</note><anchor
+                                    xml:id="damEnd.1r.5b"/></damage> יותר<lb n="5"/>
+                            <damage><damageSpan xml:id="damBeg.1r.6a" spanTo="#damEnd.1r.6a"/><gap
+                                    extent="34"/><supplied>מיכן שלבעל הבית ואם היה שחור על גבי לבן
+                                    נוט</supplied><unclear extent="1">ל</unclear><anchor
+                                    xml:id="damEnd.1r.6a"/></damage> את הכל והן <damage>ש<damageSpan
+                                    xml:id="damBeg.1r.6b" spanTo="#damEnd.1r.6b"/><gap extent="3"
+                                        /><supplied>לו<pc type="unitEnd" rend="°"
+                                >:</pc></supplied></damage></ab>
+                        <ab xml:id="G2.4.1.10.10"><damage><gap extent="1"/><label
+                                    rend="size() align() pad (r)"/><supplied>ה</supplied><anchor
+                                    xml:id="damEnd.1r.6b"/>ח</damage>ייט<lb n="6"
+                                    /><damage><damageSpan xml:id="damBeg.1r.7a"
+                                    spanTo="#damEnd.1r.7a"/><gap extent="31"/><supplied>ששייר מן
+                                    החוט כדי לתפור בו מטלת שהיא ש</supplied><anchor
+                                    xml:id="damEnd.1r.7a"/>ל</damage>וש על שלוש
+                                חיי<damage>ב</damage>
+                            <damage><damageSpan xml:id="damBeg.1r.7b" spanTo="#damEnd.1r.7b"
+                                    /><unclear extent="1">ל</unclear><gap extent="2"
+                                    /><supplied>הח</supplied><unclear extent="1">ז</unclear><anchor
+                                    xml:id="damEnd.1r.7b"/></damage>יר <lb n="7"/>
+                            <damage><damageSpan xml:id="damBeg.1r.8a" spanTo="#damEnd.1r.8a"/><gap
+                                    extent="33"/><supplied>לבעלים מה שחרש מוציא במעצד הרי אלו שלו
+                                    וב</supplied><anchor xml:id="damEnd.1r.8a"/></damage>כשיל הרי
+                            שלבעל ה<damage>ב</damage><note>For lines 8 through 11 location of line
+                                break is approximate.</note><damage><damageSpan
+                                    xml:id="damBeg.1r.8b" spanTo="#damEnd.1r.9"/><gap extent="3"
+                                    /><supplied>בית</supplied><lb n="8"/><gap extent="29"
+                                    /><supplied> אם היה עושה אצל בעל הבית אף הנסורת
+                                    של</supplied><anchor xml:id="damEnd.1r.9"/>בע</damage><unclear
+                                extent="1">ל</unclear>
+                            <c>ה</c>בית<pc type="unitEnd" rend="°">:</pc>
+                        </ab>
+                    </div3>
+                </div2>
+                <div2 xml:id="G2.BavaMetsia">
+                    <div3 xml:id="G2.4.2.1" n="Chapter1">
+                        <head xml:id="G2.4.2.1.H" rend="size() align() pad (rl)">פרק י׳א׳
+                                <damageSpan xml:id="damBeg.1r.9" spanTo="#damEnd.1r.10"/><lb n="9"
+                            /></head>
+                        <ab xml:id="G2.4.2.1.1"><damage><gap extent="32"/><supplied>שנים אוחזים בטלת
+                                    זה אומר אני מצאתיה וזה</supplied>
+                                <choice>
+                                    <abbr><supplied>או</supplied>מ</abbr>
+                                    <expan>אומר</expan>
+                                </choice><note>No visible abbreviation mark.</note><anchor
+                                    xml:id="damEnd.1r.10"/></damage> אני מצאתיה זה אומ<note>No
+                                visible abbreviaton mark.</note> כו<damage><damageSpan
+                                    xml:id="damBeg.1r.10" spanTo="#damEnd.1r.11"/><unclear
+                                    extent="1">ל</unclear><gap extent="4"/><supplied>ה
+                                    שלי</supplied><lb n="10"/><gap extent="30"/><supplied> וזה אומר
+                                    כולה שלי זה יישבע שאין לו בה פ</supplied><anchor
+                                    xml:id="damEnd.1r.11"/>ח</damage>ות מחציה וזה יישבע
+                                    <damage>ש<damageSpan xml:id="damBeg.1r.11"
+                                    spanTo="#damEnd.1r.12"/><unclear extent="1">א</unclear><gap
+                                    extent="6"/><supplied>ין לו בה </supplied><lb n="11"/><gap
+                                    extent="31"/><supplied>פחות מחציה יחלוקו זה אומר כולה שלי
+                                    וז</supplied><anchor xml:id="damEnd.1r.12"/>ה</damage> אומר <del
+                                cert="low">כולה</del><note>Expect חציה. Mark over ל to note
+                                erasure?</note> האומר כולה ש<damage>לי</damage><lb n="12"/>
+                            <damage><damageSpan xml:id="damBeg.1r.13a" spanTo="#damEnd.1r.13a"/><gap
+                                    extent="30"/><supplied>ישבע שאין לו בה שאין לו בה פחות משלושה
+                                    חלקים </supplied><unclear extent="2">וה</unclear><anchor
+                                    xml:id="damEnd.1r.13"/>א</damage>ומר חציה שלי
+                                    י<damage><damageSpan xml:id="damBeg.1r.13b"
+                                    spanTo="#damEnd.1r.13b"/><unclear extent="1">י</unclear><anchor
+                                    xml:id="damEnd.1r.13b"/>ש</damage>בע שאין לו <lb n="13"/>
+                            <damage><damageSpan xml:id="damBeg.1r.14" spanTo="#damEnd.1r.14"/><gap
+                                    extent="30"/><supplied>בה פחות מרביע זה נוטל שלושה
+                                    חלקים</supplied> וזה נוטל רביע<pc type="unitEnd" rend="°"
+                                >:</pc></damage></ab>
+                        <ab xml:id="G2.4.2.1.2"><label rend="size() align() pad (r)"/>היו ש<unclear
+                                reason="damage">נ</unclear>ים רכובים<lb n="14"/><damage><damageSpan
+                                    xml:id="damBeg.1r.15a" spanTo="#damEnd.1r.15a"/><gap extent="25"
+                                    /><supplied>על גבי בהמה או שהיה אחד רכוב וא</supplied><unclear
+                                    extent="1">ח</unclear><anchor xml:id="damEnd.1r.15a"/></damage>ד
+                            מהלך זה <choice>
+                                <abbr>אומ<c type="abbrev" rend="overdot">׳</c></abbr>
+                                <expan>אומר</expan>
+                            </choice> כולה שלי ו<damage><damageSpan xml:id="damBeg.1r.15b"
+                                    spanTo="#damEnd.1r.15b"/><unclear extent="1">ז</unclear><anchor
+                                    xml:id="damEnd.1r.15b"/>ה</damage> אומר<lb n="15"/>
+                            <damage><damageSpan xml:id="damBeg.1r.16a" spanTo="#damEnd.1r.16a"/><gap
+                                    extent="25"/><supplied>כולה שלי זה ישבע שאין לו בה פחות
+                                    </supplied><unclear extent="1">מ</unclear><anchor
+                                    xml:id="damEnd.1r.16"/></damage>חציה וז<damage>ה</damage> ישבע
+                            שאין לו בה פ<damage><damageSpan xml:id="damBeg.1r.16b"
+                                    spanTo="#damEnd.1r.16b"/><unclear extent="2">חו</unclear><anchor
+                                    xml:id="damEnd.1r.16b"/></damage>ת<lb n="16"/>
+                            <damage><damageSpan xml:id="damBeg.1r.17a" spanTo="#damEnd.1r.17a"/><gap
+                                    extent="27"/><supplied>מחציה ויחלוקו<note>Supplied text inserts
+                                        waw, lacking in Kaufmann but added in marginal
+                                        correction.</note> ובזמן שהן מודין או</supplied>
+                                <unclear extent="2">שי</unclear><anchor xml:id="damEnd.1r.17a"
+                                /></damage>ש לה<damage><damageSpan xml:id="damBeg.1r.17b"
+                                    spanTo="#damEnd.1r.17b"/><unclear extent="3">ם עד</unclear>ים
+                                    חולקים<anchor xml:id="damEnd.1r.17b"/></damage> שלא בשבועה<pc
+                                type="unitEnd" rend="°">:</pc><lb n="17"/></ab>
+                        <ab xml:id="G2.4.2.1.3"><damage><damageSpan xml:id="damBeg.1r.18a"
+                                    spanTo="#damEnd.1r.18a"/><gap extent="28"/><supplied>היה רכוב על
+                                    גבי בהמה וראה את המציא</supplied><unclear extent="1"
+                                    >ה</unclear><anchor xml:id="damEnd.1r.18a"/></damage>
+                                    ואמ<damage><damageSpan xml:id="damBeg.1r.18b"
+                                    spanTo="#damEnd.1r.18b"/><gap extent="2"/><supplied>ר
+                                    ל</supplied><unclear extent="1">ח</unclear><anchor
+                                    xml:id="damEnd.1r.18b"/></damage>בירו תנה לי ונטלה ואמר אני<lb
+                                n="18"/><damage><damageSpan xml:id="damBeg.1r.19"
+                                    spanTo="#damEnd.1r.19"/><gap extent="22"/><supplied>זכיתי בה זכה
+                                    בה אם משנתנה לו א</supplied><supplied>מ אני זכי</supplied><gap
+                                    extent="1"/><supplied>ת</supplied><unclear extent="1"
+                                    >י</unclear><anchor xml:id="damEnd.1r.19"/></damage> בה תחילה לא
+                            אמר כלום<pc type="unitEnd" rend="°">:</pc><lb n="19"/>
+                        </ab>
+                        <ab xml:id="G2.4.2.1.4"><damage><gap extent="23"/><supplied>ראה את המציאה
+                                        ונפל<note>Supplied text follows corrected text in Kaufmann
+                                        ms.</note> לו עליה ובא אחר </supplied>
+                                <unclear extent="6">והחזיק</unclear><note>Only slight traces are
+                                    visible. Here and in the lines that follow there is considerable
+                                    damage on the written surface, and the division between missing
+                                    text and traces is approximate.</note>
+                                <gap extent="2"/><supplied>בה</supplied><anchor
+                                    xml:id="damEnd.1r.20"/></damage> זה ש<corr>ה</corr>חזיק בה זכה
+                            בה ראה<lb n="20"/><damage><damageSpan xml:id="damBeg.1r.21"
+                                    spanTo="#damEnd.1r.21"/><gap extent="20"/><supplied>אותן רצים
+                                    אחר המציאה אחר </supplied>
+                                <unclear extent="16">צבי שבור אחר גוזלות</unclear><anchor
+                                    xml:id="damEnd.1r.21"/></damage> שלא הפריחו ואמר זכתי<lb n="21"
+                                    /><damage><damageSpan xml:id="damBeg.1r.22"
+                                    spanTo="#damEnd.1r.22"/><gap extent="18"/><supplied>לי שדי זכת
+                                    לו היה צבי רץ</supplied>
+                                <unclear extent="19">או שהיו גוזלות מפריחין</unclear><note>Traces
+                                    consistent with -חין are visible at the end of the badly damaged
+                                    text.</note><anchor xml:id="damEnd.1r.22"/></damage> ואמר זכת לי
+                            שדי <lb n="22"/>
+                            <damage><damageSpan xml:id="damBeg.1r.23" spanTo="#damEnd.1r.23"/><gap
+                                    extent="9"/><supplied>לא אמר כלום<pc type="unitEnd" rend="°"
+                                        >:</pc></supplied></damage></ab>
+                        <ab xml:id="G2.4.2.1.5"><damage><gap extent="10"/><supplied><label
+                                        rend="size() align() pad (r)"/>מציאת בנו
+                                    וב</supplied><unclear extent="3">תו ה</unclear>ק<unclear
+                                    extent="3">טני</unclear>ם עב<unclear extent="6">דו
+                                    ושפח</unclear><anchor xml:id="damEnd.1r.23"/></damage>תו הכענים
+                                ומציאת<lb n="23"/>
+                            <damage><damageSpan xml:id="damBeg.1r.24" spanTo="#damEnd.1r.24"/><gap
+                                    extent="21"/><supplied>אשתו הרי אלו שלו מציאת בנו</supplied>
+                                <unclear extent="3">ובתו</unclear> הגדולים וע<unclear extent="4">בדו
+                                    ו</unclear><anchor xml:id="damEnd.1r.24"/></damage>שפחתו העברים
+                                ומציאת<lb n="24"/>
+                            <damage><damageSpan xml:id="damBeg.1r.25" spanTo="#damEnd.1r.25"/><gap
+                                    extent="19"/><supplied>אשתו שגרשה<note>Lacking in Kaufmann;
+                                        supplied in the margins.</note> אף על פי שלא
+                                    נ</supplied><unclear extent="4">תן לה</unclear><anchor
+                                    xml:id="damEnd.1r.25"/></damage> כתובתה הרי אילו שלהן<pc
+                                type="unitEnd" rend="°">:</pc>
+                        </ab>
+                        <ab xml:id="G2.4.2.1.6"><label rend="size() align() pad (r)"/> מצא שטרי<lb
+                                n="25"/>
+                            <damage><damageSpan xml:id="damBeg.1r.26" spanTo="#damEnd.1r.26"/><gap
+                                    extent="27"/><supplied>חוב אם יש בהן אחריות נכסים לא
+                                    יחזיר</supplied><note>Some traces visible on the left of the
+                                    lacuna.</note><anchor xml:id="damEnd.1r.26"/></damage> אם אין
+                            בהן אחריות נכסים יחזיר<lb n="26"/>
+                            <damage><damageSpan xml:id="damBeg.1r.27" spanTo="#damEnd.1r.27"/><gap
+                                    extent="26"/><supplied>שאין בית דין נפרעים מהן דברי ר׳ <persName
+                                        ref="Personography.xml#Meir"
+                                    >מאי</persName></supplied><unclear extent="1"><persName
+                                        ref="Personography.xml#Meir">ר</persName></unclear><anchor
+                                    xml:id="damEnd.1r.27"/></damage>
+                            <damage>וחכמין</damage> אומרין בין כך ובין כך<lb n="27"/>
+                            <damage><damageSpan xml:id="damBeg.1r.28" spanTo="#damEnd.1r.28"/><gap
+                                    extent="31"/><supplied>לא יחזיר שבית דין מפני שבית דין
+                                    נפרעין</supplied>
+                                <unclear extent="4">מהן<pc type="unitEnd" rend="°"/>:</unclear>
+                            </damage></ab>
+                        <ab xml:id="G2.4.1.2.7"><damage>
+                                <label rend="size() align() pad (r)"/>מצ<unclear extent="3">א
+                                    גי</unclear><anchor xml:id="damEnd.1r.28"/></damage>טי נשים
+                            ושחרורי עבדים<lb n="28"/><damage><damageSpan xml:id="damBeg.1r.29"
+                                    spanTo="#damEnd.1r.29"/><gap extent="26"/><supplied>דייתיקי מתנה
+                                    ושוברים הרי זה לא י</supplied><unclear extent="2">חז</unclear>יר
+                                    <unclear extent="1">ש</unclear>ני<note>Traces seem to be
+                                    consistent with שני rather than שאני.</note>
+                                <unclear extent="2">או</unclear><anchor xml:id="damEnd.1r.29"
+                                /></damage>מר כתובים היו ונימלך שלא<lb n="29"/>
+                            <damage><damageSpan xml:id="damBeg.1r.30" spanTo="#damEnd.1r.30"/><gap
+                                    extent="6"/><supplied>ליתנן<pc type="unitEnd" rend="°"
+                                    >:</pc></supplied></damage></ab>
+                        <ab xml:id="G2.4.1.2.8"><damage><gap extent="16"/><supplied><label
+                                        rend="size() align() pad (r)"/>מצא איגרות שום
+                                    ואיג</supplied><unclear extent="4">רת מז</unclear><anchor
+                                    xml:id="damEnd.1r.30"/></damage>ון שטרי חליצה ומיאונים ושטרי<lb
+                                n="30"/><damage><damageSpan xml:id="damBeg.1r.31"
+                                    spanTo="#damEnd.1r.31"/><gap extent="25"/><supplied> בירורים וכל
+                                    מעשה בית דין הרי זה י</supplied>חז<anchor xml:id="damEnd.1r.31"
+                                /></damage>יר מצא בחפיסה א<damage>ו
+                                ב</damage>גלוסקומ<damage>ה</damage> תכריך<lb n="31"/>
+                            <damage><damageSpan xml:id="damBeg.1r.32" spanTo="#damEnd.1r.32"/><gap
+                                    extent="23"/><supplied>של שטרות או אגודה של שטרות
+                                    הר</supplied><anchor xml:id="damEnd.1r.32"/></damage>י זה יחזיר
+                            כמה היא אגודה שלשטרות<lb n="32"/>
+                            <damage><damageSpan xml:id="damBeg.1r.33" spanTo="#damEnd.1r.a33"/><gap
+                                    extent="23"/><supplied>שלושה קשורות זה בזה <persName
+                                        ref="Personography.xml#Simeon_b_Gamaliel">רבן
+                                        שמעו</persName></supplied><supplied><persName
+                                        ref="Personography.xml#Simeon_b_Gamaliel"
+                                    >ן</persName></supplied><anchor xml:id="damEnd.1r.33"/></damage>
+                            <persName ref="Personography.xml#Simeon_b_Gamaliel">בן גמליאל</persName>
+                            <choice>
+                                <abbr>אומ<c type="abbrev" rend="overdot">׳</c></abbr>
+                                <expan>אומר</expan>
+                            </choice> אחד לווה משלשה<lb n="33"/>
+                            <damage><damageSpan xml:id="damBeg.1r.34" spanTo="#damEnd.1r.34"/><gap
+                                    extent="28"/><supplied>יחזיר ללווה<note>Kauf. is in error here,
+                                        and corrected by a second hand.</note> שלושה לווים מן האחד
+                                    יח</supplied><unclear extent="1">ז</unclear><anchor
+                                    xml:id="damEnd.1r.34"/></damage><note>Supplied text is a bit
+                                long for the available space.</note>יר למלווי מצא שטר בין שטרותיו<lb
+                                n="34"/>
+                            <damage><damageSpan xml:id="damBeg.1r.35" spanTo="#damEnd.1r.35"/><gap
+                                    extent="23"/><supplied>ואין ידוע מה טיבו יהא מונח עד</supplied>
+                                <unclear extent="1">ש</unclear><anchor xml:id="damEnd.1r.35"
+                                /></damage>יבא <persName ref="Personography.xml#Elijah"
+                                >אליהו</persName> אם יש עמהם סימפונן<lb n="35"/>
+                            <damage><damageSpan xml:id="damBeg.1r.36a" spanTo="#damEnd.1r.36a"/><gap
+                                    extent="16"/><supplied>יעשה מה שבסימפונן<pc type="unitEnd"
+                                        rend="°">:</pc></supplied>
+                            </damage></ab>
+                        <trailer xml:id="G2.4.2.1.T"/>
+                    </div3>
+                    <div3 xml:id="G2.4.2.2">
+                        <head xml:id="G2.4.2.2.H" rend="size() align() pad (rl)"><gap extent="2"
+                                /><supplied>פר</supplied><anchor xml:id="damEnd.1r.36a"
+                                /><damage>ק</damage> י׳ב׳</head>
+                        <ab xml:id="G2.4.2.2.1">
+                            <damage><damageSpan xml:id="damBeg.1r.36b" spanTo="#damEnd.1r.36b"
+                                    /><label rend="size() align() pad (r)"/>אלו מציא<anchor
+                                    xml:id="damEnd.1r.36b"/></damage>ות שלו ואלו חייב <surplus>׳
+                                ׳</surplus><lb n="36"/>
+                            <damage><damageSpan xml:id="damBeg.1r.37a" spanTo="#damEnd.1r.37a"/><gap
+                                    extent="20"/><supplied>להכריז אלו מציאת שלו
+                                    מצא</supplied><anchor xml:id="damEnd.1r.37a"/></damage> פרות
+                                    מ<damage><damageSpan xml:id="damBeg.1r.37b"
+                                    spanTo="#damEnd.1r.37b"/><supplied reason="damage" extent="10"
+                                    >פוזרים מעות</supplied><anchor xml:id="damEnd.1r.37b"/> מפוזרות
+                                כר</damage>יכות<lb n="37"/>
+                            <pb n="1v"/> ברשות הרבים עיג<damage><damageSpan xml:id="damBeg.1v.1a"
+                                    spanTo="#damEnd.1v.1a"/><gap extent="2"
+                                    /><supplied>ול</supplied><anchor xml:id="damEnd.1v.1a"
+                                /></damage>י דבילה כ<damage><damageSpan xml:id="damBeg.1v.1b"
+                                    spanTo="#damEnd.1v.1b"/><gap extent="33"/><supplied>יכרות
+                                    שלנחתום ומחרוזות שלדגים וחתיכות</supplied><anchor
+                                    xml:id="damEnd.1v.1b"/></damage><lb n="1"/>שלבשר וגיזי צמר הבאות
+                                    ממ<damage><damageSpan xml:id="damBeg.1v.2a"
+                                    spanTo="#damEnd.1v.2a"/>ד<gap extent="32"/><supplied>ינתן ואניצי
+                                    פישתן ולשונות שלארגמן הרי</supplied><anchor
+                                    xml:id="damEnd.1v.2a"/></damage><lb n="2"/> אלו שלו
+                                    <damage><damageSpan xml:id="damBeg.1v.3a" spanTo="#damEnd.1v.3a"
+                                    /><unclear extent="1"><choice>
+                                        <abbr>ר<c type="abbr" rend="overdot">׳</c></abbr>
+                                        <expan>רבי</expan>
+                                    </choice><note>Abbreviation mark visible over letter
+                                        traces.</note></unclear>
+                                <gap extent="3"/><persName ref="Personography.xml#Judah"
+                                        ><supplied>יהו</supplied>ד<anchor xml:id="damEnd.1v.3a"
+                                    /></persName></damage>ה <choice>
+                                <abbr rend="overdot">אומ<am rend="CHECK ME">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כל דב<damage><damageSpan xml:id="damBeg.1v.3b"
+                                    spanTo="#damEnd.1v.3b"/><gap extent="28"/><supplied>ר שיש בו
+                                    שינוי חייב להכריז כיצד מצא</supplied><anchor
+                                    xml:id="damEnd.1v.3b"/></damage><lb n="3"/> עיגול
+                                    ו<damage><damageSpan xml:id="damBeg.1v.4a"
+                                    spanTo="#damEnd.1v.4a"/>ב<gap extent="6"/><supplied>תוכו
+                                    חר</supplied>ס<anchor xml:id="damEnd.1v.4a"/></damage> כיכר
+                                    ובתו<damage>כ<damageSpan xml:id="damBeg.1v.4b"
+                                    spanTo="#damEnd.1v.4b"/><gap extent="33"/><supplied>ו מעות ר׳
+                                    שמעון בן אלעזר אומ׳ כל כלי אנפוריא</supplied><anchor
+                                    xml:id="damEnd.1v.4b"/></damage><lb n="4"/> אינו
+                                    <damage>ח<damageSpan xml:id="damBeg.1v.5a"
+                                    spanTo="#damEnd.1v.5a"/><gap extent="8"/><supplied>ייב
+                                    להכרי</supplied><unclear extent="1">ז</unclear><anchor
+                                    xml:id="damEnd.1v.5a"/></damage><pc type="unitEnd" rend="°"
+                                >:</pc>
+                        </ab>
+                        <ab xml:id="G2.4.2.2.2"><damage><damageSpan xml:id="damBeg.1v.5b"
+                                    spanTo="#damEnd.1v.5b"/><unclear extent="1"><label
+                                        rend="size() align() pad (r)"/>א</unclear><gap extent="37"
+                                    /><supplied>לו חייב להכריז מצא פירות בכלי או כלי כמות
+                                    שהוא</supplied><anchor xml:id="damEnd.1v.5b"
+                                /></damage><note>Especially given the space before the beginning of
+                                the halakhah, the supplied text is too long for the gap.</note><lb
+                                n="5"/> מעו<damage><damageSpan xml:id="damBeg.1v.6a"
+                                    spanTo="#damEnd.1v.6a"/><unclear extent="1">ת</unclear>
+                                <gap extent="3"/><supplied>בכי</supplied><unclear extent="1"
+                                    >ס</unclear><anchor xml:id="damEnd.1v.6a"/></damage> או כיס כמות
+                                    <damage><damageSpan xml:id="damBeg.1v.6b" spanTo="#damEnd.1v.6b"
+                                    /><unclear extent="1">ש</unclear><gap extent="33"/><supplied>הוא
+                                    ציבורי פרות ציבורי מעות שלשה מטבעות</supplied><anchor
+                                    xml:id="damEnd.1v.6b"/></damage><lb n="6"/>
+                            <damage><damageSpan xml:id="damBeg.1v.7a" spanTo="#damEnd.1v.7a"
+                                    /><unclear extent="1">ז</unclear><gap extent="3"/><supplied>ה
+                                    על</supplied><anchor xml:id="damEnd.1v.7a"/></damage>
+                            <damage>גבי</damage> זה כריכות בר<damage><damageSpan
+                                    xml:id="damBeg.1v.7b" spanTo="#damEnd.1v.8"/><unclear extent="1"
+                                    >ש</unclear><gap extent="31"/><supplied>ות היחיד וכיכרות שלבעל
+                                    הבית וגיזי צמר</supplied><lb n="7"/><gap extent="3"
+                                    /><supplied>הלק</supplied><unclear extent="1">ו</unclear><anchor
+                                    xml:id="damEnd.1v.8"/></damage>חות מבית האומן
+                                    כ<damage>ד<damageSpan xml:id="damBeg.1v.8" spanTo="#damEnd.1v.9"
+                                    /><gap extent="22"/><supplied>י יין וכדי שמן חייב להכריז<pc
+                                        type="unitEnd" rend="°">:</pc></supplied></damage></ab>
+                        <ab xml:id="G2.4.2.2.3"><damage><gap extent="10"/><supplied><label
+                                        rend="size() align() pad (r)"/>מצא אחר הגפה</supplied><lb
+                                    n="8"/><gap extent="2"/><supplied>או</supplied>
+                                <unclear extent="3">אחר</unclear><anchor xml:id="damEnd.1v.9"
+                                /></damage>
+                            <damage>ה</damage>גדר גוזלות מקו<damage>שרין</damage>
+                            <damage><damageSpan xml:id="damBeg.1v.9" spanTo="#damEnd.1v.10"/><gap
+                                    extent="28"/><supplied>או בשבילים שבשדות הרי זה לא יגע
+                                    בהן</supplied><lb n="9"/><gap extent="3"
+                                    /><supplied>מצא</supplied><anchor xml:id="damEnd.1v.10"
+                                /></damage> באשפות אם מכוסה <damage><damageSpan
+                                    xml:id="damBeg.1v.10" spanTo="#damEnd.1v.11"/>ל<gap extent="30"
+                                    /><supplied>א יגע בו ואם מגולה נוטל ומכריז מצא בגל</supplied><lb
+                                    n="10"/><gap extent="3"/><supplied>או ב</supplied><unclear
+                                    extent="2">כו</unclear><anchor xml:id="damEnd.1v.11"
+                            />ת</damage>ל ישן הרי אלו שלו מצ<damage><damageSpan
+                                    xml:id="damBeg.1v.11" spanTo="#damEnd.1v.12a"/><unclear
+                                    extent="1">א</unclear><gap extent="26"/><supplied> בכותל חדש
+                                    מחציו ולחוץ שלו מחציו</supplied><lb n="11"/><unclear extent="2"
+                                    >ול</unclear><anchor xml:id="damEnd.1v.12a"/>פני</damage>ם שלבעל
+                                <damage>ה</damage>בית אם היה מ<damage><damageSpan
+                                    xml:id="damBeg.1v.12" spanTo="#damEnd.1v.12b"/><unclear
+                                    extent="1">ש</unclear><gap extent="29"/><supplied>כירו לאחרים
+                                    אפילו מצא בתוך הבית הרי</supplied><anchor xml:id="damEnd.1v.12b"
+                                /></damage><lb n="12"/> אלו שלו<pc type="unitEnd" rend="°"
+                            >:</pc></ab>
+                        <ab xml:id="G2.4.2.2.4"><label rend="size() align() pad (r)"/><note>Possible
+                                traces of a character giving the number of the halakhah. However,
+                                such labels are absent throughout the fragment.</note>מצא בחנות הרי
+                                    <damage><damageSpan xml:id="damBeg.1v.13" spanTo="#damEnd.1v.14"
+                                    /><unclear extent="2">אל</unclear><gap extent="31"/><supplied>ו
+                                    שלו בין תיבה לחנווני הרי הן שלחנווני</supplied><anchor
+                                    xml:id="damEnd.1v.13"/></damage><lb n="13"/>
+                            <choice>
+                                <sic>לפי</sic>
+                                <corr>לפני</corr>
+                            </choice> השול<damage>ח</damage>ני הרי אלו שלו בין כס<damage><damageSpan
+                                    xml:id="damBeg.1v.14" spanTo="#damEnd.1v.14"/><unclear
+                                    extent="1">א</unclear>
+                                <gap extent="26"/><supplied>לשולחני הרי הן שלשלחני לקח
+                                    פרות</supplied><anchor xml:id="damEnd.1v.14"/></damage><lb
+                                n="14"/> מחביר<damage><damageSpan xml:id="damBeg.1v.15a"
+                                    spanTo="#damEnd.1v.15a"/><gap extent="1"
+                                    /><supplied>ו</supplied><anchor xml:id="damEnd.1v.15a"
+                                /></damage> או ששילח לו חביר<damage>ו</damage> פירות
+                                    <damage><damageSpan xml:id="damBeg.1v.15b"
+                                    spanTo="#damEnd.1v.15b"/><unclear extent="2">ומ</unclear><gap
+                                    extent="22"/><supplied>צא בתוכן מעות הרי אלו שלו
+                                    אם</supplied><anchor xml:id="damEnd.1v.15b"/></damage><lb n="15"
+                            /> היו <damage><damageSpan xml:id="damBeg.1v.16a"
+                                    spanTo="#damEnd.1v.16a"/><unclear extent="3"
+                                    >צרו</unclear><anchor xml:id="damEnd.1v.16a"/></damage>רים נוטל
+                                ומכריז<pc type="unitEnd" rend="°">:</pc>
+                        </ab>
+                        <ab xml:id="G2.4.2.2.5"><label rend="size() align() pad (r)"/>אף ה<unclear
+                                reason="damage">ש</unclear><damage><damageSpan
+                                    xml:id="damBeg.1v.16b" spanTo="#damEnd.1v.16b"/><gap extent="28"
+                                    /><supplied>ימלה היתה בכלל כל אילו ולמה יצאת</supplied><anchor
+                                    xml:id="damEnd.1v.16b"/></damage><lb n="16"/>
+                            <damage>לה</damage>קיש אליה אלא מה השמלה מיו<damage>ח<damageSpan
+                                    xml:id="damBeg.1v.17" spanTo="#damEnd.1v.17"/><gap extent="26"
+                                    /><supplied>דת שיש בסימנין ויש לה תובעין ואף<note>Supplied text
+                                        assumes spelling תובעין.</note></supplied><anchor
+                                    xml:id="damEnd.1v.17"/></damage><lb n="17"/> כל דבר שיש לו
+                            סימנין ויש <damage><damageSpan xml:id="damBeg.1v.18a"
+                                    spanTo="#damEnd.1v.18a"/><gap extent="2"
+                                    /><supplied>לו</supplied><anchor xml:id="damEnd.1v.18a"
+                                /></damage>
+                            <damage>ת</damage>ובעי<damage><damageSpan xml:id="demBeg.1v.18b"
+                                    spanTo="#damEnd.1v.18b"/>ן <gap extent="11"/><supplied>חייב
+                                    להכריז</supplied><pc type="unitEnd" rend="°"
+                            >:</pc></damage></ab>
+                        <ab xml:id="G2.4.2.2.6"><damage><gap extent="16"/><supplied><label
+                                        rend="size() align() pad (r)"/>עד אמתי חייב
+                                    להכריז</supplied><anchor xml:id="damEnd.1v.18b"/></damage><lb
+                                n="18"/> עד שידע<damage>ו</damage> בו שכינים דב<damage><damageSpan
+                                    xml:id="damBeg.1v.19a" spanTo="#damEnd.1v.19a"/>ר<gap extent="1"
+                                    /><supplied>י </supplied><choice>
+                                    <abbr rend="overdot">ר<am rend="CHECK ME">׳</am></abbr>
+                                    <expan>רבי</expan>
+                                </choice><anchor xml:id="damEnd.1v.19a"/></damage>
+                            <persName ref="Personography.xml#Meir">מאיר</persName>
+                            <choice>
+                                <abbr rend="overdot">ר<am rend="CHECK ME">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice><damage><damageSpan xml:id="damBeg.1v.19b"
+                                    spanTo="#damEnd.1v.19b"/><gap extent="22"/><supplied>יהודה אומ׳
+                                    שלשה רגלים ואחר</supplied><anchor xml:id="damEnd.1v.19b"
+                                /></damage><lb n="19"/> הרגל האחרון שבעת י<damage><damageSpan
+                                    xml:id="damBeg.1v.20a" spanTo="#damEnd.1v.20a"/>מ<unclear
+                                    extent="2">ים</unclear><gap extent="2"
+                                    /><supplied>כד</supplied><unclear extent="1">י</unclear><anchor
+                                    xml:id="damEnd.1v.20a"/></damage> כדי שיל<damage><damageSpan
+                                    xml:id="damBeg.1v.20b" spanTo="#damEnd.1v.20b"/>ך<gap
+                                    extent="25"/><supplied> לביתו שלשה ויחזור שלשה
+                                    ויכריז</supplied><anchor xml:id="damEnd.1v.20b"/></damage><lb
+                                n="20"/> יום אחד<pc type="unitEnd" rend="°">:</pc></ab>
+                        <ab xml:id="G2.4.2.2.7"><label rend="size() align() pad (r)"/>אמר את
+                                    ה<damage><damageSpan xml:id="damBeg.1v.21a"
+                                    spanTo="#damEnd.1v.21a"/>א<gap extent="7"/><supplied>בידה ולא
+                                    א</supplied><note>Some traces visible.</note><anchor
+                                    xml:id="damEnd.1v.21a"/></damage>מ<damage><damageSpan
+                                    xml:id="damBeg.1v.21b" spanTo="#damEnd.1v.21b"/>ר <gap
+                                    extent="27"/><supplied>את סימניה הרי זה לא יתן לו הרמיי
+                                    אף</supplied><anchor xml:id="damEnd.1v.21b"/></damage><lb n="21"
+                            /> עלפי שאמר סימניה הר<damage><damageSpan xml:id="damBeg.1v.22a"
+                                    spanTo="#damEnd.1v.22a"/><gap extent="2"/><supplied>י
+                                    ז</supplied><anchor xml:id="damEnd.1v.22a"/></damage>ה לא
+                                    ית<damage><damageSpan xml:id="damBeg.1v.22b"
+                                    spanTo="#damEnd.1v.22b"/><unclear extent="3">ננו</unclear>
+                                <gap extent="20"/><supplied>לו שנ׳ עד דרוש אחיך אותו
+                                    עד</supplied><note>First two to three characters covered by
+                                    folded parchment. Supplied text from Kaufmann is shorter than
+                                    the probable space. (Partially accounted for if scribe did not
+                                    abbreviate.)</note><anchor xml:id="damEnd.1v.22b"/></damage><lb
+                                n="22"/> שתדרוש את אחיך א<damage>ם ר</damage>מאי הוא ואם
+                                    <damage><damageSpan xml:id="damBeg.1v.23" spanTo="#damEnd.1v.23"
+                                    />א<gap extent="14"/><supplied>ינו רמיי כל דבר
+                                    שהוא</supplied><note>Supplied text surprisingly shorter than
+                                    available space. Possibly, the scribe began a new halakhah
+                                    (preceded by several character-lengths of empty space) at כל דבר
+                                    as in Kaufmann.</note><anchor xml:id="damEnd.1v.23"
+                                /></damage><lb n="23"/> עושה ואוכל יעשה ויאכל וכל דבר שאינו
+                                    <damage><damageSpan xml:id="damBeg.1v.24" spanTo="#damEnd.1v.24"
+                                    /><unclear extent="1">ע</unclear><gap extent="24"/><supplied>ושה
+                                    ואוכל יימכר שנ׳ הישבותו לו</supplied><anchor
+                                    xml:id="damEnd.1v.24"/></damage><lb n="24"/> ראה היאך תשיבנו לו
+                            כמה יהיה בדמי<damage><damageSpan xml:id="damBeg.1v.25"
+                                    spanTo="#damEnd.1v.25"/>ם <gap extent="16"/><supplied>ר׳ טרפון
+                                    או׳ ישתמש בהן</supplied><note>There is more space available than
+                                    accounted for by supplied text. Assuming no abbreviations would
+                                    expand the supplied text by four characters.</note><anchor
+                                    xml:id="damEnd.1v.25"/></damage><lb n="25"/>
+                                    ל<damage><damageSpan xml:id="damBeg.1v.26a"
+                                    spanTo="#damEnd.1v.26a"/><unclear extent="1">פ</unclear><anchor
+                                    xml:id="damEnd.1v.26a"/></damage>יכך אם אבדו חייב
+                                    בא<damage><damageSpan xml:id="damBeg.1v.26b"
+                                    spanTo="#damEnd.1v.26b"/><unclear extent="3"
+                                    >חרי</unclear><anchor xml:id="damEnd.1v.26b"/></damage>ותן רבי
+                                <persName ref="Personography.xml#Aqiva"
+                                    >ע</persName><damage><damageSpan xml:id="damBeg.1v.26c"
+                                    spanTo="#damEnd.1v.26c"/><persName><unclear extent="1"
+                                        >ק</unclear><gap extent="3"
+                                    /><supplied>יבא</supplied></persName>
+                                <gap extent="17"/><supplied><abbr>או<am rend="°"
+                                        >׳</am></abbr><expan>אומר</expan> לא ישתמש בהן
+                                    לפיכך</supplied><anchor xml:id="damEnd.1v.26c"/></damage><lb
+                                n="26"/> אם אבדו חייב בא<damage>חריות</damage>ן<pc type="unitEnd"
+                                rend="°">:</pc>
+                        </ab>
+                        <ab xml:id="G2.4.2.2.8"><label rend="size() align() pad (r)"
+                                    />מ<damage><damageSpan xml:id="damBeg.1v.27"
+                                    spanTo="#damEnd.1v.27"/><unclear extent="1">צ</unclear><gap
+                                    extent="25"/><supplied>א ספרים קורא בהן אחת לשלשים
+                                    יום</supplied><anchor xml:id="damEnd.1v.27"/></damage><lb n="27"
+                            /> ואם אינו יודע <damage>לקראות גלן<damageSpan xml:id="damBeg.1v.28a"
+                                    spanTo="#damEnd.1v.28a"/>א<anchor xml:id="damEnd.1v.27a"
+                                />ב</damage>ל לא<damage><damageSpan xml:id="damBeg.1v.28b"
+                                    spanTo="#damEnd.1v.28b"/> י<gap extent="25"/><supplied>למד בהן
+                                    כתחילה ולא יקרא אחר עמו</supplied><anchor xml:id="damEnd.1v.28b"
+                                /></damage><lb n="28"/> מצא כסות מנע<damage>רה אחת לש</damage>שים
+                                    <damage><damageSpan xml:id="damBeg.1v.29" spanTo="#damEnd.1v.29"
+                                    /><unclear extent="3">יום</unclear>
+                                <gap extent="26"/><supplied>ושוטחה לצורכה אבל לא
+                                    לכבודו</supplied><anchor xml:id="damEnd.1v.29"/></damage><lb
+                                n="29"/> כלי כסף וכלי נחשת ישת<damage><damageSpan
+                                    xml:id="damBeg.1v.30a" spanTo="#damEnd.1v.30a"/>מ<anchor
+                                    xml:id="damEnd.1v.30a"/></damage>ש בהן לצ<damage><damageSpan
+                                    xml:id="damBeg.1v.30b" spanTo="#damEnd.1v.30b"/><unclear
+                                    extent="1">ר</unclear><gap extent="23"/>
+                                <supplied>כן אבל לא לשוחקן כלי זהב וכלי</supplied><note>Supplied
+                                    text follows corrected text in Kaufmann.</note><anchor
+                                    xml:id="damEnd.1v.30b"/></damage><lb n="30"/> זכוכית לא
+                                    <damage><damageSpan xml:id="damBeg.1v.331a"
+                                    spanTo="#damEnd.1v.31a"/>י<anchor xml:id="damEnd.1v.31a"
+                                />גע</damage>
+                            <damage><damageSpan xml:id="damBeg.1v.31b" spanTo="#damEnd.1v.31b"
+                                    />בה<anchor xml:id="damEnd.1v.31b"/></damage>ן ע
+                                    <damage><damageSpan xml:id="damBeg.1v.31c"
+                                    spanTo="#damEnd.1v.31c"/>ד שי<anchor xml:id="damEnd.1v.31c"
+                                /></damage>בא <persName ref="Personography.xml#Elijah"
+                                >אליהו</persName><damage><damageSpan xml:id="damBeg.1v.31d"
+                                    spanTo="#damEnd.1v.31d"/><unclear extent="1">מ</unclear><gap
+                                    extent="24"/><supplied>צא סק או קופה אם אין דרכו
+                                    ליטול</supplied><anchor xml:id="damEnd.1v.31d"/></damage><lb
+                                n="31"/> הרי זה <damage>לא יטול<pc type="unitEnd" rend="°"
+                                >:</pc></damage></ab>
+                        <ab xml:id="G2.4.2.2.9"><damage><damageSpan xml:id="damBeg.1v.32a"
+                                    spanTo="#damEnd.1v.32a"/><unclear extent="1"><label
+                                        rend="size() align() pad (r)"/>א</unclear><anchor
+                                    xml:id="damEnd.1v.32a"/></damage>יזו היא אבדה<damage><damageSpan
+                                    xml:id="damBeg.1v.32b" spanTo="#damEnd.1v.32b"/><gap extent="23"
+                                    /><supplied>מצא חמור ופרה רועים בדרך אין</supplied><anchor
+                                    xml:id="damEnd.1v.32b"/></damage><lb n="32"/> זו אבידה פרה
+                                חמ<damage>ור וכל</damage>יו הפוכי<damage><damageSpan
+                                    xml:id="damBeg.1v.33a" spanTo="#damEnd.1v.32a"/>ם<anchor
+                                    xml:id="damEnd.1v.33a"/></damage> ופר<damage><damageSpan
+                                    xml:id="damBeg.1v.33b" spanTo="#damEnd.1v.33b"/><unclear
+                                    extent="2">ה ר</unclear><gap extent="31"
+                                        /><supplied><note>Supplied text is too long for available
+                                        space. Expect either abbreviation, or omission of, e.g.,
+                                        החזירה וברחה.</note>צה בין הכרמים הרי זו אבידה החזירה
+                                    וברחה</supplied><anchor xml:id="damEnd.1v.33b"/></damage><lb
+                                n="33"/> החזירה וברחה אפילו ארבע<damage><damageSpan
+                                    xml:id="damBeg.1v.34" spanTo="#damEnd.1v.34"/><unclear
+                                    extent="1">ה</unclear><anchor xml:id="damEnd.1v.34"/></damage>
+                                    ח<damage><damageSpan xml:id="damBeg.1v.34b"
+                                    spanTo="#damEnd.1v.34b"/><unclear extent="2">מש</unclear><gap
+                                    extent="20"/><supplied>ה פעמים חייב שנ׳ השב
+                                    תשיבם</supplied><anchor xml:id="damEnd.1v.34b"/></damage><lb
+                                n="34"/> היה בטל מן הסל<damage>ע ל</damage>א יאמר
+                                    לו<damage><damageSpan xml:id="damBeg.1v.35"
+                                    spanTo="#damEnd.1v.35"/>תן <gap extent="25"/><supplied>לי סלע
+                                    אלא נותן לו שכרו כפועל אם</supplied><note>Space considerations
+                                    suggest a restored text with out בטל.</note><anchor
+                                    xml:id="damEnd.1v.35"/></damage><lb n="35"/>
+                            <damage>יש שם בית דין</damage> מ<damage><damageSpan
+                                    xml:id="damBeg.1v.36a" spanTo="#damEnd.1v.36a"/><unclear
+                                    extent="5">תנה עמו</unclear><anchor xml:id="damEnd.1v.36a"
+                                />בפני</damage> בי<damage><damageSpan xml:id="damBeg.1v.36b"
+                                    spanTo="#damEnd.1v.36b"/><unclear extent="1">ת</unclear>
+                                <gap extent="20"/><supplied>דין אם אין שם לפני מי
+                                    יתנה</supplied><anchor xml:id="damEnd.1v.36b"/></damage><lb
+                                n="36"/> שלו קוד<damage>ם<pc type="unitEnd" rend="°">:</pc></damage>
+                        </ab>
+                        <ab xml:id="G2.4.2.2.10"><unclear reason="damage" extent="8"><label
+                                    rend="size() align() pad (r)"/>מצא ברופת</unclear> אינו ח<gap/>
+                            <milestone xml:id="G2.witEnd" unit="fragment"/></ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>

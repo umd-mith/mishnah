@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="brown_odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="brown_odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>TEI Customization for the MISHNAH reference file</title>
+                <author>Trevor Muñoz</author>
+            </titleStmt>
+            <publicationStmt>
+                <distributor>Maryland Institute for Technology in the Humanities (via
+                    website)</distributor>
+                <address>
+          <addrLine>mith@umd.edu</addrLine>
+        </address>
+                <date when="2011-10-19">October 19, 2011</date>
+                <availability status="restricted">
+                    <p>This work is copyright Trevor Muñoz and Maryland Institute for Technology in
+                        the Humanities and licensed under a <ref
+                            target="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+                            Attribution 3.0 Unported License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+            </publicationStmt>
+            <sourceDesc>
+                <p>born digital</p>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <change who="tmunoz" when="2011-10-16">First draft</change>
+            <change who="tmunoz" when="2011-11-30">First set of changes to split witness and
+                reference schemas</change>
+            <change who="tmunoz" when="2011-12-08">Moving witness specific markup to
+                mishnah-witness.odd</change>
+        </revisionDesc>
+    </teiHeader>
+    <!-- TODO:
+           * Eliminate supplied?
+           * Add decl with pointer to header on orders, tractates
+           * Add rendition with pointer to header for scribal conventions on things like mishnah titles and verse separators
+    -->
+    <text>
+        <body>
+            <div>
+                <head>Project Documentation</head>
+                <p>To be added</p>
+            </div>
+            <div>
+                <head>TEI Customizations for the Digital MISHNAH reference file</head>
+                <p>The prefix in this schema stands for <expan>Digital MISHNAH reference</expan>,
+                    the reference text used for aligning the various witnesses to the Mishnah.</p>
+            </div>
+            <div>
+                <schemaSpec ident="digital_mishnah_reference" prefix="mishnahr" start="TEI">
+                    <!-- Required modules, these need to be restricted further to get rid of unused elements -->
+                    <moduleRef key="tei"/>
+                    <moduleRef key="header"/>
+                    <moduleRef key="core"/>
+                    <moduleRef key="textstructure"/>
+
+                    <!-- Additional modules needed -->
+                   <moduleRef key="analysis" include="interp interpGrp"/>
+                    <moduleRef key="linking" include="ab anchor link"/>
+                    <moduleRef key="textcrit"/>
+
+                    <!-- Including <w> for recording tokenization -->
+                    <elementRef key="w"/>
+
+                    <!-- Removing unwanted classes -->
+                    <classSpec module="textstructure" ident="model.div4Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div5Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div6Like" type="model"
+                        mode="delete"/>
+                    <classSpec module="textstructure" ident="model.div7Like" type="model"
+                        mode="delete"/>
+
+                    <!-- Tightly constraining the content model of body for the reference text; body may only contain div1 -->
+                    <elementSpec module="textstructure" ident="body" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.div1Like"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
+
+                    <!-- div1 may only contain div2 -->
+                    <elementSpec module="textstructure" ident="div1" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:oneOrMore>
+                                <rng:ref name="model.div2Like"/>
+                            </rng:oneOrMore>
+                        </content>
+                    </elementSpec>
+
+                    <!-- div2 may contain header, div3, and trailer -->
+                    <elementSpec module="textstructure" ident="div2" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.headLike"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.div3Like"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.divBottomPart"/>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                    <elementSpec module="textstructure" ident="div3" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.headLike"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="ab"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.divBottomPart"/>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                    <!-- Only tokenized content inside <w> and <label> are allowed inside ab -->
+                    <elementSpec module="linking" ident="ab" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.global"/>
+                            </rng:zeroOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="label"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:choice>
+                                        <rng:ref name="w"/>
+                                        <rng:ref name="link"/>
+                                    </rng:choice>
+                                </rng:zeroOrMore>
+                            </rng:group>
+                        </content>
+                    </elementSpec>
+
+                </schemaSpec>
+            </div>
+        </body>
+    </text>
+</TEI>
