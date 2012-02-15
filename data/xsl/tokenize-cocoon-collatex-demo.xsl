@@ -83,12 +83,12 @@
     <xsl:template match="//tei:supplied" mode="strip">
         <xsl:text>[ ]</xsl:text>
     </xsl:template>
-<!--    <!-\- If choose to tokenize with abbreviated fix in files and replace the next line with:
-        <xsl:template match="//tei:choice/tei:expan" mode="strip"/> -\->
-    <xsl:template match="//tei:expan" mode="strip"/>-->
-    <!-- Choose to tokenize with expanded forms not abbrev 
+    <!-- If choose to tokenize with abbreviated fix in files and replace the next line with:
+        <xsl:template match="//tei:choice/tei:expan" mode="strip"/> -->
+    <xsl:template match="//tei:expan" mode="strip"/>
+<!--    <!-\- If choose to tokenize with expanded forms not abbrev 
       fix in files then replace next line with 
-      //tei:choice/tei:abbr" mode="strip"/>-->
+      //tei:choice/tei:abbr" mode="strip"/>-\->
     <xsl:template match="//tei:abbr" mode="strip"/>
         <xsl:template match="*/text()" mode="tokenize">
         <xsl:choose>
@@ -98,7 +98,7 @@
                 </xsl:call-template>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template>-->
      <!-- recursively splits string into <token> elements -->
     <!-- Adapts a template from: http://www.usingxml.com/Transforms/XslTechniques -->
     <xsl:template name="tokenize">
