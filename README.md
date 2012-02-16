@@ -56,7 +56,6 @@ The following commands will build the web application and run it in Jetty:
 
     cd cocoon/
     mvn install
-    cd viewer/
     mvn jetty:run
 
 The application will be available at `http://localhost:8888/text/`. You can
@@ -65,7 +64,6 @@ the following:
 
     cd cocoon/
     mvn install
-    cd viewer/
     mvn package
 
 The file will be created in `cocoon/viewer/target/`.
