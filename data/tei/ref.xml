@@ -5,7 +5,9 @@
 
 <!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
 <?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -16,7 +18,7 @@
                     with m. B. Mes. Ch. 2), slightly normalized and all punctuation removed, as the
                     basis for the alignment of the witnesses to the text of the Mishnah. The text
                     below uses the unvocalized text at <ptr target="http://he.wikisource.org/wiki"
-                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography !></-->
+                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography -->
                 </p>
             </publicationStmt>
             <sourceDesc>
@@ -33,9 +35,7 @@
                             the original ref.</desc></witness>
                     <witness xml:id="Maim" n="M" corresp="bm_ch2_maim.xml">Maimonides Autograph
                         MS</witness>
-                    <witness xml:id="ParmB" n="M">
-                        
-                    </witness>
+                    <witness xml:id="ParmB" n="M"> </witness>
                     <witness xml:id="Paris" n="M" corresp="bm_ch2_paris.xml">Bibliothèque nationale
                         de France. MS Hébreu 328-329, 230b-231b</witness>
                     <witness xml:id="Nap" n="M" corresp="bm_ch2_nap.xml">Mishnah, Editio Princeps,
@@ -45,8 +45,9 @@
                     <!-- Babylonian Talmud Texts -->
                     <witness xml:id="Mun" n="B" corresp="bm_ch2_mun.xml">Bayerische Staatsbibliothek
                         Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript of the Babylonian
-                        Talmud</desc></witness>
-                    <witness xml:id="Hamb" n="B" corresp="bm_ch2_hamb.xml">Cod. Hamburg. 165</witness>
+                            Talmud</desc></witness>
+                    <witness xml:id="Hamb" n="B" corresp="bm_ch2_hamb.xml">Cod. Hamburg.
+                        165</witness>
                     <!-- Palestinian Talmud Texts -->
                     <witness xml:id="Leid" n="Y" corresp="bm_ch2_leid.xml">Leiden Scaliger Or. 4720,
                         1289
@@ -57,10 +58,16 @@
                     <!-- Naming: -->
                     <!-- G-I, II, III refer to groups of joined fragments that belong to the same MS. -->
                     <!-- G1, 2, 3 in order that they were transcribed/registered. -->
-                    <witness xml:id="G1" n="G" corresp="g1.xml">Cairo Genizah TS E1.99 f. 1r - 2v
-                            (Cambridge)<desc>Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 -
-                            2:5</desc>
-                    </witness>
+                    <listWit xml:id="G-II" n="G">
+                        <witness xml:id="G1" n="G" corresp="g1.xml">Cairo Genizah TS E1.99 f. 1r -
+                            2v (Cambridge)<desc>Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 -
+                                2:5</desc>
+                        </witness>
+                        <witness>Cairo Genizah TS F6.3 (Cambridge)<desc>Bava Qamma 3:5 - 11; 9:5 -
+                                10:8</desc></witness>
+                        <witness>Cairo Genizah Bodl. ms. heb. c.21 8a-11b (Oxford)<desc>Bava Qamma
+                                4:1 - 9:5</desc></witness>
+                    </listWit>
                     <witness xml:id="G3" n="G" corresp="g3.xml">Genizah Fragment Cambridge
                         University TS AS 81.75<desc>Bava Metsi'a 2:11 - 3:7.</desc>
                     </witness>
@@ -132,7 +139,9 @@
         <body>
             <div1 xml:id="ref.1" n="Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
-                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate"/>
+                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate">
+                    <xi:include href="ref-001.xml"/>
+                </div2>
                 <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
                 <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
                 <div2 xml:id="ref.1.4" n="Kilayim" type="tractate"/>
