@@ -1,105 +1,240 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
 
-<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 
-<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Genizah Fragment Cambridge University TS AS 78.261</title>
-                <editor>Hayim Lapin</editor>
+                <title>An Electronic Edition of Genizah Fragment Cambridge University TS AS 78.261</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
-                <p>Publication Information</p>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">G5</idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
             </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers Bava Qamma BQ 10:2-3,7-9; BM 2:10-11; 3:3-4</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
+                        https://fgp.genizah.org. FGP nos. C99816, C99815</p>
+                    <p>EDITED BY: Hayim Lapin</p>
+                </note>
+            </notesStmt>
             <sourceDesc>
-                <p>Information about the source</p>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS AS 78.261</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                           
+                            <locus target=" #f1rL #f1vR" facs="www.genizah.org">C99816</locus>
+                                
+                            <locus target=" #f1vL #f1rR" facs="www.genizah.org">C99815</locus>
+                            
+                            
+                            
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <handDesc>
+                            <handNote script="Oriental Square">
+                                <!-- CHECK -->
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                        <objectDesc form="codex">
+                            <supportDesc>
+                                <support>Parchment</support>
+                                <extent>2 leaves</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="frag">
+                                        <width unit="cm">22.7</width>
+                                        <height unit="cm">8.3</height>
+                                    </dimensions>
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm">16.6</width>
+                                        <height unit="cm">8.3</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm">11.2</width>
+                                        <height unit="cm">6.3</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-writ">
+                                        <height unit="lines">8</height>
+                                        <width unit="chars">37</width>
+                                        <dim type="char-p-cm">3.3</dim>
+                                    </dimensions>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">11.2</width>
+                                        <height unit="cm">13.5</height>
+                                    </dimensions>
+                                    <dimensions scope="col-writ">
+                                        <width unit="chars">37</width>
+                                        <height unit="lines">18</height>
+                                        <dim type="char-p-cm">3.3</dim>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                    </physDesc>
+                </msDesc>
             </sourceDesc>
         </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change/>
+            <change/>
+            <change/>
+            <change/>
+        </revisionDesc>
     </teiHeader>
     <text>
         <body>
-            <div1 xml:id="Kauf.4">
-                <div2 xml:id="Kauf.4.1">
-                    <pb n="1rL"/>
-                    <ab xml:id="G5.4.1.10.2"><gap extent="30"/><damage><unclear extent="5"
-                            /></damage><lb n="1"/>
-                        <gap extent="28"/><damage><unclear extent="7"/></damage><lb n="2"/>
-                        <gap extent="22"/><damage><unclear extent="1"/>ל</damage>ומר מיכן יצא <lb
-                            n="3"/><gap extent="20"/>
-                        <damage><unclear extent="2">?ו</unclear>א</damage>ם הזיק משלם<lb n="4"/>
-                        <gap extent="18"/>
-                        <damage><unclear extent="2"/>ת</damage> ליתן לו דמים <choice>
-                            <abbr>ר'</abbr>
-                            <expan/>
-                        </choice>
-                        <choice>
-                            <abbr>ישמ'</abbr>
-                            <expan/>
-                        </choice><lb n="5"/>
-                        <gap extent="xyz"/>
-                        <damage><unclear extent="1">*</unclear>ל <choice>
-                                <abbr rend="overdot">ר<am>'</am></abbr>
-                                <expan>רבי</expan>
-                            </choice> יוחנן</damage>
-                        <gap extent="xyz"/>
-                        <damage extent="xyz">*?מ?</damage>ים </ab><ab xml:id="G5.4.1.10.3"><label
-                            rend="pad(rl)">ג<am rend="overdot">'</am></label><lb n="6"/>
-                        <damage extent="xyz"><damage extent="xyz">ה*כיר</damage></damage> את <damage
-                            extent="xyz">כליו א***ריו ב</damage>יד <damage extent="xyz">א</damage>חר
-                        אם יצא לו שם גנבה <lb n="7"/></ab>
-                    <pb n="1vR"/>
-                    <ab><damage><unclear extent="4"/></damage><gap extent="31"/>
-                    <lb n="1"/>
-                    <damage>א<unclear extent="5"></unclear></damage>
-                    <gap extent="29"/>
-                    <lb n="2"/>
-                    <damage>אבל איני</damage>
-                    <gap extent="28"/>
-                    <lb n="3"/>
-                        <damage>לא </damage>הפקדתה פ<damage>טו<unclear extent="1"></unclear></damage>
-                    <gap extent="25"/></ab><ab xml:id="G5.4.1.10.8"><gap extent="6"/>
-                    <lb n="4"/>טלה מן העדר ו<damage>ה<unclear extent="3">חזי</unclear></damage><gap
-                        extent="21"/>
-                    <!-- These lines need work -->
-                    <lb n="5"/> ידעו בו הבעלים ב<damage extent="8">גני*** וב</damage><gap
-                        extent="15"/>
-                    <lb n="6"/>פטור מ<c rend="lig">לש</c>לם<pc type="unitEnd"
-                            rend="˙">:</pc></ab><ab xml:id="G5.4.1.10.9">
-                            <damage extent="xyz"><label>ט</label> אין
-                        ל<unclear extent="4"/>ן מן ה</damage><gap extent="4"/><damage extent="xyz"
-                        ><unclear extent="1"/>ן</damage>
-                    <lb n="7"/> צמר וחלב וגדיים ולא משו<damage extent="xyz">מרי פיר**ת
-                    עצ</damage>ים ופ<damage extent="xyz">י</damage>רות <damage extent="xyz">א**
-                        ל?ו'</damage>? <lb n="nn"/></ab><pb n="1vL"/>
-                    <damage extent="xyz">לו</damage>
-                    <gap extent="xyz"/>
-                    <lb n="nn"/>
-                    <gap extent="xyz"/>
-                    <lb n="nn"/>
-                    <gap extent="xyz"/>
-                    <lb n="nn"/> מן <damage extent="xyz">התו</damage><gap extent="xyz"/>
-                    <lb n="nn"/> הגלילי <damage extent="xyz">א</damage><gap extent="xyz"/>
-                    <lb n="nn"/> משוי ש<damage extent="xyz">הו</damage><gap extent="xyz"/>
-                    <lb n="nn"/> אביו אב<damage extent="xyz">ד</damage><gap extent="xyz"/>
-                    <lb n="nn"/> אביו וא<damage extent="xyz">ב</damage>י<damage extent="xyz"
-                        >דת</damage>
-                    <gap extent="xyz"/>
-                    <lb n="nn"/>
-                    <lb n="nn"/>
-                    <pb n="1rR"/>
-                    <gap extent="xyz"/>
-                    <damage extent="xyz">אי?ז?ה?</damage>
-                    <lb n="nn"/>
-                    <gap extent="xyz"/> מנה <lb n="nn"/>
-                    <gap extent="xyz"/>
-                    <damage extent="xyz">שה</damage>פקידו <lb n="nn"/>
-                    <gap extent="xyz"/> אומר<lb n="nn"/>
-                    <gap extent="xyz"/><damage extent="xyz">ונח</damage> עד שיבא <lb n="nn"/></div2>
+            <div1 xml:id="G5.4">
+                <div2 xml:id="G5.4.1">
+                    <div3 xml:id="G5.4.1.10">
+                        <pb n="1rL" xml:id="f1rL"/>
+                        <ab xml:id="G5.4.1.10.2"><damage><gap extent="30" unit="chars"/><unclear
+                                    extent="5" unit="chars"/></damage><lb n="1"/>
+                            <damage><gap extent="28" unit="chars"/><unclear extent="7" unit="chars"
+                                /></damage><lb n="2"/>
+                            <damage><gap extent="22" unit="chars"/><unclear extent="1" unit="chars"
+                                />ל</damage>ומר מיכן יצא <lb n="3"/><gap extent="20" unit="chars"/>
+                            <damage><unclear extent="2" unit="chars">?ו</unclear>א</damage>ם הזיק
+                                משלם<lb n="4"/>
+                            <damage><gap extent="18" unit="chars"/>
+                                <unclear extent="2" unit="chars"/>ת</damage> ליתן לו דמים <choice>
+                                <abbr>ר'</abbr>
+                                <expan/>
+                            </choice>
+                            <choice>
+                                <abbr>ישמ<am rend="?"><!-- Work on this abbrev mark -->'</am></abbr>
+                                <expan>ישמעאל</expan>
+                            </choice><lb n="5"/>
+                            <damage><gap extent="2" unit="chars"/>
+                                <unclear extent="8" unit="chars"/><gap extent="3" unit="chars"
+                                    /><unclear extent="7" unit="chars"/>י</damage>ם<pc
+                                type="unitEnd" rend="˙">:</pc></ab>
+                        <ab xml:id="G5.4.1.10.3"><label rend="pad(rl)">ג<am rend="overdot"
+                                >'</am></label><lb n="6"/>
+                            <damage><unclear extent="5" unit="chars"/> את <unclear extent="9"
+                                    unit="chars"/>יד <unclear extent="1">א</unclear></damage>חר אם
+                            יצא לו שם גנבה <lb n="7"/></ab>
+                        <pb n="1vR" xml:id="f1vR"/>
+                        <ab xml:id="G5.4.1.10.7"><damage><unclear extent="4" unit="chars"/><gap
+                                    extent="31" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage>א<unclear extent="5" unit="chars"/>
+                                <gap extent="29" unit="chars"/></damage>
+                            <lb n="2"/>
+                            <damage>אבל איני <gap extent="28" unit="chars"/></damage>
+                            <lb n="3"/>
+                            <damage>לא </damage>הפקדתה פ<damage>טו<unclear extent="1" unit="chars"/>
+                                <gap extent="25" unit="chars"/></damage></ab>
+                        <ab xml:id="G5.4.1.10.8"><damage><gap extent="6" unit="chars"/></damage>
+                            <lb n="4"/>טלה מן העדר ו<damage>ה<unclear extent="3" unit="chars"
+                                    >חזי</unclear><gap extent="21" unit="chars"/></damage>
+                            <lb n="5"/>ידעו בו הבעלים ב<damage>ג<unclear extent="6" unit="chars"
+                                    >ני?? וב</unclear><gap extent="5" unit="chars"/><unclear
+                                    extent="2" unit="chars"/><gap extent="9" unit="chars"/></damage>
+                            <lb n="6"/>פטור מ<c rend="lig">לש</c>לם<pc type="unitEnd" rend="˙"
+                                >:</pc></ab>
+                        <ab xml:id="G5.4.1.10.9">
+                            <damage><milestone unit="MSMishnah" n="9"/><label rend="pad(rl)">ט<am
+                                        rend="overdot">'</am></label><unclear extent="3"
+                                    unit="chars"/><gap extent="2" unit="chars"/>
+                                <unclear extent="14" unit="chars">ן לו</unclear><gap extent="3"
+                                    unit="chars"/></damage>
+                            <lb n="7"/> צמר וחלב וגדיים ולא משו<damage>מרי פי<unclear extent="4"
+                                    unit="chars">רות ע</unclear>צים ופיר</damage>ו<damage>ת<unclear
+                                    extent="3" unit="chars"/></damage><lb n="8"/></ab>
+                        <pb n="1vL" xml:id="f1vL"/>
+                    </div3>
+                </div2>
+                <div2 xml:id="G5.4.2">
+                    <div3 xml:id="G5.4.2.2">
+                        <ab xml:id="G5.4.2.2.10">
+                            <damage><unclear extent="1" unit="chars"/><gap extent="36" unit="chars"
+                                /></damage><lb n="1"/>
+                            <damage><unclear extent="3" unit="chars">לו</unclear><gap extent="34"
+                                /></damage>
+                            <lb n="2"/>
+                            <damage><unclear extent="3" unit="chars"/><gap extent="34" unit="char"
+                                /></damage>
+                            <lb n="3"/>
+                            <damage><unclear extent="4" unit="chars"/><gap extent="33" unit="char"
+                                /></damage>
+                            <lb n="4"/> מן <damage>התו<gap extent="32" unit="char"/></damage>
+                            <lb n="5"/>הגלילי <damage><unclear extent="2" unit="chars"
+                                    >א</unclear><gap extent="29"/></damage>
+                            <lb n="6"/> משוי ש<damage>ה<unclear extent="2" unit="chars"
+                                    >ו</unclear><gap extent="11"/></damage></ab>
+                        <ab xml:id="G5.4.2.2.11"><damage><gap extent="18" unit="chars"/></damage>
+                            <lb n="7"/> אביו אב<damage>ד<gap extent="30" unit="char"/></damage>
+                            <lb n="8"/> אביו וא<damage>ביד<unclear extent="5">ת</unclear><gap
+                                    extent="23"/></damage>
+                            <lb n="9"/>
+                            <pb n="1rR" xml:id="f1rR"/></ab>
+                    </div3>
+                    <div3 xml:id="G5.4.2.3">
+                        <ab xml:id="G5.4.2.3.3"><damage><gap extent="36" unit="chars"/><unclear
+                                    extent="1" unit="chars"/></damage><lb n="1"/>
+                            <damage><gap extent="36" unit="chars"/><unclear extent="1" unit="chars"
+                                /></damage><lb n="2"/>
+                            <damage><gap extent="35" unit="chars"/><unclear extent="2" unit="chars"
+                                /></damage><lb n="3"/>
+                            <damage><gap extent="33" unit="chars"/><unclear extent="4" unit="chars"
+                                    >איזה</unclear></damage>
+                            <lb n="4"/>
+                            <damage><gap extent="34" unit="chars"/>מנ</damage>ה <lb n="5"/>
+                            <damage><gap extent="26" unit="char"/></damage>
+                        </ab>
+                        <ab xml:id="G5.4.2.3.4"><damage><gap extent="4" unit="chars"/><unclear
+                                    extent="1" unit="chars">ש</unclear>ה</damage>פקידו<lb n="6"/>
+                            <damage><gap extent="32" unit="char"/></damage> אומר<lb n="7"/>
+                            <damage><gap extent="28" unit="char"/>ונח</damage> עד שיבא <lb n="8"
+                            /></ab>
+                    </div3>
+                </div2>
             </div1>
         </body>
     </text>

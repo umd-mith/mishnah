@@ -155,6 +155,7 @@
                         
                     </xsl:when>
                     <!-- the other handlings of tei:gap -->
+                    <!-- This case needs fixing -->
                     <xsl:when test="./following::*[1]/self::tei:lb">
                         <span class="missing">[</span>
                     </xsl:when>
