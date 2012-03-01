@@ -5,9 +5,7 @@
 
 <!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
 <?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
-
-<TEI xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:xi="http://www.w3.org/2001/XInclude">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -58,6 +56,14 @@
                     <!-- Naming: -->
                     <!-- G-I, II, III refer to groups of joined fragments that belong to the same MS. -->
                     <!-- G1, 2, 3 in order that they were transcribed/registered. -->
+                    <listWit xml:id="G-I" n="G">
+                        <witness xml:id="G2" n="G" corresp="g2.xml">Cairo Genizah TS NS 329.286 f.
+                            1r - 1v (Cambridge)<desc>Bava Qamma 10:8 - 10; Bava Metsi'a 1:1 -
+                                2:10</desc></witness>
+                        <witness xml:id="G4" n="G" corresp="g4.xml">Cairo Genizah TS AS78.69 f.
+                            1r-1v (Cambridge)<desc>Bava Qamma 10:8- - 10; Bava Metsi'a 1:1; 2:1 -
+                                2</desc></witness>
+                    </listWit>
                     <listWit xml:id="G-II" n="G">
                         <witness xml:id="G1" n="G" corresp="g1.xml">Cairo Genizah TS E1.99 f. 1r -
                             2v (Cambridge)<desc>Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 -
@@ -71,14 +77,9 @@
                     <witness xml:id="G3" n="G" corresp="g3.xml">Genizah Fragment Cambridge
                         University TS AS 81.75<desc>Bava Metsi'a 2:11 - 3:7.</desc>
                     </witness>
-                    <listWit xml:id="G-I" n="G">
-                        <witness xml:id="G2" n="G" corresp="g2.xml">Cairo Genizah TS NS 329.286 f.
-                            1r - 1v (Cambridge)<desc>Bava Qamma 10:8 - 10; Bava Metsi'a 1:1 -
-                                2:10</desc></witness>
-                        <witness xml:id="G4" n="G" corresp="g4.xml">Cairo Genizah TS AS78.69 f.
-                            1r-1v (Cambridge)<desc>Bava Qamma 10:8- - 10; Bava Metsi'a 1:1; 2:1 -
-                                2</desc></witness>
-                    </listWit>
+                    <witness xml:id="G5" n="G" corresp="g5.xml">Genizah Fragment Cambridge
+                        University TS AS 78.261<desc>Bava Qamma BQ 10:2 - 3,7-9; Bava Metsi'a 2:10 -
+                            11; 3:3 - 4</desc></witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
