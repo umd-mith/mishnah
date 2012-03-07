@@ -4,7 +4,8 @@
     xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all" version="2.0"
     xmlns:local="local-functions.uri" >
-    <xsl:strip-space elements="tei:w"/><xsl:output indent="yes" method="xml" omit-xml-declaration="yes" encoding="UTF-8"/>
+    <xsl:strip-space elements="tei:w"/>
+    <xsl:output indent="yes" method="xml" omit-xml-declaration="yes" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 25, 2011</xd:p>
@@ -12,6 +13,11 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
+    <xsl:param name="rqs"/>
+    <xsl:param name="selected"/>
+    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
+    <!--<xsl:variable name="sel" select="tokenize($selected, ',')"/>-->
+    <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/> 
     <xsl:template match="tei:teiHeader"/>
     <xsl:template match="//tei:list">
         <!-- Copy witness list into temporary node for reference -->
@@ -24,12 +30,9 @@
             />
             
         </xsl:variable>
-        
-        
-        
+ 
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">
-            
-            <xsl:for-each select="./tei:item">
+            <xsl:for-each select="./tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]">
                 <xsl:variable name="Wit">
                     <xsl:copy-of select="."/>
                 </xsl:variable>

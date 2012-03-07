@@ -13,6 +13,16 @@
     </xd:doc>
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
+    <xsl:param name="rqs"/>
+    <xsl:param name="selected"/>
+    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
+    <!--<xsl:variable name="sel" select="tokenize($selected, ',')"/>-->
+    <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/> 
+    <xsl:variable name="selList">
+        <xsl:copy-of
+            select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]"
+        />
+    </xsl:variable>
     <xsl:variable name="sortlist">
         <xsl:copy-of
             select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/tei:item"
@@ -32,7 +42,7 @@ pipeline. -->
                 </xsl:variable>
                 <xsl:element name="my:lemma">
                     <xsl:attribute name="position" select="$position"/>
-                    <xsl:for-each select="$sortlist/tei:item">
+                    <xsl:for-each select="$sortlist/tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]">
                         <xsl:element name="my:reading">
                             <xsl:variable name="witness">
                                 <xsl:value-of select="."/>
@@ -101,20 +111,40 @@ pipeline. -->
                     </xsl:analyze-string>
                 </h2>
              
-                <h3>1. Sources Collated</h3>
+                <h3>1. Sources to Collate</h3>
+                <form name="selection" action="collate" method="get">
                 <table class="sources" dir="ltr">
                     <xsl:for-each select="$sortlist/tei:item">
-                        <tr>
-                            <td class="ref-wit">
+                        <tr><td>
+                          <input type="checkbox" name="wit">
+                            <xsl:attribute name="id">
+                               <xsl:text>sel</xsl:text><xsl:value-of select="."/>
+                            </xsl:attribute>
+                            <xsl:attribute name="value">
+                               <xsl:value-of select="."/>
+                            </xsl:attribute>
+                            <xsl:if test="count($sel) = 0 or count(index-of($sel, .)) != 0">
+                              <xsl:attribute name="checked"><xsl:text>checked</xsl:text></xsl:attribute>
+                            </xsl:if>
+                          </input>
+                          <label>
+                            <xsl:attribute name="for">
+                               <xsl:text>sel</xsl:text><xsl:value-of select="."/>
+                            </xsl:attribute>
+                            <span class="ref-wit" style="display: inline-block;">
                                 <xsl:value-of select="."/>
-                            </td>
-                            <td class="ref-data">
+                            </span>
+                            <span class="ref-data" style="display: inline-block;">
                                 <xsl:value-of
                                     select="document(concat('../tei/ref.xml','#',.))/text()"/>
-                            </td>
-                        </tr>
+                            </span>
+                          </label>
+                          </td></tr>
                     </xsl:for-each>
+                    <tr><td></td></tr>
+                    <tr><td><input type="submit" value="Collate"/></td></tr>
                 </table>
+                </form>
                 <h3 dir="ltr">2. Alignment Table Format</h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
@@ -151,7 +181,7 @@ pipeline. -->
                     </table>
                 </div>
                 <div class="text" dir="rtl">
-                    <h3 dir="ltr">3. Text of <xsl:value-of select="$sortlist/tei:item[1]"/></h3>
+                    <h3 dir="ltr">3. Text of <xsl:value-of select="$selList/tei:item[1]"/></h3>
                     <xsl:for-each select="$readings-list/my:lemma/my:reading[@sort-order='1']">
                         <xsl:choose>
                             <xsl:when test=". =
@@ -168,7 +198,7 @@ pipeline. -->
                 </div>
                 <div class="apparatus" dir="rtl">
                     <h3 dir="ltr">4. Sample Apparatus, Text of <xsl:value-of
-                            select="$sortlist/tei:item[1]"/> as Base Text </h3>
+                            select="$selList/tei:item[1]"/> as Base Text </h3>
                     <!-- Check if base text has a missing reading relative to others and group on
 this -->
                     <xsl:for-each-group select="$readings-list/my:lemma"

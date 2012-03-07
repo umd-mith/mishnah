@@ -23,7 +23,9 @@
     <map:serializers>
       <map:serializer name="tei"
         mime-type="application/xml"
-        src="org.apache.cocoon.serialization.XMLSerializer"/>
+        src="org.apache.cocoon.serialization.XMLSerializer">
+        <indent>yes</indent>
+      </map:serializer>
     </map:serializers>
     <map:transformers>
       <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
@@ -44,6 +46,19 @@
     </map:pipeline>
 
     <map:pipeline id="text-viewer">
+      <map:match pattern="collate">
+        <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+        <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl" type="xslt-saxon">
+          <map:parameter name="selected" value="{request-param:selected}"/>
+          <map:parameter name="rqs" value="{request:queryString}"/>
+        </map:transform>
+        <map:transform type="collatex"/>
+        <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon">
+          <map:parameter name="selected" value="{request-param:selected}"/>
+          <map:parameter name="rqs" value="{request:queryString}"/>
+        </map:transform>
+        <map:serialize type="tei"/>
+      </map:match>
 
       <map:match pattern="synopsis/*">
         <map:generate src="resource://tei/ref.xml"/>
