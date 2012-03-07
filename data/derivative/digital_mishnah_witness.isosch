@@ -51,10 +51,16 @@
    </pattern>
    <pattern id="notesStmt-constraint-linter">
       <rule context="tei:notesStmt">
-         <assert test="tei:note/tei:p">The notesStmt is provided as
-                                    a convenience to permit a prose description of the physical
+         <assert test="tei:note/tei:p">The notesStmt is provided as a
+                                    convenience to permit a prose description of the physical
                                     manuscript. Please also complete the structured elements for
                                     manuscript description within sourceDesc </assert>
+      </rule>
+   </pattern>
+   <pattern id="subst-constraint-substContents1">
+      <rule context="tei:subst">
+         <assert test="child::add and child::del">
+        Subst must have at least one child add and at least one child del</assert>
       </rule>
    </pattern>
    <pattern id="join-constraint-joinTargets1">
