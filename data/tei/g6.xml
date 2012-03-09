@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of Genizah Fragment TS AS 78.162
+                    (Cambridge)</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">g2</idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers BM 1:1 - 5; 2:3 - 7. Joins TS AS 78.126 (Cambridge).</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        https://fgp.genizah.org. FGP nos. C96888 and C96887</p>
+                    <p>EDITED BY: Hayim Lapin</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS AS 78.162</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <locusGrp>
+                                <locus n="1r" facs="ww.genizah.org">C96888</locus>
+                                <locus n="1v" facs="ww.genizah.org">C96887</locus>
+                            </locusGrp>
+                            <join target="g6.xml ref.xml"/>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <handDesc>
+                            <handNote script="Oriental Square">
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                        <objectDesc form="folio">
+                            <supportDesc>
+                                <support>Vellum</support>
+                                <extent>1 leaf</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm">9.0</width>
+                                        <height unit="cm">8.9</height>
+                                    </dimensions>
+                                    <!-- Following assumes join with G2 -->
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm">11</width>
+                                        <height unit="cm">23.8</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-writ">
+                                        <height unit="lines">37</height>
+                                        <dim type="char-p-cm">2.7</dim>
+                                    </dimensions>
+                                    <dimensions scope="sheet">
+                                        <!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
+                                        inside-->
+                                        <width unit="cm">24.4</width>
+                                        <height unit="cm">28.4</height>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2011-12-08" who="Nurit Ezer">Transcription</change>
+            <change when="2012-03-06" who="Hayim Lapin">Markup</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="G6.4">
+                <div2 xml:id="G6.4.2">
+                    <div3 xml:id="G6.4.2.1">
+                        <pb n="1r" xml:id="G6.1r"/>
+                        <ab xml:id="G6.4.2.1.1">
+                            <damage><gap extent="13" unit="chars"/><unclear extent="3" unit="chars"
+                                />ע שא<gap extent="2" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage><gap extent="2" unit="chars"/><unclear extent="3" unit="chars"
+                                    /><gap extent="6" unit="chars"/><unclear extent="3" unit="chars"
+                                    >חלו</unclear>ק<unclear extent="1" unit="chars">ו</unclear><gap
+                                    extent="1" unit="chars"/></damage>ה אומר <damage>כ<gap
+                                    extent="4" unit="chars"/></damage>
+                            <lb n="2"/>
+                            <damage><gap extent="1" unit="chars"/></damage>שבע <damage><unclear
+                                    extent="1" unit="chars">ש</unclear><gap extent="4" unit="chars"
+                                    /><unclear extent="2" unit="chars">?ב</unclear></damage>ה
+                                    פ<damage>חות<gap extent="2" unit="chars"
+                                    /></damage>שלש<damage><unclear extent="4" unit="chars">ה
+                                    ??</unclear><gap extent="1" unit="chars"/></damage>
+                            <lb n="3"/>
+                            <damage><gap extent="0" unit="chars"/></damage>ה פחות
+                                מ<damage>ר</damage>ביע זה נוטל שלשה ח<damage><unclear extent="2"
+                                    unit="chars">ו?</unclear><gap extent="1" unit="chars"/></damage>
+                            <lb n="4"/></ab>
+                        <ab xml:id="G6.4.2.1.2">
+                            <damage><gap extent="0" unit="chars"/>ע</damage>ל <damage>ג</damage>בי
+                            בהמה או שהיה אחד רכוב ו<damage><unclear extent="1" unit="chars"
+                                    >א</unclear><gap extent="0" unit="chars"/></damage>
+                            <lb n="5"/>
+                            <damage><gap extent="1" unit="chars"/><unclear extent="2" unit="chars"
+                                    >?ה</unclear></damage> שלי זה ישבע שאין לו בה פחות
+                                    <damage><unclear extent="1" unit="chars">מ</unclear><gap
+                                    extent="0" unit="chars"/></damage>
+                            <lb n="6"/>
+                            <damage><gap extent="1" unit="chars"/><unclear extent="1" unit="chars"
+                                    >מ</unclear>חצי</damage>ה ויחלוקו בזמן שהן מודים <damage>א<gap
+                                    extent="1" unit="chars"/></damage>
+                            <lb n="7"/>
+                        </ab>
+                        <ab xml:id="G6.4.2.1.3"><damage><gap extent="1" unit="chars"/><unclear
+                                    extent="1" unit="chars">ה</unclear></damage>יה <damage><unclear
+                                    extent="2" unit="chars">רכ</unclear></damage>וב על גבי בהמה ראה
+                            את ה<damage>מ<gap extent="2" unit="chars"/></damage>
+                            <lb n="8"/>
+                            <damage><gap extent="1" unit="chars"/></damage>כיתי <damage>ב</damage>ה
+                            זכה בה אם משנתנה לו <damage><unclear extent="2" unit="chars"
+                                    >א?</unclear><gap extent="1" unit="chars"/></damage>
+                            <lb n="9"/>
+                        </ab>
+                        <ab xml:id="G6.4.2.1.4"><damage><gap extent="3" unit="chars"/>ה</damage> את
+                            המציאה ונפל לו עלי<damage><unclear extent="1" unit="chars"
+                                    >ה</unclear><gap extent="1" unit="chars"/><unclear extent="1"
+                                    unit="chars">ה</unclear>א<unclear extent="2" unit="chars"/><gap
+                                    extent="2" unit="chars"/></damage>
+                            <lb n="10"/>
+                            <damage><gap extent="3" unit="chars"/><unclear extent="1" unit="chars"
+                                /></damage> רצי<damage>ן</damage> אחר המציאה <damage><unclear
+                                    extent="1" unit="chars"/><gap extent="2" unit="chars"/>צבי
+                                    <unclear extent="1" unit="chars"/><gap extent="1" unit="chars"
+                                /></damage>
+                            <lb n="11"/>
+                            <damage><gap extent="8" unit="chars"/>ל</damage><note>Some traces
+                                visible above gap.</note>ו היה צבי ר<damage><unclear extent="1"
+                                    unit="chars"/><gap extent="8" unit="chars"/></damage>
+                            <lb n="12"/>
+                            <damage><gap extent="9" unit="chars"/><unclear extent="1" unit="chars"
+                                    >?</unclear>
+                            </damage><surplus>?</surplus><note>Perhaps a punctuation character
+                                ending preceding halakhah.</note></ab>
+                        <ab xml:id="G6.4.2.1.5">מ<damage><unclear extent="3" unit="chars"
+                                    >צי?</unclear><gap extent="9" unit="chars"/></damage><lb n="13"/>
+                            <damage><gap extent="11" unit="chars"/>
+                                <unclear extent="1" unit="chars">?</unclear>ל<unclear extent="1"
+                                    unit="chars">?</unclear><gap extent="16" unit="chars"/></damage>
+                            <lb n="14"/><anchor xml:id="G6.fr1r.end" next="#G6.1v"/>
+                            <pb n="1v" xml:id="G6.1v"/></ab>
+                    </div3>
+                    <div3 xml:id="G6.4.2.2">
+                        <ab xml:id="G6.4.2.2.3">
+                            <damage><gap extent="2" unit="chars"/>
+                                <unclear extent="1" unit="chars">ח</unclear></damage>דש
+                                    <damage>??<gap extent="16" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage><gap extent="3" unit="chars"/><unclear extent="1" unit="chars"
+                                    >ח</unclear></damage>רים <damage><unclear extent="1"
+                                    unit="chars">א</unclear>פ<gap extent="2" unit="chars"
+                            /></damage>ו <damage>מ<unclear extent="1" unit="chars">צ</unclear><gap
+                                    extent="13" unit="chars"/></damage>
+                            <lb n="2"/></ab>
+                        <ab xml:id="G6.4.2.2.4">
+                            <damage><gap extent="1" unit="chars"/><unclear extent="1" unit="chars">
+                                    ב</unclear></damage>ין תי<damage>ב<gap extent="2" unit="chars"/>
+                                ל</damage>חנווני <damage>ה<unclear extent="2" unit="chars"
+                                    >??</unclear> ש</damage>לחנוו<damage>נ<gap extent="1"
+                                    unit="chars"/></damage>
+                            <lb n="3"/>
+                            <damage><gap extent="0" unit="chars"/><unclear extent="1" unit="chars"
+                                    >ש</unclear></damage>ולחני הרי שלשולחני לקח פירות <damage><gap
+                                    extent="0" unit="chars"/></damage>
+                            <lb n="4"/>
+                            <damage><gap extent="0" unit="chars"/>מ<unclear extent="1" unit="chars"
+                                    >צ</unclear></damage>א בתוכן מעות הרי אלו שלו אם <damage><gap
+                                    extent="1" unit="chars"/></damage>
+                            <lb n="5"/>
+                        </ab>
+                        <ab xml:id="G6.4.2.2.5"><damage><gap extent="0" unit="chars"/><unclear
+                                    extent="1" unit="chars">ש</unclear></damage>מלה היתה בכלל כל
+                            אילו ולמה <damage><unclear extent="2" unit="chars">י?</unclear><gap
+                                    extent="1" unit="chars"/></damage><lb n="6"/>
+                            <damage><gap extent="1" unit="chars"/><unclear extent="1" unit="chars"
+                                /></damage> שיש לה סימנין ויש לה תוב<damage><unclear extent="4"
+                                    unit="chars">עין ?</unclear><gap extent="1" unit="chars"
+                                /></damage>
+                            <lb n="7"/>
+                            <damage><gap extent="1" unit="chars"/>ב<unclear extent="1" unit="chars"
+                                /></damage> להכריז<pc type="unitEnd" rend="°">:</pc></ab>
+                        <ab xml:id="G6.4.2.2.6"> עד מתי חיי<damage>ב <unclear extent="1"
+                                    unit="chars">ל</unclear></damage>הכ<damage><gap extent="2"
+                                    unit="chars"/></damage>
+                            <lb n="8"/>
+                            <damage><gap extent="1" unit="chars"/><unclear extent="1" unit="chars"
+                                />ה</damage>ודה אומ<am rend="overdot">׳</am> שלשה רגלים
+                                    ולא<damage>ח<unclear extent="1" unit="chars">ר</unclear><gap
+                                    extent="0" unit="chars"/></damage>
+                            <lb n="9"/>
+                            <damage><gap extent="0" unit="chars"/>לבי</damage>תו <damage><unclear
+                                    extent="1" unit="chars">ש</unclear>ל</damage>שה ויחזיר שלשה
+                                    וי<damage><unclear extent="1" unit="chars">כ</unclear>ר<gap
+                                    extent="3" unit="chars"/></damage>
+                            <lb n="10"/>
+                            <damage><gap extent="1" unit="chars"/>י</damage>מנ<damage><unclear
+                                    extent="1" unit="chars"/><gap extent="1" unit="chars"/><unclear
+                                    extent="1" unit="chars"/>ר</damage>י זה לא יתן לו
+                                <damage>ה</damage>רמי<damage><gap extent="3" unit="chars"/></damage>
+                            <lb n="11"/>
+                            <damage><gap extent="8" unit="chars"/><unclear extent="1" unit="chars"
+                                /></damage>רוש אחיך <damage>א<gap extent="7" unit="chars"/></damage>
+                            <lb n="12"/>
+                            <damage><gap extent="9" unit="chars"/>יי</damage><pc type="unitEnd"
+                                rend="°">:</pc></ab>
+                        <ab xml:id="G6.4.2.2.7">
+                            <damage>
+                                <unclear extent="1" unit="chars">ל</unclear>
+                                <gap extent="9" unit="chars"/>
+                            </damage>
+                            <lb n="13"/>
+                            <damage><gap extent="10" unit="chars"/>ל<unclear extent="3" unit="chars"
+                                    >ל??</unclear><gap extent="10" unit="chars"/></damage>
+                            <note>Bit of string obscures traces of characters.</note>
+                            <lb n="14"/>
+                        </ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>

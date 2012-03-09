@@ -7,7 +7,7 @@
     <xsl:output method="html" indent="no" encoding="UTF-8"/>
     <xsl:strip-space
         elements=" tei:choice and tei:am and
-        tei:gap and xs:comment and tei:orig and tei:reg"/>
+        tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Jul 23, 2011</xd:p>
@@ -146,41 +146,40 @@
                     <!--  -->
                     <!-- Temporary transformation, for files still containing <supplied> -->
                     <xsl:when test="./following-sibling::*[1]/self::tei:supplied">
-                        <xsl:for-each
-                            select="./following-sibling::*[1]/self::tei:supplied">
+                        <xsl:for-each select="./following-sibling::*[1]/self::tei:supplied">
                             <span class="supplied">
                                 <xsl:apply-templates/>
                             </span>
                         </xsl:for-each>
-                        
                     </xsl:when>
                     <!-- the other handlings of tei:gap -->
-                    <!-- This case needs fixing -->
-                    <xsl:when test="./following::*[1]/self::tei:lb">
-                        <span class="missing">[</span>
-                    </xsl:when>
-                    <xsl:when test="./preceding::*[1]/self::tei:lb">
+                    <!-- These use cases needs fixing -->
+                    <xsl:when test="preceding::*[1]/self::tei:lb and
+                        not(preceding::node()[1]/text()|tei:unclear)">
                         <span class="missing"><xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
                                 <xsl:with-param name="char" select="'&#160;'"/>
                             </xsl:call-template>]</span>
                     </xsl:when>
+                    <xsl:when test="following::*[1]/self::tei:lb and
+                        not(following::node()[1]/text()|tei:unclear)">
+                        <span class="missing">[<xsl:call-template name="add-char">
+                                <xsl:with-param name="howMany" select="./@extent"/>
+                                <xsl:with-param name="char" select="'&#160;'"/>
+                            </xsl:call-template></span>
+                    </xsl:when>
                     <xsl:when
-                        test=".[following::tei:lb[1]/@n='1'] and not(./preceding::*[1]/text())">
+                        test="following::tei:lb[1]/@n='1' and not(preceding::node()[1]/text())">
                         <span class="missing"><xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
                                 <xsl:with-param name="char" select="'&#160;'"/>
                             </xsl:call-template>]</span>
                     </xsl:when>
                     <xsl:otherwise>
-                        <span class="missing">
-                            <xsl:text>[</xsl:text>
-                            <xsl:call-template name="add-char">
+                        <span class="missing">[<xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
                                 <xsl:with-param name="char" select="'&#160;'"/>
-                            </xsl:call-template>
-                            <xsl:text>]</xsl:text>
-                        </span>
+                            </xsl:call-template>]</span>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -308,27 +307,30 @@
         </xsl:variable>
         <span class="unclear">
             <!-- replacement string of thin-space/period/thin-space -->
-            <xsl:variable name="dots">
-                <xsl:text> . </xsl:text>
+            <xsl:variable name="dots" as="xs:string">
+                <xsl:text>&#8201;.&#8201;</xsl:text>
             </xsl:variable>
+            
+                <xsl:choose>
+                    <!-- converts node to text  and replaces ? with dots. Assumes that will not be
+                        retaining child nodes of unclear. This may change.  -->
+                    <xsl:when test="string(.)">
+                        <xsl:value-of
+                            select="normalize-space(replace(. except tei:note,'\?',$dots))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="''"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            
+           
             <xsl:choose>
-                <xsl:when test="./text()">
-                    <!-- presents text; replaces question marks with dots -->
-                    <xsl:variable name="text-string">
-                        <xsl:value-of select=". except tei:note"/>
-                    </xsl:variable>
-                    <xsl:value-of select="translate($text-string/text(),'?',$dots)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates/>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:choose>
-                <xsl:when test=" number(./@extent) - $adj-length &lt;= 0">
+                <xsl:when test="number(./@extent) - $adj-length &lt;= 0">
                     <!-- If traces = extent then do not add dots -->
                 </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="number(./@extent) - $adj-length &gt; 0">
                     <!-- add dots -->
+                   
                     <xsl:call-template name="add-char">
                         <xsl:with-param name="howMany">
                             <xsl:value-of select="number(./@extent) - $adj-length"/>
@@ -337,7 +339,7 @@
                             <xsl:value-of select="$dots"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:otherwise>
+                </xsl:when>
             </xsl:choose>
         </span>
     </xsl:template>
@@ -349,9 +351,7 @@
                     <xsl:apply-templates select="current-group()"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <span class="damage">
-                        <xsl:apply-templates select="current-group()"/>
-                    </span>
+                    <span class="damage"><xsl:apply-templates select="current-group()"/></span>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each-group>
