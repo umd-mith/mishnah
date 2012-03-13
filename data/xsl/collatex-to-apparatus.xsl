@@ -83,6 +83,7 @@ pipeline. -->
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
                 <h2>Sample Collatex Output</h2>
+                <!-- Isn't this just generating an unnecessary heading? -->
                 <h2><xsl:value-of select="count($readings-list)"/></h2>
                 <h2><xsl:variable name="ref-cit">
                         <xsl:value-of
