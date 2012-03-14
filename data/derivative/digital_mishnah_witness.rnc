@@ -4,9 +4,9 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-01-04T15:06:59Z. 
-# Edition: 2.0.0 Last updated on 16th December 2011.
-# Edition Location: http://www.tei-c.org/Vault/P5/2.0.0/
+# Schema generated from ODD source 2012-03-07T15:10:24Z. 
+# Edition: 2.0.2 Last updated on 2nd February 2012.
+# Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
 
 # This work is copyright Trevor Muñoz and Maryland Institute for Technology in
@@ -1435,17 +1435,17 @@ mishnahw_model.persStateLike_sequenceOptionalRepeatable =
   mishnahw_persName*
 mishnahw_model.persStateLike_sequenceRepeatable = mishnahw_persName+
 mishnahw_model.placeNamePart =
-  mishnahw_placeName | mishnahw_settlement | mishnahw_region
+  mishnahw_placeName | mishnahw_region | mishnahw_settlement
 mishnahw_model.placeNamePart_alternation =
-  mishnahw_placeName | mishnahw_settlement | mishnahw_region
+  mishnahw_placeName | mishnahw_region | mishnahw_settlement
 mishnahw_model.placeNamePart_sequence =
-  mishnahw_placeName, mishnahw_settlement, mishnahw_region
+  mishnahw_placeName, mishnahw_region, mishnahw_settlement
 mishnahw_model.placeNamePart_sequenceOptional =
-  mishnahw_placeName?, mishnahw_settlement?, mishnahw_region?
+  mishnahw_placeName?, mishnahw_region?, mishnahw_settlement?
 mishnahw_model.placeNamePart_sequenceOptionalRepeatable =
-  mishnahw_placeName*, mishnahw_settlement*, mishnahw_region*
+  mishnahw_placeName*, mishnahw_region*, mishnahw_settlement*
 mishnahw_model.placeNamePart_sequenceRepeatable =
-  mishnahw_placeName+, mishnahw_settlement+, mishnahw_region+
+  mishnahw_placeName+, mishnahw_region+, mishnahw_settlement+
 mishnahw_model.placeStateLike = mishnahw_model.placeNamePart
 mishnahw_model.placeStateLike_alternation =
   mishnahw_model.placeNamePart_alternation
@@ -1714,7 +1714,7 @@ mishnahw_model.imprintPart_sequenceRepeatable =
   mishnahw_publisher+, mishnahw_biblScope+, mishnahw_pubPlace+
 mishnahw_model.catDescPart = notAllowed
 mishnahw_model.physDescPart_sequenceOptional =
-  mishnahw_handDesc?, mishnahw_objectDesc?
+  mishnahw_objectDesc?, mishnahw_handDesc?
 mishnahw_model.addressLike = mishnahw_email | mishnahw_address
 mishnahw_model.addressLike_alternation =
   mishnahw_email | mishnahw_address
@@ -1917,7 +1917,7 @@ mishnahw_att.personal.attribute.sort =
   attribute sort { mishnahw_data.count }?
 mishnahw_p =
   
-  ## (paragraph) marks paragraphs in prose.
+  ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
   element p {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -1927,14 +1927,14 @@ mishnahw_p =
 mishnahw_foreign =
   
   ## (foreign) identifies a word or phrase as belonging to some language other than that of the
-  ##                 surrounding text. 
+  ##                 surrounding text.  [3.3.2.1. ]
   element foreign {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_emph =
   
   ## (emphasized) marks words or phrases which are stressed or emphasized for
-  ##         linguistic or rhetorical effect.
+  ##         linguistic or rhetorical effect. [3.3.2.2.  3.3.2. ]
   element emph {
     mishnahw_macro.paraContent, mishnahw_att.global.attributes, empty
   }
@@ -1942,14 +1942,14 @@ mishnahw_hi =
   
   ## (highlighted) marks a word or phrase as graphically distinct from the
   ##         surrounding text, for reasons concerning which no claim is
-  ##         made. 
+  ##         made.  [3.3.2.2.  3.3.2. ]
   element hi {
     mishnahw_macro.paraContent, mishnahw_att.global.attributes, empty
   }
 mishnahw_distinct =
   
   ## identifies any word or phrase which is regarded as linguistically distinct, for example as
-  ##         archaic, technical, dialectal, non-preferred, etc., or as forming part of a sublanguage. 
+  ##         archaic, technical, dialectal, non-preferred, etc., or as forming part of a sublanguage.  [3.3.2.3. ]
   element distinct {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -1971,7 +1971,7 @@ mishnahw_distinct =
 mishnahw_said =
   
   ## (speech or thought) indicates passages thought or spoken aloud, whether explicitly indicated in the source or
-  ##     not, whether directly or indirectly reported, whether by real people or fictional characters.
+  ##     not, whether directly or indirectly reported, whether by real people or fictional characters. [3.3.3. ]
   element said {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -1991,7 +1991,7 @@ mishnahw_said =
 mishnahw_quote =
   
   ## (quotation) contains a phrase or passage attributed by the narrator or author to some agency external
-  ##         to the text.
+  ##         to the text. [3.3.3.  4.3.1. ]
   element quote {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -2004,7 +2004,7 @@ mishnahw_q =
   ## (separated from the surrounding text with quotation marks) contains material which is marked as (ostensibly) being somehow different than the
   ##     surrounding text, for any one of a variety of reasons including, but not limited to: direct
   ##     speech or thought, technical terms or jargon, authorial distance, quotations from elsewhere, and
-  ##     passages that are mentioned but not used.
+  ##     passages that are mentioned but not used. [3.3.3. ]
   element q {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -2049,7 +2049,7 @@ mishnahw_cit =
   
   ## (cited quotation) contains a quotation from some other document, together with a bibliographic reference to
   ##     its source. In a dictionary it may contain an example text with at least one occurrence of the
-  ##     word form, used in the sense being described, or a translation of the headword, or an example. 
+  ##     word form, used in the sense being described, or a translation of the headword, or an example.  [3.3.3.  4.3.1.  9.3.5.1. ]
   element cit {
     (mishnahw_model.qLike
      | mishnahw_model.egLike
@@ -2063,21 +2063,21 @@ mishnahw_cit =
   }
 mishnahw_mentioned =
   
-  ## marks words or phrases mentioned, not used.
+  ## marks words or phrases mentioned, not used. [3.3.4. ]
   element mentioned {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_soCalled =
   
   ## contains a word or phrase for which the author or narrator indicates a disclaiming of
-  ##     responsibility, for example by the use of scare quotes or italics.
+  ##     responsibility, for example by the use of scare quotes or italics. [3.3.3. ]
   element soCalled {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_desc =
   
   ## (description) contains a brief description of the object documented by its parent element, including its
-  ##     intended usage, purpose, or application where this is appropriate.
+  ##     intended usage, purpose, or application where this is appropriate. [22.4.4.  22.4.5.  22.4.6.  22.4.7. ]
   element desc {
     mishnahw_macro.limitedContent,
     mishnahw_att.global.attributes,
@@ -2087,7 +2087,7 @@ mishnahw_desc =
 mishnahw_gloss =
   
   ## identifies a phrase or word used to provide a gloss or definition for some other word or
-  ##     phrase.
+  ##     phrase. [3.3.4. ]
   element gloss {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2104,7 +2104,7 @@ mishnahw_gloss =
 mishnahw_term =
   
   ## contains a single-word, multi-word, or symbolic designation which is regarded as a technical
-  ##     term.
+  ##     term. [3.3.4. ]
   element term {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2122,7 +2122,7 @@ mishnahw_term =
 mishnahw_sic =
   
   ## (latin for thus or so
-  ##   ) contains text reproduced although apparently incorrect or inaccurate.
+  ##   ) contains text reproduced although apparently incorrect or inaccurate. [3.4.1. ]
   element sic {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2131,7 +2131,7 @@ mishnahw_sic =
   }
 mishnahw_corr =
   
-  ## (correction) contains the correct form of a passage apparently erroneous in the copy text.
+  ## (correction) contains the correct form of a passage apparently erroneous in the copy text. [3.4.1. ]
   element corr {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2142,7 +2142,7 @@ mishnahw_corr =
 mishnahw_choice =
   
   ## groups a number of alternative encodings for the same point in
-  ##         a text.
+  ##         a text. [3.4. ]
   element choice {
     (mishnahw_model.choicePart | mishnahw_choice)*,
     mishnahw_att.global.attributes,
@@ -2150,7 +2150,7 @@ mishnahw_choice =
   }
 mishnahw_reg =
   
-  ## (regularization) contains a reading which has been regularized or normalized in some sense.
+  ## (regularization) contains a reading which has been regularized or normalized in some sense. [3.4.2.  12. ]
   element reg {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2161,7 +2161,7 @@ mishnahw_reg =
 mishnahw_orig =
   
   ## (original form) contains a reading which is marked as following the original, rather than being normalized
-  ##         or corrected.
+  ##         or corrected. [3.4.2.  12. ]
   element orig {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2172,7 +2172,7 @@ mishnahw_gap =
   
   ## (gap) indicates a point where material has been omitted in a transcription, whether for editorial
   ##     reasons described in the TEI header, as part of sampling practice, or because the material is
-  ##     illegible, invisible, or inaudible.
+  ##     illegible, invisible, or inaudible. [3.4.3. ]
   element gap {
     mishnahw_model.glossLike*,
     
@@ -2209,7 +2209,7 @@ mishnahw_gap =
 mishnahw_add =
   
   ## (addition) contains letters, words, or phrases inserted in the text by an
-  ##         author, scribe, annotator, or corrector.
+  ##         author, scribe, annotator, or corrector. [3.4.3. ]
   element add {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2221,7 +2221,7 @@ mishnahw_add =
 mishnahw_del =
   
   ## (deletion) contains a letter, word, or passage deleted, marked as deleted, or otherwise indicated as
-  ##     superfluous or spurious in the copy text by an author, scribe, annotator, or corrector.
+  ##     superfluous or spurious in the copy text by an author, scribe, annotator, or corrector. [3.4.3. ]
   element del {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2232,7 +2232,7 @@ mishnahw_del =
 mishnahw_unclear =
   
   ## contains a word, phrase, or passage which cannot be transcribed with certainty because it
-  ##         is illegible or inaudible in the source.
+  ##         is illegible or inaudible in the source. [11.3.3.1.  3.4.3. ]
   element unclear {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2255,7 +2255,7 @@ mishnahw_unclear =
   }
 mishnahw_name =
   
-  ## (name, proper noun) contains a proper noun or noun phrase.
+  ## (name, proper noun) contains a proper noun or noun phrase. [3.5.1. ]
   element name {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2265,7 +2265,7 @@ mishnahw_name =
   }
 mishnahw_rs =
   
-  ## (referencing string) contains a general purpose name or referring string.
+  ## (referencing string) contains a general purpose name or referring string. [13.2.1.  3.5.1. ]
   element rs {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2280,14 +2280,14 @@ mishnahw_email =
   
   ## (electronic mail address) contains an e-mail address identifying a location to which
   ##         e-mail messages can be delivered.
-  ##     
+  ##      [3.5.2. ]
   element email {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_address =
   
   ## contains a postal  address, for example of a
-  ##         publisher, an organization, or an individual.
+  ##         publisher, an organization, or an individual. [3.5.2.  2.2.4.  3.11.2.3. ]
   element address {
     (mishnahw_model.global*,
      (mishnahw_model.addrPart, mishnahw_model.global*)+),
@@ -2296,7 +2296,7 @@ mishnahw_address =
   }
 mishnahw_addrLine =
   
-  ## (address line) contains one line of a postal address.
+  ## (address line) contains one line of a postal address. [3.5.2.  2.2.4.  3.11.2.3. ]
   element addrLine {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
@@ -2304,23 +2304,23 @@ mishnahw_street =
   
   ## a full street address including any name or number identifying a
   ##         building as well as the name of the street or route on which it is
-  ##         located.
+  ##         located. [3.5.2. ]
   element street {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_postCode =
   
   ## (postal code) contains a numerical or alphanumeric code used as part of a postal address to simplify
-  ##         sorting or delivery of mail. 
+  ##         sorting or delivery of mail.  [3.5.2. ]
   element postCode { text, mishnahw_att.global.attributes, empty }
 mishnahw_postBox =
   
   ## (postal box or post office box) contains a number or other identifier for some postal delivery point other than a street
-  ##     address. 
+  ##     address.  [3.5.2. ]
   element postBox { text, mishnahw_att.global.attributes, empty }
 mishnahw_num =
   
-  ## (number) contains a number, written in any form.
+  ## (number) contains a number, written in any form. [3.5.3. ]
   element num {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2351,7 +2351,7 @@ mishnahw_num =
 mishnahw_measure =
   
   ## contains a word or phrase referring to some quantity of an object or commodity, usually
-  ##         comprising a number, a unit, and a commodity name.
+  ##         comprising a number, a unit, and a commodity name. [3.5.3. ]
   element measure {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2364,7 +2364,7 @@ mishnahw_measure =
 mishnahw_measureGrp =
   
   ## (measure group) contains a group of dimensional specifications which relate to the same object, for example
-  ##     the height and width of a manuscript page.
+  ##     the height and width of a manuscript page. [10.3.4. ]
   element measureGrp {
     (text | mishnahw_model.gLike | mishnahw_model.measureLike)*,
     mishnahw_att.global.attributes,
@@ -2374,7 +2374,7 @@ mishnahw_measureGrp =
   }
 mishnahw_date =
   
-  ## contains a date in any format.
+  ## contains a date in any format. [3.5.4.  2.2.4.  2.5.  3.11.2.3.  15.2.3.  13.3.6. ]
   element date {
     (text
      | mishnahw_model.gLike
@@ -2388,7 +2388,7 @@ mishnahw_date =
   }
 mishnahw_time =
   
-  ## contains a phrase defining a time of day in any format.
+  ## contains a phrase defining a time of day in any format. [3.5.4. ]
   element time {
     (text
      | mishnahw_model.gLike
@@ -2402,7 +2402,7 @@ mishnahw_time =
   }
 mishnahw_abbr =
   
-  ## (abbreviation) contains an abbreviation of any sort.
+  ## (abbreviation) contains an abbreviation of any sort. [3.5.5. ]
   element abbr {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2416,7 +2416,7 @@ mishnahw_abbr =
   }
 mishnahw_expan =
   
-  ## (expansion) contains the expansion of an abbreviation.
+  ## (expansion) contains the expansion of an abbreviation. [3.5.5. ]
   element expan {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2425,7 +2425,7 @@ mishnahw_expan =
   }
 mishnahw_ptr =
   
-  ## (pointer) defines a pointer to another location.
+  ## (pointer) defines a pointer to another location. [3.6.  16.1. ]
   element ptr {
     empty
     >> sch:pattern [
@@ -2462,7 +2462,7 @@ mishnahw_ptr =
   }
 mishnahw_ref =
   
-  ## (reference) defines a reference to another location, possibly modified by additional text or comment.
+  ## (reference) defines a reference to another location, possibly modified by additional text or comment. [3.6.  16.1. ]
   element ref {
     mishnahw_macro.paraContent
     >> sch:pattern [
@@ -2499,7 +2499,7 @@ mishnahw_ref =
   }
 mishnahw_list =
   
-  ## (list) contains any sequence of items organized as a list.
+  ## (list) contains any sequence of items organized as a list. [3.7. ]
   element list {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((mishnahw_item, mishnahw_model.global*)+
@@ -2536,7 +2536,7 @@ mishnahw_list =
   }
 mishnahw_item =
   
-  ## contains one component of a list.
+  ## contains one component of a list. [3.7.  2.5. ]
   element item {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -2546,14 +2546,14 @@ mishnahw_item =
 mishnahw_label =
   
   ## contains any label or heading used to identify part of a text,
-  ##   typically but not exclusively in a list or glossary.
+  ##   typically but not exclusively in a list or glossary. [3.7. ]
   element label {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_head =
   
   ## (heading) contains any type of heading, for example the title of a section, or the heading of a list,
-  ##     glossary, manuscript description, etc.
+  ##     glossary, manuscript description, etc. [4.2.1. ]
   element head {
     (text
      | mishnahw_lg
@@ -2569,20 +2569,20 @@ mishnahw_head =
 mishnahw_headLabel =
   
   ## (heading for list labels) contains the heading for the label or term column in a glossary list or similar structured
-  ##         list.
+  ##         list. [3.7. ]
   element headLabel {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_headItem =
   
   ## (heading for list items) contains the heading for the item or gloss column in a glossary list or similar structured
-  ##         list.
+  ##         list. [3.7. ]
   element headItem {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_note =
   
-  ## contains a note or annotation.
+  ## contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.6.  9.3.5.4. ]
   element note {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -2604,7 +2604,7 @@ mishnahw_note =
   }
 mishnahw_index =
   
-  ## (index entry) marks a location to be indexed for whatever purpose.
+  ## (index entry) marks a location to be indexed for whatever purpose. [3.8.2. ]
   element index {
     (mishnahw_term, mishnahw_index?)*,
     mishnahw_att.global.attributes,
@@ -2616,7 +2616,7 @@ mishnahw_index =
   }
 mishnahw_graphic =
   
-  ## indicates the location of an inline graphic, illustration, or figure.
+  ## indicates the location of an inline graphic, illustration, or figure. [3.9. ]
   element graphic {
     mishnahw_model.glossLike*,
     mishnahw_att.global.attributes,
@@ -2664,7 +2664,7 @@ mishnahw_milestone =
   
   ## marks a boundary point separating any kind of section of a text, typically but not
   ##     necessarily indicating a point at which some part of a standard reference system changes, where
-  ##     the change is not represented by a structural element.
+  ##     the change is not represented by a structural element. [3.10.3. ]
   element milestone {
     empty,
     mishnahw_att.global.attributes,
@@ -2722,7 +2722,7 @@ mishnahw_milestone =
 mishnahw_gb =
   
   ##  (gathering begins) marks the point in a transcribed codex at which a new
-  ##   gathering or quire begins.
+  ##   gathering or quire begins. [3.10.3. ]
   element gb {
     empty,
     mishnahw_att.global.attributes,
@@ -2733,7 +2733,7 @@ mishnahw_gb =
   }
 mishnahw_pb =
   
-  ## (page break) marks the boundary between one page of a text and the next in a standard reference system.
+  ## (page break) marks the boundary between one page of a text and the next in a standard reference system. [3.10.3. ]
   element pb {
     empty,
     mishnahw_att.global.attributes,
@@ -2745,7 +2745,7 @@ mishnahw_pb =
   }
 mishnahw_lb =
   
-  ## (line break) marks the start of a new (typographic) line in some edition or version of a text.
+  ## (line break) marks the start of a new (typographic) line in some edition or version of a text. [3.10.3.  7.2.5. ]
   element lb {
     empty,
     mishnahw_att.global.attributes,
@@ -2758,7 +2758,7 @@ mishnahw_lb =
 mishnahw_cb =
   
   ## (column break) marks the boundary between one column of a text and the next
-  ##         in a standard reference system.
+  ##         in a standard reference system. [3.10.3. ]
   element cb {
     empty,
     mishnahw_att.global.attributes,
@@ -2771,7 +2771,7 @@ mishnahw_cb =
 mishnahw_analytic =
   
   ## (analytic level) contains bibliographic elements describing an item (e.g. an article or poem) published
-  ##     within a monograph or journal and not as an independent publication.
+  ##     within a monograph or journal and not as an independent publication. [3.11.2.1. ]
   element analytic {
     (mishnahw_author
      | mishnahw_editor
@@ -2787,7 +2787,7 @@ mishnahw_analytic =
 mishnahw_monogr =
   
   ## (monographic level) contains bibliographic elements describing an item (e.g. a book or journal) published as an
-  ##     independent item (i.e. as a separate physical object).
+  ##     independent item (i.e. as a separate physical object). [3.11.2.1. ]
   element monogr {
     ((((mishnahw_author | mishnahw_editor | mishnahw_respStmt),
        (mishnahw_author | mishnahw_editor | mishnahw_respStmt)*,
@@ -2813,7 +2813,7 @@ mishnahw_monogr =
 mishnahw_series =
   
   ## (series information) contains information about the series in which a book or other bibliographic item has
-  ##     appeared.
+  ##     appeared. [3.11.2.1. ]
   element series {
     (text
      | mishnahw_model.gLike
@@ -2832,7 +2832,7 @@ mishnahw_author =
   
   ## in a bibliographic reference, contains the name(s) of an
   ##   author, personal or corporate, of a work; for example in the same
-  ##   form as that provided by a recognized bibliographic name authority. 
+  ##   form as that provided by a recognized bibliographic name authority.  [3.11.2.2.  2.2.1. ]
   element author {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2843,7 +2843,7 @@ mishnahw_editor =
   
   ## secondary statement of responsibility for a bibliographic item, for example the name of an
   ##     individual, institution or organization, (or of several such) acting as editor, compiler,
-  ##     translator, etc. 
+  ##     translator, etc.  [3.11.2.2. ]
   element editor {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2855,7 +2855,7 @@ mishnahw_respStmt =
   ## (statement of responsibility) supplies a statement of responsibility for the intellectual content of a text, edition,
   ##     recording, or series, where the specialized elements for authors, editors, etc. do not suffice
   ##     or do not apply. May also be used to encode information about individuals or organizations 
-  ##     which have played a role in the production or distribution of a bibliographic work.
+  ##     which have played a role in the production or distribution of a bibliographic work. [3.11.2.2.  2.2.1.  2.2.2.  2.2.5. ]
   element respStmt {
     ((mishnahw_resp+, mishnahw_model.nameLike.agent+)
      | (mishnahw_model.nameLike.agent+, mishnahw_resp+)),
@@ -2865,7 +2865,7 @@ mishnahw_respStmt =
 mishnahw_resp =
   
   ## (responsibility) contains a phrase describing the nature of a person's intellectual responsibility, or an organization's role 
-  ##     in the production or distribution of a work.
+  ##     in the production or distribution of a work. [3.11.2.2.  2.2.1.  2.2.2.  2.2.5. ]
   element resp {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -2874,7 +2874,7 @@ mishnahw_resp =
   }
 mishnahw_title =
   
-  ## contains a title for any kind of work.
+  ## contains a title for any kind of work. [3.11.2.2.  2.2.1.  2.2.5. ]
   element title {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -2916,14 +2916,14 @@ mishnahw_meeting =
   
   ## contains the formalized descriptive title for a meeting or conference, for use in a
   ##     bibliographic description for an item derived from such a meeting, or as a heading or preamble
-  ##     to publications emanating from it.
+  ##     to publications emanating from it. [3.11.2.2. ]
   element meeting {
     mishnahw_macro.limitedContent, mishnahw_att.global.attributes, empty
   }
 mishnahw_imprint =
   
   ## groups information relating to the publication or distribution
-  ##         of a bibliographic item.
+  ##         of a bibliographic item. [3.11.2.3. ]
   element imprint {
     ((mishnahw_model.imprintPart | mishnahw_model.dateLike),
      mishnahw_respStmt*,
@@ -2934,14 +2934,14 @@ mishnahw_imprint =
 mishnahw_publisher =
   
   ## provides the name of the organization responsible for the publication or distribution of a
-  ##         bibliographic item.
+  ##         bibliographic item. [3.11.2.3.  2.2.4. ]
   element publisher {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_biblScope =
   
   ## (scope of citation) defines the scope of a bibliographic reference, for example as a
-  ##         list of page numbers, or a named subdivision of a larger work.
+  ##         list of page numbers, or a named subdivision of a larger work. [3.11.2.3. ]
   element biblScope {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2982,7 +2982,7 @@ mishnahw_biblScope =
   }
 mishnahw_pubPlace =
   
-  ## (publication place) contains the name of the place where a bibliographic item was published.
+  ## (publication place) contains the name of the place where a bibliographic item was published. [3.11.2.3. ]
   element pubPlace {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -2992,7 +2992,7 @@ mishnahw_pubPlace =
 mishnahw_bibl =
   
   ## (bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may
-  ##     not be explicitly tagged. 
+  ##     not be explicitly tagged.  [3.11.1.  2.2.7.  15.3.2. ]
   element bibl {
     (text
      | mishnahw_model.gLike
@@ -3012,7 +3012,7 @@ mishnahw_bibl =
 mishnahw_biblStruct =
   
   ## (structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements
-  ##     appear and in a specified order. 
+  ##     appear and in a specified order.  [3.11.1.  2.2.7.  15.3.2. ]
   element biblStruct {
     (mishnahw_analytic*,
      (mishnahw_monogr, mishnahw_series*)+,
@@ -3025,7 +3025,7 @@ mishnahw_biblStruct =
   }
 mishnahw_listBibl =
   
-  ## (citation list) contains a list of bibliographic citations of any kind. 
+  ## (citation list) contains a list of bibliographic citations of any kind.  [3.11.1.  2.2.7.  15.3.2. ]
   element listBibl {
     (mishnahw_model.headLike*,
      (mishnahw_model.biblLike
@@ -3040,7 +3040,7 @@ mishnahw_listBibl =
 mishnahw_relatedItem =
   
   ## contains or references some other bibliographic item which is related to the present one in
-  ##     some specified manner, for example as a constituent or alternative version of it.
+  ##     some specified manner, for example as a constituent or alternative version of it. [3.11.2.5. ]
   element relatedItem {
     ((mishnahw_model.biblLike | mishnahw_model.ptrLike)?)
     >> sch:pattern [
@@ -3091,7 +3091,7 @@ mishnahw_relatedItem =
   }
 mishnahw_l =
   
-  ## (verse line) contains a single, possibly incomplete, line of verse.
+  ## (verse line) contains a single, possibly incomplete, line of verse. [3.12.1.  3.12.  7.2.5. ]
   element l {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -3120,7 +3120,7 @@ mishnahw_l =
 mishnahw_lg =
   
   ## (line group) contains a group of verse lines functioning as a formal unit, e.g. a stanza, refrain,
-  ##         verse paragraph, etc.
+  ##         verse paragraph, etc. [3.12.1.  3.12.  7.2.5. ]
   element lg {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      (mishnahw_model.lLike
@@ -3142,7 +3142,7 @@ mishnahw_lg =
 mishnahw_sp =
   
   ## (speech) An individual speech in a performance text, or a passage presented as such in a prose or
-  ##     verse text.
+  ##     verse text. [3.12.2.  3.12.  7.2.2. ]
   element sp {
     (mishnahw_model.global*,
      (mishnahw_speaker, mishnahw_model.global*)?,
@@ -3160,13 +3160,13 @@ mishnahw_sp =
 mishnahw_speaker =
   
   ## A specialized form of heading or label, giving the name of one or more speakers in a
-  ##         dramatic text or fragment.
+  ##         dramatic text or fragment. [3.12.2. ]
   element speaker {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_stage =
   
-  ## (stage direction) contains any kind of stage direction within a dramatic text or fragment.
+  ## (stage direction) contains any kind of stage direction within a dramatic text or fragment. [3.12.2.  3.12.  7.2.4. ]
   element stage {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -3208,7 +3208,7 @@ mishnahw_stage =
 mishnahw_teiCorpus =
   
   ## contains the whole of a TEI encoded corpus, comprising a single corpus header and one or
-  ##     more TEI elements, each containing a single text header and a text.
+  ##     more TEI elements, each containing a single text header and a text. [4.  15.1. ]
   element teiCorpus {
     (mishnahw_teiHeader, (mishnahw_TEI | mishnahw_teiCorpus)+),
     mishnahw_att.global.attributes,
@@ -3221,7 +3221,7 @@ mishnahw_teiCorpus =
 mishnahw_divGen =
   
   ## (automatically generated text division) indicates the location at which a textual division generated
-  ##         automatically by a text-processing application is to appear.
+  ##         automatically by a text-processing application is to appear. [3.8.2. ]
   element divGen {
     mishnahw_model.headLike*,
     mishnahw_att.global.attributes,
@@ -3235,7 +3235,7 @@ mishnahw_divGen =
 mishnahw_textLang =
   
   ## (text language) describes the languages and writing systems identified within the bibliographic work  
-  ##   being described, rather than its description. 
+  ##   being described, rather than its description.  [3.11.2.3.  10.6.6. ]
   element textLang {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -3252,7 +3252,7 @@ mishnahw_textLang =
 mishnahw_teiHeader =
   
   ## (TEI Header) supplies the descriptive and declarative information making up an electronic title page
-  ##     prefixed to every TEI-conformant text.
+  ##     prefixed to every TEI-conformant text. [2.1.1.  15.1. ]
   element teiHeader {
     (mishnahw_fileDesc, mishnahw_encodingDesc, mishnahw_revisionDesc),
     
@@ -3266,7 +3266,7 @@ mishnahw_teiHeader =
   }
 mishnahw_fileDesc =
   
-  ## (file description) contains a full bibliographic description of an electronic file.
+  ## (file description) contains a full bibliographic description of an electronic file. [2.2.  2.1.1. ]
   element fileDesc {
     (mishnahw_titleStmt,
      mishnahw_editionStmt?,
@@ -3279,7 +3279,7 @@ mishnahw_fileDesc =
 mishnahw_titleStmt =
   
   ## (title statement) groups information about the title of a work and those responsible for its intellectual
-  ##     content.
+  ##     content. [2.2.1.  2.2. ]
   element titleStmt {
     mishnahw_title+,
     mishnahw_model.respLike+,
@@ -3288,7 +3288,7 @@ mishnahw_titleStmt =
   }
 mishnahw_sponsor =
   
-  ## specifies the name of a sponsoring organization or institution.
+  ## specifies the name of a sponsoring organization or institution. [2.2.1. ]
   element sponsor {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -3297,7 +3297,7 @@ mishnahw_sponsor =
 mishnahw_funder =
   
   ## (funding body) specifies the name of an individual, institution, or organization responsible for the
-  ##     funding of a project or text.
+  ##     funding of a project or text. [2.2.1. ]
   element funder {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -3306,7 +3306,7 @@ mishnahw_funder =
 mishnahw_principal =
   
   ## (principal researcher) supplies the name of the principal researcher responsible for the
-  ## creation of an electronic text.
+  ## creation of an electronic text. [2.2.1. ]
   element principal {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -3314,7 +3314,7 @@ mishnahw_principal =
   }
 mishnahw_editionStmt =
   
-  ## (edition statement) groups information relating to one edition of a text.
+  ## (edition statement) groups information relating to one edition of a text. [2.2.2.  2.2. ]
   element editionStmt {
     (mishnahw_model.pLike+ | (mishnahw_edition, mishnahw_respStmt*)),
     mishnahw_att.global.attributes,
@@ -3322,21 +3322,21 @@ mishnahw_editionStmt =
   }
 mishnahw_edition =
   
-  ## (edition) describes the particularities of one edition of a text.
+  ## (edition) describes the particularities of one edition of a text. [2.2.2. ]
   element edition {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_extent =
   
   ## describes the approximate size of a text as stored on some carrier medium, whether digital
-  ##     or non-digital, specified in any convenient units.
+  ##     or non-digital, specified in any convenient units. [2.2.3.  2.2.  3.11.2.3. ]
   element extent {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_publicationStmt =
   
   ## (publication statement) groups information concerning the publication or distribution of an electronic or other
-  ##     text. 
+  ##     text.  [2.2.4.  2.2. ]
   element publicationStmt {
     (mishnahw_model.publicationStmtPart+)
     >> sch:pattern [
@@ -3453,7 +3453,7 @@ mishnahw_idno =
   
   ## (identifier) supplies any form of identifier used to identify some object,
   ##   such as a bibliographic item, a person, a title, an organization,
-  ##   etc. in a standardized way.
+  ##   etc. in a standardized way. [2.2.4.  2.2.5.  3.11.2.3. ]
   element idno {
     mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
@@ -3467,7 +3467,7 @@ mishnahw_idno =
 mishnahw_availability =
   
   ## supplies information about the availability of a text, for example any restrictions on its
-  ##     use or distribution, its copyright status, any licence applying to it, etc.
+  ##     use or distribution, its copyright status, any licence applying to it, etc. [2.2.4. ]
   element availability {
     mishnahw_model.availabilityPart+,
     mishnahw_att.global.attributes,
@@ -3491,7 +3491,7 @@ mishnahw_availability =
 mishnahw_licence =
   
   ## contains information about a licence or other legal agreement
-  ##   applicable to the text.
+  ##   applicable to the text. [2.2.4. ]
   element licence {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -3501,7 +3501,7 @@ mishnahw_licence =
   }
 mishnahw_seriesStmt =
   
-  ## (series statement) groups information about the series, if any, to which a publication belongs.
+  ## (series statement) groups information about the series, if any, to which a publication belongs. [2.2.5.  2.2. ]
   element seriesStmt {
     (mishnahw_model.pLike+
      | (mishnahw_title+,
@@ -3513,7 +3513,7 @@ mishnahw_seriesStmt =
 mishnahw_notesStmt =
   
   ## (notes statement) collects together any notes providing information about a text additional to that recorded
-  ##     in other parts of the bibliographic description.
+  ##     in other parts of the bibliographic description. [2.2.6.  2.2. ]
   element notesStmt {
     (mishnahw_model.noteLike+)
     >> sch:pattern [
@@ -3526,8 +3526,8 @@ mishnahw_notesStmt =
            "               "
            sch:assert [
              test = "tei:note/tei:p"
-             "The notesStmt is provided as\x{a}" ~
-             "                                    a convenience to permit a prose description of the physical\x{a}" ~
+             "The notesStmt is provided as a\x{a}" ~
+             "                                    convenience to permit a prose description of the physical\x{a}" ~
              "                                    manuscript. Please also complete the structured elements for\x{a}" ~
              "                                    manuscript description within sourceDesc "
            ]
@@ -3544,9 +3544,9 @@ mishnahw_sourceDesc =
   
   ## (source description) describes the source from which an electronic text was derived or generated, typically a
   ##     bibliographic description in the case of a digitized text, or a phrase such as "born digital"
-  ##     for a text which has no previous existence.
+  ##     for a text which has no previous existence. [2.2.7. ]
   element sourceDesc {
-    mishnahw_msDesc+,
+    (mishnahw_model.biblLike | mishnahw_msDesc)+,
     mishnahw_att.global.attributes,
     mishnahw_att.declarable.attributes,
     empty
@@ -3554,7 +3554,7 @@ mishnahw_sourceDesc =
 mishnahw_biblFull =
   
   ## (fully-structured bibliographic citation) contains a fully-structured bibliographic citation, in which all components of the TEI file
-  ##     description are present.
+  ##     description are present. [3.11.1.  2.2.  2.2.7.  15.3.2. ]
   element biblFull {
     ((mishnahw_titleStmt,
       mishnahw_editionStmt?,
@@ -3571,7 +3571,7 @@ mishnahw_biblFull =
 mishnahw_encodingDesc =
   
   ## (encoding description) documents the relationship between an electronic text and the
-  ## source or sources from which it was derived.
+  ## source or sources from which it was derived. [2.3.  2.1.1. ]
   element encodingDesc {
     mishnahw_editorialDecl?,
     mishnahw_tagsDecl,
@@ -3583,7 +3583,7 @@ mishnahw_projectDesc =
   
   ## (project description) describes in detail the aim or purpose for which an electronic file was encoded, together
   ##     with any other relevant information concerning the process by which it was assembled or
-  ##     collected.
+  ##     collected. [2.3.1.  2.3.  15.3.2. ]
   element projectDesc {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3593,7 +3593,7 @@ mishnahw_projectDesc =
 mishnahw_editorialDecl =
   
   ## (editorial practice declaration) provides details of editorial principles and practices applied
-  ## during the encoding of a text.
+  ## during the encoding of a text. [2.3.3.  2.3.  15.3.2. ]
   element editorialDecl {
     (mishnahw_model.pLike | mishnahw_model.editorialDeclPart)+,
     mishnahw_att.global.attributes,
@@ -3602,7 +3602,7 @@ mishnahw_editorialDecl =
   }
 mishnahw_correction =
   
-  ## (correction principles) states how and under what circumstances corrections have been made in the text.
+  ## (correction principles) states how and under what circumstances corrections have been made in the text. [2.3.3.  15.3.2. ]
   element correction {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3640,7 +3640,7 @@ mishnahw_correction =
 mishnahw_normalization =
   
   ## indicates the extent of normalization or regularization of the original source carried out
-  ##     in converting it to electronic form.
+  ##     in converting it to electronic form. [2.3.3.  15.3.2. ]
   element normalization {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3663,7 +3663,7 @@ mishnahw_normalization =
   }
 mishnahw_quotation =
   
-  ## specifies editorial practice adopted with respect to quotation marks in the original. 
+  ## specifies editorial practice adopted with respect to quotation marks in the original.  [2.3.3.  15.3.2. ]
   element quotation {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3690,7 +3690,7 @@ mishnahw_quotation =
 mishnahw_hyphenation =
   
   ## summarizes the way in which hyphenation in a source text has been treated in an encoded
-  ##     version of it.
+  ##     version of it. [2.3.3.  15.3.2. ]
   element hyphenation {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3720,7 +3720,7 @@ mishnahw_hyphenation =
 mishnahw_segmentation =
   
   ## describes the principles according to which the text has been segmented, for example into
-  ##     sentences, tone-units, graphemic strata, etc.
+  ##     sentences, tone-units, graphemic strata, etc. [2.3.3.  15.3.2. ]
   element segmentation {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3729,7 +3729,7 @@ mishnahw_segmentation =
   }
 mishnahw_stdVals =
   
-  ## (standard values) specifies the format used when standardized date or number values are supplied.
+  ## (standard values) specifies the format used when standardized date or number values are supplied. [2.3.3.  15.3.2. ]
   element stdVals {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3739,7 +3739,7 @@ mishnahw_stdVals =
 mishnahw_interpretation =
   
   ## describes the scope of any analytic or interpretive information added to the text in
-  ##     addition to the transcription. 
+  ##     addition to the transcription.  [2.3.3. ]
   element interpretation {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -3748,7 +3748,7 @@ mishnahw_interpretation =
   }
 mishnahw_tagsDecl =
   
-  ## (tagging declaration) provides detailed information about the tagging applied to a document.
+  ## (tagging declaration) provides detailed information about the tagging applied to a document. [2.3.4.  2.3. ]
   element tagsDecl {
     (mishnahw_rendition*, mishnahw_namespace*),
     mishnahw_att.global.attributes,
@@ -3756,7 +3756,7 @@ mishnahw_tagsDecl =
   }
 mishnahw_tagUsage =
   
-  ## supplies information about the usage of a specific element within a text. 
+  ## supplies information about the usage of a specific element within a text.  [2.3.4. ]
   element tagUsage {
     mishnahw_macro.limitedContent,
     mishnahw_att.global.attributes,
@@ -3779,7 +3779,7 @@ mishnahw_tagUsage =
 mishnahw_namespace =
   
   ## supplies the formal name of the namespace to which the elements documented by its children
-  ##     belong. 
+  ##     belong.  [2.3.4. ]
   element namespace {
     mishnahw_tagUsage+,
     mishnahw_att.global.attributes,
@@ -3791,7 +3791,7 @@ mishnahw_namespace =
 mishnahw_rendition =
   
   ## supplies information about the rendition or appearance of one or more elements in the source
-  ##     text.
+  ##     text. [2.3.4. ]
   element rendition {
     mishnahw_macro.limitedContent,
     mishnahw_att.global.attributes,
@@ -3821,7 +3821,7 @@ mishnahw_rendition =
 mishnahw_refsDecl =
   
   ## (references declaration) specifies how canonical references are constructed for this
-  ##   text.
+  ##   text. [2.3.5.3.  2.3.  2.3.5. ]
   element refsDecl {
     (mishnahw_model.pLike+
      | mishnahw_cRefPattern+
@@ -3833,7 +3833,7 @@ mishnahw_refsDecl =
 mishnahw_cRefPattern =
   
   ## (canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into
-  ##     a URI. 
+  ##     a URI.  [2.3.5.3.  2.3.5.  2.3.5.2. ]
   element cRefPattern {
     mishnahw_model.pLike*,
     mishnahw_att.global.attributes,
@@ -3849,7 +3849,7 @@ mishnahw_cRefPattern =
   }
 mishnahw_refState =
   
-  ## (reference state) specifies one component of a canonical reference defined by the milestone method.
+  ## (reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.5.3.  2.3.5. ]
   element refState {
     empty,
     mishnahw_att.global.attributes,
@@ -3904,14 +3904,14 @@ mishnahw_refState =
 mishnahw_classDecl =
   
   ## (classification declarations) contains one or more taxonomies defining any classificatory
-  ## codes used elsewhere in the text.
+  ## codes used elsewhere in the text. [2.3.6.  2.3. ]
   element classDecl {
     mishnahw_taxonomy+, mishnahw_att.global.attributes, empty
   }
 mishnahw_taxonomy =
   
   ## defines a typology either implicitly, by means of a bibliographic
-  ##     citation, or explicitly by a structured taxonomy.
+  ##     citation, or explicitly by a structured taxonomy. [2.3.6. ]
   element taxonomy {
     (mishnahw_model.glossLike*
      | mishnahw_category+
@@ -3922,7 +3922,7 @@ mishnahw_taxonomy =
 mishnahw_category =
   
   ## contains an individual descriptive category, possibly nested within a superordinate
-  ##     category, within a user-defined taxonomy.
+  ##     category, within a user-defined taxonomy. [2.3.6. ]
   element category {
     ((mishnahw_catDesc+ | mishnahw_model.glossLike*),
      mishnahw_category*),
@@ -3932,7 +3932,7 @@ mishnahw_category =
 mishnahw_catDesc =
   
   ## (category description) describes some category within a taxonomy or text typology, either in the form of a brief
-  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc.
+  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.6. ]
   element catDesc {
     (text | mishnahw_model.limitedPhrase | mishnahw_model.catDescPart)*,
     mishnahw_att.global.attributes,
@@ -3974,7 +3974,7 @@ mishnahw_profileDesc =
   
   ## (text-profile description) provides a detailed description of non-bibliographic aspects of a text, specifically the
   ##     languages and sublanguages used, the situation in which it was produced, the participants and
-  ##     their setting.
+  ##     their setting. [2.4.  2.1.1. ]
   element profileDesc {
     mishnahw_model.profileDescPart*,
     mishnahw_att.global.attributes,
@@ -3982,7 +3982,7 @@ mishnahw_profileDesc =
   }
 mishnahw_handNote =
   
-  ## (note on hand) describes a particular style or hand distinguished within a manuscript.
+  ## (note on hand) describes a particular style or hand distinguished within a manuscript. [10.7.2. ]
   element handNote {
     mishnahw_macro.specialPara,
     mishnahw_att.global.attributes,
@@ -3991,7 +3991,7 @@ mishnahw_handNote =
   }
 mishnahw_creation =
   
-  ## contains information about the creation of a text.
+  ## contains information about the creation of a text. [2.4.1.  2.4. ]
   element creation {
     (text | mishnahw_model.limitedPhrase | mishnahw_listChange)*,
     mishnahw_att.global.attributes,
@@ -4001,7 +4001,7 @@ mishnahw_creation =
 mishnahw_langUsage =
   
   ## (language usage) describes the languages, sublanguages, registers, dialects, etc.
-  ## represented within a text.
+  ## represented within a text. [2.4.2.  2.4.  15.3.2. ]
   element langUsage {
     mishnahw_language+,
     mishnahw_att.global.attributes,
@@ -4010,7 +4010,7 @@ mishnahw_langUsage =
   }
 mishnahw_language =
   
-  ## characterizes a single language or sublanguage used within a text.
+  ## characterizes a single language or sublanguage used within a text. [2.4.2. ]
   element language {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -4029,7 +4029,7 @@ mishnahw_language =
 mishnahw_textClass =
   
   ## (text classification) groups information which describes the nature or topic of a text in terms of a standard
-  ##     classification scheme, thesaurus, etc.
+  ##     classification scheme, thesaurus, etc. [2.4.3. ]
   element textClass {
     (mishnahw_classCode | mishnahw_catRef | mishnahw_keywords)*,
     mishnahw_att.global.attributes,
@@ -4038,7 +4038,7 @@ mishnahw_textClass =
   }
 mishnahw_keywords =
   
-  ## contains a list of keywords or phrases identifying the topic or nature of a text.
+  ## contains a list of keywords or phrases identifying the topic or nature of a text. [2.4.3. ]
   element keywords {
     (mishnahw_term+ | mishnahw_list),
     mishnahw_att.global.attributes,
@@ -4050,7 +4050,7 @@ mishnahw_keywords =
   }
 mishnahw_classCode =
   
-  ## (classification code) contains the classification code used for this text in some standard classification system.
+  ## (classification code) contains the classification code used for this text in some standard classification system. [2.4.3. ]
   element classCode {
     mishnahw_macro.phraseSeq.limited,
     mishnahw_att.global.attributes,
@@ -4061,7 +4061,7 @@ mishnahw_classCode =
   }
 mishnahw_catRef =
   
-  ## (category reference) specifies one or more defined categories within some taxonomy or text typology.
+  ## (category reference) specifies one or more defined categories within some taxonomy or text typology. [2.4.3. ]
   element catRef {
     empty,
     mishnahw_att.global.attributes,
@@ -4075,13 +4075,13 @@ mishnahw_catRef =
 mishnahw_calendarDesc =
   
   ## (calendar description) contains a description of the calendar system used in any
-  ##   dating expression found in the text.
+  ##   dating expression found in the text. [2.4.  2.4.4. ]
   element calendarDesc {
     mishnahw_calendar+, mishnahw_att.global.attributes, empty
   }
 mishnahw_calendar =
   
-  ## describes a calendar or dating system used in a dating formula in the text.
+  ## describes a calendar or dating system used in a dating formula in the text. [2.4.4. ]
   element calendar {
     mishnahw_model.pLike+,
     mishnahw_att.global.attributes,
@@ -4090,7 +4090,7 @@ mishnahw_calendar =
   }
 mishnahw_revisionDesc =
   
-  ## (revision description) summarizes the revision history for a file.
+  ## (revision description) summarizes the revision history for a file. [2.5.  2.1.1. ]
   element revisionDesc {
     mishnahw_change+,
     mishnahw_att.global.attributes,
@@ -4100,7 +4100,7 @@ mishnahw_revisionDesc =
 mishnahw_change =
   
   ## documents a change or set of changes made during the production
-  ##   of a source document, or during the revision of an electronic file.
+  ##   of a source document, or during the revision of an electronic file. [2.5.  2.4.1. ]
   element change {
     mishnahw_macro.specialPara,
     mishnahw_att.ascribed.attributes,
@@ -4165,7 +4165,7 @@ mishnahw_TEI =
   
   ## (TEI document) contains a single TEI-conformant document,
   ## comprising a TEI header and a text, either in isolation or as part of a
-  ## teiCorpus element.
+  ## teiCorpus element. [4.  15.1. ]
   element TEI {
     (mishnahw_teiHeader,
      ((mishnahw_model.resourceLike+, mishnahw_text?) | mishnahw_text))
@@ -4184,7 +4184,7 @@ mishnahw_TEI =
 mishnahw_text =
   
   ## contains a single text of any kind, whether unitary or composite, for example a poem or
-  ##     drama, a collection of essays, a novel, a dictionary, or a corpus sample.
+  ##     drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4.  15.1. ]
   element text {
     (mishnahw_model.global*,
      (mishnahw_front, mishnahw_model.global*)?,
@@ -4198,7 +4198,7 @@ mishnahw_text =
   }
 mishnahw_body =
   
-  ## (text body) contains the whole body of a single unitary text, excluding any front or back matter.
+  ## (text body) contains the whole body of a single unitary text, excluding any front or back matter. [4. ]
   element body {
     (mishnahw_model.global*,
      (mishnahw_model.divTop,
@@ -4223,7 +4223,7 @@ mishnahw_group =
   
   ## contains the body of a composite text, grouping together a sequence of distinct texts (or
   ##     groups of such texts) which are regarded as a unit for some purpose, for example the collected
-  ##     works of an author, a sequence of prose essays, etc.
+  ##     works of an author, a sequence of prose essays, etc. [4.  4.3.1.  15.1. ]
   element group {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((mishnahw_text | mishnahw_group),
@@ -4236,7 +4236,7 @@ mishnahw_group =
 mishnahw_floatingText =
   
   ## contains a single text of any kind, whether unitary or composite, which interrupts the text
-  ##     containing it at any point and after which the surrounding text resumes.
+  ##     containing it at any point and after which the surrounding text resumes. [4.3.2. ]
   element floatingText {
     (mishnahw_model.global*,
      (mishnahw_front, mishnahw_model.global*)?,
@@ -4250,7 +4250,7 @@ mishnahw_floatingText =
   }
 mishnahw_div =
   
-  ## (text division) contains a subdivision of the front, body, or back of a text.
+  ## (text division) contains a subdivision of the front, body, or back of a text. [4.1. ]
   element div {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.divLike | mishnahw_model.divGenLike),
@@ -4267,7 +4267,7 @@ mishnahw_div =
   }
 mishnahw_div1 =
   
-  ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text.
+  ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. [4.1.2. ]
   element div1 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div2Like | mishnahw_model.divGenLike),
@@ -4296,7 +4296,7 @@ mishnahw_div1 =
 mishnahw_div2 =
   
   ## (level-2 text division) contains a second-level subdivision of the front, body, or back of a
-  ##  text.
+  ##  text. [4.1.2. ]
   element div2 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div3Like | mishnahw_model.divGenLike),
@@ -4324,7 +4324,7 @@ mishnahw_div2 =
   }
 mishnahw_div3 =
   
-  ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text.
+  ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. [4.1.2. ]
   element div3 {
     ((mishnahw_model.divTop | mishnahw_model.global)*,
      ((((mishnahw_model.div4Like | mishnahw_model.divGenLike),
@@ -4352,14 +4352,14 @@ mishnahw_div3 =
   }
 mishnahw_trailer =
   
-  ## contains a closing title or footer appearing at the end of a division of a text. 
+  ## contains a closing title or footer appearing at the end of a division of a text.  [4.2.4.  4.2. ]
   element trailer {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_byline =
   
   ## contains the primary statement of responsibility given for a work
-  ## on its title page or at the head or end of the work.
+  ## on its title page or at the head or end of the work. [4.2.2.  4.5. ]
   element byline {
     (text
      | mishnahw_model.gLike
@@ -4372,14 +4372,14 @@ mishnahw_byline =
 mishnahw_dateline =
   
   ## contains a brief description of the place, date, time, etc. of production of a letter,
-  ##     newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer. 
+  ##     newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  [4.2.4.  4.2.2. ]
   element dateline {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_argument =
   
   ## A formal list or prose description of the topics addressed by
-  ##	a subdivision of a text.
+  ##	a subdivision of a text. [4.2.  4.6. ]
   element argument {
     ((mishnahw_model.global | mishnahw_model.headLike)*,
      (mishnahw_model.common, mishnahw_model.global*)+),
@@ -4389,7 +4389,7 @@ mishnahw_argument =
 mishnahw_epigraph =
   
   ## contains a quotation, anonymous or attributed, appearing at
-  ##   the start or end of a section or on a title page. 
+  ##   the start or end of a section or on a title page.  [4.2.3.  4.2.  4.6. ]
   element epigraph {
     (mishnahw_model.common | mishnahw_model.global)*,
     mishnahw_att.global.attributes,
@@ -4398,7 +4398,7 @@ mishnahw_epigraph =
 mishnahw_opener =
   
   ## groups together dateline, byline, salutation, and similar phrases appearing as a preliminary
-  ##     group at the start of a division, especially of a letter.
+  ##     group at the start of a division, especially of a letter. [4.2.4.  4.2. ]
   element opener {
     (text
      | mishnahw_model.gLike
@@ -4416,7 +4416,7 @@ mishnahw_opener =
 mishnahw_closer =
   
   ## groups together salutations, datelines, and similar phrases appearing as a final group at
-  ##     the end of a division, especially of a letter.
+  ##     the end of a division, especially of a letter. [4.2.2.  4.2. ]
   element closer {
     (text
      | mishnahw_model.gLike
@@ -4431,20 +4431,20 @@ mishnahw_closer =
 mishnahw_salute =
   
   ## (salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other
-  ##     division of a text, or the salutation in the closing of a letter, preface, etc.
+  ##     division of a text, or the salutation in the closing of a letter, preface, etc. [4.2.4.  4.2.2. ]
   element salute {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_signed =
   
   ## (signature) contains the closing salutation, etc., appended to a foreword,
-  ## dedicatory epistle, or other division of a text. 
+  ## dedicatory epistle, or other division of a text.  [4.2.4.  4.2.2. ]
   element signed {
     mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
   }
 mishnahw_postscript =
   
-  ## contains a postscript, e.g. to a letter.
+  ## contains a postscript, e.g. to a letter. [4.2. ]
   element postscript {
     ((mishnahw_model.divTopPart*,
       mishnahw_model.common+,
@@ -4455,7 +4455,7 @@ mishnahw_postscript =
   }
 mishnahw_titlePage =
   
-  ## (title page) contains the title page of a text, appearing within the front or back matter. 
+  ## (title page) contains the title page of a text, appearing within the front or back matter.  [4.6. ]
   element titlePage {
     (mishnahw_model.global*,
      mishnahw_model.titlepagePart,
@@ -4469,7 +4469,7 @@ mishnahw_titlePage =
 mishnahw_docTitle =
   
   ## (document title) contains the title of a document, including all its
-  ## constituents, as given on a title page.
+  ## constituents, as given on a title page. [4.6. ]
   element docTitle {
     (mishnahw_model.global*,
      (mishnahw_titlePart, mishnahw_model.global*)+),
@@ -4480,7 +4480,7 @@ mishnahw_docTitle =
 mishnahw_titlePart =
   
   ## contains a subsection or division of the title of a work, as
-  ## indicated on a title page.
+  ## indicated on a title page. [4.6. ]
   element titlePart {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -4515,7 +4515,7 @@ mishnahw_titlePart =
 mishnahw_docAuthor =
   
   ## (document author) contains the name of the author of the document, as given on the
-  ## title page (often but not always contained in a byline).
+  ## title page (often but not always contained in a byline). [4.6. ]
   element docAuthor {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -4525,14 +4525,14 @@ mishnahw_docAuthor =
 mishnahw_imprimatur =
   
   ## contains a formal statement authorizing the publication of a work, sometimes required to
-  ##     appear on a title page or its verso.
+  ##     appear on a title page or its verso. [4.6. ]
   element imprimatur {
     mishnahw_macro.paraContent, mishnahw_att.global.attributes, empty
   }
 mishnahw_docEdition =
   
   ## (document edition) contains an edition statement as presented on a title page of a
-  ## document.
+  ## document. [4.6. ]
   element docEdition {
     mishnahw_macro.paraContent, mishnahw_att.global.attributes, empty
   }
@@ -4540,7 +4540,7 @@ mishnahw_docImprint =
   
   ## (document imprint) contains the imprint statement (place and date of publication,
   ## publisher name), as given
-  ## (usually) at the foot of a title page.
+  ## (usually) at the foot of a title page. [4.6. ]
   element docImprint {
     (text
      | mishnahw_model.gLike
@@ -4555,7 +4555,7 @@ mishnahw_docImprint =
 mishnahw_docDate =
   
   ## (document date) contains the date of a document, as given
-  ## (usually) on a title page.
+  ## (usually) on a title page. [4.6. ]
   element docDate {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -4568,7 +4568,7 @@ mishnahw_front =
   
   ## (front matter) contains any prefatory matter (headers,
   ## title page, prefaces, dedications, etc.)
-  ## found  at the start of a document, before the main body.
+  ## found  at the start of a document, before the main body. [4.6.  4. ]
   element front {
     ((mishnahw_model.frontPart
       | mishnahw_model.pLike.front
@@ -4589,7 +4589,7 @@ mishnahw_front =
   }
 mishnahw_back =
   
-  ## (back matter) contains any appendixes, etc. following the main part of a text.
+  ## (back matter) contains any appendixes, etc. following the main part of a text. [4.7.  4. ]
   element back {
     ((mishnahw_model.frontPart
       | mishnahw_model.pLike.front
@@ -4686,7 +4686,7 @@ mishnahw_att.coordinated.attribute.lry =
   attribute lry { mishnahw_data.numeric }?
 mishnahw_damage =
   
-  ## contains an area of damage to the text witness.
+  ## contains an area of damage to the text witness. [11.3.3.1. ]
   element damage {
     (text
      | mishnahw_model.pPart.editorial
@@ -4705,7 +4705,7 @@ mishnahw_am =
   
   ## (abbreviation marker) contains a sequence of letters or signs present in an
   ##   abbreviation which are omitted or replaced in the expanded form of
-  ##   the abbreviation.
+  ##   the abbreviation. [11.3.1.2. ]
   element am {
     (text
      | mishnahw_model.gLike
@@ -4717,7 +4717,7 @@ mishnahw_am =
 mishnahw_restore =
   
   ## indicates restoration of text to an earlier state by
-  ## cancellation of an editorial or authorial marking or instruction.
+  ## cancellation of an editorial or authorial marking or instruction. [11.3.1.6. ]
   element restore {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -4727,7 +4727,7 @@ mishnahw_restore =
   }
 mishnahw_space =
   
-  ## indicates the location of a significant space in the copy text.
+  ## indicates the location of a significant space in the copy text. [11.5.1. ]
   element space {
     mishnahw_model.glossLike*,
     mishnahw_att.global.attributes,
@@ -4791,7 +4791,7 @@ mishnahw_supplied =
   
   ## signifies text supplied by the transcriber or editor for any
   ##   reason, typically because the original cannot be read because of
-  ##   physical damage or loss to the original.
+  ##   physical damage or loss to the original. [11.3.3.1. ]
   element supplied {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -4806,7 +4806,7 @@ mishnahw_supplied =
 mishnahw_surplus =
   
   ## marks text present in the source which the editor believes to
-  ##   be superfluous or redundant.
+  ##   be superfluous or redundant. [11.3.3.1. ]
   element surplus {
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
@@ -4986,7 +4986,7 @@ mishnahw_att.global.linking.attribute.select =
   }?
 mishnahw_ab =
   
-  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph.
+  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. ]
   element ab {
     mishnahw_macro.paraContent,
     
@@ -5027,7 +5027,7 @@ mishnahw_ab =
   }
 mishnahw_anchor =
   
-  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element.
+  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. [8.4.2.  16.4. ]
   element anchor {
     empty,
     mishnahw_att.global.attributes,
@@ -5036,7 +5036,7 @@ mishnahw_anchor =
   }
 mishnahw_seg =
   
-  ## (arbitrary segment) represents any segmentation of text below the chunk level.
+  ## (arbitrary segment) represents any segmentation of text below the chunk level. [16.3.  6.2.  7.2.5. ]
   element seg {
     (text
      | mishnahw_model.pPart.transcriptional
@@ -5049,7 +5049,7 @@ mishnahw_seg =
   }
 mishnahw_join =
   
-  ## identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it.
+  ## identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. [16.7. ]
   element join {
     (mishnahw_model.glossLike*)
     >> sch:pattern [
@@ -5139,7 +5139,7 @@ mishnahw_join =
   }
 mishnahw_joinGrp =
   
-  ## (join group) groups a collection of join elements and possibly pointers.
+  ## (join group) groups a collection of join elements and possibly pointers. [16.7. ]
   element joinGrp {
     (mishnahw_model.glossLike*, (mishnahw_join | mishnahw_ptr)+),
     mishnahw_att.global.attributes,
@@ -5157,20 +5157,26 @@ mishnahw_att.msExcerpt.attribute.defective =
   ##       i.e. incomplete through loss or damage.
   [ a:defaultValue = "false" ]
   attribute defective { mishnahw_data.xTruthValue }?
-mishnahw_dim =
+mishnahw_msDesc =
   
-  ## contains any single measurement forming part of a dimensional
-  ## specification of some sort.
-  element dim {
-    mishnahw_macro.xtext,
+  ## (manuscript description) contains a description of a single identifiable
+  ## manuscript or other text-bearing object. [10.1. ]
+  element msDesc {
+    (mishnahw_msIdentifier,
+     mishnahw_model.headLike*,
+     (mishnahw_model.pLike+
+      | (mishnahw_msContents?,
+         mishnahw_physDesc?,
+         empty?,
+         empty?,
+         empty*))),
     mishnahw_att.global.attributes,
-    mishnahw_att.typed.attributes,
-    mishnahw_att.dimensions.attributes,
+    mishnahw_att.sortable.attributes,
     empty
   }
 mishnahw_dimensions =
   
-  ## contains a dimensional specification.
+  ## contains a dimensional specification. [10.3.4. ]
   element dimensions {
     ((mishnahw_dim | mishnahw_model.dimLike)*)
     >> sch:pattern [
@@ -5241,66 +5247,43 @@ mishnahw_dimensions =
     attribute type { mishnahw_data.enumerated }?,
     empty
   }
-mishnahw_handDesc =
+mishnahw_dim =
   
-  ## (description of hands) contains a description of all the different kinds of writing  used in a manuscript.
-  element handDesc {
-    (mishnahw_model.pLike+ | (empty?, mishnahw_handNote+)),
+  ## contains any single measurement forming part of a dimensional
+  ## specification of some sort. [10.3.4. ]
+  element dim {
+    mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
-    
-    ## specifies the number of distinct hands identified within the manuscript
-    attribute hands { mishnahw_data.count }?,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.dimensions.attributes,
     empty
   }
 mishnahw_height =
   
   ## contains a measurement measured along the
   ##   axis at right angles to the bottom of the written surface,
-  ##   i.e. parallel to the spine for a codex or book. 
+  ##   i.e. parallel to the spine for a codex or book.  [10.3.4. ]
   element height {
     mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
     mishnahw_att.dimensions.attributes,
     empty
   }
-mishnahw_layout =
+mishnahw_width =
   
-  ## describes how text is laid out on the
-  ##   page, including information about any ruling, pricking, or other
-  ##   evidence of page-preparation techniques.
-  element layout {
-    mishnahw_macro.specialPara,
+  ## contains a measurement measured along the
+  ##   axis parallel to the bottom of the written surface, i.e. 
+  ## perpendicular to the spine of a book or codex.  [10.3.4. ]
+  element width {
+    mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
-    
-    ## specifies the number of columns per page
-    attribute columns {
-      list { mishnahw_data.count, mishnahw_data.count? }
-    }?,
-    
-    ## specifies the number of ruled lines per column
-    attribute ruledLines {
-      list { mishnahw_data.count, mishnahw_data.count? }
-    }?,
-    
-    ## specifies the number of written lines per
-    ##       column
-    attribute writtenLines {
-      list { mishnahw_data.count, mishnahw_data.count? }
-    }?,
-    empty
-  }
-mishnahw_layoutDesc =
-  
-  ## (layout description) collects the set of layout descriptions applicable to a manuscript.
-  element layoutDesc {
-    (mishnahw_model.pLike+ | (empty?, mishnahw_layout+)),
-    mishnahw_att.global.attributes,
+    mishnahw_att.dimensions.attributes,
     empty
   }
 mishnahw_locus =
   
   ## defines a location within a manuscript or manuscript part, usually as a
-  ##     (possibly discontinuous) sequence of folio references. 
+  ##     (possibly discontinuous) sequence of folio references.  [10.3.5. ]
   element locus {
     mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
@@ -5322,7 +5305,7 @@ mishnahw_locusGrp =
   ## groups a number of locations which together form a
   ##   distinct but discontinuous item within a manuscript or manuscript
   ##   part, according to a specific foliation.
-  ##   
+  ##    [10.3.5. ]
   element locusGrp {
     mishnahw_locus+,
     mishnahw_att.global.attributes,
@@ -5332,46 +5315,10 @@ mishnahw_locusGrp =
     attribute scheme { mishnahw_data.pointer }?,
     empty
   }
-mishnahw_msContents =
-  
-  ## (manuscript contents) describes the intellectual content of a manuscript or manuscript
-  ##     part, either as a series of paragraphs or as a series of structured manuscript items.
-  element msContents {
-    (mishnahw_model.pLike+
-     | (empty?,
-        mishnahw_textLang?,
-        mishnahw_titlePage?,
-        (mishnahw_msItem)*)),
-    mishnahw_att.global.attributes,
-    mishnahw_att.msExcerpt.attributes,
-    
-    ## identifies the text types or classifications applicable to this object.
-    attribute class {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
-    }?,
-    empty
-  }
-mishnahw_msDesc =
-  
-  ## (manuscript description) contains a description of a single identifiable
-  ## manuscript or other text-bearing object.
-  element msDesc {
-    (mishnahw_msIdentifier,
-     mishnahw_model.headLike*,
-     (mishnahw_model.pLike+
-      | (mishnahw_msContents?,
-         mishnahw_physDesc?,
-         empty?,
-         empty?,
-         empty*))),
-    mishnahw_att.global.attributes,
-    mishnahw_att.sortable.attributes,
-    empty
-  }
 mishnahw_msIdentifier =
   
   ## (manuscript identifier) contains the information required to identify
-  ## the  manuscript being described. 
+  ## the  manuscript being described.  [10.4. ]
   element msIdentifier {
     ((mishnahw_model.placeNamePart_sequenceOptional,
       empty?,
@@ -5403,10 +5350,38 @@ mishnahw_msIdentifier =
     mishnahw_att.global.attributes,
     empty
   }
+mishnahw_repository =
+  
+  ## contains the name of a repository within which manuscripts are stored, possibly forming part of an institution. [10.4. ]
+  element repository {
+    mishnahw_macro.xtext,
+    mishnahw_att.global.attributes,
+    mishnahw_att.naming.attributes,
+    empty
+  }
+mishnahw_msContents =
+  
+  ## (manuscript contents) describes the intellectual content of a manuscript or manuscript
+  ##     part, either as a series of paragraphs or as a series of structured manuscript items. [10.6. ]
+  element msContents {
+    (mishnahw_model.pLike+
+     | (empty?,
+        mishnahw_textLang?,
+        mishnahw_titlePage?,
+        (mishnahw_msItem)*)),
+    mishnahw_att.global.attributes,
+    mishnahw_att.msExcerpt.attributes,
+    
+    ## identifies the text types or classifications applicable to this object.
+    attribute class {
+      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    }?,
+    empty
+  }
 mishnahw_msItem =
   
   ## (manuscript item) describes an individual work or item within the intellectual
-  ##   content of a manuscript or manuscript part. 
+  ##   content of a manuscript or manuscript part.  [10.6.1. ]
   element msItem {
     ((mishnahw_locus | mishnahw_locusGrp)*,
      (mishnahw_model.pLike+
@@ -5423,10 +5398,21 @@ mishnahw_msItem =
     }?,
     empty
   }
+mishnahw_physDesc =
+  
+  ## (physical description) contains a full physical description of a
+  ## manuscript or manuscript part, optionally subdivided using more
+  ## specialised elements from the model.physDescPart class. [10.7. ]
+  element physDesc {
+    (mishnahw_model.pLike*,
+     mishnahw_model.physDescPart_sequenceOptional),
+    mishnahw_att.global.attributes,
+    empty
+  }
 mishnahw_objectDesc =
   
   ## contains a description of the physical
-  ##   components making up the object which is being described.
+  ##   components making up the object which is being described. [10.7.1. ]
   element objectDesc {
     (mishnahw_model.pLike+
      | (mishnahw_supportDesc?, mishnahw_layoutDesc?)),
@@ -5438,36 +5424,9 @@ mishnahw_objectDesc =
     attribute form { mishnahw_data.enumerated }?,
     empty
   }
-mishnahw_physDesc =
-  
-  ## (physical description) contains a full physical description of a
-  ## manuscript or manuscript part, optionally subdivided using more
-  ## specialised elements from the model.physDescPart class.
-  element physDesc {
-    (mishnahw_model.pLike*,
-     mishnahw_model.physDescPart_sequenceOptional),
-    mishnahw_att.global.attributes,
-    empty
-  }
-mishnahw_repository =
-  
-  ## contains the name of a repository within which manuscripts are stored, possibly forming part of an institution.
-  element repository {
-    mishnahw_macro.xtext,
-    mishnahw_att.global.attributes,
-    mishnahw_att.naming.attributes,
-    empty
-  }
-mishnahw_support =
-  
-  ## contains a description of the materials
-  ## etc. which make up the physical support for the written part of a manuscript.
-  element support {
-    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
-  }
 mishnahw_supportDesc =
   
-  ## (support description) groups elements describing the physical support for the written part of a manuscript.
+  ## (support description) groups elements describing the physical support for the written part of a manuscript. [10.7.1. ]
   element supportDesc {
     (mishnahw_model.pLike+
      | (mishnahw_support?, mishnahw_extent?, empty*, empty?, empty?)),
@@ -5490,15 +5449,56 @@ mishnahw_supportDesc =
     }?,
     empty
   }
-mishnahw_width =
+mishnahw_support =
   
-  ## contains a measurement measured along the
-  ##   axis parallel to the bottom of the written surface, i.e. 
-  ## perpendicular to the spine of a book or codex. 
-  element width {
-    mishnahw_macro.xtext,
+  ## contains a description of the materials
+  ## etc. which make up the physical support for the written part of a manuscript. [10.7.1. ]
+  element support {
+    mishnahw_macro.specialPara, mishnahw_att.global.attributes, empty
+  }
+mishnahw_layoutDesc =
+  
+  ## (layout description) collects the set of layout descriptions applicable to a manuscript. [10.7.2. ]
+  element layoutDesc {
+    (mishnahw_model.pLike+ | (empty?, mishnahw_layout+)),
     mishnahw_att.global.attributes,
-    mishnahw_att.dimensions.attributes,
+    empty
+  }
+mishnahw_layout =
+  
+  ## describes how text is laid out on the
+  ##   page, including information about any ruling, pricking, or other
+  ##   evidence of page-preparation techniques. [10.7.2. ]
+  element layout {
+    mishnahw_macro.specialPara,
+    mishnahw_att.global.attributes,
+    
+    ## specifies the number of columns per page
+    attribute columns {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    
+    ## specifies the number of ruled lines per column
+    attribute ruledLines {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    
+    ## specifies the number of written lines per
+    ##       column
+    attribute writtenLines {
+      list { mishnahw_data.count, mishnahw_data.count? }
+    }?,
+    empty
+  }
+mishnahw_handDesc =
+  
+  ## (description of hands) contains a description of all the different kinds of writing  used in a manuscript. [10.7.2. ]
+  element handDesc {
+    (mishnahw_model.pLike+ | (empty?, mishnahw_handNote+)),
+    mishnahw_att.global.attributes,
+    
+    ## specifies the number of distinct hands identified within the manuscript
+    attribute hands { mishnahw_data.count }?,
     empty
   }
 mishnahw_att.datable.custom.attributes =
@@ -5575,7 +5575,7 @@ mishnahw_att.datable.iso.attribute.to-iso =
   attribute to-iso { mishnahw_data.temporal.iso }?
 mishnahw_placeName =
   
-  ## contains an absolute or relative place name. 
+  ## contains an absolute or relative place name.  [13.2.3. ]
   element placeName {
     mishnahw_macro.phraseSeq,
     mishnahw_att.datable.attributes,
@@ -5585,10 +5585,11 @@ mishnahw_placeName =
     mishnahw_att.typed.attributes,
     empty
   }
-mishnahw_settlement =
+mishnahw_region =
   
-  ## contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit.
-  element settlement {
+  ## contains the name of an administrative unit such as a state, province, or county, larger
+  ##     than a settlement, but smaller than a country. [13.2.3. ]
+  element region {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
     mishnahw_att.naming.attributes,
@@ -5596,11 +5597,10 @@ mishnahw_settlement =
     mishnahw_att.datable.attributes,
     empty
   }
-mishnahw_region =
+mishnahw_settlement =
   
-  ## contains the name of an administrative unit such as a state, province, or county, larger
-  ##     than a settlement, but smaller than a country.
-  element region {
+  ## contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. [13.2.3. ]
+  element settlement {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
     mishnahw_att.naming.attributes,
@@ -5611,7 +5611,7 @@ mishnahw_region =
 mishnahw_persName =
   
   ## (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including any
-  ##     or all of the person's forenames, surnames, honorifics, added names, etc.
+  ##     or all of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. ]
   element persName {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
@@ -5624,7 +5624,7 @@ mishnahw_persName =
 mishnahw_pc =
   
   ##  (punctuation character) a character or string of characters regarded as constituting a
-  ##   single punctuation mark.
+  ##   single punctuation mark. [17.1. ]
   element pc {
     (text | mishnahw_model.gLike | mishnahw_c)*,
     mishnahw_att.global.attributes,
@@ -5668,7 +5668,7 @@ mishnahw_g =
   }
 mishnahw_c =
   
-  ## (character) represents a character.
+  ## (character) represents a character. [17.1. ]
   element c {
     mishnahw_macro.xtext,
     mishnahw_att.global.attributes,
@@ -5678,7 +5678,7 @@ mishnahw_c =
   }
 mishnahw_w =
   
-  ## (word) represents a grammatical (not necessarily orthographic) word.
+  ## (word) represents a grammatical (not necessarily orthographic) word. [17.1. ]
   element w {
     (text
      | mishnahw_model.gLike

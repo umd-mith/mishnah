@@ -164,8 +164,8 @@
                     <elementSpec module="header" ident="notesStmt" mode="change">
                         <constraintSpec ident="linter" scheme="isoschematron">
                             <constraint>
-                                <sch:assert test="tei:note/tei:p">The notesStmt is provided as
-                                    a convenience to permit a prose description of the physical
+                                <sch:assert test="tei:note/tei:p">The notesStmt is provided as a
+                                    convenience to permit a prose description of the physical
                                     manuscript. Please also complete the structured elements for
                                     manuscript description within sourceDesc </sch:assert>
                             </constraint>
@@ -175,15 +175,18 @@
                     <elementSpec module="header" ident="sourceDesc" mode="change">
                         <content>
                             <rng:oneOrMore>
-                                <rng:ref name="msDesc"/>
+                                <rng:choice>
+                                    <rng:ref name="model.biblLike"/>
+                                    <rng:ref name="msDesc"/>
+                                </rng:choice>
                             </rng:oneOrMore>
                         </content>
                     </elementSpec>
-                    
+
                     <elementSpec module="header" ident="encodingDesc" mode="change">
                         <content>
                             <rng:optional>
-                                    <rng:ref name="editorialDecl"/>
+                                <rng:ref name="editorialDecl"/>
                             </rng:optional>
                             <rng:ref name="tagsDecl"/>
                             <rng:optional>
@@ -196,7 +199,7 @@
                             </rng:optional>
                         </content>
                     </elementSpec>
-                    
+
                     <elementSpec module="header" ident="revisionDesc" mode="change">
                         <content>
                             <rng:oneOrMore>
@@ -205,26 +208,26 @@
                         </content>
                     </elementSpec>
                     <!-- end: Modification of teiHeader components -->
-                    
+
                     <!-- Make ids required on divs and ab-->
                     <elementSpec module="textstructure" ident="div1" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="change" usage="req"/>
                         </attList>
                     </elementSpec>
-                    
+
                     <elementSpec module="textstructure" ident="div2" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="change" usage="req"/>
                         </attList>
                     </elementSpec>
-                    
+
                     <elementSpec module="textstructure" ident="div3" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="change" usage="req"/>
                         </attList>
                     </elementSpec>
-                    
+
                     <elementSpec module="linking" ident="ab" mode="change">
                         <attList>
                             <attDef ident="xml:id" mode="change" usage="req"/>

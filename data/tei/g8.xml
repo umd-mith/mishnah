@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of Cairo Genizah Fragment TS AS 85.270
+                    (Cambridge)</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local"><!-- Get from Lapin --></idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers BM 1:5, 2:1-2</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
+                        https://fgp.genizah.org. FGP nos. C113258-C113259. Recto and verso are
+                        registered in reverse order</p>
+                    <p>Dimensions: 15.6x5.6 cm. Approximately 2.7 characters per cm. Based on the
+                        expected length of the missing text between lines, written column on verso
+                        appears to have been narrower than on recto.</p>
+                    <p>EDITED BY: Hayim Lapin</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS AS 85.270</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <locusGrp>
+                                <locus n="1v" facs="ww.genizah.org">C113259</locus>
+                                <locus n="1r" facs="ww.genizah.org">C113258</locus>
+                            </locusGrp>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="folio">
+                            <supportDesc>
+                                <support/>
+                                <extent>1 leaf</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm">15.6</width>
+                                        <height unit="cm">5.6</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm"/>
+                                        <height unit="cm"/>
+                                    </dimensions>
+                                    <dimensions scope="frag-writ">
+                                        <width unit="chars"/>
+                                        <height unit="lines"/>
+                                        <dim type="char-p-cm">2.7</dim>
+                                    </dimensions>
+                                    <note>Judging by expected text in the gaps between lines, column
+                                        in 1v appears narrower than in 1r.</note>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <handNote script="Oriental Square">
+                                <date notBefore="1000" notAfter="1300">11th-13th c.</date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2011-12-01" who="Nurit Ezer">Transcription</change>
+            <change when="2012-03-09" who="Hayim Lapin">Markup</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="G8.4">
+                <div2 xml:id="G9.4.2">
+                    <div3 xml:id="G8.4.2.1">
+                        <pb xml:id="G8.1v" n="1v"/>
+                        <ab xml:id="G8.4.2.1.5">
+                            <damage><unclear extent="3" unit="chars">ושי</unclear>פחתו <unclear
+                                    extent="2" unit="chars">הע</unclear></damage>ברים
+                                    <damage><unclear extent="3" unit="chars"
+                            >מ??</unclear></damage>את אשתו <damage><unclear extent="4" unit="chars">ש<choice>
+                                        <orig>גִ</orig>
+                                        <reg>ג</reg>
+                                    </choice>ר?</unclear></damage><choice>
+                                <orig>שָ</orig>
+                                <reg>ש</reg>
+                            </choice>ה אף <damage>
+                                <unclear extent="2" unit="chars">ע?</unclear>
+                                <gap extent="5" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage>נָתן לה כתו<unclear extent="1" unit="chars">ב</unclear><gap
+                                    extent="13" unit="chars"/>
+                                <label rend="pad(rl)">ו<am rend="overdot">׳</am></label>
+                                מצָא</damage><note>In the extended gap stray traces of the tops of
+                                letters may be visible</note> ש<damage><gap extent="8" unit="chars"
+                                /></damage>
+                            <lb n="2"/>
+                            <damage><unclear extent="3" unit="chars">??ם</unclear> אחר<gap
+                                    extent="14" unit="chars"/>ן ב</damage>ה<damage><gap extent="13"
+                                    unit="chars"/></damage>
+                            <lb n="3"/><note>Slight traces of one or two letters visible of the
+                                following line.</note>
+                            <pb xml:id="G8.1r" n="1r"/></ab>
+                    </div3>
+                    <div3 xml:id="G8.4.2.2">
+                        <ab xml:id="G8.4.2.2.1"><gap extent="9" unit="chars"/>יר<choice>
+                                <orig>יָ</orig>
+                                <reg>י</reg>
+                            </choice><damage><unclear extent="1" unit="chars"
+                                >א</unclear></damage><note>Possible hiriq under preceding ר.</note>
+                            אינו חייב להכריז </ab>
+                        <ab xml:id="G8.4.2.2.2"><damage><unclear extent="2" unit="chars"><milestone
+                                        unit="MSMishnah"/><label rend="pad(rl)">ג<am rend="overdot"
+                                            >׳</am></label></unclear></damage> ואלו
+                                    חיי<damage><unclear extent="1" unit="chars">ב </unclear><choice>
+                                    <orig>לְ</orig>
+                                    <reg>ל</reg>
+                                </choice>הכריז <choice>
+                                    <orig>מָצָ</orig>
+                                    <reg>מצ</reg>
+                                </choice></damage>א <lb n="1"/>
+                            <damage><gap extent="12" unit="chars"/><unclear extent="1" unit="chars"
+                                    >כ</unclear></damage><choice>
+                                <orig>לִ</orig>
+                                <reg>ל</reg>
+                            </choice><damage><unclear extent="5" unit="chars">י
+                                כמות</unclear></damage> שהו<damage><unclear extent="6" unit="chars"
+                                    >א</unclear>
+                                <gap extent="3" unit="chars"/><unclear extent="2" unit="chars"/>
+                                <gap extent="2" unit="chars"/></damage>י כמ<damage>ות שהו<unclear
+                                    extent="1" unit="chars">א</unclear></damage>
+                            <lb n="2"/>
+                            <damage><gap extent="18" unit="chars"/><unclear extent="1" unit="chars"
+                                    >ת</unclear></damage><note>Possible traces of ink visible at top
+                                of gap.</note> ש<damage>ל <gap extent="13" unit="chars"/>
+                            ג</damage>בי זה<damage>כריכ<unclear extent="2" unit="chars"
+                                >ו?</unclear></damage>
+                            <lb n="3"/><note>Slight traces of one or two letters visible of the
+                                following line.</note>
+                        </ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
