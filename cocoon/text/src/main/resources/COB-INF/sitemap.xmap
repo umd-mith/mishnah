@@ -47,14 +47,15 @@
 
     <map:pipeline id="text-viewer">
       <map:match pattern="collate">
-        <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
-        <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl" type="xslt-saxon">
-          <map:parameter name="selected" value="{request-param:selected}"/>
+        <map:generate src="resource://tei/ref.xml"/>
+        <map:transform src="resource://xsl/tokenize-collate.xsl" type="xslt-saxon">
+          <map:parameter name="mcite" value="{request-param:mcite}"/>
           <map:parameter name="rqs" value="{request:queryString}"/>
         </map:transform>
         <map:transform type="collatex"/>
-        <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon">
-          <map:parameter name="selected" value="{request-param:selected}"/>
+        <map:transform src="resource://xsl/apparatus.xsl" type="xslt-saxon">
+          <map:parameter name="mcite" value="{request-param:mcite}"/>
+          <map:parameter name="default.mcite" value="4.2.2.1"/>
           <map:parameter name="rqs" value="{request:queryString}"/>
         </map:transform>
         <map:serialize type="tei"/>
