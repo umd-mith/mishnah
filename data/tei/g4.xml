@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
-
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+-->
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
@@ -61,7 +61,6 @@
                         </msItem>
                     </msContents>
                     <physDesc>
-                        
                         <objectDesc form="codex">
                             <supportDesc>
                                 <support> Vellum </support>
@@ -126,105 +125,155 @@
                     <div3 xml:id="G4.4.1.10">
                         <pb n="1r"/>
                         <ab xml:id="G4.4.1.10.8"><milestone xml:id="G4.witStart" unit="fragment"
-                                    /><damage><gap extent="13"/></damage> ומנו את <damage>הצ<unclear
-                                    extent="6" unit="chars">אן והיא</unclear>
-                                    ש</damage>לי<damage>מ<gap extent="7"/></damage><note>Precise
-                                location of Mishnah break is unclear.</note></ab>
-                        <ab xml:id="G4.4.1.10.9"><damage><gap extent="11"/></damage>
-                            <lb n="1"/><damage><gap extent="8"/> צ</damage>מ<damage>ר וחלב
-                                ו</damage>גדיין ו<damage extent="2">לא<gap extent="5"/><unclear
-                                    extent="1" unit="chars">?</unclear></damage>פ<damage><unclear
-                                    extent="1" unit="chars">י</unclear><gap extent="19"/></damage>
+                                    /><damage><damageSpan xml:id="damBeg.1r.1a"
+                                    spanTo="#damEnd.1r.1a"/><gap extent="13"/><anchor
+                                    xml:id="damEnd.1r.1a"/></damage> ומנו את <damage>הצ<damageSpan
+                                    xml:id="damBeg.1r.1b" spanTo="#damEnd.1r.1b"/><unclear
+                                    extent="6" unit="chars">אן והיא</unclear><anchor
+                                    xml:id="damEnd.1r.1b"/> ש</damage>לי<damage>מ<damageSpan
+                                    xml:id="damBeg.1r.1c" spanTo="#damEnd.1r.1c"/><gap extent="7"
+                                    /><anchor xml:id="damEnd.1r.1c"/></damage><note>Precise location
+                                of Mishnah break is unclear.</note></ab>
+                        <ab xml:id="G4.4.1.10.9"><damage><damageSpan xml:id="damBeg.1r.1d"
+                                    spanTo="#damEnd.1r.2a"/><gap extent="11"/></damage>
+                            <lb n="1"/><damage><gap extent="8"/><anchor xml:id="damEnd.1r.2a"/>
+                                צ</damage>מ<damage>ר וחלב ו</damage>גדיין ו<damage extent="2"
+                                    >לא<damageSpan xml:id="damBeg.1r.2b" spanTo="#damEnd.1r.2b"
+                                    /><gap extent="5"/><unclear extent="1" unit="chars"
+                                    >?</unclear><anchor xml:id="damEnd.1r.2b"
+                                    /></damage>פ<damage><damageSpan xml:id="damBeg.1r.2c"
+                                    spanTo="#damEnd.1r.3a"/><unclear extent="1" unit="chars"
+                                    >י</unclear><gap extent="19"/></damage>
                             <lb n="2"/><damage><gap extent="5"/><unclear extent="1" unit="chars"
-                                    >?</unclear></damage>ים כ<damage><unclear extent="1"
-                                    unit="chars">ל</unclear><gap extent="1"/></damage> פישתן
-                                    <damage><unclear extent="1" unit="chars"
-                                    >ב</unclear></damage>גל<damage><unclear extent="5">יל
-                                    ועג</unclear><gap extent="5" unit="chars"/>רו<unclear extent="1"
-                                    unit="chars">ן</unclear>
-                                <gap extent="19"/></damage>
-                            <lb n="3"/><gap extent="1"/>וקחין בצים ותרנוגלין <damage>מכל
-                                מקום</damage><pc type="unitEnd" rend="˙">:</pc></ab>
+                                    >?</unclear><anchor xml:id="damEnd.1r.3a"/></damage>ים
+                                    כ<damage><damageSpan xml:id="damBeg.1r.3b"
+                                    spanTo="#damEnd.1r.3b"/><unclear extent="1" unit="chars"
+                                    >ל</unclear><gap extent="1"/><anchor xml:id="damEnd.1r.3b"
+                                /></damage> פישתן <damage><damageSpan xml:id="damBeg.1r.3c"
+                                    spanTo="#damEnd.1r.3c"/><unclear extent="1" unit="chars"
+                                    >ב</unclear><anchor xml:id="damEnd.1r.3c"
+                                    /></damage>גל<damage><damageSpan xml:id="damBeg.1r.3d"
+                                    spanTo="#damEnd.1r.3d"/><unclear extent="5">יל ועג</unclear><gap
+                                    extent="5" unit="chars"/><anchor xml:id="damEnd.1r.3d"
+                                    />רו<damageSpan xml:id="damBeg.1r.3e" spanTo="#damEnd.1r.4a"
+                                    /><unclear extent="1" unit="chars">ן</unclear><gap extent="19"
+                                /></damage>
+                            <lb n="3"/><gap extent="1"/><anchor xml:id="damEnd.1r.4a"/>וקחין בצים
+                            ותרנוגלין <damage>מכל מקום</damage><pc type="unitEnd" rend="˙"
+                            >:</pc></ab>
                         <ab xml:id="G4.4.1.10.10"><space/>
-                            <damage>מ</damage>ו<damage>כי<gap extent="20"/></damage>
-                            <lb n="4"/>ש<damage><unclear extent="1" unit="chars"
-                                >ה</unclear></damage>סרוק מוציא הרי
-                                    <damage>ש</damage>לב<damage><unclear extent="8" unit="chars">על
-                                    ???</unclear>
-                                <gap extent="24"/></damage>
-                            <lb n="6"/>מיכן <damage>ש</damage>לבעל הבית אם <damage>ה</damage>יה<damage>
-                                <gap extent="33"/></damage>
-                            <lb n="7"/>ששייר <damage>מן החוט</damage> כדי לתפו<unclear extent="1"
-                                unit="chars">ר</unclear>
-                            <gap extent="32"/>
-                            <lb n="8"/><damage><unclear extent="4" unit="chars">ל??ל</unclear><gap
-                                    extent="4"/></damage>שהחרש מוצי<damage>א <gap extent="31"
-                                /></damage><lb n="9"/><damage><gap extent="11"/>צ</damage>ל בעל
-                                הבי<damage>ת <gap extent="33"/></damage><note>Damaged bit of writing
-                                surface covering one letter.</note>
-                            <lb n="10"/></ab>
+                            <damage>מ</damage>ו<damage>כי<damageSpan xml:id="damBeg.1r.4b"
+                                    spanTo="#damEnd.1r.4b"/><gap extent="20"/><anchor
+                                    xml:id="damEnd.1r.4b"/></damage>
+                            <lb n="4"/>ש<damage><damageSpan xml:id="damBeg.1r.5a"
+                                    spanTo="#damEnd.1r.5a"/><unclear extent="1" unit="chars"
+                                    >ה</unclear><anchor xml:id="damEnd.1r.5a"/></damage>סרוק מוציא
+                            הרי <damage>ש</damage>לב<damage><damageSpan xml:id="damBeg.1r.5b"
+                                    spanTo="#damEnd.1r.5b"/><unclear extent="8" unit="chars">על
+                                    ???</unclear><gap extent="24"/><anchor xml:id="damEnd.1r.5b"
+                                /></damage>
+                            <lb n="5"/>מיכן <damage>ש</damage>לבעל הבית אם <damage>ה</damage>יה<damage>
+                                <damageSpan xml:id="damBeg.1r.6a" spanTo="#damEnd.1r.6"/><gap
+                                    extent="33"/><anchor xml:id="damEnd.1r.6"/></damage>
+                            <lb n="6"/>ששייר <damage>מן החוט</damage> כדי לתפו<damageSpan
+                                xml:id="damBeg.1r.7" spanTo="#damEnd.1r.8"/><unclear extent="1"
+                                unit="chars">ר</unclear><gap extent="32"/>
+                            <lb n="7"/><damage><unclear extent="4" unit="chars">ל??ל</unclear><gap
+                                    extent="4"/><anchor xml:id="damEnd.1r.8"/></damage>שהחרש
+                                מוצי<damage>א <damageSpan xml:id="damBeg.1r.8"
+                                    spanTo="#damEnd.1r.9a"/><gap extent="31"/></damage><lb n="8"
+                                    /><damage><gap extent="11"/><anchor xml:id="damEnd.1r.9a"
+                                />צ</damage>ל בעל הבי<damage>ת <damageSpan xml:id="damBeg.1r.9b"
+                                    spanTo="#damEnd.1r.10"/><gap extent="32"/></damage><note>Damaged
+                                bit of writing surface covering one letter.</note>
+                            <lb n="9"/></ab>
                     </div3>
                 </div2>
                 <div2 xml:id="G4.4.2">
                     <note>Location of chapter (and tractate) break not clear in witness.</note>
                     <div3 xml:id="G4.4.2.1">
                         <ab xml:id="G4.4.2.1.1">
-                            <damage><gap extent="11"/>ה <choice>
+                            <damage><gap extent="11"/><anchor xml:id="damEnd.1r.10"/>ה <choice>
                                     <abbr>אומ<am rend="overdot">׳</am></abbr>
                                     <expan>אומר</expan>
-                                </choice>
-                                <gap extent="27" unit="lines"/></damage>
-                            <lb n="11"/>
+                                </choice><damageSpan xml:id="damBeg.1r.10" spanTo="#damEnd.1r.11"
+                                    /><gap extent="35" unit="chars"/></damage>
+                            <lb n="10"/>
                             <damage>
                                 <gap extent="13"/>
                                 <unclear extent="2" unit="chars"/>
                                 <gap extent="29"/>
+                                <anchor xml:id="damEnd.1r.11"/>
                             </damage>
-                            <lb n="12"/>
+                            <lb n="11"/>
                             <gap extent="25" unit="lines"/>
                         </ab>
                     </div3>
                     <pb n="1v"/>
                     <div3 xml:id="G4.4.2.2">
-                        <ab xml:id="G4.4.2.2.1"><damage><gap extent="15"/></damage>יכרות שלנחתום
-                            מחרוזות <damage><unclear extent="1" unit="chars">ש</unclear><gap
-                                    extent="14"/></damage>
-                            <lb n="1"/><damage><gap extent="15"/>ד</damage>י<damage>נ<gap extent="6"
-                                /></damage>צי פישתן ולשונות ש<damage><unclear extent="2"
-                                    unit="chars">לא</unclear><gap extent="9"/></damage>
+                        <ab xml:id="G4.4.2.2.1"><damage><damageSpan xml:id="damBeg.1v.1a"
+                                    spanTo="#damEnd.1v.1a"/><gap extent="15"/><anchor
+                                    xml:id="damEnd.1v.1a"/></damage>יכרות שלנחתום מחרוזות
+                                    <damage><damageSpan xml:id="damBeg.1v.1b" spanTo="#damEnd.1v.2a"
+                                    /><gap extent="14"/></damage>
+                            <lb n="1"/><damage><gap extent="15"/><anchor xml:id="damEnd.1v.2a"
+                                />ד</damage>י<damage>נ<damageSpan xml:id="damBeg.1v.2b"
+                                    spanTo="#damEnd.1v.2b"/><gap extent="6"/><anchor
+                                    xml:id="damEnd.1v.2b"/></damage>צי פישתן ולשונות
+                                    ש<damage><damageSpan xml:id="damBeg.1v.2c"
+                                    spanTo="#damEnd.1v.3a"/><unclear extent="2" unit="chars"
+                                    >לא</unclear><gap extent="9"/></damage>
                             <lb n="2"/><damage><gap extent="16"/><unclear extent="1" unit="chars"
-                                    >?</unclear></damage>ר <damage><unclear extent="1" unit="chars"
-                                    >?</unclear><gap extent="5"/></damage> שינוי חייב
-                                    להכר<damage><gap extent="1"/><unclear extent="1" unit="chars"
-                                    >ז</unclear></damage> כאיזה <damage><unclear extent="1"
-                                    unit="chars">צ</unclear><gap extent="5"/></damage>
-                            <lb n="3"/><damage><gap extent="17"/>ו</damage> מעת <persName><choice>
+                                    >?</unclear><anchor xml:id="damEnd.1v.3a"/></damage>ר
+                                    <damage><damageSpan xml:id="damBeg.1v.3b" spanTo="#damEnd.1v.3b"
+                                    /><unclear extent="1" unit="chars">?</unclear><gap extent="5"
+                                    /><anchor xml:id="damEnd.1v.3b"/></damage> שינוי חייב
+                                    להכר<damage><damageSpan xml:id="damBeg.1v.3c"
+                                    spanTo="#damEnd.1v.3c"/><gap extent="1"/><unclear extent="1"
+                                    unit="chars">ז</unclear><anchor xml:id="damEnd.1v.3c"/></damage>
+                            כאיזה <damage><damageSpan xml:id="damBeg.1v.3d" spanTo="#damEnd.1v.4"
+                                    /><unclear extent="1" unit="chars">צ</unclear><gap extent="5"
+                                /></damage>
+                            <lb n="3"/><damage><gap extent="17"/><anchor xml:id="damEnd.1v.4"
+                                />ו</damage> מעת <persName><choice>
                                     <abbr>ר<am rend="overdot">׳</am></abbr>
                                     <expan>רבי</expan>
                                 </choice> שמעון בן אלעזר</persName>
                             <choice>
                                 <abbr>אומ<am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> כל כלי אנפ<damage><gap extent="4"/></damage>
+                            </choice> כל כלי אנפ<damage><damageSpan xml:id="damBeg.1v.4"
+                                    spanTo="#damEnd.1v.5"/><gap extent="4"/></damage>
                             <lb n="4"/></ab>
-                        <ab xml:id="G4.4.2.2.2"><damage><gap extent="27"/></damage>א פירות בכלי או
-                            כלי כמו<damage>ת</damage> שה<damage><gap extent="2"/></damage>
-                            <lb n="5"/><damage><gap extent="28"/></damage> ציבורי מעות שלשה
-                                    מטבע<damage><gap extent="2"/></damage>
-                            <lb n="6"/><damage><gap extent="28"/></damage> שלבעל הבית וגיזי צמר
-                                <surplus>??</surplus><damage><gap extent="2"/></damage>
-                            <lb n="7"/><damage><gap extent="26"/><unclear extent="1" unit="chars"
-                                    >י</unclear></damage>ב להכריז<pc type="unitEnd" rend="˙">:</pc><space/>
-                            <damage><unclear extent="1" unit="chars">?</unclear><gap extent="12"
+                        <ab xml:id="G4.4.2.2.2"><damage><gap extent="27"/><anchor
+                                    xml:id="damEnd.1v.5"/></damage>א פירות בכלי או כלי
+                                כמו<damage>ת</damage> שה<damage><damageSpan xml:id="damBeg.1v.5"
+                                    spanTo="#damEnd.1v.6"/><gap extent="2"/></damage>
+                            <lb n="5"/><damage><gap extent="28"/><anchor xml:id="damEnd.1v.6"
+                                /></damage> ציבורי מעות שלשה מטבע<damage><damageSpan
+                                    xml:id="damBeg.1v.6" spanTo="#damEnd.1v.7"/><gap extent="2"
                                 /></damage>
-                            <lb n="8"/><damage><gap extent="26"/></damage> שבשדות ה<damage><unclear
-                                    extent="1" unit="chars">ר</unclear><gap extent="14"/></damage>
+                            <lb n="6"/><damage><gap extent="28"/><anchor xml:id="damEnd.1v.7"
+                                /></damage> שלבעל הבית וגיזי צמר
+                                    <surplus>??</surplus><damage><damageSpan xml:id="damBeg.1v.7"
+                                    spanTo="#damEnd.1v.8"/><gap extent="2"/></damage>
+                            <lb n="7"/><damage><gap extent="26"/><unclear extent="1" unit="chars"
+                                    >י</unclear><anchor xml:id="damEnd.1v.8"/></damage>ב להכריז<pc
+                                type="unitEnd" rend="˙">:</pc><space/>
+                            <damage><damageSpan xml:id="damBeg.1v.8" spanTo="#damEnd.1v.9"/><unclear
+                                    extent="1" unit="chars">?</unclear><gap extent="12"/></damage>
+                            <lb n="8"/><damage><gap extent="26"/><anchor xml:id="damEnd.1v.9"
+                                /></damage> שבשדות ה<damage><damageSpan xml:id="damBeg.1v.9"
+                                    spanTo="#damEnd.1v.10"/><unclear extent="1" unit="chars"
+                                    >ר</unclear><gap extent="14"/></damage>
                             <lb n="9"/><damage><gap extent="27"/><unclear extent="3" unit="chars"
-                                /></damage> נוטל <damage><unclear extent="1" unit="chars"/><gap
-                                    extent="14"/></damage><lb n="10"/><damage><gap extent="35"
-                                    /><unclear extent="2"/><gap extent="16"/></damage><lb n="11"
-                                /><milestone xml:id="G4.witEnd" unit="fragment"/><gap unit="lines"
-                                extent="26"/>
+                                    /><anchor xml:id="damEnd.1v.10"/></damage> נוטל
+                                    <damage><damageSpan xml:id="damBeg.1v.10" spanTo="#damEnd.1v.11"
+                                    /><unclear extent="1" unit="chars"/><gap extent="14"
+                                /></damage><lb n="10"/><damage><gap extent="35"/><unclear extent="2"
+                                    /><gap extent="16"/><anchor xml:id="damEnd.1v.11"/></damage><lb
+                                n="11"/><milestone xml:id="G4.witEnd" unit="fragment"/><gap
+                                unit="lines" extent="26"/>
                         </ab>
                     </div3>
                 </div2>
