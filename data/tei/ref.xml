@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?oxygen RNGSchema="?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="xml"?>
 <?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 
 <!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
-<?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
@@ -12,12 +11,13 @@
                 <title>Mishnah Project Alignment File</title>
             </titleStmt>
             <publicationStmt>
-                <p>This document contains the text of the Vilna edition of the Mishnah (beginning
-                    with m. B. Mes. Ch. 2), slightly normalized and all punctuation removed, as the
-                    basis for the alignment of the witnesses to the text of the Mishnah. The text
-                    below uses the unvocalized text at <ptr target="http://he.wikisource.org/wiki"
-                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography -->
-                </p>
+                <p>This document contains the text of the Vilna edition of the Mishnah slightly
+                    normalized and all punctuation removed, as the basis for the alignment of the
+                    witnesses to the text of the Mishnah. The text below uses the unvocalized text
+                    at <ptr target="http://he.wikisource.org/wiki"/>, corrected to reflect the text
+                    of Yakhin u-Boaz. <!-- Bibliography --> Additional modifications involve the
+                    addition of words present in fragmentary witnesses but absent in Vilna to allow
+                    proper alignment of fragments. </p>
             </publicationStmt>
             <sourceDesc>
                 <listWit>
@@ -90,24 +90,7 @@
         </fileDesc>
         <encodingDesc>
             <editorialDecl>
-                <segmentation>
-                    <ab>
-                        <interpGrp>
-                            <desc>The following describes the structure of the Mishnah, to be
-                                referenced by xml:id. The Mishnah is divided into six orders, each
-                                divided into tractates, each of which is further divided into
-                                chapters and mishnayot (mishnahs). Full references to an individual
-                                section uses the following system:
-                                ref.order.tractate.chapter.mishnah. Order and tractate refs are
-                                numerical and follow the outline below. By convention, references to
-                                chapter and mishnah are numerical. When looking up a specific
-                                witness, "ref." is replaced by the relevant
-                                /TEI/teiHeader/fileDesc/sourceDesc/listWit/witness@xml:id</desc>
-                            <interp type="structuralunit" n="ref.1.1" xml:id="berakhot"
-                                >Berakhot</interp>
-                        </interpGrp>
-                    </ab>
-                </segmentation>
+                <ab/>
             </editorialDecl>
             <tagsDecl>
                 <rendition xml:id="displacing" scheme="free">Text padding extends into lines below
@@ -145,9 +128,9 @@
         <body>
             <div1 xml:id="ref.1" n="Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
-                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate">
-                    <xi:include href="ref-001.xml"/>
-                </div2>
+                
+                    <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+                
                 <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
                 <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
                 <div2 xml:id="ref.1.4" n="Kilayim" type="tractate"/>
