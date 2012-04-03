@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?oxygen RNGSchema="?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="xml"?>
 <?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 
 <!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
-<?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
+<!--<?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="application/relax-ng-compact-syntax"?>-->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
@@ -12,11 +12,12 @@
                 <title>Mishnah Project Alignment File</title>
             </titleStmt>
             <publicationStmt>
-                <p>This document contains the text of the Vilna edition of the Mishnah (beginning
-                    with m. B. Mes. Ch. 2), slightly normalized and all punctuation removed, as the
+                <p>This document contains the text of the Vilna edition of the Mishnah, slightly normalized and all punctuation removed, as the
                     basis for the alignment of the witnesses to the text of the Mishnah. The text
                     below uses the unvocalized text at <ptr target="http://he.wikisource.org/wiki"
-                    />, corrected to reflect the text of Yakhin u-Boaz <!-- Bibliography -->
+                    />, corrected to reflect the text of Yakhin u-Boaz. Changes are introduced as
+                    necessary to account for varying textual traditions to allow for proper pointing
+                    from the witness files to ref.xml<!-- Bibliography -->
                 </p>
             </publicationStmt>
             <sourceDesc>
@@ -91,22 +92,7 @@
         <encodingDesc>
             <editorialDecl>
                 <segmentation>
-                    <ab>
-                        <interpGrp>
-                            <desc>The following describes the structure of the Mishnah, to be
-                                referenced by xml:id. The Mishnah is divided into six orders, each
-                                divided into tractates, each of which is further divided into
-                                chapters and mishnayot (mishnahs). Full references to an individual
-                                section uses the following system:
-                                ref.order.tractate.chapter.mishnah. Order and tractate refs are
-                                numerical and follow the outline below. By convention, references to
-                                chapter and mishnah are numerical. When looking up a specific
-                                witness, "ref." is replaced by the relevant
-                                /TEI/teiHeader/fileDesc/sourceDesc/listWit/witness@xml:id</desc>
-                            <interp type="structuralunit" n="ref.1.1" xml:id="berakhot"
-                                >Berakhot</interp>
-                        </interpGrp>
-                    </ab>
+                    <ab> </ab>
                 </segmentation>
             </editorialDecl>
             <tagsDecl>
@@ -145,9 +131,7 @@
         <body>
             <div1 xml:id="ref.1" n="Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
-                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate">
-                    <xi:include href="ref-001.xml"/>
-                </div2>
+                <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
                 <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
                 <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
                 <div2 xml:id="ref.1.4" n="Kilayim" type="tractate"/>
@@ -443,24 +427,20 @@
                             <w>האחרון</w>
                             <w>משלם</w>
                             <w>חצי</w>
-                            
                             <w>נזק</w>
                             <w>התרנגולים</w>
                             <w>מועדין</w>
-                            
                             <w>להלך</w>
                             <w>כדרכן</w>
                             <w>ולשבר</w>
                             <w>היה</w>
                             <w>דליל</w>
-                            
                             <w>קשור</w>
                             <w>ברגליו</w>
                             <w>או</w>
                             <w>שהיה</w>
                             <w>מהדס</w>
                             <w>ומשבר</w>
-                            
                             <w>את</w>
                             <w>הכלים</w>
                             <w>משלם</w>
@@ -473,7 +453,6 @@
                             <w>השן</w>
                             <w>מועדת</w>
                             <w>לאכל</w>
-                            
                             <w>את</w>
                             <w>הראוי</w>
                             <w>לה</w>
@@ -481,7 +460,6 @@
                             <w>מועדת</w>
                             <w>לאכול</w>
                             <w>פרות</w>
-                            
                             <w>וירקות</w>
                             <w>אכלה</w>
                             <w>כסות</w>
@@ -503,7 +481,6 @@
                             <w>נהנית</w>
                             <w>משלם</w>
                             <w>מה</w>
-                            
                             <w>שנהנית</w>
                             <w>כיצד</w>
                             <w>משלם</w>
@@ -511,14 +488,12 @@
                             <w>שנהנית</w>
                             <w>אכלה</w>
                             <w>מתוך</w>
-                            
                             <w>הרחבה</w>
                             <w>משלם</w>
                             <w>מה</w>
                             <w>שנהנית</w>
                             <w>מצדי</w>
                             <w>הרחבה</w>
-                            
                             <w>משלם</w>
                             <w>מה</w>
                             <w>שהזיקה</w>
@@ -535,7 +510,6 @@
                         </ab>
                         <ab xml:id="ref.4.1.2.3">
                             <label>ג</label>
-                            
                             <w>הכלב</w>
                             <w>והגדי</w>
                             <w>שקפצו</w>
@@ -555,7 +529,6 @@
                             <w>חררה</w>
                             <w>והלך</w>
                             <w>לגדיש</w>
-                            
                             <w>אכל</w>
                             <w>החררה</w>
                             <w>והדליק</w>
@@ -606,9 +579,7 @@
                             <w>כל</w>
                             <w>שיהו</w>
                             <w>התינוקות</w>
-                            
                             <w>ממשמשין</w>
-                            
                             <w>בו</w>
                             <w>ואינו</w>
                             <w>נוגח</w>
@@ -619,20 +590,17 @@
                             <w>המזיק</w>
                             <w>ברשות</w>
                             <w>הנזק</w>
-                            
                             <w>כיצד</w>
                             <w>נגח</w>
                             <w>נגף</w>
                             <w>נשך</w>
                             <w>רבץ</w>
                             <w>בעט</w>
-                            
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>משלם</w>
                             <w>חצי</w>
                             <w>נזק</w>
-                            
                             <w>ברשות</w>
                             <w>הניזק</w>
                             <w>רבי</w>
@@ -644,9 +612,7 @@
                             <w>אומרים</w>
                             <w>חצי</w>
                             <w>נזק</w>
-                            
                             <w>אמר</w>
-                            
                             <w>להם</w>
                             <w>רבי</w>
                             <w>טרפון</w>
@@ -678,7 +644,6 @@
                             <w>חצי</w>
                             <w>נזק</w>
                             <w>אינו</w>
-                            
                             <w>דין</w>
                             <w>שנחמיר</w>
                             <w>עליה</w>
@@ -686,10 +651,8 @@
                             <w>הניזק</w>
                             <w>לשלם</w>
                             <w>נזק</w>
-                            
                             <w>שלם</w>
                             <w>אמרו</w>
-                            
                             <w>לו</w>
                             <w>דיו</w>
                             <w>לבא</w>
@@ -699,7 +662,6 @@
                             <w>כנדון</w>
                             <w>מה</w>
                             <w>ברשות</w>
-                            
                             <w>הרבים</w>
                             <w>חצי</w>
                             <w>נזק</w>
@@ -707,14 +669,12 @@
                             <w>ברשות</w>
                             <w>הניזק</w>
                             <w>חצי</w>
-                            
                             <w>נזק</w>
                             <w>אמר</w>
                             <w>להם</w>
                             <w>אני</w>
                             <w>לא</w>
                             <w>אדון</w>
-                            
                             <w>קרן</w>
                             <w>מקרן</w>
                             <w>אני</w>
@@ -722,14 +682,12 @@
                             <w>קרן</w>
                             <w>מרגל</w>
                             <w>ומה</w>
-                            
                             <w>במקום</w>
                             <w>שהקל</w>
                             <w>על</w>
                             <w>השן</w>
                             <w>ועל</w>
                             <w>הרגל</w>
-                            
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>החמיר</w>
@@ -742,7 +700,6 @@
                             <w>הרגל</w>
                             <w>ברשות</w>
                             <w>הניזק</w>
-                            
                             <w>אינו</w>
                             <w>דין</w>
                             <w>שנחמיר</w>
@@ -756,11 +713,9 @@
                             <w>להיות</w>
                             <w>כנדון</w>
                             <w>מה</w>
-                            
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>חצי</w>
-                            
                             <w>נזק</w>
                             <w>אף</w>
                             <w>ברשות</w>
@@ -774,7 +729,6 @@
                             <w>אדם</w>
                             <w>מועד</w>
                             <w>לעולם</w>
-                            
                             <w>בין</w>
                             <w>שוגג</w>
                             <w>בין</w>
@@ -783,18 +737,15 @@
                             <w>ער</w>
                             <w>בין</w>
                             <w>ישן</w>
-                            
                             <w>סמא</w>
                             <w>את</w>
                             <w>עין</w>
                             <w>חברו</w>
                             <w>ושבר</w>
-                            
                             <w>את</w>
                             <w>הכלים</w>
                             <w>משלם</w>
                             <w>נזק</w>
-                            
                             <w>שלם</w>
                             <w/>
                         </ab>
@@ -802,13 +753,10 @@
                     </div3>
                     <div3 xml:id="ref.4.1.3">
                         <head xml:id="ref.4.1.3.H">
-                            
                             <w>פרק</w>
-                            
                             <w>ג</w>
                         </head>
                         <ab xml:id="ref.4.1.3.1">
-                            
                             <label>א</label>
                             <w>המניח</w>
                             <w>את</w>
@@ -826,7 +774,6 @@
                             <w>הזק</w>
                             <w>בה</w>
                             <w>בעל</w>
-                            
                             <w>החבית</w>
                             <w>חייב</w>
                             <w>בנזקו</w>
@@ -836,10 +783,8 @@
                             <w>הרבים</w>
                             <w>והוחלק</w>
                             <w>אחד</w>
-                            
                             <w>במים</w>
                             <w>או</w>
-                            
                             <w>שלקה</w>
                             <w>בחרסיה</w>
                             <w>חייב</w>
@@ -848,7 +793,6 @@
                             <w>אומר</w>
                             <w>במתכוין</w>
                             <w>חייב</w>
-                            
                             <w>באינו</w>
                             <w>מתכוין</w>
                             <w>פטור</w>
@@ -895,7 +839,6 @@
                             <w>הרבים</w>
                             <w>לזבלים</w>
                             <w>והוזק</w>
-                            
                             <w>בהן</w>
                             <w>אחר</w>
                             <w>חייב</w>
@@ -946,7 +889,6 @@
                             <w>ונתקל</w>
                             <w>השני</w>
                             <w>בראשון</w>
-                            
                             <w>הראשון</w>
                             <w>חייב</w>
                             <w>בנזקי</w>
@@ -955,10 +897,8 @@
                         </ab>
                         <ab xml:id="ref.4.1.3.5">
                             <label>ה</label>
-                            
                             <w>זה</w>
                             <w>בא</w>
-                            
                             <w>בחביתו</w>
                             <w>וזה</w>
                             <w>בא</w>
@@ -968,7 +908,6 @@
                             <w>של</w>
                             <w>זה</w>
                             <w>בקורתו</w>
-                            
                             <w>של</w>
                             <w>זה</w>
                             <w>פטור</w>
@@ -991,10 +930,8 @@
                             <w>פטור</w>
                             <w>בעל</w>
                             <w>הקורה</w>
-                            
                             <w>ואם</w>
                             <w>עמד</w>
-                            
                             <w>בעל</w>
                             <w>הקורה</w>
                             <w>חייב</w>
@@ -1011,19 +948,14 @@
                             <w>ובעל</w>
                             <w>קורה</w>
                             <w>אחרון</w>
-                            
                             <w>נשברה</w>
-                            
                             <w>חבית</w>
-                            
                             <w>בקורה</w>
                             <w>חייב</w>
                             <w>ואם</w>
-                            
                             <w>עמד</w>
                             <w>בעל</w>
                             <w>חבית</w>
-                            
                             <w>פטור</w>
                             <w>ואם</w>
                             <w>אמר</w>
@@ -4652,62 +4584,76 @@
                             <w>ומת</w>
                             <w>או</w>
                             <w>נגנב</w>
-                            
-                            
                             <w>חייב</w>
                             <w>באחריותו</w>
                             <w>לא</w>
                             <w>ידעו</w>
                             <w>בעלים</w>
                             <w>לא</w>
-                            <ptr target="G2.witStart"/><ptr target="g2.damBeg.1r.1a"/><w>בגניבתו</w>
+                            <link target="g2.xml#G2.witStart"/>
+                            <link target="g2.xml#g2.damBeg.1r.1a"/>
+                            <link target="g4.xml#G4.witStart"/>
+                            <link target="g2.damBeg.1r.1a"/>
+                            <w>בגניבתו</w>
                             <w>ולא</w>
                             <w>בחזירתו</w>
-                            
                             <w>ומנו</w>
+                            <link target="g2.damEnd.1r.1a"/>
                             <w>את</w>
-                            <w>הצאן</w>
-							<!-- G2 etc. have next two words in diff order. How to handle?-->
-                            <w>ושלמ<ptr target="g2.damEnd.1r.1a"/>ה</w>
+                            <w>ה<link target="g4.damBeg.1r.1b"/>צאן</w>
+                            <!-- next three words now conflate versions, to capture variation -->
+                            <w>והיא</w>
+                            <link target="g4.damEnd.1r.1b"/>
+                            <w>ושלמ<link target="g2.xml#g2.damEnd.1r.1a"/><link
+                                    target="g4.damBeg.1r.1c"/>"ה</w>
                             <w>היא</w>
                             <w>פטור</w>
-							<!--word added to allow for links-->
-							<w>מ<ptr target="g2.damBeg.1r.1b"/>ל<ptr target="g2.damEnd.1r.1b"/>שלם</w>
+                            <!--word added to allow for links-->
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.1b"/>ל<link
+                                    target="g2.xml#g2.damEnd.1r.1b"/>שלם</w>
                         </ab>
                         <ab xml:id="ref.4.1.10.9">
                             <label>ט</label>
                             <w>אין</w>
                             <w>לוקחין</w>
-                            
-                            <ptr target="g2.damBeg.1r.2"/><w>מן</w>
+                            <link target="g2.xml#g2.damBeg.1r.2"/>
+                            <w>מן</w>
                             <w>הרועים</w>
-                            
+                            <link target="g4.damEnd.1r.2a"/>
                             <w>צמר</w>
                             <w>וחלב</w>
                             <w>וגדיים</w>
                             <w>ולא</w>
+                            <link target="g4.damBeg.1r.2b"/>
                             <w>משומרי</w>
-                            <w>פ<ptr target="g2.damEnd.1r.2"/>ירות</w>
+                            <w><link target="g4.damEnd.1r.2b"/>פ<link target="g2.xml#g2.damEnd.1r.2"
+                                    /><link target="g4.damBeg.1r.2c"/>ירות</w>
                             <w>עצים</w>
                             <w>ופרות</w>
                             <w>אבל</w>
                             <w>לוקחין</w>
-                            <ptr target="g2.damBeg.1r.3a"/><w>מן</w>
-                            <w>הנשים</w>
-                            <w>כלי</w>
+                            <link target="g2.xml#g2.damBeg.1r.3a"/>
+                            <w>מן</w>
+                            <w>הנש<link target="g4.damBeg.1r.3a"/>ים</w>
+                            <w>כ<link target="g4.damBeg.1r.3b"/>לי</w>
+                            <link target="g4.damEnd.1r.3b"/>
                             <w>צמר</w>
                             <w>ביהודה</w>
                             <w>וכלי</w>
-                            
                             <w>פשתן</w>
-                            <w>בגליל</w>
+                            <w><link target="g4.damBeg.1r.3c"/>ב<link target="g4.damEnd.1r.3d"
+                                    />גל<link target="g4.damBeg.1r.3d"/>יל</w>
                             <w>ועגלים</w>
-                            <w>בשרון</w><ptr target="g2.damEnd.1r.3a"/>
+                            <w>בש<link target="g4.damEnd.1r.3d"/>רו<link target="g4.damBeg.1r.3e"
+                                />ן</w>
+                            <link target="g2.xml#g2.damEnd.1r.3a"/>
                             <w>וכולן</w>
-                            <w>שא<ptr target="g2.damBeg.1r.3b"/>מרו</w>
-                            <w>להטמין</w><ptr target="g2.damEnd.3b"/>
+                            <w>שא<link target="g2.xml#g2.damBeg.1r.3b"/>מרו</w>
+                            <w>להטמין</w>
+                            <link target="g2.xml#g2.damEnd.3b"/>
                             <w>אסור</w>
-                            <ptr target="g2.damBeg.1r.4a"/><w>ולוקחין</w>
+                            <link target="g2.xml#g2.damBeg.1r.4a"/>
+                            <w>ול<link target="g4.damEnd.1r.4a"/>וקחין</w>
                             <w>ביצים</w>
                             <w>ותרנגולים</w>
                             <w>מכל</w>
@@ -4715,29 +4661,33 @@
                         </ab>
                         <ab xml:id="ref.4.1.10.10">
                             <label>י</label>
-                            
-                            <w>מוכ<ptr target="g2.damEnd.1r.4a"/>ין</w>
+                            <w>מוכ<link target="g2.xml#g2.damEnd.1r.4a"/><link
+                                    target="g4.damEnd.1r.4a"/>ין</w>
                             <w>שהכובס</w>
-                            <w>מ<ptr target="g2.damBeg.1r.4b"/>וציא</w>
-                            <w>הר<ptr target="g2.damEnd.1r.4b"/>י</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.4b"/>וציא</w>
+                            <w>הר<link target="g2.xml#g2.damEnd.1r.4b"/>י</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <ptr target="g2.damBeg.1r.5a"/><w>ושהסורק</w>
+                            <link target="g2.xml#g2.damBeg.1r.5a"/>
+                            <w>וש<link target="g4.damBeg.1r.5a"/>ה<link target="g4.damEnd.1r.5a"
+                                />סורק</w>
                             <w>מוציא</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>של</w>
-                            <w>בעל</w>
+                            <w>ב<link target="g4.damBeg.1r.5b"/>על</w>
                             <w>הבית</w>
                             <w>הכובס</w>
-                            
                             <w>נוטל</w>
-                            <w>ש<ptr target="g2.damEnd.1r.5a"/>לשה</w>
-                            <w>חו<ptr target="g2.damBeg.1r.5b"/>טין</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.5a"/>לשה</w>
+                            <w>חו<link target="g2.xml#g2.damBeg.1r.5b"/>טין</w>
                             <w>והן</w>
                             <w>שלו</w>
-                            <ptr target="g2.damEnd.1r.5b"/><w>יתר</w>
-                            <ptr target="g2.damBeg.1r.6a"/><w>מכן</w>
+                            <link target="g2.xml#g2.damEnd.1r.5b"/>
+                            <w>יתר</w>
+                            <link target="g4.damEnd.1r.5b"/>
+                            <link target="g2.xml#g2.damBeg.1r.6a"/>
+                            <w>מכן</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>של</w>
@@ -4745,64 +4695,71 @@
                             <w>הבית</w>
                             <w>אם</w>
                             <w>היה</w>
+                            <link target="g4.damBeg.1r.6a"/>
                             <w>השחור</w>
-                            
                             <w>על</w>
                             <w>גבי</w>
                             <w>הלבן</w>
-                            
-                            <w>נ<ptr target="g2.damEnd.1r.6a"/>וטל</w>
+                            <w>נ<link target="g2.xml#g2.damEnd.1r.6a"/>וטל</w>
                             <w>את</w>
                             <w>הכל</w>
                             <w>והן</w>
-                            <w>ש<ptr target="g2.damBeg.1r.6b"/>לו</w>
-                            <w>ה<ptr target="g2.damEnd.1r.6b"/>חייט</w>
-                            <ptr target="g2.damBeg.1r.7a"/><w>ששייר</w>
+                            <w>ש<link target="g2.xml#g2.damBeg.1r.6b"/>לו</w>
+                            <w>ה<link target="g2.xml#g2.damEnd.1r.6b"/>חייט</w>
+                            <link target="g4.damEnd.1r.6"/>
+                            <link target="g2.xml#g2.damBeg.1r.7a"/>
+                            <w>ששייר</w>
                             <w>מן</w>
                             <w>החוט</w>
                             <w>כדי</w>
-                            <w>לתפור</w>
+                            <w>לתפו<link target="g4.damBeg.1r.7"/>ר</w>
                             <w>בו</w>
                             <w>ומטלית</w>
                             <w>שהיא</w>
-                            <w>ש<ptr target="g2.damEnd.1r.7a"/>לש</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.7a"/>לש</w>
                             <w>על</w>
                             <w>שלש</w>
                             <!-- Two alternate expressions,appearing in the different mss. Leave plain 
 							or wrap in "choice" ?-->
-							<!-- First text expression here -->
-							<w>חייב</w>
-							<w><ptr target="g2.damBeg.1r.7b"/>להחז<ptr target="g2.damEnd.1r.7b"/>יר</w>
-							<ptr target="g2.damBeg.1r.8a"/><w>לבעלים</w>
-							<!-- Second text expression here -->
-
-							<w>הרי</w>
+                            <!-- First text expression here -->
+                            <w>חייב</w>
+                            <w><link target="g2.xml#g2.damBeg.1r.7b"/>להחז<link
+                                    target="g2.xml#g2.damEnd.1r.7b"/>יר</w>
+                            <link target="g2.xml#g2.damBeg.1r.8a"/>
+                            <w>לבעלים</w>
+                            <!-- Second text expression here -->
+                            <w>הרי</w>
                             <w>אלו</w>
                             <w>של</w>
                             <w>בעל</w>
                             <w>הבית</w>
                             <w>מה</w>
+                            <link target="g4.damEnd.1r.8"/>
                             <w>שהחרש</w>
                             <w>מוציא</w>
                             <w>במעצד</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>וב<ptr target="g2.damEnd.1r.8a"/>כשיל</w>
+                            <w>וב<link target="g2.xml#g2.damEnd.1r.8a"/>כשיל</w>
                             <w>של</w>
                             <w>בעל</w>
-                            <w>הבית</w>
+                            <w>הב<link target="g2.xml#g2.damBeg.1r.8b"/>ית</w>
                             <w>ואם</w>
                             <w>היה</w>
                             <w>עושה</w>
-                            <w>אצל</w>
+                            <w>א<link target="g4.damEnd.1r.9a"/>צל</w>
                             <w>בעל</w>
-                            <w>הב<ptr target="g2.damBeg.1r.8b"/>ית</w>
+                            <w>הבית</w>
+                            <link target="g4.damBeg.1r.9b"/>
                             <w>אף</w>
                             <w>הנסרות</w>
                             <w>של</w>
-                            <w>בע<ptr target="g2.damBeg.1r.9b"/>ל<ptr target="g2.damEnd.1r.9b"/></w>
-                            <ptr target="g2.damEnd.1r.9"/><w>הבית</w>
+                            <link target="g2.xml#g2.damEnd.1r.9a"/>
+                            <w>בע<link target="g2.xml#g2.damBeg.1r.9b"/>ל<link
+                                    target="g2.xml#g2.damEnd.1r.9b"/></w>
+                            <link target="g2.xml#g2.damEnd.1r.9b"/>
+                            <w>הבית</w>
                         </ab>
                     </div3>
                     <trailer xml:id="ref.4.1.10.T"/>
@@ -4812,38 +4769,40 @@
                         <head xml:id="ref.4.2.1.H">
                             <w>פרק</w>
                             <w>א</w>
-                        </head><ptr target="g2.damBeg.1r.9"/>
+                        </head>
+                        <link target="g2.xml#g2.damBeg.1r.9c"/>
                         <ab xml:id="ref.4.2.1.1">
                             <label>א</label>
                             <w>שנים</w>
                             <w>אוחזין</w>
                             <w>בטלית</w>
-                            <w>זה</w>
+                            <w>ז<link target="g4.damEnd.1r.10"/>ה</w>
                             <w>אומר</w>
                             <w>אני</w>
                             <w>מצאתיה</w>
                             <w>וזה</w>
-                            <w>או<ptr target="g2.damEnd.1r.9b"/>מר</w>
+                            <w>או<link target="g2.xml#g2.damEnd.1r.9b"/>מר</w>
                             <w>אני</w>
                             <w>מצאתיה</w>
                             <w>זה</w>
                             <w>אומר</w>
-                            <w>כו<ptr target="g2.damBeg.1r.10"/>לה</w>
+                            <w>כו<link target="g2.xml#g2.damBeg.1r.10"/>לה</w>
                             <w>שלי</w>
                             <w>וזה</w>
                             <w>אומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
+                            <link target="g4.damEnd.1r.11"/>
                             <w>זה</w>
                             <w>ישבע</w>
                             <w>שאין</w>
                             <w>לו</w>
                             <w>בה</w>
-                            <w>פ<ptr target="g2.damEnd.1r.11"/>חות</w>
+                            <w>פ<link target="g2.xml#g2.damEnd.1r.11"/>חות</w>
                             <w>מחציה</w>
                             <w>וזה</w>
                             <w>ישבע</w>
-                            <w>ש<ptr target="g2.damBeg.1r.11"/>אין</w>
+                            <w>ש<link target="g2.xml#g2.damBeg.1r.11"/>אין</w>
                             <w>לו</w>
                             <w>בה</w>
                             <w>פחות</w>
@@ -4853,35 +4812,38 @@
                             <w>אומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
-                            <w>וז<ptr target="g2.damEnd.1r.12"/>ה</w>
+                            <w>וז<link target="g2.xml#g2.damEnd.1r.12"/>ה</w>
                             <w>אומר</w>
                             <w>חציה</w>
                             <w>שלי</w>
                             <w>האומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
-                            <ptr target="g2.damBeg.1r.12"/><w>ישבע</w>
+                            <link target="g2.xml#g2.damBeg.1r.12"/>
+                            <w>ישבע</w>
                             <w>שאין</w>
                             <w>לו</w>
                             <w>בה</w>
                             <w>פחות</w>
                             <w>משלשה</w>
                             <w>חלקים</w>
-                            <w>וה<ptr target="g2.damEnd.1r.13a"/>אומר</w>
-							
+                            <w>וה<link target="g2.xml#g2.damEnd.1r.13a"/>אומר</w>
                             <w>חציה</w>
                             <w>שלי</w>
-                            <w>י<ptr target="g2.damBeg.1r.13b"/><ptr target="g2.damEnd.1r.13b"/>שבע</w>
+                            <w>י<link target="g2.xml#g2.damBeg.1r.13b"/><link
+                                    target="g2.xml#g2.damEnd.1r.13b"/>שבע</w>
                             <w>שאין</w>
                             <w>לו</w>
-                            <ptr target="g2.damBeg.1r.14"/><w>בה</w>
+                            <link target="g2.xml#g2.damBeg.1r.14"/>
+                            <w>בה</w>
                             <w>פחות</w>
                             <w>מרביע</w>
                             <w>זה</w>
                             <w>נוטל</w>
                             <w>שלשה</w>
-                            <w>חלקים</w><ptr target="g2.damEnd.1r.14"/>
-							<!--thru here-->
+                            <w>חלקים</w>
+                            <link target="g2.xml#g2.damEnd.1r.14"/>
+                            <!--thru here-->
                             <w>וזה</w>
                             <w>נוטל</w>
                             <w>רביע</w>
@@ -4892,12 +4854,13 @@
                             <w>היו</w>
                             <w>שנים</w>
                             <w>רוכבין</w>
-                            <ptr target="g2.damBeg.1r.15a"/><w>על</w>
+                            <link target="g2.xml#g2.damBeg.1r.15a"/>
+                            <w>על</w>
                             <w>גבי</w>
                             <w>בהמה</w>
                             <w>או</w>
                             <w>שהיה</w>
-                            <w>אח<ptr target="g2.damEnd.1r.15a"/>ד</w>
+                            <w>אח<link target="g2.xml#g2.damEnd.1r.15a"/>ד</w>
                             <w>רוכב</w>
                             <w>ואחד</w>
                             <w>מנהיג</w>
@@ -4905,9 +4868,11 @@
                             <w>אומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
-                            <w>ו<ptr target="g2.damBeg.1r.15b"/>ז<ptr target="g2.damEnd.1r.15a"/>ה</w>
+                            <w>ו<link target="g2.xml#g2.damBeg.1r.15b"/>ז<link
+                                    target="g2.xml#g2.damEnd.1r.15a"/>ה</w>
                             <w>אומר</w>
-                            <ptr target="g2.damBeg.1r.16a"/><w>כולה</w>
+                            <link target="g2.xml#g2.damBeg.1r.16a"/>
+                            <w>כולה</w>
                             <w>שלי</w>
                             <w>זה</w>
                             <w>ישבע</w>
@@ -4915,44 +4880,50 @@
                             <w>לו</w>
                             <w>בה</w>
                             <w>פחות</w>
-                            <w>מ<ptr target="g2.damEnd.1r.16a"/>חציה</w>
+                            <w>מ<link target="g2.xml#g2.damEnd.1r.16a"/>חציה</w>
                             <w>וזה</w>
                             <w>ישבע</w>
                             <w>שאין</w>
                             <w>לו</w>
                             <w>בה</w>
-                            <w>פ<ptr target="g2.damBeg.1r.16b"/>חו<ptr target="g2.damEnd.1r.16b"/>ת</w>
-                            <ptr target="g2.damBeg.1r.17a"/><w>מחציה</w>
+                            <w>פ<link target="g2.xml#g2.damBeg.1r.16b"/>חו<link
+                                    target="g2.xml#g2.damEnd.1r.16b"/>ת</w>
+                            <link target="g2.xml#g2.damBeg.1r.17a"/>
+                            <w>מחציה</w>
                             <w>ויחלקו</w>
                             <w>בזמן</w>
                             <w>שהם</w>
                             <w>מודים</w>
                             <w>או</w>
-                            <w>שי<ptr target="g2.damEnd.1r.17a"/>ש</w>
-                            <w>לה<ptr target="g2.damBeg.1r.17b"/>ן</w>
+                            <w>שי<link target="g2.xml#g2.damEnd.1r.17a"/>ש</w>
+                            <w>לה<link target="g2.xml#g2.damBeg.1r.17b"/>ן</w>
                             <w>עדים</w>
-                            <w>חולקים</w><ptr target="g2.damEnd.1r.17b"/>
+                            <w>חולקים</w>
+                            <link target="g2.xml#g2.damEnd.1r.17b"/>
                             <w>בלא</w>
                             <w>שבועה</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.1.3">
                             <label>ג</label>
-                            <ptr target="g2.damBeg.1r.18a"/><w>היה</w>
+                            <link target="g2.xml#g2.damBeg.1r.18a"/>
+                            <w>היה</w>
                             <w>רוכב</w>
                             <w>על</w>
                             <w>גבי</w>
                             <w>בהמה</w>
                             <w>וראה</w>
                             <w>את</w>
-                            <w>המציאה</w><ptr target="g2.damEnd.1r.18a"/>
-                            <w>ואמ<ptr target="g2.damBeg.1r.18b"/>ר</w>
-                            <w>לח<ptr target="g2.damEnd.1r.18b"/>ברו</w>
+                            <w>המציאה</w>
+                            <link target="g2.xml#g2.damEnd.1r.18a"/>
+                            <w>ואמ<link target="g2.xml#g2.damBeg.1r.18b"/>ר</w>
+                            <w>לח<link target="g2.xml#g2.damEnd.1r.18b"/>ברו</w>
                             <w>תנה</w>
                             <w>לי</w>
                             <w>נטלה</w>
                             <w>ואמר</w>
                             <w>אני</w>
+                            <link target="g2.xml#g2.damBeg.1r.19"/>
                             <w>זכיתי</w>
                             <w>בה</w>
                             <w>זכה</w>
@@ -4963,6 +4934,7 @@
                             <w>אמר</w>
                             <w>אני</w>
                             <w>זכיתי</w>
+                            <link target="g2.xml#g2.damEnd.1r.19"/>
                             <w>בה</w>
                             <w>תחלה</w>
                             <w>לא</w>
@@ -4972,6 +4944,7 @@
                         </ab>
                         <ab xml:id="ref.4.2.1.4">
                             <label>ד</label>
+                            <link target="g2.xml#g2.damBeg.1r.20"/>
                             <w>ראה</w>
                             <w>את</w>
                             <w>המציאה</w>
@@ -4981,11 +4954,13 @@
                             <w>אחר</w>
                             <w>והחזיק</w>
                             <w>בה</w>
+                            <link target="g2.xml#g2.damEnd.1r.20"/>
                             <w>זה</w>
                             <w>שהחזיק</w>
                             <w>בה</w>
                             <w>זכה</w>
                             <w>בה</w>
+                            <link target="g2.xml#g2.damBeg.1r.21"/>
                             <w>ראה</w>
                             <w>אותן</w>
                             <w>רצין</w>
@@ -4996,12 +4971,12 @@
                             <w>שבור</w>
                             <w>אחר</w>
                             <w>גוזלות</w>
-                            
+                            <link target="g2.xml#g2.damEnd.1r.21"/>
                             <w>שלא</w>
                             <w>פרחו</w>
-                            
                             <w>ואמר</w>
                             <w>זכתה</w>
+                            <link target="g2.xml#g2.damBeg.1r.22"/>
                             <w>לי</w>
                             <w>שדי</w>
                             <w>זכתה</w>
@@ -5012,14 +4987,14 @@
                             <w>כדרכו</w>
                             <w>או</w>
                             <w>שהיו</w>
-                            
                             <w>גוזלות</w>
                             <w>מפריחין</w>
+                            <link target="g2.xml#g2.damEnd.1r.22"/>
                             <w>ואמר</w>
                             <w>זכתה</w>
                             <w>לי</w>
-                            
                             <w>שדי</w>
+                            <link target="g2.xml#g2.damBeg.1r.23a"/>
                             <w>לא</w>
                             <w>אמר</w>
                             <w>כלום</w>
@@ -5030,35 +5005,38 @@
                             <w>מציאת</w>
                             <w>בנו</w>
                             <w>ובתו</w>
-                            
-                            <w>הקטנים</w>
+                            <w>ה<link target="g2.xml#g2.damEnd.1r.23a"/>ק<link
+                                    target="g2.xml#g2.damBeg.1r.23b"/>טני<link
+                                    target="g2.xml#g2.damEnd.1r.23b"/>ם</w>
                             <w>מציאת</w>
                             <w>עבדו</w>
                             <w>ושפחתו</w>
                             <w>הכנענים</w>
                             <w>מציאת</w>
+                            <link target="g2.xml#g2.damBeg.1r.24a"/>
                             <w>אשתו</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>מציאת</w>
                             <w>בנו</w>
-                            
                             <w>ובתו</w>
+                            <link target="g2.xml#g2.damEnd.1r.24a"/>
                             <w>הגדולים</w>
                             <w>מציאת</w>
-                            <w>עבדו</w>
-                            <w>ושפחתו</w>
+                            <w>ע<link target="g2.xml#g2.damBeg.1r.24b"/>בדו</w>
+                            <w>ו<link target="g2.xml#g2.damEnd.1r.24b"/>שפחתו</w>
                             <w>העברים</w>
                             <w>מציאת</w>
+                            <link target="g2.xml#g2.damBeg.1r.25"/>
                             <w>אשתו</w>
                             <w>שגרשה</w>
                             <w>אף</w>
                             <w>על</w>
                             <w>פי</w>
-                            
                             <w>שלא</w>
                             <w>נתן</w>
+                            <link target="g2.xml#g2.damEnd.1r.25"/>
                             <w>כתבתה</w>
                             <w>הרי</w>
                             <w>אלו</w>
@@ -5068,15 +5046,16 @@
                             <label>ו</label>
                             <w>מצא</w>
                             <w>שטרי</w>
+                            <link target="g2.xml#g2.damBeg.1r.26"/>
                             <w>חוב</w>
                             <w>אם</w>
                             <w>יש</w>
                             <w>בהן</w>
-                            
                             <w>אחריות</w>
                             <w>נכסים</w>
                             <w>לא</w>
                             <w>יחזיר</w>
+                            <link target="g2.xml#g2.damEnd.1r.26"/>
                             <w>שבית</w>
                             <w>דין</w>
                             <w>נפרעין</w>
@@ -5084,24 +5063,25 @@
                             <w>אין</w>
                             <w>בהן</w>
                             <w>אחריות</w>
-                            
                             <w>נכסים</w>
                             <w>יחזיר</w>
+                            <link target="g2.xml#g2.damBeg.1r.27"/>
                             <w>שאין</w>
                             <w>בית</w>
                             <w>דין</w>
                             <w>נפרעין</w>
-                            
                             <w>מהן</w>
                             <w>דברי</w>
                             <w>רבי</w>
                             <w>מאיר</w>
+                            <link target="g2.xml#g2.damEnd.1r.27"/>
                             <w>וחכמים</w>
                             <w>אומרים</w>
                             <w>בין</w>
                             <w>כך</w>
                             <w>ובין</w>
                             <w>כך</w>
+                            <link target="g2.xml#g2.damBeg.1r.28a"/>
                             <w>לא</w>
                             <w>יחזיר</w>
                             <w>מפני</w>
@@ -5109,100 +5089,105 @@
                             <w>דין</w>
                             <w>נפרעין</w>
                             <w>מהן</w>
+                            <link target="g2.xml#g2.damEnd.1r.28a"/>
                         </ab>
                         <ab xml:id="ref.4.2.1.7">
                             <label>ז</label>
-                            <w>מצא</w>
-                            <w>גטי</w>
+                            <w>מצ<link target="g2.xml#g2.damBeg.1r.28b"/>א</w>
+                            <w>ג<link target="g2.xml#g2.damEnd.1r.28b"/>טי</w>
                             <w>נשים</w>
                             <w>ושחרורי</w>
                             <w>עבדים</w>
+                            <link target="g2.xml#g2.damBeg.1r.29a"/>
                             <w>דייתיקי</w>
                             <w>מתנה</w>
                             <w>עבדים</w>
                             <w>דייתיקי</w>
                             <w>מתנה</w>
-                            
                             <w>ושוברים</w>
                             <w>הרי</w>
                             <w>זה</w>
                             <w>לא</w>
-                            <w>יחזיר</w>
-                            <w>שאני</w>
-                            <w>אומר</w>
+                            <w>יח<link target="g2.xml#g2.damEnd.1r.29a"/>זיר</w>
+                            <w>ש<link target="g2.xml#g2.damBeg.1r.29b"/>א<link
+                                    target="g2.xml#g2.damEnd.1r.29b"/>ני</w>
+                            <w><link target="g2.xml#g2.damBeg.1r.29c"/>או<link
+                                    target="g2.xml#g2.damEnd.1r.29c"/>מר</w>
                             <w>כתובים</w>
                             <w>היו</w>
                             <w>ונמלך</w>
                             <w>עליהם</w>
                             <w>שלא</w>
+                            <link target="g2.xml#g2.damBeg.1r.30"/>
                             <w>לתנם</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.1.8">
                             <label>ח</label>
-                            
                             <w>מצא</w>
                             <w>אגרות</w>
                             <w>שום</w>
                             <w>ואגרות</w>
-                            <w>מזון</w>
+                            <w>מז<link target="g2.xml#g2.damEnd.1r.30"/>ון</w>
                             <w>שטרי</w>
                             <w>חליצה</w>
                             <w>ומאונין</w>
                             <w>ושטרי</w>
+                            <link target="g2.xml#g2.damBeg.1r.31"/>
                             <w>ברורין</w>
-                            
                             <w>וכל</w>
                             <w>מעשה</w>
                             <w>בית</w>
                             <w>דין</w>
                             <w>הרי</w>
                             <w>זה</w>
-                            <w>יחזיר</w>
+                            <w>י<link target="g2.xml#g2.damEnd.1r.31"/>חזיר</w>
                             <w>מצא</w>
                             <w>בחפיסה</w>
                             <w>או</w>
                             <w>בדלוסקמא</w>
                             <w>תכריך</w>
+                            <link target="g2.xml#g2.damBeg.1r.32"/>
                             <w>של</w>
                             <w>שטרות</w>
                             <w>או</w>
                             <w>אגדה</w>
                             <w>של</w>
                             <w>שטרות</w>
-                            <w>הרי</w>
+                            <w>הר<link target="g2.xml#g2.damEnd.1r.32"/>י</w>
                             <w>זה</w>
                             <w>יחזיר</w>
-                            
                             <w>וכמה</w>
-                            
                             <w>אגדה</w>
                             <w>של</w>
                             <w>שטרות</w>
+                            <link target="g2.xml#g2.damBeg.1r.33"/>
                             <w>שלשה</w>
-                            
                             <w>קשורין</w>
                             <w>זה</w>
                             <w>בזה</w>
                             <w>רבן</w>
                             <w>שמעון</w>
+                            <link target="g2.xml#g2.damEnd.1r.33"/>
                             <w>בן</w>
                             <w>גמליאל</w>
                             <w>אומר</w>
                             <w>אחד</w>
                             <w>הלוה</w>
                             <w>משלשה</w>
+                            <link target="g2.xml#g2.damBeg.1r.34"/>
                             <w>יחזיר</w>
                             <w>ללוה</w>
                             <w>שלשה</w>
                             <w>הלוין</w>
                             <w>מאחד</w>
-                            <w>יחזיר</w>
+                            <w>יחז<link target="g2.xml#g2.damEnd.1r.34"/>יר</w>
                             <w>למלוה</w>
                             <w>מצא</w>
                             <w>שטר</w>
                             <w>בין</w>
                             <w>שטרותיו</w>
+                            <link target="g2.xml#g2.damBeg.1r.35"/>
                             <w>ואינו</w>
                             <w>יודע</w>
                             <w>מה</w>
@@ -5210,12 +5195,13 @@
                             <w>יהא</w>
                             <w>מנח</w>
                             <w>עד</w>
-                            <w>שיבוא</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.35"/>יבוא</w>
                             <w>אליהו</w>
                             <w>אם</w>
                             <w>יש</w>
                             <w>עמהן</w>
                             <w>סמפונות</w>
+                            <link target="g2.xml#g2.damBeg.1r.36a"/>
                             <w>יעשה</w>
                             <w>מה</w>
                             <w>שבסמפונות</w>
@@ -5224,70 +5210,87 @@
                     </div3>
                     <div3 xml:id="ref.4.2.2">
                         <head xml:id="ref.4.2.2.H">
-                            <w>פרק</w>
+                            <w>פר<link target="g2.xml#g2.damEnd.1r.36a"/>ק</w>
                             <w>ב</w>
                         </head>
                         <ab xml:id="ref.4.2.2.1">
                             <label>א</label>
+                            <link target="g2.xml#g2.damBeg.1r.36b"/>
                             <w>אלו</w>
-                            <w>מציאות</w>
+                            <w>מציא<link target="g2.xml#g2.damEnd.1r.36b"/>ות</w>
                             <w>שלו</w>
                             <w>ואלו</w>
                             <w>חייב</w>
+                            <link target="g2.xml#g2.damBeg.1r.37a"/>
                             <w>להכריז</w>
                             <w>אלו</w>
                             <w>מציאות</w>
                             <w>שלו</w>
                             <w>מצא</w>
+                            <link target="g2.xml#g2.damEnd.1r.37a"/>
                             <w>פרות</w>
-                            <w>מפזרין</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.37b"/>פזרין</w>
                             <w>מעות</w>
+                            <link target="g2.xml#g2.damEnd.1r.37b"/>
                             <w>מפזרות</w>
                             <w>כריכות</w>
-                            <w>ברשות</w>
+                            <link target="g4.damBeg.1v.1a"/><w>ברשות</w>
                             <w>הרבים</w>
-                            <w>ועגולי</w>
+                            <w>ועג<link target="g2.xml#g2.damBeg.1v.1a"/>ול<link
+                                    target="g2.xml#g2.damEnd.1v.1a"/>י</w>
                             <w>דבלה</w>
-                            <w>ככרות</w>
+                            <w>כ<link target="g4.damEnd.1v.1a"/><link
+                                    target="g2.xml#g2.damBeg.1v.1b"/>כרות</w>
                             <w>של</w>
                             <w>נחתום</w>
                             <w>מחרוזות</w>
-                            <w>של</w>
+                            <link target="g4.damBeg.1v.1b"/><w>של</w>
                             <w>דגים</w>
                             <w>וחתיכות</w>
+                            <link target="g2.xml#g2.damEnd.1v.1b"/>
                             <w>של</w>
                             <w>בשר</w>
                             <w>וגזי</w>
                             <w>צמר</w>
                             <w>הבאות</w>
-                            <w>ממדינתן</w>
-                            <w>ואניצי</w>
+                            <w>מ<link target="g4.damEnd.1v.2a"/>מד<link
+                                    target="g2.xml#g2.damBeg.1v.2a"/>ינ<link
+                                    target="g4.damBeg.1v.2b"/>תן</w>
+                            <w>ואני<link target="g4.damEnd.1v.2b"/>צי</w>
                             <w>פשתן</w>
                             <w>ולשונות</w>
-                            <w>של</w>
+                            <w>של<link target="g4.damBeg.1v.2c"/></w>
                             <w>ארגמן</w>
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damEnd.1v.2a"/>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>דברי</w>
+                            <link target="g2.xml#g2.damBeg.1v.3a"/>
                             <w>רבי</w>
                             <w>מאיר</w>
                             <w>רבי</w>
-                            <w>יהודה</w>
+                            <w>יהו<link target="g2.xml#g2.damEnd.1v.3a"/>דה</w>
                             <w>אומר</w>
                             <w>כל</w>
-                            <w>שיש</w>
-                            <w>בו</w>
+                            <!-- following wd added to allow pointing -->
+                            <w>דב<link target="g4.damEnd.1v.3a"/><link
+                                    target="g2.xml#g2.damBeg.1v.3b"/>ר</w>
+                            <link target="g4.damBeg.1v.3b"/><w>שיש</w>
+                            <w>בו</w><link target="g4.damEnd.1v.3b"/>
                             <w>שנוי</w>
                             <w>חייב</w>
-                            <w>להכריז</w>
-                            <w>כיצד</w>
+                            <w>להכרי<link target="g4.damBeg.1v.3c"/>ז</w><link
+                                target="g4.damEnd.1v.3c"/>
+                            <w>כי<link target="g4.damBeg.1v.3d"/>צד</w>
                             <w>מצא</w>
+                            <link target="g2.xml#g2.damEnd.1v.3b"/>
                             <w>עגול</w>
-                            <w>ובתוכו</w>
-                            <w>חרס</w>
+                            <w>וב<link target="g2.xml#g2.damBeg.1v.4a"/>תוכו</w>
+                            <w>חר<link target="g2.xml#g2.damEnd.1v.4a"/>ס</w>
                             <w>ככר</w>
-                            <w>ובתוכו</w>
+                            <w>ובתוכ<link target="g4.damEnd.1v.4"/><link
+                                    target="g2.xml#g2.damBeg.1v.4b"/>ו</w>
                             <w>מעות</w>
                             <w>רבי</w>
                             <w>שמעון</w>
@@ -5296,7 +5299,8 @@
                             <w>אומר</w>
                             <w>כל</w>
                             <w>כלי</w>
-                            <w>אנפוריא</w>
+                            <w>אנפ<link target="g4.damBeg.1v.4"/>וריא</w>
+                            <link target="g2.xml#g2.damEnd.1v.4b"/>
                             <w>אין</w>
                             <w>חייב</w>
                             <w>להכריז</w>
@@ -5304,113 +5308,122 @@
                         <ab xml:id="ref.4.2.2.2">
                             <label>ב</label>
                             <w>ואלו</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g2.xml#g2.damBeg.1v.5a"/>ייב</w>
                             <w>להכריז</w>
-                            <w>מצא</w>
+                            <w>מצ<link target="g4.damEnd.1v.5"/>א</w>
                             <w>פרות</w>
                             <w>בכלי</w>
                             <w>או</w>
                             <w>כלי</w>
                             <w>כמות</w>
-                            <w>שהוא</w>
-                            <w>מעות</w>
+                            <w>שה<link target="g4.damBeg.1v.5"/>וא</w>
+                            <link target="g2.xml#g2.damEnd.1v.5a"/>
+                            <w>מעו<link target="g2.xml#g2.damBeg.1v.6a"/>ת</w>
                             <w>בכיס</w>
+                            <link target="g2.xml#g2.damEnd.1v.6a"/>
                             <w>או</w>
                             <w>כיס</w>
                             <w>כמות</w>
+                            <link target="g2.xml#g2.damBeg.1v.6b"/>
                             <w>שהוא</w>
-                            <w>צבורי</w>
+                            <link target="g4.damEnd.1v.6"/><w>צבורי</w>
                             <w>פרות</w>
                             <w>צבורי</w>
                             <w>מעות</w>
                             <w>שלשה</w>
-                            <w>מטבעות</w>
+                            <w>מטבע<link target="g4.damBeg.1v.6"/>ות</w>
                             <w>זה</w>
                             <w>על</w>
+                            <link target="g2.xml#g2.damEnd.1v.7a"/>
                             <w>גב</w>
                             <w>זה</w>
                             <w>כריכות</w>
-                            <w>ברשות</w>
+                            <w>בר<link target="g2.xml#g2.damBeg.1v.7b"/>שות</w>
                             <w>היחיד</w>
                             <w>וככרות</w>
-                            <w>של</w>
+                            <link target="g2.xml#g2.damEnd.1v.7a"/><w>של</w>
                             <w>בעל</w>
                             <w>הבית</w>
                             <w>וגיזי</w>
                             <w>צמר</w>
-                            <w>הלקוחות</w>
+                            <link target="g4.damBeg.1v.7"/><w>הלקו<link
+                                    target="g2.xml#g2.damEnd.1v.8"/>חות</w>
                             <w>מבית</w>
                             <w>האומן</w>
-                            <w>כדי</w>
+                            <w>כד<link target="g2.xml#g2.damBeg.1v.8"/>י</w>
                             <w>יין</w>
                             <w>וכדי</w>
                             <w>שמן</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g4.damEnd.1v.8"/>ייב</w>
                             <w>להכריז</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.2.3">
-                            <label>ג</label>
+                            <link target="g4.damBeg.1v.8"/><label>ג</label>
                             <w>מצא</w>
                             <w>אחר</w>
                             <w>הגפה</w>
                             <w>או</w>
                             <w>אחר</w>
+                            <link target="g2.xml#g2.damEnd.1v.9"/>
                             <w>הגדר</w>
                             <w>גוזלות</w>
                             <w>מקושרין</w>
+                            <link target="g2.xml#g2.damBeg.1v.9"/>
                             <w>או</w>
                             <w>בשבילין</w>
-                            <w>שבשדות</w>
-                            <w>הרי</w>
+                            <link target="g4.damEnd.1v.9"/><w>שבשדות</w>
+                            <w>ה<link target="g4.damBeg.1v.9"/>רי</w>
                             <w>זה</w>
                             <w>לא</w>
                             <w>יגע</w>
                             <w>בהן</w>
                             <w>מצא</w>
+                            <link target="g2.xml#g2.damEnd.1v.10"/>
                             <w>כלי</w>
                             <w>באשפה</w>
                             <w>אם</w>
                             <w>מכוסה</w>
-                            <w>לא</w>
+                            <w>ל<link target="g2.xml#g2.damBeg.1v.10"/>א</w>
                             <w>יגע</w>
                             <w>בו</w>
                             <w>אם</w>
                             <w>מגלה</w>
-                            <w>נוטל</w>
+                            <link target="g4.damEnd.1v.10"/><w>נוטל</w><link
+                                target="g4.damBeg.1v.10"/>
                             <w>ומכריז</w>
                             <w>מצא</w>
                             <w>בגל</w>
                             <w>או</w>
-                            <w>בכתל</w>
+                            <w>בכ<link target="g2.xml#g2.damEnd.1v.11"/>תל</w>
                             <w>ישן</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>מצא</w>
+                            <w>מצ<link target="g2.xml#g2.damBeg.1v.11"/>א</w>
                             <w>בכתל</w>
                             <w>חדש</w>
                             <w>מחציו</w>
                             <w>ולחוץ</w>
                             <w>שלו</w>
-                            <w>מחציו</w>
-                            <w>ולפנים</w>
+                            <w>מחציו</w><link target="g2.xml#g2.damBeg.1v.12"/>
+                            <w>ול<link target="g2.xml#g2.damEnd.1v.12a"/>פנים</w>
                             <w>של</w>
                             <w>בעל</w>
-                            <w>הבית</w>
+                            <w>הבית</w><link target="g4.damEnd.1v.11"/>
                             <w>אם</w>
                             <w>היה</w>
                             <w>משכירו</w>
                             <w>לאחרים</w>
-                            
                             <w>אפלו</w>
                             <w>מצא</w>
                             <!-- preceding not in vilna ed. entered to allow linking -->
                             <w>בתוך</w>
                             <w>הבית</w>
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damEnd.1v.12b"/>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w/>
@@ -5419,8 +5432,8 @@
                             <label>ד</label>
                             <w>מצא</w>
                             <w>בחנות</w>
-                            
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damBeg.1v.13"/>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>בין</w>
@@ -5428,59 +5441,61 @@
                             <w>ולחוני</w>
                             <w>של</w>
                             <w>חנוני</w>
+                            <link target="g2.xml#g2.damEnd.1v.13"/>
                             <w>לפני</w>
                             <w>שולחני</w>
-                            
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>בין</w>
-                            <w>הכסא</w>
+                            <w>הכ<link target="g2.xml#g2.damBeg.1v.14"/>סא</w>
                             <w>ולשולחני</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            
                             <w>לשולחני</w>
                             <w>הלוקח</w>
                             <w>פירות</w>
-                            <w>מחבירו</w>
+                            <link target="g2.xml#g2.damEnd.1v.14"/>
+                            <w>מחביר<link target="g2.xml#g2.damBeg.1v.15a"/>ו<link
+                                    target="g2.xml#g2.damEnd.1v.15a"/></w>
                             <w>או</w>
-                            
                             <w>ששלח</w>
                             <w>לו</w>
                             <w>חבירו</w>
                             <w>פירות</w>
+                            <link target="g2.xml#g2.damBeg.1v.15b"/>
                             <w>ומצא</w>
-                            <w>בהן</w>
+                            <w>בתוכן</w>
+                            <w>מעות</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>אם</w>
+                            <link target="g2.xml#g2.damEnd.1v.15b"/>
                             <w>היו</w>
-                            <w>צרורין</w>
-                            
+                            <link target="g2.xml#g2.damBeg.1v.16a"/>
+                            <w>צרו<link target="g2.xml#g2.damEnd.1v.16a"/>רין</w>
                             <w>נוטל</w>
                             <w>ומכריז</w>
                         </ab>
                         <ab xml:id="ref.4.2.2.5">
                             <label>ה</label>
                             <w>אף</w>
-                            <w>השמלה</w>
-                            
+                            <w>ה<link target="g2.xml#g2.damBeg.1v.16b"/>שמלה</w>
                             <w>היתה</w>
                             <w>בכלל</w>
                             <w>כל</w>
                             <w>אלה</w>
                             <w>למה</w>
                             <w>יצאת</w>
+                            <link target="g2.xml#g2.damEnd.1v.16b"/>
                             <w>להקיש</w>
                             <w>אליה</w>
                             <w>לומר</w>
                             <w>לך</w>
                             <w>מה</w>
                             <w>שמלה</w>
-                            <w>מיוחדת</w>
-                            
+                            <w>מיוח<link target="g2.xml#g2.damBeg.1v.17"/>דת</w>
                             <w>שיש</w>
                             <w>בה</w>
                             <w>סימנים</w>
@@ -5488,15 +5503,17 @@
                             <w>לה</w>
                             <w>תובעים</w>
                             <w>אף</w>
+                            <link target="g2.xml#g2.damEnd.1v.17"/>
                             <w>כל</w>
                             <w>דבר</w>
                             <w>שיש</w>
+                            <link target="g2.xml#g2.damBeg.1v.18a"/>
                             <w>בו</w>
+                            <link target="g2.xml#g2.damEnd.1v.18a"/>
                             <w>סימנים</w>
                             <w>ויש</w>
                             <w>לו</w>
-                            <w>תובעים</w>
-                            
+                            <w>תובעי<link target="g2.xml#g2.damBeg.1v.18b"/>ם</w>
                             <w>חייב</w>
                             <w>להכריז</w>
                         </ab>
@@ -5506,31 +5523,38 @@
                             <w>מתי</w>
                             <w>חייב</w>
                             <w>להכריז</w>
+                            <link target="g2.xml#g2.damEnd.1v.18b"/>
                             <w>עד</w>
                             <w>כדי</w>
                             <w>שידעו</w>
                             <w>בו</w>
                             <w>שכניו</w>
-                            <w>דברי</w>
+                            <w>דבר<link target="g2.xml#g2.damBeg.1v.19a"/>י<link
+                                    target="g2.xml#g2.damEnd.1v.19a"/></w>
                             <w>רבי</w>
                             <w>מאיר</w>
                             <w>רבי</w>
+                            <link target="g2.xml#g2.damBeg.1v.19b"/>
                             <w>יהודה</w>
                             <w>אומר</w>
                             <w>שלש</w>
                             <w>רגלים</w>
                             <w>ואחר</w>
+                            <link target="g2.xml#g2.damEnd.1v.19b"/>
                             <w>הרגל</w>
                             <w>האחרון</w>
                             <w>שבעה</w>
-                            <w>ימים</w>
+                            <w>ימ<link target="g2.xml#g2.damBeg.1v.20a"/>ים</w>
                             <w>כדי</w>
+                            <link target="g2.xml#g2.damEnd.1v.20a"/>
                             <w>שילך</w>
+                            <link target="g2.xml#g2.damBeg.1v.20b"/>
                             <w>לביתו</w>
                             <w>שלשה</w>
                             <w>ויחזור</w>
                             <w>שלשה</w>
                             <w>ויכריז</w>
+                            <link target="g2.xml#g2.damEnd.1v.20b"/>
                             <w>יום</w>
                             <w>אחד</w>
                             <w/>
@@ -5539,21 +5563,26 @@
                             <label>ז</label>
                             <w>אמר</w>
                             <w>את</w>
-                            <w>האבדה</w>
+                            <w>הא<link target="g2.xml#g2.damBeg.1v.21a"/>בדה</w>
                             <w>ולא</w>
-                            <w>אמר</w>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.21a"/>מר</w>
+                            <link target="g2.xml#g2.damBeg.1v.21b"/>
                             <w>סימניה</w>
                             <w>לא</w>
                             <w>יתן</w>
                             <w>לו</w>
                             <w>והרמאי</w>
                             <w>אף</w>
+                            <link target="g2.xml#g2.damEnd.1v.21b"/>
                             <w>על</w>
                             <w>פי</w>
                             <w>שאמר</w>
                             <w>סימניה</w>
+                            <!-- Next two words added for pointing -->
+                            <w>ה<link target="g2.xml#g2.damBeg.1v.22a"/>רי</w>
+                            <w>ז<link target="g2.xml#g2.damEnd.1v.22a"/>ה</w>
                             <w>לא</w>
-                            <w>יתן</w>
+                            <w>ית<link target="g2.xml#g2.damBeg.1v.22b"/>ן</w>
                             <w>לו</w>
                             <w>שנאמר</w>
                             <w>עד</w>
@@ -5561,6 +5590,7 @@
                             <w>אחיך</w>
                             <w>אותו</w>
                             <w>עד</w>
+                            <link target="g2.xml#g2.damEnd.1v.22b"/>
                             <w>שתדרוש</w>
                             <w>את</w>
                             <w>אחיך</w>
@@ -5568,11 +5598,14 @@
                             <w>רמאי</w>
                             <w>הוא</w>
                             <w>אם</w>
-                            <w>אינו</w>
+                            <w>א<link target="g2.xml#g2.damBeg.1v.23"/>ינו</w>
                             <w>רמאי</w>
                             <w>כל</w>
                             <w>דבר</w>
-                            <w>שעושה</w>
+                            <!-- Next word added for pointing -->
+                            <w>שהוא</w>
+                            <link target="g2.xml#g2.damEnd.1v.23"/>
+                            <w>ע<link target="g2.xml#g2.damBeg.1v.24"/>ושה</w>
                             <w>ואוכל</w>
                             <w>יעשה</w>
                             <w>ויאכל</w>
@@ -5584,6 +5617,7 @@
                             <w>שנאמר</w>
                             <w>והשבותו</w>
                             <w>לו</w>
+                            <link target="g2.xml#g2.damEnd.1v.24"/>
                             <w>ראה</w>
                             <w>היאך</w>
                             <w>תשיבנו</w>
@@ -5591,23 +5625,28 @@
                             <w>מה</w>
                             <w>יהא</w>
                             <w>בדמים</w>
+                            <link target="g2.xml#g2.damBeg.1v.25"/>
                             <w>רבי</w>
                             <w>טרפון</w>
                             <w>אומר</w>
                             <w>ישתמש</w>
                             <w>בהן</w>
-                            <w>לפיכך</w>
+                            <link target="g2.xml#g2.damEnd.1v.25"/>
+                            <w>ל<link target="g2.xml#g2.damBeg.1v.26a"/>פ<link
+                                    target="g2.xml#g2.damEnd.1v.26a"/>יכך</w>
                             <w>אם</w>
                             <w>אבדו</w>
                             <w>חייב</w>
-                            <w>באחריותן</w>
+                            <w>בא<link target="g2.xml#g2.damBeg.1v.26b"/>חרי<link
+                                    target="g2.xml#g2.damEnd.1v.26b"/>ותן</w>
                             <w>רבי</w>
-                            <w>עקיבא</w>
+                            <w>ע<link target="g2.xml#g2.damBeg.1v.26c"/>קיבא</w>
                             <w>אומר</w>
                             <w>לא</w>
                             <w>ישתמש</w>
                             <w>בהן</w>
                             <w>לפיכך</w>
+                            <link target="g2.xml#g2.damEnd.1v.26c"/>
                             <w>אם</w>
                             <w>אבדו</w>
                             <w>אין</w>
@@ -5617,54 +5656,67 @@
                         </ab>
                         <ab xml:id="ref.4.2.2.8">
                             <label>ח</label>
+                            <w>מ<link target="g2.xml#g2.damBeg.1v.27"/>צא</w>
+                            <w>ספרים</w>
+                            <w>קורא</w>
+                            <w>בהן</w>
                             <w>אחת</w>
                             <w>לשלשים</w>
                             <w>יום</w>
+                            <link target="g2.xml#g2.damEnd.1v.27"/>
                             <w>ואם</w>
                             <w>אינו</w>
                             <w>יודע</w>
                             <w>לקרות</w>
                             <w>גוללן</w>
-                            <w>אבל</w>
+                            <link target="g2.xml#g2.damBeg.1v.28a"/>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.28a"/>בל</w>
                             <w>לא</w>
-                            <w>ילמוד</w>
+                            <w>י<link target="g2.xml#g2.damBeg.1v.28b"/>למוד</w>
                             <w>בהן</w>
                             <w>בתחלה</w>
                             <w>ולא</w>
                             <w>יקרא</w>
                             <w>אחר</w>
                             <w>עמו</w>
+                            <link target="g2.xml#g2.damEnd.1v.28b"/>
                             <w>מצא</w>
                             <w>כסות</w>
                             <w>מנערה</w>
                             <w>אחת</w>
                             <w>לשלשים</w>
+                            <link target="g2.xml#g2.damBeg.1v.29"/>
                             <w>יום</w>
                             <w>ושוטחה</w>
                             <w>לצרכה</w>
                             <w>אבל</w>
                             <w>לא</w>
                             <w>לכבודו</w>
+                            <link target="g2.xml#g2.damEnd.1v.29"/>
                             <w>כלי</w>
                             <w>כסף</w>
                             <w>וכלי</w>
                             <w>נחשת</w>
-                            <w>משתמש</w>
+                            <w>משת<link target="g2.xml#g2.damBeg.1v.30a"/>מ<link
+                                    target="g2.xml#g2.damEnd.1v.30a"/>ש</w>
                             <w>בהן</w>
-                            <w>לצרכן</w>
+                            <w>לצ<link target="g2.xml#g2.damBeg.1v.30b"/>רכן</w>
                             <w>אבל</w>
                             <w>לא</w>
                             <w>לשחקן</w>
                             <w>כלי</w>
                             <w>זהב</w>
                             <w>וכלי</w>
+                            <link target="g2.xml#g2.damEnd.1v.30b"/>
                             <w>זכוכית</w>
                             <w>לא</w>
                             <w>יגע</w>
-                            <w>בהן</w>
+                            <w>ב<link target="g2.xml#g2.damBeg.1v.31b"/>ה<link
+                                    target="g2.xml#g2.damEnd.1v.31b"/>ן</w>
                             <w>עד</w>
                             <w>שיבא</w>
                             <w>אליהו</w>
+                            <link target="g2.xml#g2.damBeg.1v.31d"/>
                             <w>מצא</w>
                             <w>שק</w>
                             <w>או</w>
@@ -5678,13 +5730,16 @@
                             <w>זה</w>
                             <w>לא</w>
                             <w>יטול</w>
+                            <link target="g2.xml#g2.damEnd.1v.31d"/>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.2.9">
                             <label>ט</label>
-                            <w>איזו</w>
+                            <link target="g2.xml#g2.damBeg.1v.32a"/>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.32a"/>יזו</w>
                             <w>היא</w>
                             <w>אבידה</w>
+                            <link target="g2.xml#g2.damBeg.1v.32b"/>
                             <w>מצא</w>
                             <w>חמור</w>
                             <w>או</w>
@@ -5692,12 +5747,14 @@
                             <w>רועין</w>
                             <w>בדרך</w>
                             <w>אין</w>
+                            <link target="g2.xml#g2.damEnd.1v.32b"/>
                             <w>זו</w>
                             <w>אבידה</w>
                             <w>חמור</w>
                             <w>וכליו</w>
-                            <w>הפוכין</w>
-                            <w>פרה</w>
+                            <w>הפוכי<link target="g2.xml#g2.damBeg.1v.33a"/>ן<link
+                                    target="g2.xml#g2.damEnd.1v.33a"/></w>
+                            <w>פר<link target="g2.xml#g2.damBeg.1v.33b"/>ה</w>
                             <w>רצה</w>
                             <w>בין</w>
                             <w>הכרמים</w>
@@ -5706,23 +5763,27 @@
                             <w>אבידה</w>
                             <w>החזירה</w>
                             <w>וברחה</w>
+                            <link target="g2.xml#g2.damEnd.1v.33b"/>
                             <w>החזירה</w>
                             <w>וברחה</w>
                             <w>אפילו</w>
-                            <w>ארבעה</w>
-                            <w>וחמשה</w>
+                            <w>ארבע<link target="g2.xml#g2.damBeg.1v.34a"/>ה<link
+                                    target="g2.xml#g2.damEnd.1v.34a"/></w>
+                            <w>וח<link target="g2.xml#g2.damBeg.1v.34b"/>משה</w>
                             <w>פעמים</w>
                             <w>חייב</w>
                             <w>להחזירה</w>
                             <w>שנאמר</w>
                             <w>השב</w>
                             <w>תשיבם</w>
+                            <link target="g2.xml#g2.damEnd.1v.34b"/>
                             <w>היה</w>
                             <w>בטל</w>
                             <w>מסלע</w>
                             <w>לא</w>
                             <w>יאמר</w>
                             <w>לו</w>
+                            <link target="g2.xml#g2.damBeg.1v.35"/>
                             <w>תן</w>
                             <w>לי</w>
                             <w>סלע</w>
@@ -5733,13 +5794,17 @@
                             <w>כפועל</w>
                             <w>בטל</w>
                             <w>אם</w>
+                            <link target="g2.xml#g2.damEnd.1v.35"/>
                             <w>יש</w>
                             <w>שם</w>
                             <w>בית</w>
                             <w>דין</w>
-                            <w>מתנה</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1v.36a"/>תנה</w>
+                            <!-- added for pointing -->
+                            <w>עמו</w>
+                            <link target="g2.xml#g2.damEnd.1v.36a"/>
                             <w>בפני</w>
-                            <w>בית</w>
+                            <w>בי<link target="g2.xml#g2.damBeg.1v.36b"/>ת</w>
                             <w>דין</w>
                             <w>אם</w>
                             <w>אין</w>
@@ -5749,16 +5814,19 @@
                             <w>בפני</w>
                             <w>מי</w>
                             <w>יתנה</w>
+                            <link target="g2.xml#g2.damEnd.1v.36b"/>
                             <w>שלו</w>
                             <w>קודם</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.2.10">
+                            <link target="g2.xml#g2.damBeg.1v.36c"/>
                             <label>י</label>
                             <w>מצאה</w>
                             <w>ברפת</w>
+                            <link target="g2.xml#g2.damEnd.1v.36c"/>
                             <w>אין</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g2.xml#G2.witEnd"/>ייב</w>
                             <w>בה</w>
                             <w>ברשות</w>
                             <w>הרבים</w>

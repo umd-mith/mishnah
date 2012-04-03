@@ -4,6 +4,7 @@
 <?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 
 <!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
+<!--<?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="application/relax-ng-compact-syntax"?>-->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
@@ -11,13 +12,14 @@
                 <title>Mishnah Project Alignment File</title>
             </titleStmt>
             <publicationStmt>
-                <p>This document contains the text of the Vilna edition of the Mishnah slightly
+                <p>This document contains the text of the Vilna edition of the Mishnah, slightly
                     normalized and all punctuation removed, as the basis for the alignment of the
                     witnesses to the text of the Mishnah. The text below uses the unvocalized text
                     at <ptr target="http://he.wikisource.org/wiki"/>, corrected to reflect the text
-                    of Yakhin u-Boaz. <!-- Bibliography --> Additional modifications involve the
-                    addition of words present in fragmentary witnesses but absent in Vilna to allow
-                    proper alignment of fragments. </p>
+                    of Yakhin u-Boaz. Changes are introduced as necessary to account for varying
+                    textual traditions to allow for proper pointing from the witness files to
+                    ref.xml<!-- Bibliography -->
+                </p>
             </publicationStmt>
             <sourceDesc>
                 <listWit>
@@ -63,9 +65,12 @@
                         <witness xml:id="G4" n="G" corresp="g4.xml">Cairo Genizah Fragment TS
                             AS78.69 f. 1r-1v (Cambridge)<desc>Bava Qamma 10:8- - 10; Bava Metsi'a
                                 1:1; 2:1 - 2</desc></witness>
-                        <witness xml:id="G6" n="G" corresp="g4.xml">Cairo Genizah Fragment TS
+                        <witness xml:id="G6" n="G" corresp="g6.xml">Cairo Genizah Fragment TS
                             AS78.162 f. 1r-1v (Cambridge)<desc>Bava Metsi'a BM 1:1 - 5; 2:3 -
                                 7</desc></witness>
+                        <witness xml:id="G7" n="G" corresp="g7.xml">Genizah Fragment TS AS 78.235 f.
+                            1r-1v (Cambridge)<desc>Bava Metsi'a BM 1:5 - 8; 2:1, 7 -
+                            9</desc></witness>
                     </listWit>
                     <listWit xml:id="G-II" n="G">
                         <witness xml:id="G1" n="G" corresp="g1.xml">Cairo Genizah Fragment TS E1.99
@@ -90,7 +95,9 @@
         </fileDesc>
         <encodingDesc>
             <editorialDecl>
-                <ab/>
+                <segmentation>
+                    <ab> </ab>
+                </segmentation>
             </editorialDecl>
             <tagsDecl>
                 <rendition xml:id="displacing" scheme="free">Text padding extends into lines below
@@ -128,9 +135,7 @@
         <body>
             <div1 xml:id="ref.1" n="Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
-                
-                    <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-                
+                <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
                 <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
                 <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
                 <div2 xml:id="ref.1.4" n="Kilayim" type="tractate"/>
@@ -420,30 +425,30 @@
                             <w>על</w>
                             <w>הראשון</w>
                             <w>משלם</w>
-                            <w>נזק<link target="g1.xml#G1.witStart"/></w>
+                            <w>נזק<link target="g1.xml#g1.2v"/></w>
                             <w>שלם</w>
                             <w>ועל</w>
                             <w>האחרון</w>
                             <w>משלם</w>
                             <w>חצי</w>
-                            <link target="g1.xml#damBeg.2v.1"/>
+                            <link target="g1.xml#g1.damBeg.2v.1"/>
                             <w>נזק</w>
                             <w>התרנגולים</w>
                             <w>מועדין</w>
-                            <link target="g1.xml#damEnd.2v.1"/>
+                            <link target="g1.xml#g1.damEnd.2v.1"/>
                             <w>להלך</w>
                             <w>כדרכן</w>
                             <w>ולשבר</w>
                             <w>היה</w>
                             <w>דליל</w>
-                            <link target="g1.xml#damBeg.2v.2"/>
+                            <link target="g1.xml#g1.damBeg.2v.2"/>
                             <w>קשור</w>
                             <w>ברגליו</w>
                             <w>או</w>
                             <w>שהיה</w>
                             <w>מהדס</w>
                             <w>ומשבר</w>
-                            <link target="g1.xml#damBeg.2v.2"/>
+                            <link target="g1.xml#g1.damBeg.2v.2"/>
                             <w>את</w>
                             <w>הכלים</w>
                             <w>משלם</w>
@@ -453,10 +458,10 @@
                         <ab xml:id="ref.4.1.2.2">
                             <label>ב</label>
                             <w>כיצד</w>
-                            <w>ה<link target="g1.xml#damBeg.2v.3"/>שן</w>
+                            <w>ה<link target="g1.xml#g1.damBeg.2v.3"/>שן</w>
                             <w>מועדת</w>
                             <w>לאכל</w>
-                            <link target="g1.xml#damEnd.2v.3"/>
+                            <link target="g1.xml#g1.damEnd.2v.3"/>
                             <w>את</w>
                             <w>הראוי</w>
                             <w>לה</w>
@@ -464,10 +469,10 @@
                             <w>מועדת</w>
                             <w>לאכול</w>
                             <w>פרות</w>
-                            <link target="g1.xml#damBeg.2v.4"/>
+                            <link target="g1.xml#g1.damBeg.2v.4"/>
                             <w>וירקות</w>
                             <w>אכלה</w>
-                            <w>כס<link target="g1.xml#damEnd.2v.4"/>ות</w>
+                            <w>כס<link target="g1.xml#g1.damEnd.2v.4"/>ות</w>
                             <w>או</w>
                             <w>כלים</w>
                             <w>משלם</w>
@@ -475,50 +480,51 @@
                             <w>נזק</w>
                             <w>במה</w>
                             <w>דברים</w>
-                            <w>אמורי<link target="g1.xml#damBeg.2v.5"/>ם</w>
-                            <w>ברש<link target="g1.xml#damEnd.2v.5"/>ות</w>
+                            <w>אמורי<link target="g1.xml#g1.damBeg.2v.5"/>ם</w>
+                            <w>ברש<link target="g1.xml#g1.damEnd.2v.5"/>ות</w>
                             <w>הניזק</w>
                             <w>אבל</w>
-                            <w>ברש<link target="g1.xml#damBeg.2v.6a"/>ות</w>
+                            <w>ברש<link target="g1.xml#g1.damBeg.2v.6a"/>ות</w>
                             <w>הרבים</w>
-                            <w>פטו<link target="g1.xml#damEnd.2v.6a"/>ר</w>
+                            <w>פטו<link target="g1.xml#g1.damEnd.2v.6a"/>ר</w>
                             <w>אם</w>
                             <w>נהנית</w>
                             <w>משלם</w>
                             <w>מה</w>
-                            <link target="g1.xml#damBeg.2v.6b"/>
-                            <w>שנהנ<link target="g1.xml#damEnd.2v.6b"/>ית</w>
+                            <link target="g1.xml#g1.damBeg.2v.6b"/>
+                            <w>שנהנ<link target="g1.xml#g1.damEnd.2v.6b"/>ית</w>
                             <w>כיצד</w>
-                            <w>משל<link target="g1.xml#damBeg.2v.7a"/>ם</w>
+                            <w>משל<link target="g1.xml#g1.damBeg.2v.7a"/>ם</w>
                             <w>מה</w>
-                            <w>ש<link target="g1.xml#damEnd.2v.7a"/>נהנית</w>
+                            <w>ש<link target="g1.xml#g1.damEnd.2v.7a"/>נהנית</w>
                             <w>אכלה</w>
                             <w>מתוך</w>
-                            <link target="g1.xml#damBeg.2v.7b"/>
+                            <link target="g1.xml#g1.damBeg.2v.7b"/>
                             <w>הרחבה</w>
                             <w>משלם</w>
                             <w>מה</w>
-                            <w>שנה<link target="g1.xml#damEnd.2v.7b"/>נית</w>
+                            <w>שנה<link target="g1.xml#g1.damEnd.2v.7b"/>נית</w>
                             <w>מצדי</w>
                             <w>הרחבה</w>
-                            <link target="g1.xml#damBeg.2v.8a"/>
+                            <link target="g1.xml#g1.damBeg.2v.8a"/>
                             <w>משלם</w>
                             <w>מה</w>
-                            <w>ש<link target="g1.xml#damEnd.2v.8a"/>הזיקה</w>
+                            <link target="g1.xml#g1.damEnd.2v.8a"/>
+                            <w>שהזיקה</w>
                             <w>מפתח</w>
-                            <w>ה<link target="g1.xml#damBeg.2v.8b"/>חנות</w>
+                            <w>ה<link target="g1.xml#g1.damBeg.2v.8b"/>חנות</w>
                             <w>משלם</w>
-                            <w>מה<link target="g1.xml#damEnd.2v.8b"/></w>
+                            <w>מה<link target="g1.xml#g1.damEnd.2v.8b"/></w>
                             <w>שנהנית</w>
                             <w>מתוך</w>
                             <w>החנות</w>
                             <w>משלם</w>
                             <w>מה</w>
-                            <w>שהזיק<link target="g1.xml#damBeg.2v.9"/>ה</w>
+                            <w>שהזיק<link target="g1.xml#g1.damBeg.2v.9"/>ה</w>
                         </ab>
                         <ab xml:id="ref.4.1.2.3">
                             <label>ג</label>
-                            <link target="g1.xml#damEnd.2v.9"/>
+                            <link target="g1.xml#g1.damEnd.2v.9"/>
                             <w>הכלב</w>
                             <w>והגדי</w>
                             <w>שקפצו</w>
@@ -538,8 +544,8 @@
                             <w>חררה</w>
                             <w>והלך</w>
                             <w>לגדיש</w>
-                            <link target="g1.xml#damBeg.2v.11"/>
-                            <w>א<link target="g1.xml#damEnd.2v.11"/>כל</w>
+                            <link target="g1.xml#g1.damBeg.2v.11"/>
+                            <w>א<link target="g1.xml#g1.damEnd.2v.11"/>כל</w>
                             <w>החררה</w>
                             <w>והדליק</w>
                             <w>הגדיש</w>
@@ -589,9 +595,9 @@
                             <w>כל</w>
                             <w>שיהו</w>
                             <w>התינוקות</w>
-                            <link target="g1.xml#damBeg.2v.16"/>
+                            <link target="g1.xml#g1.damBeg.2v.16"/>
                             <w>ממשמשין</w>
-                            <link target="g1.xml#damEnd.2v.16"/>
+                            <link target="g1.xml#g1.damEnd.2v.16"/>
                             <w>בו</w>
                             <w>ואינו</w>
                             <w>נוגח</w>
@@ -600,22 +606,21 @@
                             <label>ה</label>
                             <w>שור</w>
                             <w>המזיק</w>
-                            <w>ברשות</w>
+                            <w>ב<link target="g1.xml#g1.damBeg.2v.17"/>רשות</w>
                             <w>הנזק</w>
-                            <link target="g1.xml#damBeg.2v.17"/>
                             <w>כיצד</w>
                             <w>נגח</w>
                             <w>נגף</w>
                             <w>נשך</w>
                             <w>רבץ</w>
                             <w>בעט</w>
-                            <link target="g1.xml#damEnd.2v.18"/>
+                            <link target="g1.xml#g1.damEnd.2v.18"/>
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>משלם</w>
-                            <w>חצ<link target="g1.xml#damBeg.2v.18"/>י</w>
+                            <w>חצ<link target="g1.xml#g1.damBeg.2v.18"/>י</w>
                             <w>נזק</w>
-                            <link target="g1.xml#damEnd.2v.18"/>
+                            <link target="g1.xml#g1.damEnd.2v.18"/>
                             <w>ברשות</w>
                             <w>הניזק</w>
                             <w>רבי</w>
@@ -627,9 +632,9 @@
                             <w>אומרים</w>
                             <w>חצי</w>
                             <w>נזק</w>
-                            <link target="g1.xml#damBeg.2v.19"/>
+                            <link target="g1.xml#g1.damBeg.2v.19"/>
                             <w>אמר</w>
-                            <link target="g1.xml#damEnd.2v.19"/>
+                            <link target="g1.xml#g1.damEnd.2v.19"/>
                             <w>להם</w>
                             <w>רבי</w>
                             <w>טרפון</w>
@@ -638,9 +643,9 @@
                             <w>שהקל</w>
                             <w>על</w>
                             <w>השן</w>
-                            <w>וע<link target="g1.xml#damBeg.2v.20"/>ל</w>
+                            <w>וע<link target="g1.xml#g1.damBeg.2v.20"/>ל</w>
                             <w>הרגל</w>
-                            <w>בר<link target="g1.xml#damEnd.2v.20"/>שות</w>
+                            <w>בר<link target="g1.xml#g1.damEnd.2v.20"/>שות</w>
                             <w>הרבים</w>
                             <w>שהוא</w>
                             <w>פטור</w>
@@ -648,9 +653,9 @@
                             <w>עליהם</w>
                             <w>ברשות</w>
                             <w>הניזק</w>
-                            <w>לשל<link target="g1.xml#damBeg.2v.21"/>ם</w>
+                            <w>לשל<link target="g1.xml#g1.damBeg.2v.21"/>ם</w>
                             <w>נזק</w>
-                            <w>של<link target="g1.xml#damEnd.2v.21"/>ם</w>
+                            <w>של<link target="g1.xml#g1.damEnd.2v.21"/>ם</w>
                             <w>מקום</w>
                             <w>שהחמיר</w>
                             <w>על</w>
@@ -658,10 +663,10 @@
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>לשלם</w>
-                            <w>חצ<link target="g1.xml#damBeg.2v.22"/>י</w>
+                            <w>חצ<link target="g1.xml#g1.damBeg.2v.22"/>י</w>
                             <w>נזק</w>
                             <w>אינו</w>
-                            <link target="g1.xml#damEnd.2v.22"/>
+                            <link target="g1.xml#g1.damEnd.2v.22"/>
                             <w>דין</w>
                             <w>שנחמיר</w>
                             <w>עליה</w>
@@ -669,20 +674,21 @@
                             <w>הניזק</w>
                             <w>לשלם</w>
                             <w>נזק</w>
-                            <link target="g1.xml#damBeg.2v.23a"/>
+                            <link target="g1.xml#g1.damBeg.2v.23a"/>
                             <w>שלם</w>
                             <w>אמרו</w>
-                            <link target="g1.xml#damEnd.2v.23a"/>
+                            <link target="g1.xml#g1.damEnd.2v.23a"/>
                             <w>לו</w>
                             <w>דיו</w>
-                            <w>לב<link target="g1.xml#damBeg.2v.23b"/>א</w>
+                            <w>לב<link target="g1.xml#g1.damBeg.2v.23b"/>א</w>
                             <w>מן</w>
-                            <w>ה<link target="g1.xml#damEnd.2v.23b"/>דין</w>
+                            <w>ה<link target="g1.xml#g1.damEnd.2v.23b"/>דין</w>
                             <w>להיות</w>
                             <w>כנדון</w>
                             <w>מה</w>
                             <w>ברשות</w>
-                            <link target="g1.xml#damBeg.2r.1"/>
+                            <link target="g1.xml#2r"/>
+                            <link target="g1.xml#g1.damBeg.2r.1"/>
                             <w>הרבים</w>
                             <w>חצי</w>
                             <w>נזק</w>
@@ -690,33 +696,34 @@
                             <w>ברשות</w>
                             <w>הניזק</w>
                             <w>חצי</w>
-                            <link target="g1.xml#damEnd.2r.1"/>
+                            <link target="g1.xml#g1.damEnd.2r.1"/>
                             <w>נזק</w>
                             <w>אמר</w>
                             <w>להם</w>
                             <w>אני</w>
                             <w>לא</w>
                             <w>אדון</w>
-                            <link target="g1.xml#damBeg.2r.2a"/>
+                            <link target="g1.xml#g1.damBeg.2r.2a"/>
                             <w>קרן</w>
                             <w>מקרן</w>
                             <w>אני</w>
                             <w>אדון</w>
                             <w>קרן</w>
-                            <w>מ<link target="g1.xml#damEnd.2r.2a"/>רג<link target="g1.damBeg.2r.2b"
-                                />ל</w>
+                            <w>מ<link target="g1.xml#g1.damEnd.2r.2a"/>רג<link
+                                    target="g1.damBeg.2r.2b"/>ל</w>
                             <w>ומה</w>
-                            <link target="g1.xml#damEnd.2r.2b"/>
+                            <!-- Next word added for pointing -->
+                            <w>א<link target="g1.xml#g1.damEnd.2r.2b"/>ם</w>
                             <w>במקום</w>
                             <w>שהקל</w>
                             <w>על</w>
                             <w>השן</w>
                             <w>ועל</w>
                             <w>הרגל</w>
-                            <link target="g1.xml#damBeg.2r.3"/>
+                            <link target="g1.xml#g1.damBeg.2r.3"/>
                             <w>ברשות</w>
                             <w>הרבים</w>
-                            <w>החמ<link target="g1.xml#damEnd.2r.3"/>יר</w>
+                            <w>החמ<link target="g1.xml#g1.damEnd.2r.3"/>יר</w>
                             <w>בקרן</w>
                             <w>מקום</w>
                             <w>שהחמיר</w>
@@ -726,11 +733,11 @@
                             <w>הרגל</w>
                             <w>ברשות</w>
                             <w>הניזק</w>
-                            <link target="g1.xml#damBeg.2r.4"/>
+                            <link target="g1.xml#g1.damBeg.2r.4"/>
                             <w>אינו</w>
                             <w>דין</w>
                             <w>שנחמיר</w>
-                            <w>ב<link target="g1.xml#damEnd.2r.4"/>קרן</w>
+                            <w>ב<link target="g1.xml#g1.damEnd.2r.4"/>קרן</w>
                             <w>אמרו</w>
                             <w>לו</w>
                             <w>דיו</w>
@@ -740,11 +747,11 @@
                             <w>להיות</w>
                             <w>כנדון</w>
                             <w>מה</w>
-                            <link target="g1.xml#damBeg.2r.5a"/>
-                            <w>ברש<link target="g1.xml#damEnd.2r.5a"/>ות</w>
-                            <w>הר<link target="g1.xml#damBeg.2r.5a"/>בים</w>
+                            <link target="g1.xml#g1.damBeg.2r.5a"/>
+                            <w>ברש<link target="g1.xml#g1.damEnd.2r.5a"/>ות</w>
+                            <w>הר<link target="g1.xml#g1.damBeg.2r.5a"/>בים</w>
                             <w>חצי</w>
-                            <link target="g1.xml#damEnd.2r.5b"/>
+                            <link target="g1.xml#g1.damEnd.2r.5b"/>
                             <w>נזק</w>
                             <w>אף</w>
                             <w>ברשות</w>
@@ -758,46 +765,46 @@
                             <w>אדם</w>
                             <w>מועד</w>
                             <w>לעולם</w>
-                            <link target="g1.xml#damBeg.2r.6a"/>
-                            <w>בין</w>
-                            <w>שו<link target="g1.xml#damEnd.2r.6a"/>גג</w>
+                            <link target="g1.xml#g1.damBeg.2r.6a"/>
+                            <w>ב<link target="g1.xml#g1.damEnd.2r.6a"/>י<link
+                                    target="g1.xml#g1.damBeg.2r.6b"/>ן</w>
+                            <w>שו<link target="g1.xml#g1.damEnd.2r.6b"/>גג</w>
                             <w>בין</w>
                             <w>מזיד</w>
                             <w>בין</w>
                             <w>ער</w>
                             <w>בין</w>
                             <w>ישן</w>
-                            <link target="g1.xml#damBeg.2r.6b"/>
+                            <link target="g1.xml#g1.damBeg.2r.6b"/>
                             <w>סמא</w>
-                            <w>א<link target="g1.xml#damEnd.2r.6b"/>ת</w>
+                            <w>א<link target="g1.xml#g1.damEnd.2r.6b"/>ת</w>
                             <w>עין</w>
                             <w>חברו</w>
                             <w>ושבר</w>
-                            <link target="g1.xml#damBeg.2r.7a"/>
+                            <link target="g1.xml#g1.damBeg.2r.7a"/>
                             <w>את</w>
                             <w>הכלים</w>
                             <w>משלם</w>
                             <w>נזק</w>
-                            <link target="g1.xml#damEnd.2r.7a"/>
+                            <link target="g1.xml#g1.damEnd.2r.7a"/>
                             <w>שלם</w>
-                            <w/>
                         </ab>
                         <trailer xml:id="ref.4.1.2.T"/>
                     </div3>
                     <div3 xml:id="ref.4.1.3">
                         <head xml:id="ref.4.1.3.H">
-                            <link target="g1.xml#damBeg.2r.7b"/>
+                            <link target="g1.xml#g1.damBeg.2r.7b"/>
                             <w>פרק</w>
-                            <link target="g1.xml#damEnd.2r.7b"/>
+                            <link target="g1.xml#g1.damEnd.2r.7b"/>
                             <w>ג</w>
                         </head>
                         <ab xml:id="ref.4.1.3.1">
-                            <link target="g1.xml#damBeg.2r.8"/>
+                            <link target="g1.xml#g1.damBeg.2r.8"/>
                             <label>א</label>
                             <w>המניח</w>
                             <w>את</w>
                             <w>הכד</w>
-                            <w>ברש<link target="g1.xml#damEnd.2r.8"/></w>
+                            <w>ברש<link target="g1.xml#g1.damEnd.2r.8"/></w>
                             <w>ות</w>
                             <w>הרבים</w>
                             <w>ובא</w>
@@ -810,8 +817,8 @@
                             <w>הזק</w>
                             <w>בה</w>
                             <w>בעל</w>
-                            <link target="g1.xml#damBeg.2r.9"/>
-                            <w>החב<link target="g1.xml#damEnd.2r.9"/>ית</w>
+                            <link target="g1.xml#g1.damBeg.2r.9"/>
+                            <w>החב<link target="g1.xml#g1.damEnd.2r.9"/>ית</w>
                             <w>חייב</w>
                             <w>בנזקו</w>
                             <w>נשברה</w>
@@ -820,10 +827,10 @@
                             <w>הרבים</w>
                             <w>והוחלק</w>
                             <w>אחד</w>
-                            <link target="g1.xml#damBeg.2r.10"/>
+                            <link target="g1.xml#g1.damBeg.2r.10"/>
                             <w>במים</w>
                             <w>או</w>
-                            <link target="g1.xml#damEnd.2r.10"/>
+                            <link target="g1.xml#g1.damEnd.2r.10"/>
                             <w>שלקה</w>
                             <w>בחרסיה</w>
                             <w>חייב</w>
@@ -832,8 +839,8 @@
                             <w>אומר</w>
                             <w>במתכוין</w>
                             <w>חייב</w>
-                            <link target="g1.xml#damBeg.2r.11"/>
-                            <w>ב<link target="g1.xml#damEnd.2r.11"/>אינו</w>
+                            <link target="g1.xml#g1.damBeg.2r.11"/>
+                            <w>ב<link target="g1.xml#g1.damEnd.2r.11"/>אינו</w>
                             <w>מתכוין</w>
                             <w>פטור</w>
                         </ab>
@@ -879,10 +886,10 @@
                             <w>הרבים</w>
                             <w>לזבלים</w>
                             <w>והוזק</w>
-                            <link target="g1.xml#damBeg.2r.15"/>
+                            <link target="g1.xml#g1.damBeg.2r.15"/>
                             <w>בהן</w>
                             <w>אחר</w>
-                            <w>ח<link target="g1.xml#damEnd.2r.15"/>ייב</w>
+                            <w>ח<link target="g1.xml#g1.damEnd.2r.15"/>ייב</w>
                             <w>בנזקו</w>
                             <w>וכל</w>
                             <w>הקודם</w>
@@ -928,10 +935,11 @@
                             <w>הראשון</w>
                             <w>ונפל</w>
                             <w>ונתקל</w>
-                            <w>השני</w>
+                            <w>הש<link target="g1.damBeg.2r.17"/>נ<link
+                                    target="g1.xml#g1.damBeg.2r.17"/>י</w>
                             <w>בראשון</w>
-                            <link target="g1.xml#damBeg.2r.18a"/>
-                            <w>ה<link target="g1.xml#damEnd.2r.18a"/>ראשון</w>
+                            <link target="g1.xml#g1.damBeg.2r.18a"/>
+                            <w>ה<link target="g1.xml#g1.damEnd.2r.18a"/>ראשון</w>
                             <w>חייב</w>
                             <w>בנזקי</w>
                             <w>שני</w>
@@ -939,10 +947,10 @@
                         </ab>
                         <ab xml:id="ref.4.1.3.5">
                             <label>ה</label>
-                            <link target="g1.xml#damBeg.2r.18b"/>
+                            <link target="g1.xml#g1.damBeg.2r.18b"/>
                             <w>זה</w>
                             <w>בא</w>
-                            <link target="g1.xml#damEnd.2r.18b"/>
+                            <link target="g1.xml#g1.damEnd.2r.18b"/>
                             <w>בחביתו</w>
                             <w>וזה</w>
                             <w>בא</w>
@@ -952,10 +960,10 @@
                             <w>של</w>
                             <w>זה</w>
                             <w>בקורתו</w>
-                            <link target="g1.xml#damBeg.2r.19"/>
+                            <link target="g1.xml#g1.damBeg.2r.19"/>
                             <w>של</w>
                             <w>זה</w>
-                            <w>פ<link target="g1.xml#damEnd.2r.19"/>טור</w>
+                            <w>פ<link target="g1.xml#g1.damEnd.2r.19"/>טור</w>
                             <w>שלזה</w>
                             <w>רשות</w>
                             <w>להלך</w>
@@ -963,9 +971,9 @@
                             <w>רשות</w>
                             <w>להלך</w>
                             <w>היה</w>
-                            <w>בע<link target="g1.xml#damBeg.2r.20"/>ל</w>
+                            <w>בע<link target="g1.xml#g1.damBeg.2r.20"/>ל</w>
                             <w>קורה</w>
-                            <w>ר<link target="g1.xml#DamEnd.2r.20"/>אשון</w>
+                            <w>ר<link target="g1.xml#g1.damEnd.2r.20"/>אשון</w>
                             <w>ובעל</w>
                             <w>חבית</w>
                             <w>אחרון</w>
@@ -975,10 +983,10 @@
                             <w>פטור</w>
                             <w>בעל</w>
                             <w>הקורה</w>
-                            <link target="g1.xml#DamEnd.2r.21"/>
+                            <link target="g1.xml#g1.damEnd.2r.21"/>
                             <w>ואם</w>
                             <w>עמד</w>
-                            <link target="g1.xml#DamEnd.2r.21"/>
+                            <link target="g1.xml#g1.damEnd.2r.21"/>
                             <w>בעל</w>
                             <w>הקורה</w>
                             <w>חייב</w>
@@ -995,19 +1003,19 @@
                             <w>ובעל</w>
                             <w>קורה</w>
                             <w>אחרון</w>
-                            <link target="g1.xml#damBeg.2r.23a"/>
-                            <w>נשב<link target="g1.xml#damEnd.2r.23a"/>רה</w>
-                            <link target="g1.xml#damBeg.2r.23b"/>
+                            <link target="g1.xml#g1.damBeg.2r.23a"/>
+                            <w>נשב<link target="g1.xml#g1.damEnd.2r.23a"/>רה</w>
+                            <link target="g1.xml#g1.damBeg.2r.23b"/>
                             <w>חבית</w>
-                            <link target="g1.xml#damEnd.2r.23b"/>
+                            <link target="g1.xml#g1.damEnd.2r.23b"/>
                             <w>בקורה</w>
                             <w>חייב</w>
                             <w>ואם</w>
-                            <link target="g1.xml#damBeg.2r.23c"/>
+                            <link target="g1.xml#g1.damBeg.2r.23c"/>
                             <w>עמד</w>
-                            <w>ב<link target="g1.xml#damEnd.2r.23c"/>על</w>
+                            <w>ב<link target="g1.xml#g1.damEnd.2r.23c"/>על</w>
                             <w>חבית</w>
-                            <link target="g1.xml#G1.fragEnd1"/>
+                            <link target="g1.xml#g1.2r.pageEnd"/>
                             <w>פטור</w>
                             <w>ואם</w>
                             <w>אמר</w>
@@ -4364,6 +4372,8 @@
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>וכן</w>
+                            <link target="g5.xml#g5.1rL"/>
+                            <link target="g5.xml#g5.damBeg.1rL.1"/>
                             <w>נחיל</w>
                             <w>של</w>
                             <w>דבורים</w>
@@ -4382,9 +4392,11 @@
                             <w>אשה</w>
                             <w>או</w>
                             <w>קטן</w>
+                            <link target="g5.xml#g5.damEnd.1rL.3"/>
                             <w>לומר</w>
                             <w>מכאן</w>
                             <w>יצא</w>
+                            <link target="g5.xml#g5.damBeg.1rL.4"/>
                             <w>נחיל</w>
                             <w>זה</w>
                             <w>ומהלך</w>
@@ -4394,9 +4406,10 @@
                             <w>להציל</w>
                             <w>את</w>
                             <w>נחילו</w>
-                            <w>ואם</w>
+                            <w>ו<link target="g5.xml#g5.damEnd.1rL.4"/>אם</w>
                             <w>הזיק</w>
                             <w>משלם</w>
+                            <link target="g5.xml#g5.damBeg.1rL.5"/>
                             <w>מה</w>
                             <w>שהזיק</w>
                             <w>אבל</w>
@@ -4405,12 +4418,13 @@
                             <w>את</w>
                             <w>סוכו</w>
                             <w>על</w>
-                            <w>מנת</w>
+                            <w>מנ<link target="g5.xml#g5.damEnd.1rL.5"/>ת</w>
                             <w>לתן</w>
                             <w>את</w>
                             <w>הדמים</w>
                             <w>רבי</w>
                             <w>ישמעאל</w>
+                            <link target="g5.xml#g5.damBeg.1rL.6"/>
                             <w>בנו</w>
                             <w>של</w>
                             <w>רבי</w>
@@ -4422,19 +4436,24 @@
                             <w>קוצץ</w>
                             <w>ונותן</w>
                             <w>את</w>
-                            <w>הדמים</w>
+                            <w>הדמ<link target="g5.xml#g5.damEnd.1rL.6"/>ים</w>
                         </ab>
                         <ab xml:id="ref.4.1.10.3">
                             <label>ג</label>
+                            <link target="g5.xml#g5.damBeg.1rL.7a"/>
                             <w>המכיר</w>
+                            <!-- added to allow pointing -->
+                            <w>א<link target="g5.xml#g5.damEnd.1rL.7a"/>ת</w>
+                            <link target="g5.xml#g5.damBeg.1rL.7b"/>
                             <w>כליו</w>
                             <w>וספריו</w>
                             <w>ביד</w>
-                            <w>אחר</w>
+                            <w>א<link target="g5.xml#g5.damEnd.1rL.7b"/>חר</w>
                             <w>ויצא</w>
                             <w>לו</w>
                             <w>שם</w>
                             <w>גנבה</w>
+                            <link target="g5.xml#g5.1rL.pageEnd"/>
                             <w>בעיר</w>
                             <w>ישבע</w>
                             <w>לו</w>
@@ -4593,12 +4612,15 @@
                         </ab>
                         <ab xml:id="ref.4.1.10.7">
                             <label>ז</label>
+                            <link target="g5.xml#g5.1vR"/>
+                            <link target="g5.xml#g5.damBeg.1vR.1"/>
+                            <link target="g5.xml#g5.damBeg.1vR.1"/>
                             <w>האומר</w>
                             <w>לחברו</w>
                             <w>גזלתיך</w>
                             <w>הלויתני</w>
                             <w>הפקדת</w>
-                            <w>אצלי</w>
+                            <w>א<link target="g5.xml#g5.damBeg.1vR.2"/>צלי</w>
                             <w>ואיני</w>
                             <w>יודע</w>
                             <w>אם</w>
@@ -4610,11 +4632,13 @@
                             <w>לך</w>
                             <w>חייב</w>
                             <w>לשלם</w>
+                            <link target="g5.xml#g5.damEnd.1vR.2"/>
                             <w>אבל</w>
                             <w>אם</w>
                             <w>אמר</w>
                             <w>לו</w>
                             <w>איני</w>
+                            <link target="g5.xml#g5.damBeg.1vR.3"/>
                             <w>יודע</w>
                             <w>אם</w>
                             <w>גזלתיך</w>
@@ -4622,104 +4646,148 @@
                             <w>הלויתני</w>
                             <w>אם</w>
                             <w>הפקדת</w>
+                            <!-- next two words added for pointing -->
+                            <w>אם</w>
+                            <link target="g5.xml#g5.damEnd.1vR.3"/>
+                            <w>לא</w>
+                            <w>הפקדת</w>
                             <w>אצלי</w>
-                            <w>פטור</w>
+                            <w>פ<link target="g5.xml#g5.damBeg.1vR.4"/>טור</w>
                             <w>מלשלם</w>
                         </ab>
                         <ab xml:id="ref.4.1.10.8">
                             <label>ח</label>
                             <w>הגונב</w>
+                            <link target="g5.xml#g5.damEnd.1vR.4"/>
                             <w>טלה</w>
                             <w>מן</w>
                             <w>העדר</w>
-                            <w>והחזירו</w>
+                            <w>וה<link target="g5.xml#g5.damBeg.1vR.5"/>חזירו</w>
                             <w>ומת</w>
                             <w>או</w>
                             <w>נגנב</w>
-                            <link target="g1.xml#G1.fragStart2"/>
-                            <link target="g1.xml#damBeg.1v.1"/>
+                            <link target="g1.xml#g1.1v"/>
+                            <link target="g1.xml#g1.damBeg.1v.1"/>
                             <w>חייב</w>
                             <w>באחריותו</w>
                             <w>לא</w>
                             <w>ידעו</w>
                             <w>בעלים</w>
                             <w>לא</w>
-                            <w>בגניבתו</w>
-                            <w>ול<link target="g1.xml#damEnd.1v.1"/>א</w>
+                            <link target="g2.xml#g2.1r"/>
+                            <link target="g2.xml#g2.damBeg.1r.1a"/>
+                            <link target="g4.xml#g4.1r"/>
+                            <link target="g2.xml#g2.damBeg.1r.1a"/>
+                            <w>בג<link target="g5.xml#g5.damBeg.1vR.6"/>ניבתו</w>
+                            <w>ול<link target="g1.xml#g1.damEnd.1v.1"/>א</w>
                             <w>בחזירתו</w>
-                            <link target="g1.xml#damBeg.1v.2"/>
+                            <link target="g1.xml#g1.damBeg.1v.2"/>
                             <w>ומנו</w>
+                            <link target="g2.xml#g2.damEnd.1r.1a"/>
                             <w>את</w>
-                            <w>הצאן</w>
-                            <w>ושלמה</w>
+                            <w>ה<link target="g4.xml#g4.damBeg.1r.1b"/>צאן</w>
+                            <!-- next three words now conflate versions, to capture variation -->
+                            <w>והיא</w>
+                            <link target="g4.xml#g4.damEnd.1r.1b"/>
+                            <w>ושלמ<link target="g2.xml#g2.damEnd.1r.1a"/><link
+                                    target="g4.xml#g4.damBeg.1r.1c"/>"ה</w>
                             <w>היא</w>
+                            <link target="g5.xml#g5.damEnd.1vR.6"/>
                             <w>פטור</w>
+                            <!--word added to allow for links-->
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.1b"/>ל<link
+                                    target="g2.xml#g2.damEnd.1r.1b"/>שלם</w>
                         </ab>
                         <ab xml:id="ref.4.1.10.9">
                             <label>ט</label>
+                            <link target="g5.xml#g5.damBeg.1vR.7"/>
                             <w>אין</w>
                             <w>לוקחין</w>
-                            <link target="g1.xml#damEnd.1v.2"/>
+                            <link target="g1.xml#g1.damEnd.1v.2"/>
+                            <link target="g2.xml#g2.damBeg.1r.2"/>
                             <w>מן</w>
                             <w>הרועים</w>
-                            <link target="g1.xml#damBeg.1v.3"/>
+                            <link target="g1.xml#g1.damBeg.1v.3"/>
+                            <link target="g4.xml#g4.damEnd.1r.2a"/>
+                            <link target="g5.xml#g5.damEnd.1vR.7"/>
                             <w>צמר</w>
                             <w>וחלב</w>
                             <w>וגדיים</w>
                             <w>ולא</w>
+                            <link target="g4.xml#g4.damBeg.1r.2b"/>
                             <w>משומרי</w>
-                            <w>פירות</w>
-                            <w>עצים</w>
+                            <w><link target="g4.xml#g4.damEnd.1r.2b"/>פ<link
+                                    target="g2.xml#g2.damEnd.1r.2"/><link
+                                    target="g4.xml#g4.damBeg.1r.2c"/>י<link
+                                    target="g5.xml#g5.damBeg.1vR.8a"/>רות</w>
+                            <w>ע<link target="g5.xml#g5.damEnd.1vR.8a"/>צים</w>
                             <w>ופרות</w>
                             <w>אבל</w>
-                            <link target="g1.xml#damEnd.1v.3"/>
+                            <link target="g1.xml#g1.damEnd.1v.3"/>
                             <w>לוקחין</w>
+                            <link target="g2.xml#g2.damBeg.1r.3a"/>
                             <w>מן</w>
-                            <w>הנשים</w>
-                            <w>כלי</w>
+                            <w>הנש<link target="g4.xml#g4.damBeg.1r.3a"/>ים</w>
+                            <w>כ<link target="g4.xml#g4.damBeg.1r.3b"/>לי</w>
+                            <link target="g4.xml#g4.damEnd.1r.3b"/>
                             <w>צמר</w>
                             <w>ביהודה</w>
                             <w>וכלי</w>
-                            <link target="g1.xml#damBeg.1v.4"/>
+                            <link target="g1.xml#g1.damBeg.1v.4"/>
                             <w>פשתן</w>
-                            <w>בגליל</w>
+                            <w><link target="g4.xml#g4.damBeg.1r.3c"/>ב<link
+                                    target="g4.xml#g4.damEnd.1r.3c"/>גל<link
+                                    target="g4.xml#g4.damBeg.1r.3d"/>יל</w>
                             <w>ועגלים</w>
-                            <w>בשרון</w>
+                            <w>בש<link target="g4.xml#g4.damEnd.1r.3d"/>רו<link
+                                    target="g4.xml#g4.damBeg.1r.3e"/>ן</w>
+                            <link target="g2.xml#g2.damEnd.1r.3a"/>
                             <w>וכולן</w>
-                            <w>שאמר<link target="g1.xml#damEnd.1v.4"/>ו</w>
+                            <w>שא<link target="g2.xml#g2.damBeg.1r.3b"/>מר<link
+                                    target="g1.xml#g1.damEnd.1v.4"/>ו</w>
                             <w>להטמין</w>
+                            <link target="g2.xml#g2.damEnd.1r.3b"/>
                             <w>אסור</w>
-                            <w>ולוקחין</w>
+                            <link target="g2.xml#g2.damBeg.1r.4a"/>
+                            <w>ול<link target="g4.xml#g4.damEnd.1r.4a"/>וקחין</w>
                             <w>ביצים</w>
-                            <w>ו<link target="g1.xml#damBeg.1v.5a"/>תרנגולים</w>
+                            <w>ו<link target="g1.xml#g1.damBeg.1v.5a"/>תרנגולים</w>
                             <w>מכל</w>
                             <w>מקום</w>
                         </ab>
                         <ab xml:id="ref.4.1.10.10">
                             <label>י</label>
-                            <link target="g1.xml#damEnd.1v.5a"/>
-                            <w>מ<link target="g1.xml#damBeg.1v.5b"/>וכי<link
-                                    target="g1.xml#damEnd.1v.5b"/>ן</w>
+                            <link target="g1.xml#g1.damEnd.1v.5a"/>
+                            <w>מ<link target="g1.xml#g1.damBeg.1v.5b"/>וכ<link
+                                    target="g2.xml#g2.damEnd.1r.4a"/>י<link
+                                    target="g1.xml#g1.damEnd.1v.5b"/>ן <link
+                                    target="g2.xml#g2.damEnd.1r.4a"/><link
+                                    target="g4.xml#g4.damEnd.1r.4a"/>ין</w>
                             <w>שהכובס</w>
-                            <w>מוציא</w>
-                            <w>הרי</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.4b"/>וציא</w>
+                            <w>הר<link target="g2.xml#g2.damEnd.1r.4b"/>י</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>ושהסורק</w>
+                            <link target="g2.xml#g2.damBeg.1r.5a"/>
+                            <w>וש<link target="g4.xml#g4.damBeg.1r.5a"/>ה<link
+                                    target="g4.xml#g4.damEnd.1r.5a"/>סורק</w>
                             <w>מוציא</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>של</w>
-                            <w>בעל</w>
-                            <w>הב<link target="g1.xml#damBeg.1v.6"/>ית</w>
+                            <w>ב<link target="g4.xml#g4.damBeg.1r.5b"/>על</w>
+                            <w>הב<link target="g1.xml#g1.damBeg.1v.6"/>ית</w>
                             <w>הכובס</w>
-                            <link target="g1.xml#damEnd.1v.6"/>
+                            <link target="g1.xml#g1.damEnd.1v.6"/>
                             <w>נוטל</w>
-                            <w>שלשה</w>
-                            <w>חוטין</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.5a"/>לשה</w>
+                            <w>חו<link target="g2.xml#g2.damBeg.1r.5b"/>טין</w>
                             <w>והן</w>
                             <w>שלו</w>
+                            <link target="g2.xml#g2.damEnd.1r.5b"/>
                             <w>יתר</w>
+                            <link target="g4.xml#g4.damEnd.1r.5b"/>
+                            <link target="g2.xml#g2.damBeg.1r.6a"/>
                             <w>מכן</w>
                             <w>הרי</w>
                             <w>אלו</w>
@@ -4728,56 +4796,72 @@
                             <w>הבית</w>
                             <w>אם</w>
                             <w>היה</w>
+                            <link target="g4.xml#g4.damBeg.1r.6a"/>
                             <w>השחור</w>
-                            <link target="g1.xml#damBeg.1v.7"/>
+                            <link target="g1.xml#g1.damBeg.1v.7"/>
                             <w>על</w>
                             <w>גבי</w>
                             <w>הלבן</w>
-                            <link target="g1.xml#damEnd.1v.7"/>
-                            <w>נוטל</w>
+                            <link target="g1.xml#g1.damEnd.1v.7"/>
+                            <w>נ<link target="g2.xml#g2.damEnd.1r.6a"/>וטל</w>
                             <w>את</w>
                             <w>הכל</w>
                             <w>והן</w>
-                            <w>שלו</w>
-                            <w>החייט</w>
+                            <w>ש<link target="g2.xml#g2.damBeg.1r.6b"/>לו</w>
+                            <w>ה<link target="g2.xml#g2.damEnd.1r.6b"/>חייט</w>
+                            <link target="g4.xml#g4.damEnd.1r.6"/>
+                            <link target="g2.xml#g2.damBeg.1r.7a"/>
                             <w>ששייר</w>
                             <w>מן</w>
                             <w>החוט</w>
                             <w>כדי</w>
-                            <w>לתפור</w>
+                            <w>לתפו<link target="g4.xml#g4.damBeg.1r.7"/>ר</w>
                             <w>בו</w>
-                            <w>ומט<link target="g1.xml#damBeg.1v.8"/>לי<link
-                                    target="g1.xml#damEnd.1v.8"/>ת</w>
+                            <w>ומט<link target="g1.xml#g1.damBeg.1v.8"/>לי<link
+                                    target="g1.xml#g1.damEnd.1v.8"/>ת</w>
                             <w>שהיא</w>
-                            <w>שלש</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.7a"/>לש</w>
                             <w>על</w>
                             <w>שלש</w>
+                            <!-- Two alternate expressions,appearing in the different mss. Leave plain 
+							or wrap in "choice" ?-->
+                            <!-- First text expression here -->
+                            <w>חייב</w>
+                            <w><link target="g2.xml#g2.damBeg.1r.7b"/>להחז<link
+                                    target="g2.xml#g2.damEnd.1r.7b"/>יר</w>
+                            <link target="g2.xml#g2.damBeg.1r.8a"/>
+                            <w>לבעלים</w>
+                            <!-- Second text expression here -->
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>של</w>
                             <w>בעל</w>
                             <w>הבית</w>
                             <w>מה</w>
+                            <link target="g4.xml#g4.damEnd.1r.8"/>
                             <w>שהחרש</w>
                             <w>מוציא</w>
                             <w>במעצד</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>ובכשיל</w>
+                            <w>וב<link target="g2.xml#g2.damEnd.1r.8a"/>כשיל</w>
                             <w>של</w>
                             <w>בעל</w>
-                            <w>הבית</w>
+                            <w>הב<link target="g2.xml#g2.damBeg.1r.8b"/>ית</w>
                             <w>ואם</w>
                             <w>היה</w>
                             <w>עושה</w>
-                            <w>אצל</w>
+                            <w>א<link target="g4.xml#g4.damEnd.1r.9a"/>צל</w>
                             <w>בעל</w>
                             <w>הבית</w>
+                            <link target="g4.xml#g4.damBeg.1r.9b"/>
                             <w>אף</w>
                             <w>הנסרות</w>
                             <w>של</w>
-                            <w>בעל</w>
+                            <link target="g2.xml#g2.damEnd.1r.9a"/>
+                            <w>בע<link target="g2.xml#g2.damBeg.1r.9b"/>ל</w>
+                            <link target="g2.xml#g2.damEnd.1r.9b"/>
                             <w>הבית</w>
                         </ab>
                     </div3>
@@ -4789,73 +4873,82 @@
                             <w>פרק</w>
                             <w>א</w>
                         </head>
+                        <link target="g2.xml#g2.damBeg.1r.9c"/>
                         <ab xml:id="ref.4.2.1.1">
                             <label>א</label>
                             <w>שנים</w>
                             <w>אוחזין</w>
                             <w>בטלית</w>
-                            <w>זה</w>
+                            <w>ז<link target="g4.xml#g4.damEnd.1r.10"/>ה</w>
                             <w>אומר</w>
                             <w>אני</w>
                             <w>מצאתיה</w>
                             <w>וזה</w>
-                            <w>אומר</w>
+                            <w>או<link target="g2.xml#g2.damEnd.1r.10"/>מר</w>
                             <w>אני</w>
                             <w>מצאתיה</w>
                             <w>זה</w>
                             <w>אומר</w>
-                            <w>כולה</w>
+                            <w>כו<link target="g2.xml#g2.damBeg.1r.10"/>לה</w>
                             <w>שלי</w>
                             <w>וזה</w>
+                            <link target="g6.xml#g6.1r"/>
+                            <link target="g6.xml#g6.damBeg.1r.1a"/>
                             <w>אומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
+                            <link target="g4.xml#g4.damEnd.1r.11"/>
                             <w>זה</w>
+                            <w>ישב<link target="g6.xml#g6.damEnd.1r.1a"/>ע</w>
+                            <w>ש<link target="g6.xml#g6.damBeg.1r.1b"/>אין</w>
+                            <w>לו</w>
+                            <w>בה</w>
+                            <w>פ<link target="g2.xml#g2.damEnd.1r.11"/>חות</w>
+                            <w>מחציה</w>
+                            <w>וזה</w>
                             <w>ישבע</w>
-                            <w>שאין</w>
+                            <w>ש<link target="g2.xml#g2.damBeg.1r.11"/>אין</w>
                             <w>לו</w>
                             <w>בה</w>
                             <w>פחות</w>
                             <w>מחציה</w>
-                            <w>וזה</w>
-                            <w>ישבע</w>
-                            <w>שאין</w>
-                            <w>לו</w>
-                            <w>בה</w>
-                            <w>פחות</w>
-                            <w>מחציה</w>
-                            <w>ויחלקו</w>
-                            <w>זה</w>
+                            <w>ויחל<link target="g6.xml#g6.damEnd.1r.2a"/>ק<link
+                                    target="g6.xml#g6.damBeg.1r.2b"/>ו</w>
+                            <w>ז<link target="g6.xml#g6.damEnd.1r.2b"/>ה</w>
                             <w>אומר</w>
-                            <w>כולה</w>
+                            <w>כ<link target="g6.xml#g6.damBeg.1r.2c"/>ולה</w>
                             <w>שלי</w>
-                            <w>וזה</w>
+                            <w>וז<link target="g2.xml#g2.damEnd.1r.12"/>ה</w>
                             <w>אומר</w>
                             <w>חציה</w>
                             <w>שלי</w>
                             <w>האומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
-                            <w>ישבע</w>
-                            <w>שאין</w>
+                            <link target="g2.xml#g2.damBeg.1r.13a"/>
+                            <w>י<link target="g6.xml#g6.damEnd.1r.3a"/>שבע</w>
+                            <w>ש<link target="g6.xml#g6.damBeg.1r.3b"/>אין</w>
                             <w>לו</w>
-                            <w>בה</w>
+                            <w>ב<link target="g6.xml#g6.damEnd.1r.3b"/>ה</w>
                             <w>פחות</w>
-                            <w>משלשה</w>
+                            <w>משלש<link target="g6.xml#g6.damBeg.1r.3c"/>ה</w>
                             <w>חלקים</w>
-                            <w>והאומר</w>
+                            <w>וה<link target="g2.xml#g2.damEnd.1r.13a"/>אומר</w>
                             <w>חציה</w>
                             <w>שלי</w>
-                            <w>ישבע</w>
+                            <w>י<link target="g2.xml#g2.damBeg.1r.13b"/><link
+                                    target="g2.xml#g2.damEnd.1r.13b"/>שבע</w>
                             <w>שאין</w>
                             <w>לו</w>
-                            <w>בה</w>
+                            <link target="g2.xml#g2.damBeg.1r.14"/>
+                            <w>ב<link target="g6.xml#g6.damEnd.1r.4a"/>ה</w>
                             <w>פחות</w>
                             <w>מרביע</w>
                             <w>זה</w>
                             <w>נוטל</w>
                             <w>שלשה</w>
-                            <w>חלקים</w>
+                            <w>ח<link target="g6.xml#g6.damBeg.1r.4b"/>לקים</w>
+                            <link target="g2.xml#g2.damEnd.1r.14"/>
                             <w>וזה</w>
                             <w>נוטל</w>
                             <w>רביע</w>
@@ -4866,6 +4959,8 @@
                             <w>היו</w>
                             <w>שנים</w>
                             <w>רוכבין</w>
+                            <link target="g2.xml#g2.damBeg.1r.15a"/>
+                            <link target="g6.xml#g6.damEnd.1r.5a"/>
                             <w>על</w>
                             <w>גבי</w>
                             <w>בהמה</w>
@@ -4873,15 +4968,18 @@
                             <w>שהיה</w>
                             <w>אחד</w>
                             <w>רוכב</w>
-                            <w>ואחד</w>
+                            <w>ו<link target="g6.xml#g6.damBeg.5b"/>א<link target="g2.xml#g2.damEnd.1r.15a"/>חד</w>
                             <w>מנהיג</w>
                             <w>זה</w>
                             <w>אומר</w>
                             <w>כולה</w>
                             <w>שלי</w>
-                            <w>וזה</w>
+                            <w>ו<link target="g2.xml#g2.damBeg.1r.15b"/>ז<link
+                                    target="g2.xml#g2.damEnd.1r.15b"/>ה</w>
                             <w>אומר</w>
+                            <link target="g2.xml#g2.damBeg.1r.16a"/>
                             <w>כולה</w>
+                            <link target="g6.xml#g6.damEnd.1r.6a"/>
                             <w>שלי</w>
                             <w>זה</w>
                             <w>ישבע</w>
@@ -4889,54 +4987,64 @@
                             <w>לו</w>
                             <w>בה</w>
                             <w>פחות</w>
-                            <w>מחציה</w>
+                            <link target="g6.xml#g6.damBeg.1r.6b"/>
+                            <w>מ<link target="g2.xml#g2.damEnd.1r.16a"/>חציה</w>
                             <w>וזה</w>
                             <w>ישבע</w>
                             <w>שאין</w>
                             <w>לו</w>
                             <w>בה</w>
-                            <w>פחות</w>
-                            <w>מחציה</w>
+                            <w>פ<link target="g2.xml#g2.damBeg.1r.16b"/>חו<link
+                                    target="g2.xml#g2.damEnd.1r.16b"/>ת</w>
+                            <link target="g2.xml#g2.damBeg.1r.17a"/>
+                            <w>מ<link target="g6.xml#g6.damEnd.1r.7a"/>חציה</w>
                             <w>ויחלקו</w>
                             <w>בזמן</w>
                             <w>שהם</w>
                             <w>מודים</w>
-                            <w>או</w>
-                            <w>שיש</w>
-                            <w>להן</w>
-                            <w>עדים</w>
+                            <w>א<link target="g6.xml#g6.damBeg.1r.7a"/>ו</w>
+                            <w>שי<link target="g2.xml#g2.damEnd.1r.17a"/>ש</w>
+                            <w>לה<link target="g2.xml#g2.damBeg.1r.17b"/>ן</w>
+                            <w>עד<link target="g2.xml#g2.damEnd.1r.17b"/>ים</w>
                             <w>חולקים</w>
+                            
                             <w>בלא</w>
                             <w>שבועה</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.1.3">
                             <label>ג</label>
-                            <w>היה</w>
-                            <w>רוכב</w>
+                            <link target="g2.xml#g2.damBeg.1r.18a"/>
+                            <w>הי<link target="g6.xml#g6.damEnd.1r.8a"/>ה</w>
+                            <link target="g6.xml#g6.damBeg.1r.8b"/>
+                            <w>רוכ<link target="g6.xml#g6.damEnd.1r.8b"/>ב</w>
                             <w>על</w>
                             <w>גבי</w>
                             <w>בהמה</w>
                             <w>וראה</w>
                             <w>את</w>
-                            <w>המציאה</w>
-                            <w>ואמר</w>
-                            <w>לחברו</w>
+                            <w>המ<link target="g6.xml#g6.damBeg.8c"/>ציאה</w>
+                            <link target="g2.xml#g2.damEnd.1r.18a"/>
+                            <w>ואמ<link target="g2.xml#g2.damBeg.1r.18b"/>ר</w>
+                            <w>לח<link target="g2.xml#g2.damEnd.1r.18b"/>ברו</w>
                             <w>תנה</w>
                             <w>לי</w>
                             <w>נטלה</w>
                             <w>ואמר</w>
                             <w>אני</w>
-                            <w>זכיתי</w>
+                            <link target="g2.xml#g2.damBeg.1r.19"/>
+                            <w>זכ<link target="g6.xml#g6.damEnd.1r.9a"/>יתי</w>
                             <w>בה</w>
                             <w>זכה</w>
                             <w>בה</w>
                             <w>אם</w>
                             <w>משנתנה</w>
                             <w>לו</w>
+                            <link target="g6.xml#g6.damBeg.9b"/>
                             <w>אמר</w>
                             <w>אני</w>
                             <w>זכיתי</w>
+                            <link target="g2.xml#g2.damEnd.1r.19"/>
                             <w>בה</w>
                             <w>תחלה</w>
                             <w>לא</w>
@@ -4946,445 +5054,582 @@
                         </ab>
                         <ab xml:id="ref.4.2.1.4">
                             <label>ד</label>
-                            <w>ראה</w>
+                            <link target="g2.xml#g2.damBeg.1r.20"/>
+                            <w>רא<link target="g6.xml#g6.damEnd.1r.10a"/>"/>ה</w>
                             <w>את</w>
                             <w>המציאה</w>
                             <w>ונפל</w>
-                            <w>עליה</w>
-                            <w>ובא</w>
-                            <w>אחר</w>
+                            <w>עלי<link target="g6.xml#g6.damBeg.1r.10b"/>ה</w>
+                            <w>ו<link target="g6.xml#g6.damEnd.1r.10b"/>בא</w>
+                            <w>א<link target="g6.xml#g6.damBeg.1r.10c"/>חר</w>
                             <w>והחזיק</w>
                             <w>בה</w>
+                            <link target="g2.xml#g2.damEnd.1r.20"/>
                             <w>זה</w>
                             <w>שהחזיק</w>
                             <w>בה</w>
                             <w>זכה</w>
                             <w>בה</w>
-                            <w>ראה</w>
+                            <w>ראה</w><link target="g2.xml#g2.damBeg.1r.21"/>
                             <w>אותן</w>
+                            <link target="g6.xml#g6.damEnd.1r.11a"/>
                             <w>רצין</w>
                             <w>אחר</w>
                             <w>מציאה</w>
+                            <link target="g6.xml#g6.damBeg.1r.11b"/>
                             <w>אחר</w>
+                            <link target="g6.xml#g6.damEnd.1r.11b"/>
                             <w>צבי</w>
+                            <link target="g6.xml#g6.damBeg.1r.11c"/>
                             <w>שבור</w>
                             <w>אחר</w>
                             <w>גוזלות</w>
-                            <link target="g1.xml#damBeg.1v.22a"/>
+                            <link target="g1.damBeg.1v.22a"/>
+                            <link target="g2.xml#g2.damEnd.1r.21"/>
                             <w>שלא</w>
-                            <w>פ<link target="g1.xml#damEnd.1v.22a"/>רחו</w>
-                            <link target="g1.xml#damBeg.1v.22b"/>
+                            <w>פר<link target="g1.damEnd.1v.22a"/>חו</w>
+                            <link target="g1.damBeg.1v.22b"/>
                             <w>ואמר</w>
-                            <w>ז<link target="g1.xml#damEnd.1v.22b"/>כתה</w>
+                            <w>ז<link target="g1.damEnd.1v.22b"/>כתה</w>
+                            <link target="g2.xml#g2.damBeg.1r.22"/>
                             <w>לי</w>
                             <w>שדי</w>
                             <w>זכתה</w>
+                            <link target="g6.xml#g6.damEnd.1r.12a"/>
                             <w>לו</w>
                             <w>היה</w>
                             <w>צבי</w>
-                            <w>רץ</w>
+                            <w>ר<link target="g6.xml#g6.damBeg.1r.12b"/>ץ</w>
                             <w>כדרכו</w>
                             <w>או</w>
                             <w>שהיו</w>
-                            <link target="g1.xml#damBeg.1v.23"/>
+                            <link target="g1.damBeg.1v.23"/>
                             <w>גוזלות</w>
                             <w>מפריחין</w>
+                            <link target="g2.xml#g2.damEnd.1r.22"/>
                             <w>ואמר</w>
                             <w>זכתה</w>
                             <w>לי</w>
-                            <link target="g1.xml#damEnd.1v.23"/>
+                            <link target="g1.damEnd.1v.23"/>
                             <w>שדי</w>
+                            <link target="g2.xml#g2.damBeg.1r.23a"/>
                             <w>לא</w>
+                            <link target="g7.xml#g7.1r"/>
+                            <link target="g7.xml#g7.damBeg.1r.1"/>
                             <w>אמר</w>
                             <w>כלום</w>
-                            <w/>
+                            <link target="g6.xml#g6.damEnd.1r.13a"/>
                         </ab>
                         <ab xml:id="ref.4.2.1.5">
                             <label>ה</label>
-                            <w>מציאת</w>
+                            <w>מ<link target="g6.xml#g6.damBeg.13b"/>ציאת</w>
                             <w>בנו</w>
                             <w>ובתו</w>
-                            <link target="g1.xml#damBeg.1v.24"/>
-                            <w>הקטנים</w>
-                            <w>מציאת</w>
-                            <w>עבדו</w>
-                            <w>ושפחתו</w>
+                            <link target="g1.damBeg.1v.24"/>
+                            <w>ה<link target="g2.xml#g2.damEnd.1r.23a"/>ק<link
+                                    target="g2.xml#g2.damBeg.1r.23b"/>טני<link
+                                    target="g2.xml#g2.damEnd.1r.23b"/>ם</w>
+                            <w>מצי<link target="g1.damEnd.1v.24"/>את</w>
+                            <w>ע<link target="g2.damBeg.1r.23c"/>בדו</w>
+                            <w>ושפח<link target="g2.damEnd.1r.23c"/>תו</w>
                             <w>הכנענים</w>
-                            <w>מצי<link target="g1.xml#damEnd.1v.24"/>את</w>
+                            <w>מציאת</w>
+                            <link target="g2.xml#g2.damBeg.1r.24a"/>
                             <w>אשתו</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            <w>שלו</w>
-                            <w>מציאת</w>
+                            <w>ש<link target="g6.xml#g6.damEnd.1r.14a"/>ל<link
+                                    target="g6.xml#g6.damBeg.1r.14b"/>ו</w>
+                            <w>מצ<link target="g7.xml#g7.damEnd.1r.2a"/>יאת</w>
+                            <link target="g7.xml#g7.damBeg.1r.2b"/>
                             <w>בנו</w>
-                            <link target="g1.xml#damBeg.1v.25"/>
+                            <link target="g6.xml#g6.damEnd.1r.14b"/>
+                            <link target="g1.damBeg.1v.25"/>
                             <w>ובתו</w>
+                            <link target="g2.xml#g2.damEnd.1r.24a"/>
                             <w>הגדולים</w>
                             <w>מציאת</w>
-                            <w>עבדו</w>
-                            <w>ושפחתו</w>
-                            <w>העבר<link target="g1.xml#damEnd.1v.25"/>ים</w>
+                            <w>ע<link target="g2.xml#g2.damBeg.1r.24b"/>בדו</w>
+                            <link target="g8.xml#g8.1v"/>
+                            <link target="g8.xml#g8.damBeg.1v.1a"/>
+                            <w>ו<link target="g2.xml#g2.damEnd.1r.24b"/>שפ<link
+                                    target="g8.xml#g8.damEnd.1v.1a"/>חתו</w>
+                            <link target="g8.xml#g8.damBeg.1v.1b"/>
+                            <w>הע<link target="g8.xml#g8.damEnd.1v.1b"/>בר<link
+                                    target="g1.damEnd.1v.25"/>ים</w>
+                            <link target="g8.xml#g8.damEnd.1v.1b"/>
                             <w>מציאת</w>
+                            <link target="g2.xml#g2.damBeg.1r.25"/>
                             <w>אשתו</w>
-                            <w>שגרשה</w>
-                            <w>אף</w>
-                            <w>על</w>
+                            <link target="g8.xml#g8.damBeg.1v.1c"/>
+                            <w>שגר<link target="g8.xml#g8.damEnd.1v.1c"/>שה</w>
+                            <w>א<link target="g7.xml#g7.damEnd.1r.3a"/>ף</w>
+                            <link target="g7.xml#g7.damBeg.1r.3b"/>
+                            <link target="g8.xml#g8.damBeg.1v.1e"/>
+                            <w>ע<link target="g7.xml#g7.damEnd.1r.3b"/>ל</w>
                             <w>פי</w>
-                            <link target="g1.xml#damBeg.1v.26"/>
-                            <w>שלא</w>
+                            <link target="g1.damBeg.1v.26"/>
+                            <w>של<link target="g7.xml#g7.damBeg.1r.3c"/>א</w>
+                            <link target="g8.xml#g8.damEnd.1v.1e"/>
                             <w>נתן</w>
-                            <w>כתבתה</w>
+                            <link target="g2.xml#g2.damEnd.1r.25"/>
+                            <w>כתבת<link target="g8.xml#g8.damBeg.1v.2a"/>ה</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            <w>של<link target="g1.xml#damEnd.1v.26"/>הן</w>
+                            <w>של<link target="g1.damEnd.1v.26"/>הן</w>
                         </ab>
                         <ab xml:id="ref.4.2.1.6">
                             <label>ו</label>
                             <w>מצא</w>
-                            <w>שטרי</w>
+                            <w>ש<link target="g8.xml#g8.damBeg.1v.2b"/>טרי</w>
+                            <link target="g2.xml#g2.damBeg.1r.26"/>
                             <w>חוב</w>
                             <w>אם</w>
-                            <w>יש</w>
+                            <w>י<link target="g7.xml#g7.damEnd.1r.4a"/>ש</w>
                             <w>בהן</w>
-                            <link target="g1.xml#damBeg.1v.27"/>
-                            <w>אחריות</w>
+                            <link target="g8.xml#g8.damEnd.1v.3a"/>
+                            <link target="g1.damBeg.1v.27"/>
+                            <w>אח<link target="g7.xml#g7.damBeg.1r.4b"/>ר<link
+                                    target="g8.xml#g8.damBeg.1v.3b"/>יות</w>
                             <w>נכסים</w>
+                            <link target="g7.xml#g7.damBeg.1r.4c"/>
                             <w>לא</w>
                             <w>יחזיר</w>
+                            <link target="g2.xml#g2.damEnd.1r.26"/>
                             <w>שבית</w>
                             <w>דין</w>
                             <w>נפרעין</w>
                             <w>מהן</w>
-                            <w>אין</w>
-                            <w>בהן</w>
+                            <w>אי<link target="g8.xml#g8.damEnd.1v.3b"/>ן</w>
+                            <w>בה<link target="g8.xml#g8.damBeg.1v.3c"/>ן</w>
                             <w>אחריות</w>
-                            <link target="g1.xml#damEnd.1v.27"/>
+                            <link target="g1.damEnd.1v.27"/>
                             <w>נכסים</w>
+                            <link target="g8.xml#g8.damEnd.1v.3c"/>
+                            <link target="g8.xml#g8.1v.pageEnd"/>
                             <w>יחזיר</w>
+                            <link target="g2.xml#g2.damBeg.1r.27"/>
                             <w>שאין</w>
-                            <w>בית</w>
+                            <w>ב<link target="g7.xml#g7.damEnd.1r.5a"/>ית</w>
                             <w>דין</w>
+                            <link target="g1.damBeg.1v.28"/>
                             <w>נפרעין</w>
-                            <link target="g1.xml#damBeg.1v.28"/>
                             <w>מהן</w>
-                            <w>דברי</w>
+                            <w>ד<link target="g7.xml#g7.damBeg.1r.5b"/>ברי</w>
                             <w>רבי</w>
                             <w>מאיר</w>
+                            <link target="g2.xml#g2.damEnd.1r.27"/>
                             <w>וחכמים</w>
                             <w>אומרים</w>
                             <w>בין</w>
                             <w>כך</w>
-                            <w>ובי<link target="g1.xml#damEnd.1v.28"/>ן</w>
+                            <w>ובי<link target="g1.damEnd.1v.28"/>ן</w>
                             <w>כך</w>
+                            <link target="g2.xml#g2.damBeg.1r.28a"/>
                             <w>לא</w>
                             <w>יחזיר</w>
+                            <link target="g7.xml#g7.damEnd.1r.6a"/>
                             <w>מפני</w>
                             <w>שבית</w>
                             <w>דין</w>
-                            <w>נפרעין</w>
-                            <w>מ<link target="g1.xml#damBeg.1r.1"/>הן</w>
+                            <link target="g1.xml#g1.1r"/>
+                            <w>נ<link target="g7.xml#g7.damBeg.1r.6b"/>פרעין</w>
+                            <w>מ<link target="g1.damBeg.1r.1"/>הן</w>
+                            <link target="g2.xml#g2.damEnd.1r.28a"/>
                         </ab>
                         <ab xml:id="ref.4.2.1.7">
                             <label>ז</label>
-                            <w>מצא</w>
-                            <w>גטי</w>
+                            <w>מצ<link target="g2.xml#g2.damBeg.1r.28b"/>א</w>
+                            <w>ג<link target="g2.xml#g2.damEnd.1r.28b"/>טי</w>
                             <w>נשים</w>
                             <w>ושחרורי</w>
                             <w>עבדים</w>
+                            <link target="g2.xml#g2.damBeg.1r.29a"/>
                             <w>דייתיקי</w>
-                            <w>מתנה</w>
-                            <w>עבדים</w>
-                            <w>דייתיקי</w>
-                            <w>מתנה</w>
-                            <link target="g1.xml#damEnd.1r.1"/>
+                            <w>מת<link target="g7.xml#g7.damEnd.1r.7a"/>נה</w>
+                            <link target="g1.damEnd.1r.1"/>
+                            <!-- following word added for pointing -->
+                            <w>ופרוזבולין</w>
+                            <link target="g7.xml#g7.damBeg.1r.7b"/>
                             <w>ושוברים</w>
-                            <w>ה<link target="g1.xml#damBeg.1r.2"/>רי</w>
+                            <w>ה<link target="g1.damBeg.1r.2"/>רי</w>
                             <w>זה</w>
                             <w>לא</w>
-                            <w>יחזיר</w>
-                            <w>שאני</w>
-                            <w>אומר</w>
+                            <w>יח<link target="g2.xml#g2.damEnd.1r.29a"/>זיר</w>
+                            <w><link target="g2.xml#g2.damBeg.1r.29b"/>שא<link
+                                    target="g2.xml#g2.damEnd.1r.29b"/>ני</w>
+                            <w><link target="g2.xml#g2.damBeg.1r.29c"/>או<link
+                                    target="g2.xml#g2.damEnd.1r.29c"/>מר</w>
                             <w>כתובים</w>
                             <w>היו</w>
                             <w>ונמלך</w>
                             <w>עליהם</w>
                             <w>שלא</w>
+                            <link target="g2.xml#g2.damBeg.1r.30"/>
                             <w>לתנם</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.1.8">
                             <label>ח</label>
-                            <link target="g1.xml#damEnd.1r.2"/>
-                            <w>מצא</w>
+                            <link target="g1.damEnd.1r.2"/>
+                            <w>מ<link target="g7.xml#g7.damEnd.1r.8a"/>צא</w>
                             <w>אגרות</w>
-                            <w>שו<link target="g1.xml#damBeg.1r.3"/>ם</w>
-                            <w>ואגרות</w>
-                            <w>מזון</w>
+                            <w>ש<link target="g1.damBeg.1r.3"/>ו<link
+                                    target="g7.xml#g7.damBeg.1r.8b"/>ם</w>
+                            <link target="g7.xml#g7.damEnd.1r.8b"/>
+                            <w>ואג<link target="g7.xml#g7.damBeg.1r.8c"/>רות</w>
+                            <w>מז<link target="g2.xml#g2.damEnd.1r.30"/>ון</w>
                             <w>שטרי</w>
                             <w>חליצה</w>
                             <w>ומאונין</w>
                             <w>ושטרי</w>
+                            <link target="g2.xml#g2.damBeg.1r.31"/>
                             <w>ברורין</w>
-                            <link target="g1.xml#damEnd.1r.3"/>
+                            <link target="g1.damEnd.1r.3"/>
                             <w>וכל</w>
-                            <w>מעשה</w>
+                            <link target="g7.xml#g7.damEnd.1r.9a"/>
+                            <w>מ<link target="g7.xml#g7.damBeg.1r.9b"/>ע<link
+                                    target="g7.xml#g7.damEnd.1r.9b"/>שה</w>
                             <w>בית</w>
-                            <w>דין</w>
+                            <link target="g7.xml#g7.damBeg.1r.9c"/>
+                            <w>ד<link target="g7.xml#g7.damEnd.1r.9c"/>ין</w>
+                            <link target="g7.xml#g7.damBeg.1r.9d"/>
                             <w>הרי</w>
-                            <w>זה</w>
-                            <w>יח<link target="g1.xml#damBeg.1r.4"/>זיר</w>
+                            <w>ז<link target="g7.xml#g7.damEnd.1r.9d"/>ה</w>
+                            <w>י<link target="g2.xml#g2.damEnd.1r.31"/><link
+                                    target="g7.xml#g7.damBeg.1r.9e"/>ח<link target="g1.damBeg.1r.4"
+                                />זיר</w>
                             <w>מצא</w>
                             <w>בחפיסה</w>
                             <w>או</w>
                             <w>בדלוסקמא</w>
-                            <w>תכר<link target="g1.xml#damEnd.1r.4"/>יך</w>
+                            <w>תכר<link target="g1.damEnd.1r.4"/>יך</w>
+                            <link target="g2.xml#g2.damBeg.1r.32"/>
                             <w>של</w>
                             <w>שטרות</w>
+                            <link target="g7.xml#g7.damEnd.1r.10a"/>
                             <w>או</w>
                             <w>אגדה</w>
                             <w>של</w>
-                            <w>שטרות</w>
-                            <w>הרי</w>
+                            <w>ש<link target="g7.xml#g7.damBeg.1r.10b"/>טרו<link
+                                    target="g7.xml#g7.damEnd.1r.10b"/>ת</w>
+                            <w><link target="g7.xml#g7.damBeg.1r.10c"/>ה<link
+                                    target="g7.xml#g7.damEnd.1r.10c"/>ר<link
+                                    target="g2.xml#g2.damEnd.1r.32"/><link
+                                    target="g7.xml#g7.damBeg.1r.10d"/>י</w>
                             <w>זה</w>
                             <w>יחזיר</w>
-                            <link target="g1.xml#damBeg.1r.5a"/>
                             <w>וכמה</w>
-                            <link target="g1.xml#damEnd.1r.5a"/>
-                            <w>א<link target="g1.xml#damBeg.1r.5b"/>גדה</w>
+                            <!-- Next word added for pointing -->
+                            <link target="g1.damBeg.1r.5a"/>
+                            <w>היא</w>
+                            <link target="g1.damEnd.1r.5a"/>
+                            <w>א<link target="g1.damBeg.1r.5b"/>גדה</w>
                             <w>של</w>
                             <w>שטרות</w>
+                            <link target="g2.xml#g2.damBeg.1r.33"/>
                             <w>שלשה</w>
-                            <link target="g1.xml#damEnd.1r.5b"/>
-                            <w>קשורין</w>
+                            <link target="g1.damEnd.1r.5b"/>
+                            <w>ק<link target="g7.xml#g7.damEnd.1r.11a"/>שורין</w>
                             <w>זה</w>
                             <w>בזה</w>
+                            <link target="g7.xml#g7.damBeg.1r.11b"/>
                             <w>רבן</w>
                             <w>שמעון</w>
+                            <link target="g2.xml#g2.damEnd.1r.33"/>
                             <w>בן</w>
                             <w>גמליאל</w>
                             <w>אומר</w>
                             <w>אחד</w>
-                            <w>הל<link target="g1.xml#damBeg.1r.6"/>וה</w>
-                            <w>משלש<link target="g1.xml#damEnd.1r.6"/>ה</w>
+                            <w>הל<link target="g1.damBeg.1r.6"/>וה</w>
+                            <w>משלש<link target="g1.damEnd.1r.6"/>ה</w>
+                            <link target="g2.xml#g2.damBeg.1r.34"/>
                             <w>יחזיר</w>
-                            <w>ללוה</w>
+                            <w>לל<link target="g7.xml#g7.damEnd.1r.12a"/>וה</w>
                             <w>שלשה</w>
-                            <w>הלוין</w>
+                            <w>הלו<link target="g7.xml#g7.damBeg.1r.12b"/>ין</w>
                             <w>מאחד</w>
-                            <w>יחזיר</w>
+                            <w>יחז<link target="g2.xml#g2.damEnd.1r.34"/>יר</w>
                             <w>למלוה</w>
                             <w>מצא</w>
                             <w>שטר</w>
-                            <w>ב<link target="g1.xml#damBeg.1r.7"/>ין</w>
-                            <w>שטרו<link target="g1.xml#damEnd.1r.7"/>תיו</w>
-                            <w>ואינו</w>
+                            <w>ב<link target="g1.damBeg.1r.7"/>ין</w>
+                            <w>שטרו<link target="g1.damEnd.1r.7"/>תיו</w>
+                            <link target="g2.xml#g2.damBeg.1r.35"/>
+                            <w>ואי<link target="g7.xml#g7.damEnd.1r.13a"/>נו</w>
                             <w>יודע</w>
                             <w>מה</w>
                             <w>טיבו</w>
                             <w>יהא</w>
-                            <w>מנח</w>
+                            <w>מ<link target="g7.xml#g7.damBeg.1r.13b"/><link
+                                    target="g7.xml#g7.damEnd.1r.13b"/>נח</w>
+                            <link target="g7.xml#g7.damBeg.1r.13c"/>
                             <w>עד</w>
-                            <w>שיבוא</w>
+                            <w>ש<link target="g2.xml#g2.damEnd.1r.35"/>יבוא</w>
                             <w>אליהו</w>
                             <w>אם</w>
                             <w>יש</w>
                             <w>עמהן</w>
-                            <w>סמפונות</w>
-                            <w>יעשה</w>
+                            <w>סמפוננות</w>
+                            <link target="g2.xml#g2.damBeg.1r.36a"/>
+                            <w>יע<link target="g7.xml#g7.damEnd.1r.14a"/>שה</w>
                             <w>מה</w>
-                            <w>שבסמפונות</w>
+                            <w>שבסמפו<link target="g7.xml#g7.damBeg.1r.14b"/>ות<link
+                                    target="g7.xml#g7.damEnd.1r.14b"/></w>
                             <w/>
                         </ab>
                     </div3>
                     <div3 xml:id="ref.4.2.2">
                         <head xml:id="ref.4.2.2.H">
-                            <w>פרק</w>
+                            <w>פ<link target="g7.xml#g7.damBeg.1r.14c"/>ר<link
+                                    target="g2.xml#g2.damEnd.1r.36a"/>ק</w>
                             <w>ב</w>
                         </head>
                         <ab xml:id="ref.4.2.2.1">
                             <label>א</label>
+                            <link target="g2.xml#g2.damBeg.1r.36b"/>
                             <w>אלו</w>
-                            <w>מציאות</w>
+                            <w>מציא<link target="g2.xml#g2.damEnd.1r.36b"/>ות</w>
                             <w>שלו</w>
                             <w>ואלו</w>
                             <w>חייב</w>
-                            <w>להכריז</w>
+                            <link target="g2.xml#g2.damBeg.1r.37a"/>
+                            <w>לה<link target="g7.xml#g7.damEnd.1r.15a"/>כריז</w>
                             <w>אלו</w>
                             <w>מציאות</w>
                             <w>שלו</w>
-                            <w>מצא</w>
-                            <w>פרות</w>
-                            <w>מפזרין</w>
+                            <w>מ<link target="g7.xml#g7.damBeg.1r.15b"/>צא</w>
+                            <link target="g2.xml#g2.damEnd.1r.37a"/>
+                            <w>פ<link target="g7.xml#g7.damEnd.1r.15b"/><link
+                                    target="g7.xml#g7.1r.pageEnd"/>רות</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1r.37b"/>פזרין</w>
                             <w>מעות</w>
+                            <link target="g2.xml#g2.damEnd.1r.37b"/>
                             <w>מפזרות</w>
                             <w>כריכות</w>
+                            <link target="g4.xml#g4.damBeg.1v.1a"/>
                             <w>ברשות</w>
                             <w>הרבים</w>
-                            <w>ועגולי</w>
+                            <w>ועג<link target="g2.xml#g2.damBeg.1v.1a"/>ול<link
+                                    target="g2.xml#g2.damEnd.1v.1a"/>י</w>
                             <w>דבלה</w>
-                            <w>ככרות</w>
+                            <w>כ<link target="g4.xml#g4.damEnd.1v.1a"/><link
+                                    target="g2.xml#g2.damBeg.1v.1b"/>כרות</w>
                             <w>של</w>
                             <w>נחתום</w>
                             <w>מחרוזות</w>
+                            <link target="g4.xml#g4.damBeg.1v.1b"/>
                             <w>של</w>
                             <w>דגים</w>
                             <w>וחתיכות</w>
+                            <link target="g2.xml#g2.damEnd.1v.1b"/>
                             <w>של</w>
                             <w>בשר</w>
                             <w>וגזי</w>
                             <w>צמר</w>
                             <w>הבאות</w>
-                            <w>ממדינתן</w>
-                            <w>ואניצי</w>
+                            <w>מ<link target="g4.xml#g4.damEnd.1v.2a"/>מד<link
+                                    target="g2.xml#g2.damBeg.1v.2a"/>ינ<link
+                                    target="g4.xml#g4.damBeg.1v.2b"/>תן</w>
+                            <w>ואני<link target="g4.xml#g4.damEnd.1v.2b"/>צי</w>
                             <w>פשתן</w>
                             <w>ולשונות</w>
-                            <w>של</w>
+                            <w>של<link target="g4.xml#g4.damBeg.1v.2c"/></w>
                             <w>ארגמן</w>
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damEnd.1v.2a"/>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>דברי</w>
+                            <link target="g2.xml#g2.damBeg.1v.3a"/>
                             <w>רבי</w>
                             <w>מאיר</w>
                             <w>רבי</w>
-                            <w>יהודה</w>
+                            <w>יהו<link target="g2.xml#g2.damEnd.1v.3a"/>דה</w>
                             <w>אומר</w>
                             <w>כל</w>
+                            <!-- following wd added to allow pointing -->
+                            <w>דב<link target="g4.xml#g4.damEnd.1v.3a"/><link
+                                    target="g2.xml#g2.damBeg.1v.3b"/>ר</w>
+                            <link target="g4.xml#g4.damBeg.1v.3b"/>
                             <w>שיש</w>
                             <w>בו</w>
+                            <link target="g4.xml#g4.damEnd.1v.3b"/>
                             <w>שנוי</w>
                             <w>חייב</w>
-                            <w>להכריז</w>
-                            <w>כיצד</w>
+                            <w>להכרי<link target="g4.xml#g4.damBeg.1v.3c"/>ז</w>
+                            <link target="g4.xml#g4.damEnd.1v.3c"/>
+                            <w>כי<link target="g4.xml#g4.damBeg.1v.3d"/>צד</w>
                             <w>מצא</w>
+                            <link target="g2.xml#g2.damEnd.1v.3b"/>
                             <w>עגול</w>
-                            <w>ובתוכו</w>
-                            <w>חרס</w>
+                            <w>וב<link target="g2.xml#g2.damBeg.1v.4a"/>תוכו</w>
+                            <w>חר<link target="g2.xml#g2.damEnd.1v.4a"/>ס</w>
                             <w>ככר</w>
-                            <w>ובתוכו</w>
+                            <w>ובתוכ<link target="g4.xml#g4.damEnd.1v.4"/><link
+                                    target="g2.xml#g2.damBeg.1v.4b"/>ו</w>
                             <w>מעות</w>
                             <w>רבי</w>
                             <w>שמעון</w>
                             <w>בן</w>
                             <w>אלעזר</w>
+                            <link target="g8.xml#g8.1r"/>
+                            <link target="g8.xml#g8.damBeg.1r.1a"/>
                             <w>אומר</w>
                             <w>כל</w>
                             <w>כלי</w>
-                            <w>אנפוריא</w>
+                            <w>אנפ<link target="g4.xml#g4.damBeg.1v.4"/>ו<link
+                                    target="g8.xml#g8.damEnd.1r.1a"/>רי<link
+                                    target="g8.xml#g8.damBeg.1r.1b"/>א</w>
+                            <link target="g8.xml#g8.damEnd.1r.1b"/>
+                            <link target="g2.xml#g2.damEnd.1v.4b"/>
                             <w>אין</w>
                             <w>חייב</w>
                             <w>להכריז</w>
                         </ab>
                         <ab xml:id="ref.4.2.2.2">
+                            <link target="g8.xml#g8.damBeg.1r.1c"/>
                             <label>ב</label>
+                            <link target="g8.xml#g8.damEnd.1r.1c"/>
                             <w>ואלו</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g2.xml#g2.damBeg.1v.5a"/>יי<link
+                                    target="g8.xml#g8.damBeg.1r.1d"/>ב</w>
+                            <link target="g8.xml#g8.damEnd.1r.1d"/>
                             <w>להכריז</w>
-                            <w>מצא</w>
+                            <w>מצ<link target="g4.xml#g4.damEnd.1v.5"/>א</w>
+                            <link target="g8.xml#g8.damBeg.1r.2a"/>
                             <w>פרות</w>
                             <w>בכלי</w>
                             <w>או</w>
-                            <w>כלי</w>
+                            <w>כ<link target="g8.xml#g8.damEnd.1r.2a"/>ל<link
+                                    target="g8.xml#g8.damBeg.1r.2b"/>י</w>
                             <w>כמות</w>
-                            <w>שהוא</w>
-                            <w>מעות</w>
+                            <link target="g8.xml#g8.damEnd.1r.2b"/>
+                            <w>שה<link target="g4.xml#g4.damBeg.1v.5"/>ו<link
+                                    target="g8.xml#g8.damBeg.1r.2c"/>א</w>
+                            <link target="g2.xml#g2.damEnd.1v.5a"/>
+                            <w>מעו<link target="g2.xml#g2.damBeg.1v.6a"/>ת</w>
                             <w>בכיס</w>
+                            <link target="g2.xml#g2.damEnd.1v.6a"/>
                             <w>או</w>
-                            <w>כיס</w>
+                            <w>כי<link target="g8.xml#g8.damEnd.1r.2c"/>ס</w>
                             <w>כמות</w>
-                            <w>שהוא</w>
+                            <link target="g2.xml#g2.damBeg.1v.6b"/>
+                            <w>שהו<link target="g8.xml#g8.damBeg.1r.2d"/>א</w>
+                            <link target="g4.xml#g4.damEnd.1v.6"/>
                             <w>צבורי</w>
                             <w>פרות</w>
                             <w>צבורי</w>
                             <w>מעות</w>
-                            <w>שלשה</w>
-                            <w>מטבעות</w>
+                            <link target="g8.xml#g8.damEnd.1r.3a"/>
+                            <w>של<link target="g8.xml#g8.damBeg.1r.3b"/>שה</w>
+                            <w>מטבע<link target="g4.xml#g4.damBeg.1v.6"/>ות</w>
                             <w>זה</w>
                             <w>על</w>
-                            <w>גב</w>
+                            <link target="g2.xml#g2.damEnd.1v.7a"/>
+                            <w>ג<link target="g8.xml#g8.damEnd.1r.3b"/>ב</w>
                             <w>זה</w>
-                            <w>כריכות</w>
-                            <w>ברשות</w>
+                            <w>כריכ<link target="g8.xml#g8.damBeg.1r.3c"/>ות</w>
+                            <link target="g8.xml#g8.damEnd.1r.3c"/>
+                            <link target="g8.xml#g8.1r.pageEnd"/>
+                            <w>בר<link target="g2.xml#g2.damBeg.1v.7b"/>שות</w>
                             <w>היחיד</w>
                             <w>וככרות</w>
+                            <link target="g2.xml#g2.damEnd.1v.7a"/>
                             <w>של</w>
                             <w>בעל</w>
                             <w>הבית</w>
                             <w>וגיזי</w>
                             <w>צמר</w>
-                            <w>הלקוחות</w>
+                            <link target="g4.xml#g4.damBeg.1v.7"/>
+                            <w>הלקו<link target="g2.xml#g2.damEnd.1v.8"/>חות</w>
                             <w>מבית</w>
                             <w>האומן</w>
-                            <w>כדי</w>
+                            <w>כד<link target="g2.xml#g2.damBeg.1v.8"/>י</w>
                             <w>יין</w>
                             <w>וכדי</w>
                             <w>שמן</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g4.xml#g4.damEnd.1v.8"/>ייב</w>
                             <w>להכריז</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.2.3">
+                            <link target="g4.xml#g4.damBeg.1v.8"/>
                             <label>ג</label>
                             <w>מצא</w>
                             <w>אחר</w>
                             <w>הגפה</w>
                             <w>או</w>
                             <w>אחר</w>
+                            <link target="g2.xml#g2.damEnd.1v.9"/>
                             <w>הגדר</w>
                             <w>גוזלות</w>
                             <w>מקושרין</w>
+                            <link target="g2.xml#g2.damBeg.1v.9"/>
                             <w>או</w>
                             <w>בשבילין</w>
+                            <link target="g4.xml#g4.damEnd.1v.9"/>
                             <w>שבשדות</w>
-                            <w>הרי</w>
+                            <w>ה<link target="g4.xml#g4.damBeg.1v.9"/>רי</w>
                             <w>זה</w>
                             <w>לא</w>
                             <w>יגע</w>
                             <w>בהן</w>
                             <w>מצא</w>
-                            <w>כלי</w>
+                            <w>כלי</w><link target="g2.xml#g2.damEnd.1v.10"/>
                             <w>באשפה</w>
                             <w>אם</w>
                             <w>מכוסה</w>
-                            <w>לא</w>
+                            <w>ל<link target="g2.xml#g2.damBeg.1v.10"/>א</w>
                             <w>יגע</w>
                             <w>בו</w>
                             <w>אם</w>
                             <w>מגלה</w>
+                            <link target="g4.xml#g4.damEnd.1v.10"/>
                             <w>נוטל</w>
+                            <link target="g4.xml#g4.damBeg.1v.10"/>
                             <w>ומכריז</w>
                             <w>מצא</w>
                             <w>בגל</w>
                             <w>או</w>
-                            <w>בכתל</w>
+                            <w>בכ<link target="g2.xml#g2.damEnd.1v.11"/>תל</w>
                             <w>ישן</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>מצא</w>
+                            <w>מצ<link target="g2.xml#g2.damBeg.1v.11"/>א</w>
+                            <link target="g6.xml#g6.damBeg.1v.1a"/>
                             <w>בכתל</w>
-                            <w>חדש</w>
+                            <w>ח<link target="g6.xml#g6.damEnd.1v.1a"/>דש</w>
+                            <link target="g6.xml#g6.damBeg.1v.1b"/>
                             <w>מחציו</w>
                             <w>ולחוץ</w>
                             <w>שלו</w>
                             <w>מחציו</w>
-                            <w>ולפנים</w>
+                            <w>ול<link target="g2.xml#g2.damEnd.1v.12a"/>פנים</w>
                             <w>של</w>
                             <w>בעל</w>
                             <w>הבית</w>
+                            <link target="g4.xml#g4.damEnd.1v.11"/>
                             <w>אם</w>
                             <w>היה</w>
-                            <w>משכיר<link target="g1.xml#damBeg.1r.22a"/>ו</w>
-                            <w>לאחר<link target="g1.xml#damEnd.1r.22a"/>ים</w>
-                            <link target="damBeg.1r.22b"/>
-                            <w>אפלו</w>
-                            <w>מצ<link target="damEnd.1r.22b"/>א</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1v.12b"/>שכיר<link target="g1.xml#g1.damBeg.1r.22a"/>ו</w>
+                            <w>לאח<link target="g6.xml#g6.damEnd.1v.2a"/>ר<link
+                                    target="g1.xml#g1.damEnd.1r.22a"/>ים</w>
+                            <link target="g1.xml#g1.damBeg.1r.22b"/>
+                            <link target="g6.xml#g6.damBeg.1v.2b"/>
+                            <w>א<link target="g6.xml#g6.damEnd.1v.2b"/>פ<link
+                                    target="g6.xml#g6.damBeg.1v.2c"/>ל<link
+                                    target="g6.xml#g6.damEnd.1v.2c"/>ו</w>
+                            <w>מ<link target="g6.xml#g6.damBeg.1v.2d"/>צ<link
+                                    target="g1.xml#g1.damEnd.1r.22b"/>א</w>
                             <!-- preceding not in vilna ed. entered to allow linking -->
                             <w>בתוך</w>
                             <w>הבית</w>
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damEnd.1v.12b"/>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w/>
@@ -5393,85 +5638,110 @@
                             <label>ד</label>
                             <w>מצא</w>
                             <w>בחנות</w>
-                            <link target="g1.xml#damBeg.1r.23"/>
+                            <link target="g1.xml#g1.damBeg.1r.23"/>
                             <w>הרי</w>
+                            <link target="g2.xml#g2.damBeg.1v.13"/>
                             <w>אלו</w>
                             <w>שלו</w>
-                            <w>בין</w>
-                            <w>התיבה</w>
-                            <w>ולחונ<link target="g1.xml#damEnd.1r.23"/>י</w>
+                            <w>ב<link target="g6.xml#g6.damEnd.1v.3a"/>ין</w>
+                            <w>התיב<link target="g6.xml#g6.damBeg.1v.3b"/>ה</w>
+                            <link target="g6.xml#g6.damEnd.1v.3b"/>
+                            <w>ולחונ<link target="g1.xml#g1.damEnd.1r.23"/>י</w>
+                            <!-- following word not in Vilna. Added for pointing -->
+                            <w>ה<link target="g6.xml#g6.damBeg.1v.3c"/>רי</w>
                             <w>של</w>
+                            <link target="g6.xml#g6.damEnd.1v.3c"/>
                             <w>חנוני</w>
+                            <link target="g6.xml#g6.damBeg.1v.3d"/>
+                            <link target="g2.xml#g2.damEnd.1v.13"/>
                             <w>לפני</w>
                             <w>שולחני</w>
-                            <link target="g1.xml#damBeg.1r.24"/>
+                            <link target="g1.xml#g1.damBeg.1r.24"/>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>בין</w>
-                            <w>הכסא</w>
+                            <w>הכ<link target="g2.xml#g2.damBeg.1v.14"/>סא</w>
                             <w>ולשולחני</w>
                             <w>הרי</w>
                             <w>אלו</w>
-                            <link target="g1.xml#damEnd.1r.24"/>
-                            <w>לשולחני</w>
+                            <link target="g1.xml#g1.damEnd.1r.24"/>
+                            <w>לש<link target="g6.xml#g6.damEnd.1v.4a"/>ולחני</w>
                             <w>הלוקח</w>
                             <w>פירות</w>
-                            <w>מחבירו</w>
+                            <link target="g6.xml#g6.damBeg.1v.4b"/>
+                            <link target="g2.xml#g2.damEnd.1v.14"/>
+                            <w>מחביר<link target="g2.xml#g2.damBeg.1v.15a"/>ו<link
+                                    target="g2.xml#g2.damEnd.1v.15a"/></w>
                             <w>או</w>
-                            <link target="g1.xml#damBeg.1r.25"/>
+                            <link target="g1.xml#g1.damBeg.1r.25"/>
                             <w>ששלח</w>
                             <w>לו</w>
                             <w>חבירו</w>
                             <w>פירות</w>
-                            <w>ומצא</w>
-                            <w>בהן</w>
+                            <link target="g2.xml#g2.damBeg.1v.15b"/>
+                            <w>ומצ<link target="g6.xml#g6.damEnd.1v.5a"/>א</w>
+                            <w>בתוכן</w>
+                            <link target="g1.xml#g1.damEnd.1r.25"/>
+                            <w>מעות</w>
                             <w>הרי</w>
                             <w>אלו</w>
                             <w>שלו</w>
                             <w>אם</w>
+                            <link target="g6.xml#g6.damBeg.1v.5b"/>
+                            <link target="g2.xml#g2.damEnd.1v.15b"/>
                             <w>היו</w>
-                            <w>צרורין</w>
-                            <link target="g1.xml#damBeg.1r.26"/>
+                            <link target="g2.xml#g2.damBeg.1v.16a"/>
+                            <w>צרו<link target="g2.xml#g2.damEnd.1v.16a"/>רין</w>
+                            <link target="g1.xml#g1.damBeg.1r.26"/>
                             <w>נוטל</w>
                             <w>ומכריז</w>
                         </ab>
                         <ab xml:id="ref.4.2.2.5">
                             <label>ה</label>
                             <w>אף</w>
-                            <w>השמלה</w>
-                            <link target="g1.xml#damEnd.1r.26"/>
+                            <w>ה<link target="g2.xml#g2.damBeg.1v.16b"/>ש<link
+                                    target="g6.xml#g6.damEnd.1v.6a"/>מלה</w>
+                            <link target="g1.xml#g1.damEnd.1r.26"/>
                             <w>היתה</w>
                             <w>בכלל</w>
                             <w>כל</w>
                             <w>אלה</w>
                             <w>למה</w>
-                            <w>י<link target="g1.xml#damBeg.1r.27"/>צאת</w>
+                            <link target="g6.xml#g6.damBeg.1v.6b"/>
+                            <w>י<link target="g1.xml#g1.damBeg.1r.27"/>צאת</w>
+                            <link target="g2.xml#g2.damEnd.1v.16b"/>
                             <w>להקיש</w>
                             <w>אליה</w>
                             <w>לומר</w>
                             <w>לך</w>
                             <w>מה</w>
                             <w>שמלה</w>
-                            <w>מיוחדת</w>
-                            <link target="g1.xml#damEnd.1r.27"/>
+                            <w>מיוח<link target="g2.xml#g2.damBeg.1v.17"/>דת</w>
+                            <link target="g1.xml#g1.damEnd.1r.27"/>
+                            <link target="g6.xml#g6.damEnd.1v.7a"/>
                             <w>שיש</w>
                             <w>בה</w>
                             <w>סימנים</w>
                             <w>ויש</w>
                             <w>לה</w>
-                            <w>תו<link target="g1.xml#damBeg.1r.28"/>בעים</w>
+                            <w>תו<link target="g1.xml#g1.damBeg.1r.28"/>בעים</w>
                             <w>אף</w>
+                            <link target="g2.xml#g2.damEnd.1v.17"/>
                             <w>כל</w>
                             <w>דבר</w>
                             <w>שיש</w>
+                            <link target="g2.xml#g2.damBeg.1v.18a"/>
                             <w>בו</w>
+                            <link target="g2.xml#g2.damEnd.1v.18a"/>
                             <w>סימנים</w>
                             <w>ויש</w>
                             <w>לו</w>
-                            <w>תובעים</w>
-                            <link target="g1.xml#damEnd.1r.28"/>
-                            <w>חייב</w>
+                            <w>תו<link target="g6.xml#g6.damBeg.1v.7b"/>בעים</w><link
+                                    target="g2.xml#g2.damBeg.1v.18b"/>
+                            <link target="g1.xml#g1.damEnd.1r.28"/>
+                            <link target="g1.xml#g1.1r.pageEnd"/>
+                            <w>חיי<link target="g6.xml#g6.damEnd.1v.8a"/>ב</w>
                             <w>להכריז</w>
                         </ab>
                         <ab xml:id="ref.4.2.2.6">
@@ -5479,32 +5749,45 @@
                             <w>ועד</w>
                             <w>מתי</w>
                             <w>חייב</w>
-                            <w>להכריז</w>
+                            <link target="g6.xml#g6.damBeg.1v.8b"/>
+                            <w>ל<link target="g6.xml#g6.damEnd.1v.8b"/>הכ<link
+                                    target="g6.xml#g6.damBeg.1v.8c"/>ריז</w>
+                            <link target="g2.xml#g2.damEnd.1v.18b"/>
                             <w>עד</w>
                             <w>כדי</w>
                             <w>שידעו</w>
                             <w>בו</w>
                             <w>שכניו</w>
-                            <w>דברי</w>
+                            <w>דבר<link target="g2.xml#g2.damBeg.1v.19a"/>י<link
+                                    target="g2.xml#g2.damEnd.1v.19a"/></w>
                             <w>רבי</w>
                             <w>מאיר</w>
                             <w>רבי</w>
-                            <w>יהודה</w>
+                            <link target="g2.xml#g2.damBeg.1v.19b"/>
+                            <w>י<link target="g6.xml#g6.damEnd.1v.9a"/>הודה</w>
                             <w>אומר</w>
                             <w>שלש</w>
                             <w>רגלים</w>
-                            <w>ואחר</w>
+                            <w>וא<link target="g6.xml#g6.damBeg.1v.9b"/>חר</w>
+                            <link target="g2.xml#g2.damEnd.1v.19b"/>
                             <w>הרגל</w>
                             <w>האחרון</w>
                             <w>שבעה</w>
-                            <w>ימים</w>
+                            <w>ימ<link target="g2.xml#g2.damBeg.1v.20a"/>ים</w>
                             <w>כדי</w>
+                            <link target="g2.xml#g2.damEnd.1v.20a"/>
                             <w>שילך</w>
+                            <link target="g6.xml#g6.damEnd.1v.10a"/>
+                            <link target="g2.xml#g2.damBeg.1v.20b"/>
                             <w>לביתו</w>
-                            <w>שלשה</w>
+                            <link target="g6.xml#g6.damBeg.1v.10b"/>
+                            <w>ש<link target="g6.xml#g6.damEnd.1v.10b"/>לשה</w>
                             <w>ויחזור</w>
                             <w>שלשה</w>
-                            <w>ויכריז</w>
+                            <w>וי<link target="g6.xml#g6.damBeg.1v.10c"/>כ<link
+                                    target="g6.xml#g6.damEnd.1v.10c"/>ר<link
+                                    target="g6.xml#g6.damEnd.1v.10d"/>יז</w>
+                            <link target="g2.xml#g2.damEnd.1v.20b"/>
                             <w>יום</w>
                             <w>אחד</w>
                             <w/>
@@ -5513,51 +5796,70 @@
                             <label>ז</label>
                             <w>אמר</w>
                             <w>את</w>
-                            <w>האבדה</w>
+                            <w>הא<link target="g2.xml#g2.damBeg.1v.21a"/>בדה</w>
                             <w>ולא</w>
-                            <w>אמר</w>
-                            <w>סימניה</w>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.21a"/>מר</w>
+                            <link target="g2.xml#g2.damBeg.1v.21b"/>
+                            <w>ס<link target="g6.xml#g6.damEnd.1v.11a"/>ימנ<link
+                                    target="g6.xml#g6.damBeg.1v.11b"/>יה</w>
+                            <!-- Following two words not in Vilna. Added for pointing -->
+                            <w>ה<link target="g6.xml#g6.damEnd.1v.11b"/>רי</w>
+                            <w>זה</w>
                             <w>לא</w>
                             <w>יתן</w>
                             <w>לו</w>
-                            <w>והרמאי</w>
+                            <w>ו<link target="g6.xml#g6.damBeg.1v.11c"/>הרמאי</w>
+                            <!-- NB: G6 has spelling w 2 yods in preceding -->
                             <w>אף</w>
+                            <link target="g2.xml#g2.damEnd.1v.21b"/>
                             <w>על</w>
                             <w>פי</w>
                             <w>שאמר</w>
                             <w>סימניה</w>
+                            <!-- Next two words added for pointing -->
+                            <w>ה<link target="g2.xml#g2.damBeg.1v.22a"/>רי</w>
+                            <w>ז<link target="g2.xml#g2.damEnd.1v.22a"/>ה</w>
                             <w>לא</w>
-                            <w>יתן</w>
+                            <w>ית<link target="g2.xml#g2.damBeg.1v.22b"/>ן</w>
                             <w>לו</w>
                             <w>שנאמר</w>
                             <w>עד</w>
-                            <w>דרוש</w>
-                            <w>אחיך</w>
+                            <w>ד<link target="g6.xml#g6.damEnd.1v.12a"/>רוש</w>
+                            <w>א<link target="g6.xml#g6.damBeg.1v.12b"/>חיך</w>
                             <w>אותו</w>
                             <w>עד</w>
+                            <link target="g2.xml#g2.damEnd.1v.22b"/>
                             <w>שתדרוש</w>
                             <w>את</w>
                             <w>אחיך</w>
                             <w>אם</w>
                             <w>רמאי</w>
                             <w>הוא</w>
-                            <w>אם</w>
-                            <w>אינו</w>
-                            <w>רמאי</w>
-                            <w>כל</w>
+                            <w>א<link target="g7.xml#g7.1v"/><link target="g7.xml#g7.damBeg.1v.1"
+                                />ם</w>
+                            <w>א<link target="g2.xml#g2.damBeg.1v.23"/>ינו</w>
+                            <w>רמ<link target="g6.xml#g6.damEnd.1v.13a"/>אי</w>
+                            <w>כ<link target="g6.xml#g6.damBeg.1v.13b"/>ל</w>
                             <w>דבר</w>
-                            <w>שעושה</w>
+                            <!-- Next word added for pointing -->
+                            <w>שהוא</w>
+                            <link target="g2.xml#g2.damEnd.1v.23"/>
+                            <w>ע<link target="g2.xml#g2.damBeg.1v.24"/>ושה</w>
                             <w>ואוכל</w>
                             <w>יעשה</w>
                             <w>ויאכל</w>
                             <w>ודבר</w>
                             <w>שאין</w>
-                            <w>עושה</w>
-                            <w>ואוכל</w>
+                            <w>עו<link target="g7.xml#g7.damEnd.1v.2a"/>שה</w>
+                            <link target="g7.xml#g7.damBeg.1v.2b"/>
+                            <w>ו<link target="g6.xml#g6.damEnd.1v.14a"/>א<link
+                                    target="g6.xml#g6.damBeg.1v.14b"/>וכל</w>
                             <w>ימכר</w>
                             <w>שנאמר</w>
+                            <link target="g6.xml#g6.damEnd.1v.14b"/>
                             <w>והשבותו</w>
                             <w>לו</w>
+                            <link target="g2.xml#g2.damEnd.1v.24"/>
                             <w>ראה</w>
                             <w>היאך</w>
                             <w>תשיבנו</w>
@@ -5565,23 +5867,30 @@
                             <w>מה</w>
                             <w>יהא</w>
                             <w>בדמים</w>
+                            <link target="g2.xml#g2.damBeg.1v.25"/>
+                            <link target="g7.xml#g7.damEnd.1v.3a"/>
                             <w>רבי</w>
                             <w>טרפון</w>
                             <w>אומר</w>
                             <w>ישתמש</w>
                             <w>בהן</w>
-                            <w>לפיכך</w>
+                            <link target="g2.xml#g2.damEnd.1v.25"/>
+                            <w>ל<link target="g2.xml#g2.damBeg.1v.26a"/>פ<link
+                                    target="g2.xml#g2.damEnd.1v.26a"/>יכך</w>
                             <w>אם</w>
                             <w>אבדו</w>
                             <w>חייב</w>
-                            <w>באחריותן</w>
+                            <w>בא<link target="g2.xml#g2.damBeg.1v.26b"/>חרי<link
+                                    target="g2.xml#g2.damEnd.1v.26b"/>ותן</w>
                             <w>רבי</w>
-                            <w>עקיבא</w>
+                            <w>ע<link target="g2.xml#g2.damBeg.1v.26c"/>ק<link
+                                    target="g7.xml#g7.damEnd.1v.3a"/>יבא</w>
                             <w>אומר</w>
                             <w>לא</w>
-                            <w>ישתמש</w>
+                            <w>יש<link target="g7.xml#g7.damBeg.1v.4b"/>תמש</w>
                             <w>בהן</w>
                             <w>לפיכך</w>
+                            <link target="g2.xml#g2.damEnd.1v.26c"/>
                             <w>אם</w>
                             <w>אבדו</w>
                             <w>אין</w>
@@ -5591,63 +5900,88 @@
                         </ab>
                         <ab xml:id="ref.4.2.2.8">
                             <label>ח</label>
+                            <w>מ<link target="g2.xml#g2.damBeg.1v.27"/>צא</w>
+                            <w>ס<link target="g7.xml#g7.damEnd.1v.5a"/>פרים</w>
+                            <w>קורא</w>
+                            <w>בהן</w>
                             <w>אחת</w>
-                            <w>לשלשים</w>
+                            <w>לש<link target="g7.xml#g7.damBeg.1v.5b"/>לשים</w>
                             <w>יום</w>
+                            <link target="g2.xml#g2.damEnd.1v.27"/>
                             <w>ואם</w>
                             <w>אינו</w>
                             <w>יודע</w>
                             <w>לקרות</w>
                             <w>גוללן</w>
-                            <w>אבל</w>
+                            <link target="g2.xml#g2.damBeg.1v.28a"/>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.28a"/>בל</w>
                             <w>לא</w>
-                            <w>ילמוד</w>
+                            <w>י<link target="g2.xml#g2.damBeg.1v.28b"/>למוד</w>
+                            <link target="g7.xml#g7.damEnd.1v.6a"/>
                             <w>בהן</w>
                             <w>בתחלה</w>
                             <w>ולא</w>
                             <w>יקרא</w>
+                            <link target="g7.xml#g7.damBeg.1v.6b"/>
                             <w>אחר</w>
                             <w>עמו</w>
+                            <link target="g2.xml#g2.damEnd.1v.28b"/>
                             <w>מצא</w>
                             <w>כסות</w>
                             <w>מנערה</w>
                             <w>אחת</w>
                             <w>לשלשים</w>
+                            <link target="g2.xml#g2.damBeg.1v.29"/>
                             <w>יום</w>
+                            <link target="g7.xml#g7.damEnd.1v.7a"/>
                             <w>ושוטחה</w>
                             <w>לצרכה</w>
                             <w>אבל</w>
-                            <w>לא</w>
+                            <w>ל<link target="g7.xml#g7.damBeg.1v.7b"/>א</w>
                             <w>לכבודו</w>
+                            <link target="g2.xml#g2.damEnd.1v.29"/>
                             <w>כלי</w>
                             <w>כסף</w>
                             <w>וכלי</w>
                             <w>נחשת</w>
-                            <w>משתמש</w>
+                            <w>משת<link target="g2.xml#g2.damBeg.1v.30a"/>מ<link
+                                    target="g2.xml#g2.damEnd.1v.30a"/>ש</w>
                             <w>בהן</w>
-                            <w>לצרכן</w>
-                            <w>אבל</w>
+                            <w>לצ<link target="g7.xml#g7.damEnd.1v.8a"/><link
+                                    target="g2.xml#g2.damBeg.1v.30b"/>רכן</w>
+                            <link target="g7.xml#g7.damBeg.1v.8b"/>
+                            <w>א<link target="g7.xml#g7.damEnd.1v.8b"/>בל</w>
                             <w>לא</w>
                             <w>לשחקן</w>
+                            <link target="g7.xml#g7.damBeg.1v.8c"/>
                             <w>כלי</w>
                             <w>זהב</w>
                             <w>וכלי</w>
+                            <link target="g2.xml#g2.damEnd.1v.30b"/>
                             <w>זכוכית</w>
                             <w>לא</w>
                             <w>יגע</w>
-                            <w>בהן</w>
+                            <w>ב<link target="g2.xml#g2.damBeg.1v.31b"/>ה<link
+                                    target="g2.xml#g2.damEnd.1v.31b"/>ן</w>
                             <w>עד</w>
                             <w>שיבא</w>
                             <w>אליהו</w>
+                            <link target="g2.xml#g2.damBeg.1v.31d"/>
+                            <link target="g7.xml#g7.damEnd.1v.9a"/>
                             <w>מצא</w>
                             <w>שק</w>
+                            <link target="g7.xml#g7.damBeg.1v.9b"/>
                             <w>או</w>
+                            <link target="g7.xml#g7.damEnd.1v.9b"/>
                             <w>קפה</w>
+                            <!-- Next word added for pointing-->
+                            <link target="g7.xml#g7.damBeg.1v.9c"/>
+                            <w>אם</w>
                             <w>וכל</w>
                             <w>דבר</w>
                             <w>שאין</w>
                             <w>דרכו</w>
-                            <w>לטול</w>
+                            <w>לטול</w><link target="g2.xml#g2.damEnd.1v.31d"/>
                             <w>הרי</w>
                             <w>זה</w>
                             <w>לא</w>
@@ -5656,64 +5990,83 @@
                         </ab>
                         <ab xml:id="ref.4.2.2.9">
                             <label>ט</label>
-                            <w>איזו</w>
+                            <link target="g2.xml#g2.damBeg.1v.32a"/>
+                            <w>א<link target="g2.xml#g2.damEnd.1v.32a"/>יזו</w>
                             <w>היא</w>
                             <w>אבידה</w>
+                            <link target="g2.xml#g2.damBeg.1v.32b"/>
+                            <link target="g7.xml#g7.damEnd.1v.10a"/>
                             <w>מצא</w>
                             <w>חמור</w>
                             <w>או</w>
                             <w>פרה</w>
-                            <w>רועין</w>
+                            <w>רו<link target="g7.xml#g7.damBeg.1v.10b"/>ע<link
+                                    target="g7.xml#g7.damEnd.1v.10b"/>ין</w>
+                            <link target="g7.xml#g7.damBeg.1v.10c"/>
                             <w>בדרך</w>
                             <w>אין</w>
+                            <link target="g2.xml#g2.damEnd.1v.32b"/>
                             <w>זו</w>
                             <w>אבידה</w>
                             <w>חמור</w>
                             <w>וכליו</w>
-                            <w>הפוכין</w>
-                            <w>פרה</w>
+                            <w>הפוכי<link target="g2.xml#g2.damBeg.1v.33a"/>ן<link
+                                    target="g2.xml#g2.damEnd.1v.33a"/></w>
+                            <w>פר<link target="g2.xml#g2.damBeg.1v.33b"/>ה</w>
                             <w>רצה</w>
                             <w>בין</w>
+                            <link target="g7.xml#g7.damEnd.1v.11a"/>
                             <w>הכרמים</w>
                             <w>הרי</w>
-                            <w>זו</w>
+                            <w>ז<link target="g7.xml#g7.damBeg.1v.11b"/>ו</w>
                             <w>אבידה</w>
                             <w>החזירה</w>
                             <w>וברחה</w>
+                            <link target="g2.xml#g2.damEnd.1v.33b"/>
                             <w>החזירה</w>
                             <w>וברחה</w>
                             <w>אפילו</w>
-                            <w>ארבעה</w>
-                            <w>וחמשה</w>
+                            <w>ארבע<link target="g2.xml#g2.damBeg.1v.34a"/>ה<link
+                                    target="g2.xml#g2.damEnd.1v.34a"/></w>
+                            <w>וח<link target="g2.xml#g2.damBeg.1v.34b"/>משה</w>
                             <w>פעמים</w>
+                            <link target="g7.xml#g7.damEnd.1v.12a"/>
                             <w>חייב</w>
                             <w>להחזירה</w>
                             <w>שנאמר</w>
                             <w>השב</w>
+                            <link target="g7.xml#g7.damBeg.1v.12b"/>
                             <w>תשיבם</w>
+                            <link target="g2.xml#g2.damEnd.1v.34b"/>
                             <w>היה</w>
                             <w>בטל</w>
                             <w>מסלע</w>
                             <w>לא</w>
                             <w>יאמר</w>
                             <w>לו</w>
+                            <link target="g2.xml#g2.damBeg.1v.35"/>
                             <w>תן</w>
                             <w>לי</w>
                             <w>סלע</w>
-                            <w>אלא</w>
+                            <w>א<link target="g7.xml#g7.damEnd.1v.13a"/>לא</w>
                             <w>נותן</w>
                             <w>לו</w>
                             <w>שכרו</w>
-                            <w>כפועל</w>
+                            <w>כפוע<link target="g7.xml#g7.damBeg.1v.13b"/>ל</w>
                             <w>בטל</w>
                             <w>אם</w>
+                            <link target="g2.xml#g2.damEnd.1v.35"/>
                             <w>יש</w>
                             <w>שם</w>
                             <w>בית</w>
                             <w>דין</w>
-                            <w>מתנה</w>
+                            <w>מ<link target="g2.xml#g2.damBeg.1v.36a"/>תנה</w>
+                            <!-- added for pointing -->
+                            <w>עמו</w>
+                            <link target="g2.xml#g2.damEnd.1v.36a"/>
                             <w>בפני</w>
-                            <w>בית</w>
+                            <w>בי<link target="g2.xml#g2.damBeg.1v.36b"/>ת</w>
+                            <link target="g7.xml#g7.damEnd.1v.14a"/>
                             <w>דין</w>
                             <w>אם</w>
                             <w>אין</w>
@@ -5722,22 +6075,29 @@
                             <w>דין</w>
                             <w>בפני</w>
                             <w>מי</w>
+                            <link target="g7.xml#g7.damBeg.1v.14b"/>
                             <w>יתנה</w>
+                            <link target="g2.xml#g2.damEnd.1v.36b"/>
                             <w>שלו</w>
                             <w>קודם</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.2.10">
+                            <link target="g2.xml#g2.damBeg.1v.36c"/>
                             <label>י</label>
                             <w>מצאה</w>
                             <w>ברפת</w>
+                            <link target="g2.xml#g2.damEnd.1v.36c"/>
                             <w>אין</w>
-                            <w>חייב</w>
+                            <w>ח<link target="g2.xml#G2.witEnd"/>י<link
+                                    target="g7.xml#g7.damEnd.1v.15a"/>יב</w>
                             <w>בה</w>
                             <w>ברשות</w>
                             <w>הרבים</w>
                             <w>חייב</w>
                             <w>בה</w>
+                            <link target="g7.xml#g7.damEnd.1v.15b"/>
+                            <link target="g7.xml#g7.1v.pageEnd"/>
                             <w>ואם</w>
                             <w>היתה</w>
                             <w>בבית</w>
@@ -5763,6 +6123,8 @@
                             <w>פרק</w>
                             <w>וטען</w>
                             <w>אפילו</w>
+                            <link target="g5.xml#g5.1vL"/>
+                            <link target="g5.xml#g5.damBeg.1vL.1"/>
                             <w>ארבעה</w>
                             <w>וחמשה</w>
                             <w>פעמים</w>
@@ -5776,6 +6138,7 @@
                             <w>ואמר</w>
                             <w>הואיל</w>
                             <w>ועליך</w>
+                            <link target="g5.xml#g5.damEnd.1vL.4"/>
                             <w>מצוה</w>
                             <w>אם</w>
                             <w>רצונך</w>
@@ -5791,6 +6154,7 @@
                             <w>חולה</w>
                             <w>חייב</w>
                             <w>מצוה</w>
+                            <link target="g5.xml#g5.damBeg.1vL.5"/>
                             <w>מן</w>
                             <w>התורה</w>
                             <w>לפרוק</w>
@@ -5804,6 +6168,7 @@
                             <w>לטעון</w>
                             <w>רבי</w>
                             <w>יוסי</w>
+                            <link target="g5.xml#g5.damEnd.1vL.5"/>
                             <w>הגלילי</w>
                             <w>אומר</w>
                             <w>אם</w>
@@ -5818,6 +6183,7 @@
                             <w>שנאמר</w>
                             <w>תחת</w>
                             <w>משאו</w>
+                            <link target="g5.xml#g5.damBeg.1vL.6"/>
                             <w>משאוי</w>
                             <w>שיכול</w>
                             <w>לעמוד</w>
@@ -5828,28 +6194,42 @@
                             <label>יא</label>
                             <w>אבדתו</w>
                             <w>ואבדת</w>
+                            <link target="g5.xml#g5.damEnd.1vL.6"/>
                             <w>אביו</w>
                             <w>אבדתו</w>
                             <w>קודמת</w>
-                            <w>אבדתו</w>
+                            <w>אבד<link target="g5.xml#g5.damBeg.1vL.7"/>תו</w>
                             <w>ואבדת</w>
-                            <w>רבו</w>
+                            <link target="g3.xml#g3.1v"/><w>רבו</w>
                             <w>שלו</w>
-                            <w>קודמת</w>
-                            <w>אבדת</w>
-                            <w>אביו</w>
-                            <w>ואבדת</w>
-                            <w>רבו</w>
+                            <link target="g3.xml#g3.damBeg.1v.1a"/>
+                            <w>קודמ<link target="g3.xml#g3.damEnd.1v.1a"/>ת</w>
+                            <w>אב<link target="g3.xml#g3.damBeg.1v.1b"/>דת</w>
+                            <link target="g5.xml#g5.damEnd.1vL.7"/>
+                            <link target="g3.xml#g3.damEnd.1v.1b"/>
+                            <w>אב<link target="g3.xml#g3.damBeg.1v.1c"/>יו</w>
+                            <w>ואבד<link target="g5.xml#g5.damBeg.1vL.8"/>ת</w>
+                            <w>ר<link target="g3.xml#g3.damEnd.1v.1d"/>ב<link
+                                    target="g3.xml#g3.damEnd.1v.1d"/>ו</w>
                             <w>של</w>
                             <w>רבו</w>
-                            <w>קודמת</w>
+                            <w>ק<link target="g3.xml#g3.damBeg.1v.2a"/>וד<link
+                                    target="g3.xml#g3.damEnd.1v.2a"/>מת</w>
+                            <!-- Next word added for linking -->
+                            <w>משלאב<link target="g3.xml#g3.damBeg.1v2b"/>יו</w>
                             <w>שאביו</w>
                             <w>הביאו</w>
-                            <w>לעולם</w>
+                            <link target="g3.xml#g3.damEnd.1v.2b"/>
+                            <link target="g5.xml#g5.damEnd.1vL.8"/>
+                            <!-- Following edited to allow for pointing-->
+                            <w>ל<link target="g3.xml#g3.damBeg.2c"/>חיי</w>
+                            <link target="g3.xml#g3.damEnd.2c"/>
+                            <w>העולם</w>
                             <w>הזה</w>
                             <w>ורבו</w>
                             <w>שלמדו</w>
-                            <w>חכמה</w>
+                            <w>ח<link target="g3.xml#g3.damBeg.3a"/>כ<link
+                                    target="g3.xml#g3.damEnd.3a"/>מה</w>
                             <w>מביאו</w>
                             <w>לחיי</w>
                             <w>העולם</w>
@@ -5902,7 +6282,11 @@
                             <w>רבו</w>
                             <w/>
                         </ab>
-                        <trailer xml:id="ref.4.2.2.T"/>
+                        <trailer xml:id="ref.4.2.2.T">
+                            <w>סליק</w>
+                            <w>פירקא</w>
+                        </trailer>
+                        <link target="g3.xml#g3.damBeg.1v.4"/>
                     </div3>
                     <div3 xml:id="ref.4.2.3">
                         <head xml:id="ref.4.2.3.H">
@@ -5913,54 +6297,72 @@
                             <label>א</label>
                             <w>המפקיד</w>
                             <w>אצל</w>
+                            <link target="g3.xml#g3.damEnd.1v.4"/>
                             <w>חבירו</w>
                             <w>בהמה</w>
                             <w>או</w>
                             <w>כלים</w>
-                            <w>ונגנבו</w>
+                            <link target="g3.xml#g3.damBeg.1v.5a"/>
+                            <w>ונגנב<link target="g3.xml#g3.damEnd.1v.5a"/>ו</w>
                             <w>או</w>
+                            <link target="g3.xml#g3.damBeg.1v.5b"/>
                             <w>שאבדו</w>
+                            <link target="g3.xml#g3.damEnd.1v.5b"/>
                             <w>שילם</w>
                             <w>ולא</w>
                             <w>רצה</w>
                             <w>לישבע</w>
                             <w>שהרי</w>
+                            <link target="g3.xml#g3.damBeg.1v.6"/>
                             <w>אמרו</w>
                             <w>שומר</w>
                             <w>חנם</w>
                             <w>נשבע</w>
                             <w>ויוצא</w>
+                            <link target="g3.xml#g3.damEnd.1v.6"/>
+                            <!-- following word added for pointing -->
+                            <w>אם</w>
                             <w>נמצא</w>
                             <w>הגנב</w>
                             <w>משלם</w>
-                            <w>תשלומי</w>
+                            <w>תשלומ<link target="g3.xml#g3.damBeg.1v.7"/>י</w>
                             <w>כפל</w>
                             <w>טבח</w>
+                            <link target="g3.xml#g3.damEnd.1v.7"/>
                             <w>ומכר</w>
                             <w>משלם</w>
                             <w>תשלומי</w>
                             <w>ארבעה</w>
                             <w>וחמשה</w>
-                            <w>למי</w>
+                            <w>ל<link target="g3.xml#g3.damBeg.1v.8"/>מי</w>
+                            <link target="g3.xml#g3.damEnd.1v.8"/>
                             <w>משלם</w>
                             <w>למי</w>
                             <w>שהפקדון</w>
                             <w>אצלו</w>
                             <w>נשבע</w>
-                            <w>ולא</w>
-                            <w>רצה</w>
+                            <w>ו<link target="g3.xml#g3.damBeg.1v.9a"/>ל<link
+                                    target="g3.xml#g3.damEnd.1v.9a"/>א</w>
+                            <link target="g3.xml#g3.damBeg.1v.9b"/>
+                            <w>רצ<link target="g3.xml#g3.damEnd.1v.9b"/>ה</w>
                             <w>לשלם</w>
-                            <w>נמצא</w>
-                            <w>הגנב</w>
+                            <link target="g3.xml#g3.damBeg.1v.10a"/>
+                            <w>נ<link target="g3.xml#g3.damEnd.1v.10a"/>מצא</w>
+                            <link target="g3.xml#g3.damBeg.1v.10b"/>
+                            <w>ה<link target="g3.xml#g3.damEnd.1v.10b"/>גנב</w>
                             <w>משלם</w>
-                            <w>תשלומי</w>
+                            <link target="g3.xml#g3.damBeg.1v.10c"/>
+                            <w>ת<link target="g3.xml#g3.damEnd.1v.10c"/>שלומי</w>
                             <w>כפל</w>
+                            <link target="g3.xml#g3.damBeg.1v.10d"/>
+                            <link target="g3.xml#g3.damEnd.1v.10d"/>
                             <w>טבח</w>
                             <w>ומכר</w>
                             <w>משלם</w>
                             <w>תשלומי</w>
                             <w>ארבעה</w>
-                            <w>וחמשה</w>
+                            <w>ו<link target="g3.xml#g3.damBeg.1v.11"/>ח<link
+                                    target="g3.xml#g3.damEnd.1v.11"/>משה</w>
                             <w>למי</w>
                             <w>משלם</w>
                             <w>לבעל</w>
@@ -5971,95 +6373,146 @@
                             <w>השוכר</w>
                             <w>פרה</w>
                             <w>מחבירו</w>
-                            <w>והשאילה</w>
+                            <w>וה<link target="g3.xml#g3.damBeg.1v.13a"/>שאילה</w>
+                            <link target="g3.xml#g3.damEnd.1v.13a"/>
                             <w>לאחר</w>
                             <w>ומתה</w>
                             <w>כדרכה</w>
-                            <w>ישבע</w>
+                            <w>י<link target="g3.xml#g3.damBeg.1v.13b"/>שבע</w>
+                            <link target="g3.xml#g3.damEnd.1v.13b"/>
                             <w>השוכר</w>
-                            <w>שמתה</w>
-                            <w>כדרכה</w>
-                            <w>והשואל</w>
-                            <w>ישלם</w>
-                            <w>לשוכר</w>
+                            <w>שמת<link target="g3.xml#g3.damBeg.1v.14a"/>ה</w>
+                            <w>כדרכ<link target="g3.xml#g3.damEnd.1v.14a"/>ה</w>
+                            <w>והש<link target="g3.xml#g3.damBeg.1v.14b"/>וא<link
+                                    target="g3.xml#g3.damBeg.1v.14b"/>ל</w>
+                            <w>ישל<link target="g3.xml#g3.damBeg.1v.14c"/>ם</w>
+                            <link target="g3.xml#g3.damBeg.1v.14c"/>
+                            <w>לשו<link target="g3.xml#g3.damBeg.1v.15a"/>כ<link
+                                    target="g3.xml#g3.damEnd.1v.15a"/>ר</w>
                             <w>אמר</w>
+                            <link target="g3.xml#g3.damBeg.1v.15b"/>
                             <w>רבי</w>
-                            <w>יוסי</w>
-                            <w>כיצד</w>
-                            <w>הלה</w>
+                            <link target="g3.xml#g3.damEnd.1v.15b"/>
+                            <w>יו<link target="g3.xml#g3.damBeg.1v.15c"/>ס<link
+                                    target="g3.xml#g3.damEnd.1v.15c"/>י</w>
+                            <w>כי<link target="g3.xml#g3.damBeg.1v.15d"/>צד</w>
+                            <w>ה<link target="g3.xml#g3.damEnd.1v.15d"/>ל<link
+                                    target="g3.xml#g3.damBeg.1v.15e"/>ה</w>
                             <w>עושה</w>
-                            <w>סחורה</w>
+                            <link target="g3.xml#g3.damEnd.1v.15e"/>
+                            <w>סח<link target="g3.xml#g3.damBeg.1v.16a"/>ו<link
+                                    target="g3.xml#g3.damEnd.1v.16a"/>רה</w>
                             <w>בפרתו</w>
+                            <link target="g5.xml#g5.1rR"/>
+                            <link target="g5.xml#g5.damBeg.1rR.1"/>
                             <w>של</w>
+                            <!-- Following word added for linking -->
+                            <w>ז<link target="g3.xml#g3.damBeg.1v.16b"/>ה</w>
+                            <link target="g3.xml#g3.damBeg.1v.16b"/>
                             <w>חברו</w>
-                            <w>אלא</w>
-                            <w>תחזר</w>
+                            <w>א<link target="g3.xml#g3.damBeg.1v.16c"/>לא</w>
+                            <link target="g3.xml#g3.damEnd.1v.16c"/>
+                            <w>ת<link target="g3.xml#g3.damBeg.1v.16d"/>חזר</w>
                             <w>פרה</w>
+                            <link target="g3.xml#g3.damEnd.1v.16d"/>
                             <w>לבעלים</w>
                         </ab>
                         <ab xml:id="ref.4.2.3.3">
                             <label>ג</label>
                             <w>אמר</w>
                             <w>לשנים</w>
-                            <w>גזלתי</w>
-                            <w>לאחד</w>
-                            <w>מכם</w>
-                            <w>מנה</w>
+                            <link target="g3.xml#g3.damBeg.1v.17a"/>
+                            <w>גז<link target="g3.xml#g3.damEnd.1v.17a"/>לתי</w>
+                            <w>ל<link target="g3.xml#g3.damBeg.1v.17b"/>אח<link
+                                    target="g3.xml#g3.damEnd.1v.17b"/>ד</w>
+                            <w>מכ<link target="g3.xml#g3.damBeg.1v.18a"/>ם</w>
+                            <link target="g3.xml#g3.damEnd.1v.18a"/>
+                            <w>מ<link target="g3.xml#g3.damBeg.1v.18b"/>נ<link
+                                    target="g3.xml#g3.damEnd.1v.18b"/>ה</w>
                             <w>ואיני</w>
                             <w>יודע</w>
-                            <w>איזה</w>
+                            <w><link target="g3.xml#g3.damBeg.1v.18c"/>א<link
+                                    target="g3.xml#g3.damEnd.1v.18c"/>יזה</w>
                             <w>מכם</w>
                             <w>או</w>
-                            <w>אביו</w>
+                            <link target="g3.xml#g3.damBeg.1v.19a"/>
+                            <w>א<link target="g3.xml#g3.damEnd.1v.19a"/>ביו</w>
                             <w>של</w>
                             <w>אחד</w>
                             <w>מכם</w>
-                            <w>הפקיד</w>
+                            <w>ה<link target="g3.xml#g3.damBeg.1v.19b"/>פ<link
+                                    target="g3.xml#g3.damEnd.1v.19b"/>קיד</w>
                             <w>לי</w>
-                            <w>מנה</w>
+                            <link target="g3.xml#g3.damBeg.1v.20a"/>
+                            <w>מ<link target="g3.xml#g3.damEnd.1v.20a"/>נה</w>
                             <w>ואיני</w>
                             <w>יודע</w>
-                            <w>איזה</w>
+                            <w>אי<link target="g3.xml#g3.damBeg.1v.20b"/>זה</w>
+                            <link target="g3.xml#g3.damEnd.1v.20b"/>
                             <w>הוא</w>
                             <w>נותן</w>
-                            <w>לזה</w>
+                            <link target="g3.xml#g3.1r"/>
+                            <w>ל<link target="g3.xml#g3.damBeg.1r.1a"/>זה</w>
+                            <link target="g5.xml#g5.damEnd.1rR.5"/>
                             <w>מנה</w>
-                            <w>ולזה</w>
+                            <link target="g5.xml#g5.damBeg.1rR.6"/>
+                            <w>ולז<link target="g3.xml#g3.damEnd.1r.1a"/>ה</w>
+                            <link target="g3.xml#g3.damBeg.1r.1b"/>
                             <w>מנה</w>
-                            <w>שהודה</w>
-                            <w>מפי</w>
+                            <w>שהו<link target="g3.xml#g3.damEnd.1r.1b"/>דה</w>
+                            <w>מ<link target="g3.xml#g3.damBeg.1r.1c"/>פי</w>
+                            <link target="g3.xml#g3.damEnd.1r.1c"/>
                             <w>עצמו</w>
                             <w/>
                         </ab>
                         <ab xml:id="ref.4.2.3.4">
                             <label>ד</label>
                             <w>שנים</w>
-                            <w>שהפקידו</w>
-                            <w>אצל</w>
-                            <w>אחד</w>
+                            <w>ש<link target="g5.xml#g5.damEnd.1rR.6"/>ה<link
+                                    target="g3.xml#g3.damBeg.1r.2a"/>פקידו</w>
+                            <link target="g5.xml#g5.damBeg.1rR.7"/>
+                            <w>א<link target="g3.xml#g3.damEnd.1r.2a"/>צל</w>
+                            <w>א<link target="g3.xml#g3.damBeg.1r.2b"/>חד</w>
                             <w>זה</w>
                             <w>מנה</w>
-                            <w>וזה</w>
+                            <link target="g3.xml#g3.damEnd.1r.2b"/>
+                            <w>ו<link target="g3.xml#g3.damBeg.1r.2c"/>ז<link
+                                    target="g3.xml#g3.damEnd.1r.2c"/>ה</w>
                             <w>מאתים</w>
                             <w>זה</w>
                             <w>אומר</w>
                             <w>שלי</w>
-                            <w>מאתים</w>
-                            <w>וזה</w>
-                            <w>אומר</w>
+                            <w>מא<link target="g3.xml#g3.damBeg.1r.3a"/>תים</w>
+                            <link target="g3.xml#g3.damEnd.1r.3a"/>
+                            <!-- Following added for pointing -->
+                            <w>ש<link target="g3.xml#g3.damBeg.1r.3b"/>לי</w>
+                            <w>וז<link target="g3.xml#g3.damEnd.1r.3b"/>ה</w>
+                            <link target="g5.xml#g5.damEnd.1rR.7"/>
+                            <link target="g3.xml#g3.damBeg.1r.3c"/>
+                            <w>או<link target="g3.xml#g3.damEnd.1r.3c"/>מר</w>
+                            <link target="g5.xml#g5.damBeg.1rR.8"/>
                             <w>שלי</w>
-                            <w>מאתים</w>
+                            <w>מאתי<link target="g3.xml#g3.damEnd.1r.3c"/>ם</w>
+                            <!-- Following added for pointing -->
+                            <w>שלי</w>
                             <w>נותן</w>
                             <w>לזה</w>
                             <w>מנה</w>
                             <w>ולזה</w>
+                            <link target="g3.xml#g3.damBeg.1r.4a"/>
                             <w>מנה</w>
-                            <w>והשאר</w>
+                            <w>וה<link target="g3.xml#g3.damEnd.1r.4a"/>שאר</w>
+                            <link target="g3.xml#g3.damBeg.1r.4b"/>
                             <w>יהא</w>
-                            <w>מנח</w>
+                            <w>מ<link target="g5.xml#g5.damEnd.1rR.8"/><link
+                                    target="g3.xml#g3.damEnd.1r.4b"/>נ<link
+                                    target="g3.xml#g3.damBeg.1r.4c"/>ח</w>
+                            <link target="g3.xml#g3.damEnd.1r.4c"/>
                             <w>עד</w>
                             <w>שיבא</w>
+                            <link target="g5.xml#g5.1rR.pageEnd"/>
                             <w>אליהו</w>
+                            <link target="g3.xml#g3.damBeg.1r.5"/>
                             <w>אמר</w>
                             <w>רבי</w>
                             <w>יוסי</w>
@@ -6067,92 +6520,118 @@
                             <w>כן</w>
                             <w>מה</w>
                             <w>הפסיד</w>
+                            <link target="g3.xml#g3.damEnd.1r.5"/>
                             <w>הרמאי</w>
                             <w>אלא</w>
+                            <link target="g3.xml#g3.damBeg.1r.6"/>
                             <w>הכל</w>
                             <w>יהא</w>
                             <w>מונח</w>
                             <w>עד</w>
                             <w>שיבא</w>
+                            <link target="g3.xml#g3.damEnd.1r.6"/>
                             <w>אליהו</w>
                         </ab>
                         <ab xml:id="ref.4.2.3.5">
                             <label>ה</label>
                             <w>וכן</w>
                             <w>שני</w>
-                            <w>כלים</w>
-                            <w>אחד</w>
+                            <w>כלי<link target="g3.xml#g3.damBeg.1r.7a"/>ם</w>
+                            <w>א<link target="g3.xml#g3.damEnd.1r.7a"/>ח<link
+                                    target="g3.xml#g3.damBeg.1r.7b"/>ד</w>
                             <w>יפה</w>
                             <w>מנה</w>
                             <w>ואחד</w>
-                            <w>יפה</w>
-                            <w>אלף</w>
+                            <w>יפ<link target="g3.xml#g3.damEnd.1r.7b"/>ה</w>
+                            <link target="g3.xml#g3.damBeg.1r.7c"/>
+                            <w>א<link target="g3.xml#g3.damEnd.1r.7c"/>ל<link
+                                    target="g3.xml#g3.damBeg.1r.7d"/>ף</w>
+                            <link target="g3.xml#g3.damEnd.1r.7d"/>
                             <w>זוז</w>
                             <w>זה</w>
-                            <w>אומר</w>
-                            <w>יפה</w>
+                            <w>א<link target="g3.xml#g3.damBeg.1r.7e"/>ומר</w>
+                            <link target="g3.xml#g3.damEnd.1r.7e"/>
+                            <link target="g3.xml#g3.damBeg.1r.8a"/>
+                            <w>י<link target="g3.xml#g3.damEnd.1r.8a"/>פה</w>
                             <w>שלי</w>
                             <w>וזה</w>
                             <w>אומר</w>
                             <w>יפה</w>
-                            <w>שלי</w>
+                            <w>של<link target="g3.xml#g3.damBeg.1r.8b"/>י</w>
                             <w>נותן</w>
+                            <link target="g3.xml#g3.damEnd.1r.8b"/>
                             <w>את</w>
-                            <w>הקטן</w>
+                            <link target="g3.xml#g3.damBeg.1r.8c"/>
+                            <w>הק<link target="g3.xml#g3.damEnd.1r.8c"/>טן</w>
                             <w>לאחד</w>
                             <w>מהן</w>
-                            <w>ומתוך</w>
+                            <link target="g3.xml#g3.damBeg.1r.9a"/>
+                            <w>ו<link target="g3.xml#g3.damEnd.1r.9a"/>מתוך</w>
                             <w>הגדול</w>
                             <w>נותן</w>
-                            <w>דמי</w>
-                            <w>קטן</w>
-                            <w>לשני</w>
-                            <w>והשאר</w>
+                            <w>דמ<link target="g3.xml#g3.damBeg.1r.9b"/>י</w>
+                            <w>ק<link target="g3.xml#g3.damEnd.1r.9b"/>טן</w>
+                            <w>ל<link target="g3.xml#g3.damBeg.1r.9c"/>שני</w>
+                            <link target="g3.xml#g3.damEnd.1r.9c"/>
+                            <link target="g3.xml#g3.damBeg.1r.10a"/>
+                            <w>ו<link target="g3.xml#g3.damEnd.1r.10a"/>השאר</w>
                             <w>יהא</w>
                             <w>מונח</w>
                             <w>עד</w>
-                            <w>שיבא</w>
-                            <w>אליהו</w>
+                            <w>ש<link target="g3.xml#g3.damBeg.1r.10b"/>י<link
+                                    target="g3.xml#g3.damEnd.1r.10b"/>בא</w>
+                            <w>אל<link target="g3.xml#g3.damBeg.1r.10c"/>יה<link
+                                    target="g3.xml#g3.damEnd.1r.10c"/>ו</w>
                             <w>אמר</w>
+                            <link target="g3.xml#g3.damBeg.1r.11a"/>
                             <w>רבי</w>
                             <w>יוסי</w>
+                            <link target="g3.xml#g3.damEnd.1r.11a"/>
                             <w>אם</w>
                             <w>כן</w>
                             <w>מה</w>
                             <w>הפסיד</w>
                             <w>הרמאי</w>
-                            <w>אלא</w>
+                            <link target="g3.xml#g3.damBeg.1r.11b"/>
+                            <w>א<link target="g3.xml#g3.damEnd.1r.11b"/>לא</w>
                             <w>הכל</w>
-                            <w>יהא</w>
+                            <link target="g3.xml#g3.damBeg.1r.12a"/>
+                            <w>י<link target="g3.xml#g3.damEnd.1r.12a"/>הא</w>
                             <w>מנח</w>
+                            <link target="g3.xml#g3.damBeg.1r.12b"/>
                             <w>עד</w>
+                            <link target="g3.xml#g3.damEnd.1r.12b"/>
                             <w>שיבא</w>
                             <w>אליהו</w>
                         </ab>
                         <ab xml:id="ref.4.2.3.6">
                             <label>ו</label>
                             <w>המפקיד</w>
-                            <w>פירות</w>
-                            <w>אצל</w>
-                            <w>חבירו</w>
-                            <w>אפילו</w>
+                            <w>פירו<link target="g3.xml#g3.damBeg.1r.13a"/>ת</w>
+                            <w>א<link target="g3.xml#g3.damEnd.1r.13a"/>צל</w>
+                            <link target="g3.xml#g3.damBeg.1r.13b"/>
+                            <w>חב<link target="g3.xml#g3.damEnd.1r.13b"/>ירו</w>
+                            <w>אפי<link target="g3.xml#g3.damBeg.1r.13c"/>לו</w>
                             <w>הן</w>
+                            <link target="g3.xml#g3.damEnd.1r.13c"/>
                             <w>אבודין</w>
                             <w>לא</w>
                             <w>יגע</w>
                             <w>בהן</w>
-                            <w>רבן</w>
-                            <w>שמעון</w>
+                            <w>רב<link target="g3.xml#g3.damBeg.1r.14a"/>ן</w>
+                            <link target="g3.xml#g3.damEnd.1r.14a"/>
+                            <w>שמ<link target="g3.xml#g3.damBeg.1r.14b"/>עון</w>
                             <w>בן</w>
+                            <link target="g3.xml#g3.damEnd.1r.14b"/>
                             <w>גמליאל</w>
                             <w>אומר</w>
                             <w>מוכרן</w>
                             <w>בפני</w>
                             <w>בית</w>
                             <w>דין</w>
-                            <w>מפני</w>
+                            <w>מפנ<link target="g3.xml#g3.damBeg.1r.15"/>י</w>
                             <w>שהוא</w>
-                            <w>כמשיב</w>
+                            <w>כמ<link target="g3.xml#g3.damEnd.1r.15"/>שיב</w>
                             <w>אבידה</w>
                             <w>לבעלים</w>
                         </ab>
@@ -6161,33 +6640,42 @@
                             <w>המפקיד</w>
                             <w>פירות</w>
                             <w>אצל</w>
-                            <w>חבירו</w>
+                            <w>חבי<link target="g3.xml#g3.damBeg.1r.16a"/>רו</w>
                             <w>הרי</w>
                             <w>זה</w>
                             <w>יוציא</w>
-                            <w>לו</w>
-                            <w>חסרונות</w>
+                            <link target="g3.xml#g3.damEnd.1r.16a"/>
+                            <w>ל<link target="g3.xml#g3.damBeg.1r.16b"/>ו</w>
+                            <link target="g3.xml#g3.damEnd.1r.16b"/>
+                            <w>חסרונ<link target="g3.xml#g3.damBeg.1r.16c"/>ו<link
+                                    target="g3.xml#g3.damEnd.1r.16c"/>ת</w>
                             <w>לחטין</w>
-                            <w>ולאורז</w>
+                            <w>ולאור<link target="g3.xml#g3.damBeg.1r.16d"/>ז</w>
+                            <link target="g3.xml#g3.damEnd.1r.16d"/>
                             <w>תשעה</w>
                             <w>חצאי</w>
-                            <w>קבין</w>
-                            <w>לכור</w>
+                            <w>קב<link target="g3.xml#g3.damBeg.1r.17"/>ין</w>
+                            <w>לכו<link target="g3.xml#g3.damEnd.1r.17"/>ר</w>
                             <w>לשעורין</w>
                             <w>ולדוחן</w>
                             <w>תשעה</w>
+                            <link target="g3.xml#g3.damBeg.1r.18a"/>
                             <w>קבין</w>
                             <w>לכור</w>
+                            <link target="g3.xml#g3.damEnd.1r.18a"/>
                             <w>לכוסמין</w>
-                            <w>ולזרע</w>
+                            <w>ו<link target="g3.xml#g3.damBeg.1r.18b"/>לזרע</w>
                             <w>פשתן</w>
-                            <w>שלש</w>
+                            <link target="g3.xml#g3.damEnd.1r.18b"/>
+                            <w>ש<link target="g3.xml#g3.damBeg.1r.19a"/>לש</w>
                             <w>סאין</w>
-                            <w>לכור</w>
-                            <w>הכל</w>
+                            <w>לכ<link target="g3.xml#g3.damEnd.1r.19a"/>ור</w>
+                            <link target="g3.xml#g3.damBeg.1r.19b"/>
+                            <w>ה<link target="g3.xml#g3.damEnd.1r.19b"/>כל</w>
                             <w>לפי</w>
-                            <w>המדה</w>
-                            <w>הכל</w>
+                            <w>ה<link target="g3.xml#g3.damBeg.1r.19c"/>מדה</w>
+                            <w><link target="g3.xml#g3.damEnd.1r.19c"/>הכל</w>
+                            <link target="g3.xml#g3.1r.pageEnd"/>
                             <w>לפי</w>
                             <w>הזמן</w>
                             <w>אמר</w>
