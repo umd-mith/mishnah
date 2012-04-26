@@ -77,20 +77,17 @@ pipeline. -->
                                 </td>
                                 <xsl:for-each select="./tei:w">
                                     <td>
-                                        <xsl:if test="@type =
-'variant'">
+                                        <xsl:if test="@type ='variant'">
                                             <xsl:attribute name="class" select="'variant'"/>
                                         </xsl:if>
                                         <xsl:if test="@type='invariant'">
                                             <xsl:attribute name="class" select="'invariant'"/>
                                         </xsl:if>
+                                        <xsl:variable name="text"><xsl:value-of  select="text()"></xsl:value-of></xsl:variable>
                                         <xsl:choose>
-                                            <xsl:when test="translate(text(),'[]','') != ''">
-                                                <xsl:value-of select="text()"/>
-                                            </xsl:when>
-                                            <xsl:when test="translate(.,'[]','') = ''">
-                                                <xsl:text>–</xsl:text>
-                                            </xsl:when>
+                                            <xsl:when
+                                                test="normalize-space(translate($text,'[]','')) != ''"><xsl:value-of select="$text"/></xsl:when>
+                                            <xsl:when test="normalize-space(translate($text,'[]','')) = ''"><xsl:text>–</xsl:text></xsl:when>
                                         </xsl:choose>
                                     </td>
                                 </xsl:for-each>
@@ -196,20 +193,23 @@ pipeline. -->
                                             />
                                         </xsl:attribute>
                                         <xsl:attribute name="rdg">
+                                            <xsl:variable name="text"><xsl:value-of select="$by-position/tei:readings/tei:w[$sort-order]/text()"></xsl:value-of></xsl:variable>
                                             <xsl:choose><xsl:when
-                                                test="normalize-space(translate($by-position/tei:readings/tei:w[$sort-order]/text(),'[]',''))
+                                                test="normalize-space(translate($text,'[]',''))
                                                 != ''"><xsl:value-of
-                                                select="normalize-space($by-position/tei:readings/tei:w[$sort-order]/text())"
+                                                select="normalize-space($text)"
                                             /></xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:text>–</xsl:text>
                                             </xsl:otherwise></xsl:choose>
                                         </xsl:attribute>
+                                        <xsl:variable name="text-to-put"><xsl:value-of
+                                            select="$by-position/tei:readings/tei:w[$sort-order]/tei:reg"/></xsl:variable>
                                         <xsl:choose><xsl:when
-                                            test="normalize-space(translate($by-position/tei:readings/tei:w[$sort-order]/tei:reg,'[]',''))
+                                            test="normalize-space(translate($text-to-put,'[]',''))
                                             != ''"><xsl:value-of
                                                 select=
-                                                "normalize-space($by-position/tei:readings/tei:w[$sort-order]/tei:reg)"
+                                                "normalize-space($text-to-put)"
                                             /></xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:text>–</xsl:text>

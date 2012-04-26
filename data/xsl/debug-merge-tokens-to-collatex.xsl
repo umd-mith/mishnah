@@ -48,7 +48,7 @@
                 </xsl:variable>
                 <ab>
                     <xsl:attribute name="n" select="@n"/>
-                    <xsl:variable name="merged">
+                    
                         <xsl:variable name="n" select="@n"> </xsl:variable>
                         <!-- Variables for merging rich tokenization collatex output -->
                         <!-- Rich tokenization output -->
@@ -88,6 +88,7 @@
                                 '')][1]/following-sibling::cx:cell"/>
                                         <!-- set2: all the nodes preceding current 
                                             that are not empty -->
+                                        
                                         <xsl:variable name="set2"
                                             select="preceding-sibling::cx:cell[. != '']"/>
                                         <xsl:sequence
@@ -101,7 +102,7 @@
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:variable>
-                            <!--  Number of empty cells singly or in series-->
+                            <!--  Number of empty cells singly or in a series-->
                             <xsl:variable name="null-str" as="xs:integer">
                                 <!-- Uses same method as $start-str -->
                                 <xsl:choose>
@@ -139,7 +140,7 @@
                                     select="$tokens/tei:ab/tei:w[$start-str]/preceding-sibling::element()"
                                 />
                             </xsl:if>
-                            <xsl:copy-of select="$tokens/tei:ab/tei:w[$start-str]"/>
+                            <firstCopy><xsl:copy-of select="$tokens/tei:ab/tei:w[$start-str]"/></firstCopy>
                             <xsl:variable name="set1"
                                 select="$tokens/tei:ab/tei:w[$start-str]/following-sibling::element()"/>
                             <xsl:variable name="set2"
@@ -165,16 +166,16 @@
                             select="$tokens/tei:ab[@n = $n]/tei:w[position() =
                     $final-str-start - 1]/following-sibling::element()"
                         />
-                    </xsl:variable>
-                    <xsl:variable name="sigil" select="@n"></xsl:variable>
+                    
+                    <!--<xsl:variable name="sigil" select="@n"></xsl:variable>
                     
                     <xsl:apply-templates select="$merged/element()[1]"
-                        mode="finalPass"><xsl:with-param name="sigil" select="$sigil"/></xsl:apply-templates>
+                        mode="finalPass"><xsl:with-param name="sigil" select="$sigil"/></xsl:apply-templates>-->
                 </ab>
             </xsl:for-each>
         </div>
     </xsl:template>
-    <xsl:template match="element()" mode="finalPass">
+<!--    <xsl:template match="element()" mode="finalPass">
         <xsl:param name="sigil"></xsl:param>
 
         <xsl:choose>
@@ -196,4 +197,4 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-</xsl:stylesheet>
+--></xsl:stylesheet>
