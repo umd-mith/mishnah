@@ -94,7 +94,7 @@
                 <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
-            <xsl:when test="self::tei:c | self::tei:g[not(@ref = '#fill')]">
+            <xsl:when test="self::tei:c[not(@type = 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
                 <xsl:value-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
@@ -219,6 +219,8 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="//tei:ref" mode="preproc-within"/>
+    <!-- This looks like a duplication -->
+    <xsl:template match="tei:c[@type='nonlettermark']" mode="preproc-within"/>
     <xsl:template match="tei:g[@type='wordbreak'] | tei:c[@type='wordbreak']" mode="preproc-within"/>
     <xsl:template match="tei:g[@type!='wordbreak']" mode="preproc-within">
         <xsl:value-of select="."/>
