@@ -120,17 +120,23 @@
                 <div2 xml:id="G1.4.2">
                     <div3 xml:id="G1.4.1.2">
                         <head xml:id="G1.4.1.2.H"/>
-                        <pb n="2v" xml:id="g1.2v" next="#g1.2r"/>
+<!-- Pointing example. -->
+                        <pb n="2v" xml:id="g1.2v" next="#g1.2r" corresp="ref.xml#left(xpath1(id('ref.4.1.2.1.37')))"/>
                         <ab xml:id="G1.4.1.2.1"> שלם ועל <damage>האחר</damage>ון משלם חצי
-                                    <damage><damageSpan xml:id="g1.damBeg.2v.1"
-                                    spanTo="#g1.damEnd.2v.1"/><gap extent="18"/><supplied>נזק
+<!-- First span approach: pointers on both ends. -->
+                                    <damage><damageSpan xml:id="g1.damBeg.2v.1" spanTo="#g1.damEnd.2v.1"
+                                      corresp="ref.xml#left(xpath1(id('ref.4.1.2.1.43')))"/>
+                                      <gap extent="18"/><supplied>נזק
                                         <milestone unit="MSMishnah" n="2"/><label
                                         rend="size() align() pad(rl)">ב<am rend="overdot"
-                                        >׳</am></label>התרנגולים מועדים</supplied><anchor
-                                    xml:id="g1.damEnd.2v.1"/></damage>
+                                        >׳</am></label>התרנגולים מועדים</supplied><anchor xml:id="g1.damEnd.2v.1"
+                                          corresp="ref.xml#right(xpath1(id('ref.4.1.2.1.45')))"/></damage>
                             <lb n="1"/> ל<damage>הלך</damage> כדרכן ולשבר היה דליל
-                                    <damage><damageSpan xml:id="g1.damBeg.2v.2"
-                                    spanTo="#g1.damEnd.2v.2"/><unclear extent="10">קשור
+<!-- Second span approach: range() scheme, with no link into ref.xml on the anchor. -->
+                                    <damage>
+                                      <damageSpan xml:id="g1.damBeg.2v.2" spanTo="#g1.damEnd.2v.2"
+                                        corresp="ref.xml#range(xpath1(id('ref.4.1.2.1.51')), xpath1(id('ref.4.1.2.1.56')))"/>
+                                    <unclear extent="10">קשור
                                     ברגלו</unclear>
                                 <gap extent="15"/><supplied>או שהיה מהדס ושיבר</supplied><anchor
                                     xml:id="g1.damEnd.2v.2"/></damage><lb n="2"/> את הכלים משלם חצי
@@ -138,7 +144,9 @@
                         </ab>
                         <ab xml:id="G1.4.1.2.2"><milestone unit="MSMishnah" n="3"/><label
                                 rend="size() align() pad(rl)">ג<am rend="overdot">׳</am></label>
+<!-- Second approach again, but pointing into a word using a zero-length string-range. -->
                             כיצד <damage>ה<damageSpan xml:id="g1.damBeg.2v.3"
+                                    corresp="ref.xml#range(string-range(xpath1(id('ref.4.1.2.2.2')), 2, 0), xpath(id('ref.4.1.2.2.4')))"
                                     spanTo="#g1.damEnd.2v.3"/><gap extent="11"/><supplied>שן מועדת
                                     לאכל</supplied><anchor xml:id="g1.damEnd.2v.3"/></damage><lb
                                 n="3"/> את הרא<damage>ו</damage>י לה הבהמה מועדת לאכול פירות
