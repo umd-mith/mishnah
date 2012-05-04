@@ -1,0 +1,23 @@
+<test xmlns:xi="http://www.w3.org/2001/XInclude">
+<!--
+  Usage: xmllint \-\-encode "UTF-8" \-\-xinclude xinclude-test.xml
+
+  The first version should work according to my reading of the xinclude()
+  scheme specs, but instead it includes all of the text of #ref.4.1.2.2.2.
+
+  The second does work, but is very verbose and touchy.
+-->
+  <xi:include
+    href="ref.xml"
+    xpointer="xpointer(
+      string-range(id('ref.4.1.2.2.2'), '', 2, 0)[1]/range-to(id('ref.4.1.2.2.4'))
+    )"/>
+  <xi:include
+    href="ref.xml"
+    xpointer="xpointer(
+      string-range(id('ref.4.1.2.2.2'), '', 3, 0)[1]/range-to(
+        string-range(id('ref.4.1.2.2.4'), '', 1, 7)[1]
+      )
+    )"/>
+</test>
+
