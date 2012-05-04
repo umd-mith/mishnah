@@ -19,7 +19,7 @@
     <xsl:strip-space elements="*"/>
     <xsl:variable name="URIlist">
         <xsl:for-each
-            select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness">
+            select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp]">
             <xsl:variable name="checkURI">
                 <xsl:value-of select="./@corresp"/>
                 <xsl:text>#</xsl:text>
