@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T11:15:25Z. 
+# Schema generated from ODD source 2012-05-11T13:45:53Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -70,6 +70,16 @@ mishnahrdata.word = xsd:token { pattern = "(\p{L}|\p{N}|\p{P}|\p{S})+" }
 mishnahrdata.code = xsd:anyURI
 mishnahrdata.name = xsd:Name
 mishnahrdata.enumerated = mishnahrdata.name
+mishnahrdata.temporal.iso =
+  xsd:date
+  | xsd:gYear
+  | xsd:gMonth
+  | xsd:gDay
+  | xsd:gYearMonth
+  | xsd:gMonthDay
+  | xsd:time
+  | xsd:dateTime
+  | xsd:token { pattern = "[0-9.,DHMPRSTWYZ/:+\-]+" }
 mishnahratt.ascribed.attributes = mishnahratt.ascribed.attribute.who
 mishnahratt.ascribed.attribute.who =
   
@@ -212,6 +222,8 @@ mishnahratt.datable.w3c.attribute.to =
   attribute to { mishnahrdata.temporal.w3c }?
 mishnahratt.datable.attributes =
   mishnahratt.datable.w3c.attributes,
+  mishnahratt.datable.iso.attributes,
+  mishnahratt.datable.custom.attributes,
   mishnahratt.datable.attribute.calendar,
   mishnahratt.datable.attribute.period
 mishnahratt.datable.attribute.calendar =
@@ -1129,17 +1141,41 @@ mishnahrmodel.labelLike_sequenceOptionalRepeatable =
 mishnahrmodel.labelLike_sequenceRepeatable =
   mishnahrdesc+, mishnahrlabel+
 mishnahrmodel.listLike =
-  mishnahrlist | mishnahrlistBibl | mishnahrlistWit
+  mishnahrlist
+  | mishnahrlistBibl
+  | mishnahrlistWit
+  | mishnahrlistPerson
+  | mishnahrlistPlace
 mishnahrmodel.listLike_alternation =
-  mishnahrlist | mishnahrlistBibl | mishnahrlistWit
+  mishnahrlist
+  | mishnahrlistBibl
+  | mishnahrlistWit
+  | mishnahrlistPerson
+  | mishnahrlistPlace
 mishnahrmodel.listLike_sequence =
-  mishnahrlist, mishnahrlistBibl, mishnahrlistWit
+  mishnahrlist,
+  mishnahrlistBibl,
+  mishnahrlistWit,
+  mishnahrlistPerson,
+  mishnahrlistPlace
 mishnahrmodel.listLike_sequenceOptional =
-  mishnahrlist?, mishnahrlistBibl?, mishnahrlistWit?
+  mishnahrlist?,
+  mishnahrlistBibl?,
+  mishnahrlistWit?,
+  mishnahrlistPerson?,
+  mishnahrlistPlace?
 mishnahrmodel.listLike_sequenceOptionalRepeatable =
-  mishnahrlist*, mishnahrlistBibl*, mishnahrlistWit*
+  mishnahrlist*,
+  mishnahrlistBibl*,
+  mishnahrlistWit*,
+  mishnahrlistPerson*,
+  mishnahrlistPlace*
 mishnahrmodel.listLike_sequenceRepeatable =
-  mishnahrlist+, mishnahrlistBibl+, mishnahrlistWit+
+  mishnahrlist+,
+  mishnahrlistBibl+,
+  mishnahrlistWit+,
+  mishnahrlistPerson+,
+  mishnahrlistPlace+
 mishnahrmodel.noteLike = mishnahrnote | mishnahrwitDetail
 mishnahrmodel.noteLike_alternation = mishnahrnote | mishnahrwitDetail
 mishnahrmodel.noteLike_sequence = mishnahrnote, mishnahrwitDetail
@@ -1201,6 +1237,7 @@ mishnahrmodel.divPart_sequenceRepeatable =
   mishnahrmodel.pLike_sequenceRepeatable+,
   mishnahrlg+,
   mishnahrsp+
+mishnahrmodel.personLike = notAllowed
 mishnahrmodel.publicationStmtPart =
   mishnahraddress
   | mishnahrdate
@@ -1467,23 +1504,35 @@ mishnahrmodel.addressLike_sequenceOptionalRepeatable =
 mishnahrmodel.addressLike_sequenceRepeatable =
   mishnahremail+, mishnahraddress+
 mishnahrmodel.nameLike =
-  mishnahrmodel.nameLike.agent | mishnahrrs | mishnahridno
+  mishnahrmodel.nameLike.agent
+  | mishnahrrs
+  | mishnahridno
+  | mishnahrmodel.persNamePart
 mishnahrmodel.nameLike_alternation =
-  mishnahrmodel.nameLike.agent_alternation | mishnahrrs | mishnahridno
+  mishnahrmodel.nameLike.agent_alternation
+  | mishnahrrs
+  | mishnahridno
+  | mishnahrmodel.persNamePart_alternation
 mishnahrmodel.nameLike_sequence =
-  mishnahrmodel.nameLike.agent_sequence, mishnahrrs, mishnahridno
+  mishnahrmodel.nameLike.agent_sequence,
+  mishnahrrs,
+  mishnahridno,
+  mishnahrmodel.persNamePart_sequence
 mishnahrmodel.nameLike_sequenceOptional =
   mishnahrmodel.nameLike.agent_sequenceOptional?,
   mishnahrrs?,
-  mishnahridno?
+  mishnahridno?,
+  mishnahrmodel.persNamePart_sequenceOptional?
 mishnahrmodel.nameLike_sequenceOptionalRepeatable =
   mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable*,
   mishnahrrs*,
-  mishnahridno*
+  mishnahridno*,
+  mishnahrmodel.persNamePart_sequenceOptionalRepeatable*
 mishnahrmodel.nameLike_sequenceRepeatable =
   mishnahrmodel.nameLike.agent_sequenceRepeatable+,
   mishnahrrs+,
-  mishnahridno+
+  mishnahridno+,
+  mishnahrmodel.persNamePart_sequenceRepeatable+
 mishnahrmodel.global =
   mishnahrmodel.global.meta
   | mishnahrmodel.milestoneLike
@@ -1625,6 +1674,33 @@ mishnahrmodel.profileDescPart =
   | mishnahrtextClass
   | mishnahrcalendarDesc
 mishnahrmodel.resourceLike = notAllowed
+mishnahratt.personal.attributes =
+  mishnahratt.naming.attributes,
+  mishnahratt.personal.attribute.full,
+  mishnahratt.personal.attribute.sort
+mishnahratt.personal.attribute.full =
+  
+  ## indicates whether the name component is given in full, as an
+  ## abbreviation or simply as an initial.
+  [ a:defaultValue = "yes" ]
+  attribute full {
+    
+    ## the name component is spelled out in full.
+    "yes"
+    | 
+      ## (abbreviated) the name component is given in an abbreviated form.
+      "abb"
+    | 
+      ## (initial letter) the name component is indicated only by
+      ## one initial.
+      "init"
+  }?
+mishnahratt.personal.attribute.sort =
+  
+  ## specifies the sort order of the name component in relation
+  ## to others within the personal name.
+  attribute sort { mishnahrdata.count }?
+mishnahrmodel.placeLike = notAllowed
 mishnahrp =
   
   ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
@@ -4613,6 +4689,124 @@ mishnahratt.textCritical.attribute.hand =
   ## signifies the hand responsible for a particular reading in the
   ## witness.
   attribute hand { mishnahrdata.pointer }?
+mishnahratt.datable.custom.attributes =
+  mishnahratt.datable.custom.attribute.when-custom,
+  mishnahratt.datable.custom.attribute.notBefore-custom,
+  mishnahratt.datable.custom.attribute.notAfter-custom,
+  mishnahratt.datable.custom.attribute.from-custom,
+  mishnahratt.datable.custom.attribute.to-custom,
+  mishnahratt.datable.custom.attribute.datingPoint,
+  mishnahratt.datable.custom.attribute.datingMethod
+mishnahratt.datable.custom.attribute.when-custom =
+  
+  ## supplies the value of a date or time in some standard form.
+  attribute when-custom {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.datable.custom.attribute.notBefore-custom =
+  
+  ## specifies the earliest possible date for the event in some custom standard form.
+  attribute notBefore-custom {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.datable.custom.attribute.notAfter-custom =
+  
+  ## specifies the latest possible date for the event in some custom standard form.
+  attribute notAfter-custom {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.datable.custom.attribute.from-custom =
+  
+  ## indicates the starting point of the period in some standard form.
+  attribute from-custom {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.datable.custom.attribute.to-custom =
+  
+  ## indicates the ending point of the period in some standard form.
+  attribute to-custom {
+    list { mishnahrdata.word, mishnahrdata.word* }
+  }?
+mishnahratt.datable.custom.attribute.datingPoint =
+  
+  ## supplies a pointer to some location defining a named point in time with reference to which the datable item is understood to have occurred
+  attribute datingPoint { mishnahrdata.pointer }?
+mishnahratt.datable.custom.attribute.datingMethod =
+  
+  ## supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.
+  attribute datingMethod { mishnahrdata.pointer }?
+mishnahrmodel.persNamePart = mishnahraddName
+mishnahrmodel.persNamePart_alternation = mishnahraddName
+mishnahrmodel.persNamePart_sequence = mishnahraddName
+mishnahrmodel.persNamePart_sequenceOptional = mishnahraddName?
+mishnahrmodel.persNamePart_sequenceOptionalRepeatable = mishnahraddName*
+mishnahrmodel.persNamePart_sequenceRepeatable = mishnahraddName+
+mishnahratt.datable.iso.attributes =
+  mishnahratt.datable.iso.attribute.when-iso,
+  mishnahratt.datable.iso.attribute.notBefore-iso,
+  mishnahratt.datable.iso.attribute.notAfter-iso,
+  mishnahratt.datable.iso.attribute.from-iso,
+  mishnahratt.datable.iso.attribute.to-iso
+mishnahratt.datable.iso.attribute.when-iso =
+  
+  ## supplies the value of a date or time in a standard form.
+  attribute when-iso { mishnahrdata.temporal.iso }?
+mishnahratt.datable.iso.attribute.notBefore-iso =
+  
+  ## specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notBefore-iso { mishnahrdata.temporal.iso }?
+mishnahratt.datable.iso.attribute.notAfter-iso =
+  
+  ## specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notAfter-iso { mishnahrdata.temporal.iso }?
+mishnahratt.datable.iso.attribute.from-iso =
+  
+  ## indicates the starting point of the period in standard form.
+  attribute from-iso { mishnahrdata.temporal.iso }?
+mishnahratt.datable.iso.attribute.to-iso =
+  
+  ## indicates the ending point of the period in standard form.
+  attribute to-iso { mishnahrdata.temporal.iso }?
+mishnahraddName =
+  
+  ## (additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal
+  ##     name. [13.2.1. ]
+  element addName {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrlistPerson =
+  
+  ## (list of persons) contains a list of descriptions, each of which provides information about an identifiable
+  ##     person or a group of people, for example the participants in a language interaction, or the
+  ##     people referred to in a historical source.  [15.2.  2.4.  15.3.2. ]
+  element listPerson {
+    (mishnahrmodel.headLike*,
+     (mishnahrmodel.personLike | mishnahrlistPerson)+,
+     empty*),
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.sortable.attributes,
+    empty
+  }
+mishnahrlistPlace =
+  
+  ## (list of places) contains a list of places, optionally followed by a list of relationships (other than
+  ##         containment) defined amongst them. 
+  element listPlace {
+    (mishnahrmodel.headLike*,
+     (mishnahrmodel.placeLike | mishnahrlistPlace)+,
+     empty*),
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.sortable.attributes,
+    empty
+  }
 mishnahrw =
   
   ## (word) represents a grammatical (not necessarily orthographic) word. [17.1. ]
