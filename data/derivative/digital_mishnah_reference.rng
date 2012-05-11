@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2012-05-11T10:54:33Z. 
+Schema generated from ODD source 2012-05-11T11:15:25Z. 
 Edition: 2.0.2 Last updated on 2nd February 2012.
 Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 
@@ -6352,20 +6352,22 @@ teiCorpus element. [4.  15.1. ]</a:documentation>
   <define name="mishnahrdiv3">
     <element name="div3">
       <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-3 text division) contains a third-level subdivision of the front, body, or back of a text. [4.1.2. ]</a:documentation>
-      <zeroOrMore>
-        <ref name="mishnahrmodel.global"/>
-      </zeroOrMore>
-      <group>
+      <interleave>
         <zeroOrMore>
-          <ref name="mishnahrmodel.headLike"/>
+          <ref name="mishnahrmodel.global"/>
         </zeroOrMore>
-        <zeroOrMore>
-          <ref name="mishnahrab"/>
-        </zeroOrMore>
-        <zeroOrMore>
-          <ref name="mishnahrmodel.divBottomPart"/>
-        </zeroOrMore>
-      </group>
+        <group>
+          <zeroOrMore>
+            <ref name="mishnahrmodel.headLike"/>
+          </zeroOrMore>
+          <zeroOrMore>
+            <ref name="mishnahrab"/>
+          </zeroOrMore>
+          <zeroOrMore>
+            <ref name="mishnahrmodel.divBottomPart"/>
+          </zeroOrMore>
+        </group>
+      </interleave>
       <ref name="mishnahratt.global.attributes"/>
       <ref name="mishnahratt.divLike.attributes"/>
       <ref name="mishnahratt.typed.attributes"/>

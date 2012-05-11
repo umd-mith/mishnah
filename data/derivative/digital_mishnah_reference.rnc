@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T10:54:33Z. 
+# Schema generated from ODD source 2012-05-11T11:15:25Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -3865,10 +3865,10 @@ mishnahrdiv3 =
   
   ## (level-3 text division) contains a third-level subdivision of the front, body, or back of a text. [4.1.2. ]
   element div3 {
-    mishnahrmodel.global*,
-    (mishnahrmodel.headLike*,
-     mishnahrab*,
-     mishnahrmodel.divBottomPart*),
+    (mishnahrmodel.global*
+     & (mishnahrmodel.headLike*,
+        mishnahrab*,
+        mishnahrmodel.divBottomPart*)),
     mishnahratt.global.attributes,
     mishnahratt.divLike.attributes,
     mishnahratt.typed.attributes,
