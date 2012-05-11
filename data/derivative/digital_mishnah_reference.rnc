@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T13:45:53Z. 
+# Schema generated from ODD source 2012-05-11T16:09:28Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -56,6 +56,7 @@ mishnahrdata.temporal.w3c =
 mishnahrdata.truthValue = xsd:boolean
 mishnahrdata.xTruthValue = xsd:boolean | "unknown" | "inapplicable"
 mishnahrdata.language = xsd:language
+mishnahrdata.sex = "0" | "1" | "2" | "9"
 mishnahrdata.namespace = xsd:anyURI
 mishnahrdata.outputMeasurement =
   xsd:token {
@@ -1237,7 +1238,15 @@ mishnahrmodel.divPart_sequenceRepeatable =
   mishnahrmodel.pLike_sequenceRepeatable+,
   mishnahrlg+,
   mishnahrsp+
-mishnahrmodel.personLike = notAllowed
+mishnahrmodel.personLike = mishnahrpersonGrp
+mishnahrmodel.personPart = mishnahrbibl
+mishnahrmodel.placeStateLike = notAllowed
+mishnahrmodel.placeStateLike_alternation = notAllowed
+mishnahrmodel.placeStateLike_sequence = empty
+mishnahrmodel.placeStateLike_sequenceOptional = empty
+mishnahrmodel.placeStateLike_sequenceOptionalRepeatable = empty
+mishnahrmodel.placeStateLike_sequenceRepeatable = notAllowed
+mishnahrmodel.placeEventLike = notAllowed
 mishnahrmodel.publicationStmtPart =
   mishnahraddress
   | mishnahrdate
@@ -1505,31 +1514,37 @@ mishnahrmodel.addressLike_sequenceRepeatable =
   mishnahremail+, mishnahraddress+
 mishnahrmodel.nameLike =
   mishnahrmodel.nameLike.agent
+  | mishnahrmodel.placeStateLike
   | mishnahrrs
   | mishnahridno
   | mishnahrmodel.persNamePart
 mishnahrmodel.nameLike_alternation =
   mishnahrmodel.nameLike.agent_alternation
+  | mishnahrmodel.placeStateLike_alternation
   | mishnahrrs
   | mishnahridno
   | mishnahrmodel.persNamePart_alternation
 mishnahrmodel.nameLike_sequence =
   mishnahrmodel.nameLike.agent_sequence,
+  mishnahrmodel.placeStateLike_sequence,
   mishnahrrs,
   mishnahridno,
   mishnahrmodel.persNamePart_sequence
 mishnahrmodel.nameLike_sequenceOptional =
   mishnahrmodel.nameLike.agent_sequenceOptional?,
+  mishnahrmodel.placeStateLike_sequenceOptional?,
   mishnahrrs?,
   mishnahridno?,
   mishnahrmodel.persNamePart_sequenceOptional?
 mishnahrmodel.nameLike_sequenceOptionalRepeatable =
   mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable*,
+  mishnahrmodel.placeStateLike_sequenceOptionalRepeatable*,
   mishnahrrs*,
   mishnahridno*,
   mishnahrmodel.persNamePart_sequenceOptionalRepeatable*
 mishnahrmodel.nameLike_sequenceRepeatable =
   mishnahrmodel.nameLike.agent_sequenceRepeatable+,
+  mishnahrmodel.placeStateLike_sequenceRepeatable+,
   mishnahrrs+,
   mishnahridno+,
   mishnahrmodel.persNamePart_sequenceRepeatable+
@@ -1700,7 +1715,7 @@ mishnahratt.personal.attribute.sort =
   ## specifies the sort order of the name component in relation
   ## to others within the personal name.
   attribute sort { mishnahrdata.count }?
-mishnahrmodel.placeLike = notAllowed
+mishnahrmodel.placeLike = mishnahrplace
 mishnahrp =
   
   ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
@@ -4804,6 +4819,46 @@ mishnahrlistPlace =
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declarable.attributes,
+    mishnahratt.sortable.attributes,
+    empty
+  }
+mishnahrpersonGrp =
+  
+  ## (personal group) describes a group of individuals treated as a single person for analytic purposes. [15.2.2. ]
+  element personGrp {
+    (mishnahrmodel.pLike+ | mishnahrmodel.personPart*),
+    mishnahratt.global.attributes,
+    mishnahratt.sortable.attributes,
+    
+    ## specifies the role of this group of participants in the interaction.
+    attribute role { mishnahrdata.enumerated }?,
+    
+    ## specifies the sex of the participant group.
+    attribute sex { mishnahrdata.sex | "mixed" }?,
+    
+    ## specifies the age group of the participants.
+    attribute age { mishnahrdata.enumerated }?,
+    
+    ## specifies the size or approximate size of the group.
+    attribute size {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrplace =
+  
+  ## contains data about a geographic location
+  element place {
+    (mishnahrmodel.headLike*,
+     (mishnahrmodel.pLike*
+      | (mishnahrmodel.labelLike
+         | mishnahrmodel.placeStateLike
+         | mishnahrmodel.placeEventLike)*),
+     (mishnahrmodel.noteLike | mishnahrmodel.biblLike)*,
+     (mishnahrmodel.placeLike | mishnahrlistPlace)*),
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.editLike.attributes,
     mishnahratt.sortable.attributes,
     empty
   }
