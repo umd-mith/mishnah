@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2012-05-11T10:34:17Z. 
+Schema generated from ODD source 2012-05-11T10:54:33Z. 
 Edition: 2.0.2 Last updated on 2nd February 2012.
 Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 
@@ -1228,40 +1228,28 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
   </define>
   <define name="mishnahrmodel.segLike">
     <choice>
-      <ref name="mishnahrseg"/>
       <ref name="mishnahrw"/>
     </choice>
   </define>
   <define name="mishnahrmodel.segLike_alternation">
     <choice>
-      <ref name="mishnahrseg"/>
       <ref name="mishnahrw"/>
     </choice>
   </define>
   <define name="mishnahrmodel.segLike_sequence">
-    <ref name="mishnahrseg"/>
     <ref name="mishnahrw"/>
   </define>
   <define name="mishnahrmodel.segLike_sequenceOptional">
-    <optional>
-      <ref name="mishnahrseg"/>
-    </optional>
     <optional>
       <ref name="mishnahrw"/>
     </optional>
   </define>
   <define name="mishnahrmodel.segLike_sequenceOptionalRepeatable">
     <zeroOrMore>
-      <ref name="mishnahrseg"/>
-    </zeroOrMore>
-    <zeroOrMore>
       <ref name="mishnahrw"/>
     </zeroOrMore>
   </define>
   <define name="mishnahrmodel.segLike_sequenceRepeatable">
-    <oneOrMore>
-      <ref name="mishnahrseg"/>
-    </oneOrMore>
     <oneOrMore>
       <ref name="mishnahrw"/>
     </oneOrMore>
@@ -2939,7 +2927,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <ref name="mishnahrunclear"/>
       <ref name="mishnahrabbr"/>
       <ref name="mishnahrexpan"/>
-      <ref name="mishnahrseg"/>
     </choice>
   </define>
   <define name="mishnahrmodel.imprintPart">
@@ -7048,17 +7035,6 @@ values for @target</sch:assert>
       <empty/>
     </element>
   </define>
-  <define name="mishnahrseg">
-    <element name="seg">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(arbitrary segment) represents any segmentation of text below the chunk level. [16.3.  6.2.  7.2.5. ]</a:documentation>
-      <ref name="mishnahrmacro.paraContent"/>
-      <ref name="mishnahratt.global.attributes"/>
-      <ref name="mishnahratt.segLike.attributes"/>
-      <ref name="mishnahratt.typed.attributes"/>
-      <ref name="mishnahratt.responsibility.attributes"/>
-      <empty/>
-    </element>
-  </define>
   <define name="mishnahrmodel.rdgLike">
     <choice>
       <ref name="mishnahrrdg"/>
@@ -7468,7 +7444,6 @@ witness.</a:documentation>
         <choice>
           <text/>
           <ref name="mishnahrmodel.gLike"/>
-          <ref name="mishnahrseg"/>
           <ref name="mishnahrw"/>
           <ref name="mishnahrmodel.global"/>
           <ref name="mishnahrmodel.lPart"/>

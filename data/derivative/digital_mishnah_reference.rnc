@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T10:34:17Z. 
+# Schema generated from ODD source 2012-05-11T10:54:33Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -834,13 +834,12 @@ mishnahrmodel.nameLike.agent_sequence = mishnahrname
 mishnahrmodel.nameLike.agent_sequenceOptional = mishnahrname?
 mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable = mishnahrname*
 mishnahrmodel.nameLike.agent_sequenceRepeatable = mishnahrname+
-mishnahrmodel.segLike = mishnahrseg | mishnahrw
-mishnahrmodel.segLike_alternation = mishnahrseg | mishnahrw
-mishnahrmodel.segLike_sequence = mishnahrseg, mishnahrw
-mishnahrmodel.segLike_sequenceOptional = mishnahrseg?, mishnahrw?
-mishnahrmodel.segLike_sequenceOptionalRepeatable =
-  mishnahrseg*, mishnahrw*
-mishnahrmodel.segLike_sequenceRepeatable = mishnahrseg+, mishnahrw+
+mishnahrmodel.segLike = mishnahrw
+mishnahrmodel.segLike_alternation = mishnahrw
+mishnahrmodel.segLike_sequence = mishnahrw
+mishnahrmodel.segLike_sequenceOptional = mishnahrw?
+mishnahrmodel.segLike_sequenceOptionalRepeatable = mishnahrw*
+mishnahrmodel.segLike_sequenceRepeatable = mishnahrw+
 mishnahrmodel.hiLike = mishnahrhi
 mishnahrmodel.hiLike_alternation = mishnahrhi
 mishnahrmodel.hiLike_sequence = mishnahrhi
@@ -1427,7 +1426,6 @@ mishnahrmodel.choicePart =
   | mishnahrunclear
   | mishnahrabbr
   | mishnahrexpan
-  | mishnahrseg
 mishnahrmodel.imprintPart =
   mishnahrpublisher
   | mishnahrbiblScope
@@ -4338,17 +4336,6 @@ mishnahranchor =
     mishnahratt.typed.attributes,
     empty
   }
-mishnahrseg =
-  
-  ## (arbitrary segment) represents any segmentation of text below the chunk level. [16.3.  6.2.  7.2.5. ]
-  element seg {
-    mishnahrmacro.paraContent,
-    mishnahratt.global.attributes,
-    mishnahratt.segLike.attributes,
-    mishnahratt.typed.attributes,
-    mishnahratt.responsibility.attributes,
-    empty
-  }
 mishnahrmodel.rdgLike = mishnahrrdg
 mishnahrapp =
   
@@ -4632,7 +4619,6 @@ mishnahrw =
   element w {
     (text
      | mishnahrmodel.gLike
-     | mishnahrseg
      | mishnahrw
      | mishnahrmodel.global
      | mishnahrmodel.lPart
