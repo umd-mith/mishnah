@@ -60,7 +60,7 @@
                     <moduleRef key="textstructure"/>
 
                     <!-- Additional modules needed -->
-                   <moduleRef key="analysis" include="interp interpGrp"/>
+                    <moduleRef key="analysis" include="interp interpGrp"/>
                     <moduleRef key="linking" include="ab anchor link"/>
                     <moduleRef key="textcrit"/>
 
@@ -123,20 +123,22 @@
 
                     <elementSpec module="textstructure" ident="div3" mode="change">
                         <content>
-                            <rng:zeroOrMore>
-                                <rng:ref name="model.global"/>
-                            </rng:zeroOrMore>
-                            <rng:group>
+                            <rng:interleave>
                                 <rng:zeroOrMore>
-                                    <rng:ref name="model.headLike"/>
+                                    <rng:ref name="model.global"/>
                                 </rng:zeroOrMore>
-                                <rng:zeroOrMore>
-                                    <rng:ref name="ab"/>
-                                </rng:zeroOrMore>
-                                <rng:zeroOrMore>
-                                    <rng:ref name="model.divBottomPart"/>
-                                </rng:zeroOrMore>
-                            </rng:group>
+                                <rng:group>
+                                    <rng:zeroOrMore>
+                                        <rng:ref name="model.headLike"/>
+                                    </rng:zeroOrMore>
+                                    <rng:zeroOrMore>
+                                        <rng:ref name="ab"/>
+                                    </rng:zeroOrMore>
+                                    <rng:zeroOrMore>
+                                        <rng:ref name="model.divBottomPart"/>
+                                    </rng:zeroOrMore>
+                                </rng:group>
+                            </rng:interleave>
                         </content>
                     </elementSpec>
 
