@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T16:32:57Z. 
+# Schema generated from ODD source 2012-05-11T16:35:41Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -940,17 +940,17 @@ mishnahrmodel.dateLike_sequenceOptionalRepeatable =
   mishnahrdate*, mishnahrtime*
 mishnahrmodel.dateLike_sequenceRepeatable = mishnahrdate+, mishnahrtime+
 mishnahrmodel.measureLike =
-  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp | mishnahrgeo
 mishnahrmodel.measureLike_alternation =
-  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp | mishnahrgeo
 mishnahrmodel.measureLike_sequence =
-  mishnahrnum, mishnahrmeasure, mishnahrmeasureGrp
+  mishnahrnum, mishnahrmeasure, mishnahrmeasureGrp, mishnahrgeo
 mishnahrmodel.measureLike_sequenceOptional =
-  mishnahrnum?, mishnahrmeasure?, mishnahrmeasureGrp?
+  mishnahrnum?, mishnahrmeasure?, mishnahrmeasureGrp?, mishnahrgeo?
 mishnahrmodel.measureLike_sequenceOptionalRepeatable =
-  mishnahrnum*, mishnahrmeasure*, mishnahrmeasureGrp*
+  mishnahrnum*, mishnahrmeasure*, mishnahrmeasureGrp*, mishnahrgeo*
 mishnahrmodel.measureLike_sequenceRepeatable =
-  mishnahrnum+, mishnahrmeasure+, mishnahrmeasureGrp+
+  mishnahrnum+, mishnahrmeasure+, mishnahrmeasureGrp+, mishnahrgeo+
 mishnahrmodel.egLike = notAllowed
 mishnahrmodel.egLike_alternation = notAllowed
 mishnahrmodel.egLike_sequence = empty
@@ -4787,12 +4787,33 @@ mishnahratt.datable.custom.attribute.datingMethod =
   
   ## supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.
   attribute datingMethod { mishnahrdata.pointer }?
-mishnahrmodel.persNamePart = mishnahraddName
-mishnahrmodel.persNamePart_alternation = mishnahraddName
-mishnahrmodel.persNamePart_sequence = mishnahraddName
-mishnahrmodel.persNamePart_sequenceOptional = mishnahraddName?
-mishnahrmodel.persNamePart_sequenceOptionalRepeatable = mishnahraddName*
-mishnahrmodel.persNamePart_sequenceRepeatable = mishnahraddName+
+mishnahrmodel.persNamePart =
+  mishnahrforename
+  | mishnahrnameLink
+  | mishnahraddName
+  | mishnahrroleName
+mishnahrmodel.persNamePart_alternation =
+  mishnahrforename
+  | mishnahrnameLink
+  | mishnahraddName
+  | mishnahrroleName
+mishnahrmodel.persNamePart_sequence =
+  mishnahrforename, mishnahrnameLink, mishnahraddName, mishnahrroleName
+mishnahrmodel.persNamePart_sequenceOptional =
+  mishnahrforename?,
+  mishnahrnameLink?,
+  mishnahraddName?,
+  mishnahrroleName?
+mishnahrmodel.persNamePart_sequenceOptionalRepeatable =
+  mishnahrforename*,
+  mishnahrnameLink*,
+  mishnahraddName*,
+  mishnahrroleName*
+mishnahrmodel.persNamePart_sequenceRepeatable =
+  mishnahrforename+,
+  mishnahrnameLink+,
+  mishnahraddName+,
+  mishnahrroleName+
 mishnahratt.datable.iso.attributes =
   mishnahratt.datable.iso.attribute.when-iso,
   mishnahratt.datable.iso.attribute.notBefore-iso,
@@ -4832,11 +4853,42 @@ mishnahrpersName =
     mishnahratt.typed.attributes,
     empty
   }
+mishnahrforename =
+  
+  ## contains a forename, given or baptismal name. [13.2.1. ]
+  element forename {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrnameLink =
+  
+  ## (name link) contains a connecting phrase or link used within a name but not regarded as part of it, such as van der or
+  ##             of. [13.2.1. ]
+  element nameLink {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
 mishnahraddName =
   
   ## (additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal
   ##     name. [13.2.1. ]
   element addName {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrroleName =
+  
+  ## contains a name component which indicates that the referent has a particular role or position in society, such as an official title or
+  ##         rank. [13.2.1. ]
+  element roleName {
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
     mishnahratt.personal.attributes,
@@ -4853,6 +4905,16 @@ mishnahrplaceName =
     mishnahratt.global.attributes,
     mishnahratt.naming.attributes,
     mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrgeo =
+  
+  ## (geographical coordinates) contains any expression of a set of geographic coordinates, representing a point, line, or area on the surface of the earth in some
+  ##         notation.
+  element geo {
+    text,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
     empty
   }
 mishnahrlistPerson =
