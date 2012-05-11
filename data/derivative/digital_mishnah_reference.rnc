@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T13:45:53Z. 
+# Schema generated from ODD source 2012-05-11T16:35:41Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -56,6 +56,7 @@ mishnahrdata.temporal.w3c =
 mishnahrdata.truthValue = xsd:boolean
 mishnahrdata.xTruthValue = xsd:boolean | "unknown" | "inapplicable"
 mishnahrdata.language = xsd:language
+mishnahrdata.sex = "0" | "1" | "2" | "9"
 mishnahrdata.namespace = xsd:anyURI
 mishnahrdata.outputMeasurement =
   xsd:token {
@@ -840,12 +841,16 @@ mishnahratt.translatable.attribute.version =
   ## specifies the version name or number of the source from
   ##	which the translated version was derived
   attribute version { mishnahrdata.word }?
-mishnahrmodel.nameLike.agent = mishnahrname
-mishnahrmodel.nameLike.agent_alternation = mishnahrname
-mishnahrmodel.nameLike.agent_sequence = mishnahrname
-mishnahrmodel.nameLike.agent_sequenceOptional = mishnahrname?
-mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable = mishnahrname*
-mishnahrmodel.nameLike.agent_sequenceRepeatable = mishnahrname+
+mishnahrmodel.nameLike.agent = mishnahrname | mishnahrpersName
+mishnahrmodel.nameLike.agent_alternation =
+  mishnahrname | mishnahrpersName
+mishnahrmodel.nameLike.agent_sequence = mishnahrname, mishnahrpersName
+mishnahrmodel.nameLike.agent_sequenceOptional =
+  mishnahrname?, mishnahrpersName?
+mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable =
+  mishnahrname*, mishnahrpersName*
+mishnahrmodel.nameLike.agent_sequenceRepeatable =
+  mishnahrname+, mishnahrpersName+
 mishnahrmodel.segLike = mishnahrw
 mishnahrmodel.segLike_alternation = mishnahrw
 mishnahrmodel.segLike_sequence = mishnahrw
@@ -935,17 +940,17 @@ mishnahrmodel.dateLike_sequenceOptionalRepeatable =
   mishnahrdate*, mishnahrtime*
 mishnahrmodel.dateLike_sequenceRepeatable = mishnahrdate+, mishnahrtime+
 mishnahrmodel.measureLike =
-  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp | mishnahrgeo
 mishnahrmodel.measureLike_alternation =
-  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp
+  mishnahrnum | mishnahrmeasure | mishnahrmeasureGrp | mishnahrgeo
 mishnahrmodel.measureLike_sequence =
-  mishnahrnum, mishnahrmeasure, mishnahrmeasureGrp
+  mishnahrnum, mishnahrmeasure, mishnahrmeasureGrp, mishnahrgeo
 mishnahrmodel.measureLike_sequenceOptional =
-  mishnahrnum?, mishnahrmeasure?, mishnahrmeasureGrp?
+  mishnahrnum?, mishnahrmeasure?, mishnahrmeasureGrp?, mishnahrgeo?
 mishnahrmodel.measureLike_sequenceOptionalRepeatable =
-  mishnahrnum*, mishnahrmeasure*, mishnahrmeasureGrp*
+  mishnahrnum*, mishnahrmeasure*, mishnahrmeasureGrp*, mishnahrgeo*
 mishnahrmodel.measureLike_sequenceRepeatable =
-  mishnahrnum+, mishnahrmeasure+, mishnahrmeasureGrp+
+  mishnahrnum+, mishnahrmeasure+, mishnahrmeasureGrp+, mishnahrgeo+
 mishnahrmodel.egLike = notAllowed
 mishnahrmodel.egLike_alternation = notAllowed
 mishnahrmodel.egLike_sequence = empty
@@ -963,6 +968,12 @@ mishnahrmodel.graphicLike_sequenceOptionalRepeatable =
   mishnahrgraphic*, mishnahrbinaryObject*
 mishnahrmodel.graphicLike_sequenceRepeatable =
   mishnahrgraphic+, mishnahrbinaryObject+
+mishnahrmodel.offsetLike = notAllowed
+mishnahrmodel.offsetLike_alternation = notAllowed
+mishnahrmodel.offsetLike_sequence = empty
+mishnahrmodel.offsetLike_sequenceOptional = empty
+mishnahrmodel.offsetLike_sequenceOptionalRepeatable = empty
+mishnahrmodel.offsetLike_sequenceRepeatable = notAllowed
 mishnahrmodel.pPart.editorial =
   mishnahrchoice | mishnahrabbr | mishnahrexpan
 mishnahrmodel.pPart.editorial_alternation =
@@ -1237,7 +1248,36 @@ mishnahrmodel.divPart_sequenceRepeatable =
   mishnahrmodel.pLike_sequenceRepeatable+,
   mishnahrlg+,
   mishnahrsp+
-mishnahrmodel.personLike = notAllowed
+mishnahrmodel.persStateLike = mishnahrpersName
+mishnahrmodel.persStateLike_alternation = mishnahrpersName
+mishnahrmodel.persStateLike_sequence = mishnahrpersName
+mishnahrmodel.persStateLike_sequenceOptional = mishnahrpersName?
+mishnahrmodel.persStateLike_sequenceOptionalRepeatable =
+  mishnahrpersName*
+mishnahrmodel.persStateLike_sequenceRepeatable = mishnahrpersName+
+mishnahrmodel.personLike = mishnahrpersonGrp
+mishnahrmodel.personPart = mishnahrmodel.persStateLike | mishnahrbibl
+mishnahrmodel.placeNamePart = mishnahrplaceName
+mishnahrmodel.placeNamePart_alternation = mishnahrplaceName
+mishnahrmodel.placeNamePart_sequence = mishnahrplaceName
+mishnahrmodel.placeNamePart_sequenceOptional = mishnahrplaceName?
+mishnahrmodel.placeNamePart_sequenceOptionalRepeatable =
+  mishnahrplaceName*
+mishnahrmodel.placeNamePart_sequenceRepeatable = mishnahrplaceName+
+mishnahrmodel.placeStateLike =
+  mishnahrmodel.placeNamePart | mishnahrlocation
+mishnahrmodel.placeStateLike_alternation =
+  mishnahrmodel.placeNamePart_alternation | mishnahrlocation
+mishnahrmodel.placeStateLike_sequence =
+  mishnahrmodel.placeNamePart_sequence, mishnahrlocation
+mishnahrmodel.placeStateLike_sequenceOptional =
+  mishnahrmodel.placeNamePart_sequenceOptional?, mishnahrlocation?
+mishnahrmodel.placeStateLike_sequenceOptionalRepeatable =
+  mishnahrmodel.placeNamePart_sequenceOptionalRepeatable*,
+  mishnahrlocation*
+mishnahrmodel.placeStateLike_sequenceRepeatable =
+  mishnahrmodel.placeNamePart_sequenceRepeatable+, mishnahrlocation+
+mishnahrmodel.placeEventLike = notAllowed
 mishnahrmodel.publicationStmtPart =
   mishnahraddress
   | mishnahrdate
@@ -1505,31 +1545,43 @@ mishnahrmodel.addressLike_sequenceRepeatable =
   mishnahremail+, mishnahraddress+
 mishnahrmodel.nameLike =
   mishnahrmodel.nameLike.agent
+  | mishnahrmodel.offsetLike
+  | mishnahrmodel.placeStateLike
   | mishnahrrs
   | mishnahridno
   | mishnahrmodel.persNamePart
 mishnahrmodel.nameLike_alternation =
   mishnahrmodel.nameLike.agent_alternation
+  | mishnahrmodel.offsetLike_alternation
+  | mishnahrmodel.placeStateLike_alternation
   | mishnahrrs
   | mishnahridno
   | mishnahrmodel.persNamePart_alternation
 mishnahrmodel.nameLike_sequence =
   mishnahrmodel.nameLike.agent_sequence,
+  mishnahrmodel.offsetLike_sequence,
+  mishnahrmodel.placeStateLike_sequence,
   mishnahrrs,
   mishnahridno,
   mishnahrmodel.persNamePart_sequence
 mishnahrmodel.nameLike_sequenceOptional =
   mishnahrmodel.nameLike.agent_sequenceOptional?,
+  mishnahrmodel.offsetLike_sequenceOptional?,
+  mishnahrmodel.placeStateLike_sequenceOptional?,
   mishnahrrs?,
   mishnahridno?,
   mishnahrmodel.persNamePart_sequenceOptional?
 mishnahrmodel.nameLike_sequenceOptionalRepeatable =
   mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable*,
+  mishnahrmodel.offsetLike_sequenceOptionalRepeatable*,
+  mishnahrmodel.placeStateLike_sequenceOptionalRepeatable*,
   mishnahrrs*,
   mishnahridno*,
   mishnahrmodel.persNamePart_sequenceOptionalRepeatable*
 mishnahrmodel.nameLike_sequenceRepeatable =
   mishnahrmodel.nameLike.agent_sequenceRepeatable+,
+  mishnahrmodel.offsetLike_sequenceRepeatable+,
+  mishnahrmodel.placeStateLike_sequenceRepeatable+,
   mishnahrrs+,
   mishnahridno+,
   mishnahrmodel.persNamePart_sequenceRepeatable+
@@ -1700,7 +1752,7 @@ mishnahratt.personal.attribute.sort =
   ## specifies the sort order of the name component in relation
   ## to others within the personal name.
   attribute sort { mishnahrdata.count }?
-mishnahrmodel.placeLike = notAllowed
+mishnahrmodel.placeLike = mishnahrplace
 mishnahrp =
   
   ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
@@ -4735,12 +4787,33 @@ mishnahratt.datable.custom.attribute.datingMethod =
   
   ## supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.
   attribute datingMethod { mishnahrdata.pointer }?
-mishnahrmodel.persNamePart = mishnahraddName
-mishnahrmodel.persNamePart_alternation = mishnahraddName
-mishnahrmodel.persNamePart_sequence = mishnahraddName
-mishnahrmodel.persNamePart_sequenceOptional = mishnahraddName?
-mishnahrmodel.persNamePart_sequenceOptionalRepeatable = mishnahraddName*
-mishnahrmodel.persNamePart_sequenceRepeatable = mishnahraddName+
+mishnahrmodel.persNamePart =
+  mishnahrforename
+  | mishnahrnameLink
+  | mishnahraddName
+  | mishnahrroleName
+mishnahrmodel.persNamePart_alternation =
+  mishnahrforename
+  | mishnahrnameLink
+  | mishnahraddName
+  | mishnahrroleName
+mishnahrmodel.persNamePart_sequence =
+  mishnahrforename, mishnahrnameLink, mishnahraddName, mishnahrroleName
+mishnahrmodel.persNamePart_sequenceOptional =
+  mishnahrforename?,
+  mishnahrnameLink?,
+  mishnahraddName?,
+  mishnahrroleName?
+mishnahrmodel.persNamePart_sequenceOptionalRepeatable =
+  mishnahrforename*,
+  mishnahrnameLink*,
+  mishnahraddName*,
+  mishnahrroleName*
+mishnahrmodel.persNamePart_sequenceRepeatable =
+  mishnahrforename+,
+  mishnahrnameLink+,
+  mishnahraddName+,
+  mishnahrroleName+
 mishnahratt.datable.iso.attributes =
   mishnahratt.datable.iso.attribute.when-iso,
   mishnahratt.datable.iso.attribute.notBefore-iso,
@@ -4767,6 +4840,39 @@ mishnahratt.datable.iso.attribute.to-iso =
   
   ## indicates the ending point of the period in standard form.
   attribute to-iso { mishnahrdata.temporal.iso }?
+mishnahrpersName =
+  
+  ## (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including any
+  ##     or all of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. ]
+  element persName {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrforename =
+  
+  ## contains a forename, given or baptismal name. [13.2.1. ]
+  element forename {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrnameLink =
+  
+  ## (name link) contains a connecting phrase or link used within a name but not regarded as part of it, such as van der or
+  ##             of. [13.2.1. ]
+  element nameLink {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
 mishnahraddName =
   
   ## (additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal
@@ -4776,6 +4882,39 @@ mishnahraddName =
     mishnahratt.global.attributes,
     mishnahratt.personal.attributes,
     mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrroleName =
+  
+  ## contains a name component which indicates that the referent has a particular role or position in society, such as an official title or
+  ##         rank. [13.2.1. ]
+  element roleName {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrplaceName =
+  
+  ## contains an absolute or relative place name.  [13.2.3. ]
+  element placeName {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
+    mishnahratt.global.attributes,
+    mishnahratt.naming.attributes,
+    mishnahratt.typed.attributes,
+    empty
+  }
+mishnahrgeo =
+  
+  ## (geographical coordinates) contains any expression of a set of geographic coordinates, representing a point, line, or area on the surface of the earth in some
+  ##         notation.
+  element geo {
+    text,
+    mishnahratt.global.attributes,
+    mishnahratt.declaring.attributes,
     empty
   }
 mishnahrlistPerson =
@@ -4804,6 +4943,64 @@ mishnahrlistPlace =
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declarable.attributes,
+    mishnahratt.sortable.attributes,
+    empty
+  }
+mishnahrlocation =
+  
+  ## defines the location of a place as a set of geographical coordinates, in terms of a other named geo-political entities, or as an
+  ##         address.
+  element location {
+    (mishnahrmodel.labelLike
+     | mishnahrmodel.placeNamePart
+     | mishnahrmodel.offsetLike
+     | mishnahrmodel.measureLike
+     | mishnahrmodel.addressLike
+     | mishnahrmodel.noteLike
+     | mishnahrmodel.biblLike)*,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
+    empty
+  }
+mishnahrpersonGrp =
+  
+  ## (personal group) describes a group of individuals treated as a single person for analytic purposes. [15.2.2. ]
+  element personGrp {
+    (mishnahrmodel.pLike+ | mishnahrmodel.personPart*),
+    mishnahratt.global.attributes,
+    mishnahratt.sortable.attributes,
+    
+    ## specifies the role of this group of participants in the interaction.
+    attribute role { mishnahrdata.enumerated }?,
+    
+    ## specifies the sex of the participant group.
+    attribute sex { mishnahrdata.sex | "mixed" }?,
+    
+    ## specifies the age group of the participants.
+    attribute age { mishnahrdata.enumerated }?,
+    
+    ## specifies the size or approximate size of the group.
+    attribute size {
+      list { mishnahrdata.word, mishnahrdata.word* }
+    }?,
+    empty
+  }
+mishnahrplace =
+  
+  ## contains data about a geographic location
+  element place {
+    (mishnahrmodel.headLike*,
+     (mishnahrmodel.pLike*
+      | (mishnahrmodel.labelLike
+         | mishnahrmodel.placeStateLike
+         | mishnahrmodel.placeEventLike)*),
+     (mishnahrmodel.noteLike | mishnahrmodel.biblLike)*,
+     (mishnahrmodel.placeLike | mishnahrlistPlace)*),
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.editLike.attributes,
     mishnahratt.sortable.attributes,
     empty
   }
