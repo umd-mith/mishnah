@@ -160,6 +160,72 @@
                         </content>
                     </elementSpec>
 
+                    <!-- Adding the XInclude elements from mishnah_reference_test.odd -->
+                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
+                        ns="http://www.w3.org/2001/XInclude" mode="add">
+                        <desc>The W3C XInclude element</desc>
+                        <classes mode="change">
+                            <memberOf key="model.common"/>
+                            <memberOf key="model.headerPart"/>
+                        </classes>
+                        <content>
+                            <rng:optional>
+                                <rng:ref name="fallback"/>
+                            </rng:optional>
+                        </content>
+                        <attList>
+                            <attDef ident="href">
+                                <desc>pointer to the resource being included</desc>
+                                <datatype>
+                                    <rng:ref name="data.pointer"/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="parse" usage="opt">
+                                <defaultVal>xml</defaultVal>
+                                <valList type="closed">
+                                    <valItem ident="xml"/>
+                                    <valItem ident="text"/>
+                                </valList>
+                            </attDef>
+                            <attDef ident="xpointer" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="encoding" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept-charset" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept-language" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                        </attList>
+                    </elementSpec>
+                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="fallback"
+                        ns="http://www.w3.org/2001/XInclude" mode="add">
+                        <desc>Wrapper for fallback elements if an XInclude fails</desc>
+                        <content>
+                            <oneOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+                                <choice>
+                                    <text/>
+                                    <ref name="macro.anyThing"/>
+                                </choice>
+                            </oneOrMore>
+                        </content>
+                    </elementSpec>
                 </schemaSpec>
             </div>
         </body>
