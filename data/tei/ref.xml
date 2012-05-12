@@ -9,7 +9,6 @@
 
 
 <?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
-
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
@@ -15947,40 +15946,62 @@
                 </div>
                 <div type="lang"/>
                 <div type="bibl">
-                    <bibl type="book" xml:id="alb-mav">
-                        <author>Albeck, H.</author>
-                        <title xml:lang="he" level="m">מבוא למשנה <title xml:lang="en">Introduction
-                                to the Mishnah</title>
-                            <title type="rom">Mavo la-mishnah</title></title>
-                        <pubPlace>Jerusalem</pubPlace>
-                        <publisher>Mosad Bialik</publisher>
-                        <date>1959</date>
-                    </bibl>
-                    <bibl type="book" xml:id="ilan">
-                        <author>Ilan, Tal</author>
-                        <title level="m">Lexicon of Jewish Names in Late Antiquity, Part I:
-                            Palestine 330 BCE - 200 CE</title>
-                        <series><biblScope type="vol">91</biblScope><title level="s"/>Texts and
-                            Studies in Ancient Judaism</series>
-                        <pubPlace>Tübingen</pubPlace>
-                        <publisher>Mohr Siebeck</publisher>
-                        <date>1992</date>
-                    </bibl>
-                    <bibl type="website" xml:id="seg">
-                        <author>Segal, B.Z.<addName type="he">סגל, בן ציון</addName></author>
-                        <abbr type="en">Ha-geografya</abbr>
-                        <abbr type="he">הגיאוגרפיה</abbr>
-                        <title xml:lang="he">הגיאוגרפיה במשנה: המקומות טיבם וערכם<title type="rom"
-                                >Ha-geografya ba-mishnah: Ha-meqomot, tivam, ve-erkham</title>
-                            <title xml:lang="en">Geography in the Mishnah: The Places, Their Nature
-                                and their Significance</title></title>
-                        <pubPlace>Shechem</pubPlace>
-                        <publisher>Sha'are Shechem</publisher>
-                        <link target="http://www.shechem.org/torah/geomishna/index.html"/>
-                        <date>n.d.</date>
+                    <biblStruct type="book" xml:id="alb-mav">
+                        <monogr>
+                            <author>Albeck, Hanoch</author>
+                            <title xml:lang="he" level="m">מבוא למשנה</title>
+                            <title xml:lang="en">Introduction to the Mishnah</title>
+                            <title type="rom">Mavo la-mishnah</title>
+                            <title type="short-en">Introduction</title>
+                            <title type="short-he">מבוא</title>
+                            <title type="short-rom">Mavo</title>
+                            <textLang>Hebrew</textLang>
+                            <imprint>
+                                <pubPlace>Tel Aviv</pubPlace>
+                                <publisher>Mosad Bialik</publisher>
+                                <date>1959</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="ilan" xml:lang="en">
+                        <monogr>
+                            <author>Ilan, Tal</author>
+                            <title level="m">Lexicon of Jewish Names in Late Antiquity, Part I:
+                                Palestine 330 BCE - 200 CE</title>
+                            <title level="m" type="short">Lexicon</title>
+                            <imprint>
+                                <pubPlace>Tübingen</pubPlace>
+                                <publisher>Mohr Siebeck</publisher>
+                                <date>1992</date>
+                            </imprint>
+                        </monogr>
+                        <series>
+                            <title level="s">Texts and Studies in Ancient Judaism</title>
+                            <title level="s" type="short">TSAJ</title>
+                            <biblScope type="vol">91</biblScope>
+                        </series>
+                    </biblStruct>
+                    <biblStruct type="website" xml:id="seg">
+                        <monogr>
+                            <author>Segal, B.Z.<addName xml:lang="he">סגל, בן
+                                ציון</addName></author>
+                            <title level="m">הגיאוגרפיה במשנה: המקומות טיבם וערכם</title>
+                            <title type="rom" level="m">Ha-geografya ba-mishnah: Ha-meqomot, tivam,
+                                ve-erkham</title>
+                            <title xml:lang="en" level="m">Geography in the Mishnah: The Places,
+                                Their Nature and their Significance</title>
+                            <title xml:lang="en">Ha-geografya</title>
+                            <title xml:lang="he" type="short" level="m">הגיאוגרפיה</title>
+                            <imprint>
+                                <pubPlace>Shechem</pubPlace>
+                                <publisher>Sha'are Shechem</publisher>
+                                <date>n.d.</date>
+                                <link target="http://www.shechem.org/torah/geomishna/index.html"/>
+                            </imprint>
+                        </monogr>
                         <note>Previously published in print, Jerusalem: Ha-makhon le-heqer
                             ha-mishnah, 1979.</note>
-                    </bibl>
+                    </biblStruct>
                 </div>
             </div>
         </back>
