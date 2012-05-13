@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-12T20:44:58Z. 
+# Schema generated from ODD source 2012-05-12T21:46:29Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
@@ -2702,8 +2702,6 @@ mishnahrtitle =
   ## contains a title for any kind of work. [3.11.2.2.  2.2.1.  2.2.5. ]
   element title {
     mishnahrmacro.paraContent,
-    mishnahratt.global.attributes,
-    mishnahratt.canonical.attributes,
     
     ## indicates the bibliographic level for a title, that is, whether
     ##                                         it identifies an article, book, journal, series, or
@@ -2735,6 +2733,8 @@ mishnahrtitle =
     ## classifies the title according to some convenient typology.
     ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
     attribute type { mishnahrdata.enumerated }?,
+    mishnahratt.global.attributes,
+    mishnahratt.canonical.attributes,
     empty
   }
 mishnahrmeeting =

@@ -66,6 +66,7 @@
                         include="listPerson listPlace addName personGrp place persName placeName location forename roleName nameLink geo"/>
                     <!-- Including <w> for recording tokenization -->
                     <elementRef key="w"/>
+                    
                     <!-- Removing unwanted classes -->
                     <classSpec module="textstructure" ident="model.div4Like" type="model"
                         mode="delete"/>
@@ -162,6 +163,12 @@
                                 </rng:zeroOrMore>
                             </rng:group>
                         </content>
+                    </elementSpec>
+                    <!-- Does this add ability to do @subtype in title? -->
+                    <elementSpec module="core" ident="title" mode="change">
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.global"/>
+                        </rng:zeroOrMore>
                     </elementSpec>
                     <!-- Adding the XInclude elements from mishnah_reference_test.odd -->
                     <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
