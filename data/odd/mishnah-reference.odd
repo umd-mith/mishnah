@@ -86,15 +86,23 @@
                             </rng:oneOrMore>
                         </content>
                     </elementSpec>
-                    <!-- div1 may only contain div2 -->
+                    <!-- div1 may only contain div2 head or trailer-->
                     <elementSpec module="textstructure" ident="div1" mode="change">
                         <content>
                             <rng:zeroOrMore>
                                 <rng:ref name="model.global"/>
                             </rng:zeroOrMore>
-                            <rng:oneOrMore>
-                                <rng:ref name="model.div2Like"/>
-                            </rng:oneOrMore>
+                            <rng:group>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.headLike"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.div2Like"/>
+                                </rng:zeroOrMore>
+                                <rng:zeroOrMore>
+                                    <rng:ref name="model.divBottomPart"/>
+                                </rng:zeroOrMore>
+                            </rng:group>
                         </content>
                     </elementSpec>
                     <!-- div2 may contain header, div3, and trailer -->

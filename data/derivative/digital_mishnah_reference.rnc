@@ -5,14 +5,14 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-11T16:35:41Z. 
+# Schema generated from ODD source 2012-05-12T20:44:58Z. 
 # Edition: 2.0.2 Last updated on 2nd February 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 #
 
 # This work is copyright Trevor Muñoz and Maryland Institute for Technology in
-#     the Humanities and licensed under a Creative Commons
-#         Attribution 3.0 Unported License.
+# the Humanities and licensed under a Creative Commons
+#     Attribution 3.0 Unported License.
 mishnahrmacro.paraContent =
   (text
    | mishnahrmodel.gLike
@@ -3967,7 +3967,9 @@ mishnahrdiv1 =
   ## (level-1 text division) contains a first-level subdivision of the front, body, or back of a text. [4.1.2. ]
   element div1 {
     mishnahrmodel.global*,
-    mishnahrmodel.div2Like+,
+    (mishnahrmodel.headLike*,
+     mishnahrmodel.div2Like*,
+     mishnahrmodel.divBottomPart*),
     mishnahratt.global.attributes,
     mishnahratt.divLike.attributes,
     mishnahratt.typed.attributes,
