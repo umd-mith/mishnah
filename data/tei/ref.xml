@@ -21,11 +21,12 @@
                 <respStmt>
                     <resp>Transcription and Markup</resp>
                     <name xml:id="NE">Nurit Ezer</name>
-                    <name xml:id="SS">Shlomo Strauss</name>
-                    <name xml:id="MP">Michael Pollack</name>
-                    <name xml:id="JK">Judah Kerbel</name>
                     <name xml:id="DG">Daniel Goldberg</name>
+                    <name xml:id="JK">Judah Kerbel</name>
                     <name xml:id="JDO">Justin Orr</name>
+                    <name xml:id="MP">Michael Pollack</name>
+                    <name xml:id="SS">Shlomo Strauss</name>
+                    <name xml:id="YT">Yogev Terry</name>
                 </respStmt>
                 <respStmt>
                     <resp>Advisory</resp>
@@ -34,7 +35,10 @@
                     <name xml:id="SYF">Shamma Friedman</name>
                     <name xml:id="SC">Shaye Cohen</name>
                 </respStmt>
-                
+                <respStmt>
+                    <resp>Other Assistance</resp>
+                    <name xml:id="LJ">Leor Jacobi</name>
+                </respStmt>
             </titleStmt>
             <publicationStmt>
                 <p>This document contains the text of the Vilna edition of the Mishnah, slightly
@@ -15836,38 +15840,86 @@
                 <div2 xml:id="ref.6.10" n="TevulYom" type="Tractate"/>
                 <div2 xml:id="ref.6.11" n="Yadayim" type="Tractate"/>
                 <div2 xml:id="ref.6.12" n="Uqtsim" type="Tractate"/>
-                
-                
             </div1>
         </body>
         <back>
             <div type="editorial">
-                <div type="persons">
-                    <list n="generations">
-                        <item xml:id="Bib">Biblical</item>
-                        <item xml:id="E">Early<date notAfter="0070"/></item>
-                        <item xml:id="Y">Yavnean<date notBefore="0070" notAfter="0135"/></item>
-                        <item xml:id="U">Ushan<date notBefore="0135" notAfter="0170"/></item>
-                        <item xml:id="L">Late<date notBefore="0170" notAfter="0220"/></item>
+                <div type="periodization">
+                    <note>Periodization is approximate. The coarsest subdivisions are into "Early,"
+                        "Yavnean," "Ushan," and "Late" periods. Within these, both <ref
+                            target="#alb-mav">Albeck</ref> and <ref target="#stem-str"
+                            >Stemberger-Strack</ref> subdivide the generations further
+                        (Stemberger-Strack largely corresponding to Albeck). However, since
+                        Stemberger-Strack's index cites the generations according to the coarser
+                        periodization as T, T1, T2, etc., it is this  periodization that is given in
+                        references to Stemberger-Strack. </note>
+                    <list n="early">
+                        <head xml:id="E">Early<date notBefore="-0200" notAfter="0070"/></head>
+                        <item xml:id="T" corresp="#alb-A">The Earliest Period<date notBefore="-0200"
+                                notAfter="-0001"/><ref target="#stem-str">63 - 65</ref></item>
+                        <item xml:id="T1" corresp="#alb-B">First Generation of Tannaites<date
+                                notBefore="0001" notAfter="0070"/><ref target="#stem-str">65 -
+                                68</ref></item>
+                        <item xml:id="alb-A" corresp="#T">Simeon the Righteous to Houses<date
+                                notBefore="-0200" notAfter="-0001"/><ref target="#alb-mav">216 -
+                                218</ref></item>
+                        <item xml:id="alb-B" corresp="#T1">Houses to Revolt<date notBefore="0001"
+                                notAfter="0070"/><ref target="#alb-mav">218 - 222</ref></item>
                     </list>
+                    <list n="yavnean">
+                        <head xml:id="Y" corresp="T2">Yavnean<date notBefore="0070" notAfter="0135"
+                            /></head>
+                        <item xml:id="T2" corresp="#Y">Second Generation, 90-130<date
+                                notBefore="0090" notAfter="0130"/><ref target="#stem-str">69 -
+                                75</ref></item>
+                        <item xml:id="alb-C1">Revolt to Bar Kokhba, first group<date
+                                notBefore="0070" notAfter="0100"/><ref target="#alb-mav">222 -
+                                225</ref></item>
+                        <item xml:id="alb-C2">Revolt to Bar Kokhba, second group<date
+                                notBefore="0100" notAfter="0135"/><ref target="#alb-mav">225 -
+                                228</ref></item>
+                    </list>
+                    <list n="ushan">
+                        <head xml:id="U" corresp="#abl-D">Ushan<date notBefore="0135"
+                                notAfter="0170"/></head>
+                        <item xml:id="T3" corresp="#U">Third Generation of Tannaites, 130 - 160<date
+                                notBefore="0130" notAfter="0160"/><ref target="#stem-str">75 -
+                                78</ref></item>
+                        <item xml:id="alb-D" corresp="#U">Bar Kokhba to Judah the Patriarch<ref
+                                target="#alb-mav">228 - 231</ref><date notBefore="0135"
+                                notAfter="0170"/></item>
+                    </list>
+                    <list n="late">
+                        <head xml:id="L" corresp="#abl-E">Late<date notBefore="0170" notAfter="0220"
+                            /></head>
+                        <item xml:id="alb-E" corresp="#L">Generation of Judah the Patriarch<ref
+                                target="#alb-mav">231 - 233</ref><date notBefore="0170"
+                                notAfter="0220"/></item>
+                        <item xml:id="T4">Fourth Generation of Tannaites<date notBefore="0160"
+                                notAfter="0200"/><ref target="#stem-str"/></item>
+                        <item xml:id="T5">Fifth Generation of Tannaites<date notBefore="0200"
+                                notAfter="0240"/><ref target="#stem-str"/></item>
+                    </list>
+                    <list n="other">
+                        <head>Other</head>
+                        <item xml:id="Bib">Biblical</item>
+                    </list>
+                </div>
+                <div type="persons">
                     <listPerson>
                         <personGrp>
                             <persName xml:id="Elijah">
                                 <forename>Elijah</forename>
                                 <addName xml:lang="he">אליהו</addName>
-                                <addName>התשבי</addName>
-                                <nameLink>the</nameLink>
-                                <addName>Tishbite</addName>
                                 <date ana="#Bib"/>
                             </persName>
                             <persName xml:id="Aqiva">
                                 <roleName type="honorific">Rabbi</roleName>
                                 <forename>Aqiva</forename>
                                 <nameLink>ben</nameLink>
-                                <addName type="patronym"/>
                                 <addName>עקיבא</addName>
                                 <addName>עקיבא בן יוסף</addName>
-                                <date ana="#Y">Yavnean</date>
+                                <date ana="#Y #T1 #alb-B2">Yavnean</date>
                             </persName>
                             <persName xml:id="Tarfon">
                                 <roleName type="honorific">Rabbi</roleName>
@@ -15887,7 +15939,7 @@
                                 <roleName type="honorific">Rabbi</roleName>
                                 <forename>Eleazar</forename>
                                 <nameLink>ben</nameLink>
-                                <addName type="Patronym">Shamua</addName>
+                                <addName type="Patronym">Shamu'a</addName>
                                 <addName>אלעזר</addName>
                                 <date ana="#U">Ushan</date>
                             </persName>
@@ -15952,8 +16004,8 @@
                     <biblStruct type="book" xml:id="alb-mav">
                         <monogr>
                             <author>Albeck, Hanoch</author>
-                            <title xml:lang="he" level="m">מבוא למשנה</title>
-                            <title xml:lang="en">Introduction to the Mishnah</title>
+                            <title type="he" level="m">מבוא למשנה</title>
+                            <title type="en">Introduction to the Mishnah</title>
                             <title type="rom">Mavo la-mishnah</title>
                             <title type="short-en">Introduction</title>
                             <title type="short-he">מבוא</title>
@@ -15966,12 +16018,13 @@
                             </imprint>
                         </monogr>
                     </biblStruct>
-                    <biblStruct type="book" xml:id="ilan" xml:lang="en">
+                    <biblStruct type="book" xml:id="ilan">
                         <monogr>
                             <author>Ilan, Tal</author>
-                            <title level="m">Lexicon of Jewish Names in Late Antiquity, Part I:
+                            <title level="m">Lexicon of Jewish Names in Late Antiquity, Part II:
                                 Palestine 330 BCE - 200 CE</title>
                             <title level="m" type="short">Lexicon</title>
+                            <textLang>English</textLang>
                             <imprint>
                                 <pubPlace>Tübingen</pubPlace>
                                 <publisher>Mohr Siebeck</publisher>
@@ -15979,21 +16032,24 @@
                             </imprint>
                         </monogr>
                         <series>
-                            <title level="s">Texts and Studies in Ancient Judaism</title>
-                            <title level="s" type="short">TSAJ</title>
+                            <title>Texts and Studies in Ancient Judaism</title>
+                            <title type="short">TSAJ</title>
                             <biblScope type="vol">91</biblScope>
                         </series>
                     </biblStruct>
                     <biblStruct type="website" xml:id="seg">
                         <monogr>
-                            <author>Segal, B.Z.<addName xml:lang="he">סגל, בן ציון</addName></author>
-                            <title level="m">הגיאוגרפיה במשנה: המקומות טיבם וערכם</title>
-                            <title type="rom" level="m">Ha-geografya ba-mishnah: Ha-meqomot, tivam,
+                            <author>Segal, Ben Zion<addName xml:lang="he">סגל, בן
+                                ציון</addName></author>
+                            <title type="he">הגיאוגרפיה במשנה: המקומות טיבם וערכם</title>
+                            <title type="rom">Ha-geografya ba-mishnah: Ha-meqomot, tivam,
                                 ve-erkham</title>
-                            <title xml:lang="en" level="m">Geography in the Mishnah: The Places,
-                                Their Nature and their Significance</title>
-                            <title xml:lang="en">Ha-geografya</title>
-                            <title xml:lang="he" type="short" level="m">הגיאוגרפיה</title>
+                            <title type="en">Geography in the Mishnah: The Places, Their Nature and
+                                their Significance</title>
+                            <title type="short-rom">Ha-geografya</title>
+                            <title type="short-he">הגיאוגרפיה</title>
+                            <title type="short-en">Geography</title>
+                            <textLang>Hebrew</textLang>
                             <imprint>
                                 <pubPlace>Shechem</pubPlace>
                                 <publisher>Sha'are Shechem</publisher>
@@ -16003,6 +16059,21 @@
                         </monogr>
                         <note>Previously published in print, Jerusalem: Ha-makhon le-heqer
                             ha-mishnah, 1979.</note>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="stem-str">
+                        <monogr>
+                            <author>Strack, Hermann</author>
+                            <author>Stemberger, Günter</author>
+                            <title>Introduction to the Talmud and Midrash</title>
+                            <textLang>English</textLang>
+                            <editor>Brockmuehl, Markus</editor>
+                            <edition>2</edition>
+                            <imprint>
+                                <pubPlace>Minneapolis</pubPlace>
+                                <publisher>Fortress Press</publisher>
+                                <date>1996</date>
+                            </imprint>
+                        </monogr>
                     </biblStruct>
                 </div>
             </div>
