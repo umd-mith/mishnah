@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Citations of the Mishnah from commentaries. Begun with explicit references to
+                    readings in <ref ana="#MelSh">Melekhet Shelomoh</ref>.
+                    </p><p>In the reading groups included below, <gi>ref</gi> refers to the
+                        authority/ies citing the reading; <gi>wit</gi>to the authority/ies to whom the
+                        reading is attributed.
+                        <!-- Should be listed in ref.xml? -->
+                        <!-- Needs considerable fleshing out -->
+                        <listWit>
+                        <witness xml:id="Rosh">Rosh</witness>
+                        <witness xml:id="Rif">Rif</witness>
+                        <witness xml:id="MelSh">Melekhet Shelomoh</witness>
+                           <witness xml:id="YAshk">Yehohanan Ashkenazi</witness>
+                    </listWit></p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <p>Uses the structure of critical apparatus module combined with xpointer to allow the
+                file to point to the relevant <gi>w</gi> elements in ref.xml. Where the lemma is a
+                single word, the <att>corresp</att> attribute on <gi>lem</gi> uses the
+                    <att>xml:id</att> on <gi>w</gi> in ref.xml to construct the URI. When it 
+                refers to two or more words, the URI is constructed out of an xpointer scheme as in
+                    <val>ref.xml#range(string-range(xpath1(id('ref.4.2.2.3.19')), 0, 0),
+                    xpath1(id('ref.4.2.2.3.24'))</val>.</p>
+        </encodingDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <ab xml:id="commcit.4.2.2.8">
+                <app>
+                    <rdgGrp>
+                        <!-- Since this is is to a single word, I use a simple URI -->
+                        <lem type="cit" corresp="ref.xml#ref.4.2.2.8.17">
+                            <ref type="Com"/>
+                        </lem>
+                        <rdg>כתחילה<wit corresp="#MelS"/><ref ana="#MelS"/></rdg>
+                    </rdgGrp>
+                    <rdgGrp>
+                        <lem type="cit"><!-- Since this is is to a single word, I use a simple URI -->
+                            <ref type="Com"/>
+                        </lem>
+                        <rdg>יִלְמַד<wit corresp="#YAshk"/><ref ana="#MelSh"/></rdg>
+                        <rdg>יִלַמֵּד<wit corresp="#MelSh"/><ref ana="#MelSh"/></rdg>
+                        <!-- How deal with this. Cites two readings, the second (above) according to
+                        R. Yehosef.-->
+                    </rdgGrp>
+                    <rdgGrp>
+                        <lem type="cit"
+                            corresp="ref.xml#range(string-range(xpath1(id('ref.4.2.2.2.8.53'))),
+                            xpath1(id('ref.4.2.2.2.8.62'))"/>
+                        <rdg>מצא שק או קפה אם אין דרכו ליטול<wit corresp="#Rif #Rosh #YAshk"></wit><ref ana="#MelSh"></ref></rdg>
+                    </rdgGrp>
+                </app>
+            </ab>
+        </body>
+    </text>
+</TEI>
