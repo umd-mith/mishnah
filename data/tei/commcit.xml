@@ -26,43 +26,36 @@
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
-            <p>Uses the structure of critical apparatus module combined with xpointer to allow the
-                file to point to the relevant <gi>w</gi> elements in ref.xml. Where the lemma is a
-                single word, the <att>corresp</att> attribute on <gi>lem</gi> uses the
-                    <att>xml:id</att> on <gi>w</gi> in ref.xml to construct the URI. When it refers
-                to two or more words, the URI is constructed out of an xpointer scheme as in
-                    <val>ref.xml#range(string-range(xpath1(id('ref.4.2.2.3.19')), 0, 0),
-                    xpath1(id('ref.4.2.2.3.24'))</val>.</p>
+            <p/>
         </encodingDesc>
     </teiHeader>
     <text>
         <body>
             <ab xml:id="commcit.4.2.2.8">
-                <app>
-                    <rdgGrp>
-                        <!-- Since this is is to a single word, I use a simple URI -->
-                        <lem type="cit" corresp="ref.xml#ref.4.2.2.8.17">
+                
+                <app from="ref.xml#ref.4.2.2.8.17">
+                        <!-- Since this is is to a single word, I am using "from" alone, for
+                            consistency -->
+                        <lem>
                             <ref type="Com"/>
                         </lem>
                         <rdg>כתחילה<wit corresp="#MelS"/><ref ana="#MelS"/></rdg>
-                    </rdgGrp>
-                    <rdgGrp>
-                        <lem type="cit"><!-- Since this is is to a single word, I use a simple URI -->
+                    </app>
+                <app from="ref.xml#ref.4.2.2.2.8.15">
+                        <lem type="cit">
                             <ref type="Com"/>
                         </lem>
                         <rdg>יִלְמַד<wit corresp="#YAshk"/><ref ana="#MelSh"/></rdg>
                         <rdg>יִלַמֵּד<wit corresp="#MelSh"/><ref ana="#MelSh"/></rdg>
-                        <!-- How deal with this. Cites two readings, the second (above) according to
+                        <!-- Cites two readings, the one according to
                         R. Yehosef.-->
-                    </rdgGrp>
-                    <rdgGrp>
-                        <lem type="cit"
-                            corresp="ref.xml#range(string-range(xpath1(id('ref.4.2.2.2.8.53'))),
-                            xpath1(id('ref.4.2.2.2.8.62'))"/>
+                    </app>
+                <app from="ref.xml#ref.4.2.2.2.8.53" to="ref.xml#ref.4.2.2.2.8.62">
+                        <lem type="cit"/>
                         <rdg>מצא שק או קפה אם אין דרכו ליטול<wit corresp="#Rif #Rosh #YAshk"/><ref
                                 ana="#MelSh"/></rdg>
-                    </rdgGrp>
-                </app>
+                    </app>
+                
             </ab>
         </body>
     </text>
