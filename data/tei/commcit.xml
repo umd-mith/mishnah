@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Citations of the Mishnah from commentaries. Begun with explicit references to
+                    readings in <ref ana="#MelSh">Melekhet Shelomoh</ref>. </p>
+                <p>Since citation is from standard printed editions, text is not marked for
+                    rendering in the original, and abbreviations are given in their expanded form
+                    only.</p>
+                <p>In the reading groups included below, <gi>ref</gi> refers to the authority/ies
+                    citing the reading; <att>wit</att> on <gi>rdg</gi> to the authority/ies to whom
+                    the reading is attributed. The attribution can mean no more than that that
+                    authority attested to it, not that the authority favored it or assumed its
+                    correctness. <listWit>
+                        <!-- Should be listed in ref.xml? -->
+                        <!-- Needs considerable fleshing out -->
+                        <witness xml:id="Rosh">Asher b. Yehiel<addName type="Hebr-abbr"
+                                >רא״ש</addName></witness>
+                        <witness xml:id="Rif">Isaac al Fasi<addName type="Hebr-abbr"
+                            >רי״ף</addName></witness>
+                        <witness xml:id="YAshk">Yehosef Ashkenazi<addName type="Hebr">ר׳ יהוסף
+                                אשכנזי</addName><date>16th Century</date></witness>
+                        <witness xml:id="NY">Yosef Habiba<date>16th Century</date><addName
+                                type="Hebr-abbr">נ״י</addName></witness>
+                        <witness xml:id="RMBM">Maimonides<addName type="Hebr-abbr"
+                            >רמב״ם</addName></witness>
+                        <witness xml:id="RMBM-c">Maimonides Code<addName type="Hebr-abbr">רמב״ם
+                                יד</addName></witness>
+                        <witness xml:id="RMBM-m">Maimonides Mishhah<addName type="Hebr-abbr">פ״מ
+                                לר״מ</addName></witness>
+                        <witness xml:id="Y">Yerushalmi</witness>
+                        <witness xml:id="B">Babli</witness>
+                        <witness xml:id="Karo">Joseph Karo<addName>ב״י</addName></witness>
+                        <witness xml:id="Tur">Yaakov Asheri<addName type="Hebr-abbr"
+                            >טור</addName></witness>
+                        <witness xml:id="MelSh">Solomon b. Joshua Adeni<addName type="Hebr-abbr"
+                                >מלא״ש</addName><date>1567-1625</date></witness>
+                        <witness xml:id="TYT">Yom Tov Lipman Heller<addName type="Hebr-abbr">תוס׳
+                                י״ט</addName></witness>
+                        <witness xml:id="Unattr">No specific attribution<eg>אית דגרסי</eg></witness>
+                    </listWit></p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <p/>
+        </encodingDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <ab xml:id="comcit.dummy"><app>
+                    <lem type="com"/>
+                    <rdg wit="ABC"><ref ana="#MelSh"/></rdg>
+                </app></ab>
+            <ab xml:id="comcit.4.2.2.1"><app from="ref.xml#ref.4.2.2.1.41"
+                    to="ref.xml#ref.4.2.2.1.43">
+                    <lem type="com"/>
+                    <rdg wit="#YAshk #Rosh">–––<bibl><ref ana="#MelSh">דברי ר״מ</ref><ref ana="#TYT"
+                                >דברי ר״מ</ref></bibl></rdg>
+                    <rdg wit="#Karo #RMBM">דברי רבי מאיר<bibl><ref ana="#MelSh">דברי
+                            ר״מ</ref></bibl></rdg>
+                </app></ab>
+            <ab xml:id="commcit.4.2.2.4">
+                <app from="ref.xml#ref.4.2.2.4.23">
+                    <!-- Not sure lem is essential, but including it for now -->
+                    <lem type="com"/>
+                    <rdg>רבי יהודה אומר הלוקח<wit corresp=" #Unattr"/><bibl><ref ana="#MelSh">הלוקח
+                                פירות</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="commcit.4.2.2.6">
+                <app from="ref.xml#ref.4.2.2.6.16">
+                    <lem type="com"/>
+                    <rdg>שלשה<wit corresp="#MelSh"/><bibl><ref ana="#MelSh">שלשה
+                        רגלים</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="commcit.4.2.2.8">
+                <app from="ref.xml#ref.4.2.2.8.17">
+                    <lem type="com"/>
+                    <rdg>כתחילה<wit corresp="#MelS"/><bibl><ref ana="#MelS">גוללן</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.2.2.2.8.15">
+                    <lem type="com"/>
+                    <rdg>יִלְמַד<wit corresp="#YAshk"/><bibl><ref ana="#MelSh"
+                        >גוללן</ref></bibl></rdg>
+                    <rdg>יִלַמֵּד<wit corresp="#MelSh"/><bibl><ref ana="#MelSh"
+                        >גוללן</ref></bibl></rdg>
+                    <!-- Cites two readings, the one according to
+                        R. Yehosef.-->
+                </app>
+                <app from="ref.xml#ref.4.2.2.2.8.53" to="ref.xml#ref.4.2.2.2.8.62">
+                    <lem type="com"/>
+                    <rdg>מצא שק או קפה אם אין דרכו ליטול<wit corresp="#Rif #Rosh #YAshk"/><bibl><ref
+                                ana="#MelSh">מצא שק</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.2.2.9">
+                <app>
+                    <lem type="com"/>
+                    <rdg wit="#Unattr #Rosh #B">–<bibl><ref ana="#MelSh">אלא נותן לו שברו בפועל
+                                בטל</ref></bibl></rdg>
+                    <rdg wit="#RMBM #Tur">בטל<bibl><ref ana="#MelSh">אלא נותן לו שברו בפועל
+                                בטל</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.2.2.9.57">
+                    <lem type="com"/>
+                    <rdg wit="#NY #Rif #YAshk">עמו<bibl><ref ana="#MelSh">אם יש שם
+                        ב״ד</ref></bibl></rdg>
+                </app></ab>
+            <ab xml:id="comcit.4.2.2.10">
+                <app from="ref.xml#ref.4.2.2.10.12">
+                    <lem type="com"/>
+                    <rdg wit=" #Unattr">בית<bibl><ref ana="#MelSh">אם היתה בבית
+                        הקברות</ref></bibl></rdg>
+                    <rdg wit=" #Unattr">בין<bibl><ref ana="#MelSh">אם היתה בבית
+                        הקברות</ref></bibl></rdg>
+                </app></ab>
+            <ab xml:id="comcit.4.2.2.11">
+                <app from="ref.xml#ref.4.2.2.11.31" to="ref.xml#ref.4.2.2.11.33">
+                    <lem type="com"/>
+                    <rdg wit="#RMBM-c"> ואם היה אביו שקול כנגד רבו<bibl><ref ana="#MelSh">ואם היה
+                                אביו שקול כנגד רבו</ref><ref ana="#TYT">ואם אביו
+                        חכם</ref></bibl></rdg>
+                    <rdg wit="#RMBM-c">ואם אביו חכם<ref ana="#TYT">ואם אביו חכם</ref></rdg>
+                </app>
+                <app from="ref.xml#ref.4.2.2.11.65" to="ref.xml#ref.4.2.2.11.68">
+                    <lem type="com"/>
+                    <rdg wit="#Y #Rosh #Rif">ואם היה אביו חכם<bibl><ref ana="#MelSh">ואם היה אביו
+                                שקול כנגד רבו</ref></bibl></rdg>
+                    <rdg wit="#TYT">––––<bibl><ref ana="#TYT">היה אביו או רבו נושאין משאוי
+                                וכו׳</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.2.2.11.69" to="ref.xml#ref.4.2.2.11.76">
+                    <lem type="com"/>
+                    <rdg wit="#TYT">––––<bibl><ref ana="#TYT">היה אביו או רבו נושאין משאוי
+                                וכו׳</ref></bibl></rdg>
+                </app></ab>
+        </body>
+    </text>
+</TEI>

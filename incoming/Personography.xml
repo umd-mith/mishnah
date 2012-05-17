@@ -4,19 +4,17 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title></title>
+                <title/>
             </titleStmt>
             <publicationStmt>
-                <p></p>
+                <p/>
             </publicationStmt>
             <sourceDesc>
-                <p>
-                </p>
+                <p> </p>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
-            <tagsDecl>   
-            </tagsDecl>
+            <tagsDecl> </tagsDecl>
         </encodingDesc>
         <revisionDesc>
             <list>
@@ -29,71 +27,87 @@
     </teiHeader>
     <text>
         <body>
+            
+            <list n="periods">
+                
+                <item></item>
+            </list>
             <listPerson>
-                <personGrp n= "Yavnean">
-                    <persName xml:id ="Aqiva">
+                
+                <!-- Remove personGrp and add @period to persName. Need to construct URI as
+                    appropriage -->
+                <personGrp>
+                    <persName xml:id="Aqiva">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Aqiva</forename>
                         <nameLink>ben</nameLink>
-                        <addName type="patronym"></addName>
+                        <addName type="patronym"/>
                         <addName>עקיבא</addName>
                         <addName>עקיבא בן יוסף</addName>
+                        <date ana="#Y">Yavnean</date>
                     </persName>
-                    <persName xml:id ="Tarfon">
+                    <persName xml:id="Tarfon">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Tarfon</forename>
                         <addName>טרפון</addName>
+                        <date ana="#Y">Yavnean</date>
                     </persName>
-                    <persName  xml:id="Yose_Hagelili">
+                    <persName xml:id="Yose_Hagelili">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Yose</forename>
                         <nameLink>of</nameLink>
                         <addName type="Toponym">Galilee</addName>
                         <addName>יוסי הגלילי</addName>
+                        <date ana="#Y">Yavnean</date>
                     </persName>
-                </personGrp>
-                <personGrp n="Ushan">
-                    <persName  xml:id="Eleazar">
+
+                    <persName xml:id="Eleazar">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Eleazar</forename>
                         <nameLink>ben</nameLink>
                         <addName type="Patronym">Shamua</addName>
                         <addName>אלעזר</addName>
+                        <date ana="#U">Ushan</date>
                     </persName>
-                    <persName xml:id ="Judah">
+                    <persName xml:id="Judah">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Judah</forename>
                         <nameLink>bar</nameLink>
                         <addName type="Patronym">Ilai</addName>
                         <addName>יהודה</addName>
                         <addName>יהודה בר אילעי</addName>
+                        <date ana="#U">Ushan</date>
                     </persName>
-                    <persName xml:id ="Meir">
+                    <persName xml:id="Meir">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Meir</forename>
                         <addName>מאיר</addName>
+                        <date ana="#U">Ushan</date>
                     </persName>
-                    <persName  xml:id="Simeon_b_Yohai">
+                    <persName xml:id="Simeon_b_Yohai">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Simeon</forename>
                         <nameLink>ben</nameLink>
                         <addName type="Patronym">Yohai</addName>
+                        <date ana="#U">Ushan</date>
                     </persName>
-                    <persName  xml:id="Yose">
+                    <persName xml:id="Yose">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Yose</forename>
                         <nameLink>bar</nameLink>
                         <addName type="Patronym">Halafta</addName>
-                    </persName>              
-                </personGrp><personGrp n="Late">
-                    <persName  xml:id="Simeon_b._Eleazar">
+                        <date ana="#U">Ushan</date>
+                    </persName>
+                
+                    <persName xml:id="Simeon_b._Eleazar">
                         <roleName type="honorific">Rabbi</roleName>
                         <forename>Simeon</forename>
                         <nameLink>ben</nameLink>
                         <addName type="Patronym" ref="#Eleazar">Eleazar</addName>
+                        <date ana="#L">Late</date>
                     </persName>
                 </personGrp>
             </listPerson>
         </body>
     </text>
-    </TEI>
+</TEI>

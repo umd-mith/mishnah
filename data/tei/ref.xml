@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?oxygen RNGSchema="?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="xml"?><?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?><!--<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>--><!--<?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="application/relax-ng-compact-syntax"?>-->
+<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
+
+
+<!--<?oxygen RNGSchema="?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="xml"?>
+<?xml-model href="../derivative/digital_mishnah_reference_test.rnc" type="application/relax-ng-compact-syntax"?>
+
+<?xml-model href="file:/Users/hlapin/Sites/HL%20Website/Faculty/HLapin/MishnahProject/tei_all_Mishnah.rnc" type="application/relax-ng-compact-syntax"?>-->
+
+
+<?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Mishnah Project Alignment File</title>
+                <title>Mishnah Project Reference File</title>
+                <respStmt>
+                    <resp>Editor</resp>
+                    <name xml:id="HL">Hayim Lapin</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Transcription and Markup</resp>
+                    <name xml:id="NE">Nurit Ezer</name>
+                    <name xml:id="DG">Daniel Goldberg</name>
+                    <name xml:id="JK">Judah Kerbel</name>
+                    <name xml:id="JDO">Justin Orr</name>
+                    <name xml:id="MP">Michael Pollack</name>
+                    <name xml:id="SS">Shlomo Strauss</name>
+                    <name xml:id="YT">Yogev Terry</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Advisory</resp>
+                    <name xml:id="DSbE">Daniel Stoekl ben Ezra</name>
+                    <name xml:id="MLS">Michael Satlow</name>
+                    <name xml:id="SYF">Shamma Friedman</name>
+                    <name xml:id="SC">Shaye Cohen</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Other Assistance</resp>
+                    <name xml:id="LJ">Leor Jacobi</name>
+                </respStmt>
             </titleStmt>
             <publicationStmt>
                 <p>This document contains the text of the Vilna edition of the Mishnah, slightly
@@ -29,7 +63,7 @@
                             470.1<desc>Based on Lowe edition; for Ch. 2, checked against photos of
                             the original ref.</desc>
                     </witness>
-                    <witness xml:id="Maim" n="M" corresp="bm_ch2_maim.xml">Maimonides Autograph
+                    <witness xml:id="Maim" n="M" corresp="bm_ch2_maim.xml" >Maimonides Autograph
                         MS</witness>
                     <witness xml:id="ParmB" n="M"> </witness>
                     <witness xml:id="Paris" n="M" corresp="bm_ch2_paris.xml">Bibliothèque nationale
@@ -43,8 +77,10 @@
                         Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript of the Babylonian
                             Talmud</desc>
                     </witness>
-                    <witness xml:id="Hamb" n="B" corresp="bm_ch2_hamb.xml">Cod. Hamburg.
-                        165</witness>
+                    <witness xml:id="Hamb" n="B" corresp="bm_ch2_hamb.xml">Staats und
+                        Universitätsbibliothek Carl von Ossietsky, Hamburg, Germany 165
+                            (19)<desc>Hamburg Codex of the Babylonian Talmud,
+                        Neziqin</desc></witness>
                     <!-- Palestinian Talmud Texts -->
                     <witness xml:id="Leid" n="Y" corresp="bm_ch2_leid.xml">Leiden Scaliger Or. 4720,
                         1289
@@ -129,9 +165,10 @@
                     <date/>
                 </item>
                 <item>
-                    <date>January 16, 2011</date>: Updated </item>
+                    <date/>
+                </item>
                 <item>
-                    <date>July 25, 2011</date>: Text of Mishnah added, and alignment of G TS E1.99
+                    <date/>
                 </item>
             </list>
         </revisionDesc>
@@ -140,11 +177,8 @@
         <body>
             <div1 xml:id="ref.1" n="Zeraim">
                 <!-- "ref." means: Replace with witness identifier -->
-                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate" xml:base="ref-0101.xml">
-                    <div3>
-                        <head/>
-                        <ab>This is sample text</ab>
-                    </div3>
+                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate">
+                    <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
                 </div2>
                 <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
                 <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
@@ -436,6 +470,9 @@
                             <w xml:id="ref.4.1.2.1.35">הראשון</w>
                             <w xml:id="ref.4.1.2.1.36">משלם</w>
                             <w xml:id="ref.4.1.2.1.37">נזק</w>
+
+                            <link target="g1.xml#g1.2v"/>
+
                             <w xml:id="ref.4.1.2.1.38">שלם</w>
                             <w xml:id="ref.4.1.2.1.39">ועל</w>
                             <w xml:id="ref.4.1.2.1.40">האחרון</w>
@@ -529,8 +566,8 @@
                             <w xml:id="ref.4.1.2.2.50">ה<link target="g1.xml#g1.damBeg.2v.8b"
                                 />חנות</w>
                             <w xml:id="ref.4.1.2.2.51">משלם</w>
-                            <w xml:id="ref.4.1.2.2.52">מה<link target="g1.xml#g1.damEnd.2v.8b"/>
-                            </w>
+                            <w xml:id="ref.4.1.2.2.52">מה</w>
+                            <link target="g1.xml#g1.damEnd.2v.8b"/>
                             <w xml:id="ref.4.1.2.2.53">שנהנית</w>
                             <w xml:id="ref.4.1.2.2.54">מתוך</w>
                             <w xml:id="ref.4.1.2.2.55">החנות</w>
@@ -577,7 +614,6 @@
                             <w xml:id="ref.4.1.2.3.31">משלם</w>
                             <w xml:id="ref.4.1.2.3.32">חצי</w>
                             <w xml:id="ref.4.1.2.3.33">נזק</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.2.4">
                             <label>ד</label>
@@ -789,7 +825,6 @@
                             <w xml:id="ref.4.1.2.5.135">הניזק</w>
                             <w xml:id="ref.4.1.2.5.136">חצי</w>
                             <w xml:id="ref.4.1.2.5.137">נזק</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.2.6">
                             <label>ו</label>
@@ -836,8 +871,8 @@
                             <w xml:id="ref.4.1.3.1.1">המניח</w>
                             <w xml:id="ref.4.1.3.1.2">את</w>
                             <w xml:id="ref.4.1.3.1.3">הכד</w>
-                            <w xml:id="ref.4.1.3.1.4">ברש<link target="g1.xml#g1.damEnd.2r.8"/>
-                            </w>
+                            <w xml:id="ref.4.1.3.1.4">ברש</w>
+                            <link target="g1.xml#g1.damEnd.2r.8"/>
                             <w xml:id="ref.4.1.3.1.5">ות</w>
                             <w xml:id="ref.4.1.3.1.6">הרבים</w>
                             <w xml:id="ref.4.1.3.1.7">ובא</w>
@@ -908,7 +943,6 @@
                             <w xml:id="ref.4.1.3.2.25">אחרים</w>
                             <w xml:id="ref.4.1.3.2.26">חייב</w>
                             <w xml:id="ref.4.1.3.2.27">בנזקן</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.3">
                             <label>ג</label>
@@ -980,7 +1014,6 @@
                             <w xml:id="ref.4.1.3.4.15">חייב</w>
                             <w xml:id="ref.4.1.3.4.16">בנזקי</w>
                             <w xml:id="ref.4.1.3.4.17">שני</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.5">
                             <label>ה</label>
@@ -1071,7 +1104,6 @@
                             <w xml:id="ref.4.1.3.5.70">בנרו</w>
                             <w xml:id="ref.4.1.3.5.71">וזה</w>
                             <w xml:id="ref.4.1.3.5.72">בפשתנו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.6">
                             <label>ו</label>
@@ -1094,7 +1126,6 @@
                             <w xml:id="ref.4.1.3.6.17">זה</w>
                             <w xml:id="ref.4.1.3.6.18">שניהם</w>
                             <w xml:id="ref.4.1.3.6.19">פטורין</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.7">
                             <label>ז</label>
@@ -1116,7 +1147,6 @@
                             <w xml:id="ref.4.1.3.7.16">היחיד</w>
                             <w xml:id="ref.4.1.3.7.17">אחר</w>
                             <w xml:id="ref.4.1.3.7.18">חייב</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.8">
                             <label>ח</label>
@@ -1198,7 +1228,6 @@
                             <w xml:id="ref.4.1.3.8.76">במותר</w>
                             <w xml:id="ref.4.1.3.8.77">נזק</w>
                             <w xml:id="ref.4.1.3.8.78">שלם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.9">
                             <label>ט</label>
@@ -1285,7 +1314,6 @@
                             <w xml:id="ref.4.1.3.9.81">החי</w>
                             <w xml:id="ref.4.1.3.9.82">וחצי</w>
                             <w xml:id="ref.4.1.3.9.83">המת</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.10">
                             <label>י</label>
@@ -1356,7 +1384,6 @@
                             <w xml:id="ref.4.1.3.10.65">שהוא</w>
                             <w xml:id="ref.4.1.3.10.66">מתחייב</w>
                             <w xml:id="ref.4.1.3.10.67">בנפשו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.3.11">
                             <label>יא</label>
@@ -1501,7 +1528,6 @@
                             <w xml:id="ref.4.1.3.11.139">מחברו</w>
                             <w xml:id="ref.4.1.3.11.140">עליו</w>
                             <w xml:id="ref.4.1.3.11.141">הראיה</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.3.T"/>
                     </div3>
@@ -1964,7 +1990,6 @@
                             <w xml:id="ref.4.1.4.9.54">שמירה</w>
                             <w xml:id="ref.4.1.4.9.55">אלא</w>
                             <w xml:id="ref.4.1.4.9.56">סכין</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.4.T"/>
                     </div3>
@@ -2410,7 +2435,6 @@
                             <w xml:id="ref.4.1.5.7.32">שדבר</w>
                             <w xml:id="ref.4.1.5.7.33">הכתוב</w>
                             <w xml:id="ref.4.1.5.7.34">בהווה</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.5.T"/>
                     </div3>
@@ -2780,7 +2804,6 @@
                             <w xml:id="ref.4.1.6.6.37">בנר</w>
                             <w xml:id="ref.4.1.6.6.38">חנכה</w>
                             <w xml:id="ref.4.1.6.6.39">פטור</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.6.T"/>
                     </div3>
@@ -3729,7 +3752,6 @@
                             <w xml:id="ref.4.1.8.7.68">בגופו</w>
                             <w xml:id="ref.4.1.8.7.69">בין</w>
                             <w xml:id="ref.4.1.8.7.70">בממונו</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.8.T"/>
                     </div3>
@@ -4257,7 +4279,6 @@
                             <w xml:id="ref.4.1.9.11.49">ויפלו</w>
                             <w xml:id="ref.4.1.9.11.50">דמיו</w>
                             <w xml:id="ref.4.1.9.11.51">לנדבה</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.1.9.12">
                             <label>יב</label>
@@ -4324,7 +4345,6 @@
                             <w xml:id="ref.4.1.9.12.61">אין</w>
                             <w xml:id="ref.4.1.9.12.62">החומש</w>
                             <w xml:id="ref.4.1.9.12.63">מעכב</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.1.9.T"/>
                     </div3>
@@ -4769,9 +4789,8 @@
                             <w xml:id="ref.4.1.10.9.8">ולא</w>
                             <link target="g4.xml#g4.damBeg.1r.2b"/>
                             <w xml:id="ref.4.1.10.9.9">משומרי</w>
-                            <w xml:id="ref.4.1.10.9.10">
-                                <link target="g4.xml#g4.damEnd.1r.2b"/>פ<link
-                                    target="g2.xml#g2.damEnd.1r.2"/>
+                            <link target="g4.xml#g4.damEnd.1r.2b"/>
+                            <w xml:id="ref.4.1.10.9.10">פ<link target="g2.xml#g2.damEnd.1r.2"/>
                                 <link target="g4.xml#g4.damBeg.1r.2c"/>י<link
                                     target="g5.xml#g5.damBeg.1vR.8a"/>רות</w>
                             <w xml:id="ref.4.1.10.9.11">ע<link target="g5.xml#g5.damEnd.1vR.8a"
@@ -4792,10 +4811,9 @@
                             <w xml:id="ref.4.1.10.9.20">וכלי</w>
                             <link target="g1.xml#g1.damBeg.1v.4"/>
                             <w xml:id="ref.4.1.10.9.21">פשתן</w>
-                            <w xml:id="ref.4.1.10.9.22">
-                                <link target="g4.xml#g4.damBeg.1r.3c"/>ב<link
-                                    target="g4.xml#g4.damEnd.1r.3c"/>גל<link
-                                    target="g4.xml#g4.damBeg.1r.3d"/>יל</w>
+                            <link target="g4.xml#g4.damBeg.1r.3c"/>
+                            <w xml:id="ref.4.1.10.9.22">ב<link target="g4.xml#g4.damEnd.1r.3c"
+                                    />גל<link target="g4.xml#g4.damBeg.1r.3d"/>יל</w>
                             <w xml:id="ref.4.1.10.9.23">ועגלים</w>
                             <w xml:id="ref.4.1.10.9.24">בש<link target="g4.xml#g4.damEnd.1r.3d"
                                     />רו<link target="g4.xml#g4.damBeg.1r.3e"/>ן</w>
@@ -4898,9 +4916,9 @@
 							or wrap in "choice" ?-->
                             <!-- First text expression here -->
                             <w xml:id="ref.4.1.10.10.50">חייב</w>
-                            <w xml:id="ref.4.1.10.10.51">
-                                <link target="g2.xml#g2.damBeg.1r.7b"/>להחז<link
-                                    target="g2.xml#g2.damEnd.1r.7b"/>יר</w>
+                            <link target="g2.xml#g2.damBeg.1r.7b"/>
+                            <w xml:id="ref.4.1.10.10.51">להחז<link target="g2.xml#g2.damEnd.1r.7b"
+                                />יר</w>
                             <link target="g2.xml#g2.damBeg.1r.8a"/>
                             <w xml:id="ref.4.1.10.10.52">לבעלים</w>
                             <!-- Second text expression here -->
@@ -5041,7 +5059,6 @@
                             <w xml:id="ref.4.2.1.1.66">וזה</w>
                             <w xml:id="ref.4.2.1.1.67">נוטל</w>
                             <w xml:id="ref.4.2.1.1.68">רביע</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.1.2">
                             <label>ב</label>
@@ -5104,7 +5121,6 @@
                             <w xml:id="ref.4.2.1.2.43">חולקים</w>
                             <w xml:id="ref.4.2.1.2.44">בלא</w>
                             <w xml:id="ref.4.2.1.2.45">שבועה</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.1.3">
                             <label>ג</label>
@@ -5148,7 +5164,6 @@
                             <w xml:id="ref.4.2.1.3.28">לא</w>
                             <w xml:id="ref.4.2.1.3.29">אמר</w>
                             <w xml:id="ref.4.2.1.3.30">כלום</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.1.4">
                             <label>ד</label>
@@ -5375,12 +5390,12 @@
                             <w xml:id="ref.4.2.1.7.12">לא</w>
                             <w xml:id="ref.4.2.1.7.13">יח<link target="g2.xml#g2.damEnd.1r.29a"
                                 />זיר</w>
-                            <w xml:id="ref.4.2.1.7.14">
-                                <link target="g2.xml#g2.damBeg.1r.29b"/>שא<link
-                                    target="g2.xml#g2.damEnd.1r.29b"/>ני</w>
-                            <w xml:id="ref.4.2.1.7.15">
-                                <link target="g2.xml#g2.damBeg.1r.29c"/>או<link
-                                    target="g2.xml#g2.damEnd.1r.29c"/>מר</w>
+                            <link target="g2.xml#g2.damBeg.1r.29b"/>
+                            <w xml:id="ref.4.2.1.7.14">שא<link target="g2.xml#g2.damEnd.1r.29b"
+                                />ני</w>
+                            <link target="g2.xml#g2.damBeg.1r.29c"/>
+                            <w xml:id="ref.4.2.1.7.15">או<link target="g2.xml#g2.damEnd.1r.29c"
+                                />מר</w>
                             <w xml:id="ref.4.2.1.7.16">כתובים</w>
                             <w xml:id="ref.4.2.1.7.17">היו</w>
                             <w xml:id="ref.4.2.1.7.18">ונמלך</w>
@@ -5388,7 +5403,6 @@
                             <w xml:id="ref.4.2.1.7.20">שלא</w>
                             <link target="g2.xml#g2.damBeg.1r.30"/>
                             <w xml:id="ref.4.2.1.7.21">לתנם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.1.8">
                             <label>ח</label>
@@ -5437,10 +5451,9 @@
                             <w xml:id="ref.4.2.1.8.27">של</w>
                             <w xml:id="ref.4.2.1.8.28">ש<link target="g7.xml#g7.damBeg.1r.10b"
                                     />טרו<link target="g7.xml#g7.damEnd.1r.10b"/>ת</w>
-                            <w xml:id="ref.4.2.1.8.29">
-                                <link target="g7.xml#g7.damBeg.1r.10c"/>ה<link
-                                    target="g7.xml#g7.damEnd.1r.10c"/>ר<link
-                                    target="g2.xml#g2.damEnd.1r.32"/>
+                            <link target="g7.xml#g7.damBeg.1r.10c"/>
+                            <w xml:id="ref.4.2.1.8.29">ה<link target="g7.xml#g7.damEnd.1r.10c"
+                                    />ר<link target="g2.xml#g2.damEnd.1r.32"/>
                                 <link target="g7.xml#g7.damBeg.1r.10d"/>י</w>
                             <w xml:id="ref.4.2.1.8.30">זה</w>
                             <w xml:id="ref.4.2.1.8.31">יחזיר</w>
@@ -5507,9 +5520,8 @@
                                 />שה</w>
                             <w xml:id="ref.4.2.1.8.74">מה</w>
                             <w xml:id="ref.4.2.1.8.75">שבסמפו<link target="g7.xml#g7.damBeg.1r.14b"
-                                    />ות<link target="g7.xml#g7.damEnd.1r.14b"/>
-                            </w>
-                            
+                                />ות</w>
+                            <link target="g7.xml#g7.damEnd.1r.14b"/>
                         </ab>
                     </div3>
                     <div3 xml:id="ref.4.2.2">
@@ -5572,8 +5584,8 @@
                                 />צי</w>
                             <w xml:id="ref.4.2.2.1.34">פשתן</w>
                             <w xml:id="ref.4.2.2.1.35">ולשונות</w>
-                            <w xml:id="ref.4.2.2.1.36">של<link target="g4.xml#g4.damBeg.1v.2c"/>
-                            </w>
+                            <w xml:id="ref.4.2.2.1.36">של</w>
+                            <link target="g4.xml#g4.damBeg.1v.2c"/>
                             <w xml:id="ref.4.2.2.1.37">ארגמן</w>
                             <w xml:id="ref.4.2.2.1.38">הרי</w>
                             <link target="g2.xml#g2.damEnd.1v.2a"/>
@@ -5706,7 +5718,6 @@
                             <w xml:id="ref.4.2.2.2.45">ח<link target="g4.xml#g4.damEnd.1v.8"
                                 />ייב</w>
                             <w xml:id="ref.4.2.2.2.46">להכריז</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.3">
                             <link target="g4.xml#g4.damBeg.1v.8"/>
@@ -5791,7 +5802,6 @@
                             <link target="g2.xml#g2.damEnd.1v.12b"/>
                             <w xml:id="ref.4.2.2.3.57">אלו</w>
                             <w xml:id="ref.4.2.2.3.58">שלו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.4">
                             <label>ד</label>
@@ -5835,8 +5845,8 @@
                             <link target="g6.xml#g6.damBeg.1v.4b"/>
                             <link target="g2.xml#g2.damEnd.1v.14"/>
                             <w xml:id="ref.4.2.2.4.25">מחביר<link target="g2.xml#g2.damBeg.1v.15a"
-                                    />ו<link target="g2.xml#g2.damEnd.1v.15a"/>
-                            </w>
+                                />ו</w>
+                            <link target="g2.xml#g2.damEnd.1v.15a"/>
                             <w xml:id="ref.4.2.2.4.26">או</w>
                             <link target="g1.xml#g1.damBeg.1r.25"/>
                             <w xml:id="ref.4.2.2.4.27">ששלח</w>
@@ -5930,8 +5940,8 @@
                             <w xml:id="ref.4.2.2.6.8">בו</w>
                             <w xml:id="ref.4.2.2.6.9">שכניו</w>
                             <w xml:id="ref.4.2.2.6.10">דבר<link target="g2.xml#g2.damBeg.1v.19a"
-                                    />י<link target="g2.xml#g2.damEnd.1v.19a"/>
-                            </w>
+                                />י</w>
+                            <link target="g2.xml#g2.damEnd.1v.19a"/>
                             <w xml:id="ref.4.2.2.6.11">רבי</w>
                             <w xml:id="ref.4.2.2.6.12">מאיר</w>
                             <w xml:id="ref.4.2.2.6.13">רבי</w>
@@ -5966,7 +5976,6 @@
                             <link target="g2.xml#g2.damEnd.1v.20b"/>
                             <w xml:id="ref.4.2.2.6.30">יום</w>
                             <w xml:id="ref.4.2.2.6.31">אחד</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.7">
                             <label>ז</label>
@@ -6087,7 +6096,6 @@
                             <w xml:id="ref.4.2.2.7.79">אין</w>
                             <w xml:id="ref.4.2.2.7.80">חייב</w>
                             <w xml:id="ref.4.2.2.7.81">באחריות</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.8">
                             <label>ח</label>
@@ -6183,7 +6191,6 @@
                             <w xml:id="ref.4.2.2.8.64">זה</w>
                             <w xml:id="ref.4.2.2.8.65">לא</w>
                             <w xml:id="ref.4.2.2.8.66">יטול</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.9">
                             <label>ט</label>
@@ -6209,8 +6216,8 @@
                             <w xml:id="ref.4.2.2.9.13">חמור</w>
                             <w xml:id="ref.4.2.2.9.14">וכליו</w>
                             <w xml:id="ref.4.2.2.9.15">הפוכי<link target="g2.xml#g2.damBeg.1v.33a"
-                                    />ן<link target="g2.xml#g2.damEnd.1v.33a"/>
-                            </w>
+                                />ן</w>
+                            <link target="g2.xml#g2.damEnd.1v.33a"/>
                             <w xml:id="ref.4.2.2.9.16">פר<link target="g2.xml#g2.damBeg.1v.33b"
                                 />ה</w>
                             <w xml:id="ref.4.2.2.9.17">רצה</w>
@@ -6228,8 +6235,8 @@
                             <w xml:id="ref.4.2.2.9.26">וברחה</w>
                             <w xml:id="ref.4.2.2.9.27">אפילו</w>
                             <w xml:id="ref.4.2.2.9.28">ארבע<link target="g2.xml#g2.damBeg.1v.34a"
-                                    />ה<link target="g2.xml#g2.damEnd.1v.34a"/>
-                            </w>
+                                />ה</w>
+                            <link target="g2.xml#g2.damEnd.1v.34a"/>
                             <w xml:id="ref.4.2.2.9.29">וח<link target="g2.xml#g2.damBeg.1v.34b"
                                 />משה</w>
                             <w xml:id="ref.4.2.2.9.30">פעמים</w>
@@ -6287,7 +6294,6 @@
                             <link target="g2.xml#g2.damEnd.1v.36b"/>
                             <w xml:id="ref.4.2.2.9.69">שלו</w>
                             <w xml:id="ref.4.2.2.9.70">קודם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.10">
                             <link target="g2.xml#g2.damBeg.1v.36c"/>
@@ -6395,7 +6401,6 @@
                             <w xml:id="ref.4.2.2.10.91">שיכול</w>
                             <w xml:id="ref.4.2.2.10.92">לעמוד</w>
                             <w xml:id="ref.4.2.2.10.93">בו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.2.11">
                             <label>יא</label>
@@ -6494,7 +6499,6 @@
                             <w xml:id="ref.4.2.2.11.74">פודה</w>
                             <w xml:id="ref.4.2.2.11.75">את</w>
                             <w xml:id="ref.4.2.2.11.76">רבו</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.2.T">
                             <w xml:id="ref.4.2.2.T.1">סליק</w>
@@ -6662,9 +6666,9 @@
                                     />נ<link target="g3.xml#g3.damEnd.1v.18b"/>ה</w>
                             <w xml:id="ref.4.2.3.3.7">ואיני</w>
                             <w xml:id="ref.4.2.3.3.8">יודע</w>
-                            <w xml:id="ref.4.2.3.3.9">
-                                <link target="g3.xml#g3.damBeg.1v.18c"/>א<link
-                                    target="g3.xml#g3.damEnd.1v.18c"/>יזה</w>
+                            <link target="g3.xml#g3.damBeg.1v.18c"/>
+                            <w xml:id="ref.4.2.3.3.9">א<link target="g3.xml#g3.damEnd.1v.18c"
+                                />יזה</w>
                             <w xml:id="ref.4.2.3.3.10">מכם</w>
                             <w xml:id="ref.4.2.3.3.11">או</w>
                             <link target="g3.xml#g3.damBeg.1v.19a"/>
@@ -6702,7 +6706,6 @@
                                 />פי</w>
                             <link target="g3.xml#g3.damEnd.1r.1c"/>
                             <w xml:id="ref.4.2.3.3.30">עצמו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.3.4">
                             <label>ד</label>
@@ -6948,8 +6951,8 @@
                             <w xml:id="ref.4.2.3.7.28">לפי</w>
                             <w xml:id="ref.4.2.3.7.29">ה<link target="g3.xml#g3.damBeg.1r.19c"
                                 />מדה</w>
-                            <w xml:id="ref.4.2.3.7.30">
-                                <link target="g3.xml#g3.damEnd.1r.19c"/>הכל</w>
+                            <link target="g3.xml#g3.damEnd.1r.19c"/>
+                            <w xml:id="ref.4.2.3.7.30">הכל</w>
                             <link target="g3.xml#g3.1r.pageEnd"/>
                             <w xml:id="ref.4.2.3.7.31">לפי</w>
                             <w xml:id="ref.4.2.3.7.32">הזמן</w>
@@ -7242,7 +7245,6 @@
                             <w xml:id="ref.4.2.3.12.61">משלם</w>
                             <w xml:id="ref.4.2.3.12.62">דמי</w>
                             <w xml:id="ref.4.2.3.12.63">כולה</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.3.T"/>
                     </div3>
@@ -7563,7 +7565,6 @@
                             <w xml:id="ref.4.2.4.7.39">אחריו</w>
                             <w xml:id="ref.4.2.4.7.40">אפילו</w>
                             <w xml:id="ref.4.2.4.7.41">למדי</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.4.8">
                             <label>ח</label>
@@ -7859,7 +7860,6 @@
                             <w xml:id="ref.4.2.4.12.72">ולא</w>
                             <w xml:id="ref.4.2.4.12.73">את</w>
                             <w xml:id="ref.4.2.4.12.74">הכלים</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.4.T"/>
                     </div3>
@@ -8273,7 +8273,6 @@
                             <w xml:id="ref.4.2.5.7.86">תן</w>
                             <w xml:id="ref.4.2.5.7.87">לי</w>
                             <w xml:id="ref.4.2.5.7.88">מעותי</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.5.8">
                             <label>ח</label>
@@ -8462,7 +8461,6 @@
                             <w xml:id="ref.4.2.5.10.97">פלוני</w>
                             <w xml:id="ref.4.2.5.10.98">ממקום</w>
                             <w xml:id="ref.4.2.5.10.99">פלוני</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.5.11">
                             <label>יא</label>
@@ -8836,7 +8834,6 @@
                             <w xml:id="ref.4.2.6.8.23">זה</w>
                             <w xml:id="ref.4.2.6.8.24">וזה</w>
                             <w xml:id="ref.4.2.6.8.25">לישבע</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.6.T"/>
                     </div3>
@@ -9410,7 +9407,6 @@
                             <w xml:id="ref.4.2.8.1.44">עמו</w>
                             <w xml:id="ref.4.2.8.1.45">שלם</w>
                             <w xml:id="ref.4.2.8.1.46">ישלם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.8.2">
                             <label>ב</label>
@@ -9485,7 +9481,6 @@
                             <w xml:id="ref.4.2.8.2.69">איני</w>
                             <w xml:id="ref.4.2.8.2.70">יודע</w>
                             <w xml:id="ref.4.2.8.2.71">יחלוקו</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.2.8.3">
                             <label>ג</label>
@@ -10395,7 +10390,6 @@
                             <w xml:id="ref.4.2.9.13.100">נפש</w>
                             <w xml:id="ref.4.2.9.13.101">הוא</w>
                             <w xml:id="ref.4.2.9.13.102">חבל</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.9.T"/>
                     </div3>
@@ -10773,7 +10767,6 @@
                             <w xml:id="ref.4.2.10.6.71">והשאר</w>
                             <w xml:id="ref.4.2.10.6.72">של</w>
                             <w xml:id="ref.4.2.10.6.73">תחתון</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.2.10.T"/>
                     </div3>
@@ -10848,7 +10841,6 @@
                             <w xml:id="ref.4.3.1.1.60">והאבנים</w>
                             <w xml:id="ref.4.3.1.1.61">של</w>
                             <w xml:id="ref.4.3.1.1.62">שניהם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.3.1.2">
                             <label>ב</label>
@@ -10905,7 +10897,6 @@
                             <w xml:id="ref.4.3.1.2.51">והאבנים</w>
                             <w xml:id="ref.4.3.1.2.52">של</w>
                             <w xml:id="ref.4.3.1.2.53">שניהם</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.3.1.3">
                             <label>ג</label>
@@ -11040,7 +11031,6 @@
                             <w xml:id="ref.4.3.1.5.51">כאנשי</w>
                             <w xml:id="ref.4.3.1.5.52">העיר</w>
                             <w xml:id="ref.4.3.1.5.53">מיד</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.3.1.6">
                             <label>ו</label>
@@ -11158,7 +11148,6 @@
                             <w xml:id="ref.4.3.1.6.112">רוצים</w>
                             <w xml:id="ref.4.3.1.6.113">לא</w>
                             <w xml:id="ref.4.3.1.6.114">יחלוקו</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.3.1.T"/>
                     </div3>
@@ -12856,7 +12845,6 @@
                             <w xml:id="ref.4.3.4.9.153">ואת</w>
                             <w xml:id="ref.4.3.4.9.154">סדן</w>
                             <w xml:id="ref.4.3.4.9.155">השקמה</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.3.4.T"/>
                     </div3>
@@ -13454,7 +13442,6 @@
                             <w xml:id="ref.4.3.5.11.46">לגדוש</w>
                             <w xml:id="ref.4.3.5.11.47">לא</w>
                             <w xml:id="ref.4.3.5.11.48">ימחוק</w>
-                            
                         </ab>
                         <trailer xml:id="ref.4.3.5.T"/>
                     </div3>
@@ -14845,7 +14832,6 @@
                             <w xml:id="ref.4.3.9.4.40">שהן</w>
                             <w xml:id="ref.4.3.9.4.41">גמילות</w>
                             <w xml:id="ref.4.3.9.4.42">חסדים</w>
-                            
                         </ab>
                         <ab xml:id="ref.4.3.9.5">
                             <label>ה</label>
@@ -15853,5 +15839,241 @@
                 <div2 xml:id="ref.6.12" n="Uqtsim" type="Tractate"/>
             </div1>
         </body>
+        <back>
+            <div type="editorial">
+                <div type="periodization">
+                    <note>Periodization is approximate. The coarsest subdivisions are into "Early,"
+                        "Yavnean," "Ushan," and "Late" periods. Within these, both <ref
+                            target="#alb-mav">Albeck</ref> and <ref target="#stem-str"
+                            >Stemberger-Strack</ref> subdivide the generations further
+                        (Stemberger-Strack largely corresponding to Albeck). However, since
+                        Stemberger-Strack's index cites the generations according to the coarser
+                        periodization as T, T1, T2, etc., it is this periodization that is given in
+                        references to Stemberger-Strack. </note>
+                    <list n="early">
+                        <head xml:id="E">Early<date notBefore="-0200" notAfter="0070"/></head>
+                        <item xml:id="T" corresp="#alb-A">The Earliest Period<date notBefore="-0200"
+                                notAfter="-0001"/><ref target="#stem-str">63 - 65</ref></item>
+                        <item xml:id="T1" corresp="#alb-B">First Generation of Tannaites<date
+                                notBefore="0001" notAfter="0070"/><ref target="#stem-str">65 -
+                                68</ref></item>
+                        <item xml:id="alb-A" corresp="#T">Simeon the Righteous to Houses<date
+                                notBefore="-0200" notAfter="-0001"/><ref target="#alb-mav">216 -
+                                218</ref></item>
+                        <item xml:id="alb-B" corresp="#T1">Houses to Revolt<date notBefore="0001"
+                                notAfter="0070"/><ref target="#alb-mav">218 - 222</ref></item>
+                    </list>
+                    <list n="yavnean">
+                        <head xml:id="Y" corresp="T2">Yavnean<date notBefore="0070" notAfter="0135"
+                            /></head>
+                        <item xml:id="T2" corresp="#Y">Second Generation, 90-130<date
+                                notBefore="0090" notAfter="0130"/><ref target="#stem-str">69 -
+                                75</ref></item>
+                        <item xml:id="alb-C1">Revolt to Bar Kokhba, first group<date
+                                notBefore="0070" notAfter="0100"/><ref target="#alb-mav">222 -
+                                225</ref></item>
+                        <item xml:id="alb-C2">Revolt to Bar Kokhba, second group<date
+                                notBefore="0100" notAfter="0135"/><ref target="#alb-mav">225 -
+                                228</ref></item>
+                    </list>
+                    <list n="ushan">
+                        <head xml:id="U" corresp="#abl-D">Ushan<date notBefore="0135"
+                                notAfter="0170"/></head>
+                        <item xml:id="T3" corresp="#U">Third Generation of Tannaites, 130 - 160<date
+                                notBefore="0130" notAfter="0160"/><ref target="#stem-str">75 -
+                                78</ref></item>
+                        <item xml:id="alb-D" corresp="#U">Bar Kokhba to Judah the Patriarch<ref
+                                target="#alb-mav">228 - 231</ref><date notBefore="0135"
+                                notAfter="0170"/></item>
+                    </list>
+                    <list n="late">
+                        <head xml:id="L" corresp="#abl-E">Late<date notBefore="0170" notAfter="0220"
+                            /></head>
+                        <item xml:id="alb-E" corresp="#L">Generation of Judah the Patriarch<ref
+                                target="#alb-mav">231 - 233</ref><date notBefore="0170"
+                                notAfter="0220"/></item>
+                        <item xml:id="T4">Fourth Generation of Tannaites<date notBefore="0160"
+                                notAfter="0200"/><ref target="#stem-str"/></item>
+                        <item xml:id="T5">Fifth Generation of Tannaites<date notBefore="0200"
+                                notAfter="0240"/><ref target="#stem-str"/></item>
+                    </list>
+                    <list n="other">
+                        <head>Other</head>
+                        <item xml:id="Bib">Biblical</item>
+                    </list>
+                </div>
+                <div type="persons">
+                    <listPerson>
+                        <personGrp>
+                            <persName xml:id="Elijah">
+                                <forename>Elijah</forename>
+                                <addName xml:lang="he">אליהו</addName>
+                                <date ana="#Bib"/>
+                            </persName>
+                            <persName xml:id="Aqiva">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Aqiva</forename>
+                                <nameLink>ben</nameLink>
+                                <addName>עקיבא</addName>
+                                <addName>עקיבא בן יוסף</addName>
+                                <date ana="#Y #T1 #alb-B2">Yavnean</date>
+                            </persName>
+                            <persName xml:id="Tarfon">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Tarfon</forename>
+                                <addName>טרפון</addName>
+                                <date ana="#Y">Yavnean</date>
+                            </persName>
+                            <persName xml:id="Yose_Hagelili">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Yose</forename>
+                                <nameLink>of</nameLink>
+                                <addName type="Toponym">Galilee</addName>
+                                <addName>יוסי הגלילי</addName>
+                                <date ana="#Y">Yavnean</date>
+                            </persName>
+                            <persName xml:id="Eleazar">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Eleazar</forename>
+                                <nameLink>ben</nameLink>
+                                <addName type="Patronym">Shamu'a</addName>
+                                <addName>אלעזר</addName>
+                                <date ana="#U">Ushan</date>
+                            </persName>
+                            <persName xml:id="Judah">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Judah</forename>
+                                <nameLink>bar</nameLink>
+                                <addName type="Patronym">Ilai</addName>
+                                <addName>יהודה</addName>
+                                <addName>יהודה בר אילעי</addName>
+                                <date ana="#U">Ushan</date>
+                            </persName>
+                            <persName xml:id="Meir">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Meir</forename>
+                                <addName>מאיר</addName>
+                                <date ana="#U">Ushan</date>
+                            </persName>
+                            <persName xml:id="Simeon_b_Yohai">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Simeon</forename>
+                                <nameLink>ben</nameLink>
+                                <addName type="Patronym">Yohai</addName>
+                                <date ana="#U">Ushan</date>
+                            </persName>
+                            <persName xml:id="Yose">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Yose</forename>
+                                <nameLink>bar</nameLink>
+                                <addName type="Patronym">Halafta</addName>
+                                <date ana="#U">Ushan</date>
+                            </persName>
+                            <persName xml:id="Simeon_b._Eleazar">
+                                <roleName type="honorific">Rabbi</roleName>
+                                <forename>Simeon</forename>
+                                <nameLink>ben</nameLink>
+                                <addName type="Patronym" ref="#Eleazar">Eleazar</addName>
+                                <date ana="#L">Late</date>
+                            </persName>
+                        </personGrp>
+                    </listPerson>
+                </div>
+                <div type="places">
+                    <listPlace>
+                        <place>
+                            <!-- Use Segal, Hageografya bamishnah, at http://www.shechem.org/torah/geomishna/index.html -->
+                            <placeName>
+                                <!-- primary name in plain text-->
+                                <placeName xml:lang="en"><!-- Anglicized name --></placeName>
+                                <placeName xml:lang="he" type="alt"
+                                    ><!-- alternate spellings,
+                                    separated by commas --></placeName>
+                            </placeName>
+                            <location>
+                                <geo><!-- Use Survey of Israel coordinates --></geo>
+                            </location>
+                        </place>
+                    </listPlace>
+                </div>
+                <div type="lang"/>
+                <div type="bibl">
+                    <biblStruct type="book" xml:id="alb-mav">
+                        <monogr>
+                            <author>Albeck, Hanoch</author>
+                            <title type="he" level="m">מבוא למשנה</title>
+                            <title type="en">Introduction to the Mishnah</title>
+                            <title type="rom">Mavo la-mishnah</title>
+                            <title type="short-en">Introduction</title>
+                            <title type="short-he">מבוא</title>
+                            <title type="short-rom">Mavo</title>
+                            <textLang>Hebrew</textLang>
+                            <imprint>
+                                <pubPlace>Tel Aviv</pubPlace>
+                                <publisher>Mosad Bialik</publisher>
+                                <date>1959</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="ilan">
+                        <monogr>
+                            <author>Ilan, Tal</author>
+                            <title level="m">Lexicon of Jewish Names in Late Antiquity, Part II:
+                                Palestine 330 BCE - 200 CE</title>
+                            <title level="m" type="short">Lexicon</title>
+                            <textLang>English</textLang>
+                            <imprint>
+                                <pubPlace>Tübingen</pubPlace>
+                                <publisher>Mohr Siebeck</publisher>
+                                <date>1992</date>
+                            </imprint>
+                        </monogr>
+                        <series>
+                            <title>Texts and Studies in Ancient Judaism</title>
+                            <title type="short">TSAJ</title>
+                            <biblScope type="vol">91</biblScope>
+                        </series>
+                    </biblStruct>
+                    <biblStruct type="website" xml:id="seg">
+                        <monogr>
+                            <author>Segal, Ben Zion<addName xml:lang="he">סגל, בן
+                                ציון</addName></author>
+                            <title type="he">הגיאוגרפיה במשנה: המקומות טיבם וערכם</title>
+                            <title type="rom">Ha-geografya ba-mishnah: Ha-meqomot, tivam,
+                                ve-erkham</title>
+                            <title type="en">Geography in the Mishnah: The Places, Their Nature and
+                                their Significance</title>
+                            <title type="short-rom">Ha-geografya</title>
+                            <title type="short-he">הגיאוגרפיה</title>
+                            <title type="short-en">Geography</title>
+                            <textLang>Hebrew</textLang>
+                            <imprint>
+                                <pubPlace>Shechem</pubPlace>
+                                <publisher>Sha'are Shechem</publisher>
+                                <date>n.d.</date>
+                                <link target="http://www.shechem.org/torah/geomishna/index.html"/>
+                            </imprint>
+                        </monogr>
+                        <note>Previously published in print, Jerusalem: Ha-makhon le-heqer
+                            ha-mishnah, 1979.</note>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="stem-str">
+                        <monogr>
+                            <author>Strack, Hermann</author>
+                            <author>Stemberger, Günter</author>
+                            <title>Introduction to the Talmud and Midrash</title>
+                            <textLang>English</textLang>
+                            <editor>Brockmuehl, Markus</editor>
+                            <edition>2</edition>
+                            <imprint>
+                                <pubPlace>Minneapolis</pubPlace>
+                                <publisher>Fortress Press</publisher>
+                                <date>1996</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
+                </div>
+            </div>
+        </back>
     </text>
 </TEI>
