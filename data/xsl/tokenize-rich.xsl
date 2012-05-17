@@ -94,8 +94,12 @@
                 <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
-            <xsl:when test="self::tei:c[not(@type = 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
+            <xsl:when test="self::tei:c[(@rend != 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
                 <xsl:value-of select="."/>
+                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
+            </xsl:when>
+            <xsl:when test="self::tei:c[@rend = 'nonlettermark'] | self::tei:g[@ref = '#fill']">
+                
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:quote">

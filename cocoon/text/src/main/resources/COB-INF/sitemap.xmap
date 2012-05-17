@@ -16,93 +16,112 @@
   limitations under the License.
 -->
 <map:sitemap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
- xmlns:map="http://apache.org/cocoon/sitemap/1.0">
-
-  <map:components>
-    <map:serializers>
-      <map:serializer name="tei"
-        mime-type="application/xml"
-        src="org.apache.cocoon.serialization.XMLSerializer"/>
-    </map:serializers>
-    <map:transformers>
-      <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
-      <map:transformer name="xslt-saxon" src="org.apache.cocoon.transformation.TraxTransformer">
-        <xslt-processor-role>saxon</xslt-processor-role>
-      </map:transformer>
-    </map:transformers>
-  </map:components>
-
-  <map:pipelines>
-    <map:pipeline id="roma">
-      <map:match pattern="*.rng">
-        <map:generate src="resource://odd/{1}.odd.xml"/>
-        <map:transform src="resource://roma/odds2/odd2odd.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://roma/odds2/odd2relax.xsl" type="xslt-saxon"/>
-        <map:serialize type="xml"/>
-      </map:match>
-    </map:pipeline>
-
-    <map:pipeline id="text-viewer">
-
-      <map:match pattern="synopsis/*">
-        <map:generate src="resource://tei/ref.xml"/>
-        <map:transform src="resource://xsl/ch{1}synopsis.xsl" type="xslt-saxon"/>
-        <map:serialize type="html"/>
-      </map:match>
-
-      <map:match pattern="collate-demo">
-        <map:generate src="resource://tei/collate-demo.xml"/>
-        <map:transform type="collatex"/>
-        <map:serialize type="xml"/>
-      </map:match>
-
-      <map:match pattern="collatex-demo">
-         <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
-         <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl" type="xslt-saxon"/>
-         <map:transform type="collatex"/>
-         <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon"/>
-         <map:serialize type="tei"/>
-      </map:match>
-
-      <map:match pattern="css/*.css">
-        <map:read src="resource://css/{1}.css" mime-type="text/css"/>
-      </map:match>
-
-      <map:match pattern="*.flat.xml">
-        <map:generate src="resource://tei/{1}.xml"/>
-        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
-        <map:serialize type="tei"/>
-      </map:match>
-
-      <map:match pattern="*.ab-ids.xml">
-        <map:generate src="resource://tei/{1}.xml"/>
-        <map:transform src="resource://xsl/extract-ab-ids.xsl" type="xslt-saxon"/>
-        <map:serialize type="tei"/>
-      </map:match>
-
-      <map:match pattern="*.pages.xml">
-        <map:generate src="resource://tei/{1}.xml"/>
-        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
-        <map:serialize type="tei"/>
-      </map:match>
-
-      <map:match pattern="*.pages.html">
-        <map:generate src="resource://tei/{1}.xml"/>
-        <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
-        <map:transform src="resource://xsl/pages-to-html.xsl" type="xslt-saxon"/>
-        <map:serialize type="html"/>
-      </map:match>
-
-      <map:match pattern="*.xml">
-        <map:generate src="resource://tei/{1}.xml"/>
-        <map:serialize type="tei"/>
-      </map:match>
-
-    </map:pipeline>
-  </map:pipelines>
-
+    xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
+    xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+    <map:components>
+        <map:serializers>
+            <map:serializer name="tei" mime-type="application/xml"
+                src="org.apache.cocoon.serialization.XMLSerializer"/>
+        </map:serializers>
+        <map:transformers>
+            <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
+            <map:transformer name="xslt-saxon"
+                src="org.apache.cocoon.transformation.TraxTransformer">
+                <xslt-processor-role>saxon</xslt-processor-role>
+            </map:transformer>
+        </map:transformers>
+    </map:components>
+    <map:pipelines>
+        <map:pipeline id="roma">
+            <map:match pattern="*.rng">
+                <map:generate src="resource://odd/{1}.odd.xml"/>
+                <map:transform src="resource://roma/odds2/odd2odd.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://roma/odds2/odd2relax.xsl" type="xslt-saxon"/>
+                <map:serialize type="xml"/>
+            </map:match>
+        </map:pipeline>
+        <map:pipeline id="text-viewer">
+            <map:match pattern="synopsis/*">
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/ch{1}synopsis.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
+            </map:match>
+            <!-- Following reflect earlier stages. Delete? -->
+            <!--<map:match pattern="collate-demo">
+                <map:generate src="resource://tei/collate-demo.xml"/>
+                <map:transform type="collatex"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            <map:match pattern="collatex-demo">
+                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+                <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl"
+                    type="xslt-saxon"/>
+                <map:transform type="collatex"/>
+                <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>-->
+            <map:match pattern="tokenize-rich">
+                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="collatex-rich">
+                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/tokenize-rich-collatex.xsl" type="xslt-saxon"/>
+                <map:transform type="collatex"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            <map:match pattern="merge">
+                <map:aggregate element="site">
+                    <map:part src="cocoon:/tokenize-rich" element="tokens"/>
+                    <map:part src="cocoon:/collatex-rich" element="collatex"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                    type="xslt-saxon"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            <map:match pattern="tokenize-rich-collatex-merge-output">
+                <map:aggregate element="site">
+                    <map:part src="cocoon:/tokenize-rich" element="tokens"/>
+                    <map:part src="cocoon:/collatex-rich" element="collatex"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                    type="xslt-saxon"/>
+                <map:transform src="resource://xsl/collatex-rich-to-apparatus.xsl"
+                    type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="css/*.css">
+                <map:read src="resource://css/{1}.css" mime-type="text/css"/>
+            </map:match>
+            <map:match pattern="*.flat.xml">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="*.ab-ids.xml">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/extract-ab-ids.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="*.pages.xml">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="*.pages.html">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/pages-to-html.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
+            </map:match>
+            <map:match pattern="*.xml">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:serialize type="tei"/>
+            </map:match>
+        </map:pipeline>
+    </map:pipelines>
 </map:sitemap>
-
