@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:cx="http://interedition.eu/collatex/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
     xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd cx tei my" version="2.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
@@ -48,22 +49,26 @@ pipeline. -->
                                 <xsl:value-of select="."/>
                             </xsl:variable>
                             <xsl:variable name="cell">
-                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]"/>
+                                <xsl:value-of
+                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]"
+                                />
                             </xsl:variable>
                             <xsl:attribute name="witness">
                                 <xsl:value-of select="$witness"/>
                             </xsl:attribute>
                             <xsl:attribute name="state">
-                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"/>
+                                <xsl:value-of
+                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"
+                                />
                             </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
                             <xsl:choose>
-                              <xsl:when test="$cell/text() = ''">
-                                <xsl:text>–</xsl:text>
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:value-of select="$cell/text()"/>
-                              </xsl:otherwise>
+                                <xsl:when test="$cell/text() = ''">
+                                    <xsl:text>–</xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$cell/text()"/>
+                                </xsl:otherwise>
                             </xsl:choose>
                         </xsl:element>
                     </xsl:for-each>
@@ -83,9 +88,11 @@ pipeline. -->
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
                 <h2>Sample Collatex Output</h2>
+
                 <!-- Isn't this just generating an unnecessary heading? -->
                 <h2><xsl:value-of select="count($readings-list)"/></h2>
                 <h2><xsl:variable name="ref-cit">
+
                         <xsl:value-of
                             select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/@n"
                         />
@@ -103,7 +110,9 @@ pipeline. -->
                             select="document(normalize-space(concat('../tei/ref.xml',$look-up)),document(''))"
                         />
                     </xsl:variable>
-                    <span class="tractate"><xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/></span>
+                    <span class="tractate">
+                        <xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/>
+                    </span>
                     <xsl:analyze-string select="$ref-cit"
                         regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                         <xsl:matching-substring><xsl:text> </xsl:text><xsl:value-of
@@ -111,9 +120,11 @@ pipeline. -->
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
+
              
                 <h3>1. Sources to Collate</h3>
                 <form name="selection" action="collate" method="get">
+
                 <table class="sources" dir="ltr">
                     <xsl:for-each select="$sortlist/tei:item">
                         <tr><td>
@@ -151,7 +162,7 @@ pipeline. -->
                     to see additional columns. </p>
                 <div class="alignment-table">
                     <table dir="rtl">
-                      <xsl:for-each select="$readings-list/my:lemma[1]/my:reading/@sort-order">
+                        <xsl:for-each select="$readings-list/my:lemma[1]/my:reading/@sort-order">
                             <xsl:variable name="sort-order">
                                 <xsl:value-of select="."/>
                             </xsl:variable>
@@ -168,8 +179,8 @@ pipeline. -->
 'variant'">
                                             <xsl:attribute name="class" select="'variant'"/>
                                         </xsl:if>
-                                        <xsl:value-of select="./my:reading[@sort-order=$sort-order]/text()"
-                                        />
+                                        <xsl:value-of
+                                            select="./my:reading[@sort-order=$sort-order]/text()"/>
                                     </td>
                                 </xsl:for-each>
                                 <td class="wit">
@@ -288,8 +299,7 @@ $sort-order]"/>
                                                   <bdo dir="rtl">
                                                   <xsl:value-of
                                                   select="translate(current-group()[1],'–',
-'')"
-                                                  />
+'')"/>
                                                   </bdo>
                                                   </xsl:otherwise>
                                                   </xsl:choose>

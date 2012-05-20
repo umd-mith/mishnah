@@ -61,19 +61,6 @@
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote scribe="first" script="Italian Square">
-                                <!-- or ancient oriental? Needs work-->
-                                <date>11th-13th Century</date>
-                                <region><!-- placeholder --></region>
-                            </handNote>
-                            <handNote scribe="second">
-                                <!-- Following is a temporary solution -->
-                                <desc>Pointed</desc>
-                                <note>Second hand points the text according to a different
-                                    vocalization tradition.</note>
-                            </handNote>
-                        </handDesc>
                         <objectDesc form="codex">
                             <supportDesc material="parchment">
                                 <extent>286 leaves</extent>
@@ -88,6 +75,19 @@
                                 </layout>
                             </layoutDesc>
                         </objectDesc>
+                        <handDesc>
+                            <handNote scribe="first" script="Italian Square">
+                                <!-- or ancient oriental? Needs work-->
+                                <date>11th-13th Century</date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                            <handNote scribe="second">
+                                <!-- Following is a temporary solution -->
+                                <desc>Pointed</desc>
+                                <note>Second hand points the text according to a different
+                                    vocalization tradition.</note>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -104,7 +104,7 @@
             <change when="2012-01-06" who="Hayim Lapin">Updating to new schema</change>
         </revisionDesc>
     </teiHeader>
-    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+    <text>
         <body>
             <div1 xml:id="Kauf.Neziqin">
                 <div2 xml:id="Kauf.BavaMetsia">
@@ -247,10 +247,11 @@
                                 <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
-                            </choice> ישתמש<lb n="2"/> בהן לפיכך אם אבדו <del>אינו</del> חייב
-                                <surplus reason="fill">באחר</surplus><lb n="3"/> באחריותן <seg
-                                n="scribCorr"><add hand="2h" place="margin">ר<c type="abbr"
-                                        rend="overmark">׳</c>
+                            </choice> ישתמש<lb n="2"/> בהן לפיכך אם אבדו <seg n="scribCorr"
+                                    ><del>אינו</del></seg> חייב <surplus reason="fill"
+                                >באחר</surplus><lb n="3"/> באחריותן <seg n="scribCorr"><add
+                                    hand="2h" place="margin"><choice><abbr>ר<am rend="overmark"
+                                                >׳</am></abbr><expan>רבי</expan></choice>
                                     <persName ref="Personography.xml#Aqiva">עקיבא</persName>
                                     <choice>
                                         <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"

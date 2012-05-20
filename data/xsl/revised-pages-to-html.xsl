@@ -201,10 +201,9 @@
             <xsl:if test="not(descendant::tei:div[1][@type='column'])">
                 <div class="oneCol">
                     <span class="pageNo">Folio <xsl:value-of select="./@n"/></span>
-                    <xsl:apply-templates/>
-                    <xsl:if test="descendant::tei:lb[position() = 1]/@n &gt; 1">
+                     <xsl:if test="descendant::tei:lb[count(preceding-sibling::tei:lb) = 0]/@n &gt; 1">
                         <xsl:variable name="firstline">
-                            <xsl:value-of select="descendant::tei:lb[position() = 1]/@n"/>
+                            <xsl:value-of select="descendant::tei:lb[count(preceding-sibling::tei:lb) = 0]/@n"/>
                         </xsl:variable>
                         <xsl:variable name="char">
                             <br/>
@@ -213,7 +212,8 @@
                             <xsl:with-param name="howMany" select="$firstline - 1"/>
                             <xsl:with-param name="char" select="$char"/>
                         </xsl:call-template>
-                    </xsl:if>
+                    </xsl:if><xsl:apply-templates/>
+                   
                 </div>
             </xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">

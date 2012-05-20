@@ -16,6 +16,7 @@
   limitations under the License.
 -->
 <map:sitemap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
  xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
  xmlns:map="http://apache.org/cocoon/sitemap/1.0">
 
@@ -66,20 +67,52 @@
         <map:transform src="resource://xsl/ch{1}synopsis.xsl" type="xslt-saxon"/>
         <map:serialize type="html"/>
       </map:match>
-
-      <map:match pattern="collate-demo">
-        <map:generate src="resource://tei/collate-demo.xml"/>
-        <map:transform type="collatex"/>
-        <map:serialize type="xml"/>
-      </map:match>
-
-      <map:match pattern="collatex-demo">
-         <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
-         <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl" type="xslt-saxon"/>
-         <map:transform type="collatex"/>
-         <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon"/>
-         <map:serialize type="tei"/>
-      </map:match>
+        <!-- Following reflect earlier stages. Delete? -->
+        <!--<map:match pattern="collate-demo">
+                <map:generate src="resource://tei/collate-demo.xml"/>
+                <map:transform type="collatex"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            <map:match pattern="collatex-demo">
+                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+                <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl"
+                    type="xslt-saxon"/>
+                <map:transform type="collatex"/>
+                <map:transform src="resource://xsl/collatex-to-apparatus.xsl" type="xslt-saxon"/>
+                <map:serialize type="tei"/>
+            </map:match>-->
+        <map:match pattern="tokenize-rich">
+            <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+            <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
+            <map:serialize type="tei"/>
+        </map:match>
+        <map:match pattern="collatex-rich">
+            <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
+            <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
+            <map:transform src="resource://xsl/tokenize-rich-collatex.xsl" type="xslt-saxon"/>
+            <map:transform type="collatex"/>
+            <map:serialize type="xml"/>
+        </map:match>
+        <map:match pattern="merge">
+            <map:aggregate element="site">
+                <map:part src="cocoon:/tokenize-rich" element="tokens"/>
+                <map:part src="cocoon:/collatex-rich" element="collatex"/>
+            </map:aggregate>
+            <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                type="xslt-saxon"/>
+            <map:serialize type="xml"/>
+        </map:match>
+        <map:match pattern="tokenize-rich-collatex-merge-output">
+            <map:aggregate element="site">
+                <map:part src="cocoon:/tokenize-rich" element="tokens"/>
+                <map:part src="cocoon:/collatex-rich" element="collatex"/>
+            </map:aggregate>
+            <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                type="xslt-saxon"/>
+            <map:transform src="resource://xsl/collatex-rich-to-apparatus.xsl"
+                type="xslt-saxon"/>
+            <map:serialize type="tei"/>
+        </map:match>
 
       <map:match pattern="css/*.css">
         <map:read src="resource://css/{1}.css" mime-type="text/css"/>
@@ -120,5 +153,5 @@
     </map:pipeline>
   </map:pipelines>
 
-</map:sitemap>
 
+</map:sitemap>
