@@ -127,7 +127,8 @@ pipeline. -->
 
                 <table class="sources" dir="ltr">
                     <xsl:for-each select="$sortlist/tei:item">
-                        <tr><td>
+                        <tr>
+                            <td>
                           <input type="checkbox" name="wit">
                             <xsl:attribute name="id">
                                <xsl:text>sel</xsl:text><xsl:value-of select="."/>
@@ -151,9 +152,11 @@ pipeline. -->
                                     select="document(concat('../tei/ref.xml','#',.))/text()"/>
                             </span>
                           </label>
-                          </td></tr>
+                          </td>
+                            
+                        </tr>
                     </xsl:for-each>
-                    <tr><td></td></tr>
+                    <tr></tr>
                     <tr><td><input type="submit" value="Collate"/></td></tr>
                 </table>
                 </form>

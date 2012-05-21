@@ -14,26 +14,28 @@
         </xd:desc>
     </xd:doc>
     <!-- Get data from form output: to be modified following Travis's changes-->
-    <xsl:variable name="sortlist">
-        <tei:list>
-            <xsl:copy-of
-                select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/tei:item"
-                copy-namespaces="no"/>
-        </tei:list>
+   <xsl:param name="rqs">mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.1'"/>
+    <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
+    
+    <xsl:variable name="witlist">
+        <xsl:variable name="params">
+            <xsl:call-template name="tokenize-params">
+                <xsl:with-param name="src" select="$rqs"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:for-each select="$params/tei:sortWit[text()]">
+            <xsl:sort select="@sortOrder"/>
+            <xsl:copy-of select="."/>
+        </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="numb-of-wits">
-        <xsl:value-of select="count($sortlist/tei:list/tei:item)"/>
-    </xsl:variable>
+    
+
     <!-- Copy collatex output into variable for easy reference -->
     <xsl:variable name="collation-output">
         <xsl:copy-of select="site/*/cx:alignment"/>
     </xsl:variable>
-    <xsl:variable name="numb-of-rdgs">
-        <xsl:value-of
-            select="count($collation-output/cx:alignment/cx:row[@sigil =
-        $sortlist/tei:list/tei:item[1]]/cx:cell)"
-        />
-    </xsl:variable>
+    
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
@@ -42,7 +44,7 @@
    <!-- Do not copy collatex output to result document -->
     <xsl:template match="/site/collatex"></xsl:template>
     <!-- Copy only children of site and of site/tokens, not the nodes themselves -->
-     <xsl:template match="/site/tokens | /site"><xsl:apply-templates></xsl:apply-templates></xsl:template>
+     <xsl:template match="/site/tokens | /site"><xsl:apply-templates/></xsl:template>
     <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div">
         <div xmlns="http://www.tei-c.org/ns/1.0">
             <xsl:attribute name="n" select="@n"/>
@@ -197,6 +199,56 @@
                 <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::element()[1]"
                     mode="finalPass"><xsl:with-param name="sigil" select="$sigil"></xsl:with-param></xsl:apply-templates>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template name="tokenize-params">
+        <xsl:param name="src"/>
+        <xsl:choose>
+            <xsl:when test="contains($src,'&amp;')">
+                <!-- build first token element -->
+                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
+                    <sortWit>
+                        <xsl:attribute name="sortOrder">
+                            <xsl:choose>
+                                <xsl:when
+                                    test="substring-after(substring-before($src,'&amp;'),'=')
+                                    =''">
+                                    <xsl:value-of select="0"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of
+                                        select="substring-after(substring-before($src,'&amp;'),'=')"
+                                    />
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
+                        />
+                    </sortWit>
+                </xsl:if>
+                <!-- recurse -->
+                <xsl:call-template name="tokenize-params">
+                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- last token, end recursion -->
+                <sortWit>
+                    <xsl:attribute name="sortOrder">
+                        <xsl:choose>
+                            <xsl:when
+                                test="substring-after($src,'=')
+                                =''">
+                                <xsl:value-of select="0"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="substring-after($src,'=')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:value-of select="substring-before($src,'=')"/>
+                </sortWit>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

@@ -14,6 +14,28 @@
     </xd:doc>
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
+    <!-- Parameters for cocoon transformation -->
+    <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"></xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.1'"/>
+    <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
+    <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
+        <xsl:variable name="params">
+            <xsl:call-template name="tokenize-params">
+                <xsl:with-param name="src" select="$rqs"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:for-each select="$params/*[text()]">
+            <xsl:sort select="@sortOrder"/>
+            <xsl:copy-of select="."/>
+        </xsl:for-each>
+    </xsl:variable>
+    <xsl:template match="tei:text"/>
+    <xsl:variable name="sortlist" xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+        select="document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp]"> </xsl:variable>
+    <xsl:variable name="refList" select="for $ab in
+        document('../tei/ref.xml')/tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='ref.4.2.2']/tei:ab
+        return substring-after($ab/@xml:id, 'ref.')"/>
+    
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
@@ -51,20 +73,73 @@ pipeline. -->
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
-                <h3>1. Sources Collated</h3>
+                <h3>1. Select a Passage</h3>
+                <form name="selection" action="collate-hl" method="get">                <div dir="ltr" style="text-align: center">
+                    <select name="mcite">
+                        <xsl:for-each select="$refList">
+                            <option>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="."/>
+                                </xsl:attribute>
+                                <xsl:if test=". = $cite">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if> 
+                                <xsl:variable name="lookup-text">
+                                    <xsl:copy-of select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"/>
+                                </xsl:variable>
+                                <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
+                                <xsl:text> </xsl:text>
+                                <xsl:value-of select="substring(., 5)"/>
+                                <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
+                            </option>
+                        </xsl:for-each>
+                    </select>
+                </div>
+                
+                <h3>2. Sources for Collation</h3>
                 <table class="sources" dir="ltr">
-                    <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab/@n">
+                    
+                        <xsl:for-each select="$sortlist">
+                            <xsl:variable name="witName" select="@xml:id"></xsl:variable>
+                            <tr>
+                                <td class="ref-wit">
+                                    <xsl:value-of select="$witName"/>
+                                </td>
+                                <td>
+                                    <input name="{$witName}" type="text" maxlength="3" size="3">
+                                        <xsl:attribute name="id">
+                                            <xsl:text>sel+</xsl:text>
+                                            <xsl:value-of select="@xml:id"/>
+                                        </xsl:attribute>
+                                        <xsl:attribute name="value">
+                                            <xsl:choose><xsl:when test="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder != '0'"><xsl:value-of select="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder"></xsl:value-of></xsl:when>
+                                            <xsl:otherwise><xsl:value-of select="''"></xsl:value-of></xsl:otherwise></xsl:choose>
+                                            <!--<xsl:choose>
+                                                <xsl:when test="$queryParams/tei:sortWit[text() =
+                                                    $witName]/@sortOrder = 0"><xsl:value-of
+                                                        select="''"></xsl:value-of></xsl:when>
+                                                <xsl:otherwise><xsl:value-of select="$queryParams/*[text() =
+                                                    $witName]/@sortOrder"></xsl:value-of></xsl:otherwise>
+                                            </xsl:choose>-->
+                                        </xsl:attribute>
+                                        
+                                    </input>
+                                </td>
+                                <td class="ref-data">
+                                    <xsl:value-of select="text()"/>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
+                        <tr/>
                         <tr>
-                            <td class="ref-wit">
-                                <xsl:value-of select="."/>
-                            </td>
-                            <td class="ref-data">
-                                <xsl:value-of
-                                    select="document(concat('../tei/ref.xml','#',.))/text()"/>
+                            <td dir="ltr">
+                                <input type="submit" value="Collate"/>
                             </td>
                         </tr>
-                    </xsl:for-each>
-                </table>
+                    
+                </table></form>
                 <h3 dir="ltr">2. Alignment Table Format</h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
@@ -83,11 +158,18 @@ pipeline. -->
                                         <xsl:if test="@type='invariant'">
                                             <xsl:attribute name="class" select="'invariant'"/>
                                         </xsl:if>
-                                        <xsl:variable name="text"><xsl:value-of  select="text()"></xsl:value-of></xsl:variable>
+                                        <xsl:variable name="text">
+                                            <xsl:value-of select="text()"/>
+                                        </xsl:variable>
                                         <xsl:choose>
                                             <xsl:when
-                                                test="normalize-space(translate($text,'[]','')) != ''"><xsl:value-of select="$text"/></xsl:when>
-                                            <xsl:when test="normalize-space(translate($text,'[]','')) = ''"><xsl:text>–</xsl:text></xsl:when>
+                                                test="normalize-space(translate($text,'[]','')) != ''">
+                                                <xsl:value-of select="$text"/>
+                                            </xsl:when>
+                                            <xsl:when
+                                                test="normalize-space(translate($text,'[]','')) = ''">
+                                                <xsl:text>–</xsl:text>
+                                            </xsl:when>
                                         </xsl:choose>
                                     </td>
                                 </xsl:for-each>
@@ -167,8 +249,7 @@ pipeline. -->
                         </xsl:for-each>
                     </xsl:variable>
                     <xsl:variable name="readings-list">
-                        
-                            <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/tei:w">
+                        <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/tei:w">
                             <xsl:variable name="position"
                                 select="count(preceding-sibling::tei:w) + 1"/>
                             <xsl:variable name="by-position">
@@ -193,27 +274,38 @@ pipeline. -->
                                             />
                                         </xsl:attribute>
                                         <xsl:attribute name="rdg">
-                                            <xsl:variable name="text"><xsl:value-of select="$by-position/tei:readings/tei:w[$sort-order]/text()"></xsl:value-of></xsl:variable>
-                                            <xsl:choose><xsl:when
-                                                test="normalize-space(translate($text,'[]',''))
-                                                != ''"><xsl:value-of
-                                                select="normalize-space($text)"
-                                            /></xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:text>–</xsl:text>
-                                            </xsl:otherwise></xsl:choose>
+                                            <xsl:variable name="text">
+                                                <xsl:value-of
+                                                  select="$by-position/tei:readings/tei:w[$sort-order]/text()"
+                                                />
+                                            </xsl:variable>
+                                            <xsl:choose>
+                                                <xsl:when
+                                                  test="normalize-space(translate($text,'[]',''))
+                                                != ''">
+                                                  <xsl:value-of select="normalize-space($text)"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                  <xsl:text>–</xsl:text>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
                                         </xsl:attribute>
-                                        <xsl:variable name="text-to-put"><xsl:value-of
-                                            select="$by-position/tei:readings/tei:w[$sort-order]/tei:reg"/></xsl:variable>
-                                        <xsl:choose><xsl:when
-                                            test="normalize-space(translate($text-to-put,'[]',''))
-                                            != ''"><xsl:value-of
-                                                select=
-                                                "normalize-space($text-to-put)"
-                                            /></xsl:when>
+                                        <xsl:variable name="text-to-put">
+                                            <xsl:value-of
+                                                select="$by-position/tei:readings/tei:w[$sort-order]/tei:reg"
+                                            />
+                                        </xsl:variable>
+                                        <xsl:choose>
+                                            <xsl:when
+                                                test="normalize-space(translate($text-to-put,'[]',''))
+                                            != ''">
+                                                <xsl:value-of select="normalize-space($text-to-put)"
+                                                />
+                                            </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:text>–</xsl:text>
-                                            </xsl:otherwise></xsl:choose>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                     </my:reading>
                                 </xsl:for-each>
                             </my:lemma>
@@ -224,13 +316,11 @@ this -->
                     <xsl:for-each-group select="$readings-list/my:lemma"
                         group-adjacent="my:reading[@sort-order = 1] =
                         '–' or following::my:reading[1][@sort-order = 1] = '–'">
-                        
                         <xsl:choose>
                             <xsl:when test="current-grouping-key()">
                                 <xsl:variable name="temp-group">
                                     <xsl:copy-of select="current-group()"/>
                                 </xsl:variable>
-                                
                                 <!-- 1. Copy current group to text -->
                                 <!-- 2. Process using for each to generate strings of text (complex
                                     readings) for each witness -->
@@ -245,8 +335,7 @@ this -->
                                             <xsl:namespace name="my"
                                                 select="'http://dev.digitalmishnah.org/local-functions.uri'"/>
                                             <xsl:attribute name="witness">
-                                                <xsl:value-of select="parent::my:reading/@witness"
-                                                />
+                                                <xsl:value-of select="parent::my:reading/@witness"/>
                                             </xsl:attribute>
                                             <xsl:attribute name="sort-order" select="$sort-order"/>
                                             <xsl:attribute name="position"
@@ -264,7 +353,6 @@ this -->
                                         </my:complex-reading>
                                     </xsl:for-each>
                                 </xsl:variable>
-                             
                                 <span class="reading-group">
                                     <xsl:for-each-group
                                         select="$complex-readings-group/my:complex-reading"
@@ -278,7 +366,7 @@ this -->
                                                   <span class="lemma">
                                                   <!-- Check if empty (emdash) and process -->
                                                   <xsl:value-of
-                                                      select="normalize-space(translate(self::my:complex-reading[@sort-order='1']/text(),'–',''))"
+                                                  select="normalize-space(translate(self::my:complex-reading[@sort-order='1']/text(),'–',''))"
                                                   />
                                                   </span>
                                                   <span class="matches">
@@ -298,8 +386,7 @@ this -->
                                                   <xsl:otherwise>
                                                   <span class="readings">
                                                   <xsl:choose>
-                                                  <xsl:when
-                                                  test="current-group()[1]='–'">
+                                                  <xsl:when test="current-group()[1]='–'">
                                                   <bdo dir="rtl">–</bdo>
                                                   </xsl:when>
                                                   <xsl:otherwise>
@@ -402,5 +489,55 @@ this -->
                 </div>
             </body>
         </html>
+    </xsl:template>
+    <xsl:template name="tokenize-params">
+        <xsl:param name="src"/>
+        <xsl:choose>
+            <xsl:when test="contains($src,'&amp;')">
+                <!-- build first token element -->
+                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
+                    <tei:sortWit xpath-default-namespace="http://www.tei-c.org/ns/1.0">
+                        <xsl:attribute name="sortOrder">
+                            <xsl:choose>
+                                <xsl:when
+                                    test="substring-after(substring-before($src,'&amp;'),'=')
+                                    =''">
+                                    <xsl:value-of select="0"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of
+                                        select="substring-after(substring-before($src,'&amp;'),'=')"
+                                    />
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
+                        />
+                    </tei:sortWit>
+                </xsl:if>
+                <!-- recurse -->
+                <xsl:call-template name="tokenize-params">
+                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- last token, end recursion -->
+                <tei:sortWit xpath-default-namespace="http://www.tei-c.org/ns/1.0">
+                    <xsl:attribute name="sortOrder">
+                        <xsl:choose>
+                            <xsl:when
+                                test="substring-after($src,'=')
+                                =''">
+                                <xsl:value-of select="0"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="substring-after($src,'=')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:value-of select="substring-before($src,'=')"/>
+                </tei:sortWit>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
