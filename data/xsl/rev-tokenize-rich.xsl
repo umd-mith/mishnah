@@ -5,7 +5,7 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
     xmlns:local="local-functions.uri">
     <xsl:strip-space elements="tei:w tei:reg"/>
-    <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
+    <xsl:output indent="no" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 25, 2011</xd:p>
@@ -14,7 +14,7 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        ></xsl:param>
+        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="witlist">
@@ -79,10 +79,7 @@
                                     <xsl:apply-templates mode="tokenize"
                                         select="$mPreproc-1/node()[1]"/>
                                 </xsl:variable>
-                                    <xsl:variable name="cleaned">
-                                        <xsl:apply-templates select="$mTokenize/element()[1]"  mode="final"/>
-                                    </xsl:variable>
-                                <xsl:copy-of select="$cleaned"/>
+                                <xsl:copy-of select="$mTokenize"/>
                            </ab> </xsl:for-each>
                         
                     </div>
@@ -93,12 +90,11 @@
     <xsl:template match="node()" mode="preproc-1">
         <xsl:choose>
             <xsl:when test="self::text()">
-                <xsl:value-of select="."/>
+                <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when
-                test="self::tei:c[@rend != 'nonlett
-                ermark'] | self::tei:g[not(@ref = '#fill')]">
+                test="self::tei:c[(@rend != 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
                 <xsl:value-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
@@ -120,9 +116,6 @@
                         </w>
                     </xsl:when>
                 </xsl:choose>
-            </xsl:when>
-            <xsl:when test="self::comment()">
-                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:persName">
                 <xsl:apply-templates select="./node()" mode="preproc-within"/>
@@ -153,15 +146,12 @@
             <xsl:when test="self::tei:seg">
                 <!-- Currently selects only original text. Can be altered to include to include
                     added corrected text as well. -->
-                <!-- use of <text> to insert spaces here is a hack. Must be a better way. -->
-                <xsl:text> </xsl:text><xsl:for-each select="node()">
-                    <xsl:choose>
-                       
-                        <xsl:when test="self::tei:del"><xsl:value-of select="."></xsl:value-of></xsl:when>
-                        <xsl:when test="self::tei:add"/>
-                        <xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each><xsl:text> </xsl:text>
+                <xsl:variable name="tempSeg">
+                    <xsl:copy-of
+                        select="(node() except child::tei:add |
+                    tei:corr)"/>
+                </xsl:variable>
+                <xsl:value-of select="$tempSeg"/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:choice">
@@ -236,7 +226,6 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
     <xsl:template match="//tei:ref" mode="preproc-within"/>
     <!-- This looks like a duplication -->
     <xsl:template match="tei:c[@type='nonlettermark']" mode="preproc-within"/>
@@ -288,17 +277,6 @@
                 <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="tokenize"/>
             </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="element()" mode="final">
-        <!-- sibling recursion to remove any empty <w>s -->
-        <xsl:choose>
-            <xsl:when test="self::tei:w[not(string(.))]">
-                
-                <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/>
-            </xsl:when>
-            <xsl:otherwise><xsl:copy-of select="."/>
-                <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <!-- recursively splits string into <token> elements -->
