@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:base="" xml:lang="en"><?TEIVERSION 2.0.2 Last updated on 2nd February 2012.?><teiHeader><fileDesc><titleStmt><title>TEI Customization for the MISHNAH reference file</title><author>Trevor Muñoz</author></titleStmt><publicationStmt><distributor>Maryland Institute for Technology in the Humanities (via
+<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:base=""><?TEIVERSION 2.0.2 Last updated on 2nd February 2012.?><teiHeader><fileDesc><titleStmt><title>TEI Customization for the MISHNAH reference file</title><author>Trevor Muñoz</author></titleStmt><publicationStmt><distributor>Maryland Institute for Technology in the Humanities (via
                     website)</distributor><address><addrLine>mith@umd.edu</addrLine></address><date when="2011-10-19">October 19, 2011</date><availability status="restricted"><p>This work is copyright Trevor Muñoz and Maryland Institute for Technology in
                         the Humanities and licensed under a <ref target="http://creativecommons.org/licenses/by/3.0/">Creative Commons
-                            Attribution 3.0 Unported License</ref>.</p></availability><pubPlace>College Park, MD USA</pubPlace></publicationStmt><notesStmt><note type="ns">http://www.example.org/ns/nonTEI</note></notesStmt><sourceDesc><p>born digital</p></sourceDesc></fileDesc><revisionDesc><change who="tmunoz" when="2011-10-16">First draft</change><change who="tmunoz" when="2011-11-30">First set of changes to split witness and
+                            Attribution 3.0 Unported License</ref>.</p></availability><pubPlace>College Park, MD USA</pubPlace></publicationStmt><sourceDesc><p>born digital</p></sourceDesc></fileDesc><revisionDesc><change who="tmunoz" when="2011-10-16">First draft</change><change who="tmunoz" when="2011-11-30">First set of changes to split witness and
                 reference schemas</change><change who="tmunoz" when="2011-12-08">Moving witness specific markup to
                 mishnah-witness.odd</change></revisionDesc></teiHeader><text><body><div><head>Project Documentation</head><p>To be added</p></div><div><head>TEI Customizations for the Digital MISHNAH reference file</head><p>The prefix in this schema stands for <expan>Digital MISHNAH reference</expan>,
                     the reference text used for aligning the various witnesses to the Mishnah.</p></div><div><schemaSpec ident="digital_mishnah_reference" prefix="mishnahr" start="TEI" source="/usr/share/xml/tei/odd/p5subset.xml"><classSpec module="tei" type="atts" ident="att.ascribed">
@@ -10931,9 +10931,16 @@ places, in particular where  multiple names are given.</p>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD21">2.2.1. </ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD22">2.2.2. </ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD26">2.2.5. </ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" ident="title"><equiv/><gloss version="2007-06-12" xml:lang="fr">titre</gloss><desc>contains a title for any kind of work.</desc><desc version="2007-12-20" xml:lang="ko">다양한 종류의 작업에 대한 전체 제목을 제공한다.</desc><desc version="2007-05-02" xml:lang="zh-TW">包含任何種類作品的完整題名
+  </listRef></elementSpec><elementSpec module="core" ident="title"><equiv/><gloss version="2007-06-12" xml:lang="fr">titre</gloss><desc>contains a title for any kind of work.</desc><desc version="2007-12-20" xml:lang="ko">다양한 종류의 작업에 대한 전체 제목을 제공한다.</desc><desc version="2007-05-02" xml:lang="zh-TW">包含任何種類作品的完整題名
                     。</desc><desc version="2008-04-05" xml:lang="ja"> 作品の完全なタイトルを示す． </desc><desc version="2007-06-12" xml:lang="fr">contient le titre complet d'une oeuvre quelconque</desc><desc version="2007-05-04" xml:lang="es">contiene el título completo de una obra de
-                    cualquier tipo.</desc><desc version="2007-01-21" xml:lang="it">contiene il titolo completo di una qualsiaisi                    opera.</desc><classes><memberOf key="att.global"/><memberOf key="model.emphLike"/><memberOf key="model.msQuoteLike"/><memberOf key="att.canonical"/></classes><content><ref xmlns="http://relaxng.org/ns/structure/1.0" name="macro.paraContent"/></content><attList><attDef ident="level" usage="opt">
+                    cualquier tipo.</desc><desc version="2007-01-21" xml:lang="it">contiene il titolo completo di una qualsiaisi                    opera.</desc><classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.emphLike"/>
+    <memberOf key="model.msQuoteLike"/>
+    <memberOf key="att.canonical"/>
+  </classes><content>
+    <ref xmlns="http://relaxng.org/ns/structure/1.0" name="macro.paraContent"/>
+  </content><attList><attRef n="4" name="att.global.attributes"/><attRef n="4" name="att.canonical.attributes"/><attDef ident="level" usage="opt">
       <equiv/>
       <desc>indicates the bibliographic level for a title, that is, whether
                                         it identifies an article, book, journal, series, or
@@ -11112,13 +11119,7 @@ places, in particular where  multiple names are given.</p>
 	in such contexts,
         its value should not contradict the value implied by its
 	parent element. 
-<!--, the <att>level</att>, if given, must
-        be<q>a</q>; if it appears directly enclosed within a
-        <gi>monogr</gi> element, <att>level</att> must be <q>m</q>,
-        <q>j</q>, or <q>u</q>; when <gi>title</gi> is directly
-        enclosed by ,<att>level</att> must be . If it appears within a
-        <gi>msItem</gi>, the <att>level</att> attribute should not be
-        supplied.-->
+
 </p>
       </remarks>
       <remarks xml:lang="fr">
@@ -11283,7 +11284,7 @@ inclus, peuvent être encodés dans un élément
 副タイトルなどは全て要素<gi>title</gi>の中に入れてしまうことが
 できる． </p>
       </remarks>
-    </attDef><attRef n="4" name="att.global.attributes"/><attRef n="4" name="att.canonical.attributes"/></attList><exemplum xml:lang="en">
+    </attDef></attList><exemplum xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples">
       <title>Information Technology and the Research Process: Proceedings of
                                         a conference held at Cranfield Institute of Technology, UK,
@@ -19710,7 +19711,7 @@ other must be present.</p>
     <p> 当該要素が，要素<gi>linkGrp</gi>でまとめられているのでなければ，当 該要素のある場所は重要ではない．要素<gi>linkGrp</gi>の下にある場合， 属性<att>type</att>の値は要素<gi>linkGrp</gi>がもつ値を継承する． </p>
   </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/SA.html#SAPT">16.1. </ref>
-  </listRef></elementSpec><elementSpec rend="change" module="linking" ident="ab"><equiv/><gloss>anonymous block</gloss><gloss version="2007-12-20" xml:lang="ko">익명 구역</gloss><gloss version="2007-05-02" xml:lang="zh-TW">匿名區塊</gloss><gloss version="2008-04-05" xml:lang="ja"/><gloss version="2007-06-12" xml:lang="fr">bloc anonyme</gloss><gloss version="2007-05-04" xml:lang="es">bloque anónimo</gloss><gloss version="2007-01-21" xml:lang="it">blocco anonimo</gloss><desc>contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph.</desc><desc version="2007-12-20" xml:lang="ko">의미적 부담 없이, 문단과 유사한 구 또는 상호층위 요소에 대한 익명 전달체로 기능하는 임의적 성분-층위 단위를 포함한다.</desc><desc version="2007-05-02" xml:lang="zh-TW">包含文件中任何隨機組合性層次的單元，匿名收容類似一個段落、但不包含段落語義的字詞或中間層元素。</desc><desc version="2008-04-05" xml:lang="ja"> 任意の部分的テキスト単位を示す．特定の意味はなくとも，段落に相当する， 句レベル・挿入レベルの単位として無名単位になる． </desc><desc version="2009-10-05" xml:lang="fr">contient une unité de texte quelconque, de niveau "composant", faisant office de contenant anonyme pour une expression ou des éléments de niveau intermédiaire, analogue à un paragraphe mais sans sa portée sémantique.</desc><desc version="2007-05-04" xml:lang="es">contiene cualquier unidad textual a nivel de componente que actua como un contenedor anónimo de sintagmas o de elementos de internivel similares al párrafo pero sin la carga semántica de este último.</desc><desc version="2007-01-21" xml:lang="it">contiene una qualsiasi unità testuale a livello di componente che funge da contenitore anonimo di sintagmi o elementi interlivello simili al paragrafo ma senza il bagaglio semantico di quest'ultimo</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/><memberOf key="att.typed"/><memberOf key="att.declaring"/></classes><content><zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0"><ref name="model.global"/></zeroOrMore><group xmlns="http://relaxng.org/ns/structure/1.0"><zeroOrMore><ref name="label"/></zeroOrMore><zeroOrMore><choice><ref name="w"/><ref name="link"/></choice></zeroOrMore></group></content><attList><attDef ident="part" usage="opt">
+  </listRef></elementSpec><elementSpec rend="change" module="linking" ident="ab"><equiv/><gloss>anonymous block</gloss><gloss version="2007-12-20" xml:lang="ko">익명 구역</gloss><gloss version="2007-05-02" xml:lang="zh-TW">匿名區塊</gloss><gloss version="2008-04-05" xml:lang="ja"/><gloss version="2007-06-12" xml:lang="fr">bloc anonyme</gloss><gloss version="2007-05-04" xml:lang="es">bloque anónimo</gloss><gloss version="2007-01-21" xml:lang="it">blocco anonimo</gloss><desc>contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph.</desc><desc version="2007-12-20" xml:lang="ko">의미적 부담 없이, 문단과 유사한 구 또는 상호층위 요소에 대한 익명 전달체로 기능하는 임의적 성분-층위 단위를 포함한다.</desc><desc version="2007-05-02" xml:lang="zh-TW">包含文件中任何隨機組合性層次的單元，匿名收容類似一個段落、但不包含段落語義的字詞或中間層元素。</desc><desc version="2008-04-05" xml:lang="ja"> 任意の部分的テキスト単位を示す．特定の意味はなくとも，段落に相当する， 句レベル・挿入レベルの単位として無名単位になる． </desc><desc version="2009-10-05" xml:lang="fr">contient une unité de texte quelconque, de niveau "composant", faisant office de contenant anonyme pour une expression ou des éléments de niveau intermédiaire, analogue à un paragraphe mais sans sa portée sémantique.</desc><desc version="2007-05-04" xml:lang="es">contiene cualquier unidad textual a nivel de componente que actua como un contenedor anónimo de sintagmas o de elementos de internivel similares al párrafo pero sin la carga semántica de este último.</desc><desc version="2007-01-21" xml:lang="it">contiene una qualsiasi unità testuale a livello di componente che funge da contenitore anonimo di sintagmi o elementi interlivello simili al paragrafo ma senza il bagaglio semantico di quest'ultimo</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/><memberOf key="att.typed"/><memberOf key="att.declaring"/></classes><content><zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0"><ref name="model.global"/></zeroOrMore><group xmlns="http://relaxng.org/ns/structure/1.0"><zeroOrMore><ref name="label"/></zeroOrMore><zeroOrMore><choice><ref name="w"/><ref name="link"/><ref name="persName"/><ref name="placeName"/></choice></zeroOrMore></group></content><attList><attDef ident="part" usage="opt">
       <equiv/>
       <desc>specifies whether or not the block is complete. </desc>
       <desc version="2007-12-20" xml:lang="ko">구역이 완전한지의 여부를 명시한다.</desc>

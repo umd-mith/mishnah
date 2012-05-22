@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2012-05-12T21:46:48Z. 
+Schema generated from ODD source 2012-05-22T16:17:18Z. 
 Edition: 2.0.2 Last updated on 2nd February 2012.
 Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
 
@@ -4867,6 +4867,8 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
       <element name="title">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a title for any kind of work. [3.11.2.2.  2.2.1.  2.2.5. ]</a:documentation>
          <ref name="mishnahrmacro.paraContent"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.canonical.attributes"/>
          <optional>
             <attribute name="level">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the bibliographic level for a title, that is, whether
@@ -4899,8 +4901,6 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
                <ref name="mishnahrdata.enumerated"/>
             </attribute>
          </optional>
-         <ref name="mishnahratt.global.attributes"/>
-         <ref name="mishnahratt.canonical.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7345,6 +7345,8 @@ values for @target</sch:assert>
                <choice>
                   <ref name="mishnahrw"/>
                   <ref name="mishnahrlink"/>
+                  <ref name="mishnahrpersName"/>
+                  <ref name="mishnahrplaceName"/>
                </choice>
             </zeroOrMore>
          </group>
