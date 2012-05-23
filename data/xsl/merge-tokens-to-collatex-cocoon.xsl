@@ -4,7 +4,7 @@
     xmlns:cx="http://interedition.eu/collatex/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
     exclude-result-prefixes="xs cx xd my xsl" version="2.0">
-    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+    <xsl:output method="xml" indent="no" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -14,7 +14,7 @@
         </xd:desc>
     </xd:doc>
     <!-- Get data from form output: to be modified following Travis's changes-->
-   <xsl:param name="rqs"></xsl:param>
+   <xsl:param name="rqs">mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     
@@ -42,7 +42,7 @@
         </xsl:copy>
     </xsl:template>
    <!-- Do not copy collatex output to result document -->
-    <xsl:template match="/site/cx:collate"></xsl:template>
+    <xsl:template match="/site/collatex"></xsl:template>
     <!-- Copy only children of site and of site/tokens, not the nodes themselves -->
      <xsl:template match="/site/tokens | /site"><xsl:apply-templates/></xsl:template>
     <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div">
