@@ -13,31 +13,41 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
-    <!-- Draws on a combined file that includes both Collatex output, and rich tokenization -->
-    <xsl:param name="rqs"></xsl:param>
+    <!-- Get data from form output: to be modified following Travis's changes-->
+   <xsl:param name="rqs"></xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
+    
+    <xsl:variable name="witlist">
+        <xsl:variable name="params">
+            <xsl:call-template name="tokenize-params">
+                <xsl:with-param name="src" select="$rqs"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:for-each select="$params/tei:sortWit[text()]">
+            <xsl:sort select="@sortOrder"/>
+            <xsl:copy-of select="."/>
+        </xsl:for-each>
+    </xsl:variable>
+    
+
     <!-- Copy collatex output into variable for easy reference -->
     <xsl:variable name="collation-output">
         <xsl:copy-of select="site/*/cx:alignment"/>
     </xsl:variable>
     
     <xsl:template match="@*|node()">
-        
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
    <!-- Do not copy collatex output to result document -->
-    <xsl:template match="/site//collatex"></xsl:template>
-    <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div[@n = 'selectList']"></xsl:template>
+    <xsl:template match="/site/cx:collate"></xsl:template>
     <!-- Copy only children of site and of site/tokens, not the nodes themselves -->
      <xsl:template match="/site/tokens | /site"><xsl:apply-templates/></xsl:template>
-    <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div[@n != 'selectList']">
-        
+    <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div">
         <div xmlns="http://www.tei-c.org/ns/1.0">
             <xsl:attribute name="n" select="@n"/>
-            
             <xsl:for-each select="tei:ab">
                 <xsl:variable name="tokens">
                     <xsl:copy-of select="."/>

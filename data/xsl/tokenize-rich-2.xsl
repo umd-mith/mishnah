@@ -14,7 +14,7 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.11&amp;Kauf=1&amp;ParmA=2&amp;Camb=3&amp;Maim=4&amp;Paris=5&amp;Nap=6&amp;Vilna=7&amp;Mun=8&amp;Hamb=9&amp;Leid=10&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+        >mcite=4.2.2.11&amp;Kauf=1&amp;ParmA=2&amp;Camb=3&amp;Maim=4&amp;Paris=5&amp;Nap=6&amp;Vilna=7&amp;Mun=0&amp;Hamb=0&amp;Leid=0&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="witlist">
@@ -47,10 +47,10 @@
             </teiHeader>
             <text>
                 <body>
-                    <div n="selectList">
+                    <div n="selList">
                         <xsl:copy-of select="$witlist"></xsl:copy-of>
                     </div>
-                    <div n="tokens">
+                    <div>
                         <xsl:attribute name="n">
                             <xsl:value-of select="$cite"/>
                         </xsl:attribute>

@@ -15,7 +15,7 @@
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
     <!-- Parameters for cocoon transformation -->
-    <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"/>
+    <xsl:param name="rqs"></xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
@@ -32,10 +32,10 @@ pipeline. -->
     <xsl:template match="tei:text"/>
     <xsl:variable name="sortlist" xpath-default-namespace="http://www.tei-c.org/ns/1.0"
         select="document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp]"> </xsl:variable>
-    <xsl:variable name="refList"
-        select="for $ab in
+    <xsl:variable name="refList" select="for $ab in
         document('../tei/ref.xml')/tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='ref.4.2.2']/tei:ab
         return substring-after($ab/@xml:id, 'ref.')"/>
+    
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
@@ -74,34 +74,33 @@ pipeline. -->
                     </xsl:analyze-string>
                 </h2>
                 <h3>1. Select a Passage</h3>
-                <form name="selection" action="collate-hl" method="get">
-                    <div dir="ltr" style="text-align: center">
-                        <select name="mcite">
-                            <xsl:for-each select="$refList">
-                                <option>
-                                    <xsl:attribute name="value">
-                                        <xsl:value-of select="."/>
-                                    </xsl:attribute>
-                                    <xsl:if test=". = $cite">
-                                        <xsl:attribute name="selected">selected</xsl:attribute>
-                                    </xsl:if>
-                                    <xsl:variable name="lookup-text">
-                                        <xsl:copy-of
-                                            select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"
-                                        />
-                                    </xsl:variable>
-                                    <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
-                                    <xsl:text> </xsl:text>
-                                    <xsl:value-of select="substring(., 5)"/>
-                                    <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
-                                </option>
-                            </xsl:for-each>
-                        </select>
-                    </div>
-                    <h3>2. Sources for Collation</h3>
-                    <table class="sources" dir="ltr">
+                <form name="selection" action="collate-hl" method="get">                <div dir="ltr" style="text-align: center">
+                    <select name="mcite">
+                        <xsl:for-each select="$refList">
+                            <option>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="."/>
+                                </xsl:attribute>
+                                <xsl:if test=". = $cite">
+                                    <xsl:attribute name="selected">selected</xsl:attribute>
+                                </xsl:if> 
+                                <xsl:variable name="lookup-text">
+                                    <xsl:copy-of select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"/>
+                                </xsl:variable>
+                                <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
+                                <xsl:text> </xsl:text>
+                                <xsl:value-of select="substring(., 5)"/>
+                                <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
+                            </option>
+                        </xsl:for-each>
+                    </select>
+                </div>
+                
+                <h3>2. Sources for Collation</h3>
+                <table class="sources" dir="ltr">
+                    
                         <xsl:for-each select="$sortlist">
-                            <xsl:variable name="witName" select="@xml:id"/>
+                            <xsl:variable name="witName" select="@xml:id"></xsl:variable>
                             <tr>
                                 <td class="ref-wit">
                                     <xsl:value-of select="$witName"/>
@@ -113,19 +112,10 @@ pipeline. -->
                                             <xsl:value-of select="@xml:id"/>
                                         </xsl:attribute>
                                         <xsl:attribute name="value">
-                                            <xsl:choose>
-                                                <xsl:when
-                                                  test="$queryParams/tei:sortWit[text() =
-                                                $witName]/@sortOrder != '0'">
-                                                  <xsl:value-of
-                                                  select="$queryParams/tei:sortWit[text() =
-                                                $witName]/@sortOrder"
-                                                  />
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                  <xsl:value-of select="''"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
+                                            <xsl:choose><xsl:when test="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder != '0'"><xsl:value-of select="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder"></xsl:value-of></xsl:when>
+                                            <xsl:otherwise><xsl:value-of select="''"></xsl:value-of></xsl:otherwise></xsl:choose>
                                             <!--<xsl:choose>
                                                 <xsl:when test="$queryParams/tei:sortWit[text() =
                                                     $witName]/@sortOrder = 0"><xsl:value-of
@@ -134,6 +124,7 @@ pipeline. -->
                                                     $witName]/@sortOrder"></xsl:value-of></xsl:otherwise>
                                             </xsl:choose>-->
                                         </xsl:attribute>
+                                        
                                     </input>
                                 </td>
                                 <td class="ref-data">
@@ -147,8 +138,8 @@ pipeline. -->
                                 <input type="submit" value="Collate"/>
                             </td>
                         </tr>
-                    </table>
-                </form>
+                    
+                </table></form>
                 <h3 dir="ltr">2. Alignment Table Format</h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
