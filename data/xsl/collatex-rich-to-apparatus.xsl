@@ -109,7 +109,7 @@ pipeline. -->
                                 <td>
                                     <input name="{$witName}" type="text" maxlength="3" size="3">
                                         <xsl:attribute name="id">
-                                            <xsl:text>sel+</xsl:text>
+                                            <xsl:text>sel_</xsl:text>
                                             <xsl:value-of select="@xml:id"/>
                                         </xsl:attribute>
                                         <xsl:attribute name="value">
