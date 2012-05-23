@@ -66,6 +66,7 @@
                         include="listPerson listPlace addName personGrp place persName placeName location forename roleName nameLink geo"/>
                     <!-- Including <w> for recording tokenization -->
                     <elementRef key="w"/>
+                    
                     <!-- Removing unwanted classes -->
                     <classSpec module="textstructure" ident="model.div4Like" type="model"
                         mode="delete"/>
@@ -144,9 +145,7 @@
                             </rng:interleave>
                         </content>
                     </elementSpec>
-                    <!-- Only tokenized content inside <w>, along with <persName>, <placeName>, and
-                        <term>; as well as <label> are allowed inside ab -->
-                    
+                    <!-- Only tokenized content inside <w> and <label> are allowed inside ab -->
                     <elementSpec module="linking" ident="ab" mode="change">
                         <content>
                             <rng:zeroOrMore>
@@ -160,15 +159,17 @@
                                     <rng:choice>
                                         <rng:ref name="w"/>
                                         <rng:ref name="link"/>
-                                        <rng:ref name="persName"/>
-                                        <rng:ref name="placeName"/>
-                                        
                                     </rng:choice>
                                 </rng:zeroOrMore>
                             </rng:group>
                         </content>
                     </elementSpec>
-                    
+                    <!-- Does this add ability to do @subtype in title? -->
+                    <elementSpec module="core" ident="title" mode="change">
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.global"/>
+                        </rng:zeroOrMore>
+                    </elementSpec>
                     <!-- Adding the XInclude elements from mishnah_reference_test.odd -->
                     <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
                         ns="http://www.w3.org/2001/XInclude" mode="add">
