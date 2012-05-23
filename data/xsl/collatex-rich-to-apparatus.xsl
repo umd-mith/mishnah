@@ -15,7 +15,7 @@
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
     <!-- Parameters for cocoon transformation -->
-    <xsl:param name="rqs"></xsl:param>
+    <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"></xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
