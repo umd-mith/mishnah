@@ -19,7 +19,7 @@
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <!-- Copy collatex output into variable for easy reference -->
     <xsl:variable name="collation-output">
-        <xsl:copy-of select="/site/*/cx:alignment"/>
+        <xsl:copy-of select="site/*/cx:alignment"/>
     </xsl:variable>
     
     <xsl:template match="@*|node()">
@@ -29,10 +29,9 @@
         </xsl:copy>
     </xsl:template>
    <!-- Do not copy collatex output to result document -->
-    <xsl:template match="/site/collatex"></xsl:template>
-<xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div[@n = 'selectList']">
-        </xsl:template>
- <!--        Copy only children of site and of site/tokens, not the nodes themselves -->
+    <xsl:template match="/site//collatex"></xsl:template>
+    <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div[@n = 'selectList']"></xsl:template>
+    <!-- Copy only children of site and of site/tokens, not the nodes themselves -->
      <xsl:template match="/site/tokens | /site"><xsl:apply-templates/></xsl:template>
     <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div[@n != 'selectList']">
         
@@ -40,7 +39,6 @@
             <xsl:attribute name="n" select="@n"/>
             
             <xsl:for-each select="tei:ab">
-                
                 <xsl:variable name="tokens">
                     <xsl:copy-of select="."/>
                 </xsl:variable>
@@ -194,4 +192,54 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-  </xsl:stylesheet>
+    <xsl:template name="tokenize-params">
+        <xsl:param name="src"/>
+        <xsl:choose>
+            <xsl:when test="contains($src,'&amp;')">
+                <!-- build first token element -->
+                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
+                    <sortWit>
+                        <xsl:attribute name="sortOrder">
+                            <xsl:choose>
+                                <xsl:when
+                                    test="substring-after(substring-before($src,'&amp;'),'=')
+                                    =''">
+                                    <xsl:value-of select="0"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of
+                                        select="substring-after(substring-before($src,'&amp;'),'=')"
+                                    />
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
+                        />
+                    </sortWit>
+                </xsl:if>
+                <!-- recurse -->
+                <xsl:call-template name="tokenize-params">
+                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- last token, end recursion -->
+                <sortWit>
+                    <xsl:attribute name="sortOrder">
+                        <xsl:choose>
+                            <xsl:when
+                                test="substring-after($src,'=')
+                                =''">
+                                <xsl:value-of select="0"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="substring-after($src,'=')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:value-of select="substring-before($src,'=')"/>
+                </sortWit>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+</xsl:stylesheet>
