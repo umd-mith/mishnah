@@ -15,7 +15,8 @@
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
     <!-- Parameters for cocoon transformation -->
-    <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"></xsl:param>
+    <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
@@ -32,10 +33,10 @@ pipeline. -->
     <xsl:template match="tei:text"/>
     <xsl:variable name="sortlist" xpath-default-namespace="http://www.tei-c.org/ns/1.0"
         select="document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp]"> </xsl:variable>
-    <xsl:variable name="refList" select="for $ab in
+    <xsl:variable name="refList"
+        select="for $ab in
         document('../tei/ref.xml')/tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='ref.4.2.2']/tei:ab
         return substring-after($ab/@xml:id, 'ref.')"/>
-    
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
@@ -46,7 +47,26 @@ pipeline. -->
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
-                <h1>Digital Mishnah Project</h1>
+                <h1><a name="top"/>Digital Mishnah Project</h1>
+                <div class="contents">
+                    <table class="contents">
+                        <tr>
+                            <td class="contents"><a href="demo">Back to Demo Home</a></td>
+                            <td class="contents">
+                                <a href="#select">Select Passage and Witnesses</a>
+                            </td>
+                            <td class="contents">
+                                <a href="#align">Alignment Table Format</a>
+                            </td>
+                            <td class="contents">
+                                <a href="#text-appar">Text with Apparatus</a>
+                            </td>
+                            <td class="contents">
+                                <a href="#synopsis">Parallel Column Synopsis</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <h2>Sample Collatex Output</h2>
                 <h2>
                     <xsl:variable name="ref-cit" select="tei:TEI/tei:text/tei:body/tei:div/@n"> </xsl:variable>
@@ -73,34 +93,36 @@ pipeline. -->
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
-                <h3>1. Select a Passage</h3>
-                <form name="selection" action="collate-hl" method="get">                <div dir="ltr" style="text-align: center">
-                    <select name="mcite">
-                        <xsl:for-each select="$refList">
-                            <option>
-                                <xsl:attribute name="value">
-                                    <xsl:value-of select="."/>
-                                </xsl:attribute>
-                                <xsl:if test=". = $cite">
-                                    <xsl:attribute name="selected">selected</xsl:attribute>
-                                </xsl:if> 
-                                <xsl:variable name="lookup-text">
-                                    <xsl:copy-of select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"/>
-                                </xsl:variable>
-                                <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
-                                <xsl:text> </xsl:text>
-                                <xsl:value-of select="substring(., 5)"/>
-                                <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
-                            </option>
-                        </xsl:for-each>
-                    </select>
-                </div>
-                
-                <h3>2. Sources for Collation</h3>
-                <table class="sources" dir="ltr">
-                    
+                <h3><a name="select"/>1. Select a Passage&#xA0;<a href="#top"><span class="link"
+                            >[top]</span></a></h3>
+                <form name="selection" action="collate-hl" method="get">
+                    <div dir="ltr" style="text-align: center">
+                        <select name="mcite">
+                            <xsl:for-each select="$refList">
+                                <option>
+                                    <xsl:attribute name="value">
+                                        <xsl:value-of select="."/>
+                                    </xsl:attribute>
+                                    <xsl:if test=". = $cite">
+                                        <xsl:attribute name="selected">selected</xsl:attribute>
+                                    </xsl:if>
+                                    <xsl:variable name="lookup-text">
+                                        <xsl:copy-of
+                                            select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"
+                                        />
+                                    </xsl:variable>
+                                    <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="substring(., 5)"/>
+                                    <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
+                                </option>
+                            </xsl:for-each>
+                        </select>
+                    </div>
+                    <h3>2. Witnesses for Collation</h3>
+                    <table class="sources" dir="ltr">
                         <xsl:for-each select="$sortlist">
-                            <xsl:variable name="witName" select="@xml:id"></xsl:variable>
+                            <xsl:variable name="witName" select="@xml:id"/>
                             <tr>
                                 <td class="ref-wit">
                                     <xsl:value-of select="$witName"/>
@@ -108,23 +130,24 @@ pipeline. -->
                                 <td>
                                     <input name="{$witName}" type="text" maxlength="3" size="3">
                                         <xsl:attribute name="id">
-                                            <xsl:text>sel+</xsl:text>
+                                            <xsl:text>sel-</xsl:text>
                                             <xsl:value-of select="@xml:id"/>
                                         </xsl:attribute>
                                         <xsl:attribute name="value">
-                                            <xsl:choose><xsl:when test="$queryParams/tei:sortWit[text() =
-                                                $witName]/@sortOrder != '0'"><xsl:value-of select="$queryParams/tei:sortWit[text() =
-                                                $witName]/@sortOrder"></xsl:value-of></xsl:when>
-                                            <xsl:otherwise><xsl:value-of select="''"></xsl:value-of></xsl:otherwise></xsl:choose>
-                                            <!--<xsl:choose>
-                                                <xsl:when test="$queryParams/tei:sortWit[text() =
-                                                    $witName]/@sortOrder = 0"><xsl:value-of
-                                                        select="''"></xsl:value-of></xsl:when>
-                                                <xsl:otherwise><xsl:value-of select="$queryParams/*[text() =
-                                                    $witName]/@sortOrder"></xsl:value-of></xsl:otherwise>
-                                            </xsl:choose>-->
+                                            <xsl:choose>
+                                                <xsl:when
+                                                  test="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder != '0'">
+                                                  <xsl:value-of
+                                                  select="$queryParams/tei:sortWit[text() =
+                                                $witName]/@sortOrder"
+                                                  />
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                  <xsl:value-of select="''"/>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
                                         </xsl:attribute>
-                                        
                                     </input>
                                 </td>
                                 <td class="ref-data">
@@ -138,9 +161,10 @@ pipeline. -->
                                 <input type="submit" value="Collate"/>
                             </td>
                         </tr>
-                    
-                </table></form>
-                <h3 dir="ltr">2. Alignment Table Format</h3>
+                    </table>
+                </form>
+                <h3 dir="ltr"><a name="align"/>3. Alignment Table Format&#xA0;<a href="#top"><span
+                            class="link">[top]</span></a></h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
                 <div class="alignment-table">
@@ -181,8 +205,9 @@ pipeline. -->
                     </table>
                 </div>
                 <div class="text" dir="rtl">
-                    <h3 dir="ltr">3. Text of <xsl:value-of
-                            select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/@n"/></h3>
+                    <h3 dir="ltr"><a name="text-appar"/>4. Text of <xsl:value-of
+                            select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/@n"/>&#xA0;<a
+                            href="#top"><span class="link">[top]</span></a></h3>
                     <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/*">
                         <xsl:choose>
                             <xsl:when test="self::tei:w and text() != ''">
@@ -236,7 +261,7 @@ pipeline. -->
                     </xsl:for-each>
                 </div>
                 <div class="apparatus" dir="rtl">
-                    <h3 dir="ltr">4. Sample Apparatus, Text of <xsl:value-of
+                    <h3 dir="ltr">5. Sample Apparatus, Text of <xsl:value-of
                             select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/@n"/> as Base Text </h3>
                     <xsl:variable name="numbWits"
                         select="count(tei:TEI/tei:text/tei:body/tei:div/tei:ab)"/>
@@ -487,6 +512,45 @@ this -->
                         </xsl:choose>
                     </xsl:for-each-group>
                 </div>
+                <h3><a name="synopsis"/>6. Parallel Column Synopsis&#xA0;<a href="#top"><span
+                            class="link">[top]</span></a></h3>
+                <div class="synopsis">
+                    <table class="synopsis-table" dir="rtl">
+                        <tr>
+                            <xsl:for-each
+                                select="$queryParams/tei:sortWit[@sortOrder !=
+                            0]">
+                                <th class="text-col-head">
+                                    <xsl:value-of select="."/>
+                                </th>
+                            </xsl:for-each>
+                        </tr>
+                        <tr>
+                            <xsl:for-each
+                                select="$queryParams/tei:sortWit[@sortOrder !=
+                        0]">
+                                <xsl:variable name="witName" select="."/>
+                                <td class="text-col">
+                                    <!-- Build URI to extract text for parallel columns -->
+                                    <xsl:variable name="doc"
+                                        select="document('../tei/ref.xml',document(''))//tei:witness[@xml:id =
+                        $witName]/@corresp"/>
+                                    <xsl:variable name="loc">
+                                        <xsl:value-of select="$witName"/>
+                                        <xsl:text>.</xsl:text>
+                                        <xsl:value-of select="$cite"/>
+                                    </xsl:variable>
+                                    <!-- extract text -->
+                                    <xsl:variable name="synops-col"
+                                        select="document($doc)/tei:TEI/tei:text/tei:body/*/*/*/tei:ab[@xml:id
+                                        = $loc]"/>
+                                    <xsl:apply-templates mode="synops-cols"
+                                        select="$synops-col/node()"/>
+                                </td>
+                            </xsl:for-each>
+                        </tr>
+                    </table>
+                </div>
             </body>
         </html>
     </xsl:template>
@@ -539,5 +603,67 @@ this -->
                 </tei:sortWit>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    <!--    <xsl:template match="text()" mode="synops-cols">
+        <xsl:value-of select="."></xsl:value-of>
+    </xsl:template>-->
+    <xsl:template match="tei:label" mode="synops-cols">
+        <span class="label">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+    <!--<xsl:template match="//tei:seg" mode="synops-cols">
+        <xsl:apply-templates></xsl:apply-templates>
+    </xsl:template>-->
+    <xsl:template match="//tei:del" mode="synops-cols">
+        <span class="del">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:add" mode="synops-cols">
+        <span class="add">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:cb" mode="synops-cols">
+        <span class="cb">
+            <xsl:value-of select="@xml:id"/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:pb" mode="synops-cols">
+        <span class="pb">
+            <xsl:value-of select="@xml:id"/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:choice" mode="synops-cols">
+        <xsl:value-of select="tei:abbr"/>
+    </xsl:template>
+    <xsl:template match="tei:lb" mode="synops-cols">
+        <xsl:choose>
+            <xsl:when test="@n mod 10 = 0">
+                <lb class="lb10"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <lb class="lb"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:surplus" mode="synops-cols">
+        <span class="surplus">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:c | //tei:am | //tei:pc">
+        <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
+    <xsl:template match="//tei:damage" mode="synops-cols">
+        <span class="damage">
+            <xsl:apply-templates mode="synops-cols"/>
+        </span>
+    </xsl:template>
+    <xsl:template match="//tei:unclear" mode="synops-cols">
+        <span class="unclear">
+            <xsl:apply-templates mode="synops-cols"/>
+        </span>
     </xsl:template>
 </xsl:stylesheet>

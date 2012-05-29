@@ -123,7 +123,7 @@
                     <map:part src="cocoon:/tokenize-rich" element="tokens"/>
                     <map:part src="cocoon:/collatex-rich" element="collatex"/>
                 </map:aggregate>
-                <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon-2.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
@@ -135,6 +135,16 @@
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
                 <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="demo">
+                <map:generate src="resource://tei/demo.xml"/>
+                <map:transform src="resource://xsl/demo.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
+            </map:match>
+            <map:match pattern="browse">
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
             </map:match>
             <map:match pattern="css/*.css">
                 <map:read src="resource://css/{1}.css" mime-type="text/css"/>

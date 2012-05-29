@@ -80,9 +80,9 @@
                                         select="$mPreproc-1/node()[1]"/>
                                 </xsl:variable>
                                 <xsl:variable name="cleaned">
-                                    <xsl:apply-templates select="$mTokenize/element()[1]"/>
+                                    <xsl:apply-templates select="$mTokenize/element()[1]" mode="final"/>
                                 </xsl:variable>
-                                <xsl:copy-of select="$mTokenize"/>
+                                <xsl:copy-of select="$cleaned"/>
                             </ab>
                         </xsl:for-each>
                     </div>
@@ -150,13 +150,20 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:seg">
-                <!-- Currently selects only original text. Can be altered to include to include
-                    added corrected text as well. -->
-                <xsl:choose>
-                    <xsl:when test="self::tei:del"><xsl:value-of select="."/></xsl:when>
-                    <xsl:when test="self::tei:add or self::tei:corr"/>
-                    <xsl:otherwise><xsl:copy-of select="."></xsl:copy-of></xsl:otherwise>
-                </xsl:choose>
+                <!-- Currently selects only "original" text. Can be altered to include to include
+                    added corrected text as well. 
+                    Xan also be altered to deal with cases of known hands-->
+                
+                <xsl:for-each select="node()">
+                    <xsl:choose>
+                        <xsl:when test="self::text()">
+                            <xsl:copy-of select="."></xsl:copy-of>
+                        </xsl:when>
+                        <xsl:when test="self::tei:del | tei:sic"><xsl:value-of select="."></xsl:value-of></xsl:when>
+                        <xsl:when test="self::tei:add | tei:corr"></xsl:when>
+                        <xsl:otherwise><xsl:copy-of select="."></xsl:copy-of></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:choice">
@@ -287,7 +294,7 @@
     <xsl:template match="element()" mode="final">
         <!-- sibling recursion to remove any empty <w>s with no text -->
         <xsl:choose>
-            <xsl:when test="self::tei:w[not(string(.))]">
+            <xsl:when test="self::tei:w[not(normalize-space(.))]">
                 <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/>
             </xsl:when>
             <xsl:otherwise>

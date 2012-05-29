@@ -4,7 +4,7 @@
     xmlns:cx="http://interedition.eu/collatex/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
     exclude-result-prefixes="xs cx xd my xsl" version="2.0">
-    <xsl:output method="xml" indent="no" encoding="UTF-8"/>
+    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -32,7 +32,7 @@
     
 
     <!-- Copy collatex output into variable for easy reference -->
-    <xsl:variable name="collation-output">
+    <xsl:variable name="collation-output" xmlns:cx="http://interedition.eu/collatex/ns/1.0">
         <xsl:copy-of select="site/*/cx:alignment"/>
     </xsl:variable>
     
@@ -47,27 +47,35 @@
      <xsl:template match="/site/tokens | /site"><xsl:apply-templates/></xsl:template>
     <xsl:template match="/site/tokens/tei:TEI/tei:text/tei:body/tei:div">
         <div xmlns="http://www.tei-c.org/ns/1.0">
+            
             <xsl:attribute name="n" select="@n"/>
             <xsl:for-each select="tei:ab">
-                <xsl:variable name="tokens">
-                    <xsl:copy-of select="."/>
-                </xsl:variable>
+                
+               
+                
                 <ab>
                     <xsl:attribute name="n" select="@n"/>
                     <xsl:variable name="merged">
                         <xsl:variable name="n" select="@n"> </xsl:variable>
                         <!-- Variables for merging rich tokenization collatex output -->
                         <!-- Rich tokenization output -->
-                        <xsl:variable name="tokens">
+                        
+                        <xsl:variable name="tokens" xmlns:cx="http://interedition.eu/collatex/ns/1.0">
                             <xsl:sequence select="."/>
                         </xsl:variable>
+                        <!-- corresponding tokens in collatex output -->
+                        <xsl:variable name="collatex-tokens">
+                            <xsl:sequence select="$collation-output/cx:alignment/cx:row[@sigil = $n]"></xsl:sequence>
+                        </xsl:variable>
+                        
                         <!-- For each empty cell in collation output that is single
                     or first in a series ... [Should be moved to a template]-->
+                       
                         <xsl:for-each
-                            select="$collation-output/cx:alignment/cx:row[@sigil =
-                    $n]/cx:cell[. = '' and preceding-sibling::element()[1] != '']">
+                            select="$collatex-tokens/cx:row/cx:cell[not(string(.)) and preceding-sibling::element()[string(.)][1]]">
                             <!-- position in rich-tokenization: should equal number of 
                         non-empty preceding cells -->
+                            
                             <xsl:variable name="rich-pos" as="xs:integer">
                                 <xsl:sequence
                                     select="count(preceding-sibling::cx:cell[not(. =
@@ -79,6 +87,7 @@
                         collation output -->
                             <xsl:variable name="coll-pos" select="count(preceding-sibling::cx:cell)"
                                 as="xs:integer"/>
+                            
                             <!-- Starting position of of a string of tei:w, corresponding to a string of
                         uninterrupted non-empty cx:cells in collation output  -->
                             <xsl:variable name="start-str" as="xs:integer">
@@ -107,6 +116,7 @@
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:variable>
+                            
                             <!--  Number of empty cells singly or in series-->
                             <xsl:variable name="null-str" as="xs:integer">
                                 <!-- Uses same method as $start-str -->
@@ -140,6 +150,7 @@
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:variable>
+                            <xsl:copy-of select="$start-str"></xsl:copy-of>
                             <xsl:if test="$start-str = 1">
                                 <xsl:copy-of
                                     select="$tokens/tei:ab/tei:w[$start-str]/preceding-sibling::element()"
