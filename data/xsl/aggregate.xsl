@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
-    xmlns:local="local-functions.uri">
-    <xsl:strip-space elements="tei:w tei:reg"/>
-    <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:cx="http://interedition.eu/collatex/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
+    exclude-result-prefixes="xs cx xd my xsl" version="2.0">
+    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+    <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
-            <xd:p><xd:b>Created on:</xd:b> Oct 25, 2011</xd:p>
+            <xd:p><xd:b>Created on:</xd:b> May 21, 2012</xd:p>
             <xd:p><xd:b>Author:</xd:b> hlapin</xd:p>
             <xd:p/>
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+        >mcite=4.2.2.11&amp;Kauf=1&amp;ParmA=2&amp;Camb=3&amp;Maim=4&amp;Paris=5&amp;Nap=6&amp;Vilna=7&amp;Mun=0&amp;Hamb=9&amp;Leid=10&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
-    <!--    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
-    <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/>-->
     <xsl:variable name="witlist">
         <xsl:variable name="params">
             <xsl:call-template name="tokenize-params">
@@ -30,65 +28,88 @@
             <xsl:copy-of select="."/>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:template match="tei:text"/>
-    <xsl:template match="tei:TEI/tei:teiHeader">
-        <TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0">
-            <teiHeader>
-                <fileDesc>
-                    <titleStmt>
-                        <title>Title</title>
-                    </titleStmt>
-                    <publicationStmt>
-                        <p>Publication Information</p>
-                    </publicationStmt>
-                    <sourceDesc>
-                        <p>Information about the source</p>
-                    </sourceDesc>
-                </fileDesc>
-            </teiHeader>
-            <text>
-                <body>
-                    <div>
-                        <xsl:attribute name="n">
-                            <xsl:value-of select="$cite"/>
-                        </xsl:attribute>
-                        <xsl:variable name="uriList">
-                            <xsl:call-template name="buildURI">
-                                <xsl:with-param name="wits" select="//tei:witness[@corresp]"
-                                > </xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:variable>
-                        <xsl:for-each select="$uriList/tei:uri">
-                            <ab>
-                                <xsl:attribute name="n" select="@n"/>
-                                <!-- Extract text -->
-                                <xsl:variable name="mExtract">
-                                    <extract>
-                                        <xsl:copy-of select="document(.)/node()|@*"/>
-                                    </extract>
+    <xsl:variable name="witIndex" xpath-default-namespace="http://www.tei-c.org/ns/1.0"><xsl:copy-of
+        select="document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp]"/></xsl:variable>
+ 
+    <xsl:template match="*|@*|text()|processing-instruction()">
+        <xsl:copy>
+            <xsl:apply-templates select="*|@*|text()|processing-instruction()"/>
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="/">
+        <site>
+            <tokens>
+                <TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+                    xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0">
+                    <teiHeader>
+                        <fileDesc>
+                            <titleStmt>
+                                <title>Title</title>
+                            </titleStmt>
+                            <publicationStmt>
+                                <p>Publication Information</p>
+                            </publicationStmt>
+                            <sourceDesc>
+                                <p>Information about the source</p>
+                            </sourceDesc>
+                        </fileDesc>
+                    </teiHeader>
+                    <text>
+                        <body>
+                            <div>
+                                <xsl:attribute name="n">
+                                    <xsl:value-of select="$cite"/>
+                                </xsl:attribute>
+                                
+                                <xsl:variable name="uriList">
+                                    <xsl:call-template name="buildURI">
+                                        <xsl:with-param name="wits"
+                                            select="$witIndex/tei:witness[@corresp]"/>
+                                        
+                                    </xsl:call-template>
                                 </xsl:variable>
-                                <xsl:variable name="mPreproc-1">
-                                    <!-- Preprocess pass 1. By sibling recursion (mode = "preproc-1")
+                                
+                                
+                                <xsl:for-each select="$uriList/tei:uri">
+                                    
+                                    <ab>
+                                        <xsl:namespace name="tei" select="'http://www.tei-c.org/ns/1.0'"/><xsl:attribute name="n" select="@n"/>
+                                        <!-- Extract text -->
+                                        <xsl:variable name="mExtract" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
+                                            <extract>
+                                                <xsl:namespace name="tei" select="'http://www.tei-c.org/ns/1.0'"></xsl:namespace>
+                                                <xsl:copy-of select="document(.)/node()|@*" copy-namespaces="yes"/>
+                                            </extract>
+                                        </xsl:variable>
+                                        
+                                        <xsl:variable name="mPreproc-1">
+                                            <!-- Preprocess pass 1. By sibling recursion (mode = "preproc-1")
                                     and processing within sibling nodes ("preproc-within"), convert
                                     to text + a few select elements. -->
-                                    <xsl:apply-templates mode="preproc-1"
-                                        select="$mExtract/tei:extract/node()[1]"/>
-                                </xsl:variable>
-                                <xsl:variable name="mTokenize">
-                                    <xsl:apply-templates mode="tokenize"
-                                        select="$mPreproc-1/node()[1]"/>
-                                </xsl:variable>
-                                <xsl:variable name="cleaned">
-                                    <xsl:apply-templates select="$mTokenize/element()[1]" mode="final"/>
-                                </xsl:variable>
-                                <xsl:copy-of select="$cleaned"/>
-                            </ab>
-                        </xsl:for-each>
-                    </div>
-                </body>
-            </text>
-        </TEI>
+                                            <xsl:apply-templates mode="preproc-1"
+                                                select="$mExtract/tei:extract/node()[1]"/>
+                                        </xsl:variable>
+                                        
+                                       
+                                        <xsl:variable name="mTokenize">
+                                            <xsl:apply-templates mode="tokenize"
+                                                select="$mPreproc-1/node()[1]"/>
+                                        </xsl:variable>
+                                        <xsl:copy-of select="$mTokenize"/>
+                                    </ab> 
+                                </xsl:for-each>
+                                
+                                
+                            </div>
+                        </body>
+                    </text>
+                </TEI>
+    
+            </tokens>
+            <collate xmlns="http://interedition.eu/collatex/ns/1.0">
+                <xsl:apply-templates/>
+            </collate>
+        </site>
     </xsl:template>
     <xsl:template match="node()" mode="preproc-1">
         <xsl:choose>
@@ -111,7 +132,8 @@
             <xsl:when test="self::tei:w">
                 <xsl:choose>
                     <xsl:when test="./tei:lb/@n mod 10 = 0">
-                        <w>
+                        <w xmlns="http://www.tei-c.org/ns/1.0">
+                            
                             <xsl:apply-templates select="./node()" mode="preproc-within"/>
                             <reg>
                                 <xsl:value-of select="normalize-space(translate(.,'?וי','*'))"/>
@@ -120,15 +142,12 @@
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="self::comment()">
-                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
-            </xsl:when>
             <xsl:when test="self::tei:persName">
                 <xsl:apply-templates select="./node()" mode="preproc-within"/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:pc">
-                <xsl:element name="{name()}">
+                <xsl:element name="{name()}" xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:if test="./@type">
                         <xsl:attribute name="type" select="./@type"/>
                     </xsl:if>
@@ -136,13 +155,13 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:label">
-                <xsl:element name="{name()}">
+                <xsl:element name="{name()}" xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="."/>
                 </xsl:element>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:lb[not(./@type)]">
-                <xsl:element name="{name()}">
+                <xsl:element name="{name()}" xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:if test="./@n mod 10 = 0">
                         <xsl:attribute name="n" select="./@n"/>
                     </xsl:if>
@@ -150,20 +169,17 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:seg">
-                <!-- Currently selects only "original" text. Can be altered to include to include
-                    added corrected text as well. 
-                    Xan also be altered to deal with cases of known hands-->
-                
-                <xsl:for-each select="node()">
+                <!-- Currently selects only original text. Can be altered to include to include
+                    added corrected text as well. -->
+                <!-- use of <text> to insert spaces here is a hack. Must be a better way. -->
+                <xsl:text> </xsl:text><xsl:for-each select="node()">
                     <xsl:choose>
-                        <xsl:when test="self::text()">
-                            <xsl:copy-of select="."></xsl:copy-of>
-                        </xsl:when>
-                        <xsl:when test="self::tei:del | tei:sic"><xsl:value-of select="."></xsl:value-of></xsl:when>
-                        <xsl:when test="self::tei:add | tei:corr"></xsl:when>
-                        <xsl:otherwise><xsl:copy-of select="."></xsl:copy-of></xsl:otherwise>
+                        
+                        <xsl:when test="self::tei:del"><xsl:value-of select="."></xsl:value-of></xsl:when>
+                        <xsl:when test="self::tei:add"/>
+                        <xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
                     </xsl:choose>
-                </xsl:for-each>
+                </xsl:for-each><xsl:text> </xsl:text>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:choice">
@@ -171,7 +187,7 @@
                 <xsl:variable name="abbr" select="normalize-space(./tei:abbr)"> </xsl:variable>
                 <xsl:choose>
                     <xsl:when test="not(contains($expan,' '))">
-                        <w>
+                        <w xmlns="http://www.tei-c.org/ns/1.0">
                             <xsl:value-of select="$abbr"/>
                             <expan>
                                 <xsl:value-of select="$expan"/>
@@ -216,7 +232,7 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="not(contains($expan,' '))">
-                <w>
+                <w xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="$abbr"/>
                     <expan>
                         <xsl:value-of select="$expan"/>
@@ -249,7 +265,7 @@
         <xsl:text>|</xsl:text>
     </xsl:template>
     <xsl:template match="tei:lb | tei:pb | tei:cb" mode="preproc-within">
-        <xsl:element name="{name()}">
+        <xsl:element name="{name()}" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
             <xsl:if test="./@n mod 10 = 0">
                 <xsl:attribute name="n">
                     <xsl:value-of select="./@n"/>
@@ -270,7 +286,7 @@
                 <xsl:variable name="string" select="normalize-space(replace(.,'\]\s*?\[',''))"/>
                 <xsl:choose>
                     <xsl:when test="not(contains($string,' '))">
-                        <w>
+                        <w xmlns="http://www.tei-c.org/ns/1.0">
                             <xsl:value-of select="$string"/>
                             <reg>
                                 <xsl:value-of select="translate($string,'?וי','*')"/>
@@ -291,18 +307,6 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="element()" mode="final">
-        <!-- sibling recursion to remove any empty <w>s with no text -->
-        <xsl:choose>
-            <xsl:when test="self::tei:w[not(normalize-space(.))]">
-                <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:copy-of select="."/>
-                <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
     <!-- recursively splits string into <token> elements -->
     <!-- Adapts a template from: http://www.usingxml.com/Transforms/XslTechniques -->
     <!-- Second and Third versions: one to deal with words in text nodes, another to process choice/abbr -->
@@ -311,7 +315,7 @@
         <xsl:choose>
             <xsl:when test="contains($src,' ')">
                 <!-- build first token element -->
-                <w>
+                <w xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="translate(substring-before($src,' '),'?','*')"/>
                     <reg>
                         <xsl:value-of select="translate(substring-before($src,' '),'?וי','*')"/>
@@ -325,7 +329,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <!-- last token, end recursion -->
-                <w>
+                <w xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="translate($src,'?','*')"/>
                     <reg>
                         <xsl:value-of select="translate($src,'?וי','*')"/>
@@ -340,12 +344,12 @@
         <xsl:choose>
             <xsl:when test="contains($src,' ')">
                 <!-- build first token element -->
-                <w>
+                <w xmlns="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="normalize-space($abbr)"/>
                     <expan>
                         <xsl:value-of
                             select="normalize-space(translate(substring-before($src,'
-                        '),'?','*'))"
+                            '),'?','*'))"
                         />
                     </expan>
                     <reg>
@@ -362,7 +366,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <!-- last token, end recursion -->
-                <w>
+                <w xmlns="http://www.tei-c.org/ns/1.0">
                     <expan>
                         <xsl:value-of select="normalize-space(translate($src,'?','*'))"/>
                     </expan>
@@ -373,72 +377,73 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    
     <!-- Same technique used to tokenize the passed parameter data -->
     <xsl:template name="tokenize-params">
         <xsl:param name="src"/>
         <xsl:choose>
-            <xsl:when test="contains($src,'&amp;')">
-                <!-- build first token element -->
-                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
-                    <sortWit>
-                        <xsl:attribute name="sortOrder">
-                            <xsl:choose>
-                                <xsl:when
-                                    test="substring-after(substring-before($src,'&amp;'),'=')
-                                =''">
-                                    <xsl:value-of select="0"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of
-                                        select="substring-after(substring-before($src,'&amp;'),'=')"
-                                    />
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
+            <xsl:when test="contains($src,'&amp;')"><!-- build first token element -->
+    <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
+        <tei:sortWit>
+            <xsl:attribute name="sortOrder">
+                <xsl:choose>
+                    <xsl:when
+                        test="substring-after(substring-before($src,'&amp;'),'=')
+                        =''">
+                        <xsl:value-of select="0"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of
+                            select="substring-after(substring-before($src,'&amp;'),'=')"
                         />
-                    </sortWit>
-                </xsl:if>
-                <!-- recurse -->
-                <xsl:call-template name="tokenize-params">
-                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- last token, end recursion -->
-                <sortWit>
-                    <xsl:attribute name="sortOrder">
-                        <xsl:choose>
-                            <xsl:when
-                                test="substring-after($src,'=')
-                            =''">
-                                <xsl:value-of select="0"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="substring-after($src,'=')"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:value-of select="substring-before($src,'=')"/>
-                </sortWit>
-            </xsl:otherwise>
-        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
+            />
+        </tei:sortWit>
+    </xsl:if>
+    <!-- recurse -->
+    <xsl:call-template name="tokenize-params">
+        <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
+    </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+        <!-- last token, end recursion -->
+        <tei:sortWit>
+            <xsl:attribute name="sortOrder">
+                <xsl:choose>
+                    <xsl:when
+                        test="substring-after($src,'=')
+                        =''">
+                        <xsl:value-of select="0"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="substring-after($src,'=')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:value-of select="substring-before($src,'=')"/>
+        </tei:sortWit>
+    </xsl:otherwise>
+    </xsl:choose>
     </xsl:template>
     <xsl:template name="buildURI">
         <xsl:param name="wits"/>
         <xsl:for-each select="$witlist/tei:sortWit[@sortOrder != 0]">
             <xsl:sort select="@sortOrder"/>
             <xsl:variable name="curr-wit" select="current()/text()"/>
-            <uri>
-                <xsl:attribute name="n" select="$curr-wit"/>
+            <tei:uri>
+                <xsl:attribute name="n" select="$curr-wit"></xsl:attribute>
                 <xsl:text>../tei/</xsl:text>
                 <xsl:value-of select="$wits[@xml:id =
-                $curr-wit]/@corresp"/>
+                    $curr-wit]/@corresp"/>
                 <xsl:text>#</xsl:text>
                 <xsl:value-of select="$curr-wit"/>
                 <xsl:text>.</xsl:text>
                 <xsl:value-of select="$cite"/>
-            </uri>
+            </tei:uri>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

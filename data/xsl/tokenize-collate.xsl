@@ -14,27 +14,20 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"/>
-    <xsl:param name="selected"/>
+    <xsl:param name="mcite" select="'4.2.2.1'"/>
+    <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
-    <!--<xsl:variable name="sel" select="tokenize($selected, ',')"/>-->
     <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/> 
-    <xsl:template match="tei:teiHeader"/>
-    <xsl:template match="//tei:list">
+    <xsl:template match="/tei:TEI">
         <!-- Copy witness list into temporary node for reference -->
-        <xsl:variable name="mcite">
-            <xsl:value-of select="./@n"/>
-        </xsl:variable>
         <xsl:variable name="witlist">
-            <xsl:copy-of
-                select="document('../tei/ref.xml',document(''))/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit except ."
-            />
-            
+            <xsl:copy-of select="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit"/> 
         </xsl:variable>
- 
+        <xsl:variable name="refList" select="for $ab in tei:text/tei:body/tei:div1/tei:div2/tei:div3/tei:ab return substring-after($ab/@xml:id, 'ref.')"/>
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">
-            <xsl:for-each select="./tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]">
+            <xsl:for-each select="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp and (count($sel) = 0 or count(index-of($sel, @xml:id)) != 0)]">
                 <xsl:variable name="Wit">
-                    <xsl:copy-of select="."/>
+                    <xsl:value-of select="@xml:id"/>
                 </xsl:variable>
                 <cx:witness>
                     <xsl:attribute name="sigil">
@@ -42,16 +35,16 @@
                     </xsl:attribute>
                     <!-- Build URI from ref.xml, assemble in buildURI -->
                     <xsl:variable name="buildURI">
-                        <xsl:text>../tei/</xsl:text><xsl:value-of select="$witlist//tei:witness[@xml:id=$Wit]/@corresp"/>
+                        <xsl:text>../tei/</xsl:text><xsl:value-of select="@corresp"/>
                         <xsl:text>#</xsl:text>
                         <xsl:value-of select="$Wit"/>
                         <xsl:text>.</xsl:text>
-                        <xsl:value-of select="$mcite"/>
+                        <xsl:value-of select="$cite"/>
                     </xsl:variable>
                     
                     <!-- Extract text -->
                     <xsl:variable name="mExtract">
-                        <xsl:copy-of select="document($buildURI)/node()|@*"/>
+                        <xsl:copy-of select="document($buildURI)/node()"/> <!--|@*"/>-->
                     </xsl:variable>
                     <xsl:variable name="mTokenized">
                         <tokens><xsl:apply-templates select="$mExtract" mode="strip"/></tokens>

@@ -12,8 +12,7 @@
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+  See the License for the specific language governing permissions and limitations under the License.
 -->
 <map:sitemap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
@@ -21,7 +20,9 @@
     <map:components>
         <map:serializers>
             <map:serializer name="tei" mime-type="application/xml"
-                src="org.apache.cocoon.serialization.XMLSerializer"/>
+                src="org.apache.cocoon.serialization.XMLSerializer">
+                <indent>yes</indent>
+            </map:serializer>
         </map:serializers>
         <map:transformers>
             <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
@@ -41,18 +42,32 @@
             </map:match>
         </map:pipeline>
         <map:pipeline id="text-viewer">
+            <map:match pattern="collate">
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/tokenize-collate.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:transform type="collatex"/>
+                <map:transform src="resource://xsl/apparatus.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="default.mcite" value="4.2.2.1"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:serialize type="tei"/>
+            </map:match>
             <map:match pattern="synopsis/*">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/ch{1}synopsis.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
             <!-- Following reflect earlier stages. Delete? -->
-            <!--<map:match pattern="collate-demo">
+            <map:match pattern="collate-demo">
                 <map:generate src="resource://tei/collate-demo.xml"/>
                 <map:transform type="collatex"/>
                 <map:serialize type="xml"/>
             </map:match>
-            <map:match pattern="collatex-demo">
+            <!--<map:match pattern="collatex-demo">
                 <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
                 <map:transform src="resource://xsl/tokenize-cocoon-collatex-demo.xsl"
                     type="xslt-saxon"/>
@@ -61,14 +76,23 @@
                 <map:serialize type="tei"/>
             </map:match>-->
             <map:match pattern="tokenize-rich">
-                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
-                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
                 <map:serialize type="tei"/>
             </map:match>
             <map:match pattern="collatex-rich">
-                <map:generate src="resource://tei/test-reflist-for-tokenizing.xml"/>
-                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon"/>
-                <map:transform src="resource://xsl/tokenize-rich-collatex.xsl" type="xslt-saxon"/>
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/tokenize-rich.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:transform src="resource://xsl/tokenize-rich-collatex.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
                 <map:transform type="collatex"/>
                 <map:serialize type="xml"/>
             </map:match>
@@ -78,7 +102,10 @@
                     <map:part src="cocoon:/collatex-rich" element="collatex"/>
                 </map:aggregate>
                 <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
-                    type="xslt-saxon"/>
+                    type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
                 <map:serialize type="xml"/>
             </map:match>
             <map:match pattern="tokenize-rich-collatex-merge-output">
@@ -88,9 +115,36 @@
                 </map:aggregate>
                 <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
                     type="xslt-saxon"/>
-                <map:transform src="resource://xsl/collatex-rich-to-apparatus.xsl"
-                    type="xslt-saxon"/>
+                <map:transform src="resource://xsl/collatex-rich-to-apparatus.xsl" type="xslt-saxon"/>
                 <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="collate-hl">
+                <map:aggregate element="site">
+                    <map:part src="cocoon:/tokenize-rich" element="tokens"/>
+                    <map:part src="cocoon:/collatex-rich" element="collatex"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/merge-tokens-to-collatex-cocoon-2.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:transform type="collatex"/>
+                <map:transform src="resource://xsl/collatex-rich-to-apparatus.xsl" type="xslt-saxon">
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="default.mcite" value="4.2.2.1"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:serialize type="tei"/>
+            </map:match>
+            <map:match pattern="demo">
+                <map:generate src="resource://tei/demo.xml"/>
+                <map:transform src="resource://xsl/demo.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
+            </map:match>
+            <map:match pattern="browse">
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
             </map:match>
             <map:match pattern="css/*.css">
                 <map:read src="resource://css/{1}.css" mime-type="text/css"/>

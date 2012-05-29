@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:cx="http://interedition.eu/collatex/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
+    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
     xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd cx tei my" version="2.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
@@ -15,22 +14,15 @@
     <!-- xslt transformation of output from collatex demo for automated transformation in Cocoon
 pipeline. -->
     <xsl:param name="rqs"/>
-    <xsl:param name="selected"/>
+    <xsl:param name="mcite" select="'4.2.2.1'"/>
+    <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
-    <!--<xsl:variable name="sel" select="tokenize($selected, ',')"/>-->
     <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/> 
-    <xsl:variable name="selList">
-        <xsl:copy-of
-            select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]"
-        />
-    </xsl:variable>
-    <xsl:variable name="sortlist">
-        <xsl:copy-of
-            select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/tei:item"
-        />
-    </xsl:variable>
+    <xsl:variable name="selList" select="for $w in document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp and (count($sel) = 0 or count(index-of($sel, @xml:id)) != 0)] return $w/@xml:id"/>
+    <xsl:variable name="sortlist" select="for $w in document('../tei/ref.xml')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit//tei:witness[@corresp] return $w/@xml:id"/>
+    <xsl:variable name="refList" select="for $ab in document('../tei/ref.xml')/tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3/tei:ab return substring-after($ab/@xml:id, 'ref.')"/>
     <xsl:variable name="numb-of-wits">
-        <xsl:value-of select="count($sortlist/tei:item)"/>
+        <xsl:value-of select="count($sortlist)"/>
     </xsl:variable>
     <xsl:variable name="data">
         <xsl:copy-of select="/cx:alignment/cx:row"/>
@@ -43,32 +35,28 @@ pipeline. -->
                 </xsl:variable>
                 <xsl:element name="my:lemma">
                     <xsl:attribute name="position" select="$position"/>
-                    <xsl:for-each select="$sortlist/tei:item[count($sel) = 0 or count(index-of($sel, text())) != 0]">
+                    <xsl:for-each select="$selList">
                         <xsl:element name="my:reading">
                             <xsl:variable name="witness">
                                 <xsl:value-of select="."/>
                             </xsl:variable>
                             <xsl:variable name="cell">
-                                <xsl:value-of
-                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]"
-                                />
+                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]"/>
                             </xsl:variable>
                             <xsl:attribute name="witness">
                                 <xsl:value-of select="$witness"/>
                             </xsl:attribute>
                             <xsl:attribute name="state">
-                                <xsl:value-of
-                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"
-                                />
+                                <xsl:value-of select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"/>
                             </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
                             <xsl:choose>
-                                <xsl:when test="$cell/text() = ''">
-                                    <xsl:text>–</xsl:text>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="$cell/text()"/>
-                                </xsl:otherwise>
+                              <xsl:when test="$cell/text() = ''">
+                                <xsl:text>–</xsl:text>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="$cell/text()"/>
+                              </xsl:otherwise>
                             </xsl:choose>
                         </xsl:element>
                     </xsl:for-each>
@@ -88,17 +76,9 @@ pipeline. -->
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>Digital Mishnah Project</h1>
                 <h2>Sample Collatex Output</h2>
-
-                <!-- Isn't this just generating an unnecessary heading? -->
-                <h2><xsl:value-of select="count($readings-list)"/></h2>
-                <h2><xsl:variable name="ref-cit">
-
-                        <xsl:value-of
-                            select="document('../tei/test-reflist-for-tokenizing.xml')/tei:TEI/tei:text/tei:body/tei:list/@n"
-                        />
-                    </xsl:variable>
+                <h2>
                     <xsl:variable name="look-up">
-                        <xsl:analyze-string select="$ref-cit"
+                        <xsl:analyze-string select="$cite"
                             regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                             <xsl:matching-substring>#ref.<xsl:value-of select="regex-group(1)"
                                     />.<xsl:value-of select="regex-group(2)"/>
@@ -110,25 +90,41 @@ pipeline. -->
                             select="document(normalize-space(concat('../tei/ref.xml',$look-up)),document(''))"
                         />
                     </xsl:variable>
-                    <span class="tractate">
-                        <xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/>
-                    </span>
-                    <xsl:analyze-string select="$ref-cit"
+                    <span class="tractate"><xsl:value-of select="translate($look-up-text/*/@n,'_',' ')"/></span>
+                    <xsl:analyze-string select="$cite"
                         regex="^([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                         <xsl:matching-substring><xsl:text> </xsl:text><xsl:value-of
                                 select="regex-group(3)"/>:<xsl:value-of select="regex-group(4)"/>
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
-
-             
-                <h3>1. Sources to Collate</h3>
                 <form name="selection" action="collate" method="get">
-
+                <h3>1. Mishnah to Collate</h3>
+                <div dir="ltr" style="text-align: center">
+                  <select name="mcite">
+                    <xsl:for-each select="$refList">
+                      <option>
+                        <xsl:attribute name="value">
+                          <xsl:value-of select="."/>
+                        </xsl:attribute>
+                        <xsl:if test=". = $cite">
+                          <xsl:attribute name="selected">selected</xsl:attribute>
+                        </xsl:if> 
+                        <xsl:variable name="lookup-text">
+                          <xsl:copy-of select="document(normalize-space(concat('../tei/ref.xml#ref.', substring(., 1, 3))),document(''))"/>
+                        </xsl:variable>
+                        <xsl:value-of select="translate($lookup-text/*/@n,'_',' ')"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="substring(., 5)"/>
+                        <!--<xsl:value-of select="normalize-space(concat('../tei/ref.xml#ref.', substring($cite, 1, 3)))"/>-->
+                      </option>
+                    </xsl:for-each>
+                  </select>
+                </div>
+                <h3>2. Sources to Collate</h3>
                 <table class="sources" dir="ltr">
-                    <xsl:for-each select="$sortlist/tei:item">
-                        <tr>
-                            <td>
+                    <xsl:for-each select="$sortlist">
+                        <tr><td>
                           <input type="checkbox" name="wit">
                             <xsl:attribute name="id">
                                <xsl:text>sel</xsl:text><xsl:value-of select="."/>
@@ -152,20 +148,18 @@ pipeline. -->
                                     select="document(concat('../tei/ref.xml','#',.))/text()"/>
                             </span>
                           </label>
-                          </td>
-                            
-                        </tr>
+                          </td></tr>
                     </xsl:for-each>
-                    <tr></tr>
+                    <tr><td></td></tr>
                     <tr><td><input type="submit" value="Collate"/></td></tr>
                 </table>
                 </form>
-                <h3 dir="ltr">2. Alignment Table Format</h3>
+                <h3 dir="ltr">3. Alignment Table Format</h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
                 <div class="alignment-table">
                     <table dir="rtl">
-                        <xsl:for-each select="$readings-list/my:lemma[1]/my:reading/@sort-order">
+                      <xsl:for-each select="$readings-list/my:lemma[1]/my:reading/@sort-order">
                             <xsl:variable name="sort-order">
                                 <xsl:value-of select="."/>
                             </xsl:variable>
@@ -182,8 +176,8 @@ pipeline. -->
 'variant'">
                                             <xsl:attribute name="class" select="'variant'"/>
                                         </xsl:if>
-                                        <xsl:value-of
-                                            select="./my:reading[@sort-order=$sort-order]/text()"/>
+                                        <xsl:value-of select="./my:reading[@sort-order=$sort-order]/text()"
+                                        />
                                     </td>
                                 </xsl:for-each>
                                 <td class="wit">
@@ -196,7 +190,7 @@ pipeline. -->
                     </table>
                 </div>
                 <div class="text" dir="rtl">
-                    <h3 dir="ltr">3. Text of <xsl:value-of select="$selList/tei:item[1]"/></h3>
+                    <h3 dir="ltr">4. Text of <xsl:value-of select="$selList[1]"/></h3>
                     <xsl:for-each select="$readings-list/my:lemma/my:reading[@sort-order='1']">
                         <xsl:choose>
                             <xsl:when test=". =
@@ -212,8 +206,8 @@ pipeline. -->
                     </xsl:for-each>
                 </div>
                 <div class="apparatus" dir="rtl">
-                    <h3 dir="ltr">4. Sample Apparatus, Text of <xsl:value-of
-                            select="$selList/tei:item[1]"/> as Base Text </h3>
+                    <h3 dir="ltr">5. Sample Apparatus, Text of <xsl:value-of
+                            select="$selList[1]"/> as Base Text </h3>
                     <!-- Check if base text has a missing reading relative to others and group on
 this -->
                     <xsl:for-each-group select="$readings-list/my:lemma"
@@ -238,8 +232,7 @@ grouping as with the single readings (below) -->
                                         <xsl:element name="my:complex-reading">
                                             <xsl:attribute name="witness">
                                                 <xsl:value-of
-                                                  select="$sortlist/tei:item[position()
-= $sort-order]"
+                                                  select="$sortlist[position() = $sort-order]"
                                                 />
                                             </xsl:attribute>
                                             <xsl:attribute name="sort-order" select="$sort-order"/>
@@ -302,7 +295,8 @@ $sort-order]"/>
                                                   <bdo dir="rtl">
                                                   <xsl:value-of
                                                   select="translate(current-group()[1],'–',
-'')"/>
+'')"
+                                                  />
                                                   </bdo>
                                                   </xsl:otherwise>
                                                   </xsl:choose>
