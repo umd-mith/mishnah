@@ -391,12 +391,12 @@
     </xsl:template>
     <xsl:template match="//tei:label">
         <span class="label">
-            <xsl:apply-templates></xsl:apply-templates>
+            <xsl:apply-templates select="node()"></xsl:apply-templates>
         </span>
     </xsl:template>
     <xsl:template match="//tei:head">
         <span class="label">
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="node()"/>
         </span>
     </xsl:template>
     <xsl:template match="tei:note[ancestor::tei:body]">
