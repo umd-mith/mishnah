@@ -17,16 +17,19 @@
             <head>
                 <title>Digital Mishnah Project Demo</title>
             </head>
-            <body><h1>Demo Page of the Digital Mishnah Project</h1>
+            <body><div style="width:75%; margin-right:15%; margin-left:15%"><h1>Demo Page of the Digital Mishnah Project</h1>
                 <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:p"><p><xsl:value-of
                     select="."/></p></xsl:for-each>
                 <form name="selection" action="collate-hl" method="get">
-                    <input value="Collate" type="submit" ></input><span style="inline-block">&#xa0;&#xa0;Sample output of collation</span>
+                    <input value="Collate" type="submit" ></input><span
+                        style="display:inline-block;font-style:italic;">&#xa0;&#xa0;Collate and
+                        process selected
+                        witnesses</span>
                 </form>    
                 <form name="selection" action="browse" method="get">
                     <input value="Browse" type="submit" ></input><span
-                        style="inline-block">&#xa0;&#xa0;Browse Individual Transcriptions</span>
-                </form>  
+                        style="display:inline-block;font-style:italic;">&#xa0;&#xa0;Browse Individual Transcriptions</span>
+                </form>  </div>
             </body>
         </html>
     </xsl:template>
