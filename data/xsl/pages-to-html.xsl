@@ -4,7 +4,7 @@
     xmlns="http://www.w3.org/1999/xhtml" xmlns:its="http://www.w3.org/2005/11/its"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all" version="2.0"
     xmlns:local="local-functions.uri">
-    <xsl:output method="html" indent="no" encoding="UTF-8"/>
+    <xsl:output method="xhtml" indent="no" encoding="UTF-8"/>
     <xsl:strip-space elements="tei:damageSpan and tei:anchor and
         tei:gap and xs:comment"/>
     <xd:doc scope="stylesheet">

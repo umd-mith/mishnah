@@ -4,7 +4,9 @@
     xmlns="http://www.w3.org/1999/xhtml" xmlns:its="http://www.w3.org/2005/11/its"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all" version="2.0"
     xmlns:local="local-functions.uri">
-    <xsl:output method="html" indent="no" encoding="UTF-8"/>
+    <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"
+        doctype-public="-//W3C//DTD HTML 4.01//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+    
     <xsl:strip-space
         elements=" tei:choice and tei:am and
         tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap"/>
@@ -29,6 +31,7 @@
         <xsl:apply-templates select="node()"/>
     </xsl:template>
     <xsl:template match="/">
+        
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <link rel="stylesheet" type="text/css"
