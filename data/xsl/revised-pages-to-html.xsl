@@ -5,11 +5,12 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="#all" version="2.0"
     xmlns:local="local-functions.uri">
     <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"
-        doctype-public="-//W3C//DTD HTML 4.01//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
-    
+        doctype-public="-//W3C//DTD HTML 4.01//EN"
+        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
     <xsl:strip-space
         elements=" tei:choice and tei:am and
-        tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap"/>
+        tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap
+        tei:del tei:add"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Jul 23, 2011</xd:p>
@@ -31,7 +32,6 @@
         <xsl:apply-templates select="node()"/>
     </xsl:template>
     <xsl:template match="/">
-        
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <link rel="stylesheet" type="text/css"
@@ -46,8 +46,162 @@
             </head>
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1>
-                    <xsl:value-of select="//tei:title"/>
+                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </h1>
+                <h2 style="font-size:80%;">[<a href="demo">Back to Demo Home Page</a>] [<a
+                        href="browse">Back to Browse</a>]</h2>
+                <h2 style="font-size:80%;"/>
+                <div class="meta" dir="ltr">
+                    <xsl:variable name="nli"
+                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:note[@type
+                        = 'nli']"></xsl:variable>
+                    <table class="meta">
+                           
+                        <tr>
+                            <td class="data">Repository</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:repository"/>
+                                <xsl:text>
+                            (</xsl:text>
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:settlement"/>
+                                <xsl:text>) </xsl:text>
+                            </td>
+                            <td class="data">Dimensions:</td>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td class="data">Id no.</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno"
+                                />
+                            </td>
+                            <td class="data">Sheet</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='sheet']/tei:height"/>
+                                <xsl:text>
+                                × </xsl:text>
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='sheet']/tei:width"
+                                /> cm</td>
+                        </tr>
+                        <tr>
+                            <td class="data">Hand</td>
+                           <td class="descr"> <xsl:value-of
+                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/@script"
+                            />
+                            <xsl:choose><xsl:when
+                                test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]"
+                                ><xsl:text>; </xsl:text><xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]"/><xsl:text>
+                                    </xsl:text><xsl:value-of
+                                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/tei:desc"/>
+                                <xsl:if
+                                    test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,'pointed')]/ancestor-or-self::tei:handNote/@scribe
+                                    != 'first'"> (not by primary scribe)</xsl:if>
+                            </xsl:when>
+                                </xsl:choose></td>
+                            <td class="data">Written Column</td>
+                            <td class="descr"><xsl:value-of
+                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-cm']/tei:height"
+                            /><xsl:text>
+                                × </xsl:text><xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-cm']/tei:width"
+                                /> cm</td>
+                        </tr>
+                        <tr>
+                            <td class="data">Date</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:date"
+                                />
+                            </td>
+                            <td class="data">Lines per column</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-writ']/tei:height"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data">Region</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:region"
+                                />
+                            </td>
+                            <td class="data">Characters/line</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-writ']/tei:width"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data">Format</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/@form"
+                                />
+                            </td>
+                            <td class="data">Characters/cm</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-writ']/tei:dim[@type='char-p-cm']"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data">Material</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"
+                                />
+                            </td>
+                            <td class="data"></td><td class="descr"></td>
+                        </tr>
+                        <tr>
+                            <td class="data">Extent</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent"
+                                />
+                            </td>
+                            <td class="data">Contributions:</td><td class="descr"></td>
+                        </tr>
+                        <tr>
+                            <td class="data">Columns</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/@columns"
+                                />
+                            </td>
+                            <td class="data">Transcription</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='transcriber']/tei:persName"
+                                />
+                            </td>
+                        </tr>
+                        <tr><td class="data">Scribe</td><td class="descr"><xsl:value-of
+                            select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:persName"
+                            separator="; "/></td>
+                            <td class="data">Markup</td>
+                            <td class="descr">
+                                <xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='markup']/tei:persName"
+                                />
+                            </td></tr>
+                        <tr><td class="data">Place of copying</td><td class="descr"><xsl:value-of
+                            select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:placeName"
+                            separator="; "/></td><td
+                                class="data"><a href="{$nli}">NLI
+                                    Catalog</a></td><td class="descr"></td></tr>
+                    </table>
+                </div>
                 <h2>Transcription</h2>
                 <xsl:apply-templates select="//tei:text"/>
                 <h2>Notes</h2>
@@ -157,14 +311,16 @@
                     </xsl:when>
                     <!-- the other handlings of tei:gap -->
                     <!-- These use cases needs fixing -->
-                    <xsl:when test="preceding::*[1]/self::tei:lb and
+                    <xsl:when
+                        test="preceding::*[1]/self::tei:lb and
                         not(preceding::node()[1]/text()|tei:unclear)">
                         <span class="missing"><xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
                                 <xsl:with-param name="char" select="'&#160;'"/>
                             </xsl:call-template>]</span>
                     </xsl:when>
-                    <xsl:when test="following::*[1]/self::tei:lb and
+                    <xsl:when
+                        test="following::*[1]/self::tei:lb and
                         not(following::node()[1]/text()|tei:unclear)">
                         <span class="missing">[<xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
@@ -204,9 +360,10 @@
             <xsl:if test="not(descendant::tei:div[1][@type='column'])">
                 <div class="oneCol">
                     <span class="pageNo">Folio <xsl:value-of select="./@n"/></span>
-                     <xsl:if test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
+                    <xsl:if test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
                         <xsl:variable name="firstline">
-                            <xsl:value-of select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"/>
+                            <xsl:value-of
+                                select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"/>
                         </xsl:variable>
                         <xsl:variable name="char">
                             <br/>
@@ -215,8 +372,8 @@
                             <xsl:with-param name="howMany" select="$firstline - 1"/>
                             <xsl:with-param name="char" select="$char"/>
                         </xsl:call-template>
-                    </xsl:if><xsl:apply-templates/>
-                   
+                    </xsl:if>
+                    <xsl:apply-templates/>
                 </div>
             </xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">
@@ -268,7 +425,7 @@
     </xsl:template>
     <xsl:template match="tei:add">
         <span class="add">
-            <xsl:value-of select="."/>
+            <xsl:apply-templates/>
         </span>
     </xsl:template>
     <xsl:template match="tei:del">
@@ -313,27 +470,22 @@
             <xsl:variable name="dots" as="xs:string">
                 <xsl:text>&#8201;.&#8201;</xsl:text>
             </xsl:variable>
-            
-                <xsl:choose>
-                    <!-- converts node to text  and replaces ? with dots. Assumes that will not be
+            <xsl:choose>
+                <!-- converts node to text  and replaces ? with dots. Assumes that will not be
                         retaining child nodes of unclear. This may change.  -->
-                    <xsl:when test="string(.)">
-                        <xsl:value-of
-                            select="normalize-space(replace(. except tei:note,'\?',$dots))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="''"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            
-           
+                <xsl:when test="string(.)">
+                    <xsl:value-of select="normalize-space(replace(. except tei:note,'\?',$dots))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="''"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:choose>
                 <xsl:when test="number(./@extent) - $adj-length &lt;= 0">
                     <!-- If traces = extent then do not add dots -->
                 </xsl:when>
                 <xsl:when test="number(./@extent) - $adj-length &gt; 0">
                     <!-- add dots -->
-                   
                     <xsl:call-template name="add-char">
                         <xsl:with-param name="howMany">
                             <xsl:value-of select="number(./@extent) - $adj-length"/>
@@ -354,7 +506,9 @@
                     <xsl:apply-templates select="current-group()"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <span class="damage"><xsl:apply-templates select="current-group()"/></span>
+                    <span class="damage">
+                        <xsl:apply-templates select="current-group()"/>
+                    </span>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each-group>
@@ -393,9 +547,18 @@
         </span>
     </xsl:template>
     <xsl:template match="//tei:label">
-        <span class="label">
-            <xsl:apply-templates select="node()"></xsl:apply-templates>
-        </span>
+        <xsl:choose>
+            <xsl:when test=".[contains(@rend,'margin-right')]">
+                <span class="marg-label-r">
+                    <xsl:apply-templates select="node()"/>
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="label">
+                    <xsl:apply-templates select="node()"/>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="//tei:head">
         <span class="label">

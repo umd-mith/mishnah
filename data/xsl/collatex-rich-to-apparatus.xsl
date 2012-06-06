@@ -666,4 +666,5 @@ this -->
             <xsl:apply-templates mode="synops-cols"/>
         </span>
     </xsl:template>
+    <xsl:template match="//tei:note" mode="synops-cols"></xsl:template>
 </xsl:stylesheet>

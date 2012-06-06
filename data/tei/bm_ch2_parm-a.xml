@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
-    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>-->
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
@@ -10,15 +10,15 @@
                 <title>An Electronic Edition of Mishnah Bava Metsia Ch. 2, Parma De Rossi 138
                     A</title>
                 <editor>
-                    <persName>Hayim Lapin</persName>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
                     <resp>transcriber</resp>
-                    <persName>Justin Orr</persName>
+                    <persName corresp="ref.xml#JDO">Justin Orr</persName>
                 </respStmt>
                 <respStmt>
-                    <resp>original markup</resp>
-                    <persName>Hayim Lapin</persName>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#JDO">Hayim Lapin</persName>
                 </respStmt>
                 <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
                     Studies</sponsor>
@@ -34,8 +34,11 @@
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">Kauf</idno>
-                <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
                 <date>2012-01-03</date>
             </publicationStmt>
@@ -47,15 +50,8 @@
                     <p>Transcription by Justin Orr, edited and tagged by Hayim Lapin</p>
                 </note>
             </notesStmt>
-            <sourceDesc>
-                <bibl>
-                    <editor>Richler, Benjamin</editor>
-                    <title>Hebrew Manuscripts in the Biblioteca Palatina in Parma: Catalogue</title>
-                    <pubPlace>Jerusalem</pubPlace>
-                    <publisher>Hebrew University of Jerusalem; Jewish National and University
-                        Library</publisher>
-                    <date>2010</date>
-                </bibl>
+            <sourceDesc corresp="ref.xml#richler-parma">
+                <!-- @corresp gives bibliog -->
                 <msDesc>
                     <msIdentifier>
                         <settlement>Parma</settlement>
@@ -65,32 +61,10 @@
                     <msContents>
                         <msItem>
                             <title>Mishnah</title>
+                            <note type="nli-ref">http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=000070680&amp;local_base=NNLMSS</note>
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote scribe="first" script="Italian Square" scope="major">
-                                <date>11th Century</date>
-                                <region>Italy</region>
-                                <!-- Following is a temporary solution -->
-                                <desc>Pointed</desc>
-                                <note>"About half of the tractates are supplied with vowel points
-                                    reflecting the vocalization accrding to the Babylonian
-                                    tradition" (Richler)</note>
-                            </handNote>
-                            <handNote scribe="seond" script="Italian Square" scope="minor">
-                                <date>11th Century</date>
-                                <region>Italy</region>
-                                <note>Sporadic</note>
-                            </handNote>
-                            <handNote scribe="third" script="Italian Square" scope="minor">
-                                <date>11th Century</date>
-                                <region>Italy</region>
-                                <note>Folios 175-195. Thought to be identical with scribe of MS
-                                    Vat., Biblieca Apostolica ebr. 31 (Sifra), dated
-                                    1072-1073</note>
-                            </handNote>
-                        </handDesc>
                         <objectDesc form="codex">
                             <supportDesc material="parchment">
                                 <extent>196 leaves</extent>
@@ -100,22 +74,45 @@
                                     <dimensions scope="sheet">
                                         <width unit="cm">27</width>
                                         <height unit="cm">32.8</height>
-                                        <!-- NEEDS WORK NB partly one column-->
                                     </dimensions>
-                                    <!-- NEEDS WORK NB partly one column-->
+                                    <!-- NEEDS WORK NB partly one column -->
                                     <dimensions scope="col-cm">
                                         <width unit="cm">10</width>
                                         <height unit="cm">24</height>
-                                        <!-- NEEDS WORK NB partly one column-->
+                                        <!-- NEEDS WORK NB partly one column -->
                                     </dimensions>
                                     <dimensions scope="col-writ">
                                         <width unit="chars">28</width>
                                         <height unit="lines">34</height>
                                         <dim type="char-p-cm">1.4</dim>
                                     </dimensions>
+                                    <note/>
                                 </layout>
                             </layoutDesc>
                         </objectDesc>
+                        <handDesc>
+                            <handNote scribe="first" script="Italian Square" scope="major">
+                                <date>11th Century</date>
+                                <region>Italy</region>
+                                <!-- Following is a temporary solution -->
+                                <desc>pointed<desc>Babylonian</desc></desc>
+                                <note>"About half of the tractates are supplied with vowel points
+                                    reflecting the vocalization accrding to the Babylonian
+                                    tradition" (Richler)</note>
+                            </handNote>
+                            <handNote scribe="second" script="Italian Square" scope="minor">
+                                <date>11th Century</date>
+                                <region>Italy</region>
+                                <note>Sporadic</note>
+                            </handNote>
+                            <handNote scribe="third" script="Italian Square" scope="minor">
+                                <date>11th Century</date>
+                                <region>Italy</region>
+                                <note>Folios 175-195. Scribe thought to be identical with scribe of
+                                    MS Vat., Biblioteca Apostolica ebr. 31 (Sifra), dated
+                                    1072-1073</note>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -124,22 +121,22 @@
             <tagsDecl> </tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <change when="2011-02-18" who="Justin Orr"> Original transcription completed</change>
-            <change when="2011-02-19" who="Justin Orr"> Begun revision and tagging</change>
-            <change when="2011-05-21" who="Hayim Lapin"> Preliminary editing</change>
-            <change when="2011-09-27" who="Hayim Lapin">Updating with new tagging for
+            <change when="2011-02-18" who="ref.xml#JDO"> Original transcription completed</change>
+            <change when="2011-02-19" who="ref.xml#JDO"> Begun revision and tagging</change>
+            <change when="2011-05-21" who="ref.xml#HL"> Preliminary editing</change>
+            <change when="2011-09-27" who="ref.xml#HL">Updating with new tagging for
                 abbreviations</change>
-            <change when="2012-01-06" who="Hayim Lapin">Updating to new schema</change>
-            <change when="2012-02-22" who="Hayim Lapin">Updating to new schema</change>
+            <change when="2012-01-06" who="ref.xml#HL">Updating to new schema</change>
+            <change when="2012-02-22" who="ref.xml#HL">Updating to new schema</change>
         </revisionDesc>
     </teiHeader>
-    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+    <text>
         <body>
-            <div1 xml:id="ParmA.Neziqin">
-                <div2 xml:id="ParmA.BavaMetsia">
+            <div1 xml:id="ParmA.4">
+                <div2 xml:id="ParmA.4.2">
                     <div3 xml:id="ParmA.4.2.2" n="Chapter2">
-                        <pb n="88v"/>
-                        <cb n="88vA"/>
+                        <pb xml:id="ParmA.88v" n="88v"/>
+                        <cb xml:id="ParmA.88vA" n="88vA"/>
                         <head xml:id="ParmA.4.2.2.H" rend="align (center)"/>
                         <ab xml:id="ParmA.4.2.2.1" type="CanMishnah" n="1">
                             <milestone unit="MSMishnah" n="1"/> אלו מציאות שלו ואלו חייב להכריז
@@ -157,10 +154,10 @@
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
                             </choice>
-                            <persName ref="Personography.xml#Judah"><choice>
-                                    <abbr>יהוד<c type="abbr" rend="overmark">׳</c></abbr>
-                                    <expan>יהודה</expan>
-                                </choice></persName>
+                            <choice>
+                                <abbr>יהוד<c type="abbr" rend="overmark">׳</c></abbr>
+                                <expan>יהודה</expan>
+                            </choice>
                             <choice>
                                 <abbr>אומ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
@@ -168,10 +165,7 @@
                                 <surplus reason="fill">ע<c type="abbr" rend="overmark"
                                 >׳</c></surplus><lb n="33"/> עיגול ובתוכו חרס כיכר ובתוכו מעות
                                 רבי<lb n="34"/>
-                            <cb n="89rB"/>
-                            <persName ref="Personography.xml#Simeon_b_Eleazar">שמעון בן
-                                אלעור</persName>
-                            <choice>
+                            <cb xml:id="ParmA.88rB" n="89rB"/> שמעון בן אלעור <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> כל כלי אנפורייא<lb n="1"/> אינו חייב להכריז<pc type="unitEnd"
@@ -195,8 +189,8 @@
                                 pad(rl)">ד<c
                                     type="abbr" rend="overmark">׳</c></label> מצא<lb n="9"/> אחר
                             הגפה או אחר הגדר גוזלין מקושרין<lb n="10"/> או בשבילין שבשדות הרי זה לא
-                                יגע<lb n="11"/> בהן מצא כלי באשפות אם מכוסה לא<lb n="12"/> יגעבו ואם
-                            מגולה נוטל ומכריז מצא <surplus reason="fill">ב<c type="abbr"
+                                יגע<lb n="11"/> בהן מצא כלי באשפות אם מכוסה לא<lb n="12"/> יגע בו
+                            ואם מגולה נוטל ומכריז מצא <surplus reason="fill">ב<c type="abbr"
                                     rend="overmark">׳</c></surplus><lb n="13"/> בגל או בכולת ישן הרי
                             אלו שלו מצא<lb n="14"/> בכותל חדש מחציו ולחוץ שלו מחציו<lb n="15"/>
                             לפנים שלבעל הבית אם היה משכירו <surplus reason="fill">ל<c type="abbr"
@@ -233,14 +227,11 @@
                             <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Meir">מאיר</persName><lb n="30"/>
+                            </choice> מאיר<lb n="30"/>
                             <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Judah">יהודה</persName>
-                            <choice>
+                            </choice> יהודה <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> שלשה רגלים ואחר <seg n="scribCorr"><add hand="2h"
@@ -255,7 +246,8 @@
                                 rend="size() align()
                                 pad(rl)">ח<c
                                     type="abbr" rend="overmark">׳</c></label> אמר את האבידה ולא אמר
-                            את <lb n="34"/><pb n="89r"/> סימניה הרי זה לא יתן לו הרמיי אף על פי <choice>
+                            את <lb n="34"/><pb xml:id="ParmA.89r" n="89r"/> סימניה הרי זה לא יתן לו
+                            הרמיי אף על פי <choice>
                                 <abbr>שאמ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>שאמר</expan>
                             </choice> את סימניה הרי זה לא יתן לו <choice>
@@ -263,22 +255,19 @@
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
                             </choice>
-                            <quote>עד<lb n="1"/> דרוש אחיך אתו<ref>Deut 22:2</ref></quote> עד שתדרוש
-                            את אחיך אם רמיי הוא ואם אינו רמיי<pc type="unitEnd" rend="'">:</pc>
+                            <note>Format changes from two-column to one-column at this
+                                point.</note>עד<lb n="1"/> דרוש אחיך אתו עד שתדרוש את אחיך אם רמיי
+                            הוא ואם אינו רמיי<pc type="unitEnd" rend="'">:</pc>
                             <milestone unit="MSMishnah" n="9"/><label>ט<c type="abbr"
                                     rend="overmark">׳</c></label>כל<lb n="2"/> דבר שהוא עושה ואוכל
                             יעשה ויאכל ודבר שאינו עושה ואוכל יימכר <choice>
                                 <abbr><c rend="lig">שנ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>והשבתו<lb n="3"/> לו<ref>Deut. 22:2</ref></quote> ראה היאך תשיבנו
-                            לו מה יהא בדמים <choice>
+                            </choice> והשבתו<lb n="3"/> לו ראה היאך תשיבנו לו מה יהא בדמים <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Tarfon">טרפון</persName>
-                            <choice>
+                            </choice> טרפון <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> ישתמש בהן לפיכך אם אבדו <surplus reason="fill">חי<c
@@ -286,9 +275,7 @@
                             באחריון <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Aqiva">עקיבה</persName>
-                            <choice>
+                            </choice> עקיבה <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> לא ישתמש בהן לפיכך אם אבדו אינו חייב באחריותן<pc
@@ -303,9 +290,8 @@
                             ושוטחה לצורכה אבל לא לכבודו כלי כסף <seg n="scribCorr"><del hand="2h"
                                     rend="overline">וכלי זהב</del></seg> וכלי נחשת משתמש בהן לצורכן
                                 <lb n="8"/> אבל לא לשוחקן כלי זהב וכלי זכוכית לא יגע בהן עד שיבא
-                                <persName ref="Personography.xml#Elijah">אליהו</persName> מצא שק או
-                                קופה<lb n="9"/> אם אין דרכו ליטול הרי זה לא יטול<pc type="unitEnd"
-                                rend="'">:</pc>
+                            אליהו מצא שק או קופה<lb n="9"/> אם אין דרכו ליטול הרי זה לא יטול<pc
+                                type="unitEnd" rend="'">:</pc>
                         </ab>
                         <ab xml:id="ParmA.4.2.2.9" type="CanMishnah" n="9">
                             <milestone unit="MSMishnah" n="11"/><label rend="size() align() pad(rl)"
@@ -319,12 +305,10 @@
                                 <abbr><c rend="lig">שנ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>השב תשיבם<ref>Deut. 22:11</ref></quote> היה<lb n="12"/> בטל מן
-                            הסלע לא יאמר לותן לי סלע אלא נותן לו שכרו כפועל אם יש שם בית דין<lb
-                                n="13"/> מתנה עמו לפני בית דין אין שם <seg n="scribCorr"><add
-                                    place="margin left">בית דין</add></seg> בפני מי יתנה שלו קודם<pc
-                                type="unitEnd" rend="'">:</pc>
+                            </choice> השב תשיבם היה<lb n="12"/> בטל מן הסלע לא יאמר לותן לי סלע אלא
+                            נותן לו שכרו כפועל אם יש שם בית דין<lb n="13"/> מתנה עמו לפני בית דין
+                            אין שם <seg n="scribCorr"><add place="margin left">בית דין</add></seg>
+                            בפני מי יתנה שלו קודם<pc type="unitEnd" rend="'">:</pc>
                         </ab>
                         <ab xml:id="ParmA.4.2.2.10" type="CanMishnah" n="10">
                             <milestone unit="MSMishnah" n="12"/><label
@@ -339,40 +323,32 @@
                                 <abbr><c rend="lig">שנ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>עזוב תעזוב<ref>Exod 23:5</ref></quote> הלך וישב לו אמר לו הואיל
-                            ועליך מצוה <surplus reason="fill"><c type="abbr" rend="overmark">׳</c>
+                            </choice> עזוב תעזוב הלך וישב לו אמר לו הואיל ועליך מצוה <surplus
+                                reason="fill"><c type="abbr" rend="overmark">׳</c>
                                 <c type="abbr" rend="overmark">׳</c></surplus> אם <lb n="17"/> רציתה
                             לפרוק פרוק פטור <choice>
                                 <abbr><c rend="lig">שנ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>עמו<ref>Exod 23:5</ref></quote> היה זקן או חולה חייב מצווה מן
-                            התורה לפרוק אבל <seg n="scribCorr"><add hand="2h">לא</add></seg><lb
-                                n="18"/> לטעון <choice>
+                            </choice> עמו היה זקן או חולה חייב מצווה מן התורה לפרוק אבל <seg
+                                n="scribCorr"><add hand="2h">לא</add></seg><lb n="18"/> לטעון <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Simeon">שמעון</persName>
-                            <choice>
+                            </choice> שמעון <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> אף לטעון <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Yose_Hagelili">יוסה הגלילי</persName>
-                            <choice>
+                            </choice> יוסה הגלילי <choice>
                                 <abbr>או<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> אם היה עליו יותר ממשואו אינו<lb n="19"/> זקוק לו <choice>
                                 <abbr><c rend="lig">שנ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>תחת משאו<ref>Exod 23:5</ref></quote> משוי שהוא יכול לעמוד בו<pc
-                                type="unitEnd" rend="'">:</pc>
+                            </choice> תחת משאו משוי שהוא יכול לעמוד בו<pc type="unitEnd" rend="'"
+                                >:</pc>
                         </ab>
                         <ab xml:id="ParmA.4.2.2.11" type="CanMishnah" n="11">
                             <milestone unit="MSMishnah" n="13"/>

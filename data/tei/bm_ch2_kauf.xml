@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
-    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
@@ -10,15 +8,15 @@
                 <title>An Electronic Edition of Mishnah Bava Metsia Ch. 2, according to the Kaufmann
                     Ms</title>
                 <editor>
-                    <persName>Hayim Lapin</persName>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
                     <resp>transcriber</resp>
-                    <persName>Justin Orr</persName>
+                    <persName corresp="ref.xml#JDO">Justin Orr</persName>
                 </respStmt>
                 <respStmt>
-                    <resp>original markup</resp>
-                    <persName>Hayim Lapin</persName>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#JDO">Justin Orr</persName>
                 </respStmt>
                 <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
                     Studies</sponsor>
@@ -34,9 +32,13 @@
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">Kauf</idno>
-                <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
                 <date>2012-01-03</date>
             </publicationStmt>
             <notesStmt>
@@ -58,12 +60,14 @@
                     <msContents>
                         <msItem>
                             <title>Mishnah</title>
+                            <note
+                                type="nli-ref">http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=000191047&amp;local_base=NNLMSS</note>
                         </msItem>
                     </msContents>
                     <physDesc>
                         <objectDesc form="codex">
                             <supportDesc material="parchment">
-                                <extent>286 leaves</extent>
+                                <extent>286</extent>
                             </supportDesc>
                             <layoutDesc>
                                 <layout columns="2">
@@ -78,14 +82,15 @@
                         <handDesc>
                             <handNote scribe="first" script="Italian Square">
                                 <!-- or ancient oriental? Needs work-->
-                                <date>11th-13th Century</date>
+                                <date notBefore="1000" notAfter="1300">11th-13th Century</date>
                                 <region><!-- placeholder --></region>
                             </handNote>
                             <handNote scribe="second">
                                 <!-- Following is a temporary solution -->
-                                <desc>Pointed</desc>
-                                <note>Second hand points the text according to a different
-                                    vocalization tradition.</note>
+                                <desc>pointed<desc>Babylonian</desc></desc>
+                                <note>Second hand points the text using the Babylonian vocalization
+                                    tradition. Vocalization often reflects a different tradition
+                                    than first scribe.</note>
                             </handNote>
                         </handDesc>
                     </physDesc>
@@ -96,21 +101,21 @@
             <tagsDecl> </tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <change when="2011-09" who="Justin Orr"> Original transcription and tagging done during
+            <change when="2011-09" who="ref.xml#JDO"> Original transcription and tagging done during
                 Fall Semester 2010</change>
-            <change when="2011-01-05" who="Justin Orr">Begun revision</change>
-            <change when="2011-03-05" who="Hayim Lapin">Revisions and updating to new tagging
+            <change when="2011-01-05" who="ref.xml#JDO">Begun revision</change>
+            <change when="2011-03-05" who="ref.xml#HL">Revisions and updating to new tagging
                 protocols</change>
-            <change when="2012-01-06" who="Hayim Lapin">Updating to new schema</change>
+            <change when="2012-01-06" who="ref.xml#HL">Updating to new schema</change>
         </revisionDesc>
     </teiHeader>
     <text>
         <body>
-            <div1 xml:id="Kauf.Neziqin">
-                <div2 xml:id="Kauf.BavaMetsia">
-                    <div3 xml:id="Kauf.4.2.2" n="Chapter2">
-                        <pb n="134r"/>
-                        <cb n="134rA"/>
+            <div1 xml:id="Kauf.4">
+                <div2 xml:id="Kauf.4.1">
+                    <div3 xml:id="Kauf.4.2.2">
+                        <pb xml:id="Kauf.134r" n="134r"/>
+                        <cb xml:id="Kauf.134rA" n="134rA"/>
                         <head xml:id="Kauf.4.2.2.H"/>
                         <ab xml:id="Kauf.4.2.2.1">
                             <milestone unit="MSMishnah" n="1"/> אלו מציאת שלו ואלו חייב להכריז<lb
@@ -123,9 +128,7 @@
                             <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Judah">יהודה</persName>
-                            <choice>
+                            </choice> יהודה <choice>
                                 <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
@@ -133,10 +136,7 @@
                                 n="18"/> ובתוכו חרס כיכר ובתוכו מעות <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Simeon_b_Eleazar">שמעון<lb n="19"/> בן
-                                אלעזר</persName>
-                            <choice>
+                            </choice> שמעון<lb n="19"/> בן אלעזר <choice>
                                 <abbr><c rend="lig">או</c>מ<c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
@@ -156,11 +156,11 @@
                                     >אח<del>ד</del><add hand="2h">ר</add></seg> הגפה או<lb n="28"/>
                             אחר הגדר גוזלות מקושרים או בשבילים<lb n="29"/> שבשדות הרי זה לא יגע בהן
                             מצא כלי<lb n="30"/>
-                            <cb n="134rB"/> באשפות אם מכוסה לא יגע בו ואם<lb n="1"/> מגולה נוטל
-                            ומכריז מצא בגל או בכותל<lb n="2"/> ישן הרי אלו שלו מצא בכותל חדש
-                                <surplus reason="fill">מ</surplus><lb n="3"/> מחציו ולחוץ שלו מחציו
-                            ולפנים של<lb n="4"/> בעל הבית אם היה משכירו לאחרים<lb n="5"/> אפילו מצא
-                            בתוך הבית הרי אלו שלו</ab>
+                            <cb xml:id="Kauf.134rB" n="134rB"/> באשפות אם מכוסה לא יגע בו ואם<lb
+                                n="1"/> מגולה נוטל ומכריז מצא בגל או בכותל<lb n="2"/> ישן הרי אלו
+                            שלו מצא בכותל חדש <surplus reason="fill">מ</surplus><lb n="3"/> מחציו
+                            ולחוץ שלו מחציו ולפנים של<lb n="4"/> בעל הבית אם היה משכירו לאחרים<lb
+                                n="5"/> אפילו מצא בתוך הבית הרי אלו שלו</ab>
                         <lb n="6"/>
                         <ab xml:id="Kauf.4.2.2.4">
                             <milestone unit="MSMishnah" n="5"/><label>ה<c type="abbr"
@@ -193,14 +193,10 @@
                             <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Meir">מאיר</persName>
-                            <choice>
+                            </choice> מאיר <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Judah">יהודה</persName>
-                            <choice>
+                            </choice> יהודה <choice>
                                 <abbr><c rend="lig">או</c>מ<c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
@@ -223,37 +219,33 @@
                                 <abbr>שנ<c type="abbr" rend="overmark">׳</c>
                                 </abbr>
                                 <expan>שנאמר</expan>
-                            </choice><quote>עד<lb n="26"/> דרוש אחיך אותו<ref>Deut
-                                22:2</ref></quote> עד שתידרוש את<lb n="27"/> אחיך אם <seg
-                                n="scribCorr"><del>ד</del><add hand="2h">ר</add>מיי</seg> הוא ואם
-                            אינו <seg n="scribCorr"><del>ד</del><add hand="2h">ר</add>מיי</seg><lb
-                                n="28"/>
+                            </choice>עד<lb n="26"/> דרוש אחיך אותו עד שתידרוש את<lb n="27"/> אחיך אם
+                                <seg n="scribCorr"><del>ד</del><add hand="2h">ר</add>מיי</seg> הוא
+                            ואם אינו <seg n="scribCorr"><del>ד</del><add hand="2h"
+                                >ר</add>מיי</seg><lb n="28"/>
                             <milestone unit="MSMishnah" n="9"/>
                             <label>ט<c type="abbr" rend="overmark">׳</c></label> כל דבר שהוא עושה
                             ואוכל יעשה<lb n="29"/> ויאכל ודבר שאינו עושה ואוכל יימכר<lb n="30"/>
-                            <pb n="134v"/>
-                            <cb n="134vA"/>
+                            <pb xml:id="Kauf.134v" n="134v"/>
+                            <cb xml:id="Kauf.134vA" n="134vA"/>
                             <choice>
                                 <abbr>שנ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>הש<del>ו</del>בותו לו<ref>Deut 22:2</ref></quote> ראה היאך
-                                תשיבנו<lb n="1"/> לו כמה יהא בדמים <choice>
+                            </choice> הש<del>ו</del>בותו לו ראה היאך תשיבנו<lb n="1"/> לו כמה יהא
+                            בדמים <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Tarfon">טרפון</persName>
-                            <choice>
+                            </choice> טרפון <choice>
                                 <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> ישתמש<lb n="2"/> בהן לפיכך אם אבדו <seg n="scribCorr"
                                     ><del>אינו</del></seg> חייב <surplus reason="fill"
                                 >באחר</surplus><lb n="3"/> באחריותן <seg n="scribCorr"><add
-                                    hand="2h" place="margin"><choice><abbr>ר<am rend="overmark"
-                                                >׳</am></abbr><expan>רבי</expan></choice>
-                                    <persName ref="Personography.xml#Aqiva">עקיבא</persName>
-                                    <choice>
+                                    hand="2h" place="margin"><choice>
+                                        <abbr>ר<am rend="overmark">׳</am></abbr>
+                                        <expan>רבי</expan>
+                                    </choice> עקיבא <choice>
                                         <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"
                                                 >׳</c></abbr>
                                         <expan>אומר</expan>
@@ -274,9 +266,8 @@
                             <seg n="scribCorr">לצ<del>ו</del>רכן</seg> אבל לא לשוחקן כלי <seg
                                 n="scribCorr"><del rend="overline">כסף</del><add hand="2h"
                                     place="margin" rend="caret">זהב</add></seg> וכלי<lb n="11"/>
-                            זכוכית אל יגע בהן עד שיבוא <persName ref="Personography.xml#Elijah"
-                                >אליהו</persName><lb n="12"/> מצא סק או קופה אם אין דרכו ליטול<lb
-                                n="12"/> הרי זה לא יטול </ab>
+                            זכוכית אל יגע בהן עד שיבוא אליהו<lb n="12"/> מצא סק או קופה אם אין דרכו
+                                ליטול<lb n="12"/> הרי זה לא יטול </ab>
                         <ab xml:id="Kauf.4.2.2.9">
                             <milestone unit="MSMishnah" n="11"/>
                             <label>יא<c type="abbr" rend="overmark">׳</c></label> אי <seg
@@ -287,12 +278,11 @@
                                 n="19"/> חייב <choice>
                                 <abbr>שנ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>השב תשיבם<ref>Deut 22:11</ref></quote> היה בטל מן<lb n="20"/>
-                            הסלע לא יאמר לו תן לי סלע אלא נותן<lb n="21"/> לו שכרו כפועל <seg
-                                n="scribCorr"><del hand="2h" rend="strikethrough">בטל</del></seg> אם
-                            יש שם<lb n="22"/> בית דין יתנה עמו לפני בית דין אם<lb n="23"/> אין שם
-                            לפני מי יתנה שלו קודם<lb n="24"/>
+                            </choice> השב תשיבם היה בטל מן<lb n="20"/> הסלע לא יאמר לו תן לי סלע אלא
+                                נותן<lb n="21"/> לו שכרו כפועל <seg n="scribCorr"><del hand="2h"
+                                    rend="strikethrough">בטל</del></seg> אם יש שם<lb n="22"/> בית
+                            דין יתנה עמו לפני בית דין אם<lb n="23"/> אין שם לפני מי יתנה שלו קודם<lb
+                                n="24"/>
                         </ab>
                         <ab xml:id="Kauf.4.2.2.10">
                             <milestone unit="MSMishnah" n="12"/>
@@ -311,8 +301,8 @@
                                 it was written in a second hand (especially ו seems different from
                                 usual hand).</note> פרק וטען פרק וטען<lb n="29"/> אפילו ארבעה וחמשה
                             פעמים חייב<lb n="30"/>
-                            <cb n="134vB"/> שנ<c type="abbr" rend="overmark">׳</c>
-                            <quote>עזב תעוב<ref>Exod 23:5</ref></quote> הלך וישב לו <choice>
+                            <cb xml:id="Kauf.134vB" n="134vB"/> שנ<c type="abbr" rend="overmark"
+                                >׳</c> עזב תעוב הלך וישב לו <choice>
                                 <abbr><c rend="lig">אמ</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>שנאמר</expan>
@@ -321,24 +311,19 @@
                                 פרוק<lb n="2"/> פטור <choice>
                                 <abbr>שנ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>עמו<ref>Exod 23:5</ref></quote> היה זקן או חולה חייב<lb n="3"/>
-                            מצוה מן התורה לפרוק אבל לא לטעון<lb n="4"/>
+                            </choice> עמו היה זקן או חולה חייב<lb n="3"/> מצוה מן התורה לפרוק אבל לא
+                                לטעון<lb n="4"/>
                             <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Simeon_b_Yohai">שמעון</persName>
-                            <choice>
+                            </choice> שמעון <choice>
                                 <abbr><c rend="lig">או</c>מ<c type="abbr" rend="overmark"
                                     >׳</c></abbr>
                                 <expan>אומר</expan>
                             </choice> אף ליטעון <choice>
                                 <abbr>ר<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>רבי</expan>
-                            </choice>
-                            <persName ref="Personography.xml#Yose_the_Galilean">יוסה
-                                הגלילי</persName><lb n="5"/>
+                            </choice> יוסה הגלילי<lb n="5"/>
                             <choice>
                                 <abbr><c rend="lig">או</c><c type="abbr" rend="overmark"
                                     >׳</c></abbr>
@@ -347,9 +332,7 @@
                             <choice>
                                 <abbr>שנ<c type="abbr" rend="overmark">׳</c></abbr>
                                 <expan>שנאמר</expan>
-                            </choice>
-                            <quote>תחת מסאו<ref>Exod 23:5</ref></quote> מסוי שהוא יכול לעמוד<lb
-                                n="7"/> בו </ab>
+                            </choice> תחת מסאו מסוי שהוא יכול לעמוד<lb n="7"/> בו </ab>
                         <ab xml:id="Kauf.4.2.2.11">
                             <milestone unit="MSMishnah" n="13"/><label>יג<c type="abbr"
                                     rend="overmark">׳</c></label> אבידתו ואבידת אבין שלו<lb n="8"/>
