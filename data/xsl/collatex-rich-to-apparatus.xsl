@@ -16,7 +16,7 @@
 pipeline. -->
     <!-- Parameters for cocoon transformation -->
     <xsl:param name="rqs" xpath-default-namespace="http://www.tei-c.org/ns/1.0"
-        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+        >mcite=4.2.2.11&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
@@ -49,23 +49,15 @@ pipeline. -->
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1><a name="top"/>Digital Mishnah Project</h1>
                 <div class="contents">
-                    <table class="contents">
-                        <tr>
-                            <td class="contents"><a href="demo">Back to Demo Home</a></td>
-                            <td class="contents">
-                                <a href="#select">Select Passage and Witnesses</a>
-                            </td>
-                            <td class="contents">
+                    <h2 style="font-size:80%;">
+                    [<a href="demo">Back to Demo Home</a><xsl:text>] [</xsl:text>
+                        <a href="#select">Select Passage and Witnesses</a><xsl:text>] [</xsl:text>
                                 <a href="#align">Alignment Table Format</a>
-                            </td>
-                            <td class="contents">
+                        <xsl:text>] [</xsl:text>
                                 <a href="#text-appar">Text with Apparatus</a>
-                            </td>
-                            <td class="contents">
-                                <a href="#synopsis">Parallel Column Synopsis</a>
-                            </td>
-                        </tr>
-                    </table>
+                        <xsl:text>] [</xsl:text>
+                                <a href="#synopsis">Parallel Column Synopsis</a>]
+                            </h2>
                 </div>
                 <h2>Sample Collatex Output</h2>
                 <h2>
@@ -211,8 +203,12 @@ pipeline. -->
                     <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/*">
                         <xsl:choose>
                             <xsl:when test="self::tei:w and text() != ''">
-                                <!-- insert text where it exists -->
-                                <xsl:sequence select="text()"/>
+                                <xsl:choose>
+                                    <xsl:when test="./tei:lb | ./tei:pb | ./tei:cb">
+                                        <xsl:apply-templates mode="within-wd"></xsl:apply-templates>
+                                    </xsl:when>
+                                    <xsl:otherwise><!-- insert text where it exists -->
+                                <xsl:sequence select="text()"/></xsl:otherwise></xsl:choose>
                                 <xsl:text> </xsl:text>
                             </xsl:when>
                             <xsl:when test="self::tei:label">
@@ -221,7 +217,7 @@ pipeline. -->
                                     <xsl:text> </xsl:text>
                                 </span>
                             </xsl:when>
-                            <xsl:when test="self::tei:lb and @n mod 10 = 0">
+                            <xsl:when test="self::tei:lb and @n mod 5 = 0">
                                 <xsl:text> | </xsl:text>
                                 <span class="lb">
                                     <xsl:value-of select="@n"/>
@@ -604,17 +600,53 @@ this -->
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!--    <xsl:template match="text()" mode="synops-cols">
-        <xsl:value-of select="."></xsl:value-of>
-    </xsl:template>-->
+   <!-- Process <w>s that have page breaks or line breaks within them -->
+    <xsl:template match="text()" mode="within-wd">
+       <xsl:value-of select="normalize-space(.)"/>
+   </xsl:template>
+    <xsl:template match="tei:lb" mode="within-wd">
+       <xsl:if test="self::tei:lb and @n mod 5 = 0">
+           <xsl:text>|</xsl:text>
+           <span class="lb">
+               <xsl:value-of select="@n"/>
+           </span>
+       </xsl:if>
+   </xsl:template>
+    <xsl:template match="tei:pb" mode="within-wd">
+        <span class="page"><xsl:value-of select="@n"></xsl:value-of></span>
+    </xsl:template>
+    <xsl:template match="tei:cb" mode="within-wd">
+        <span class="col"><xsl:value-of select="@n"></xsl:value-of></span>
+    </xsl:template>
+    <xsl:template match="tei:expan | tei:reg" mode="within-wd"><!-- omit these; NB may not have
+        caught all the possibilities --></xsl:template>
+    
+    <!-- process columns of the synopsis -->
+    <xsl:template match="tei:w" mode="synops-cols">
+        <xsl:for-each select="node()">
+            <xsl:choose>
+                <xsl:when test="self::text()"><xsl:value-of select="normalize-space(.)"></xsl:value-of></xsl:when>
+                <xsl:when test="self::tei:lb">
+                    <xsl:choose>
+                        <xsl:when test="@n mod 10 = 0">
+                        <lb class="lb10-intra"></lb>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <lb class="lb-intra"></lb>
+                    </xsl:otherwise></xsl:choose>
+                </xsl:when>
+                <xsl:when test="self::tei:pb">
+                    <lb class="{name(.)}"><xsl:value-of select="@xml:id"/></lb>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template match="tei:label" mode="synops-cols">
         <span class="label">
             <xsl:value-of select="."/>
         </span>
     </xsl:template>
-    <!--<xsl:template match="//tei:seg" mode="synops-cols">
-        <xsl:apply-templates></xsl:apply-templates>
-    </xsl:template>-->
+   
     <xsl:template match="//tei:del" mode="synops-cols">
         <span class="del">
             <xsl:value-of select="."/>
@@ -638,7 +670,7 @@ this -->
     <xsl:template match="//tei:choice" mode="synops-cols">
         <xsl:value-of select="tei:abbr"/>
     </xsl:template>
-    <xsl:template match="tei:lb" mode="synops-cols">
+    <xsl:template match="tei:lb[not(parent::tei:w)]" mode="synops-cols">
         <xsl:choose>
             <xsl:when test="@n mod 10 = 0">
                 <lb class="lb10"/>

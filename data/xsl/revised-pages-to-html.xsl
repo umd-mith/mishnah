@@ -168,7 +168,7 @@
                             <td class="descr">
                                 <xsl:value-of
                                     select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent"
-                                />
+                                /> leaves
                             </td>
                             <td class="data">Contributions:</td><td class="descr"></td>
                         </tr>

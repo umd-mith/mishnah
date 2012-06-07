@@ -4,7 +4,7 @@
     xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
     xmlns:local="local-functions.uri">
-    <xsl:strip-space elements="tei:w tei:reg"/>
+    <xsl:strip-space elements="tei:w tei:reg tei:c tei:g"/>
     <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -14,8 +14,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
-    <xsl:param name="mcite" select="'4.2.2.1'"/>
+        >mcite=4.2.2.1&amp;Kauf=0&amp;ParmA=0&amp;Camb=0&amp;Maim=0&amp;Paris=0&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.11'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <!--    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
     <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/>-->
@@ -109,16 +109,21 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:w">
-                <xsl:choose>
-                    <xsl:when test="./tei:lb/@n mod 10 = 0">
-                        <w>
-                            <xsl:apply-templates select="./node()" mode="preproc-within"/>
+                
+                    
+                       <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
+                           <xsl:for-each select="node()[not(tei:lb)]">
+                                
+                                    <xsl:apply-templates select="." mode="preproc-within"/>
+                                
+                                
+                            </xsl:for-each>
                             <reg>
                                 <xsl:value-of select="normalize-space(translate(.,'?וי','*'))"/>
-                            </reg>
-                        </w>
-                    </xsl:when>
-                </xsl:choose>
+                            </reg></xsl:element>
+                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
+                
+                    
             </xsl:when>
             <xsl:when test="self::comment()">
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
@@ -141,11 +146,11 @@
                 </xsl:element>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
-            <xsl:when test="self::tei:lb[not(./@type)]">
+            <xsl:when test="self::tei:lb">
                 <xsl:element name="{name()}">
-                    <xsl:if test="./@n mod 10 = 0">
+                    
                         <xsl:attribute name="n" select="./@n"/>
-                    </xsl:if>
+                    
                 </xsl:element>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
@@ -245,16 +250,14 @@
     <xsl:template match="tei:g[@type!='wordbreak']" mode="preproc-within">
         <xsl:value-of select="."/>
     </xsl:template>
-    <xsl:template match="tei:lb[@type = 'nobreak']" mode="spec-case">
-        <xsl:text>|</xsl:text>
-    </xsl:template>
+    
     <xsl:template match="tei:lb | tei:pb | tei:cb" mode="preproc-within">
         <xsl:element name="{name()}">
-            <xsl:if test="./@n mod 10 = 0">
+            
                 <xsl:attribute name="n">
                     <xsl:value-of select="./@n"/>
                 </xsl:attribute>
-            </xsl:if>
+            
         </xsl:element>
     </xsl:template>
     <xsl:template
