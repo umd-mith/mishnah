@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
-    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+<?xml version="1.0" encoding="UTF-8"?><!--<?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>-->
+
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
@@ -25,11 +25,15 @@
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
-                <idno type="local">g1</idno>
-                <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                <idno type="local">G1</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
-                <date><!-- placeholder --></date>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2012-06-15</date>
                 <!-- A publication date is required for TEI conformance -->
             </publicationStmt>
             <notesStmt>
@@ -61,9 +65,10 @@
                             <locusGrp>
                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
                                 <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>
+                                <locus n="1v" facs="www.genizah.org">C166194</locus>
+                                <locus n="1r" facs="www.genizah.org">C166195</locus>
                             </locusGrp>
+                            <note type="nli-ref"><!-- Not in Cat --></note>
                             <title>Mishnah</title>
                         </msItem>
                     </msContents>
@@ -71,7 +76,7 @@
                         <objectDesc form="codex">
                             <supportDesc>
                                 <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                                <extent>2</extent>
                             </supportDesc>
                             <layoutDesc>
                                 <layout columns="1">
@@ -93,9 +98,12 @@
                             </layoutDesc>
                         </objectDesc>
                         <handDesc>
-                            <handNote script="Oriental Square Vocalized">
+                            <handNote script="Oriental Square">
                                 <date notBefore="1000" notAfter="1300">11th-13th c.</date>
                                 <region><!-- placeholder --></region>
+                                <desc>Pointed-Babyonian</desc>
+                                <note>Pointing is in a different ink than the main manuscript.
+                                    Possibly a second hand.</note>
                             </handNote>
                         </handDesc>
                     </physDesc>

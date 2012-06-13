@@ -30,11 +30,15 @@
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">G2</idno>
-                <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2012-06-15</date>
+                
             </publicationStmt>
             <notesStmt>
                 <note>
@@ -69,13 +73,15 @@
                             </locusGrp>
                             <join target="g4.xml"/>
                             <join target="g6.xml"/>
+                            <join target="g7.xml"/>
                             <title>Mishnah</title>
+                            <note type="nli"><!-- Not in Cat --></note>
                         </msItem>
                     </msContents>
                     <physDesc>
                         <objectDesc form="codex">
                             <supportDesc material="vellum">
-                                <extent>1 leaf</extent>
+                                <extent>1</extent>
                             </supportDesc>
                             <layoutDesc>
                                 <layout columns="1">
@@ -113,8 +119,9 @@
                         </objectDesc>
                         <handDesc>
                             <handNote script="Oriental Square">
-                                <date><!-- placeholder --></date>
+                                
                                 <region><!-- placeholder --></region>
+                                <date notBefore="1000" notAfter="1300">11th-13th c.</date>
                             </handNote>
                         </handDesc>
                     </physDesc>

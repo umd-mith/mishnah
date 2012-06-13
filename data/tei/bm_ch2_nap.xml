@@ -1,49 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Mishnah Bava Metsia Ch. 2, Editio Princeps, Naples 1492, First Printed
-                    Edition</title>
+                <title>An Electronic Edition of Mishnah Bava Metsia Ch. 2, Editio Princeps, Naples
+                    1492</title>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#JK">Judah Kerbel</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#JK">Judah Kerbel</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
-                <p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">Nap</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2012-05-13</date>
             </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Chapter 2 from the Naples First Edition, Published by Joshua Soncino, 1492.
+                        Transcription and markup based on images from the digital edition of the
+                            <ref target="http://aleph.nli.org.il/nnl/dig/books/bk001143297.html"
+                            >Jewish National University Library (Jerusalem) Digitzed Book
+                            Repository</ref> .</p>
+                    <p>Transcription and markup by Judah Kerbel; editing by Hayim Lapin.</p>
+                    <p>Edition includes text of Maimonides' commentary in Hebrew, in second font.
+                        This is omitted in transcription.</p>
+                </note>
+            </notesStmt>
             <sourceDesc>
-                <p>Chapter 2 of tractate Bava Metsia from the first printed edition (Naples, 1492),
-                    from the digital edition in the <ref
-                        target="http://www.jnul.huji.ac.il/eng/digibook.html">Jewish National
-                        University Library (Jerusalem) Digitzed Book Repository</ref></p>
-                <p>Edition includes text of Maimonides' commentary in Hebrew, in second ("Rashi")
-                    font. This is omitted in transcription.</p>
-                <p>Transcribed by Judah Kerbel</p>
-                <p>Editing by Hayim Lapin</p>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Jerusalem</settlement>
+                        <repository>National Library of Israel</repository>
+                        <idno>001143297<!-- What to use here? Have used the "doc number from the
+                            stable URL--></idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <title>Mishnah</title>
+                            <note type="comm">Maimonides Hebrew</note>
+                            <note type="nli-ref"
+                                >http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=001143297&amp;local_base=NNLALL</note>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc material="paper">
+                                <extent>355</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="2">
+                                    <dimensions scope="sheet">
+                                        <width unit="cm"/>
+                                        <height unit="cm">39</height>
+                                    </dimensions>
+                                    <dimensions scope="col-writ">
+                                        <height unit="lines"
+                                            >53<!-- Average from small sample--></height>
+                                        <width unit="chars">37</width>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                    </physDesc>
+                </msDesc>
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
             <tagsDecl> </tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <list>
-                <item>
-                    <date/>Original transcription done February 3, 2011</item>
-                <item>
-                    <date>February 17, 2011</date>: Begun revision and tagging</item>
-                <item>
-                    <date>March 5, 211</date>: Begun tagging</item>
-            </list>
+            <change when="2011-02-03" who="ref.xml#JK">Original transcription</change>
+            <change when="2011-02-19" who="ref.xml#JK">Begun revision and tagging</change>
+            <change when="2012-05-13" who="ref.xml#JK"> Revisions Submitted</change>
+            <change when="2012-06-15" who="ref.xml#HL">Updated for live demo.</change>
         </revisionDesc>
     </teiHeader>
-    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+    <text>
         <body>
-            <div1 xml:id="Nap.Neziqin">
-                <div2 xml:id="Nap.BavaMetsia">
+            <div1 xml:id="Nap.4">
+                <div2 xml:id="Nap.2">
+                    <pb xml:id="Nap.158r" n="158r"/>
+                    <cb xml:id="Nap.158rA" n="158rA"/>
                     <div3 xml:id="Nap.4.2.2" n="Chapter2">
                         <head xml:id="Nap.4.2.2.H" rend="size(large) alignment(right) pad(tb)">פרק
                             שני</head>
-                        <pb n="158r"/>
-                        <cb n="158rA"/>
                         <ab xml:id="Nap.4.2.2.1" type="CanMishnah" n="1"><lb n="42"/> ואלו מציאות
                             שלו ואלו חייב <lb n="43"/> להכריז אלו מציאות שלו <lb n="44"/> מצא פירות
                             מפוזרות מעות <lb n="45"/> מפוזרות כריכות ברשות הרבים עגולי דבלה ככרות
@@ -60,7 +127,7 @@
                                     >׳</c></abbr><expan>רבי</expan></choice> שמעון בן <c rend="lig"
                                 >אל</c>יעזר אומר כל כלי אנפריא חייב להכריז </ab>
                         <lb n="51"/>
-                        <cb n="158rB"/>
+                        <cb xml:id="Nap.158rB" n="158rB"/>
                         <gap reason="Maimonides" extent="14" unit="lines"/>
                         <ab xml:id="Nap.4.2.2.2" type="CanMishnah" n="2"><label
                                 rend="size() alignment() pad(rl)">ב</label> ואלו <c
@@ -94,9 +161,9 @@
                         <ab xml:id="Nap.4.2.2.5" type="CanMishnah" n="5"><label
                                 rend="size() alignment() pad(rl)">ה</label><lb n="53"/> אף השמלה
                             היתה בכלל כל אלו ולמה יצאת להקיש<lb n="54"/>
-                            <pb n="158v"/>
-                            <cb n="158vA"/>אליה אלא מה השמלה מיוחדת יש לה סימנין ויש לה<lb n="1"/>
-                            תובעין חייב להכריז</ab>
+                            <pb xml:id="Nap.158v" n="158v"/>
+                            <cb xml:id="Nap.158vA" n="158vA"/>אליה אלא מה השמלה מיוחדת יש לה סימנין
+                            ויש לה<lb n="1"/> תובעין חייב להכריז</ab>
                         <lb n="2"/>
                         <gap reason="Maimonides" extent="5" unit="lines"/>
                         <ab xml:id="Nap.4.2.2.6" type="CanMishnah" n="6"><label
@@ -145,11 +212,11 @@
                                 rend="size() alignment() pad(rl)">ט</label> איזה היא אבדה מצא
                                 חמור<lb n="50"/> או פרה רועים בדרך אין זו אבדה חמור וכליו הפוכים<lb
                                 n="51"/> ופרה רצה בין הכרמים הרי זה אבדה החזירה וברחה <lb n="52"
-                                /><cb n="158vB"/><lb n="1"/> החזירה וברחה אפילו ארבעה וחמשה פעמים
-                            חייב <surplus reason="fill">ל</surplus><lb n="2"/> להחזיר שנאמר השב
-                            תשבים היה בטל מן הסלע לא<lb n="3"/> יאמר לו תן לי הסלע אבל נותן לו שכרו
-                            כפועל בטל אם<lb n="4"/> יש שם בית דין ואם אין שם בית דין בפני מי יתנה
-                                שלו<lb n="5"/> קודם </ab>
+                                /><cb xml:id="Nap.158vB" n="158vB"/><lb n="1"/> החזירה וברחה אפילו
+                            ארבעה וחמשה פעמים חייב <surplus reason="fill">ל</surplus><lb n="2"/>
+                            להחזיר שנאמר השב תשבים היה בטל מן הסלע לא<lb n="3"/> יאמר לו תן לי הסלע
+                            אבל נותן לו שכרו כפועל בטל אם<lb n="4"/> יש שם בית דין ואם אין שם בית
+                            דין בפני מי יתנה שלו<lb n="5"/> קודם </ab>
                         <lb n="6"/>
                         <gap reason="Maimonides" extent="5" unit="lines"/>
                         <ab xml:id="Nap.4.2.2.10" type="CanMishnah" n="10"><lb n="11"/><label

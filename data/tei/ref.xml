@@ -15985,18 +15985,80 @@
                 </div>
                 <div type="places">
                     <listPlace>
-                        <place>
-                            <!-- Use Segal, Hageografya bamishnah, at http://www.shechem.org/torah/geomishna/index.html -->
-                            <placeName>
-                                <!-- primary name in plain text-->
-                                <placeName xml:lang="en"><!-- Anglicized name --></placeName>
-                                <placeName xml:lang="he" type="alt"
-                                    ><!-- alternate spellings,
+                        <place xml:id="ID" type="SEE_BELLOW_COMMENT">
+                            <!-- For ID Use spelling in TIR, space = underscore ('_') -->
+                            <!-- For @type use: city, village, location [e.g., אבן שתייה], other;
+                                can USUALLY get village or city from the description TIR -->
+                            <!-- Use Segal, Hageografya bamishnah, at
+                                http://www.shechem.org/torah/geomishna/index.html to identify places-->
+                            <placeName><!-- primary name Hebrew--></placeName>
+                            <placeName xml:lang="en"><!-- Anglicized name --></placeName>
+                            <placeName xml:lang="he" type="alt"
+                                ><!-- alternate spellings,
                                     separated by commas --></placeName>
-                            </placeName>
+                            <placeName type="Grk"
+                                ><!-- If the place has a Greek name, separate
+                                    alternate spellings with commas --></placeName>
+                            <!-- If there is more than one name, for each: -->
+                            <placeName type="Grk" subtype="alt" n="USE NUMBERS TO IDENTIFY"
+                                ><!-- If the place has an
+                                    additional Greek name, separate
+                                    alternate spellings with commas --></placeName>
+                            <placeName type="Heb" subtype="alt" xml:lang="he"
+                                n="USE NUMBERS TO IDENTIFY"
+                                ><!-- If the place has an
+                                    additional Hebrew-Aramaic name, separate
+                                    alternate spellings with commas --></placeName>
+                            <placeName type="Heb" subtype="alt" xml:lang="en"
+                                n="USE NUMBERS TO IDENTIFY"
+                                ><!-- If the place has an
+                                    additional Hebrew-Aramaic name, IN ENGLISH TRANSCRIPTIONS separate
+                                    alternate spellings with commas --></placeName>
+                            <placeName type="Arab"
+                                ><!-- Arabic name(s) separated by columns, if given --></placeName>
                             <location>
-                                <geo><!-- Use Survey of Israel coordinates --></geo>
+                                <geo><!-- Use Survey of Israel coordinates, given in Reeg and TIR;
+                                    When in doubt prefer TIR --></geo>
                             </location>
+                            <bibl>
+                                <ref corresp="#segal"><!--URL--></ref>
+                                <ref corresp="#TIR"><!-- Pages in TIR --></ref>
+                                <ref corresp="#reeg"><!-- Pages in Reeg --></ref>
+                            </bibl>
+                        </place>
+                        <place xml:id="Abel_I">
+                            <placeName type="Heb" xml:lang="he">אבל, אבל של צפורין</placeName>
+                            <placeName type="Heb" xml:lang="en">Abel, Abel of Sepphoris</placeName>
+                            <placeName type="Arab">'Ein el Qana </placeName>
+                            <location>
+                                <geo>180235</geo>
+                            </location>
+                            <bibl>
+                                <ref corresp="#segal"
+                                    >http://www.shechem.org/torah/geomishna/1a.html</ref>
+                                <ref corresp="#TIR">1</ref>
+                                <ref corresp="#reeg">19-20</ref>
+                            </bibl>
+                        </place>
+                        <place xml:id="Beth_Shean">
+                            <placeName type="Heb" xml:lang="he">בית שאן, בישן, בית שן</placeName>
+                            <placeName type="Heb" xml:lang="en">Beth Shean, Beshan</placeName>
+                            <placeName type="Grk">Scythopolis</placeName>
+                            <!-- If there is more than one name, for each: -->
+                            <placeName type="Grk" subtype="alt" n="1">Nysa</placeName>
+                            <!-- Beware of multiplication of names in Reeg: he gives adjectival
+                                   uses (בישני, etc) and place names used in connection with it (כפר
+                                   זימרין) -->
+                            <placeName type="Arab">Beisan</placeName>
+                            <location>
+                                <geo>197211</geo>
+                            </location>
+                            <bibl>
+                                <ref corresp="#segal"
+                                    >http://www.shechem.org/torah/geomishna/43b.html</ref>
+                                <ref corresp="#TIR">169-271</ref>
+                                <ref corresp="#reeg">81-84</ref>
+                            </bibl>
                         </place>
                     </listPlace>
                 </div>
@@ -16053,6 +16115,18 @@
                             <biblScope type="vol">91</biblScope>
                         </series>
                     </biblStruct>
+                    <biblStruct type="book" xml:id="reeg">
+                        <monogr>
+                            <author>Reeg, Gottfried</author>
+                            <title>Die Ortsnamen Israels nach der rabbinischen Literatur</title>
+                            <textLang>German</textLang>
+                            <imprint>
+                                <pubPlace>Wiesbaden</pubPlace>
+                                <publisher>Ludwig Reichert</publisher>
+                                <date>1989</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
                     <biblStruct type="book" xml:id="richler-parm">
                         <monogr>
                             <editor>Richler, Benjamin</editor>
@@ -16067,7 +16141,7 @@
                             </imprint>
                         </monogr>
                     </biblStruct>
-                    <biblStruct type="website" xml:id="seg">
+                    <biblStruct type="website" xml:id="segal">
                         <monogr>
                             <author>Segal, Ben Zion<addName xml:lang="he">סגל, בן
                                 ציון</addName></author>
@@ -16102,6 +16176,20 @@
                                 <pubPlace>Minneapolis</pubPlace>
                                 <publisher>Fortress Press</publisher>
                                 <date>1996</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="TIR">
+                        <monogr>
+                            <editor>Tsafrir, Yoram</editor>
+                            <editor>Di Segni, Leah</editor>
+                            <editor>Green, Judith</editor>
+                            <title>Tabula Imperii Romani: Iudaea-Palaestina</title>
+                            <textLang>English</textLang>
+                            <imprint>
+                                <pubPlace>Jerusalem</pubPlace>
+                                <publisher>Israel Academy of Sciences and Humanities</publisher>
+                                <date>1998</date>
                             </imprint>
                         </monogr>
                     </biblStruct>
