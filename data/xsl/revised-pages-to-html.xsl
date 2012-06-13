@@ -53,8 +53,8 @@
                 <h2 style="font-size:80%;"/>
                 <div class="meta" dir="ltr">
                     <xsl:variable name="nli"
-                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:msItem/tei:note[@type
-                        = 'nli']"></xsl:variable>
+                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type
+                        = 'nli-ref']"></xsl:variable>
                     <table class="meta">
                            
                         <tr>
@@ -96,8 +96,7 @@
                             <xsl:choose><xsl:when
                                 test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]"
                                 ><xsl:text>; </xsl:text><xsl:value-of
-                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]"/><xsl:text>
-                                    </xsl:text><xsl:value-of
+                                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/text()"/>&#xa0;<xsl:value-of
                                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/tei:desc"/>
                                 <xsl:if
                                     test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,'pointed')]/ancestor-or-self::tei:handNote/@scribe
@@ -198,8 +197,8 @@
                         <tr><td class="data">Place of copying</td><td class="descr"><xsl:value-of
                             select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:placeName"
                             separator="; "/></td><td
-                                class="data"><a href="{$nli}">NLI
-                                    Catalog</a></td><td class="descr"></td></tr>
+                                class="data"><xsl:if test="normalize-space($nli)"><a href="{$nli}">NLI
+                                    Catalog</a></xsl:if></td><td class="descr"></td></tr>
                     </table>
                 </div>
                 <h2>Transcription</h2>
