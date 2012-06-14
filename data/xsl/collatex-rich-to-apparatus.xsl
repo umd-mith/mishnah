@@ -49,15 +49,13 @@ pipeline. -->
             <body xsl:exclude-result-prefixes="#all" dir="rtl">
                 <h1><a name="top"/>Digital Mishnah Project</h1>
                 <div class="contents">
-                    <h2 style="font-size:80%;">
-                    [<a href="demo">Back to Demo Home</a><xsl:text>] [</xsl:text>
+                    <h2 style="font-size:80%;"> [<a href="demo">Back to Demo Home</a><xsl:text>] [</xsl:text>
                         <a href="#select">Select Passage and Witnesses</a><xsl:text>] [</xsl:text>
-                                <a href="#align">Alignment Table Format</a>
+                        <a href="#align">Alignment Table Format</a>
                         <xsl:text>] [</xsl:text>
-                                <a href="#text-appar">Text with Apparatus</a>
+                        <a href="#text-appar">Text with Apparatus</a>
                         <xsl:text>] [</xsl:text>
-                                <a href="#synopsis">Parallel Column Synopsis</a>]
-                            </h2>
+                        <a href="#synopsis">Parallel Column Synopsis</a>] </h2>
                 </div>
                 <h2>Sample Collatex Output</h2>
                 <h2>
@@ -204,12 +202,16 @@ pipeline. -->
                         <xsl:choose>
                             <xsl:when test="self::tei:w and text() != ''">
                                 <xsl:choose>
-                                    <xsl:when test="./tei:lb | ./tei:pb | ./tei:cb">
-                                        <xsl:apply-templates mode="within-wd"></xsl:apply-templates>
+                                    <xsl:when test="./tei:seg">
+                                        <xsl:apply-templates select="tei:seg" mode="within-wd"/>
                                     </xsl:when>
-                                    <xsl:otherwise><!-- insert text where it exists -->
-                                <xsl:sequence select="text()"/></xsl:otherwise></xsl:choose>
-                                <xsl:text> </xsl:text>
+                                    <xsl:otherwise>
+                                        <!-- insert text where it exists -->
+                                        <xsl:sequence select="text()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                <!-- add space word, but only if not followed by pc -->
+                                <xsl:if test="not(following-sibling::element()[1][self::tei:pc])"><xsl:text> </xsl:text></xsl:if>
                             </xsl:when>
                             <xsl:when test="self::tei:label">
                                 <span class="label">
@@ -253,6 +255,10 @@ pipeline. -->
                                     </span>
                                 </xsl:if>
                             </xsl:when>
+                            <xsl:when test="self::tei:pc[@type = 'unitEnd']">
+                                <xsl:text>: </xsl:text></xsl:when>
+                            <xsl:when test="self::tei:pc[@type = 'stop']">
+                                <xsl:text>. </xsl:text></xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
                 </div>
@@ -600,43 +606,52 @@ this -->
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-   <!-- Process <w>s that have page breaks or line breaks within them -->
+    <!-- Process <w>s that have page breaks or line breaks within them -->
     <xsl:template match="text()" mode="within-wd">
-       <xsl:value-of select="normalize-space(.)"/>
-   </xsl:template>
-    <xsl:template match="tei:lb" mode="within-wd">
-       <xsl:if test="self::tei:lb and @n mod 5 = 0">
-           <xsl:text>|</xsl:text>
-           <span class="lb">
-               <xsl:value-of select="@n"/>
-           </span>
-       </xsl:if>
-   </xsl:template>
-    <xsl:template match="tei:pb" mode="within-wd">
-        <span class="page"><xsl:value-of select="@n"></xsl:value-of></span>
+        <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
-    <xsl:template match="tei:cb" mode="within-wd">
-        <span class="col"><xsl:value-of select="@n"></xsl:value-of></span>
+    <xsl:template match="tei:seg/tei:lb" mode="within-wd">
+        <xsl:if test="@n mod 5 = 0">
+            <xsl:text>|</xsl:text>
+            <span class="lb">
+                <xsl:value-of select="@n"/>
+            </span>
+        </xsl:if>
     </xsl:template>
-    <xsl:template match="tei:expan | tei:reg" mode="within-wd"><!-- omit these; NB may not have
+    <xsl:template match="tei:seg/tei:pb" mode="within-wd">
+        <span class="page">
+            <xsl:value-of select="@n"/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:seg/tei:cb" mode="within-wd">
+        <span class="col">
+            <xsl:value-of select="@n"/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:expan | tei:reg" mode="within-wd"
+        ><!-- omit these; NB may not have
         caught all the possibilities --></xsl:template>
-    
     <!-- process columns of the synopsis -->
     <xsl:template match="tei:w" mode="synops-cols">
         <xsl:for-each select="node()">
             <xsl:choose>
-                <xsl:when test="self::text()"><xsl:value-of select="normalize-space(.)"></xsl:value-of></xsl:when>
+                <xsl:when test="self::text()">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </xsl:when>
                 <xsl:when test="self::tei:lb">
                     <xsl:choose>
                         <xsl:when test="@n mod 10 = 0">
-                        <lb class="lb10-intra"></lb>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <lb class="lb-intra"></lb>
-                    </xsl:otherwise></xsl:choose>
+                            <lb class="lb10-intra"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <lb class="lb-intra"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:when test="self::tei:pb">
-                    <lb class="{name(.)}"><xsl:value-of select="@xml:id"/></lb>
+                    <lb class="{name(.)}">
+                        <xsl:value-of select="@xml:id"/>
+                    </lb>
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
@@ -646,7 +661,6 @@ this -->
             <xsl:value-of select="."/>
         </span>
     </xsl:template>
-   
     <xsl:template match="//tei:del" mode="synops-cols">
         <span class="del">
             <xsl:value-of select="."/>
@@ -698,5 +712,5 @@ this -->
             <xsl:apply-templates mode="synops-cols"/>
         </span>
     </xsl:template>
-    <xsl:template match="//tei:note" mode="synops-cols"></xsl:template>
+    <xsl:template match="//tei:note" mode="synops-cols"/>
 </xsl:stylesheet>
