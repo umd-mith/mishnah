@@ -120,65 +120,52 @@
     </teiHeader>
     <text>
         <body>
-            <div1 xml:id="Vat114.4" n="Neziqin" type="Order">
-                <div2 xml:id="Vat114.4.2" n="Bava Metsia">
-                    <div3 xml:id="Vat114.4.2.1">
-                        <pb xml:id="Vat114.30v" n="30v"/>
-                        <head xml:id="Vat114.4.2.2.H"/>
-                        <ab xml:id="Vat114.4.2.1.1">
-                            <w rend="size(large) align(right)
-                            pad(l)"
-                                >אילו</w><!-- Needs redition instruction --> מצאיות שלו ואילו ואילו
-                                        <choice><abbr>חייב<am rend="overdot"
-                                    >'</am></abbr><expan>חייבים</expan></choice> להכריז
-                                        <choice><abbr>איל<am rend="overdot"
-                                    >'</am></abbr><expan>אילו</expan></choice>
-                            <choice><abbr>מציאו<am rend="overdot"
-                                >'</am></abbr><expan>מציאות</expan></choice>
-                                שלו<supplied>ב</supplied> מצא פירות <lb n="6"/> מפוזרין ומעות
-                                        <choice><abbr>מפוזרו<am rend="overdot"
-                                    >'</am></abbr><expan>מפוזרות</expan></choice> כריכות
-                                    ברשות<choice><abbr> הרבי<am rend="overdot"
-                                    >'</am></abbr><expan>הרבים</expan></choice> ועגולי
-                                        <choice><abbr>דבילו<am rend="overdot"
-                                    >'</am></abbr><expan>דבילות</expan></choice> ככרות של<lb n="7"
-                                    />נחתום<seg><add hand="h2" place="margin-right"
-                                >ומחרוזות</add></seg> של דגים<choice><abbr> וחתיכו<am rend="&#x5f3;"
-                                        >'</am></abbr><expan>וחתיכות</expan></choice> של בשר וגיזי
-                                    צמר<choice><abbr> הלוקחי<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>הלוקחין</expan></choice> ממדינתן
-                                    <seg><del>ואכידני</del><add hand="h3" place="above"
-                                >אניצי</add></seg><lb n="8"/> פשטן<choice><abbr> ולשונו<am
-                                        rend="&#x5f3;">'</am></abbr><expan>ולשונות</expan></choice>
-                            של ארגמן הרי אילו שלו דברי<choice><abbr> ר<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>רבי</expan></choice> מאיר<choice><abbr>
-                                        ר<am rend="&#x5f3;"
-                            >'</am></abbr><expan>רבי</expan></choice>יהודה <choice><abbr> אמ<am
-                                        rend="overdot">'</am></abbr><expan>אומר</expan></choice> כל
-                            דבר שיש בו שינוי חייב<lb n="9"/> להכריז כיצד מצא עיגול ובתוכו חדש ככר
-                            ובתוכה מעות <choice><abbr>ר<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>רבי</expan></choice> שמעון בן
-                                        אלעזר<choice><abbr>אמ<am rend="overdot"
-                                    >'</am></abbr><expan>אומר</expan></choice> כל
-                                כלי<!--<seg><del>ה</del></seg>not in Lieberman transcription--><lb
-                                n="10"/> אנפוריא אינו חייב להכריז<pc rend="''" type="unitEnd"
-                            >:</pc></ab>
-                        <ab xml:id="Vat114.4.2.2.2"> ואילו חייב להכריז מצא פירות בכלי או בכלי כמות
-                                        <choice><abbr>שהו<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>שהוא</expan></choice><lb n="11"/> מעות בכיס
-                            אחד או בכיס כמות שהוא ציבורי פירות וציבורי מעות שלשה
-                                <seg><del>מטע</del></seg><lb n="12"/> מטביעין זה על גב זה וכריכות
-                                        <choice><abbr>ב<am rend="&#x5f4;"
-                                    >''</am>ה</abbr><expan>ברשות היחיד</expan></choice>
-                            <choice><abbr>ובכורו<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>ובכורות</expan></choice> של בעל
-                                        <choice><abbr>הבי<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>הבית</expan></choice> וגיזי צמר הלוקוחין
-                            מבית האומן <lb n="13"/> וכדי יין וכדי שמן הרי אילו
-                                        <choice><abbr>חייבי<am rend="overdot"
-                                    >'</am></abbr><expan>חייבים</expan></choice> להכריז<lb n="14"/>
+            <!-- For below: 
+                Short-id = g1, g2, etc. Get from Lapin
+                <div1>= order
+                orderNo = number of order of the Mishna text begins in: 3= Nashim; 4=Neziqin
+                <div2>=tractate
+                orderNo.tractNo = position of tractate in conventional order within its Order. 
+                Eg., 4.2 =Bava Metsi'a, within Neziqin; 3.2 = Ketubot  within Nashim
+                <div3>=chapter
+                orderNo.tractNo.chNo = chapter no within tractate, within order: Bava Metsi'a
+                Ch. 2 = 4.2.2; Ketubot Ch. 8 = 3.2.8
+                If Chapter heads or trailers: 4.2.2.H or 3.2.8.T
+                [If your text has order or tractate headers, use the analogous format]
+                
+                <ab> ("anonymous block")= Mishnah passage
+                shortID.orderNo.tractNo.chNo.mishnNo = passage, within ch, within tractate, within
+                order Ketubot 8:3 = 3.2.8.3
+            -->
+            <!-- I updated your div IDs -->
+            <div1 xml:id="G18.3">
+                <div2 xml:id="G18.3.2">
+                    <div3 xml:id="G18.3.2.8">
+                        <!-- Note the corrections of ab and div3 below. Your text should be
+                            <ab>within</ab> an ab, a head or trailer -->
+                        <ab xml:id="G18.3.2.8.8"> לה לא כתובתה
+                            <!-- end of Mishnah and Chapter --></ab></div3><div3
+                                xml:id="G18.3.2.9"><ab xml:id="G18.3.2.9.1">פרק ט הכותב לאשׁתו דין<lb n="1"/> ודברים אין לי בנכסיך חרי
+                    זה אוכל פירות בחייה<lb n="2"/> ואם מיתת (מיתה?) יורשׁה ואם כן למה כתב דין ודברים
+                    אין לי<lb n="3"/> בנכסייך שׁאם מכרה ונתנה קיים לה דין ודברים<lb n="4"/> אין לי
+                    בנכסיך ובפירותיהן הרי זה אינו אוכל פירות בחייה<lb n="5"/> ואם מתה יורשׁה ר יהוד
+                    לעולם הוא אוכל פירי פירות<lb n="6"/> עד שׁיכתוב לה דין ודברים אין לי בנכסייך
+                        ובפירותיהן<lb n="7"/> ופירי פירותיהן עד לעולם כתב (לה superscr) דין ודברים א
+                    ל ב *ובפ(י)פירו<lb n="8"/> ובפירי פירותיהן בחייך ובמותיך הרי זה אינו אוכל
+                        בחייה<lb n="9"/> ואמ מתה אינו יורשׁה ר שׁמע בן גמל או אם מתה<lb n="10"/>
+                    יירשׁנה שׁהתנה על הכותב שׁבתורה שׁכל מתנה<lb n="11"/> על הכתוב שׁבתורה תניו בטל
+                    ב מי שׁמת והניח אשׁה<lb n="12"/> ובעלי חוב ויורשׁים והיה לו פיקדון או מלוה ביד
+                        אחרים<lb n="13"/> ר טרפון או ינתנו לכושׁל שׁבהן ר עקיב או אין רחמים<lb
+                        n="14"/> בדין לא (?) ינתנו ליורשׁים שׁכלם צריכין שׁבועה ואין ה(יור)שׁים<lb
+                        n="15"/> צריכין שׁבועה (.) (ג) הניח פירות תלושׁים מן הקרקע<lb n="16"/> כל
+                    הקודם בהם זכה זכת האשׁה יתר על כתובת(rub)<lb n="17"/> או בעל חוב יתר על חובו
+                    והמותר ר טר()ן א: ינתנו<lb n="18"/> לכושׁל שׁבהם ר עקי או אין רחמים בדין לא
+                        ינתנו<lb n="19"/> ליורשׁים שׁכולם צריכין שׁבוםעה ואין היורשׁין צריכין<lb
+                        n="20"/> [ ]בועה (ד) המושׁיב את אשׁתו חנוונית או שׁמינה<lb n="21"/>
+                    אפיטרופים הרי משׁביעה כל זמן שׁירצה ר ()ליעזר<lb n="22"/> אומר (אפילו) על פילכה
+                    ועל עיסתה. ה כתב ל() נדר<lb n="23"/>
+                            <!-- added closing tags for ab and div3 here -->
                         </ab>
-                        <trailer xml:id="Vat114.4.2.2.T"/>
                     </div3>
                 </div2>
             </div1>
