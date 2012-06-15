@@ -83,8 +83,8 @@ pipeline. -->
                         </xsl:matching-substring>
                     </xsl:analyze-string>
                 </h2>
-                <h3><a name="select"/>1. Select a Passage&#xA0;<a href="#top"><span class="link"
-                            >[top]</span></a></h3>
+                <h3><a name="select"/>1. Select a Passage&#xA0;<span
+                    class="link"><a href="#top">[top]</a></span></h3>
                 <form name="selection" action="collate-hl" method="get">
                     <div dir="ltr" style="text-align: center">
                         <select name="mcite">
@@ -153,8 +153,8 @@ pipeline. -->
                         </tr>
                     </table>
                 </form>
-                <h3 dir="ltr"><a name="align"/>3. Alignment Table Format&#xA0;<a href="#top"><span
-                            class="link">[top]</span></a></h3>
+                <h3 dir="ltr"><a name="align"/>3. Alignment Table Format&#xA0;<span
+                    class="link"><a href="#top">[top]</a></span></h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
                 <div class="alignment-table">
@@ -196,8 +196,8 @@ pipeline. -->
                 </div>
                 <div class="text" dir="rtl">
                     <h3 dir="ltr"><a name="text-appar"/>4. Text of <xsl:value-of
-                            select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/@n"/>&#xA0;<a
-                            href="#top"><span class="link">[top]</span></a></h3>
+                        select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/@n"/>&#xA0;<span
+                            class="link"><a href="#top">[top]</a></span></h3>
                     <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab[1]/*">
                         <xsl:choose>
                             <xsl:when test="self::tei:w and text() != ''">
@@ -514,8 +514,8 @@ this -->
                         </xsl:choose>
                     </xsl:for-each-group>
                 </div>
-                <h3><a name="synopsis"/>6. Parallel Column Synopsis&#xA0;<a href="#top"><span
-                            class="link">[top]</span></a></h3>
+                <h3><a name="synopsis"/>6. Parallel Column Synopsis&#xA0;<span
+                    class="link"><a href="#top">[top]</a></span></h3>
                 <div class="synopsis">
                     <table class="synopsis-table" dir="rtl">
                         <tr>
