@@ -102,7 +102,17 @@
                                     test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,'pointed')]/ancestor-or-self::tei:handNote/@scribe
                                     != 'first'"> (not by primary scribe)</xsl:if>
                             </xsl:when>
-                                </xsl:choose></td>
+                                </xsl:choose>
+                               <xsl:choose><xsl:when
+                                   test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]"
+                                   ><xsl:text>; </xsl:text><xsl:value-of
+                                       select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/text()"/>&#xa0;<xsl:value-of
+                                           select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/tei:desc"/>
+                                   <xsl:if
+                                       test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,cantillation)]/ancestor-or-self::tei:handNote/@scribe
+                                       != 'first'"> (not by primary scribe)</xsl:if>
+                               </xsl:when>
+                               </xsl:choose></td>
                             <td class="data">Written Column</td>
                             <td class="descr"><xsl:value-of
                                 select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-cm']/tei:height"
@@ -279,7 +289,7 @@
     </xsl:template>
     <xsl:template match="tei:gap">
         <xsl:choose>
-            <xsl:when test="./@reason='Maimonides'">
+            <xsl:when test="./@reason='Maimonides' or ./@reason='Bavli' or ./@reason='Yerushalmi' ">
                 <xsl:if test="./@unit='chars'">
                     <xsl:call-template name="add-char">
                         <xsl:with-param name="howMany" select="./@extent"/>

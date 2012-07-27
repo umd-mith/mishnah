@@ -15,8 +15,12 @@
                     <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
-                    <resp>Transcription</resp>
+                    <resp>transcriber</resp>
                     <persName corresp="ref.xml#SS">Shlomo Strauss</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </respStmt>
                 <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
                     Studies</sponsor>
@@ -32,9 +36,13 @@
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">G11</idno>
-                <availability>
-                    <licence><!-- We'll need one of these; TBD --></licence>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
                 <date when="2012-05-08"/>
             </publicationStmt>
             <notesStmt>
@@ -84,13 +92,13 @@
                                     >8b</locus>
                             </locusGrp>
                             <title>Mishnah</title>
+                            <join target="g1.xml g9.xml"/>
                         </msItem>
                     </msContents>
                     <physDesc>
                         <objectDesc form="codex">
-                            <supportDesc>
-                                <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                            <supportDesc material="parchment">
+                                <extent>2</extent>
                             </supportDesc>
                             <layoutDesc>
                                 <layout columns="1">
@@ -115,12 +123,15 @@
                             </layoutDesc>
                         </objectDesc>
                         <handDesc>
-                            <handNote xml:id="G11.h1" script="Oriental Square">
+                            <handNote scribe="first" xml:id="G11.h1" script="Oriental Square">
                                 <date notBefore="1000" notAfter="1300">11th-13th c.</date>
                                 <region><!-- placeholder --></region>
                             </handNote>
                             <handNote xml:id="G11.h2" script="pointing"> Corrections to the text in
-                                the same color as the pointing are attributed to h2. </handNote>
+                                the same color as the pointing are attributed to h2. <date notAfter="1300" notBefore="1000">11th - 13th C.</date>
+                                <region><!-- placeholder --></region>
+                                <desc>pointed<desc>Babyonian</desc></desc>
+                                <desc>cantillation</desc></handNote>
                         </handDesc>
                     </physDesc>
                 </msDesc>

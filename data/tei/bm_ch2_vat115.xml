@@ -1,25 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
 <?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
 <!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
-<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of ***</title>
+                <title>An electronic transcription of Mishnah Bava Metsi'a from Vat. ebr.
+                    115</title>
                 <editor>
                     <persName>Hayim Lapin</persName>
                 </editor>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
                 <respStmt>
-                    <resp/>
-                    <persName/>
-                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>-->
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
                 </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -29,81 +38,78 @@
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
-                <idno type="local"/>
-                <!--<availability>
-                    <licence><!-\- We'll need one of these; TBD -\-></licence>
-                </availability>-->
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <idno type="local">Vat115</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
+                </availability>
+                <date>2012-05-13</date>
             </publicationStmt>
             <notesStmt>
                 <note>
-                    <p/>
-                    <!--Prose description. Use the following as model
-                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                    <p>Mishnah Bava Metsi'a Ch. 2 from the Vatican Library, Vat. ebr. 115</p>
                     <p>Transcription from online images of the manuscript, available at
-                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
-                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
-                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
-                        Sciences, Kaufmann A50, except when preserved remains make such restoration
-                        unlikely.</p>
-                    <p>EDITED BY: Hayim Lapin</p>-->
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp referring also to the
+                        transcription through the <ref target="http://www.lieberman-institute.com/"
+                            >Lieberman Institute</ref></p>
+                    <p>TRANSCRIPTION BY: Atara Siegel</p>
+                    <p>MARKUP BY: Atara Siegel</p>
+                    <p>EDITED BY: Hayim Lapin</p>
                 </note>
             </notesStmt>
-            <sourceDesc>
+            <sourceDesc corresp="ref.xml#richler-vat">
                 <msDesc>
                     <msIdentifier>
-                        <settlement/>
-                        <repository/>
-                        <idno type="genizah-CUL"
-                            ><!-- Shelf Mark here. for Oxford, e.g.,
-                            @type=genizah-Oxf etc.--></idno>
+                        <settlement>The Vatican</settlement>
+                        <repository>Bibliotecca Apostolica Vaticano</repository>
+                        <idno type="Bavli">Vat. ebr. 115</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
                             <locusGrp>
                                 <locus/>
-                                <!-- Points to images. Other uses? Use the following as model
-                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
-                                <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                                <!-- placeholder -->
                             </locusGrp>
-                            <title>Mishnah</title>
+                            <title>Babylonian Talmud</title>
+                            <note type="nli-ref"
+                                >http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=000198135&amp;local_base=NNLMSS</note>
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote script="SCRIPT">
-                                <date><!-- placeholder --></date>
-                                <region><!-- placeholder --></region>
-                            </handNote>
-                        </handDesc>
-                        <!--<objectDesc form="FORM">
+                        <objectDesc form="codes">
                             <supportDesc>
-                                <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                                <support>parchment</support>
+                                <extent>64</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="NUMBER">
-                                    <!-\- at longest/widest -\->
-                                    <dimensions scope="frag-sheet">
-                                        <width unit="cm"/>
-                                        <height unit="cm"/>
+                                <layout columns="2">
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">33.5</width>
+                                        <height unit="cm">45.4</height>
                                     </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm"/>
-                                        <height unit="cm">15.5</height>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">10.4</width>
+                                        <height unit="cm">37.4</height>
                                     </dimensions>
-                                    <dimensions scope="frag-chars">
-                                        <width unit="chars"/>
-                                        <height unit="lines"/>
-                                        <dim type="char-p-cm"/>
+                                    <dimensions scope="col-writ">
+                                        <width unit="chars">30</width>
+                                        <height unit="lines">45</height>
+                                        <dim type="char-p-cm">2.9</dim>
                                     </dimensions>
                                 </layout>
                             </layoutDesc>
-                        </objectDesc>-->
+                        </objectDesc>
+                        <handDesc>
+                            <!-- Needs revision when the whole MS is entered. Several hands -->
+                            <handNote scribe="second" script="Ashkenazic Square">
+                                <!-- This refers to the hand of Bava Metsi'a Ch 2 -->
+                                <!-- h2, h3 if used annotates this scribe -->
+                                <date notBefore="1300" notAfter="1400">14th C</date>
+                                <region>Ashkenaz</region>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -120,76 +126,80 @@
     </teiHeader>
     <text>
         <body>
-            <!-- For below: 
-                Short-id = g1, g2, etc. Get from Lapin
-                <div1>= order
-                orderNo = number of order of the Mishna text begins in: 3= Nashim; 4=Neziqin
-                <div2>=tractate
-                orderNo.tractNo = position of tractate in conventional order within its Order. 
-                Eg., 4.2 =Bava Metsi'a, within Neziqin; 3.2 = Ketubot  within Nashim
-                <div3>=chapter
-                orderNo.tractNo.chNo = chapter no within tractate, within order: Bava Metsi'a
-                Ch. 2 = 4.2.2; Ketubot Ch. 8 = 3.2.8
-                If Chapter heads or trailers: 4.2.2.H or 3.2.8.T
-                [If your text has order or tractate headers, use the analogous format]
-                
-                <ab> ("anonymous block")= Mishnah passage
-                shortID.orderNo.tractNo.chNo.mishnNo = passage, within ch, within tractate, within
-                order Ketubot 8:3 = 3.2.8.3
-            -->
-            <div1 xml:id="Vat115.4" n="Neziqin" type="Order">
-                <div2 xml:id="Vat115.4.2" n="Bava Metsia">
+            <div1 xml:id="Vat115.4">
+                <div2 xml:id="Vat115.4.2">
                     <div3 xml:id="Vat115.4.2.2">
                         <pb xml:id="Vat115.10v" n="10v"/>
+                        <cb xml:id="Vat115.10vA" n="10vA"/>
                         <head xml:id="Vat115.4.2.2.H"/>
+                        <gap reason="Bavli" extent="7" unit="lines"/>
                         <ab xml:id="Vat115.4.2.2.1"> אילו מציאות שלו ואילו חייב
                                     להכרי<damage><unclear extent="1" unit="chars"
-                                >ץ</unclear></damage> אילו<lb n="10"/> מציאות שלו מצא פירות מפוזרין
-                            מעות <surplus reason="fill">מפ'</surplus><lb n="11"/> מפוזרות כריכות
-                            ברשות הרבים עיגולי דבילה <lb n="12"/> וכיכרות של נחתום ומחרוזות של דגים
-                                <surplus reason="fill">וחתיו</surplus><lb n="13"/> וחתיכות של בשר
-                            וגיזי צמר הלקוחות <surplus reason="fill">ממד'</surplus><lb n="14"/>
-                            ממדינתן ועניצי פשתן ולשונות של ארגמן<lb n="15"/> הרי אילו שלו <seg><add
+                                >ץ</unclear></damage> אילו<lb n="8"/> מציאות שלו מצא פירות מפוזרין
+                            מעות <surplus reason="fill">מפ<am rend="overdot">׳</am></surplus><lb
+                                n="9"/> מפוזרות כריכות ברשות הרבים עיגולי דבילה <lb n="10"/> וכיכרות
+                            של נחתום ומחרוזות של דגים <surplus reason="fill">וחתיו</surplus><lb
+                                n="11"/> וחתיכות של בשר וגיזי צמר הלקוחות <surplus reason="fill"
+                                    >ממד<am rend="overdot">׳</am></surplus><lb n="12"/> ממדינתן
+                            ועניצי פשתן ולשונות של ארגמן<lb n="13"/> הרי אילו שלו <seg><add
                                     hand="h2" place="margin-right"> דברי רבי מאיר</add></seg>
                             <choice><abbr> ר<am rend="overdot"
-                                >'</am></abbr><expan>רבי</expan></choice>
+                                >׳</am></abbr><expan>רבי</expan></choice>
                             <choice><abbr> יהוד<am rend="overdot"
-                                >'</am></abbr><expan>יהודה</expan></choice>
+                                >׳</am></abbr><expan>יהודה</expan></choice>
                             <choice><abbr> או<am rend="overdot"
-                                >'</am></abbr><expan>אומר</expan></choice> כל דבר שיש בו שינוי<lb
-                                n="16"/> חייב להכריז כיצד מצא עיגול ובתוכו חרס <surplus
-                                reason="fill">כו'</surplus><lb n="17"/> ככר ובתוכו מעות
-                                    <choice><abbr> ר<am rend="overdot"
-                                    >'</am></abbr><expan>רבי</expan></choice>
+                                >׳</am></abbr><expan>אומר</expan></choice> כל דבר שיש בו שינוי<lb
+                                n="14"/> חייב להכריז כיצד מצא עיגול ובתוכו חרס <surplus
+                                reason="fill">כו<am rend="overdot">׳</am></surplus><lb n="15"/> ככר
+                            ובתוכו מעות <choice><abbr> ר<am rend="overdot"
+                                    >׳</am></abbr><expan>רבי</expan></choice>
                             <choice><abbr> שמע<am rend="overdot"
-                                >'</am></abbr><expan>שמעון</expan></choice> בן <choice><abbr>אלע<am
-                                        rend="overdot">'</am></abbr><expan>אלעזר</expan></choice>
+                                >׳</am></abbr><expan>שמעון</expan></choice> בן <choice><abbr>אלע<am
+                                        rend="overdot">׳</am></abbr><expan>אלעזר</expan></choice>
                             <choice><abbr> או<am rend="overdot"
-                                >'</am></abbr><expan>אומר</expan></choice> כל כלי<lb n="18"/>
-                            אנפיריא אינו חייב להכריז </ab>
+                                >׳</am></abbr><expan>אומר</expan></choice> כל כלי<lb n="16"/>
+                            אנפיריא אינו חייב להכריז<pc type="unitEnd" rend="˙">:</pc></ab>
+                        <gap reason="Bavli" extent="8" unit="chars"/>
+                        <lb n="17"/>
+                        <gap reason="Bavli" extent="28" unit="lines"/>
+                        <!-- New Addition. To keep track of skipped pages.-->
+                        <gap reason="Bavli" extent="3" unit="chars"/>
+                        <!-- should the unit be pages, not chars? -->
+                        <!-- end addition -->
                         <pb xml:id="Vat115.12v" n="12v"/>
+                        <cb xml:id="Vat115.12vA" n="12vA"/>
+                        <gap reason="Bavli" extent="39" unit="lines"/>
+                        <gap reason="Bavli" extent="15" unit="chars"/>
                         <ab xml:id="Vat115.4.2.2.2">
-                            <label rend="pad(rl)">מתני'</label> ואילו<lb n="40"/> חייב להכריז עליהן
-                            מצא פירות בכלי או <lb n="41"/> כלי כמו<seg><del rend="rubout"
-                                >ת</del></seg> שהוא מעות בכיס או כיס כמו<lb n="42"/> שהוא ציבורי
-                            פירות וציבורי מעות שלש <lb n="43"/> מטבעות זו על גב זו כריכות ברשות
-                            היחיד <lb n="44"/> ככרות של בעל הבית וגיזי צמר הלקוחין <surplus
-                                reason="fill">מ</surplus>
-                            <lb n="45"/> מבית האומן כדי יין וכדי שמן חייב להכריז <lb n="46"/>
-                        </ab>
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> ואילו<lb
+                                n="40"/> חייב להכריז עליהן מצא פירות בכלי או <lb n="41"/> כלי
+                                    כמו<seg><del rend="rubout">ת</del></seg> שהוא מעות בכיס או כיס
+                                כמו<lb n="42"/> שהוא ציבורי פירות וציבורי מעות שלש <lb n="43"/>
+                            מטבעות זו על גב זו כריכות ברשות היחיד <lb n="44"/> ככרות של בעל הבית
+                            וגיזי צמר הלקוחין <surplus reason="fill">מ</surplus>
+                            <lb n="45"/> מבית האומן כדי יין וכדי שמן חייב להכריז<pc rend="˙˙"
+                            >:</pc></ab>
+                        <lb n="46"/>
                         <pb xml:id="Vat115.13r" n="13r"/>
+                        <cb xml:id="Vat115.13rA" n="13rA"/>
+                        <gap reason="Bavli" extent="11" unit="lines"/>
                         <ab xml:id="Vat115.4.2.2.3">
-                            <label rend="pad(rl)">'מתני</label> מצא אחר הגפה אחר הגדר <surplus
-                                reason="fill">גוז'</surplus><lb n="12"/> גוזלות המקושרין או בשבילין
-                            שבשדות הרי <lb n="13"/> זה לא יגע בהן מצא כלי באשפה מכוסה לא יגע <lb
-                                n="14"/> בו מגולה נוטל ומכריז מצא בגל או בכותל <surplus
-                                reason="fill">?</surplus><lb n="15"/> ישן הרי אילו <seg><add
-                                    hand="h3" place="above">שלו</add></seg> מצא בכותל חדש מחציו
-                            ולחוץ <lb n="16"/> שלו מחציו ולפנים של בעל הבית אם היה <surplus
-                                reason="fill">כל</surplus><lb n="17"/> משכירו לאחרים אפילו מצא בתוך
-                            הבית הרי<lb n="18"/> אילו שלו </ab>
+                            <label rend="pad(rl)">מתני <am rend="overdot">׳</am></label> מצא אחר
+                            הגפה אחר הגדר <surplus reason="fill">גוז<am rend="overdot"
+                                >׳</am></surplus><lb n="12"/> גוזלות המקושרין או בשבילין שבשדות הרי
+                                <lb n="13"/> זה לא יגע בהן מצא כלי באשפה מכוסה לא יגע <lb n="14"/>
+                            בו מגולה נוטל ומכריז מצא בגל או בכותל <surplus reason="fill"
+                                >?</surplus><lb n="15"/> ישן הרי אילו <seg><add hand="h3"
+                                    place="above">שלו</add></seg> מצא בכותל חדש מחציו ולחוץ <lb
+                                n="16"/> שלו מחציו ולפנים של בעל הבית אם היה <surplus reason="fill"
+                                >כל</surplus><lb n="17"/> משכירו לאחרים אפילו מצא בתוך הבית הרי<lb
+                                n="18"/> אילו שלו <pc rend="˙˙">:</pc></ab>
+                        <gap reason="Bavli" extent="16" unit="chars"/>
+                        <lb n="19"/>
+                        <gap reason="Bavli" extent="27" unit="lines"/>
                         <pb xml:id="Vat115.13v" n="13v"/>
                         <cb xml:id="Vat115.13vA" n="13vA"/>
+                        <gap reason="Bavli" extent="11" unit="lines"/>
                         <ab xml:id="Vat115.4.2.2.4">
                             <label rend="pad(rl)">מצא</label> מצא בחנות הרי אילו שלו בין<lb n="12"/>
                             תיבה לחנווני הרי אילו של חנוני לפני <surplus reason="fill"
@@ -197,53 +207,58 @@
                                 n="14"/> הרי אילו של שלחני לקח פירות מחבירו <surplus reason="fill"
                                 >?</surplus><lb n="15"/> או ששליח לו חבירו פירות ומצא בתוכן <surplus
                                 reason="fill">?</surplus><lb n="16"/> מעות הרי אילו שלו ואם היו
-                            צרורין נוטל <lb n="17"/> ומכריז </ab>
-                        <!-- you need an lb where appropriate see the following -->
+                            צרורין נוטל <lb n="17"/> ומכריז <pc type="unitEnd" rend="˙">:</pc></ab>
                         <gap reason="Bavli" extent="17" unit="chars"/>
                         <lb n="18"/>
-                        <!-- I corrected number of lines -->
+                        <lb n="40"/>
                         <gap reason="Bavli" extent="21" unit="lines"/>
                         <ab xml:id="Vat115.4.2.2.5">
-                            <!-- Did you mean for this to be after the ab?-->
-                            <!--<gap reason="Bavli" extent="«28»" unit="lines"/> -->
-                            <label rend="pad(rl)">מתני'</label> אף השמלה הייתה בכלל כל<lb n="40"/>
-                            אילו למה יצאת להקיש אליה ולומר לך <surplus reason="fill">?</surplus><lb
-                                n="41"/> מה שמלה מיוחדת שיש בה סימנין ויש לה <lb n="42"/> תובעין אף
-                            כל דבר שיש בה סימנין ויש לה <lb n="43"/> תובעין חייב להכריז </ab>
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> אף השמלה
+                            הייתה בכלל כל <lb n="40"/> אילו למה יצאת להקיש אליה ולומר לך <surplus
+                                reason="fill">?</surplus><lb n="41"/> מה שמלה מיוחדת שיש בה סימנין
+                            ויש לה <lb n="42"/> תובעין אף כל דבר שיש בה סימנין ויש לה <lb n="43"/>
+                            תובעין חייב להכריז </ab>
                         <ab xml:id="Vat115.4.2.2.6"> עד מתי חייב להכריז <lb n="44"/> עד כדי שידעו
                             שכיניו בו דברי <choice><abbr>ר<am rend="overdot"
-                                    >'</am></abbr><expan>רבי</expan></choice>מאיר <choice><abbr>ר<am
-                                        rend="overdot">'</am></abbr><expan>רבי</expan></choice><lb
+                                    >׳</am></abbr><expan>רבי</expan></choice>מאיר <choice><abbr>ר<am
+                                        rend="overdot">׳</am></abbr><expan>רבי</expan></choice><lb
                                 n="45"/>
                             <choice><abbr>יהוד<am rend="overdot"
-                                >'</am></abbr><expan>יהודה</expan></choice>
-                            <choice><abbr>או<am>'</am></abbr><expan>אומר</expan></choice> שלש רגלים
+                                >׳</am></abbr><expan>יהודה</expan></choice>
+                            <choice><abbr>או<am>׳</am></abbr><expan>אומר</expan></choice> שלש רגלים
                             ואחר רגל האחרון <surplus reason="fill">??</surplus><lb n="46"/>
                             <cb xml:id="Vat115.13vB" n="13vB"/> שבעת ימים כדי שילך לביתו שלשה ויחזור
-                                <lb n="1"/> שלשה ויכריז יום אחד </ab>
-                        <!-- Here: gap characters to end of line; lb; then gap lines to end of column. -->
+                                <lb n="1"/> שלשה ויכריז יום אחד <pc type="unitEnd" rend="˙"
+                            >:</pc></ab>
+                        <gap reason="Bavli" extent="12" unit="chars"/>
+                        <lb n="47"/>
+                        <gap reason="Bavli" extent="44" unit="lines"/>
                         <pb xml:id="Vat115.14v" n="14v"/>
+                        <cb xml:id="Vat115.14vA" n="14vA"/>
+                        <gap reason="Bavli" extent="3" unit="lines"/>
                         <ab xml:id="Vat115.4.2.2.7">
-                            <label rend="pad(rl)">מתני'</label> אמר את האבידה ולא אמר את <surplus
-                                reason="fill">ס?</surplus><lb n="4"/> סימניה הרי זה לא יתן לו והרמאי
-                                    <choice><abbr> א<am rend="overdot"/>ע<am rend="overdot"
-                                        />פ<am>''</am>י</abbr><expan>אף על פי</expan></choice>
-                            <choice><abbr>שאמ<am>'</am></abbr><expan>שאמר</expan></choice><lb n="5"
+                            <cb xml:id="Vat115.14vB" n="14vB"/>
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> אמר את
+                            האבידה ולא אמר את <surplus reason="fill">ס?</surplus><lb n="4"/> סימניה
+                            הרי זה לא יתן לו והרמאי <choice><abbr> א<am rend="overdot"/>ע<am
+                                        rend="overdot"/>פ<am>׳׳</am>י</abbr><expan>אף על
+                                פי</expan></choice>
+                            <choice><abbr>שאמ<am>׳</am></abbr><expan>שאמר</expan></choice><lb n="5"
                             /> את סימניה הרי זה לא יתן לו <choice><abbr>שנ<am rend="overdot"
-                                    >'</am></abbr><expan>שנאמר</expan></choice> עד דרוש<surplus
+                                    >׳</am></abbr><expan>שנאמר</expan></choice> עד דרוש<surplus
                                 reason="fill">?</surplus><lb n="6"/> אחיך אותו דורשיהו אם רמאי הוא
                             אם אינו <lb n="7"/> רמאי כל דבר שעושה ואוכל יעשה ויאכל <lb n="8"/>
                             ושאינו עושה ואוכל ימכר <choice><abbr>שנ<am rend="overdot"
-                                    >'</am></abbr><expan>שנאמר</expan></choice> והשבותו לו <lb n="9"
+                                    >׳</am></abbr><expan>שנאמר</expan></choice> והשבותו לו <lb n="9"
                             /> ראה היאך תשיבנו לו מה יהא בדמים <choice><abbr>ר<am rend="overdot"
-                                        >'</am></abbr><expan>רבי</expan></choice>טרפון <lb n="10"/>
-                            <choice><abbr>או<am>'</am></abbr><expan>אומר</expan></choice> ישתמש בהן
+                                        >׳</am></abbr><expan>רבי</expan></choice>טרפון <lb n="10"/>
+                            <choice><abbr>או<am>׳</am></abbr><expan>אומר</expan></choice> ישתמש בהן
                             לפיכך אם אבדו חייב<surplus reason="fill">באחרו</surplus><lb n="11"/>
                             באחריותן <choice><abbr>ר<am rend="overdot"
-                                    >'</am></abbr><expan>רבי</expan></choice>
+                                    >׳</am></abbr><expan>רבי</expan></choice>
                             <choice><abbr>עקיב<am rend="overdot"
-                                >'</am></abbr><expan>עקיבא</expan></choice>
-                            <choice><abbr>או<am>'</am></abbr><expan>אומר</expan></choice> לא ישתמש
+                                >׳</am></abbr><expan>עקיבא</expan></choice>
+                            <choice><abbr>או<am>׳</am></abbr><expan>אומר</expan></choice> לא ישתמש
                             לפיכך <lb n="12"/> אם אבדו אינו חייב באחריותן מצא ספרים <lb n="13"/>
                             קורא בהן אחד לשלשים יום ואם אינו יודע <lb n="14"/> לקרות גוללן אבל לא
                             ילמוד בהן בתחילה ולא <lb n="15"/> יקרא אחר עמו מצא כסות מנערה אחת
@@ -252,63 +267,102 @@
                             כלי כסף וכלי נחושת ישתמש בהן <surplus reason="fill">לו</surplus><lb
                                 n="18"/> לצורכן אבל לא לשוחקן כלי זהב וכלי זכוכית <lb n="19"/> לא
                             יגע בהן מצא שק או קופה וכל דבר שאין <lb n="20"/> דרכו ליטול הרי זה לא
-                            יטול </ab>
+                            יטול <pc type="unitEnd" rend="˙">:</pc></ab>
+                        <gap reason="Bavli" extent="7" unit="chars"/>
+                        <lb n="21"/>
+                        <gap reason="Bavli" extent="25" unit="lines"/>
                         <pb xml:id="Vat115.16r" n="16r"/>
+                        <cb xml:id="Vat115.16rA" n="16rA"/>
+                        <gap reason="Bavli" extent="11" unit="lines"/>
+                        <gap reason="Bavli" extent="17" unit="chars"/>
                         <ab xml:id="Vat115.4.2.2.9">
-                            <label rend="pad(rl)">מתני'</label> איזן <lb n="12"/> היא אבידה מצא חמור
-                            או פרה רועים בדרך <lb n="13"/> אין זו אבידה חמור וכלין הפוכין פרה ורצה
-                                <lb n="14"/> בין הכרמים הרי זה אבידה החזירה וברחה <lb n="15"/>
-                            החזירה וברחה אפילו ארבע <seg><del rend="rubout">ים</del></seg> וחמשה
-                                <surplus reason="fill">פעם</surplus><lb n="16"/> פעמים
-                                    חייב<choice><abbr> שנ<am rend="overdot"
-                                    >'</am></abbr><expan>שנאמר</expan></choice> השב
-                                        <choice><abbr>השיב<am rend="overdot"
-                                    >'</am></abbr><expan>השיבים</expan></choice> היה בטל מן <surplus
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> איזן <lb
+                                n="12"/> היא אבידה מצא חמור או פרה רועים בדרך <lb n="13"/> אין זו
+                            אבידה חמור וכלין הפוכין פרה ורצה <lb n="14"/> בין הכרמים הרי זה אבידה
+                            החזירה וברחה <lb n="15"/> החזירה וברחה אפילו ארבע <seg><del
+                                    rend="rubout">ים</del></seg> וחמשה <surplus reason="fill"
+                                >פעם</surplus><lb n="16"/> פעמים חייב<choice><abbr> שנ<am
+                                        rend="overdot">׳</am></abbr><expan>שנאמר</expan></choice>
+                            השב <choice><abbr>השיב<am rend="overdot"
+                                    >׳</am></abbr><expan>השיבים</expan></choice> היה בטל מן <surplus
                                 reason="fill">ה?</surplus><lb n="17"/> הסלע לא יאמר תן לי סלע אלא
                             נותן לו <surplus reason="fill">??</surplus><lb n="18"/> שכרו כפועל בטל
-                            אם יש שם <choice><abbr>ב <am rend="overdot">''</am>ד</abbr><expan>בית
+                            אם יש שם <choice><abbr>ב <am rend="overdot">׳׳</am>ד</abbr><expan>בית
                                     דין</expan></choice>מתנה בפני<lb n="19"/>
-                            <choice><abbr>ב <am rend="overdot">''</am>ד</abbr><expan>בית
+                            <choice><abbr>ב <am rend="overdot">׳׳</am>ד</abbr><expan>בית
                                 דין</expan></choice>אים אין שם <choice><abbr>ב <am rend="overdot"
-                                        >''</am>ד</abbr><expan>בית דין</expan></choice> בפני מי
+                                        >׳׳</am>ד</abbr><expan>בית דין</expan></choice> בפני מי
                                     <damage><unclear extent="1" unit="chars">מ</unclear></damage>תנה
-                            שלו קודם<lb n="20"/>
+                            שלו קודם<pc type="unitEnd" rend="''">:</pc>
+                            <lb n="20"/>
                         </ab>
+                        <gap reason="Bavli" extent="26" unit="lines"/>
                         <pb xml:id="Vat115.16v" n="16v"/>
+                        <cb xml:id="Vat115.16vA" n="16vA"/>
+                        <gap reason="Bavli" extent="17" unit="lines"/>
+                        <gap reason="Bavli" extent="9" unit="chars"/>
                         <ab xml:id="Vat115.4.2.2.10">
-                            <label rend="pad(rl)">מתני'</label> מצאה ברפת אין<surplus reason="fill"
-                                >חי</surplus><lb n="18"/> חייב בה ברשות הרבים חייב בה היתה בבית <lb
-                                n="19"/> הקברות אל יטמא אם
-                                    <choice><abbr>אמ<am>'</am></abbr><expan>אמר</expan></choice>לו
-                            אביו היטמא<lb n="20"/> או <am rend="overdot">'</am><choice><abbr>שא<am
-                                        rend="overdot">'</am></abbr><expan>שאמר</expan></choice> לו
+                            <cb xml:id="Vat115.16vB" n="16vB"/>
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> מצאה ברפת
+                                אין<surplus reason="fill">חי</surplus><lb n="18"/> חייב בה ברשות
+                            הרבים חייב בה היתה בבית <lb n="19"/> הקברות אל יטמא אם
+                                        <choice><abbr>אמ<am>׳</am></abbr><expan>אמר</expan></choice>לו
+                            אביו היטמא<lb n="20"/> או <am rend="overdot">׳</am><choice><abbr>שא<am
+                                        rend="overdot">׳</am></abbr><expan>שאמר</expan></choice> לו
                             אל תחזור אל ישמע לו פרק וטען <lb n="21"/> פרק וטען<choice><abbr> אפ<am
                                         rend="overdot"
-                            >'</am></abbr><expan>אפילו</expan></choice>ארבע <choice><abbr>וחמש<am
-                                        rend="overdot">'</am></abbr><expan>וחמשה</expan></choice>
+                            >׳</am></abbr><expan>אפילו</expan></choice>ארבע <choice><abbr>וחמש<am
+                                        rend="overdot">׳</am></abbr><expan>וחמשה</expan></choice>
                             פעמים חייב <surplus reason="fill">:</surplus><lb n="22"/>
                             <choice><abbr> שנ<am rend="overdot"
-                                >'</am></abbr><expan>שנאמר</expan></choice> עזב תעזב עמו הלך וישב לו
+                                >׳</am></abbr><expan>שנאמר</expan></choice> עזב תעזב עמו הלך וישב לו
                                         <choice><abbr>וא<am rend="overdot"
-                                    >'</am></abbr><expan>ואמר</expan></choice>לו הואיל<lb n="23"/>
+                                    >׳</am></abbr><expan>ואמר</expan></choice>לו הואיל<lb n="23"/>
                             ועלך מצוה אם רצית לפרק פרק פטור <choice><abbr> שנ<am rend="overdot"
-                                        >'</am></abbr><expan>שנאמר</expan></choice><lb n="24"/> עמו
+                                        >׳</am></abbr><expan>שנאמר</expan></choice><lb n="24"/> עמו
                             אם היה זקן או חולה חייב מצוה מן<surplus reason="fill">ה?</surplus><lb
                                 n="25"/> התורה לפרק אבל לא לטעון <choice><abbr>ר<am rend="overdot"
-                                        >'</am></abbr><expan>רבי</expan></choice>
+                                        >׳</am></abbr><expan>רבי</expan></choice>
                             <choice><abbr>שמע<am rend="overdot"
-                                >'</am></abbr><expan>שמעון</expan></choice>
+                                >׳</am></abbr><expan>שמעון</expan></choice>
                             <choice><abbr>או<am rend="overdot"
-                                >'</am></abbr><expan>אומר</expan></choice> אף<lb n="26"/> לטעון
+                                >׳</am></abbr><expan>אומר</expan></choice> אף<lb n="26"/> לטעון
                                     <choice><abbr> ר<am rend="overdot"
-                                    >'</am></abbr><expan>רבי</expan></choice> יוסי הגלילי
+                                    >׳</am></abbr><expan>רבי</expan></choice> יוסי הגלילי
                                         <choice><abbr>או<am rend="overdot"
-                                    >'</am></abbr><expan>אומר</expan></choice> אם היה עליו יותר<lb
+                                    >׳</am></abbr><expan>אומר</expan></choice> אם היה עליו יותר<lb
                                 n="27"/> על משאו אין זקוק לו <choice><abbr> שנ<am rend="overdot"
-                                        >'</am></abbr><expan>שנאמר</expan></choice> תחת משאו
+                                        >׳</am></abbr><expan>שנאמר</expan></choice> תחת משאו
                                 <surplus reason="fill">מ?</surplus><lb n="28"/> משאוי שיכול לעמוד
-                                בו<lb n="29"/>
+                                בו<pc type="unitEnd" rend="˙">:</pc>
+                            <lb n="29"/>
                         </ab>
+                        <gap reason="Bavli" extent="8" unit="chars"/>
+                        <lb n="30"/>
+                        <gap reason="Bavli" extent="17" unit="lines"/>
+                        <pb xml:id="Vat115.17v" n="17v"/>
+                        <cb xml:id="Vat115.17vA" n="17vA"/>
+                        <gap reason="Bavli" extent="5" unit="lines"/>
+                        <gap reason="Bavli" extent="0" unit="chars"/>
+                        <ab xml:id="Vat115.4.2.2.11">
+                            <label rend="pad(rl)">מתני<am rend="overdot">׳</am></label> אבידתו
+                            ואבידת אביו שלו קודם<lb n="5"/> אבידתו ואבידת רבו שלו קודם אבידת אביו<lb
+                                n="6"/> ואבידת רבו של רבו קודמת משל אביו <surplus reason="fill"
+                                >שא</surplus><lb n="7"/> שאביו מביאו לחיי העולם הזה ורבו שלימד
+                                        <choice><abbr>שלימד<am rend="overdot"
+                                    >׳</am></abbr><expan>שלימדו</expan></choice><lb n="8"/> חכמה
+                            מביאו לחיי העולם הבא ואם חכם <surplus reason="fill">:</surplus><lb n="9"
+                            /> אביו שקול כנגד רבו אבידת אביו קודמת<lb n="10"/> היו אביו ורבו נושאין
+                            משאוי מניח את <surplus reason="fill">:</surplus><lb n="11"/> של רבו ואחר
+                            כך מניח את של אביו אביו <lb n="12"/> ורבו בבית השבי פודה את רבו ואחר כך
+                                    <choice><abbr> פוד<am rend="overdot"
+                                    >׳</am></abbr><expan>פודה</expan></choice><lb n="12"/> את אביו
+                            ואם חכם אביו פודה את אביו<surplus reason="fill">וא?</surplus><lb n="13"
+                            /> ואחר כך פודה את רבו<pc type="unitEnd" rend="˙">:</pc><lb n="14"/>
+                        </ab>
+                        <gap reason="Bavli" extent="11" unit="chars"/>
+                        <lb n="15"/>
+                        <gap reason="Bavli" extent="31" unit="lines"/>
                     </div3>
                 </div2>
             </div1>

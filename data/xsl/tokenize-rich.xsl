@@ -14,8 +14,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=2&amp;Camb=3&amp;Maim=4&amp;Paris=5&amp;Nap=6&amp;Vilna=7&amp;Mun=8&amp;Hamb=&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
-    <xsl:param name="mcite" select="'4.2.2.9'"/>
+        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=&amp;Camb=&amp;Maim=&amp;Paris=&amp;Nap=&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114=2&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <!--    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
     <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/>-->

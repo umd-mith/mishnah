@@ -14,8 +14,16 @@
                 </editor>
                 <respStmt>
                     <resp>transcriber</resp>
-                    <persName>Hayim Lapin</persName>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -34,7 +42,7 @@
                 </availability>
                 <pubPlace>College Park, MD USA</pubPlace>
                 <date>2012-06-15</date>
-                <!-- A publication date is required for TEI conformance -->
+                
             </publicationStmt>
             <notesStmt>
                 <note>
@@ -68,14 +76,14 @@
                                 <locus n="1v" facs="www.genizah.org">C166194</locus>
                                 <locus n="1r" facs="www.genizah.org">C166195</locus>
                             </locusGrp>
+                            <join target="g9.xml g11.xml"/>
                             <note type="nli-ref"><!-- Not in Cat --></note>
                             <title>Mishnah</title>
                         </msItem>
                     </msContents>
                     <physDesc>
                         <objectDesc form="codex">
-                            <supportDesc>
-                                <support>Parchment</support>
+                            <supportDesc material="parchment">
                                 <extent>2</extent>
                             </supportDesc>
                             <layoutDesc>
@@ -98,10 +106,15 @@
                             </layoutDesc>
                         </objectDesc>
                         <handDesc>
-                            <handNote script="Oriental Square">
-                                <date notBefore="1000" notAfter="1300">11th-13th c.</date>
+                            <handNote scribe="first" script="Oriental Square" scope="major">
+                                <date notAfter="1300" notBefore="1000">11th - 13th C.</date>
                                 <region><!-- placeholder --></region>
-                                <desc>Pointed-Babyonian</desc>
+                            </handNote>
+                            <handNote scribe="second" scope="minor">
+                                <date notAfter="1300" notBefore="1000">11th - 13th C.</date>
+                                <region><!-- placeholder --></region>
+                                <desc>pointed<desc>Babyonian</desc></desc>
+                                <desc>cantillation</desc>
                                 <note>Pointing is in a different ink than the main manuscript.
                                     Possibly a second hand.</note>
                             </handNote>

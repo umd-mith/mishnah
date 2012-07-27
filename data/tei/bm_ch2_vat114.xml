@@ -1,25 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
-<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
-<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of ***</title>
+                <title>An electronic transcription of Mishnah Bava Metsi'a from Vat. ebr.
+                    114</title>
                 <editor>
                     <persName>Hayim Lapin</persName>
                 </editor>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
                 <respStmt>
-                    <resp/>
-                    <persName/>
-                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>-->
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
                 </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -29,81 +37,87 @@
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
-                <idno type="local"/>
-                <!--<availability>
-                    <licence><!-\- We'll need one of these; TBD -\-></licence>
-                </availability>-->
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <idno type="local">Vat114</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
+                </availability>
+                <date>2012-05-13</date>
             </publicationStmt>
             <notesStmt>
                 <note>
-                    <p/>
-                    <!--Prose description. Use the following as model
-                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                    <p>Mishnah Bava Metsi'a Ch. 2 from the Vatican Library, Vat. ebr. 114</p>
                     <p>Transcription from online images of the manuscript, available at
-                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
-                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
-                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
-                        Sciences, Kaufmann A50, except when preserved remains make such restoration
-                        unlikely.</p>
-                    <p>EDITED BY: Hayim Lapin</p>-->
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp referring also to the
+                        transcription through the <ref target="http://www.lieberman-institute.com/"
+                            >Lieberman Institute</ref></p>
+                    <p>TRANSCRIPTION BY: Atara Siegel</p>
+                    <p>MARKUP BY: Atara Siegel</p>
+                    <p>EDITED BY: Hayim Lapin</p>
                 </note>
             </notesStmt>
-            <sourceDesc>
+            <sourceDesc corresp="ref.xml#richler-vat">
                 <msDesc>
                     <msIdentifier>
-                        <settlement/>
-                        <repository/>
-                        <idno type="genizah-CUL"
-                            ><!-- Shelf Mark here. for Oxford, e.g.,
-                            @type=genizah-Oxf etc.--></idno>
+                        <settlement>The Vatican</settlement>
+                        <repository>Bibliotecca Apostolica Vaticano</repository>
+                        <idno type="Bavli">Vat. ebr. 114</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
                             <locusGrp>
-                                <locus/>
-                                <!-- Points to images. Other uses? Use the following as model
-                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
-                                <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                                <locus><!-- Placeholder --></locus>
                             </locusGrp>
-                            <title>Mishnah</title>
+                            <title>Babylonian Talmud</title>
+                            <note type="nli-ref"
+                                >http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=000198137&amp;local_base=NNLMSS</note>
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote script="SCRIPT">
-                                <date><!-- placeholder --></date>
-                                <region><!-- placeholder --></region>
-                            </handNote>
-                        </handDesc>
-                        <!--<objectDesc form="FORM">
+                        <objectDesc form="folio">
                             <supportDesc>
-                                <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                                <support>parchment</support>
+                                <extent>15</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="NUMBER">
-                                    <!-\- at longest/widest -\->
-                                    <dimensions scope="frag-sheet">
-                                        <width unit="cm"/>
-                                        <height unit="cm"/>
+                                <layout columns="1">
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">23.9</width>
+                                        <height unit="cm">31.7</height>
                                     </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm"/>
-                                        <height unit="cm">15.5</height>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">16.7</width>
+                                        <height unit="cm">22</height>
                                     </dimensions>
-                                    <dimensions scope="frag-chars">
-                                        <width unit="chars"/>
-                                        <height unit="lines"/>
-                                        <dim type="char-p-cm"/>
+                                    <dimensions scope="col-writ">
+                                        <!-- Describes the portion written by third scribe who did
+                                            Ch. 2-->
+                                        <width unit="chars">60</width>
+                                        <height unit="lines">30</height>
+                                        <dim type="char-p-cm">3.6</dim>
                                     </dimensions>
                                 </layout>
                             </layoutDesc>
-                        </objectDesc>-->
+                        </objectDesc>
+                        <handDesc>
+                            <!-- Temporary description, awaits transcription of the whole -->
+                            <handNote scribe="first" script="Asheknazic Semi-Cursive">
+                                <date notBefore="1300" notAfter="1400">14th C</date>
+                                <region>Ashkenaz</region>
+                            </handNote>
+                            <handNote scribe="second" script="Asheknazic Semi-Cursive">
+                                <date notBefore="1300" notAfter="1400">14th C</date>
+                                <region>Ashkenaz</region>
+                            </handNote>
+                            <handNote scribe="third" script="Asheknazic Semi-Cursive">
+                                <!-- This is the scribe referred to as h1 -->
+                                <!-- h2 and h3 annotate this scribe -->
+                                <date notBefore="1300" notAfter="1400">14th C</date>
+                                <region>Ashkenaz</region>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -112,9 +126,9 @@
             <tagsDecl><!-- placeholder --></tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <change/>
-            <change/>
-            <change/>
+            <change when="2012-06-06" who="ref.xml#AS">Begun transcription</change>
+            <change when="2012-06-11" who="ref.xml#AS">Markup</change>
+            <change when="2012-06-15" who="ref.xml#HL">Editing for Demo</change>
             <change/>
         </revisionDesc>
     </teiHeader>
@@ -122,62 +136,86 @@
         <body>
             <div1 xml:id="Vat114.4" n="Neziqin" type="Order">
                 <div2 xml:id="Vat114.4.2" n="Bava Metsia">
-                    <div3 xml:id="Vat114.4.2.1">
+                    <div3 xml:id="Vat114.4.2.2">
                         <pb xml:id="Vat114.30v" n="30v"/>
                         <head xml:id="Vat114.4.2.2.H"/>
-                        <ab xml:id="Vat114.4.2.1.1">
+                        <gap reason="Bavli" extent="5" unit="lines"/>
+                        <ab xml:id="Vat114.4.2.2.1">
                             <w rend="size(large) align(right)
                             pad(l)"
-                                >אילו</w><!-- Needs redition instruction --> מצאיות שלו ואילו ואילו
-                                        <choice><abbr>חייב<am rend="overdot"
-                                    >'</am></abbr><expan>חייבים</expan></choice> להכריז
-                                        <choice><abbr>איל<am rend="overdot"
-                                    >'</am></abbr><expan>אילו</expan></choice>
-                            <choice><abbr>מציאו<am rend="overdot"
-                                >'</am></abbr><expan>מציאות</expan></choice>
-                                שלו<supplied>ב</supplied> מצא פירות <lb n="6"/> מפוזרין ומעות
-                                        <choice><abbr>מפוזרו<am rend="overdot"
-                                    >'</am></abbr><expan>מפוזרות</expan></choice> כריכות
-                                    ברשות<choice><abbr> הרבי<am rend="overdot"
-                                    >'</am></abbr><expan>הרבים</expan></choice> ועגולי
-                                        <choice><abbr>דבילו<am rend="overdot"
-                                    >'</am></abbr><expan>דבילות</expan></choice> ככרות של<lb n="7"
-                                    />נחתום<seg><add hand="h2" place="margin-right"
-                                >ומחרוזות</add></seg> של דגים<choice><abbr> וחתיכו<am rend="&#x5f3;"
-                                        >'</am></abbr><expan>וחתיכות</expan></choice> של בשר וגיזי
-                                    צמר<choice><abbr> הלוקחי<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>הלוקחין</expan></choice> ממדינתן
-                                    <seg><del>ואכידני</del><add hand="h3" place="above"
-                                >אניצי</add></seg><lb n="8"/> פשטן<choice><abbr> ולשונו<am
-                                        rend="&#x5f3;">'</am></abbr><expan>ולשונות</expan></choice>
-                            של ארגמן הרי אילו שלו דברי<choice><abbr> ר<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>רבי</expan></choice> מאיר<choice><abbr>
-                                        ר<am rend="&#x5f3;"
-                            >'</am></abbr><expan>רבי</expan></choice>יהודה <choice><abbr> אמ<am
-                                        rend="overdot">'</am></abbr><expan>אומר</expan></choice> כל
-                            דבר שיש בו שינוי חייב<lb n="9"/> להכריז כיצד מצא עיגול ובתוכו חדש ככר
-                            ובתוכה מעות <choice><abbr>ר<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>רבי</expan></choice> שמעון בן
-                                        אלעזר<choice><abbr>אמ<am rend="overdot"
-                                    >'</am></abbr><expan>אומר</expan></choice> כל
-                                כלי<!--<seg><del>ה</del></seg>not in Lieberman transcription--><lb
-                                n="10"/> אנפוריא אינו חייב להכריז<pc rend="''" type="unitEnd"
-                            >:</pc></ab>
-                        <ab xml:id="Vat114.4.2.2.2"> ואילו חייב להכריז מצא פירות בכלי או בכלי כמות
-                                        <choice><abbr>שהו<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>שהוא</expan></choice><lb n="11"/> מעות בכיס
-                            אחד או בכיס כמות שהוא ציבורי פירות וציבורי מעות שלשה
-                                <seg><del>מטע</del></seg><lb n="12"/> מטביעין זה על גב זה וכריכות
-                                        <choice><abbr>ב<am rend="&#x5f4;"
-                                    >''</am>ה</abbr><expan>ברשות היחיד</expan></choice>
-                            <choice><abbr>ובכורו<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>ובכורות</expan></choice> של בעל
-                                        <choice><abbr>הבי<am rend="&#x5f3;"
-                                    >'</am></abbr><expan>הבית</expan></choice> וגיזי צמר הלוקוחין
-                            מבית האומן <lb n="13"/> וכדי יין וכדי שמן הרי אילו
-                                        <choice><abbr>חייבי<am rend="overdot"
-                                    >'</am></abbr><expan>חייבים</expan></choice> להכריז<lb n="14"/>
+                                >אילו</w><!-- Needs rendition instruction --> מצאיות שלו ואילו ואילו <choice>
+                                <abbr>חייב<am rend="overdot">׳</am></abbr>
+                                <expan>חייבים</expan>
+                            </choice> להכריז <choice>
+                                <abbr>איל<am rend="overdot">׳</am></abbr>
+                                <expan>אילו</expan>
+                            </choice>
+                            <choice>
+                                <abbr>מציאו<am rend="overdot">׳</am></abbr>
+                                <expan>מציאות</expan>
+                            </choice> שלו <surplus>ב</surplus> מצא פירות <lb n="6"/> מפוזרין ומעות <choice>
+                                <abbr>מפוזרו<am rend="overdot">׳</am></abbr>
+                                <expan>מפוזרות</expan>
+                            </choice> כריכות ברשות<choice>
+                                <abbr> הרבי<am rend="overdot">׳</am></abbr>
+                                <expan>הרבים</expan>
+                            </choice> ועגולי <choice>
+                                <abbr>דבילו<am rend="overdot">׳</am></abbr>
+                                <expan>דבילות</expan>
+                            </choice> ככרות של<lb n="7"/>נחתום<seg><add hand="h2"
+                                    place="margin-right" rend="insertion-point"
+                                >ומחרוזות</add></seg><note>Three dots at insertion point and in
+                                margin.</note> של דגים<choice>
+                                <abbr> וחתיכו<am rend="׳">׳</am></abbr>
+                                <expan>וחתיכות</expan>
+                            </choice> של בשר וגיזי צמר<choice>
+                                <abbr> הלוקחי<am rend="׳">׳</am></abbr>
+                                <expan>הלוקחין</expan>
+                            </choice> ממדינתן <seg><del>ואכידני</del><add hand="h3" place="above"
+                                    >אניצי</add></seg><lb n="8"/> פשטן<choice>
+                                <abbr> ולשונו<am rend="׳">׳</am></abbr>
+                                <expan>ולשונות</expan>
+                            </choice> של ארגמן הרי אילו שלו דברי<choice>
+                                <abbr> ר<am rend="׳">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר<choice>
+                                <abbr> ר<am rend="׳">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>יהודה <choice>
+                                <abbr> אמ<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כל דבר שיש בו שינוי חייב<lb n="9"/> להכריז כיצד מצא עיגול
+                            ובתוכו חדש ככר ובתוכה מעות <choice>
+                                <abbr>ר<am rend="׳">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון בן <c rend="lig">אל</c>עזר <choice>
+                                <abbr>אומ<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כל כלי<surplus reason="fill">?</surplus><lb n="10"/> אנפוריא
+                            אינו חייב להכריז<pc rend="''" type="unitEnd">:</pc></ab>
+                        <ab xml:id="Vat114.4.2.2.2"> ואילו חייב להכריז מצא פירות בכלי או בכלי כמות <choice>
+                                <abbr>שהו<am rend="׳">׳</am></abbr>
+                                <expan>שהוא</expan>
+                            </choice><lb n="11"/> מעות בכיס <seg><del rend="overline"
+                                >אחד</del></seg> או בכיס כמות שהוא ציבורי פירות וציבורי מעות שלשה
+                                    <seg><del rend="overdot" hand="h1">מטע</del></seg>
+                            <surplus>מטב</surplus><lb n="12"/> מטביעין זה על גב זה וכריכות <choice>
+                                <abbr>ב<am rend="״">״</am>ה</abbr>
+                                <expan>ברשות היחיד</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ובכורו<am rend="׳">׳</am></abbr>
+                                <expan>ובכורות</expan>
+                            </choice> של בעל <choice>
+                                <abbr>הבי<am rend="׳">׳</am></abbr>
+                                <expan>הבית</expan>
+                            </choice> וגיזר צמר הלוקוחין מבית האומן <lb n="13"/> וכדי יין וכדי שמן
+                            הרי אילו <choice>
+                                <abbr>חייבי<am rend="overdot">׳</am></abbr>
+                                <expan>חייבים</expan>
+                            </choice> להכריז<pc rend="''" type="unitEnd">:</pc><lb n="14"/>
                         </ab>
+                        <gap reason="Bavli" extent="4" unit="chars"/>
                         <trailer xml:id="Vat114.4.2.2.T"/>
                     </div3>
                 </div2>
