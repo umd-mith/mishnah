@@ -265,7 +265,7 @@
                         </content>
                     </elementSpec>
 
-                    <!-- seg will be used to group add, del and other transcriptional elements -->
+                    <!-- seg will be used to group add, del and other transcriptional, analytic, and milestone elements -->
                     <elementSpec module="linking" ident="seg" mode="change">
                         <content>
                             <rng:zeroOrMore>
@@ -273,6 +273,21 @@
                                     <rng:text/>
                                     <rng:ref name="model.pPart.transcriptional"/>
                                     <rng:ref name="model.milestoneLike"/>
+                                    <rng:ref name="model.segLike"/>
+                                </rng:choice>
+                            </rng:zeroOrMore>
+                        </content>
+                    </elementSpec>
+                    
+                    <!-- del may include c and other transcriptional, analytic, and milestone elements  -->
+                    <elementSpec module="core" ident="del" mode="change">
+                        <content>
+                            <rng:zeroOrMore>
+                                <rng:choice>
+                                    <rng:text/>
+                                    <rng:ref name="model.pPart.transcriptional"/>
+                                    <rng:ref name="model.milestoneLike"/>
+                                    <rng:ref name="model.segLike"/>
                                 </rng:choice>
                             </rng:zeroOrMore>
                         </content>
