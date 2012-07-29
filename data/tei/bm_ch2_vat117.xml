@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -44,7 +43,7 @@
             <notesStmt>
                 <note>
                     <p>Chapter 2 of Mishnah Bava Metsi'a based on the Vatican 116-117 mauscript
-                        (BiblioVat Ebr</p>
+                        (Vat Ebr</p>
                     <p>Transcription from online images of the manuscript, available at
                         http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp referring also to the
                         transcription through the <ref target="http://www.lieberman-institute.com/"
@@ -76,20 +75,20 @@
                         <objectDesc form="folio">
                             <supportDesc>
                                 <support>parchment</support>
-                                <extent>2 leaves</extent>
+                                <extent>91</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="91">
+                                <layout columns="2">
                                     <!-- at longest/widest -->
                                     <dimensions scope="sheet">
                                         <width unit="cm">27</width>
                                         <height unit="cm">36</height>
                                     </dimensions>
-                                    <dimensions scope="col">
+                                    <dimensions scope="col-cm">
                                         <width unit="cm">7.9</width>
                                         <height unit="cm">27</height>
                                     </dimensions>
-                                    <dimensions scope="frag-chars">
+                                    <dimensions scope="col-writ">
                                         <width unit="chars">26.5</width>
                                         <height unit="lines">40</height>
                                         <dim type="char-p-cm">3.4</dim>
@@ -100,14 +99,15 @@
                         <handDesc>
                             <handNote scribe="first" script="Ashkenazic Semi-Cursive" scope="major">
                                 <date notBefore="1350" notAfter="1400">Late 14th C</date>
-                                <region>Ashkenaz</region><note>Scribe responsible for writing of
-                                    entire manuscript.</note>
+                                <region>Ashkenaz</region>
+                                <note>Scribe responsible for writing of entire manuscript.</note>
                             </handNote>
                             <handNote scribe="second" scope="minor">
                                 <date notBefore="1350" notAfter="1500">Late 14th-15th C?</date>
-                                <region>Ashkenaz</region><note>Corrections.</note>
+                                <region>Ashkenaz</region>
+                                <note>Corrections.</note>
                             </handNote>
-                           <!-- 
+                            <!-- 
                                <!-\- Following needs to be developed for full MS. These are references to colophons. Needs to  be determined whether either provided marginal corrections. -\->
                             <handNote scribe="second" scope="minor">
                                 <date notBefore="1350" notAfter="1500">Late 14th-15th C?</date>
@@ -124,7 +124,6 @@
                                 <persName xml:lang="en">Eliezer b. Eleazar Lippman</persName><note>Identified in a statement on 90v that he studied from this manuscript.</note>
                             </handNote>-->
                         </handDesc>
-
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -133,7 +132,8 @@
             <tagsDecl><!-- placeholder --></tagsDecl>
         </encodingDesc>
         <revisionDesc>
-            <change when="2012-06-01" who="ref.xml#BR">Begun editing transcription and markup</change>
+            <change when="2012-06-01" who="ref.xml#BR">Begun editing transcription and
+                markup</change>
             <change who="ref.xml#HL" when="2012-07-30">Editing for Demo</change>
         </revisionDesc>
     </teiHeader>
@@ -146,7 +146,7 @@
                         <cb xml:id="Vat116-117.15rA" n="15rA"/>
                         <head xml:id="Vat116-117.4.2.2.H"/>
                         <ab xml:id="Vat116-117.4.2.2.1"> אילו מציאות שלו ואילו חייב <seg>להכרי<del
-                                    hand="h2" rend="dotted">?ן?</del><add>ז</add></seg> אילו<lb
+                                    hand="h2" rend="dotted">?</del><add>ז</add></seg> אילו<lb
                                 n="21"/> מציאות שלו מצא פרות מפוזרין מעות<lb n="22"/>
                             <seg>מפו<del hand="h2" rend="dotted"
                                 >ר</del><del>?</del><add>ז</add>רין</seg> כריכות ברשות הרבים
@@ -191,7 +191,7 @@
                                 >ז</add></seg>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.2"> אילו הן חייבין <seg>להכרי<del hand="h2"
-                                    rend="dotted">?ן?</del><add>ז</add></seg> עליהן
+                                    rend="dotted">?</del><add>ז</add></seg> עליהן
                                 <surplus>מצ</surplus><lb n="32"/> מצא פירות בכלי או
                                     <seg><del>כלה</del></seg> כלי כמה <choice>
                                 <abbr>שהו<am rend="overdot">'</am></abbr>
@@ -202,16 +202,16 @@
                             /> וציבור מעות שלש מטבעות זו על גב<lb n="35"/> זו כריכות ברשות הייחיד
                             ככרות של<lb n="36"/> בעל הבית וגיזי צמר הלקוחין מבי<c rend="long">ת</c>
                             <lb n="37"/> האומן כדי יין וכדי שמן הרי אילו חייב<lb n="38"/>
-                            <cb/>
+                          
                             <cb xml:id="Vat116-117.15rB" n="15rB"/> חייב <seg>להכרי<del hand="h2"
-                                    rend="dotted">?ן?</del><add>ז</add></seg>
+                                    rend="dotted">?</del><add>ז</add></seg>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.3"> מצ<c rend="altform">א</c> אחר ה<c
                                 rend="altform">ג</c>פה אחר הגדר<lb n="1"/> גוזלות המקושרים או
                             בשבילין שבשדות<lb n="2"/> הרי זה לא <seg><del>ל</del></seg> יטול ואם נטל
                             לא יחזיר <surplus>"</surplus><lb n="3"/><space extent="1" unit="chars"/>
                             מצא כלי באשפה מכוסה הרי זה לא <surplus>נ</surplus><lb n="4"/> יגע מגולה
-                            נוטל <seg>ומכרי<del hand="h2" rend="dotted">?ן?</del><add>ז</add></seg>
+                            נוטל <seg>ומכרי<del hand="h2" rend="dotted">?</del><add>ז</add></seg>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.4"> מצא בגל <c rend="long">א</c>ו<lb n="5"/>
                             <surplus>בתוכ</surplus> בכותל ישן הרי <seg><del hand="h2" rend="dotted"
@@ -232,21 +232,21 @@
                             <lb n="14"/> ומצא בתוכן מעות הרי אילו שלו <surplus>"</surplus>
                             <lb n="15"/><space extent="2" unit="chars"/>ואם היו צרורין נוטל
                                     <seg>ומכרי<del hand="h2" rend="dotted"
-                                >?ן?</del><add>ז</add></seg>
+                                >?</del><add>ז</add></seg>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.6">אף השמלה<lb n="16"/> בכלל כל אילו ולמה
                                     <seg>י<del hand="h2" rend="dotted">ו</del>צאת</seg> להקיש
                                 אליה<lb n="17"/> ולומר לך מה שמלה מיוחדת שיש בהן
                                 <surplus>'</surplus>
                             <lb n="18"/> סימנין ויש לה תובעין חייב <seg>להכרי<del hand="h2"
-                                    rend="dotted">?ן?</del><add>ז</add></seg>
+                                    rend="dotted">?</del><add>ז</add></seg>
                             <surplus>"</surplus>
                             <lb n="19"/><space extent="2" unit="chars"/>אף כל דבר שיש בו סימנין ויש
                             לו <surplus>ת</surplus><lb n="20"/> תובעין חייב <seg>להכרי<del hand="h2"
-                                    rend="dotted">?ן?</del><add>ז</add></seg>
+                                    rend="dotted">?</del><add>ז</add></seg>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.7"> עד מתי חייב <seg>להכרי<del hand="h2"
-                                    rend="dotted">?ן?</del><add>ז</add></seg>
+                                    rend="dotted">?</del><add>ז</add></seg>
                             <lb n="21"/> עד כדי שידעו בו שכינין דברי <choice>
                                 <abbr>ר<am rend="overdot">'</am></abbr>
                                 <expan>רבי</expan>
@@ -256,7 +256,7 @@
                                 <expan>רבי</expan>
                             </choice> יהודה אומר שלשה רגלים ואחר רגל<lb n="23"/> האחרון שבעת ימים
                             כדי שילך לביתו <surplus>ש</surplus><lb n="24"/> שלשה ויחוזר שלשה
-                                    <seg>ויכרי<del>?ן?</del><add>ז</add></seg> יום אחד
+                                    <seg>ויכרי<del>?</del><add>ז</add></seg> יום אחד
                                 <surplus>אמ</surplus><lb n="25"/>
                         </ab>
                         <ab xml:id="Vat116-117.4.2.2.8"> אמר את האבידה ולא אמר את הסימנין<lb n="26"
@@ -311,8 +311,8 @@
                             </choice>
                             <seg>אח<del>ד</del><add hand="h2" place="overwrite">ת</add></seg>
                             <lb n="39"/> לשלשים יום ושוטחה לצורכה אבל לא<lb n="40"/>
-                            <cb/>
-                            <pb/>
+                            
+                            <pb xml:id="Vat116-117.15v" n="15v"/>
                             <cb xml:id="Vat116-117.15vA" n="15vA"/> לכבודו כלי כסף וכלי נחושת משתמש
                                 בהן<lb n="1"/> לצורכן אבל לא לשו?ח?חן כלי זהב כלי
                                     <seg>זכוכי<del>ה</del><add hand="h2" place="overwrite">ת</add>
@@ -396,7 +396,7 @@
                                 rend="long">דה</c><lb rend="align(center)" n="38"/> א<c rend="long"
                                 >ת</c><lb rend="align(center)" n="39"/>
                             <c rend="long">ר</c>בו <lb rend="align(center)" n="40"/></ab>
-                        <cb/>
+                   
                         <cb xml:id="Vat116-117.15vB" n="15vB"/>
                         <trailer rend="size(large) align(center) pad()">סליק פירקא</trailer>
                         <lb n="1"/>
