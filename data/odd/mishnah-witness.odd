@@ -30,6 +30,7 @@
         </fileDesc>
         <revisionDesc>
             <change who="tmunoz" when="2011-12-08">Created ODD for witness-specific markup</change>
+            <change who="hlapin" when="2012-08-02">Attempted changes to allow listTranspose under seg</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -274,8 +275,10 @@
                                     <rng:ref name="model.pPart.transcriptional"/>
                                     <rng:ref name="model.milestoneLike"/>
                                     <rng:ref name="model.segLike"/>
+                                    <rng:ref name="listTranspose"/>
                                 </rng:choice>
                             </rng:zeroOrMore>
+                          
                         </content>
                     </elementSpec>
                     
