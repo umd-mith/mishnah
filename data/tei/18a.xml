@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of ***</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp/>
+                    <persName/>
+                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                        Studies</sponsor>
+                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                        Literature</sponsor>-->
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local"/>
+                <!--<availability>
+                    <licence><!-\- We'll need one of these; TBD -\-></licence>
+                </availability>-->
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p/>
+                    <!--Prose description. Use the following as model
+                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
+                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
+                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
+                        Sciences, Kaufmann A50, except when preserved remains make such restoration
+                        unlikely.</p>
+                    <p>EDITED BY: Hayim Lapin</p>-->
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement/>
+                        <repository/>
+                        <idno type="genizah-CUL"
+                            ><!-- Shelf Mark here. for Oxford, e.g.,
+                            @type=genizah-Oxf etc.--></idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <locusGrp>
+                                <locus/>
+                                <!-- Points to images. Other uses? Use the following as model
+                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
+                                <locus n="2r" facs="www.genizah.org">C166193</locus>
+                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
+                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                            </locusGrp>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <handDesc>
+                            <handNote script="SCRIPT">
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                        <!--<objectDesc form="FORM">
+                            <supportDesc>
+                                <support>Parchment</support>
+                                <extent>2 leaves</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="NUMBER">
+                                    <!-\- at longest/widest -\->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm"/>
+                                        <height unit="cm"/>
+                                    </dimensions>
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm"/>
+                                        <height unit="cm">15.5</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-chars">
+                                        <width unit="chars"/>
+                                        <height unit="lines"/>
+                                        <dim type="char-p-cm"/>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>-->
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change/>
+            <change/>
+            <change/>
+            <change/>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <!-- For below: 
+                Short-id = g1, g2, etc. Get from Lapin
+                <div1>= order
+                orderNo = number of order of the Mishna text begins in: 3= Nashim; 4=Neziqin
+                <div2>=tractate
+                orderNo.tractNo = position of tractate in conventional order within its Order. 
+                Eg., 4.2 =Bava Metsi'a, within Neziqin; 3.2 = Ketubot  within Nashim
+                <div3>=chapter
+                orderNo.tractNo.chNo = chapter no within tractate, within order: Bava Metsi'a
+                Ch. 2 = 4.2.2; Ketubot Ch. 8 = 3.2.8
+                If Chapter heads or trailers: 4.2.2.H or 3.2.8.T
+                [If your text has order or tractate headers, use the analogous format]
+                
+                
+<ab> ("anonymous block")= Mishnah passage
+                shortID.orderNo.tractNo.chNo.mishnNo = passage, within ch, within tractate, within
+                order Ketubot 8:3 = 3.2.8.3
+            -->
+            <div1 xml:id="g18a.4">
+                <div2 xml:id="g18a.4.2">
+                    <div3 xml:id="g18a.4.2.3">
+                        <ab xml:id="g18a.4.2.3.12"> הוצאה ר’ עקי א’ו’ בשעת התביעה החושב לשלוח<lb
+                                n="1"/> יד בפקדון ב’ שמי מחיבין בית הלל א’ו’ אינו חיב
+                                אל(ligature)א<lb n="2"/> עד שעה ששילח יד כיצר היטה את החבית ונטל<lb
+                                n="3"/> ממנה רביעית ונש[בר]ה אינו משלם אל(ligature)א רביעית [unknown
+                                marks]<lb n="4"/> הגביהה ונטל ממנה רביעית ונשברה משלם את הכל<pc
+                                type="unitEnd" rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.1"><lb n="5"/> פרק. י’ד’ הכסף קונה את הזהב והזהב
+                                אינו<lb n="6"/> קונה את הכסף הנחשת קונה את הכסף והכסף אינו<lb n="7"
+                            /> קונה את הנחשת מעות הרעות קונות את היפות והצות<lb n="8"/> אינן קונות
+                            את הרעות אַסֵימוֹן קונות את המטבע<lb n="9"/> והמטבע אינו קונה את אסֵימון
+                            כל המטלטים קונים<lb n="10"/> את המטבע והמטבע אינו קונה את המטלטלים<lb
+                                n="11"/> זה הכלל כל המטלטלים קונים זה את זה<pc type="unitEnd"
+                                rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.2"> ב’ כיצד<lb n="12"/> משך ממנו פירות ולא נתן לו
+                            מעות אינו יכול לחזור<lb n="13"/> [בו] נתן לו מעות ולא משך ממנו פירות
+                            יכול הוא לחזור<lb n="14"/> בו אבל אמרו מי שפרע מאנשי דור המבול עתיד<lb
+                                n="15"/> להפרע ממי שאנו עומד בדברו ר’ שמע א’’ כל שהכסף<lb n="16"/>
+                            בידו לעליונה<pc type="unitEnd" rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.3"> ג’ ההוניה ארבע כסף מעשרים<lb n="17"/> וארבע כסף
+                            כסלע שתות למקח עד אמתיי מותר<lb n="18"/> להחזיר עד כדי שיראה לתגר או
+                            לבקי הורה ר’ טרפון<lb n="19"/> בלוד ההוניה שמונה כסף ל[ס]לע שליש למקח
+                                ושמחו<lb n="20"/>
+                            <pb n="1rR" xml:id="g18a.1rR"/> ושׂמחו תגרי לוד אמר להם מותר להחזיר
+                                כלהיום<lb n="1"/> אמר יניח לנו ר’ טרפון מקומינו וחזרו לדברי חכמים<pc
+                                rend="˙" type="unitEnd">:</pc><lb n="2"/></ab>
+                        <ab xml:id="g18a.4.2.4.4"> ד’ אחד הלוקח ואחד המוכר יש להם הונייה כשם<lb
+                                n="3"/> שהונייה להדיוט כף הונייה לתגר ר’ יודה או’ אין לתגר<lb n="4"
+                            /> הונייה משהוטר עליו ידו לעליונה שהוא אומר לו תֵן<lb n="5"/> לי את
+                            מעותיי או תן לי מה שֶהוֹנֵיתֶני<pc type="unitEnd" rend="abs">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.5"> ד’ כמא תהא<lb n="6"/> הסלע חסירה ולא יהא בה
+                            הונייה ר’ מאיר או’ ארבעה<lb n="7"/> אְֶסרות מֵאְֶסר לדינר ר’ יהודה או’
+                            ד’ פונדיונות<lb n="8"/> מפוֹנדיוֹן לדינר ר’ שמעון או’ שמונה פינדיְנות
+                                משני<lb n="9"/> פונדיונות לדינר<pc type="unitEnd" rend=":"
+                            >:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.6"> ו’ עד אמתיי מותר להחזיר בכרכים<lb n="10"/> עד כדי
+                            שיראה לשלחני ובכפרים עד ערבֵי שבתות שבן<lb n="11"/> דרך השוק להיות עומד
+                            בעירוֹת(?) מלילי שבת לשבת אמ’ (?)<lb n="11"/> היה מכירה אפילו לאחד לנים
+                            עשר חודשמקבלה ממ...<lb n="12"/> ואין לו עליו לא תרעומת ונותנה למעשר שני
+                                ואינ...<lb n="13"/> שאינה לא נפש רעה<pc type="unitEnd" rend=":"
+                                >:</pc>
+                        </ab>
+
+                        <ab xml:id="g18a.4.2.4.7"> ז’ ההונייה ארבע כסף והטענה<lb n="14"/> שתי כסף
+                            וההודיה שוו פרוטה חמש פרוטת הן ההודיה<lb n="15"/> שווה פרוטה והאשה
+                            מתקדשת בשווה פרוטה והנהנה<lb n="16"/> בשווה פרוטה מן ההקדש מעל והמוציא
+                            שווה פרוטה<lb n="17"/> חיב להכריז והגוזל את חבֵירו שווה פרוטה ונשבע לו
+                                יוליכנו<lb n="18"/> אחריו אפילו למדיי<pc type="unitEnd" rend=":"
+                                >:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.8"> ח’ חמשה חומשים הן האוכל<lb n="19"/>
+                            <pb n="1rL" xml:id="g18a.1rL"/> תרומָה ותרומת מעשר ותרומת מעשר לדְמאי
+                                החלה<lb n="1"/> והביכורין מוסיפין חומש הפודה נטע רבעי ומעשר<lb n="2"
+                            /> שני שלו מוסיף חומש הפודה את ההקדישו מוסיף<lb n="3"/> חומש והנהנה שווה
+                            פרותה מן ההקדש מוסיף חומש<lb n="4"/> והגוזל את חבירו שווה פרוטה ונשבע לו
+                            מוסיף חומש<pc type="unitEnd" rend=":">:</pc><lb n="5"/></ab>
+                        <ab xml:id="g18a.4.2.4.9"> ט’ אל(ligature)ו דברים שאין להם הונייה העבדים
+                                והאשטרות<lb n="6"/> והקרקעות וההקדשות און בהם לא תשלומי כפל<lb n="7"
+                            /> ולא תשלומי ארבעה וחמשה שומר חנם אינו נישבע נו (Marked over)<lb n="8"
+                            /> ונושא שכר אינו משלמ ר’ שמע’ או’ קדשים שהוא<lb n="9"/> חיב באחריותן יש
+                            להן הונאה ושאינו חיב באחריותן אין<lb n="10"/> להם הוניה ר’ יודה או’ אף
+                            ספר תורה ובהמה ומרגלית אין<lb n="11"/> להמ הוניה לו לא אמרו
+                            אל(ligature)א את אילו<pc type="unitEnd" rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.10"> י’ כשם שהינייה<lb n="12"/> במקח ובממכר כך הונייה
+                            בדברים לא יאמר לו בכמה<lb n="13"/> חפץ זה והוא אינו רוצה ליקח אם היה בעל
+                            תשובה לא<lb n="14"/> יאמר לֹי (?) זכור מה היו מעשיך הראשונים אם היה בן
+                                גרים<lb n="15"/> לא יאמר לו זכור מה היו מעשה אבותיך שני’ וגר לא
+                                תונה<lb n="16"/> ולא תלחצנו וג’<pc type="unitEnd" rend="abs"
+                            >:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.11"> י’א’ אן מערבין פרות בפרות אפלו<lb n="17"/>
+                            חַדָשימ בחדשימ ואין צורך לומר חדשימ בישנים<lb n="18"/> באמת ביין התירו
+                            לערב קשה ברך מפני שהוא משביחו<lb n="19"/> אין מערבין שימרי יין ביין אבל
+                            נותן את שמריו מי<lb n="20"/> שנתערב מים ביינו לא ימכרנו בחנות
+                            אל(ligature)א אם כן הודיע<lb n="21"/> ולא לתגר אף על פי שהוא מודיע שאינו
+                            אל(ligature)א לרמות בו<lb n="22"/> מקום שנהגו להטיל מים יטילו<pc
+                                type="unitEnd" rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.4.12"> י’ב’<lb n="23"/>
+                            <pb n="2vR" xml:id="g18a.2vR"/> התגר נוטל מחמש גְרָנוֺת ונותן לתוך
+                            מגורָה [אח]ת <lb n="1"/> מחמש גיתות ונתן לתוך פִּיתַס אחד ובלבד שלא<lb
+                                n="2"/> יתכוון לערֵב ר’ יודה או’ לא יחלק החנוָנִי קליות ?<lb n="3"/>
+                            ואגוזים לתינוקות מפני שהוא מרגִילַן לבוא אצלו<lb n="4"/> וחכם’ מתירין לא
+                            יפְחות את השער וחכ’ או’מ זכור לטוב<lb n="5"/> לא יבור את הגריסים כדברי
+                            אבא שאול וחכ’ מתירין<lb n="6"/> ומודים שלא יָבור על פי מגוּרָה שאינו
+                            אל(ligature)א כגונב את<lb n="7"/> העין אין מפרקסים לא ת? את האדם ולא את
+                                הבהמה<lb n="8"/> ולא את הכלים <pc type="unitEnd" rend=":"
+                            >:</pc></ab>
+                    </div3>
+                    <div3 xml:id="g18a.4.2.5">
+                        <head xml:id="g18b.4.2.5.H">פרק ה’י’ </head>
+                        <ab xml:id="g18b.4.2.5.1"><lb n="9"/> איזה הוא נשך ואיזה הוא תרבית איזה הוא
+                            נשך המלוה סלע בה’ דינרים<lb n="10"/> וסאתים חטים בשלש מפני שהוא נושך
+                            אְיזֹה? הוא<lb n="11"/> תרבית המרבה בפירות כיצד לקח ממנו חטים מדנר<lb
+                                n="12"/> זהב לכור וכן השער עמדו חטים בשלשים דינר [אמ’] ל[page
+                                tear]<lb n="13"/> תן לי חטיי שני מוכרן שני מוכרן ולוקח א’נ’י לי
+                            ב[page tear]<lb n="14"/> אמר לו והרי חטיך עשויות עלי בשלשים דינר והרי<lb
+                                n="15"/> לך אצלי בהם יין ביין אין לו ??? האסור<pc type="unitEnd"
+                                rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.5.2"> ב’ המלוה את<lb n="16"/> חבירו לא ידור בחצירו
+                            חי[נם] ולא ישכור ממנו בפחות<lb n="17"/> מפני שהיא ריבית <pc
+                                type="unitEnd" rend=":">:</pc></ab>
+                        <ab xml:id="g18a.4.2.5.3"><milestone unit="MSMishnah" n="3"/> ג’ מרבים על
+                            השכר ואין מרבים<lb n="18"/> על המכר כיצד השכיר לו את החצר אמר לו אם<lb
+                                n="19"/> מעכשיו אתה נותן לי הרי היא לך בי’ סלעים לשנה<lb n="20"/> אם
+                            שלחודש בחדש מסלע בחודש מותר מכר לו<lb n="21"/>
+                            <pb n="2vL" xml:id="g18a.2vL"/></ab>
+
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
