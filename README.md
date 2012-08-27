@@ -55,6 +55,7 @@ files directly.)
 The following commands will build the web application and run it in Jetty:
 
     cd cocoon/
+    mvn validate
     mvn install
     mvn jetty:run
 
