@@ -28,7 +28,7 @@
                 </form>    
                 <form name="selection" action="browse" method="get">
                     <input value="Browse" type="submit" ></input><span
-                        style="display:inline-block;font-style:italic;">&#xa0;&#xa0;Browse Individual Transcriptions</span>
+                        style="display:inline-block;font-style:italic;">&#xa0;&#xa0;Browse individual transcriptions. Layout approximates page layout of the original witness</span>
                 </form>  </div>
             </body>
         </html>

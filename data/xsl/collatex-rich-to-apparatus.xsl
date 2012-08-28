@@ -85,6 +85,7 @@ pipeline. -->
                 </h2>
                 <h3><a name="select"/>1. Select a Passage&#xA0;<span
                     class="link"><a href="#top">[top]</a></span></h3>
+                <p class="descr-text">Use the drop-down menu to select an individual Mishnah for collation.</p>
                 <form name="selection" action="collate-hl" method="get">
                     <div dir="ltr" style="text-align: center">
                         <select name="mcite">
@@ -110,6 +111,7 @@ pipeline. -->
                         </select>
                     </div>
                     <h3>2. Witnesses for Collation</h3>
+                    <p class="descr-text">Select witnesses and the order of presentation by entering a numeral in the blank next that you wish to compare and selecting the "Collate" button. The alignment table, apparatus, and synopsis below will present the witnesses in the order of the input.</p><p> (Note that at present numerals are sorted as text, so that 11 and 12 appear after 1 and before 2. To avoid ambiguity, you may wish to use the format 001, 002, 003, 011, 012, etc.)</p>
                     <table class="sources" dir="ltr">
                         <xsl:for-each select="$sortlist">
                             <xsl:variable name="witName" select="@xml:id"/>

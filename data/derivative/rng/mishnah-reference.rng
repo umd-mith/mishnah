@@ -3,9 +3,9 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2012-04-09T09:35:50Z. 
-Edition: 2.0.2 Last updated on 2nd February 2012.
-Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
+Schema generated from ODD source 2012-08-27T10:47:39Z. 
+Edition: 2.1.0. Last updated on 17th June 2012.
+Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
 
 --><!--
                     This work is copyright Trevor Muñoz and Maryland Institute for Technology in
@@ -62,14 +62,6 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
          </choice>
       </zeroOrMore>
    </define>
-   <define name="mishnahrmacro.xtext">
-      <zeroOrMore>
-         <choice>
-            <text/>
-            <ref name="mishnahrmodel.gLike"/>
-         </choice>
-      </zeroOrMore>
-   </define>
    <define name="mishnahrdata.certainty">
       <choice>
          <value>high</value>
@@ -121,6 +113,14 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
    <define name="mishnahrdata.language">
       <data type="language"/>
    </define>
+   <define name="mishnahrdata.sex">
+      <choice>
+         <value>0</value>
+         <value>1</value>
+         <value>2</value>
+         <value>9</value>
+      </choice>
+   </define>
    <define name="mishnahrdata.namespace">
       <data type="anyURI"/>
    </define>
@@ -140,13 +140,13 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
          <param name="pattern">[\d]+(\.[\d]+){0,2}</param>
       </data>
    </define>
-   <define name="mishnahrdata.key">
-      <data type="string"/>
-   </define>
    <define name="mishnahrdata.word">
       <data type="token">
          <param name="pattern">(\p{L}|\p{N}|\p{P}|\p{S})+</param>
       </data>
+   </define>
+   <define name="mishnahrdata.text">
+      <data type="string"/>
    </define>
    <define name="mishnahrdata.code">
       <data type="anyURI"/>
@@ -156,6 +156,21 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
    </define>
    <define name="mishnahrdata.enumerated">
       <ref name="mishnahrdata.name"/>
+   </define>
+   <define name="mishnahrdata.temporal.iso">
+      <choice>
+         <data type="date"/>
+         <data type="gYear"/>
+         <data type="gMonth"/>
+         <data type="gDay"/>
+         <data type="gYearMonth"/>
+         <data type="gMonthDay"/>
+         <data type="time"/>
+         <data type="dateTime"/>
+         <data type="token">
+            <param name="pattern">[0-9.,DHMPRSTWYZ/:+\-]+</param>
+         </data>
+      </choice>
    </define>
    <define name="mishnahratt.ascribed.attributes">
       <ref name="mishnahratt.ascribed.attribute.who"/>
@@ -182,7 +197,7 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
          <attribute name="key">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides an externally-defined means of identifying the entity (or entities) being
         named, using a coded value of some kind.</a:documentation>
-            <ref name="mishnahrdata.key"/>
+            <ref name="mishnahrdata.text"/>
          </attribute>
       </optional>
    </define>
@@ -294,12 +309,7 @@ Suggested values include: 1] cm(centimetres) ; 2] mm(millimetres) ; 3] in(inches
          <attribute name="extent">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the size of the object concerned using a project-specific vocabulary combining
         quantity and units in a single string of words. </a:documentation>
-            <list>
-               <ref name="mishnahrdata.word"/>
-               <zeroOrMore>
-                  <ref name="mishnahrdata.word"/>
-               </zeroOrMore>
-            </list>
+            <ref name="mishnahrdata.text"/>
          </attribute>
       </optional>
    </define>
@@ -387,6 +397,8 @@ Sample values include: 1] all; 2] most; 3] range</a:documentation>
    </define>
    <define name="mishnahratt.datable.attributes">
       <ref name="mishnahratt.datable.w3c.attributes"/>
+      <ref name="mishnahratt.datable.iso.attributes"/>
+      <ref name="mishnahratt.datable.custom.attributes"/>
       <ref name="mishnahratt.datable.attribute.calendar"/>
       <ref name="mishnahratt.datable.attribute.period"/>
    </define>
@@ -406,6 +418,39 @@ Sample values include: 1] all; 2] most; 3] range</a:documentation>
         period of time within which the datable item is understood to
         have occurred.</a:documentation>
             <ref name="mishnahrdata.pointer"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datcat.attributes">
+      <ref name="mishnahratt.datcat.attribute.datcat"/>
+      <ref name="mishnahratt.datcat.attribute.valueDatcat"/>
+   </define>
+   <define name="mishnahratt.datcat.attribute.datcat">
+      <optional>
+         <attribute name="datcat" ns="http://www.isocat.org/ns/dcr">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a PID (persistent identifier) that aligns the given element with the appropriate 
+        Data Category (or categories) in ISOcat.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.pointer"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.pointer"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datcat.attribute.valueDatcat">
+      <optional>
+         <attribute name="valueDatcat" ns="http://www.isocat.org/ns/dcr">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a PID (persistent identifier) that aligns the content of the given
+        element or the value of the given attribute with the appropriate simple Data
+        Category (or categories) in ISOcat.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.pointer"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.pointer"/>
+               </zeroOrMore>
+            </list>
          </attribute>
       </optional>
    </define>
@@ -639,12 +684,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
          <attribute name="n">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(number) gives a number (or other label) for an element, which is not necessarily unique within
         the document.</a:documentation>
-            <list>
-               <ref name="mishnahrdata.word"/>
-               <zeroOrMore>
-                  <ref name="mishnahrdata.word"/>
-               </zeroOrMore>
-            </list>
+            <ref name="mishnahrdata.text"/>
          </attribute>
       </optional>
    </define>
@@ -1028,9 +1068,28 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
       </optional>
    </define>
    <define name="mishnahratt.pointing.attributes">
+      <ref name="mishnahratt.pointing.attribute.targetLang"/>
       <ref name="mishnahratt.pointing.attribute.target"/>
       <ref name="mishnahratt.pointing.attribute.evaluate"/>
    </define>
+   <define name="mishnahratt.pointing.attribute.targetLang">
+      <optional>
+         <attribute name="targetLang">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the language of the content to be found at the destination referenced by target, using a language tag generated
+        according to BCP 47.</a:documentation>
+            <ref name="mishnahrdata.language"/>
+         </attribute>
+      </optional>
+   </define>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="targetLang-constraint-targetLang">
+      <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                context="tei:*[@targetLang]">
+            <sch:assert test="count(@target)">@targetLang can only be used if @target is specified.</sch:assert>
+          </sch:rule>
+   </pattern>
    <define name="mishnahratt.pointing.attribute.target">
       <optional>
          <attribute name="target">
@@ -1067,6 +1126,7 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
       </optional>
    </define>
    <define name="mishnahratt.segLike.attributes">
+      <ref name="mishnahratt.datcat.attributes"/>
       <ref name="mishnahratt.segLike.attribute.function"/>
       <ref name="mishnahratt.segLike.attribute.part"/>
    </define>
@@ -1195,43 +1255,54 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </optional>
    </define>
    <define name="mishnahratt.translatable.attributes">
-      <ref name="mishnahratt.translatable.attribute.version"/>
+      <ref name="mishnahratt.translatable.attribute.versionDate"/>
    </define>
-   <define name="mishnahratt.translatable.attribute.version">
+   <define name="mishnahratt.translatable.attribute.versionDate">
       <optional>
-         <attribute name="version">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the version name or number of the source from
-	which the translated version was derived</a:documentation>
-            <ref name="mishnahrdata.word"/>
+         <attribute name="versionDate">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the date on which the source text was extracted and sent to the translator</a:documentation>
+            <ref name="mishnahrdata.temporal.w3c"/>
          </attribute>
       </optional>
    </define>
    <define name="mishnahrmodel.nameLike.agent">
       <choice>
          <ref name="mishnahrname"/>
+         <ref name="mishnahrpersName"/>
       </choice>
    </define>
    <define name="mishnahrmodel.nameLike.agent_alternation">
       <choice>
          <ref name="mishnahrname"/>
+         <ref name="mishnahrpersName"/>
       </choice>
    </define>
    <define name="mishnahrmodel.nameLike.agent_sequence">
       <ref name="mishnahrname"/>
+      <ref name="mishnahrpersName"/>
    </define>
    <define name="mishnahrmodel.nameLike.agent_sequenceOptional">
       <optional>
          <ref name="mishnahrname"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrpersName"/>
       </optional>
    </define>
    <define name="mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable">
       <zeroOrMore>
          <ref name="mishnahrname"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrpersName"/>
+      </zeroOrMore>
    </define>
    <define name="mishnahrmodel.nameLike.agent_sequenceRepeatable">
       <oneOrMore>
          <ref name="mishnahrname"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrpersName"/>
       </oneOrMore>
    </define>
    <define name="mishnahrmodel.segLike">
@@ -1487,6 +1558,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrnum"/>
          <ref name="mishnahrmeasure"/>
          <ref name="mishnahrmeasureGrp"/>
+         <ref name="mishnahrgeo"/>
       </choice>
    </define>
    <define name="mishnahrmodel.measureLike_alternation">
@@ -1494,12 +1566,14 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrnum"/>
          <ref name="mishnahrmeasure"/>
          <ref name="mishnahrmeasureGrp"/>
+         <ref name="mishnahrgeo"/>
       </choice>
    </define>
    <define name="mishnahrmodel.measureLike_sequence">
       <ref name="mishnahrnum"/>
       <ref name="mishnahrmeasure"/>
       <ref name="mishnahrmeasureGrp"/>
+      <ref name="mishnahrgeo"/>
    </define>
    <define name="mishnahrmodel.measureLike_sequenceOptional">
       <optional>
@@ -1510,6 +1584,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </optional>
       <optional>
          <ref name="mishnahrmeasureGrp"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrgeo"/>
       </optional>
    </define>
    <define name="mishnahrmodel.measureLike_sequenceOptionalRepeatable">
@@ -1522,6 +1599,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <zeroOrMore>
          <ref name="mishnahrmeasureGrp"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrgeo"/>
+      </zeroOrMore>
    </define>
    <define name="mishnahrmodel.measureLike_sequenceRepeatable">
       <oneOrMore>
@@ -1532,6 +1612,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahrmeasureGrp"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrgeo"/>
       </oneOrMore>
    </define>
    <define name="mishnahrmodel.egLike">
@@ -1591,6 +1674,24 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <oneOrMore>
          <ref name="mishnahrbinaryObject"/>
       </oneOrMore>
+   </define>
+   <define name="mishnahrmodel.offsetLike">
+      <notAllowed/>
+   </define>
+   <define name="mishnahrmodel.offsetLike_alternation">
+      <notAllowed/>
+   </define>
+   <define name="mishnahrmodel.offsetLike_sequence">
+      <empty/>
+   </define>
+   <define name="mishnahrmodel.offsetLike_sequenceOptional">
+      <empty/>
+   </define>
+   <define name="mishnahrmodel.offsetLike_sequenceOptionalRepeatable">
+      <empty/>
+   </define>
+   <define name="mishnahrmodel.offsetLike_sequenceRepeatable">
+      <notAllowed/>
    </define>
    <define name="mishnahrmodel.pPart.editorial">
       <choice>
@@ -2134,6 +2235,8 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrlist"/>
          <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrlistWit"/>
+         <ref name="mishnahrlistPerson"/>
+         <ref name="mishnahrlistPlace"/>
       </choice>
    </define>
    <define name="mishnahrmodel.listLike_alternation">
@@ -2141,12 +2244,16 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrlist"/>
          <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrlistWit"/>
+         <ref name="mishnahrlistPerson"/>
+         <ref name="mishnahrlistPlace"/>
       </choice>
    </define>
    <define name="mishnahrmodel.listLike_sequence">
       <ref name="mishnahrlist"/>
       <ref name="mishnahrlistBibl"/>
       <ref name="mishnahrlistWit"/>
+      <ref name="mishnahrlistPerson"/>
+      <ref name="mishnahrlistPlace"/>
    </define>
    <define name="mishnahrmodel.listLike_sequenceOptional">
       <optional>
@@ -2157,6 +2264,12 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </optional>
       <optional>
          <ref name="mishnahrlistWit"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrlistPerson"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrlistPlace"/>
       </optional>
    </define>
    <define name="mishnahrmodel.listLike_sequenceOptionalRepeatable">
@@ -2169,6 +2282,12 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <zeroOrMore>
          <ref name="mishnahrlistWit"/>
       </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrlistPerson"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrlistPlace"/>
+      </zeroOrMore>
    </define>
    <define name="mishnahrmodel.listLike_sequenceRepeatable">
       <oneOrMore>
@@ -2179,6 +2298,12 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahrlistWit"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrlistPerson"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrlistPlace"/>
       </oneOrMore>
    </define>
    <define name="mishnahrmodel.noteLike">
@@ -2412,6 +2537,116 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrsp"/>
       </oneOrMore>
    </define>
+   <define name="mishnahrmodel.persStateLike">
+      <choice>
+         <ref name="mishnahrpersName"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.persStateLike_alternation">
+      <choice>
+         <ref name="mishnahrpersName"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.persStateLike_sequence">
+      <ref name="mishnahrpersName"/>
+   </define>
+   <define name="mishnahrmodel.persStateLike_sequenceOptional">
+      <optional>
+         <ref name="mishnahrpersName"/>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.persStateLike_sequenceOptionalRepeatable">
+      <zeroOrMore>
+         <ref name="mishnahrpersName"/>
+      </zeroOrMore>
+   </define>
+   <define name="mishnahrmodel.persStateLike_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="mishnahrpersName"/>
+      </oneOrMore>
+   </define>
+   <define name="mishnahrmodel.personLike">
+      <choice>
+         <ref name="mishnahrpersonGrp"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.personPart">
+      <choice>
+         <ref name="mishnahrmodel.persStateLike"/>
+         <ref name="mishnahrbibl"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.placeNamePart">
+      <choice>
+         <ref name="mishnahrplaceName"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.placeNamePart_alternation">
+      <choice>
+         <ref name="mishnahrplaceName"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.placeNamePart_sequence">
+      <ref name="mishnahrplaceName"/>
+   </define>
+   <define name="mishnahrmodel.placeNamePart_sequenceOptional">
+      <optional>
+         <ref name="mishnahrplaceName"/>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.placeNamePart_sequenceOptionalRepeatable">
+      <zeroOrMore>
+         <ref name="mishnahrplaceName"/>
+      </zeroOrMore>
+   </define>
+   <define name="mishnahrmodel.placeNamePart_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="mishnahrplaceName"/>
+      </oneOrMore>
+   </define>
+   <define name="mishnahrmodel.placeStateLike">
+      <choice>
+         <ref name="mishnahrmodel.placeNamePart"/>
+         <ref name="mishnahrlocation"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.placeStateLike_alternation">
+      <choice>
+         <ref name="mishnahrmodel.placeNamePart_alternation"/>
+         <ref name="mishnahrlocation"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.placeStateLike_sequence">
+      <ref name="mishnahrmodel.placeNamePart_sequence"/>
+      <ref name="mishnahrlocation"/>
+   </define>
+   <define name="mishnahrmodel.placeStateLike_sequenceOptional">
+      <optional>
+         <ref name="mishnahrmodel.placeNamePart_sequenceOptional"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrlocation"/>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.placeStateLike_sequenceOptionalRepeatable">
+      <zeroOrMore>
+         <ref name="mishnahrmodel.placeNamePart_sequenceOptionalRepeatable"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrlocation"/>
+      </zeroOrMore>
+   </define>
+   <define name="mishnahrmodel.placeStateLike_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="mishnahrmodel.placeNamePart_sequenceRepeatable"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrlocation"/>
+      </oneOrMore>
+   </define>
+   <define name="mishnahrmodel.placeEventLike">
+      <notAllowed/>
+   </define>
    <define name="mishnahrmodel.publicationStmtPart">
       <choice>
          <ref name="mishnahraddress"/>
@@ -2426,7 +2661,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    </define>
    <define name="mishnahrmodel.availabilityPart">
       <choice>
-         <ref name="mishnahrp"/>
          <ref name="mishnahrlicence"/>
       </choice>
    </define>
@@ -3047,31 +3281,49 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.nameLike">
       <choice>
          <ref name="mishnahrmodel.nameLike.agent"/>
+         <ref name="mishnahrmodel.offsetLike"/>
+         <ref name="mishnahrmodel.placeStateLike"/>
          <ref name="mishnahrrs"/>
          <ref name="mishnahridno"/>
+         <ref name="mishnahrmodel.persNamePart"/>
       </choice>
    </define>
    <define name="mishnahrmodel.nameLike_alternation">
       <choice>
          <ref name="mishnahrmodel.nameLike.agent_alternation"/>
+         <ref name="mishnahrmodel.offsetLike_alternation"/>
+         <ref name="mishnahrmodel.placeStateLike_alternation"/>
          <ref name="mishnahrrs"/>
          <ref name="mishnahridno"/>
+         <ref name="mishnahrmodel.persNamePart_alternation"/>
       </choice>
    </define>
    <define name="mishnahrmodel.nameLike_sequence">
       <ref name="mishnahrmodel.nameLike.agent_sequence"/>
+      <ref name="mishnahrmodel.offsetLike_sequence"/>
+      <ref name="mishnahrmodel.placeStateLike_sequence"/>
       <ref name="mishnahrrs"/>
       <ref name="mishnahridno"/>
+      <ref name="mishnahrmodel.persNamePart_sequence"/>
    </define>
    <define name="mishnahrmodel.nameLike_sequenceOptional">
       <optional>
          <ref name="mishnahrmodel.nameLike.agent_sequenceOptional"/>
       </optional>
       <optional>
+         <ref name="mishnahrmodel.offsetLike_sequenceOptional"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrmodel.placeStateLike_sequenceOptional"/>
+      </optional>
+      <optional>
          <ref name="mishnahrrs"/>
       </optional>
       <optional>
          <ref name="mishnahridno"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrmodel.persNamePart_sequenceOptional"/>
       </optional>
    </define>
    <define name="mishnahrmodel.nameLike_sequenceOptionalRepeatable">
@@ -3079,10 +3331,19 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable"/>
       </zeroOrMore>
       <zeroOrMore>
+         <ref name="mishnahrmodel.offsetLike_sequenceOptionalRepeatable"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrmodel.placeStateLike_sequenceOptionalRepeatable"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="mishnahrrs"/>
       </zeroOrMore>
       <zeroOrMore>
          <ref name="mishnahridno"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrmodel.persNamePart_sequenceOptionalRepeatable"/>
       </zeroOrMore>
    </define>
    <define name="mishnahrmodel.nameLike_sequenceRepeatable">
@@ -3090,10 +3351,19 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrmodel.nameLike.agent_sequenceRepeatable"/>
       </oneOrMore>
       <oneOrMore>
+         <ref name="mishnahrmodel.offsetLike_sequenceRepeatable"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrmodel.placeStateLike_sequenceRepeatable"/>
+      </oneOrMore>
+      <oneOrMore>
          <ref name="mishnahrrs"/>
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahridno"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrmodel.persNamePart_sequenceRepeatable"/>
       </oneOrMore>
    </define>
    <define name="mishnahrmodel.global">
@@ -3287,6 +3557,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <choice>
          <ref name="mishnahrmodel.divPart"/>
          <ref name="mishnahrmodel.inter"/>
+         <ref name="mishnahrinclude"/>
       </choice>
    </define>
    <define name="mishnahrmodel.phrase">
@@ -3383,6 +3654,43 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.resourceLike">
       <notAllowed/>
    </define>
+   <define name="mishnahratt.personal.attributes">
+      <ref name="mishnahratt.naming.attributes"/>
+      <ref name="mishnahratt.personal.attribute.full"/>
+      <ref name="mishnahratt.personal.attribute.sort"/>
+   </define>
+   <define name="mishnahratt.personal.attribute.full">
+      <optional>
+         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="full"
+                    a:defaultValue="yes">
+            <a:documentation>indicates whether the name component is given in full, as an
+abbreviation or simply as an initial.</a:documentation>
+            <choice>
+               <value>yes</value>
+               <a:documentation>the name component is spelled out in full.</a:documentation>
+               <value>abb</value>
+               <a:documentation>(abbreviated) the name component is given in an abbreviated form.</a:documentation>
+               <value>init</value>
+               <a:documentation>(initial letter) the name component is indicated only by
+one initial.</a:documentation>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.personal.attribute.sort">
+      <optional>
+         <attribute name="sort">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sort order of the name component in relation
+to others within the personal name.</a:documentation>
+            <ref name="mishnahrdata.count"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.placeLike">
+      <choice>
+         <ref name="mishnahrplace"/>
+      </choice>
+   </define>
    <define name="mishnahrp">
       <element name="p">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(paragraph) marks paragraphs in prose. 3.1.  7.2.5. </a:documentation>
@@ -3436,19 +3744,19 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <optional>
             <attribute name="time">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies how the phrase is distinct diachronically</a:documentation>
-               <ref name="mishnahrdata.key"/>
+               <ref name="mishnahrdata.text"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="space">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies how the phrase is distinct diatopically</a:documentation>
-               <ref name="mishnahrdata.key"/>
+               <ref name="mishnahrdata.text"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="social">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies how the phrase is distinct diastatically</a:documentation>
-               <ref name="mishnahrdata.key"/>
+               <ref name="mishnahrdata.text"/>
             </attribute>
          </optional>
          <empty/>
@@ -3492,8 +3800,8 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    </define>
    <define name="mishnahrq">
       <element name="q">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(separated from the surrounding text with quotation marks) contains material which is marked as (ostensibly) being somehow different than the
-    surrounding text, for any one of a variety of reasons including, but not limited to: direct
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(quoted) contains material which is distinguished from the
+    surrounding text using quotation marks or a similar method, for any one of a variety of reasons including, but not limited to: direct
     speech or thought, technical terms or jargon, authorial distance, quotations from elsewhere, and
     passages that are mentioned but not used. 3.3.3. </a:documentation>
          <ref name="mishnahrmacro.specialPara"/>
@@ -3552,7 +3860,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
    </define>
    <define name="mishnahrmentioned">
       <element name="mentioned">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">marks words or phrases mentioned, not used. 3.3.4. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">marks words or phrases mentioned, not used. 3.3.3. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -3620,8 +3928,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
    </define>
    <define name="mishnahrsic">
       <element name="sic">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(latin for thus or so
-  ) contains text reproduced although apparently incorrect or inaccurate. 3.4.1. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Latin for thus or so) contains text reproduced although apparently incorrect or inaccurate. 3.4.1. </a:documentation>
          <ref name="mishnahrmacro.paraContent"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.responsibility.attributes"/>
@@ -3787,13 +4094,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.naming.attributes"/>
-         <optional>
-            <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates more specifically the object referred to by the referencing string.
-        When suitable, values should be drawn from an existing ontology, such as the BBN's proposed answer categories.</a:documentation>
-               <ref name="mishnahrdata.enumerated"/>
-            </attribute>
-         </optional>
+         <ref name="mishnahratt.typed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4594,8 +4895,6 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
       <element name="title">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a title for any kind of work. 3.11.2.2.  2.2.1.  2.2.5. </a:documentation>
          <ref name="mishnahrmacro.paraContent"/>
-         <ref name="mishnahratt.global.attributes"/>
-         <ref name="mishnahratt.canonical.attributes"/>
          <optional>
             <attribute name="level">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the bibliographic level for a title, that is, whether
@@ -4628,6 +4927,8 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
                <ref name="mishnahrdata.enumerated"/>
             </attribute>
          </optional>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.canonical.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4875,7 +5176,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
    </define>
    <define name="mishnahrlg">
       <element name="lg">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(line group) contains a group of verse lines functioning as a formal unit, e.g. a stanza, refrain,
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(line group) contains one or more verse lines functioning as a formal unit, e.g. a stanza, refrain,
         verse paragraph, etc. 3.12.1.  3.12.  7.2.5. </a:documentation>
          <group>
             <zeroOrMore>
@@ -4908,6 +5209,17 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
                </zeroOrMore>
             </zeroOrMore>
          </group>
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="lg-constraint-atleast1oflggapl">
+            <rule context="tei:lg">
+               <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                           xmlns="http://www.tei-c.org/ns/1.0"
+                           xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                           test="count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) &gt; 0">An &lt;lg&gt; 
+        must contain at least one child &lt;l&gt;, &lt;lg&gt; or &lt;gap&gt;.</sch:assert>
+            </rule>
+         </pattern>
+    
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.divLike.attributes"/>
          <ref name="mishnahratt.typed.attributes"/>
@@ -5116,8 +5428,7 @@ Sample values include: 1] text; 2] corpus</a:documentation>
    </define>
    <define name="mishnahrtitleStmt">
       <element name="titleStmt">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(title statement) groups information about the title of a work and those responsible for its intellectual
-    content. 2.2.1.  2.2. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(title statement) groups information about the title of a work and those responsible for its content. 2.2.1.  2.2. </a:documentation>
          <group>
             <oneOrMore>
                <ref name="mishnahrtitle"/>
@@ -5231,7 +5542,13 @@ distribution of a text. 2.2.4. </a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) supplies any form of identifier used to identify some object,
   such as a bibliographic item, a person, a title, an organization,
   etc. in a standardized way. 2.2.4.  2.2.5.  3.11.2.3. </a:documentation>
-         <ref name="mishnahrmacro.xtext"/>
+         <zeroOrMore>
+            <choice>
+               <text/>
+               <ref name="mishnahrmodel.gLike"/>
+               <ref name="mishnahridno"/>
+            </choice>
+         </zeroOrMore>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.sortable.attributes"/>
          <optional>
@@ -5249,7 +5566,10 @@ distribution of a text. 2.2.4. </a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies information about the availability of a text, for example any restrictions on its
     use or distribution, its copyright status, any licence applying to it, etc. 2.2.4. </a:documentation>
          <oneOrMore>
-            <ref name="mishnahrmodel.availabilityPart"/>
+            <choice>
+               <ref name="mishnahrmodel.availabilityPart"/>
+               <ref name="mishnahrmodel.pLike"/>
+            </choice>
          </oneOrMore>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.declarable.attributes"/>
@@ -5684,8 +6004,9 @@ during the encoding of a text. 2.3.3.  2.3.  15.3.2. </a:documentation>
             <attribute name="scope">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">where CSS is used, provides a way of defining
 pseudo-elements, that is, styling rules
-applicable to specific sub-portions of an element.</a:documentation>
-               <text/>
+applicable to specific sub-portions of an element.
+Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:documentation>
+               <ref name="mishnahrdata.enumerated"/>
             </attribute>
          </optional>
          <empty/>
@@ -6168,7 +6489,7 @@ teiCorpus element. 4.  15.1. </a:documentation>
          <ref name="mishnahratt.global.attributes"/>
          <optional>
             <attribute name="version">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the version number of the TEI Guidelines against
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the major version number of the TEI Guidelines against
       which this document is valid.</a:documentation>
                <ref name="mishnahrdata.version"/>
             </attribute>
@@ -6358,9 +6679,17 @@ teiCorpus element. 4.  15.1. </a:documentation>
          <zeroOrMore>
             <ref name="mishnahrmodel.global"/>
          </zeroOrMore>
-         <oneOrMore>
-            <ref name="mishnahrmodel.div2Like"/>
-         </oneOrMore>
+         <group>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.headLike"/>
+            </zeroOrMore>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.div2Like"/>
+            </zeroOrMore>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.divBottomPart"/>
+            </zeroOrMore>
+         </group>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.divLike.attributes"/>
          <ref name="mishnahratt.typed.attributes"/>
@@ -6396,20 +6725,22 @@ teiCorpus element. 4.  15.1. </a:documentation>
    <define name="mishnahrdiv3">
       <element name="div3">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(level-3 text division) contains a third-level subdivision of the front, body, or back of a text. 4.1.2. </a:documentation>
-         <zeroOrMore>
-            <ref name="mishnahrmodel.global"/>
-         </zeroOrMore>
-         <group>
+         <interleave>
             <zeroOrMore>
-               <ref name="mishnahrmodel.headLike"/>
+               <ref name="mishnahrmodel.global"/>
             </zeroOrMore>
-            <zeroOrMore>
-               <ref name="mishnahrab"/>
-            </zeroOrMore>
-            <zeroOrMore>
-               <ref name="mishnahrmodel.divBottomPart"/>
-            </zeroOrMore>
-         </group>
+            <group>
+               <zeroOrMore>
+                  <ref name="mishnahrmodel.headLike"/>
+               </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="mishnahrab"/>
+               </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="mishnahrmodel.divBottomPart"/>
+               </zeroOrMore>
+            </group>
+         </interleave>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.divLike.attributes"/>
          <ref name="mishnahratt.typed.attributes"/>
@@ -6422,6 +6753,7 @@ teiCorpus element. 4.  15.1. </a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a closing title or footer appearing at the end of a division of a text.  4.2.4.  4.2. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -6445,7 +6777,7 @@ on its title page or at the head or end of the work. 4.2.2.  4.5. </a:documentat
    <define name="mishnahrdateline">
       <element name="dateline">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a brief description of the place, date, time, etc. of production of a letter,
-    newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  4.2.4.  4.2.2. </a:documentation>
+    newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  4.2.2. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -6492,7 +6824,7 @@ on its title page or at the head or end of the work. 4.2.2.  4.5. </a:documentat
    <define name="mishnahropener">
       <element name="opener">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups together dateline, byline, salutation, and similar phrases appearing as a preliminary
-    group at the start of a division, especially of a letter. 4.2.4.  4.2. </a:documentation>
+    group at the start of a division, especially of a letter. 4.2. </a:documentation>
          <zeroOrMore>
             <choice>
                <text/>
@@ -6533,7 +6865,7 @@ on its title page or at the head or end of the work. 4.2.2.  4.5. </a:documentat
    <define name="mishnahrsalute">
       <element name="salute">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other
-    division of a text, or the salutation in the closing of a letter, preface, etc. 4.2.4.  4.2.2. </a:documentation>
+    division of a text, or the salutation in the closing of a letter, preface, etc. 4.2.2. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -6542,7 +6874,7 @@ on its title page or at the head or end of the work. 4.2.2.  4.5. </a:documentat
    <define name="mishnahrsigned">
       <element name="signed">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(signature) contains the closing salutation, etc., appended to a foreword,
-dedicatory epistle, or other division of a text.  4.2.4.  4.2.2. </a:documentation>
+dedicatory epistle, or other division of a text.  4.2.2. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -6551,24 +6883,31 @@ dedicatory epistle, or other division of a text.  4.2.4.  4.2.2. </a:documentati
    <define name="mishnahrpostscript">
       <element name="postscript">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a postscript, e.g. to a letter. 4.2. </a:documentation>
-         <zeroOrMore>
-            <choice>
-               <group>
-                  <zeroOrMore>
-                     <ref name="mishnahrmodel.divTopPart"/>
-                  </zeroOrMore>
-                  <oneOrMore>
-                     <ref name="mishnahrmodel.common"/>
-                  </oneOrMore>
-                  <zeroOrMore>
-                     <ref name="mishnahrmodel.divBottomPart"/>
-                  </zeroOrMore>
-               </group>
-               <group>
+         <group>
+            <zeroOrMore>
+               <choice>
                   <ref name="mishnahrmodel.global"/>
+                  <ref name="mishnahrmodel.divTopPart"/>
+               </choice>
+            </zeroOrMore>
+            <group>
+               <ref name="mishnahrmodel.common"/>
+            </group>
+            <zeroOrMore>
+               <choice>
+                  <ref name="mishnahrmodel.global"/>
+                  <ref name="mishnahrmodel.common"/>
+               </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+               <group>
+                  <ref name="mishnahrmodel.divBottomPart"/>
                </group>
-            </choice>
-         </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="mishnahrmodel.global"/>
+               </zeroOrMore>
+            </zeroOrMore>
+         </group>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
       </element>
@@ -7164,6 +7503,18 @@ lemma and at least one reading. 12.1.1. </a:documentation>
             </rule>
          </pattern>
     
+  
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="app-constraint-atleast1rdg">
+            <rule context="tei:app">
+               <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                           xmlns="http://www.tei-c.org/ns/1.0"
+                           xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                           test="count(descendant::tei:rdg[generate-id(current() ) = generate-id(ancestor::tei:app[1])]) &gt; 0">An &lt;app&gt; 
+        must contain at least one &lt;rdg&gt; element.</sch:assert>
+            </rule>
+         </pattern>
+    
          <ref name="mishnahratt.global.attributes"/>
          <optional>
             <attribute name="type">
@@ -7216,6 +7567,7 @@ location-referenced method of apparatus markup is used.</a:documentation>
          </zeroOrMore>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.textCritical.attributes"/>
+         <ref name="mishnahratt.witnessed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7234,6 +7586,7 @@ location-referenced method of apparatus markup is used.</a:documentation>
          </zeroOrMore>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.textCritical.attributes"/>
+         <ref name="mishnahratt.witnessed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7445,15 +7798,10 @@ which begin or end at this point.</a:documentation>
          </attribute>
       </optional>
    </define>
-   <define name="mishnahratt.textCritical.attributes">
-      <ref name="mishnahratt.responsibility.attributes"/>
-      <ref name="mishnahratt.textCritical.attribute.wit"/>
-      <ref name="mishnahratt.textCritical.attribute.type"/>
-      <ref name="mishnahratt.textCritical.attribute.cause"/>
-      <ref name="mishnahratt.textCritical.attribute.varSeq"/>
-      <ref name="mishnahratt.textCritical.attribute.hand"/>
+   <define name="mishnahratt.witnessed.attributes">
+      <ref name="mishnahratt.witnessed.attribute.wit"/>
    </define>
-   <define name="mishnahratt.textCritical.attribute.wit">
+   <define name="mishnahratt.witnessed.attribute.wit">
       <optional>
          <attribute name="wit">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witness or witnesses) contains a list of one or more pointers indicating the witnesses
@@ -7466,6 +7814,13 @@ which attest to a given reading.</a:documentation>
             </list>
          </attribute>
       </optional>
+   </define>
+   <define name="mishnahratt.textCritical.attributes">
+      <ref name="mishnahratt.responsibility.attributes"/>
+      <ref name="mishnahratt.textCritical.attribute.type"/>
+      <ref name="mishnahratt.textCritical.attribute.cause"/>
+      <ref name="mishnahratt.textCritical.attribute.varSeq"/>
+      <ref name="mishnahratt.textCritical.attribute.hand"/>
    </define>
    <define name="mishnahratt.textCritical.attribute.type">
       <optional>
@@ -7505,6 +7860,447 @@ witness.</a:documentation>
          </attribute>
       </optional>
    </define>
+   <define name="mishnahratt.datable.custom.attributes">
+      <ref name="mishnahratt.datable.custom.attribute.when-custom"/>
+      <ref name="mishnahratt.datable.custom.attribute.notBefore-custom"/>
+      <ref name="mishnahratt.datable.custom.attribute.notAfter-custom"/>
+      <ref name="mishnahratt.datable.custom.attribute.from-custom"/>
+      <ref name="mishnahratt.datable.custom.attribute.to-custom"/>
+      <ref name="mishnahratt.datable.custom.attribute.datingPoint"/>
+      <ref name="mishnahratt.datable.custom.attribute.datingMethod"/>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.when-custom">
+      <optional>
+         <attribute name="when-custom">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies the value of a date or time in some standard form.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.word"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.word"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.notBefore-custom">
+      <optional>
+         <attribute name="notBefore-custom">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the earliest possible date for the event in some custom standard form.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.word"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.word"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.notAfter-custom">
+      <optional>
+         <attribute name="notAfter-custom">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the latest possible date for the event in some custom standard form.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.word"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.word"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.from-custom">
+      <optional>
+         <attribute name="from-custom">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the starting point of the period in some standard form.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.word"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.word"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.to-custom">
+      <optional>
+         <attribute name="to-custom">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the ending point of the period in some standard form.</a:documentation>
+            <list>
+               <ref name="mishnahrdata.word"/>
+               <zeroOrMore>
+                  <ref name="mishnahrdata.word"/>
+               </zeroOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.datingPoint">
+      <optional>
+         <attribute name="datingPoint">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a pointer to some location defining a named point in time with reference to which the datable item is understood to have occurred</a:documentation>
+            <ref name="mishnahrdata.pointer"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.custom.attribute.datingMethod">
+      <optional>
+         <attribute name="datingMethod">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.</a:documentation>
+            <ref name="mishnahrdata.pointer"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.persNamePart">
+      <choice>
+         <ref name="mishnahraddName"/>
+         <ref name="mishnahrforename"/>
+         <ref name="mishnahrroleName"/>
+         <ref name="mishnahrnameLink"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.persNamePart_alternation">
+      <choice>
+         <ref name="mishnahraddName"/>
+         <ref name="mishnahrforename"/>
+         <ref name="mishnahrroleName"/>
+         <ref name="mishnahrnameLink"/>
+      </choice>
+   </define>
+   <define name="mishnahrmodel.persNamePart_sequence">
+      <ref name="mishnahraddName"/>
+      <ref name="mishnahrforename"/>
+      <ref name="mishnahrroleName"/>
+      <ref name="mishnahrnameLink"/>
+   </define>
+   <define name="mishnahrmodel.persNamePart_sequenceOptional">
+      <optional>
+         <ref name="mishnahraddName"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrforename"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrroleName"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrnameLink"/>
+      </optional>
+   </define>
+   <define name="mishnahrmodel.persNamePart_sequenceOptionalRepeatable">
+      <zeroOrMore>
+         <ref name="mishnahraddName"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrforename"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrroleName"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="mishnahrnameLink"/>
+      </zeroOrMore>
+   </define>
+   <define name="mishnahrmodel.persNamePart_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="mishnahraddName"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrforename"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrroleName"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrnameLink"/>
+      </oneOrMore>
+   </define>
+   <define name="mishnahratt.datable.iso.attributes">
+      <ref name="mishnahratt.datable.iso.attribute.when-iso"/>
+      <ref name="mishnahratt.datable.iso.attribute.notBefore-iso"/>
+      <ref name="mishnahratt.datable.iso.attribute.notAfter-iso"/>
+      <ref name="mishnahratt.datable.iso.attribute.from-iso"/>
+      <ref name="mishnahratt.datable.iso.attribute.to-iso"/>
+   </define>
+   <define name="mishnahratt.datable.iso.attribute.when-iso">
+      <optional>
+         <attribute name="when-iso">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies the value of a date or time in a standard form.</a:documentation>
+            <ref name="mishnahrdata.temporal.iso"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.iso.attribute.notBefore-iso">
+      <optional>
+         <attribute name="notBefore-iso">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+            <ref name="mishnahrdata.temporal.iso"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.iso.attribute.notAfter-iso">
+      <optional>
+         <attribute name="notAfter-iso">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.</a:documentation>
+            <ref name="mishnahrdata.temporal.iso"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.iso.attribute.from-iso">
+      <optional>
+         <attribute name="from-iso">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the starting point of the period in standard form.</a:documentation>
+            <ref name="mishnahrdata.temporal.iso"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahratt.datable.iso.attribute.to-iso">
+      <optional>
+         <attribute name="to-iso">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the ending point of the period in standard form.</a:documentation>
+            <ref name="mishnahrdata.temporal.iso"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahrlistPerson">
+      <element name="listPerson">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(list of persons) contains a list of descriptions, each of which provides information about an identifiable
+    person or a group of people, for example the participants in a language interaction, or the
+    people referred to in a historical source.  15.2.  2.4.  15.3.2. </a:documentation>
+         <group>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.headLike"/>
+            </zeroOrMore>
+            <oneOrMore>
+               <choice>
+                  <ref name="mishnahrmodel.personLike"/>
+                  <ref name="mishnahrlistPerson"/>
+               </choice>
+            </oneOrMore>
+            <zeroOrMore>
+               <empty/>
+            </zeroOrMore>
+         </group>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <ref name="mishnahratt.declarable.attributes"/>
+         <ref name="mishnahratt.sortable.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrlistPlace">
+      <element name="listPlace">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(list of places) contains a list of places, optionally followed by a list of relationships (other than
+        containment) defined amongst them. </a:documentation>
+         <group>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.headLike"/>
+            </zeroOrMore>
+            <oneOrMore>
+               <choice>
+                  <ref name="mishnahrmodel.placeLike"/>
+                  <ref name="mishnahrlistPlace"/>
+               </choice>
+            </oneOrMore>
+            <zeroOrMore>
+               <empty/>
+            </zeroOrMore>
+         </group>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <ref name="mishnahratt.declarable.attributes"/>
+         <ref name="mishnahratt.sortable.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahraddName">
+      <element name="addName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal
+    name. 13.2.1. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.personal.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrpersonGrp">
+      <element name="personGrp">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal group) describes a group of individuals treated as a single person for analytic purposes. 15.2.2. </a:documentation>
+         <choice>
+            <oneOrMore>
+               <ref name="mishnahrmodel.pLike"/>
+            </oneOrMore>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.personPart"/>
+            </zeroOrMore>
+         </choice>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.sortable.attributes"/>
+         <optional>
+            <attribute name="role">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the role of this group of participants in the interaction.</a:documentation>
+               <ref name="mishnahrdata.enumerated"/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="sex">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sex of the participant group.</a:documentation>
+               <choice>
+                  <ref name="mishnahrdata.sex"/>
+                  <value>mixed</value>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="age">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the age group of the participants.</a:documentation>
+               <ref name="mishnahrdata.enumerated"/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="size">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the size or approximate size of the group.</a:documentation>
+               <list>
+                  <ref name="mishnahrdata.word"/>
+                  <zeroOrMore>
+                     <ref name="mishnahrdata.word"/>
+                  </zeroOrMore>
+               </list>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrplace">
+      <element name="place">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains data about a geographic location</a:documentation>
+         <group>
+            <zeroOrMore>
+               <ref name="mishnahrmodel.headLike"/>
+            </zeroOrMore>
+            <choice>
+               <group>
+                  <zeroOrMore>
+                     <ref name="mishnahrmodel.pLike"/>
+                  </zeroOrMore>
+               </group>
+               <zeroOrMore>
+                  <choice>
+                     <ref name="mishnahrmodel.labelLike"/>
+                     <ref name="mishnahrmodel.placeStateLike"/>
+                     <ref name="mishnahrmodel.placeEventLike"/>
+                  </choice>
+               </zeroOrMore>
+            </choice>
+            <zeroOrMore>
+               <choice>
+                  <ref name="mishnahrmodel.noteLike"/>
+                  <ref name="mishnahrmodel.biblLike"/>
+               </choice>
+            </zeroOrMore>
+            <zeroOrMore>
+               <choice>
+                  <ref name="mishnahrmodel.placeLike"/>
+                  <ref name="mishnahrlistPlace"/>
+               </choice>
+            </zeroOrMore>
+         </group>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <ref name="mishnahratt.editLike.attributes"/>
+         <ref name="mishnahratt.sortable.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrpersName">
+      <element name="persName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal name) contains a proper noun or proper-noun phrase referring to a
+  person, possibly including one or more of
+  the person's forenames, surnames, honorifics, added names, etc. 13.2.1. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.datable.attributes"/>
+         <ref name="mishnahratt.editLike.attributes"/>
+         <ref name="mishnahratt.personal.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrplaceName">
+      <element name="placeName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an absolute or relative place name.  13.2.3. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.datable.attributes"/>
+         <ref name="mishnahratt.editLike.attributes"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.naming.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrlocation">
+      <element name="location">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines the location of a place as a set of geographical coordinates, in terms of other named geo-political entities, or as an
+        address.</a:documentation>
+         <zeroOrMore>
+            <choice>
+               <ref name="mishnahrmodel.labelLike"/>
+               <ref name="mishnahrmodel.placeNamePart"/>
+               <ref name="mishnahrmodel.offsetLike"/>
+               <ref name="mishnahrmodel.measureLike"/>
+               <ref name="mishnahrmodel.addressLike"/>
+               <ref name="mishnahrmodel.noteLike"/>
+               <ref name="mishnahrmodel.biblLike"/>
+            </choice>
+         </zeroOrMore>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <ref name="mishnahratt.datable.attributes"/>
+         <ref name="mishnahratt.editLike.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrforename">
+      <element name="forename">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a forename, given or baptismal name. 13.2.1. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.personal.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrroleName">
+      <element name="roleName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a name component which indicates that the referent has a particular role or position in society, such as an official title or
+        rank. 13.2.1. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.personal.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrnameLink">
+      <element name="nameLink">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(name link) contains a connecting phrase or link used within a name but not regarded as part of it, such as van der or
+            of. 13.2.1. </a:documentation>
+         <ref name="mishnahrmacro.phraseSeq"/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrgeo">
+      <element name="geo">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(geographical coordinates) contains any expression of a set of geographic coordinates, representing a point, line, or area on the surface of the earth in some
+        notation.</a:documentation>
+         <text/>
+         <ref name="mishnahratt.global.attributes"/>
+         <ref name="mishnahratt.declaring.attributes"/>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahrw">
       <element name="w">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(word) represents a grammatical (not necessarily orthographic) word. 17.1. </a:documentation>
@@ -7526,7 +8322,7 @@ witness.</a:documentation>
             <attribute name="lemma">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a lemma for the word, such as an uninflected
       dictionary entry form.</a:documentation>
-               <ref name="mishnahrdata.key"/>
+               <ref name="mishnahrdata.text"/>
             </attribute>
          </optional>
          <optional>
@@ -7537,6 +8333,73 @@ witness.</a:documentation>
             </attribute>
          </optional>
          <empty/>
+      </element>
+   </define>
+   <define name="mishnahrinclude">
+      <element name="include" ns="http://www.w3.org/2001/XInclude">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The W3C XInclude element</a:documentation>
+         <optional>
+            <ref name="mishnahrfallback"/>
+         </optional>
+         <optional>
+            <attribute name="href">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">pointer to the resource being included</a:documentation>
+               <ref name="mishnahrdata.pointer"/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="parse"
+                       a:defaultValue="xml">
+               <a:documentation/>
+               <choice>
+                  <value>xml</value>
+                  <a:documentation/>
+                  <value>text</value>
+                  <a:documentation/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="xpointer">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="encoding">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="accept">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="accept-charset">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="accept-language">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <text/>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahrfallback">
+      <element name="fallback" ns="http://www.w3.org/2001/XInclude">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Wrapper for fallback elements if an XInclude fails</a:documentation>
+         <oneOrMore>
+            <choice>
+               <text/>
+            </choice>
+         </oneOrMore>
       </element>
    </define>
    <start>

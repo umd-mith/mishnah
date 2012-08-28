@@ -3,6 +3,11 @@
    <title>ISO Schematron rules</title>
    <ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
    <ns prefix="rng" uri="http://relaxng.org/ns/structure/1.0"/>
+   <pattern id="att.pointing-constraint-targetLang">
+      <rule context="tei:*[@targetLang]">
+            <assert test="count(@target)">@targetLang can only be used if @target is specified.</assert>
+          </rule>
+   </pattern>
    <pattern id="ptr-constraint-ptrAtts">
       <rule context="tei:ptr">
          <report test="@target and @cRef">Only one of the
@@ -21,6 +26,12 @@
         relatedItem element must be empty</report>
          <assert test="@target or child::*">A relatedItem element should have either a 'target' attribute
         or a child element to indicate the related bibliographic item</assert>
+      </rule>
+   </pattern>
+   <pattern id="lg-constraint-atleast1oflggapl">
+      <rule context="tei:lg">
+         <assert test="count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) &gt; 0">An &lt;lg&gt; 
+        must contain at least one child &lt;l&gt;, &lt;lg&gt; or &lt;gap&gt;.</assert>
       </rule>
    </pattern>
    <pattern id="link-constraint-linkTargets1">
@@ -46,6 +57,12 @@ values for @target</assert>
          <assert test="count( descendant::tei:lem[ generate-id(       current() ) = generate-id( ancestor::tei:app[1] ) ]) &lt;       2">Only one &lt;lem&gt; element may appear within a single
       apparatus entry, whether it appears outside a &lt;rdgGrp&gt;
       element or within it.</assert>
+      </rule>
+   </pattern>
+   <pattern id="app-constraint-atleast1rdg">
+      <rule context="tei:app">
+         <assert test="count(descendant::tei:rdg[generate-id(current() ) = generate-id(ancestor::tei:app[1])]) &gt; 0">An &lt;app&gt; 
+        must contain at least one &lt;rdg&gt; element.</assert>
       </rule>
    </pattern>
 </schema>
