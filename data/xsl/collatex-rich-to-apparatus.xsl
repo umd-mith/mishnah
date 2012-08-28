@@ -5,6 +5,7 @@
     xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
     xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd cx tei my" version="2.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
+    <xsl:strip-space elements="*"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Dec 8, 2011</xd:p>
@@ -111,7 +112,7 @@ pipeline. -->
                         </select>
                     </div>
                     <h3>2. Witnesses for Collation</h3>
-                    <p class="descr-text">Select witnesses and the order of presentation by entering a numeral in the blank next that you wish to compare and selecting the "Collate" button. The alignment table, apparatus, and synopsis below will present the witnesses in the order of the input.</p><p> (Note that at present numerals are sorted as text, so that 11 and 12 appear after 1 and before 2. To avoid ambiguity, you may wish to use the format 001, 002, 003, 011, 012, etc.)</p>
+                    <p class="descr-text">Select witnesses and the order of presentation by entering a numeral in the blank next that you wish to compare and selecting the "Collate" button. The alignment table, apparatus, and synopsis below will present the witnesses in the order of the input.</p><p class="descr-text">(Note that at present numerals are sorted as text, so that 11 and 12 appear after 1 and before 2. To avoid ambiguity, you may wish to use the format 001, 002, 003, 011, 012, etc.)</p>
                     <table class="sources" dir="ltr">
                         <xsl:for-each select="$sortlist">
                             <xsl:variable name="witName" select="@xml:id"/>
