@@ -23,6 +23,16 @@
                 src="org.apache.cocoon.serialization.XMLSerializer">
                 <indent>yes</indent>
             </map:serializer>
+            <map:serializer
+                name="html-no-indent"     
+                src="org.apache.cocoon.serialization.HTMLSerializer"
+                mime-type="text/html">
+                <indent>no</indent>
+            </map:serializer>
+            <map:serializer name="tei-no-indent" mime-type="application/xml"
+                src="org.apache.cocoon.serialization.XMLSerializer">
+                <indent>no</indent>
+            </map:serializer>
         </map:serializers>
         <map:transformers>
             <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
@@ -170,7 +180,7 @@
                 <map:transform src="resource://xsl/tei-to-flat.xsl" type="xslt-saxon"/>
                 <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
                 <map:transform src="resource://xsl/revised-pages-to-html.xsl" type="xslt-saxon"/>
-                <map:serialize type="tei"/>
+                <map:serialize type="tei-no-indent"/>
             </map:match>
             <map:match pattern="*.xml">
                 <map:generate src="resource://tei/{1}.xml"/>

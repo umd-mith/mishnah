@@ -12,7 +12,7 @@
             </publicationStmt>
             <sourceDesc>
                 <p>Citations of the Mishnah from commentaries. Begun with explicit references to
-                    readings in <ref ana="#MelSh">Melekhet Shelomoh</ref>. </p>
+                    readings in <ref corresp="#MelSh">Melekhet Shelomoh</ref>. </p>
                 <p>Since citation is from standard printed editions, text is not marked for
                     rendering in the original, and abbreviations are given in their expanded form
                     only.</p>
@@ -46,7 +46,7 @@
                                 >מלא״ש</addName><date>1567-1625</date></witness>
                         <witness xml:id="TYT">Yom Tov Lipman Heller<addName type="Hebr-abbr">תוס׳
                                 י״ט</addName></witness>
-                        <witness xml:id="Unattr">No specific attribution<eg>אית דגרסי</eg></witness>
+                        <witness xml:id="Unattr">No specific attribution<eg>אית דגרסי, or similar</eg></witness>
                     </listWit></p>
             </sourceDesc>
         </fileDesc>
@@ -56,102 +56,88 @@
     </teiHeader>
     <text>
         <body>
-            <ab xml:id="comcit.dummy">
+            <ab xml:id="comcit.standard-mishnah-ref">
                 <app>
-                    <lem type="com"/>
-                    <rdg wit="ABC">
-                        <ref ana="#MelSh"/>
+
+                    <rdg wit="#ABC">
+                        <!-- Value of @wit is the source CITED BY THE COMMENTARY, e.g. "Rashi reads here XYZ but Ramban had XYF" Rashi or Ramban goes into @wit -->
+                        <!-- Use the xml:ids from the witnesses in the header prefaced by #. You can add new ones if you need to. -->
+                        <!-- Within rdg itself goes the reading. Use only the words that differ. If the comment refers to gap/omission ("The rambam did not read 'divre r meir'") use one dash for each missing word  -->
+                        <bibl><!-- Bibl eventually will list all the commentaries that have relevant entries at this point--><ref corresp="#MelSh"><!-- the dibbur hamathil goes here. Can be shortened to 2-3 words as long as it is not unambiguous. --></ref></bibl>
                     </rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.1">
                 <app from="ref.xml#ref.4.2.2.1.41" to="ref.xml#ref.4.2.2.1.43">
-                    <lem type="com"/>
-                    <rdg wit="#YAshk #Rosh #Y">–––<bibl><ref ana="#MelSh">דברי ר״מ</ref><ref ana="#TYT"
-                                >דברי ר״מ</ref></bibl></rdg>
-                    <rdg wit="#Karo #RMBM">דברי רבי מאיר<bibl><ref ana="#MelSh">דברי
+
+                    <rdg wit="#YAshk #Rosh #Y">–––<bibl><ref corresp="#MelSh">דברי ר״מ</ref><ref
+                                ana="#TYT">דברי ר״מ</ref></bibl></rdg>
+                    <rdg wit="#Karo #RMBM">דברי רבי מאיר<bibl><ref corresp="#MelSh">דברי
                             ר״מ</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="commcit.4.2.2.4">
                 <app from="ref.xml#ref.4.2.2.4.23">
-                    <!-- Not sure lem is essential, but including it for now -->
-                    <lem type="com"/>
-                    <rdg>רבי יהודה אומר הלוקח<wit corresp=" #Unattr"/><bibl><ref ana="#MelSh">הלוקח
-                                פירות</ref></bibl></rdg>
+
+                    <rdg wit="#Unattr">רבי יהודה אומר הלוקח<bibl><ref corresp="#MelSh">הלוקח
+                            פירות</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="commcit.4.2.2.6">
                 <app from="ref.xml#ref.4.2.2.6.16">
-                    <lem type="com"/>
-                    <rdg>שלשה<wit corresp="#MelSh"/><bibl><ref ana="#MelSh">שלשה
-                        רגלים</ref></bibl></rdg>
+
+                    <rdg wit="#MelSh">שלשה<bibl><ref corresp="#MelSh">שלשה רגלים</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="commcit.4.2.2.8">
                 <app from="ref.xml#ref.4.2.2.8.17">
-                    <lem type="com"/>
-                    <rdg>כתחילה<wit corresp="#MelS"/><bibl><ref ana="#MelS">גוללן</ref></bibl></rdg>
+
+                    <rdg wit=" #Unattr">כתחילה<bibl><ref corresp="#MelS">גוללן</ref></bibl></rdg>
                 </app>
                 <app from="ref.xml#ref.4.2.2.2.8.15">
-                    <lem type="com"/>
-                    <rdg>יִלְמַד<wit corresp="#YAshk"/><bibl><ref ana="#MelSh"
-                        >גוללן</ref></bibl></rdg>
-                    <rdg>יִלַמֵּד<wit corresp="#MelSh"/><bibl><ref ana="#MelSh"
-                        >גוללן</ref></bibl></rdg>
+
+                    <rdg wit="#YAshk">יִלְמַד<bibl><ref corresp="#MelSh">גוללן</ref></bibl></rdg>
+                    <rdg wit="#MelSh">יִלַמֵּד<bibl><ref corresp="#MelSh">גוללן</ref></bibl></rdg>
                     <!-- Cites two readings, the one according to
                         R. Yehosef.-->
                 </app>
                 <app from="ref.xml#ref.4.2.2.2.8.53" to="ref.xml#ref.4.2.2.2.8.62">
-                    <lem type="com"/>
-                    <rdg>מצא שק או קפה אם אין דרכו ליטול<wit corresp="#Rif #Rosh #YAshk"/><bibl><ref
+
+                    <rdg wit="#Rif #Rosh #YAshk">מצא שק או קפה אם אין דרכו ליטול<bibl><ref
                                 ana="#MelSh">מצא שק</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.9">
                 <app from="ref.xml#ref.4.2.2.9.50">
-                    <lem type="com"/>
-                    <rdg wit="#Unattr #Rosh #B">–<bibl><ref ana="#MelSh">אלא נותן לו שכרו בפועל
+
+                    <rdg wit="#Unattr #Rosh #B">–<bibl><ref corresp="#MelSh">אלא נותן לו שכרו בפועל
                                 בטל</ref></bibl></rdg>
-                    <rdg wit="#RMBM #Tur">בטל<bibl><ref ana="#MelSh">אלא נותן לו שכרו בפועל
+                    <rdg wit="#RMBM #Tur">בטל<bibl><ref corresp="#MelSh">אלא נותן לו שכרו בפועל
                                 בטל</ref></bibl></rdg>
                 </app>
                 <app from="ref.xml#ref.4.2.2.9.57">
-                    <lem type="com"/>
-                    <rdg wit="#NY #Rif #YAshk">עמו<bibl><ref ana="#MelSh">אם יש שם
+
+                    <rdg wit="#NY #Rif #YAshk">עמו<bibl><ref corresp="#MelSh">אם יש שם
                         ב״ד</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.10">
                 <app from="ref.xml#ref.4.2.2.10.12">
-                    <lem type="com"/>
-                    <rdg wit=" #Unattr">בית<bibl><ref ana="#MelSh">אם היתה בבית
+
+                    <rdg wit=" #Unattr">בית<bibl><ref corresp="#MelSh">אם היתה בבית
                         הקברות</ref></bibl></rdg>
-                    <rdg wit=" #Unattr">בין<bibl><ref ana="#MelSh">אם היתה בבית
+                    <rdg wit=" #Unattr">בין<bibl><ref corresp="#MelSh">אם היתה בבית
                         הקברות</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.11">
                 <app from="ref.xml#ref.4.2.2.11.31" to="ref.xml#ref.4.2.2.11.33">
                     <lem type="com"/>
-                    <rdg wit="#RMBM-c">ואם היה אביו שקול כנגד רבו<bibl><ref ana="#MelSh">ואם היה
-                                אביו שקול כנגד רבו</ref><ref ana="#TYT">ואם אביו
+                    <rdg wit="#RMBM-c">ואם היה אביו שקול כנגד רבו<bibl><ref corresp="#MelSh">ואם היה
+                                אביו שקול כנגד רבו</ref><ref corresp="#TYT">ואם אביו
                         חכם</ref></bibl></rdg>
-                    <rdg wit="#RMBM-c">ואם אביו חכם<ref ana="#TYT">ואם אביו חכם</ref></rdg>
+                    <rdg wit="#RMBM-c">ואם אביו חכם<ref corresp="#TYT">ואם אביו חכם</ref></rdg>
                 </app>
-                <!-- The following appear to be errors -->
-                <!--<app from="ref.xml#ref.4.2.2.11.65" to="ref.xml#ref.4.2.2.11.68">
-                    <lem type="com"/>
-                    <rdg wit="#Y #Rosh #Rif">ואם היה אביו חכם<bibl><ref ana="#MelSh">ואם היה אביו
-                                שקול כנגד רבו</ref></bibl></rdg>
-                    <rdg wit="#TYT">––––<bibl><ref ana="#TYT">היה אביו או רבו נושאין משאוי
-                                וכו׳</ref></bibl></rdg>
-                </app>-->
-                <!--<app from="ref.xml#ref.4.2.2.11.69" to="ref.xml#ref.4.2.2.11.76">
-                    <lem type="com"/>
-                    <rdg wit="#TYT">––––<bibl><ref ana="#TYT">היה אביו או רבו נושאין משאוי
-                                וכו׳</ref></bibl></rdg>
-                </app>-->
             </ab>
         </body>
     </text>

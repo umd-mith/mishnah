@@ -8,7 +8,9 @@
         doctype-public="-//W3C//DTD HTML 4.01//EN"
         doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
     <xsl:strip-space
-        elements="*"/>
+        elements=" tei:choice and tei:am and
+        tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap
+        tei:del tei:add"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Jul 23, 2011</xd:p>
@@ -427,11 +429,8 @@
             <xsl:value-of select="."/>
         </span>
     </xsl:template>
-    <xsl:template match="tei:seg">
-        <xsl:apply-templates/>
-    </xsl:template>
-    <xsl:template match="tei:add">
-        <span class="add">
+    <xsl:template match="tei:seg"><xsl:apply-templates/></xsl:template>
+    <xsl:template match="tei:add"><span class="add">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
