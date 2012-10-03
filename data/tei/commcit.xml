@@ -46,7 +46,18 @@
                                 >מלא״ש</addName><date>1567-1625</date></witness>
                         <witness xml:id="TYT">Yom Tov Lipman Heller<addName type="Hebr-abbr">תוס׳
                                 י״ט</addName></witness>
-                        <witness xml:id="Unattr">No specific attribution<eg>אית דגרסי, or similar</eg></witness>
+                        <witness xml:id="Unattr">No specific attribution<eg>אית דגרסי, or
+                                similar</eg></witness>
+                        <witness xml:id="Tos">Tosafot</witness>
+                        <witness xml:id="AR">Arukh</witness>
+                        <witness xml:id="BA">Betzalel Ashkenazi<addName type="Hebr-abbr"
+                                >רב"א</addName></witness>
+                        <witness xml:id="HA">Israel of Krems<addName type="Book-title">הגהת
+                                אשרי</addName></witness>
+                        <witness xml:id="OZarua">Isaac ben Moses of Vienna <addName
+                                type="Book-title">אור זרוע</addName>
+                            <addName type="Hebr-abbr">ריע"ז</addName></witness>
+
                     </listWit></p>
             </sourceDesc>
         </fileDesc>
@@ -63,8 +74,217 @@
                         <!-- Value of @wit is the source CITED BY THE COMMENTARY, e.g. "Rashi reads here XYZ but Ramban had XYF" Rashi or Ramban goes into @wit -->
                         <!-- Use the xml:ids from the witnesses in the header prefaced by #. You can add new ones if you need to. -->
                         <!-- Within rdg itself goes the reading. Use only the words that differ. If the comment refers to gap/omission ("The rambam did not read 'divre r meir'") use one dash for each missing word  -->
-                        <bibl><!-- Bibl eventually will list all the commentaries that have relevant entries at this point--><ref corresp="#MelSh"><!-- the dibbur hamathil goes here. Can be shortened to 2-3 words as long as it is not unambiguous. --></ref></bibl>
+                        <bibl><!-- Bibl eventually will list all the commentaries that have relevant entries at this point--><ref
+                                corresp="#MelSh"
+                                ><!-- the dibbur hamathil goes here. Can be shortened to 2-3 words as long as it is not unambiguous. --></ref></bibl>
                     </rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.1.2">
+                <app from="ref.xml#ref.4.1.1.2.25" to="ref.xml#ref.4.1.1.2.26">
+
+                    <rdg wit="#BA #Unattr">--<bibl><ref corresp="#MelSh">ובכל
+                        מקום</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.1.2.34">
+
+                    <rdg wit="#BA">וכשהזיק<bibl><ref corresp="#MelSh">וכשהזיק חב המזיק
+                        </ref></bibl></rdg>
+                    <rdg wit="#Unattr">כשהזיק<bibl><ref corresp="#MelSh">וכשהזיק חב המזיק
+                            </ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.1.4">
+                <app from="ref.xml#ref.4.1.1.4.14" to="ref.xml#ref.4.1.1.4.15">
+
+                    <rdg wit="#YAshk">--<bibl><ref corresp="#MelSh">ולא לרבוץ</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.1.4.45" to="ref.xml#ref.4.1.1.4.46">
+
+                    <rdg wit="#Unattr #Tos">רבי אלעזר<bibl><ref corresp="#MelSh">רבי
+                            אלעזר</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.1.4.71" to="ref.xml#ref.4.1.1.4.72">
+
+                    <rdg wit="#YAshk">--<bibl><ref corresp="#MelSh">מן העליה</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.2.1">
+                <!-- not really sure what should go here-->
+                <!-- Ignore, commenting on language of Bartenura -->
+                <app from="ref.xml#ref.4.1.2.1.29">
+
+                    <rdg wit="#YAshk">ושברו<bibl><ref corresp="#MelSh">דרסה על הכלי
+                            ושברתו</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.2.1.55">
+
+                    <rdg wit="#AR">מחדס<bibl><ref corresp="#MelSh">או שהיה מהדס</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.2.1.56" to="ref.xml#ref.4.1.2.1.58">
+
+                    <rdg wit="Unattr">---<bibl><ref corresp="#MelSh">ושבר את
+                        הכלים</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.2.2">
+                <!--not sure what should go here-->
+                <!-- Whether meshalem or yeshalem appears in all the cases [בכולהו באבי] -->
+                <app from="ref.xml#ref.4.1.2.1.17">
+                    <rdg wit="#YAshk #Y"/>
+                    <note>Notes "וכן מוגה בכולהו באבי," so should apply to each occurance of מ\ישלם
+                        in Mishnah. Assuming that the מגיה is Yehosef Ashkenazi</note>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.2.5">
+                <app from="ref.xml#ref.4.1.2.5.54">
+
+                    <rdg wit="#YAshk #Unattr">הניזק<bibl><ref corresp="#MelSh"> מקום שהחמיר על הקרן
+                                ברשות הרבים</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.2.5.61">
+
+                    <rdg wit="#Unattr">עליו<bibl><ref corresp="#MelSh"> אינו דין שנחמיר
+                            עליה</ref></bibl></rdg>
+                </app>
+                <app>
+                    <!-- not sure what should go here -->
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.1">
+                <app from="ref.xml#ref.4.1.3.1.25">
+
+                    <rdg wit="#YAshk">אחד<bibl><ref corresp="#MelSh">והוחלק אחר
+                        במים</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.2">
+                <app from="ref.xml#ref.4.1.3.2.23">
+
+                    <rdg wit="#Y">והוזקו<bibl><ref corresp="#MelSh">וגדר שנפל לרשות הרבים והוזק בהן
+                                אחר חייב בנזקו</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.3">
+                <!-- Need to add the very first comment of MSh, that Yerushalmi has גפתו not קשו. Yogev missed this. -->
+                <app from="ref.xml#ref.4.1.3.3.18" to="ref.xml#ref.4.1.3.3.33">
+                    <!-- unsure if this is the right phrase -->
+                    <!-- This is complicated. The dibbur ha-mathil is for the first occurrence of the phrase, -->
+                    <!-- but the end of the comment, he gives two readings for later in the Mishnah -->
+                    <!-- (a) That Tos shows that some texts lack the phrase kol ha-qodem ... -->
+                    <!-- (b) That some texts do not have RSbG at all. -->
+                    <!-- So we change the @from and @to above, and handle as follows-->
+
+                    <rdg wit="#Tos"> רבן שמעון בן גמליאל אומר כל המקלקלין ברשות הרבים והזיקו חייבין לשלם ---- <bibl><ref corresp="#MelSh">וכל הקודם בהם
+                        זכה</ref></bibl></rdg>
+                    <rdg wit="#YAshk">----------------<bibl><ref corresp="#MelSh">וכל הקודם בהם
+                        זכה</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.3.3.39" to="ref.xml#ref.4.1.3.3.41">
+
+                    <rdg wit="#YAshk">---<bibl><ref corresp="#MelSh">והוזק בהן
+                        אחר</ref></bibl></rdg>
+
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.7">
+                <app from="ref.xml#ref.4.1.3.7.12" to="ref.xml#ref.4.1.3.7.18">
+
+                    <rdg wit="#MelSh">-----<bibl><ref corresp="#MelSh"> ברשות היחיד והזיק ברשות
+                                היחיד אחר חייב</ref></bibl></rdg>
+                    <rdg wit="#OZarua #HA">ברשות היחיד והזיק ברשות היחיד אחר חייב <bibl><ref
+                                corresp="#MelSh">ברשות היחיד והזיק ברשות היחיד אחר חייב</ref></bibl>
+                    </rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.8">
+                <app from="ref.xml#ref.4.1.3.8.44" to="ref.xml#ref.4.1.3.8.48">
+
+                    <rdg wit="#YAshk #Unattr">אדם במועד ומעד באדם משלם <bibl>
+                            <ref corresp="#MelSh">'ר' עקיבא אומר וכו</ref></bibl></rdg>
+                </app>
+                <!-- unsure why this phrase is under this dibbur hamatchil -->
+                <!-- Nor I, and I don't have the time right now to pursue this further. -->
+            </ab>
+            <ab xml:id="comcit.4.1.3.10">
+                <app from="ref.xml#ref.4.1.3.10.1" to="ref.xml#ref.4.1.3.1.0.16">
+
+                    <rdg wit="#YAshk #Y #Unattr #Rif">חייב על מעש' שורו ופטור על מעשה עצמו חייב על
+                        מעשה עצמו ופטור על מעשה שורו <bibl><ref corresp="#MelSh">'יש חייב וכו' פטור
+                                וכו</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.3.11">
+                <app from="ref.xml#ref.4.1.3.11.1" to="ref.xml#ref.4.1.3.11.22">
+
+                    <rdg><bibl><ref corresp="#MelSh">'שור שהיה רודף אחר והוזק זה אומר שורך היזיק
+                                והלה אומר לא כי אלא בסלע לקה והוזק המע"ה וכו</ref></bibl></rdg>
+                </app>
+                <!-- no witness or girsa shift given -->
+                <!-- can't verify right now, but I am guessing that the issue is  והוזק vs והזיק as in at least one Yerushalmi ms.-->
+            </ab>
+            <ab xml:id="comcit.4.1.4.1">
+                <app from="ref.xml#ref.4.1.4.1.3" to="ref.xml#ref.4.1.4.1.4">
+
+                    <rdg wit="#YAshk #Unattr">לארבעה וחמשה<bibl>
+                            <ref corresp="#MelSh"> שור שנגח ד' וה' שורים</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.4.1.18" to="ref.xml#ref.4.1.4.1.24">
+
+                    <rdg wit="#YAshk #Unattr">------<bibl><ref corresp="#MelSh"> ואם יש בו מותר
+                                יחזיר לשלפני פניו </ref></bibl></rdg>
+                    <rdg wit="#Unattr">'יחזיר לשלפניו ויש לו מותר יחזיר לשלפניו והאחרון וכו
+                                <bibl><ref corresp="#MelSh">ואם יש בו מותר יחזיר לשלפני
+                            פניו</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.4.2">
+                <app from="ref.xml#ref.4.1.4.2.40">
+
+                    <rdg wit="#YAshk #Unattr"><!-- what's the girsa change here? -->
+                        <!-- needs work; don't have the books to do that at hand. -->
+                        <bibl><ref
+                                corresp="#MelSh"> אמרו לפני ר' יהודה הרי שהיה מועד בשבתות ואינו מועד
+                                בימות החול אמר להם בשבתות משלם נזק שלם ובימות החול משלם ח"נ מאימתי
+                                הוא תם וכו'</ref></bibl></rdg>
+                    <rdg wit="#Unattr">לשבתות<bibl><ref corresp="#MelSh"> אמרו לפני ר' יהודה הרי
+                                שהיה מועד בשבתות ואינו מועד בימות החול אמר להם בשבתות משלם נזק שלם
+                                ובימות החול משלם ח"נ מאימתי הוא תם וכו'</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.4.4">
+                <app from="ref.xml#ref.4.1.4.4.11">
+
+                    <rdg wit="#Unattr">'ושור חרש שוטה וקטן שנגח וכו <bibl><ref corresp="#MelSh">ושל
+                                חש"ו שנגח לשור של פקח פטור</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.4.4.21">
+                    <rdg wit="#YAshk">-<bibl>
+                            <ref corresp="#MelSh">'שור של חש"ו שנגח בית דין וכו</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.4.4.26" to="ref.xml#ref.4.1.4.4.27">
+                    <rdg wit="#YAshk">--<bibl><ref corresp="#MelSh">'שור של חש"ו שנגח בית דין
+                                וכו</ref></bibl></rdg>
+                </app>
+                <app from="ref.xml#ref.4.1.4.4.53">
+
+                    <rdg wit="#AR">איסטריא <bibl><ref corresp="#MelSh">שור
+                        האיצטדין</ref></bibl></rdg>
+                    <rdg wit="#Unattr">איצטדנין<bibl><ref corresp="#MelSh">שור
+                        האיצטדין</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.4.5">
+                <app from="ref.xml#ref.4.1.4.5.37">
+                    <rdg wit="#Rif #YAshk">דינר זהב <bibl>
+                            <ref corresp="#MelSh">בין שהוא יפה מאה מנה ובין שאינו יפה אלא דינר
+                                אחד</ref></bibl></rdg>
+                </app>
+            </ab>
+            <ab xml:id="comcit.4.1.4.8">
+                <app from="ref.xml#ref.4.1.4.8.9">
+
+                    <rdg wit="#Unattr">ואם שחטו <bibl><ref corresp="#MelSh">שחטו</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.1">
@@ -80,7 +300,7 @@
                 <app from="ref.xml#ref.4.2.2.4.23">
 
                     <rdg wit="#Unattr">רבי יהודה אומר הלוקח<bibl><ref corresp="#MelSh">הלוקח
-                            פירות</ref></bibl></rdg>
+                                פירות</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="commcit.4.2.2.6">
@@ -118,16 +338,16 @@
                 <app from="ref.xml#ref.4.2.2.9.57">
 
                     <rdg wit="#NY #Rif #YAshk">עמו<bibl><ref corresp="#MelSh">אם יש שם
-                        ב״ד</ref></bibl></rdg>
+                            ב״ד</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.10">
                 <app from="ref.xml#ref.4.2.2.10.12">
 
                     <rdg wit=" #Unattr">בית<bibl><ref corresp="#MelSh">אם היתה בבית
-                        הקברות</ref></bibl></rdg>
+                            הקברות</ref></bibl></rdg>
                     <rdg wit=" #Unattr">בין<bibl><ref corresp="#MelSh">אם היתה בבית
-                        הקברות</ref></bibl></rdg>
+                            הקברות</ref></bibl></rdg>
                 </app>
             </ab>
             <ab xml:id="comcit.4.2.2.11">
@@ -135,7 +355,7 @@
                     <lem type="com"/>
                     <rdg wit="#RMBM-c">ואם היה אביו שקול כנגד רבו<bibl><ref corresp="#MelSh">ואם היה
                                 אביו שקול כנגד רבו</ref><ref corresp="#TYT">ואם אביו
-                        חכם</ref></bibl></rdg>
+                            חכם</ref></bibl></rdg>
                     <rdg wit="#RMBM-c">ואם אביו חכם<ref corresp="#TYT">ואם אביו חכם</ref></rdg>
                 </app>
             </ab>
