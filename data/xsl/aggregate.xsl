@@ -172,6 +172,7 @@
                 <!-- Currently selects only original text. Can be altered to include to include
                     added corrected text as well. -->
                 <!-- use of <text> to insert spaces here is a hack. Must be a better way. -->
+                <!-- Have now added seg for poem-like text in columns. Need to verify that this does not cause errors -->
                 <xsl:text> </xsl:text><xsl:for-each select="node()">
                     <xsl:choose>
                         
@@ -211,8 +212,9 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <!-- Nodes to be removed altogether-->
+            <!-- For now: removing fw. Need to be added back? -->
             <xsl:when
-                test="self::tei:g[@ref='#fill'] | self::tei:note | self::tei:space | self::tei:surplus | self::tei:milestone | self::comment()">
+                test="self::tei:g[@ref='#fill'] | self::tei:note | self::tei:space | self::tei:surplus | self::tei:milestone | self::tei:fw | self::comment()">
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:otherwise>

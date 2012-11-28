@@ -3,9 +3,9 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2012-08-01T17:05:12Z. 
-Edition: 2.1.0. Last updated on 17th June 2012.
-Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
+Schema generated from ODD source 2012-10-26T13:45:50Z. 
+Edition: 2.2.0. Last updated on 25th October 2012.
+Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
 
 --><!--This work is copyright Trevor Muñoz and Maryland Institute for Technology in
                         the Humanities and licensed under a Creative Commons
@@ -17,6 +17,7 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
             <ref name="mishnahw_model.phrase"/>
             <ref name="mishnahw_model.inter"/>
             <ref name="mishnahw_model.global"/>
+            <ref name="mishnahw_lg"/>
          </choice>
       </zeroOrMore>
    </define>
@@ -178,10 +179,9 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
          <attribute name="who">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the person, or group of people, to whom the element content is ascribed.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -205,10 +205,9 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference) provides an explicit means of locating a full definition for the entity being named by
         means of one or more URIs.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -389,6 +388,18 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
          </attribute>
       </optional>
    </define>
+   <define name="mishnahw_att.cReferencing.attributes">
+      <ref name="mishnahw_att.cReferencing.attribute.cRef"/>
+   </define>
+   <define name="mishnahw_att.cReferencing.attribute.cRef">
+      <optional>
+         <attribute name="cRef">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
+        scheme defined in a refsDecl element in the TEI header</a:documentation>
+            <ref name="mishnahw_data.text"/>
+         </attribute>
+      </optional>
+   </define>
    <define name="mishnahw_att.datable.w3c.attributes">
       <ref name="mishnahw_att.datable.w3c.attribute.when"/>
       <ref name="mishnahw_att.datable.w3c.attribute.notBefore"/>
@@ -456,6 +467,14 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
          </attribute>
       </optional>
    </define>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="calendar-constraint-calendar">
+      <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                context="tei:*[@calendar]">
+            <sch:assert test="string-length(.) gt 0">@calendar indicates the system or calendar to which the date represented by the content of this element belongs, but this element has no textual content.</sch:assert>
+          </sch:rule>
+   </pattern>
    <define name="mishnahw_att.datable.attribute.period">
       <optional>
          <attribute name="period">
@@ -476,10 +495,9 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a PID (persistent identifier) that aligns the given element with the appropriate 
         Data Category (or categories) in ISOcat.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -491,10 +509,9 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
         element or the value of the given attribute with the appropriate simple Data
         Category (or categories) in ISOcat.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -528,10 +545,9 @@ only one of its kind, in which case it is selected if its parent is selected.</a
 header, which are understood to apply to the element bearing this
 attribute and its content.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -634,10 +650,9 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(responsible party) indicates the agency responsible for the intervention or interpretation, for example an
         editor or transcriber.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -656,17 +671,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
         intervention or interpretation.
 Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentation>
             <list>
-               <choice>
-                  <value>internal</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">there is internal evidence to support the intervention.</a:documentation>
-                  <value>external</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">there is external evidence to support the intervention.</a:documentation>
-                  <value>conjecture</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the intervention or interpretation has been made by the editor, cataloguer, or
-            scholar on the basis of their expertise.</a:documentation>
-                  <data type="Name"/>
-               </choice>
-               <zeroOrMore>
+               <oneOrMore>
                   <choice>
                      <value>internal</value>
                      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">there is internal evidence to support the intervention.</a:documentation>
@@ -677,7 +682,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
             scholar on the basis of their expertise.</a:documentation>
                      <data type="Name"/>
                   </choice>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -688,10 +693,9 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a list of one or more pointers indicating sources
       supporting the given  intervention or interpretation.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -713,6 +717,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
       <ref name="mishnahw_att.global.attribute.n"/>
       <ref name="mishnahw_att.global.attribute.xmllang"/>
       <ref name="mishnahw_att.global.attribute.rend"/>
+      <ref name="mishnahw_att.global.attribute.style"/>
       <ref name="mishnahw_att.global.attribute.rendition"/>
       <ref name="mishnahw_att.global.attribute.xmlbase"/>
       <ref name="mishnahw_att.global.attribute.xmlspace"/>
@@ -749,11 +754,20 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
          <attribute name="rend">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(rendition) indicates how the element in question was rendered or presented in the source text.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.global.attribute.style">
+      <optional>
+         <attribute name="style">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an expression in some formal style definition language
+which defines the rendering or presentation
+used for this element in the source text </a:documentation>
+            <ref name="mishnahw_data.text"/>
          </attribute>
       </optional>
    </define>
@@ -763,10 +777,9 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to a description of the rendering or presentation used for this element in the
         source text.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -787,11 +800,9 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
       managed by  applications. </a:documentation>
             <choice>
                <value>default</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the processor should treat white space according to the
-	default XML white space handling rules</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">signals that the application's default white-space processing modes are acceptable</a:documentation>
                <value>preserve</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the processor should preserve unchanged any and all
-	white space in the source</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the intent that applications preserve all white space</a:documentation>
             </choice>
          </attribute>
       </optional>
@@ -819,10 +830,9 @@ believed to be responsible for this hand.</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to a full description of the scribe concerned, typically supplied by a person element
       elsewhere in the description.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -833,10 +843,9 @@ believed to be responsible for this hand.</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the particular script or writing style used by
 this hand, for example secretary, copperplate, Chancery, Italian, etc.</a:documentation>
             <list>
-               <ref name="mishnahw_data.name"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.name"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -848,10 +857,9 @@ this hand, for example secretary, copperplate, Chancery, Italian, etc.</a:docume
 this hand, typically supplied by a scriptNote element
       elsewhere in the description.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -888,10 +896,9 @@ writing medium, e.g. pencil</a:documentation>
          <attribute name="mimeType">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -965,10 +972,9 @@ Suggested values include: 1] m(metre) ; 2] kg(kilogram) ; 3] s(second) ; 4] Hz(h
          <attribute name="commodity">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the substance that is being measured</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -995,10 +1001,9 @@ this name, for example the occupation of a person, or the status of a place. </a
        named by
       the element bearing it.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -1009,33 +1014,10 @@ this name, for example the occupation of a person, or the status of a place. </a
    <define name="mishnahw_att.placement.attribute.place">
       <optional>
          <attribute name="place">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies where this item is placed
 Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6] overleaf; 7] above; 8] end; 9] inline; 10] inspace</a:documentation>
             <list>
-               <choice>
-                  <value>below</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">below the line</a:documentation>
-                  <value>bottom</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">at the foot of the page</a:documentation>
-                  <value>margin</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">in the margin (left, right, or both)</a:documentation>
-                  <value>top</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">at the top of the page</a:documentation>
-                  <value>opposite</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">on the opposite, i.e. facing, page</a:documentation>
-                  <value>overleaf</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">on the other side of the leaf</a:documentation>
-                  <value>above</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">above the line</a:documentation>
-                  <value>end</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">at the end of e.g. chapter or volume.</a:documentation>
-                  <value>inline</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">within the body of the text.</a:documentation>
-                  <value>inspace</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> in a predefined space, for example left by an earlier scribe.</a:documentation>
-                  <data type="Name"/>
-               </choice>
-               <zeroOrMore>
+               <oneOrMore>
                   <choice>
                      <value>below</value>
                      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">below the line</a:documentation>
@@ -1059,7 +1041,7 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
                      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> in a predefined space, for example left by an earlier scribe.</a:documentation>
                      <data type="Name"/>
                   </choice>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -1104,7 +1086,7 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                context="tei:*[@targetLang]">
+                context="tei:*[not(self::tei:schemaSpec)][@targetLang]">
             <sch:assert test="count(@target)">@targetLang can only be used if @target is specified.</sch:assert>
           </sch:rule>
    </pattern>
@@ -1113,10 +1095,9 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
          <attribute name="target">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the destination of the reference by supplying one or more URI References</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -1238,10 +1219,9 @@ its completeness</a:documentation>
       the associated feature (for example, a  page, column, or line
       break) occurs at this point in the text.</a:documentation>
             <list>
-               <ref name="mishnahw_data.code"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.code"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -1255,6 +1235,26 @@ its completeness</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the end of a span initiated by the element
 	bearing this attribute.</a:documentation>
             <ref name="mishnahw_data.pointer"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.styleDef.attributes">
+      <ref name="mishnahw_att.styleDef.attribute.scheme"/>
+   </define>
+   <define name="mishnahw_att.styleDef.attribute.scheme">
+      <optional>
+         <attribute name="scheme">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the language used to describe the rendition.</a:documentation>
+            <choice>
+               <value>css</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Cascading Stylesheet Language</a:documentation>
+               <value>xslfo</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Extensible Stylesheet Language Formatting Objects</a:documentation>
+               <value>free</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Informal free text description</a:documentation>
+               <value>other</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A user-defined rendition description language</a:documentation>
+            </choice>
          </attribute>
       </optional>
    </define>
@@ -1368,62 +1368,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_c"/>
          <ref name="mishnahw_w"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.segLike_alternation">
-      <choice>
-         <ref name="mishnahw_seg"/>
-         <ref name="mishnahw_pc"/>
-         <ref name="mishnahw_c"/>
-         <ref name="mishnahw_w"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.segLike_sequence">
-      <ref name="mishnahw_seg"/>
-      <ref name="mishnahw_pc"/>
-      <ref name="mishnahw_c"/>
-      <ref name="mishnahw_w"/>
-   </define>
-   <define name="mishnahw_model.segLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_seg"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_pc"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_c"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_w"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.segLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_seg"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_pc"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_c"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_w"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.segLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_seg"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_pc"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_c"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_w"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.hiLike">
       <choice>
@@ -1570,40 +1514,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.hiLike"/>
          <ref name="mishnahw_model.emphLike"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.highlighted_alternation">
-      <choice>
-         <ref name="mishnahw_model.hiLike_alternation"/>
-         <ref name="mishnahw_model.emphLike_alternation"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.highlighted_sequence">
-      <ref name="mishnahw_model.hiLike_sequence"/>
-      <ref name="mishnahw_model.emphLike_sequence"/>
-   </define>
-   <define name="mishnahw_model.highlighted_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.hiLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.emphLike_sequenceOptional"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.highlighted_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.hiLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.emphLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.highlighted_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.hiLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.emphLike_sequenceRepeatable"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.dateLike">
       <choice>
@@ -1763,91 +1673,12 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_binaryObject"/>
       </choice>
    </define>
-   <define name="mishnahw_model.graphicLike_alternation">
-      <choice>
-         <ref name="mishnahw_graphic"/>
-         <ref name="mishnahw_binaryObject"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.graphicLike_sequence">
-      <ref name="mishnahw_graphic"/>
-      <ref name="mishnahw_binaryObject"/>
-   </define>
-   <define name="mishnahw_model.graphicLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_graphic"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_binaryObject"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.graphicLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_graphic"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_binaryObject"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.graphicLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_graphic"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_binaryObject"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.pPart.msdesc">
       <choice>
          <ref name="mishnahw_dimensions"/>
          <ref name="mishnahw_locus"/>
          <ref name="mishnahw_locusGrp"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.pPart.msdesc_alternation">
-      <choice>
-         <ref name="mishnahw_dimensions"/>
-         <ref name="mishnahw_locus"/>
-         <ref name="mishnahw_locusGrp"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.pPart.msdesc_sequence">
-      <ref name="mishnahw_dimensions"/>
-      <ref name="mishnahw_locus"/>
-      <ref name="mishnahw_locusGrp"/>
-   </define>
-   <define name="mishnahw_model.pPart.msdesc_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_dimensions"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_locus"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_locusGrp"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.pPart.msdesc_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_dimensions"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_locus"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_locusGrp"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.pPart.msdesc_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_dimensions"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_locus"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_locusGrp"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.pPart.editorial">
       <choice>
@@ -2127,40 +1958,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.pPart.transcriptional"/>
       </choice>
    </define>
-   <define name="mishnahw_model.pPart.edit_alternation">
-      <choice>
-         <ref name="mishnahw_model.pPart.editorial_alternation"/>
-         <ref name="mishnahw_model.pPart.transcriptional_alternation"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.pPart.edit_sequence">
-      <ref name="mishnahw_model.pPart.editorial_sequence"/>
-      <ref name="mishnahw_model.pPart.transcriptional_sequence"/>
-   </define>
-   <define name="mishnahw_model.pPart.edit_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.pPart.editorial_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.pPart.transcriptional_sequenceOptional"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.pPart.edit_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.pPart.editorial_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.pPart.transcriptional_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.pPart.edit_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.pPart.editorial_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.pPart.transcriptional_sequenceRepeatable"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.linePart">
       <choice>
          <ref name="mishnahw_model.segLike"/>
@@ -2176,56 +1973,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_ref"/>
       </choice>
    </define>
-   <define name="mishnahw_model.ptrLike_alternation">
-      <choice>
-         <ref name="mishnahw_ptr"/>
-         <ref name="mishnahw_ref"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.ptrLike_sequence">
-      <ref name="mishnahw_ptr"/>
-      <ref name="mishnahw_ref"/>
-   </define>
-   <define name="mishnahw_model.ptrLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_ptr"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_ref"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.ptrLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_ptr"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_ref"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.ptrLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_ptr"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_ref"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.lPart">
-      <notAllowed/>
-   </define>
-   <define name="mishnahw_model.lPart_alternation">
-      <notAllowed/>
-   </define>
-   <define name="mishnahw_model.lPart_sequence">
-      <empty/>
-   </define>
-   <define name="mishnahw_model.lPart_sequenceOptional">
-      <empty/>
-   </define>
-   <define name="mishnahw_model.lPart_sequenceOptionalRepeatable">
-      <empty/>
-   </define>
-   <define name="mishnahw_model.lPart_sequenceRepeatable">
       <notAllowed/>
    </define>
    <define name="mishnahw_model.global.meta">
@@ -2237,73 +1985,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_joinGrp"/>
       </choice>
    </define>
-   <define name="mishnahw_model.global.meta_alternation">
-      <choice>
-         <ref name="mishnahw_index"/>
-         <ref name="mishnahw_substJoin"/>
-         <ref name="mishnahw_listTranspose"/>
-         <ref name="mishnahw_join"/>
-         <ref name="mishnahw_joinGrp"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.global.meta_sequence">
-      <ref name="mishnahw_index"/>
-      <ref name="mishnahw_substJoin"/>
-      <ref name="mishnahw_listTranspose"/>
-      <ref name="mishnahw_join"/>
-      <ref name="mishnahw_joinGrp"/>
-   </define>
-   <define name="mishnahw_model.global.meta_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_index"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_substJoin"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_listTranspose"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_join"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_joinGrp"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.global.meta_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_index"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_substJoin"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_listTranspose"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_join"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_joinGrp"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.global.meta_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_index"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_substJoin"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_listTranspose"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_join"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_joinGrp"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.milestoneLike">
       <choice>
          <ref name="mishnahw_milestone"/>
@@ -2311,86 +1992,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_pb"/>
          <ref name="mishnahw_lb"/>
          <ref name="mishnahw_cb"/>
+         <ref name="mishnahw_fw"/>
          <ref name="mishnahw_anchor"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.milestoneLike_alternation">
-      <choice>
-         <ref name="mishnahw_milestone"/>
-         <ref name="mishnahw_gb"/>
-         <ref name="mishnahw_pb"/>
-         <ref name="mishnahw_lb"/>
-         <ref name="mishnahw_cb"/>
-         <ref name="mishnahw_anchor"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.milestoneLike_sequence">
-      <ref name="mishnahw_milestone"/>
-      <ref name="mishnahw_gb"/>
-      <ref name="mishnahw_pb"/>
-      <ref name="mishnahw_lb"/>
-      <ref name="mishnahw_cb"/>
-      <ref name="mishnahw_anchor"/>
-   </define>
-   <define name="mishnahw_model.milestoneLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_milestone"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_gb"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_pb"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_lb"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_cb"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_anchor"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.milestoneLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_milestone"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_gb"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_pb"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_lb"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_cb"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_anchor"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.milestoneLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_milestone"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_gb"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_pb"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_lb"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_cb"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_anchor"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.gLike">
       <choice>
@@ -2574,29 +2178,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_note"/>
       </choice>
    </define>
-   <define name="mishnahw_model.noteLike_alternation">
-      <choice>
-         <ref name="mishnahw_note"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.noteLike_sequence">
-      <ref name="mishnahw_note"/>
-   </define>
-   <define name="mishnahw_model.noteLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_note"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.noteLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_note"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.noteLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_note"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.lLike">
       <choice>
          <ref name="mishnahw_l"/>
@@ -2702,40 +2283,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_space"/>
       </choice>
    </define>
-   <define name="mishnahw_model.global.edit_alternation">
-      <choice>
-         <ref name="mishnahw_gap"/>
-         <ref name="mishnahw_space"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.global.edit_sequence">
-      <ref name="mishnahw_gap"/>
-      <ref name="mishnahw_space"/>
-   </define>
-   <define name="mishnahw_model.global.edit_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_gap"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_space"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.global.edit_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_gap"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_space"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.global.edit_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_gap"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_space"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.divPart">
       <choice>
          <ref name="mishnahw_model.lLike"/>
@@ -2743,90 +2290,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_lg"/>
          <ref name="mishnahw_sp"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.divPart_alternation">
-      <choice>
-         <ref name="mishnahw_model.lLike_alternation"/>
-         <ref name="mishnahw_model.pLike_alternation"/>
-         <ref name="mishnahw_lg"/>
-         <ref name="mishnahw_sp"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.divPart_sequence">
-      <ref name="mishnahw_model.lLike_sequence"/>
-      <ref name="mishnahw_model.pLike_sequence"/>
-      <ref name="mishnahw_lg"/>
-      <ref name="mishnahw_sp"/>
-   </define>
-   <define name="mishnahw_model.divPart_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.lLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.pLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_lg"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_sp"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.divPart_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.lLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.pLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_lg"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_sp"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.divPart_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.lLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.pLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_lg"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_sp"/>
-      </oneOrMore>
-   </define>
-   <define name="mishnahw_model.persStateLike">
-      <choice>
-         <ref name="mishnahw_persName"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.persStateLike_alternation">
-      <choice>
-         <ref name="mishnahw_persName"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.persStateLike_sequence">
-      <ref name="mishnahw_persName"/>
-   </define>
-   <define name="mishnahw_model.persStateLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_persName"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.persStateLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_persName"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.persStateLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_persName"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.placeNamePart">
       <choice>
@@ -2923,9 +2386,16 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_licence"/>
       </choice>
    </define>
-   <define name="mishnahw_model.glossLike">
+   <define name="mishnahw_model.certLike">
+      <notAllowed/>
+   </define>
+   <define name="mishnahw_model.descLike">
       <choice>
          <ref name="mishnahw_desc"/>
+      </choice>
+   </define>
+   <define name="mishnahw_model.glossLike">
+      <choice>
          <ref name="mishnahw_gloss"/>
       </choice>
    </define>
@@ -3044,95 +2514,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_principal"/>
       </choice>
    </define>
-   <define name="mishnahw_model.respLike_alternation">
-      <choice>
-         <ref name="mishnahw_author"/>
-         <ref name="mishnahw_editor"/>
-         <ref name="mishnahw_respStmt"/>
-         <ref name="mishnahw_meeting"/>
-         <ref name="mishnahw_sponsor"/>
-         <ref name="mishnahw_funder"/>
-         <ref name="mishnahw_principal"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.respLike_sequence">
-      <ref name="mishnahw_author"/>
-      <ref name="mishnahw_editor"/>
-      <ref name="mishnahw_respStmt"/>
-      <ref name="mishnahw_meeting"/>
-      <ref name="mishnahw_sponsor"/>
-      <ref name="mishnahw_funder"/>
-      <ref name="mishnahw_principal"/>
-   </define>
-   <define name="mishnahw_model.respLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_author"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_editor"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_respStmt"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_meeting"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_sponsor"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_funder"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_principal"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.respLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_author"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_editor"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_respStmt"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_meeting"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_sponsor"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_funder"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_principal"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.respLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_author"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_editor"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_respStmt"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_meeting"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_sponsor"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_funder"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_principal"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.divWrapper">
       <choice>
          <ref name="mishnahw_meeting"/>
@@ -3145,145 +2526,11 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_docDate"/>
       </choice>
    </define>
-   <define name="mishnahw_model.divWrapper_alternation">
-      <choice>
-         <ref name="mishnahw_meeting"/>
-         <ref name="mishnahw_byline"/>
-         <ref name="mishnahw_dateline"/>
-         <ref name="mishnahw_argument"/>
-         <ref name="mishnahw_epigraph"/>
-         <ref name="mishnahw_salute"/>
-         <ref name="mishnahw_docAuthor"/>
-         <ref name="mishnahw_docDate"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.divWrapper_sequence">
-      <ref name="mishnahw_meeting"/>
-      <ref name="mishnahw_byline"/>
-      <ref name="mishnahw_dateline"/>
-      <ref name="mishnahw_argument"/>
-      <ref name="mishnahw_epigraph"/>
-      <ref name="mishnahw_salute"/>
-      <ref name="mishnahw_docAuthor"/>
-      <ref name="mishnahw_docDate"/>
-   </define>
-   <define name="mishnahw_model.divWrapper_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_meeting"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_byline"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_dateline"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_argument"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_epigraph"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_salute"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_docAuthor"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_docDate"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.divWrapper_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_meeting"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_byline"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_dateline"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_argument"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_epigraph"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_salute"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_docAuthor"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_docDate"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.divWrapper_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_meeting"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_byline"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_dateline"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_argument"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_epigraph"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_salute"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_docAuthor"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_docDate"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.divTopPart">
       <choice>
          <ref name="mishnahw_model.headLike"/>
          <ref name="mishnahw_opener"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.divTopPart_alternation">
-      <choice>
-         <ref name="mishnahw_model.headLike_alternation"/>
-         <ref name="mishnahw_opener"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.divTopPart_sequence">
-      <ref name="mishnahw_model.headLike_sequence"/>
-      <ref name="mishnahw_opener"/>
-   </define>
-   <define name="mishnahw_model.divTopPart_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.headLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_opener"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.divTopPart_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.headLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_opener"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.divTopPart_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.headLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_opener"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.divTop">
       <choice>
@@ -3313,62 +2560,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_postscript"/>
       </choice>
    </define>
-   <define name="mishnahw_model.divBottomPart_alternation">
-      <choice>
-         <ref name="mishnahw_trailer"/>
-         <ref name="mishnahw_closer"/>
-         <ref name="mishnahw_signed"/>
-         <ref name="mishnahw_postscript"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.divBottomPart_sequence">
-      <ref name="mishnahw_trailer"/>
-      <ref name="mishnahw_closer"/>
-      <ref name="mishnahw_signed"/>
-      <ref name="mishnahw_postscript"/>
-   </define>
-   <define name="mishnahw_model.divBottomPart_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_trailer"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_closer"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_signed"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_postscript"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.divBottomPart_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_trailer"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_closer"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_signed"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_postscript"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.divBottomPart_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_trailer"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_closer"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_signed"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_postscript"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.divBottom">
       <choice>
          <ref name="mishnahw_model.divWrapper"/>
@@ -3395,29 +2586,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <choice>
          <ref name="mishnahw_title"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.msQuoteLike_alternation">
-      <choice>
-         <ref name="mishnahw_title"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.msQuoteLike_sequence">
-      <ref name="mishnahw_title"/>
-   </define>
-   <define name="mishnahw_model.msQuoteLike_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_title"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.msQuoteLike_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_title"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.msQuoteLike_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_title"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.msItemPart">
       <choice>
@@ -3449,51 +2617,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_biblScope"/>
          <ref name="mishnahw_pubPlace"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.imprintPart_alternation">
-      <choice>
-         <ref name="mishnahw_publisher"/>
-         <ref name="mishnahw_biblScope"/>
-         <ref name="mishnahw_pubPlace"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.imprintPart_sequence">
-      <ref name="mishnahw_publisher"/>
-      <ref name="mishnahw_biblScope"/>
-      <ref name="mishnahw_pubPlace"/>
-   </define>
-   <define name="mishnahw_model.imprintPart_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_publisher"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_biblScope"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_pubPlace"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.imprintPart_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_publisher"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_biblScope"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_pubPlace"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.imprintPart_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_publisher"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_biblScope"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_pubPlace"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.catDescPart">
       <notAllowed/>
@@ -3655,62 +2778,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.nameLike"/>
       </choice>
    </define>
-   <define name="mishnahw_model.pPart.data_alternation">
-      <choice>
-         <ref name="mishnahw_model.dateLike_alternation"/>
-         <ref name="mishnahw_model.measureLike_alternation"/>
-         <ref name="mishnahw_model.addressLike_alternation"/>
-         <ref name="mishnahw_model.nameLike_alternation"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.pPart.data_sequence">
-      <ref name="mishnahw_model.dateLike_sequence"/>
-      <ref name="mishnahw_model.measureLike_sequence"/>
-      <ref name="mishnahw_model.addressLike_sequence"/>
-      <ref name="mishnahw_model.nameLike_sequence"/>
-   </define>
-   <define name="mishnahw_model.pPart.data_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.dateLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.measureLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.addressLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.nameLike_sequenceOptional"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.pPart.data_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.dateLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.measureLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.addressLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.nameLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.pPart.data_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.dateLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.measureLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.addressLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.nameLike_sequenceRepeatable"/>
-      </oneOrMore>
-   </define>
    <define name="mishnahw_model.inter">
       <choice>
          <ref name="mishnahw_model.egLike"/>
@@ -3720,84 +2787,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.stageLike"/>
          <ref name="mishnahw_model.qLike"/>
       </choice>
-   </define>
-   <define name="mishnahw_model.inter_alternation">
-      <choice>
-         <ref name="mishnahw_model.egLike_alternation"/>
-         <ref name="mishnahw_model.biblLike_alternation"/>
-         <ref name="mishnahw_model.labelLike_alternation"/>
-         <ref name="mishnahw_model.listLike_alternation"/>
-         <ref name="mishnahw_model.stageLike_alternation"/>
-         <ref name="mishnahw_model.qLike_alternation"/>
-      </choice>
-   </define>
-   <define name="mishnahw_model.inter_sequence">
-      <ref name="mishnahw_model.egLike_sequence"/>
-      <ref name="mishnahw_model.biblLike_sequence"/>
-      <ref name="mishnahw_model.labelLike_sequence"/>
-      <ref name="mishnahw_model.listLike_sequence"/>
-      <ref name="mishnahw_model.stageLike_sequence"/>
-      <ref name="mishnahw_model.qLike_sequence"/>
-   </define>
-   <define name="mishnahw_model.inter_sequenceOptional">
-      <optional>
-         <ref name="mishnahw_model.egLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.biblLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.labelLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.listLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.stageLike_sequenceOptional"/>
-      </optional>
-      <optional>
-         <ref name="mishnahw_model.qLike_sequenceOptional"/>
-      </optional>
-   </define>
-   <define name="mishnahw_model.inter_sequenceOptionalRepeatable">
-      <zeroOrMore>
-         <ref name="mishnahw_model.egLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.biblLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.labelLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.listLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.stageLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-      <zeroOrMore>
-         <ref name="mishnahw_model.qLike_sequenceOptionalRepeatable"/>
-      </zeroOrMore>
-   </define>
-   <define name="mishnahw_model.inter_sequenceRepeatable">
-      <oneOrMore>
-         <ref name="mishnahw_model.egLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.biblLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.labelLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.listLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.stageLike_sequenceRepeatable"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahw_model.qLike_sequenceRepeatable"/>
-      </oneOrMore>
    </define>
    <define name="mishnahw_model.common">
       <choice>
@@ -3912,10 +2901,48 @@ one initial.</a:documentation>
       <optional>
          <attribute name="sort">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sort order of the name component in relation
-to others within the personal name.</a:documentation>
+to others within the name.</a:documentation>
             <ref name="mishnahw_data.count"/>
          </attribute>
       </optional>
+   </define>
+   <define name="mishnahw_att.milestoneUnit.attributes">
+      <ref name="mishnahw_att.milestoneUnit.attribute.unit"/>
+   </define>
+   <define name="mishnahw_att.milestoneUnit.attribute.unit">
+      <attribute name="unit">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a conventional name for the kind of section changing at this milestone.
+Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered</a:documentation>
+         <choice>
+            <value>page</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">physical page breaks (synonymous with the pb element).</a:documentation>
+            <value>column</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">column breaks.</a:documentation>
+            <value>line</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">line breaks (synonymous with the lb element).</a:documentation>
+            <value>book</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">any units termed book, liber, etc.</a:documentation>
+            <value>poem</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">individual poems in a collection.</a:documentation>
+            <value>canto</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">cantos or other major sections of a poem.</a:documentation>
+            <value>speaker</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">changes of speaker or narrator.</a:documentation>
+            <value>stanza</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">stanzas within a poem, book, or canto.</a:documentation>
+            <value>act</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">acts within a play.</a:documentation>
+            <value>scene</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">scenes within a play or act.</a:documentation>
+            <value>section</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">sections of any kind.</a:documentation>
+            <value>absent</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">passages not present in the reference edition.</a:documentation>
+            <value>unnumbered</value>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">passages present in the text, but not to be included as part of the reference.</a:documentation>
+            <data type="Name"/>
+         </choice>
+      </attribute>
    </define>
    <define name="mishnahw_p">
       <element name="p">
@@ -4122,13 +3149,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
          <ref name="mishnahw_att.translatable.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.pointing.attributes"/>
-         <optional>
-            <attribute name="cRef">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(canonical reference) identifies the associated term element using a canonical reference from a
-        scheme defined in a refsDecl element in the TEI header</a:documentation>
-               <ref name="mishnahw_data.pointer"/>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.cReferencing.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4143,13 +3164,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.canonical.attributes"/>
          <ref name="mishnahw_att.sortable.attributes"/>
-         <optional>
-            <attribute name="cRef">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the associated gloss element using a canonical reference from a
-          scheme defined in a refsDecl element in the TEI header</a:documentation>
-               <ref name="mishnahw_data.pointer"/>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.cReferencing.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4212,17 +3227,41 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
     reasons described in the TEI header, as part of sampling practice, or because the material is
     illegible, invisible, or inaudible. [3.4.3. ]</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.glossLike"/>
+            <choice>
+               <ref name="mishnahw_model.descLike"/>
+               <ref name="mishnahw_model.certLike"/>
+            </choice>
          </zeroOrMore>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.editLike.attribute.evidence"/>
+         <ref name="mishnahw_att.editLike.attribute.source"/>
+         <ref name="mishnahw_att.editLike.attribute.instant"/>
+         <ref name="mishnahw_att.dimensions.attribute.unit"/>
+         <ref name="mishnahw_att.dimensions.attribute.quantity"/>
+         <ref name="mishnahw_att.dimensions.attribute.precision"/>
+         <ref name="mishnahw_att.dimensions.attribute.scope"/>
+         <ref name="mishnahw_att.ranging.attribute.atLeast"/>
+         <ref name="mishnahw_att.ranging.attribute.atMost"/>
+         <ref name="mishnahw_att.ranging.attribute.min"/>
+         <ref name="mishnahw_att.ranging.attribute.max"/>
+         <ref name="mishnahw_att.ranging.attribute.confidence"/>
+         <ref name="mishnahw_att.responsibility.attribute.cert"/>
+         <ref name="mishnahw_att.responsibility.attribute.resp"/>
+         <optional>
+            <attribute name="extent">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the size of the object concerned using a project-specific vocabulary combining
+        quantity and units in a single string of words. </a:documentation>
+               <ref name="mishnahw_data.count"/>
+            </attribute>
+         </optional>
          <optional>
             <attribute name="reason">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">gives the reason for omission. Sample values include sampling,
         inaudible, irrelevant, cancelled.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -4241,23 +3280,6 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
                <ref name="mishnahw_data.enumerated"/>
             </attribute>
          </optional>
-         <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.editLike.attribute.evidence"/>
-         <ref name="mishnahw_att.editLike.attribute.source"/>
-         <ref name="mishnahw_att.editLike.attribute.instant"/>
-         <ref name="mishnahw_att.dimensions.attribute.unit"/>
-         <ref name="mishnahw_att.dimensions.attribute.quantity"/>
-         <optional>
-            <attribute name="extent">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the size of the object concerned using a project-specific vocabulary combining
-        quantity and units in a single string of words. </a:documentation>
-               <ref name="mishnahw_data.count"/>
-            </attribute>
-         </optional>
-         <ref name="mishnahw_att.dimensions.attribute.precision"/>
-         <ref name="mishnahw_att.dimensions.attribute.scope"/>
-         <ref name="mishnahw_att.ranging.attributes"/>
-         <ref name="mishnahw_att.responsibility.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4302,10 +3324,9 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
             <attribute name="reason">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates why the material is hard to transcribe.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -4332,7 +3353,9 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(name, proper noun) contains a proper noun or noun phrase. [3.5.1. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.naming.attributes"/>
+         <ref name="mishnahw_att.personal.attributes"/>
+         <ref name="mishnahw_att.datable.attributes"/>
+         <ref name="mishnahw_att.editLike.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <empty/>
       </element>
@@ -4521,14 +3544,7 @@ Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage</a
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.responsibility.attributes"/>
-         <optional>
-            <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">allows the encoder to classify the abbreviation according to some convenient
-                typology.
-Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscription; 5] acronym; 6] title; 7] organization; 8] geographic</a:documentation>
-               <ref name="mishnahw_data.enumerated"/>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.typed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4560,18 +3576,7 @@ Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscr
          <ref name="mishnahw_att.internetMedia.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.declaring.attributes"/>
-         <optional>
-            <attribute name="cRef">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
-        scheme defined in a refsDecl element in the TEI header</a:documentation>
-               <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
-                     <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
-               </list>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.cReferencing.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4594,18 +3599,7 @@ Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscr
          <ref name="mishnahw_att.internetMedia.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.declaring.attributes"/>
-         <optional>
-            <attribute name="cRef">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(canonical reference) specifies the destination of the reference by supplying a canonical reference from a
-        scheme defined in a refsDecl element in the TEI header</a:documentation>
-               <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
-                     <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
-               </list>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.cReferencing.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4761,10 +3755,9 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to the end of the span to which the note is attached, if the note is not embedded
         in the text at that point.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -4786,7 +3779,8 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <ref name="mishnahw_att.spanning.attributes"/>
          <optional>
             <attribute name="indexName">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a name to specify which index (of several) the index entry belongs to.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">a single word which follows the rules defining a
+        legal XML name (see ), supplying a name to specify which index (of several) the index entry belongs to.</a:documentation>
                <ref name="mishnahw_data.name"/>
             </attribute>
          </optional>
@@ -4797,7 +3791,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
       <element name="graphic">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location of an inline graphic, illustration, or figure. [3.9. ]</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.glossLike"/>
+            <ref name="mishnahw_model.descLike"/>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.internetMedia.attributes"/>
@@ -4856,10 +3850,9 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The encoding used to encode the binary data. If not specified, this is assumed to be
           Base64.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -4873,43 +3866,11 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
     the change is not represented by a structural element. [3.10.3. ]</a:documentation>
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.milestoneUnit.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.sourced.attributes"/>
          <ref name="mishnahw_att.spanning.attributes"/>
          <ref name="mishnahw_att.breaking.attributes"/>
-         <attribute name="unit">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a conventional name for the kind of section changing at this milestone.
-Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered</a:documentation>
-            <choice>
-               <value>page</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">physical page breaks (synonymous with the pb element).</a:documentation>
-               <value>column</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">column breaks.</a:documentation>
-               <value>line</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">line breaks (synonymous with the lb element).</a:documentation>
-               <value>book</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">any units termed book, liber, etc.</a:documentation>
-               <value>poem</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">individual poems in a collection.</a:documentation>
-               <value>canto</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">cantos or other major sections of a poem.</a:documentation>
-               <value>speaker</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">changes of speaker or narrator.</a:documentation>
-               <value>stanza</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">stanzas within a poem, book, or canto.</a:documentation>
-               <value>act</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">acts within a play.</a:documentation>
-               <value>scene</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">scenes within a play or act.</a:documentation>
-               <value>section</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">sections of any kind.</a:documentation>
-               <value>absent</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">passages not present in the reference edition.</a:documentation>
-               <value>unnumbered</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">passages present in the text, but not to be included as part of the reference.</a:documentation>
-               <data type="Name"/>
-            </choice>
-         </attribute>
          <empty/>
       </element>
    </define>
@@ -5031,6 +3992,9 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
                         </choice>
                      </zeroOrMore>
                   </group>
+                  <group>
+                     <ref name="mishnahw_idno"/>
+                  </group>
                </choice>
             </optional>
             <zeroOrMore>
@@ -5150,6 +4114,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
          <ref name="mishnahw_macro.paraContent"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.canonical.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
          <optional>
             <attribute name="level">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the bibliographic level for a title, that is, whether
@@ -5175,13 +4140,6 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
                </choice>
             </attribute>
          </optional>
-         <optional>
-            <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the title according to some convenient typology.
-Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) </a:documentation>
-               <ref name="mishnahw_data.enumerated"/>
-            </attribute>
-         </optional>
          <empty/>
       </element>
    </define>
@@ -5199,6 +4157,10 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
       <element name="imprint">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups information relating to the publication or distribution
         of a bibliographic item. [3.11.2.3. ]</a:documentation>
+         <zeroOrMore>
+            <ref name="mishnahw_classCode"/>
+            <ref name="mishnahw_catRef"/>
+         </zeroOrMore>
          <oneOrMore>
             <choice>
                <group>
@@ -5303,6 +4265,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
          <ref name="mishnahw_att.declarable.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.sortable.attributes"/>
+         <ref name="mishnahw_att.docStatus.attributes"/>
          <empty/>
       </element>
    </define>
@@ -5324,6 +4287,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
                <choice>
                   <ref name="mishnahw_model.noteLike"/>
                   <ref name="mishnahw_idno"/>
+                  <ref name="mishnahw_model.ptrLike"/>
                   <ref name="mishnahw_relatedItem"/>
                </choice>
             </zeroOrMore>
@@ -5332,6 +4296,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
          <ref name="mishnahw_att.declarable.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.sortable.attributes"/>
+         <ref name="mishnahw_att.docStatus.attributes"/>
          <empty/>
       </element>
    </define>
@@ -5468,8 +4433,8 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                           test="count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) &gt; 0">An &lt;lg&gt; 
-        must contain at least one child &lt;l&gt;, &lt;lg&gt; or &lt;gap&gt;.</sch:assert>
+                           test="count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) &gt; 0">An lg element
+        must contain at least one child l, lg or gap element.</sch:assert>
             </rule>
          </pattern>
     
@@ -5634,6 +4599,7 @@ Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist</a:documentation
             <ref name="mishnahw_encodingDesc"/>
             <ref name="mishnahw_revisionDesc"/>
          </group>
+         <ref name="mishnahw_att.global.attributes"/>
          <optional>
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="type"
                        a:defaultValue="text">
@@ -5643,7 +4609,6 @@ Sample values include: 1] text; 2] corpus</a:documentation>
                <ref name="mishnahw_data.enumerated"/>
             </attribute>
          </optional>
-         <ref name="mishnahw_att.global.attributes"/>
          <empty/>
       </element>
    </define>
@@ -5716,7 +4681,7 @@ creation of an electronic text. [2.2.1. ]</a:documentation>
             <group>
                <ref name="mishnahw_edition"/>
                <zeroOrMore>
-                  <ref name="mishnahw_respStmt"/>
+                  <ref name="mishnahw_model.respLike"/>
                </zeroOrMore>
             </group>
          </choice>
@@ -5973,6 +4938,7 @@ creation of an electronic text. [2.2.1. ]</a:documentation>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.declarable.attributes"/>
          <ref name="mishnahw_att.sortable.attributes"/>
+         <ref name="mishnahw_att.docStatus.attributes"/>
          <empty/>
       </element>
    </define>
@@ -6284,10 +5250,23 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
          <empty/>
       </element>
    </define>
+   <define name="mishnahw_styleDefDecl">
+      <element name="styleDefDecl">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (style definition language declaration) specifies the name of the formal language in which style or
+  renditional information is supplied elsewhere in the document.</a:documentation>
+         <zeroOrMore>
+            <ref name="mishnahw_model.pLike"/>
+         </zeroOrMore>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.declarable.attributes"/>
+         <ref name="mishnahw_att.styleDef.attributes"/>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahw_refsDecl">
       <element name="refsDecl">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(references declaration) specifies how canonical references are constructed for this
-  text. [2.3.5.3.  2.3.  2.3.5. ]</a:documentation>
+  text. [2.3.6.3.  2.3.  2.3.6. ]</a:documentation>
          <choice>
             <oneOrMore>
                <ref name="mishnahw_model.pLike"/>
@@ -6307,7 +5286,7 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
    <define name="mishnahw_cRefPattern">
       <element name="cRefPattern">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into
-    a URI.  [2.3.5.3.  2.3.5.  2.3.5.2. ]</a:documentation>
+    a URI.  [2.3.6.3.  2.3.6.  2.3.6.2. ]</a:documentation>
          <zeroOrMore>
             <ref name="mishnahw_model.pLike"/>
          </zeroOrMore>
@@ -6327,39 +5306,11 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
    </define>
    <define name="mishnahw_refState">
       <element name="refState">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.5.3.  2.3.5. ]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.6.3.  2.3.6. ]</a:documentation>
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.milestoneUnit.attributes"/>
          <ref name="mishnahw_att.sourced.attributes"/>
-         <attribute name="unit">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates what kind of state is changing at this milestone.
-Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] stanza; 8] act; 9] scene; 10] section; 11] absent</a:documentation>
-            <choice>
-               <value>page</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">page breaks in the reference edition. </a:documentation>
-               <value>column</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">column breaks. </a:documentation>
-               <value>line</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">line breaks. </a:documentation>
-               <value>book</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">any units termed book, liber, etc. </a:documentation>
-               <value>poem</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">individual poems in a collection. </a:documentation>
-               <value>canto</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">cantos or other major sections of a poem. </a:documentation>
-               <value>stanza</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">stanzas within a poem, book, or canto. </a:documentation>
-               <value>act</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">acts within a play. </a:documentation>
-               <value>scene</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">scenes within a play or act. </a:documentation>
-               <value>section</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">sections of any kind. </a:documentation>
-               <value>absent</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">passages not present in the reference edition.</a:documentation>
-               <data type="Name"/>
-            </choice>
-         </attribute>
          <optional>
             <attribute name="length">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the fixed length of the reference component.</a:documentation>
@@ -6378,7 +5329,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
    <define name="mishnahw_classDecl">
       <element name="classDecl">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(classification declarations) contains one or more taxonomies defining any classificatory
-codes used elsewhere in the text. [2.3.6.  2.3. ]</a:documentation>
+codes used elsewhere in the text. [2.3.7.  2.3. ]</a:documentation>
          <oneOrMore>
             <ref name="mishnahw_taxonomy"/>
          </oneOrMore>
@@ -6389,10 +5340,13 @@ codes used elsewhere in the text. [2.3.6.  2.3. ]</a:documentation>
    <define name="mishnahw_taxonomy">
       <element name="taxonomy">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines a typology either implicitly, by means of a bibliographic
-    citation, or explicitly by a structured taxonomy. [2.3.6. ]</a:documentation>
+    citation, or explicitly by a structured taxonomy. [2.3.7. ]</a:documentation>
          <choice>
             <zeroOrMore>
-               <ref name="mishnahw_model.glossLike"/>
+               <choice>
+                  <ref name="mishnahw_model.glossLike"/>
+                  <ref name="mishnahw_model.descLike"/>
+               </choice>
             </zeroOrMore>
             <oneOrMore>
                <ref name="mishnahw_category"/>
@@ -6413,14 +5367,17 @@ codes used elsewhere in the text. [2.3.6.  2.3. ]</a:documentation>
    <define name="mishnahw_category">
       <element name="category">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an individual descriptive category, possibly nested within a superordinate
-    category, within a user-defined taxonomy. [2.3.6. ]</a:documentation>
+    category, within a user-defined taxonomy. [2.3.7. ]</a:documentation>
          <group>
             <choice>
                <oneOrMore>
                   <ref name="mishnahw_catDesc"/>
                </oneOrMore>
                <zeroOrMore>
-                  <ref name="mishnahw_model.glossLike"/>
+                  <choice>
+                     <ref name="mishnahw_model.descLike"/>
+                     <ref name="mishnahw_model.glossLike"/>
+                  </choice>
                </zeroOrMore>
             </choice>
             <zeroOrMore>
@@ -6434,7 +5391,7 @@ codes used elsewhere in the text. [2.3.6.  2.3. ]</a:documentation>
    <define name="mishnahw_catDesc">
       <element name="catDesc">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(category description) describes some category within a taxonomy or text typology, either in the form of a brief
-    prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.6. ]</a:documentation>
+    prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.7. ]</a:documentation>
          <zeroOrMore>
             <choice>
                <text/>
@@ -6443,6 +5400,36 @@ codes used elsewhere in the text. [2.3.6.  2.3. ]</a:documentation>
             </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_geoDecl">
+      <element name="geoDecl">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
+    the geo element elsewhere within the document. [2.3.8. ]</a:documentation>
+         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.declarable.attributes"/>
+         <optional>
+            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="datum"
+                       a:defaultValue="WGS84">
+               <a:documentation>supplies a commonly used code name for the datum employed.
+Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) </a:documentation>
+               <choice>
+                  <value>WGS84</value>
+                  <a:documentation>(World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
+            the World Geodetic System.</a:documentation>
+                  <value>MGRS</value>
+                  <a:documentation>(Military Grid Reference System) the values supplied are geospatial entity object codes, based on</a:documentation>
+                  <value>OSGB36</value>
+                  <a:documentation>(ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.</a:documentation>
+                  <value>ED50</value>
+                  <a:documentation>(European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
+            to the European Datum coordinate system.</a:documentation>
+                  <data type="Name"/>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -6589,11 +5576,13 @@ represented within a text. [2.4.2.  2.4.  15.3.2. ]</a:documentation>
             <ref name="mishnahw_list"/>
          </choice>
          <ref name="mishnahw_att.global.attributes"/>
-         <attribute name="scheme">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the controlled vocabulary within which the set of keywords concerned is
+         <optional>
+            <attribute name="scheme">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the controlled vocabulary within which the set of keywords concerned is
         defined. </a:documentation>
-            <ref name="mishnahw_data.pointer"/>
-         </attribute>
+               <ref name="mishnahw_data.pointer"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -6672,10 +5661,9 @@ represented within a text. [2.4.2.  2.4.  15.3.2. ]</a:documentation>
             <attribute name="target">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to one or more elements that belong to this change.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -6700,36 +5688,6 @@ with either the creation of a source text or the revision of an encoded text. </
                <a:documentation>indicates whether the ordering of its child change
 elements is to be considered significant or not</a:documentation>
                <ref name="mishnahw_data.truthValue"/>
-            </attribute>
-         </optional>
-         <empty/>
-      </element>
-   </define>
-   <define name="mishnahw_geoDecl">
-      <element name="geoDecl">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
-    the geo element elsewhere within the document.</a:documentation>
-         <ref name="mishnahw_macro.phraseSeq"/>
-         <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.declarable.attributes"/>
-         <optional>
-            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="datum"
-                       a:defaultValue="WGS84">
-               <a:documentation>supplies a commonly used code name for the datum employed.
-Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) </a:documentation>
-               <choice>
-                  <value>WGS84</value>
-                  <a:documentation>(World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
-            the World Geodetic System.</a:documentation>
-                  <value>MGRS</value>
-                  <a:documentation>(Military Grid Reference System) the values supplied are geospatial entity object codes, based on</a:documentation>
-                  <value>OSGB36</value>
-                  <a:documentation>(ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.</a:documentation>
-                  <value>ED50</value>
-                  <a:documentation>(European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
-            to the European Datum coordinate system.</a:documentation>
-                  <data type="Name"/>
-               </choice>
             </attribute>
          </optional>
          <empty/>
@@ -7106,22 +6064,30 @@ teiCorpus element. [4.  15.1. ]</a:documentation>
                </zeroOrMore>
             </optional>
          </group>
+         <ref name="mishnahw_att.global.attribute.n"/>
+         <ref name="mishnahw_att.global.attribute.xmllang"/>
+         <ref name="mishnahw_att.global.attribute.rend"/>
+         <ref name="mishnahw_att.global.attribute.style"/>
+         <ref name="mishnahw_att.global.attribute.rendition"/>
+         <ref name="mishnahw_att.global.attribute.xmlbase"/>
+         <ref name="mishnahw_att.global.attribute.xmlspace"/>
+         <ref name="mishnahw_att.global.linking.attribute.corresp"/>
+         <ref name="mishnahw_att.global.linking.attribute.synch"/>
+         <ref name="mishnahw_att.global.linking.attribute.sameAs"/>
+         <ref name="mishnahw_att.global.linking.attribute.copyOf"/>
+         <ref name="mishnahw_att.global.linking.attribute.next"/>
+         <ref name="mishnahw_att.global.linking.attribute.prev"/>
+         <ref name="mishnahw_att.global.linking.attribute.exclude"/>
+         <ref name="mishnahw_att.global.linking.attribute.select"/>
+         <ref name="mishnahw_att.global.facs.attribute.facs"/>
+         <ref name="mishnahw_att.global.change.attribute.change"/>
+         <ref name="mishnahw_att.divLike.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.declaring.attributes"/>
          <attribute name="xml:id">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
             <data type="ID"/>
          </attribute>
-         <ref name="mishnahw_att.global.attribute.n"/>
-         <ref name="mishnahw_att.global.attribute.xmllang"/>
-         <ref name="mishnahw_att.global.attribute.rend"/>
-         <ref name="mishnahw_att.global.attribute.rendition"/>
-         <ref name="mishnahw_att.global.attribute.xmlbase"/>
-         <ref name="mishnahw_att.global.attribute.xmlspace"/>
-         <ref name="mishnahw_att.global.linking.attributes"/>
-         <ref name="mishnahw_att.global.facs.attributes"/>
-         <ref name="mishnahw_att.global.change.attributes"/>
-         <ref name="mishnahw_att.divLike.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.declaring.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7177,22 +6143,30 @@ teiCorpus element. [4.  15.1. ]</a:documentation>
                </zeroOrMore>
             </optional>
          </group>
+         <ref name="mishnahw_att.global.attribute.n"/>
+         <ref name="mishnahw_att.global.attribute.xmllang"/>
+         <ref name="mishnahw_att.global.attribute.rend"/>
+         <ref name="mishnahw_att.global.attribute.style"/>
+         <ref name="mishnahw_att.global.attribute.rendition"/>
+         <ref name="mishnahw_att.global.attribute.xmlbase"/>
+         <ref name="mishnahw_att.global.attribute.xmlspace"/>
+         <ref name="mishnahw_att.global.linking.attribute.corresp"/>
+         <ref name="mishnahw_att.global.linking.attribute.synch"/>
+         <ref name="mishnahw_att.global.linking.attribute.sameAs"/>
+         <ref name="mishnahw_att.global.linking.attribute.copyOf"/>
+         <ref name="mishnahw_att.global.linking.attribute.next"/>
+         <ref name="mishnahw_att.global.linking.attribute.prev"/>
+         <ref name="mishnahw_att.global.linking.attribute.exclude"/>
+         <ref name="mishnahw_att.global.linking.attribute.select"/>
+         <ref name="mishnahw_att.global.facs.attribute.facs"/>
+         <ref name="mishnahw_att.global.change.attribute.change"/>
+         <ref name="mishnahw_att.divLike.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.declaring.attributes"/>
          <attribute name="xml:id">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
             <data type="ID"/>
          </attribute>
-         <ref name="mishnahw_att.global.attribute.n"/>
-         <ref name="mishnahw_att.global.attribute.xmllang"/>
-         <ref name="mishnahw_att.global.attribute.rend"/>
-         <ref name="mishnahw_att.global.attribute.rendition"/>
-         <ref name="mishnahw_att.global.attribute.xmlbase"/>
-         <ref name="mishnahw_att.global.attribute.xmlspace"/>
-         <ref name="mishnahw_att.global.linking.attributes"/>
-         <ref name="mishnahw_att.global.facs.attributes"/>
-         <ref name="mishnahw_att.global.change.attributes"/>
-         <ref name="mishnahw_att.divLike.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.declaring.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7247,22 +6221,30 @@ teiCorpus element. [4.  15.1. ]</a:documentation>
                </zeroOrMore>
             </optional>
          </group>
+         <ref name="mishnahw_att.global.attribute.n"/>
+         <ref name="mishnahw_att.global.attribute.xmllang"/>
+         <ref name="mishnahw_att.global.attribute.rend"/>
+         <ref name="mishnahw_att.global.attribute.style"/>
+         <ref name="mishnahw_att.global.attribute.rendition"/>
+         <ref name="mishnahw_att.global.attribute.xmlbase"/>
+         <ref name="mishnahw_att.global.attribute.xmlspace"/>
+         <ref name="mishnahw_att.global.linking.attribute.corresp"/>
+         <ref name="mishnahw_att.global.linking.attribute.synch"/>
+         <ref name="mishnahw_att.global.linking.attribute.sameAs"/>
+         <ref name="mishnahw_att.global.linking.attribute.copyOf"/>
+         <ref name="mishnahw_att.global.linking.attribute.next"/>
+         <ref name="mishnahw_att.global.linking.attribute.prev"/>
+         <ref name="mishnahw_att.global.linking.attribute.exclude"/>
+         <ref name="mishnahw_att.global.linking.attribute.select"/>
+         <ref name="mishnahw_att.global.facs.attribute.facs"/>
+         <ref name="mishnahw_att.global.change.attribute.change"/>
+         <ref name="mishnahw_att.divLike.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.declaring.attributes"/>
          <attribute name="xml:id">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
             <data type="ID"/>
          </attribute>
-         <ref name="mishnahw_att.global.attribute.n"/>
-         <ref name="mishnahw_att.global.attribute.xmllang"/>
-         <ref name="mishnahw_att.global.attribute.rend"/>
-         <ref name="mishnahw_att.global.attribute.rendition"/>
-         <ref name="mishnahw_att.global.attribute.xmlbase"/>
-         <ref name="mishnahw_att.global.attribute.xmlspace"/>
-         <ref name="mishnahw_att.global.linking.attributes"/>
-         <ref name="mishnahw_att.global.facs.attributes"/>
-         <ref name="mishnahw_att.global.change.attributes"/>
-         <ref name="mishnahw_att.divLike.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.declaring.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7393,7 +6375,7 @@ on its title page or at the head or end of the work. [4.2.2.  4.5. ]</a:document
       <element name="signed">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(signature) contains the closing salutation, etc., appended to a foreword,
 dedicatory epistle, or other division of a text.  [4.2.2. ]</a:documentation>
-         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_macro.paraContent"/>
          <ref name="mishnahw_att.global.attributes"/>
          <empty/>
       </element>
@@ -7722,10 +6704,9 @@ found  at the start of a document, before the main body. [4.6.  4. ]</a:document
          <attribute name="facs">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(facsimile) points to all or part of an image which corresponds with the content of the element.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -7740,10 +6721,9 @@ found  at the start of a document, before the main body. [4.6.  4. ]</a:document
       a state or revision campaign to which the element bearing this
       attribute and its children have been assigned by the encoder.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -7841,6 +6821,23 @@ rectangular space.</a:documentation>
          <empty/>
       </element>
    </define>
+   <define name="mishnahw_fw">
+      <element name="fw">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(forme work) contains a running head (e.g. a header, footer), catchword, or
+  similar material appearing on the current page. [11.6. ]</a:documentation>
+         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.placement.attributes"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the material encoded according to some useful typology.
+Sample values include: 1] header; 2] footer; 3] pageNum(page number) ; 4] lineNum(line number) ; 5] sig(signature) ; 6] catch(catchword) </a:documentation>
+               <ref name="mishnahw_data.enumerated"/>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahw_am">
       <element name="am">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(abbreviation marker) contains a sequence of letters or signs present in an
@@ -7873,7 +6870,7 @@ cancellation of an editorial or authorial marking or instruction. [11.3.1.6. ]</
       <element name="space">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location of a significant space in the copy text. [11.5.1. ]</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.glossLike"/>
+            <ref name="mishnahw_model.descLike"/>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.dimensions.attributes"/>
@@ -7915,7 +6912,7 @@ the space.</a:documentation>
             <rule context="tei:subst">
                <assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                       test="child::add and child::del">
+                       test="child::tei:add and child::tei:del">
         Subst must have at least one child add and at least one child del</assert>
             </rule>
          </pattern>
@@ -7929,7 +6926,10 @@ the space.</a:documentation>
       <element name="substJoin">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(substitution join) identifies a series of  possibly fragmented additions, deletions or other revisions on a manuscript that combine to make up a single intervention in the text</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.glossLike"/>
+            <choice>
+               <ref name="mishnahw_model.descLike"/>
+               <ref name="mishnahw_model.certLike"/>
+            </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.pointing.attributes"/>
@@ -7949,10 +6949,9 @@ the space.</a:documentation>
             <attribute name="reason">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates why the text has had to be supplied.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -7970,10 +6969,9 @@ the space.</a:documentation>
             <attribute name="reason">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the grounds for believing this text to be superfluous.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.word"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.word"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8030,10 +7028,9 @@ the space.</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies one or more elements to which the function
 	 indicated by the metamark applies. </a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8065,10 +7062,9 @@ the space.</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to one or more elements representing the
 	 interventions which are being reasserted.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8114,10 +7110,9 @@ the space.</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to one or more elements representing the
 	 interventions which are to be reverted or undone.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8140,10 +7135,9 @@ the space.</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(corresponds) points to elements that correspond to the current
       element in some way.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8154,10 +7148,9 @@ the space.</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(synchronous) points to elements that are synchronous with the current
       element.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8204,10 +7197,9 @@ the space.</a:documentation>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">points to elements that are in exclusive alternation
       with the current element.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8221,10 +7213,9 @@ the space.</a:documentation>
       uncertainty is marked as reduced by the number of alternants not
       selected.</a:documentation>
             <list>
-               <ref name="mishnahw_data.pointer"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.pointer"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8233,6 +7224,29 @@ the space.</a:documentation>
       <element name="ab">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. ]</a:documentation>
          <ref name="mishnahw_macro.paraContent"/>
+         <ref name="mishnahw_att.global.attribute.n"/>
+         <ref name="mishnahw_att.global.attribute.xmllang"/>
+         <ref name="mishnahw_att.global.attribute.rend"/>
+         <ref name="mishnahw_att.global.attribute.style"/>
+         <ref name="mishnahw_att.global.attribute.rendition"/>
+         <ref name="mishnahw_att.global.attribute.xmlbase"/>
+         <ref name="mishnahw_att.global.attribute.xmlspace"/>
+         <ref name="mishnahw_att.global.linking.attribute.corresp"/>
+         <ref name="mishnahw_att.global.linking.attribute.synch"/>
+         <ref name="mishnahw_att.global.linking.attribute.sameAs"/>
+         <ref name="mishnahw_att.global.linking.attribute.copyOf"/>
+         <ref name="mishnahw_att.global.linking.attribute.next"/>
+         <ref name="mishnahw_att.global.linking.attribute.prev"/>
+         <ref name="mishnahw_att.global.linking.attribute.exclude"/>
+         <ref name="mishnahw_att.global.linking.attribute.select"/>
+         <ref name="mishnahw_att.global.facs.attribute.facs"/>
+         <ref name="mishnahw_att.global.change.attribute.change"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.declaring.attributes"/>
+         <attribute name="xml:id">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+            <data type="ID"/>
+         </attribute>
          <optional>
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
                        a:defaultValue="N">
@@ -8251,21 +7265,6 @@ the space.</a:documentation>
                </choice>
             </attribute>
          </optional>
-         <attribute name="xml:id">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
-            <data type="ID"/>
-         </attribute>
-         <ref name="mishnahw_att.global.attribute.n"/>
-         <ref name="mishnahw_att.global.attribute.xmllang"/>
-         <ref name="mishnahw_att.global.attribute.rend"/>
-         <ref name="mishnahw_att.global.attribute.rendition"/>
-         <ref name="mishnahw_att.global.attribute.xmlbase"/>
-         <ref name="mishnahw_att.global.attribute.xmlspace"/>
-         <ref name="mishnahw_att.global.linking.attributes"/>
-         <ref name="mishnahw_att.global.facs.attributes"/>
-         <ref name="mishnahw_att.global.change.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.declaring.attributes"/>
          <empty/>
       </element>
    </define>
@@ -8286,6 +7285,7 @@ the space.</a:documentation>
                <text/>
                <ref name="mishnahw_model.pPart.transcriptional"/>
                <ref name="mishnahw_model.milestoneLike"/>
+               <ref name="mishnahw_model.pPart.editorial"/>
                <ref name="mishnahw_model.segLike"/>
                <ref name="mishnahw_listTranspose"/>
             </choice>
@@ -8301,7 +7301,10 @@ the space.</a:documentation>
       <element name="join">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. [16.7. ]</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.glossLike"/>
+            <choice>
+               <ref name="mishnahw_model.descLike"/>
+               <ref name="mishnahw_model.certLike"/>
+            </choice>
          </zeroOrMore>
     
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="join-constraint-joinTargets1">
@@ -8429,20 +7432,12 @@ manuscript or other text-bearing object. [10.1. ]</a:documentation>
                   <optional>
                      <ref name="mishnahw_physDesc"/>
                   </optional>
-                  <optional>
-                     <empty/>
-                  </optional>
-                  <optional>
-                     <empty/>
-                  </optional>
-                  <zeroOrMore>
-                     <empty/>
-                  </zeroOrMore>
                </group>
             </choice>
          </group>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.sortable.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -8591,14 +7586,8 @@ the  manuscript being described.  [10.4. ]</a:documentation>
             <group>
                <ref name="mishnahw_model.placeNamePart_sequenceOptional"/>
                <optional>
-                  <empty/>
-               </optional>
-               <optional>
                   <ref name="mishnahw_repository"/>
                </optional>
-               <zeroOrMore>
-                  <empty/>
-               </zeroOrMore>
                <optional>
                   <ref name="mishnahw_idno"/>
                </optional>
@@ -8642,9 +7631,6 @@ the  manuscript being described.  [10.4. ]</a:documentation>
             </oneOrMore>
             <group>
                <optional>
-                  <empty/>
-               </optional>
-               <optional>
                   <ref name="mishnahw_textLang"/>
                </optional>
                <optional>
@@ -8663,10 +7649,9 @@ the  manuscript being described.  [10.4. ]</a:documentation>
             <attribute name="class">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the text types or classifications applicable to this object.</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8704,10 +7689,9 @@ the  manuscript being described.  [10.4. ]</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the text types or classifications applicable to this
 item</a:documentation>
                <list>
-                  <ref name="mishnahw_data.pointer"/>
-                  <zeroOrMore>
+                  <oneOrMore>
                      <ref name="mishnahw_data.pointer"/>
-                  </zeroOrMore>
+                  </oneOrMore>
                </list>
             </attribute>
          </optional>
@@ -8774,15 +7758,6 @@ specialized elements from the model.physDescPart class. [10.7. ]</a:documentatio
                <optional>
                   <ref name="mishnahw_extent"/>
                </optional>
-               <zeroOrMore>
-                  <empty/>
-               </zeroOrMore>
-               <optional>
-                  <empty/>
-               </optional>
-               <optional>
-                  <empty/>
-               </optional>
             </group>
          </choice>
          <ref name="mishnahw_att.global.attributes"/>
@@ -8822,9 +7797,6 @@ etc. which make up the physical support for the written part of a manuscript. [1
                <ref name="mishnahw_model.pLike"/>
             </oneOrMore>
             <group>
-               <optional>
-                  <empty/>
-               </optional>
                <oneOrMore>
                   <ref name="mishnahw_layout"/>
                </oneOrMore>
@@ -8886,9 +7858,6 @@ etc. which make up the physical support for the written part of a manuscript. [1
                <ref name="mishnahw_model.pLike"/>
             </oneOrMore>
             <group>
-               <optional>
-                  <empty/>
-               </optional>
                <oneOrMore>
                   <ref name="mishnahw_handNote"/>
                </oneOrMore>
@@ -8918,10 +7887,9 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <attribute name="when-custom">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies the value of a date or time in some standard form.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8931,10 +7899,9 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <attribute name="notBefore-custom">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the earliest possible date for the event in some custom standard form.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8944,10 +7911,9 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <attribute name="notAfter-custom">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the latest possible date for the event in some custom standard form.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8957,10 +7923,9 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <attribute name="from-custom">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the starting point of the period in some standard form.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8970,10 +7935,9 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <attribute name="to-custom">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the ending point of the period in some standard form.</a:documentation>
             <list>
-               <ref name="mishnahw_data.word"/>
-               <zeroOrMore>
+               <oneOrMore>
                   <ref name="mishnahw_data.word"/>
-               </zeroOrMore>
+               </oneOrMore>
             </list>
          </attribute>
       </optional>
@@ -8989,7 +7953,7 @@ etc. which make up the physical support for the written part of a manuscript. [1
    <define name="mishnahw_att.datable.custom.attribute.datingMethod">
       <optional>
          <attribute name="datingMethod">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a pointer to a calendar element or other means of interpreting the values of the custom dating attributes.</a:documentation>
             <ref name="mishnahw_data.pointer"/>
          </attribute>
       </optional>
@@ -9048,7 +8012,7 @@ etc. which make up the physical support for the written part of a manuscript. [1
          <ref name="mishnahw_att.datable.attributes"/>
          <ref name="mishnahw_att.editLike.attributes"/>
          <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.naming.attributes"/>
+         <ref name="mishnahw_att.personal.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <empty/>
       </element>
@@ -9137,7 +8101,7 @@ etc. which make up the physical support for the written part of a manuscript. [1
    </define>
    <define name="mishnahw_g">
       <element name="g">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(character or glyph) represents a non-standard character or glyph. [5. ]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(character or glyph) represents a glyph, or a non-standard character. [5. ]</a:documentation>
          <text/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
@@ -9197,6 +8161,8 @@ etc. which make up the physical support for the written part of a manuscript. [1
       </element>
    </define>
    <start>
-      <ref name="mishnahw_TEI"/>
+      <choice>
+         <ref name="mishnahw_TEI"/>
+      </choice>
    </start>
 </grammar>

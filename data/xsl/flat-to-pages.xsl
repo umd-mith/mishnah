@@ -22,6 +22,7 @@
 <xsl:template match="tei:div[@ana='temp']">
     <xsl:apply-templates/>
 </xsl:template>
+    <xsl:template match="tei:fw"><!-- for now removing fw, will need to reintroduce --></xsl:template>
     
     <xsl:template match="tei:body/tei:div/tei:p">
         

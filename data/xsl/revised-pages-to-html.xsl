@@ -28,6 +28,8 @@
     <xsl:template
         match="//tei:anchor | //tei:damageSpan |
         tei:milestone[@unit='MSMishnah'] | tei:milestone[@unit='fragment']"> </xsl:template>
+    <!-- for now ignoring fw for running heads etc. -->
+    <xsl:template match="//tei:fw"></xsl:template>
     <xsl:template match="tei:ab | tei:w">
         <xsl:apply-templates select="node()"/>
     </xsl:template>

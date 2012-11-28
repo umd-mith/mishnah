@@ -74,7 +74,8 @@
         <milestone unit="ab">
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
         </milestone>
-        <xsl:copy-of select="node()"/>
+        <!-- removing fw temporarily. will need to revisit -->
+        <xsl:copy-of select="node() except tei:fw"/>
     </xsl:template>
     <xsl:template match="tei:head">
         <label>
@@ -88,4 +89,6 @@
             <xsl:copy-of select="node()"/>
         </label>
     </xsl:template>
+    <!-- for now, removing fw. May need to be added. -->
+    <xsl:template match="//tei:fw"></xsl:template>
 </xsl:stylesheet>

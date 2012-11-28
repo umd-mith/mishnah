@@ -5,9 +5,9 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-08-01T17:04:42Z. 
-# Edition: 2.1.0. Last updated on 17th June 2012.
-# Edition Location: http://www.tei-c.org/Vault/P5/2.1.0/
+# Schema generated from ODD source 2012-10-26T13:47:57Z. 
+# Edition: 2.2.0. Last updated on 25th October 2012.
+# Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
 #
 
 # This work is copyright Trevor Muñoz and Maryland Institute for Technology in
@@ -18,7 +18,8 @@ mishnahw_macro.paraContent =
    | mishnahw_model.gLike
    | mishnahw_model.phrase
    | mishnahw_model.inter
-   | mishnahw_model.global)*
+   | mishnahw_model.global
+   | mishnahw_lg)*
 mishnahw_macro.limitedContent =
   (text | mishnahw_model.limitedPhrase | mishnahw_model.inter)*
 mishnahw_macro.phraseSeq =
@@ -86,7 +87,7 @@ mishnahw_att.ascribed.attribute.who =
   
   ## indicates the person, or group of people, to whom the element content is ascribed.
   attribute who {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.canonical.attributes =
   mishnahw_att.canonical.attribute.key,
@@ -101,7 +102,7 @@ mishnahw_att.canonical.attribute.ref =
   ## (reference) provides an explicit means of locating a full definition for the entity being named by
   ##         means of one or more URIs.
   attribute ref {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.ranging.attributes =
   mishnahw_att.ranging.attribute.atLeast,
@@ -218,6 +219,13 @@ mishnahw_att.breaking.attribute.break =
   ##	bearing this attribute should be considered to mark the end of
   ##	an orthographic token in the same way as whitespace.
   attribute break { mishnahw_data.enumerated }?
+mishnahw_att.cReferencing.attributes =
+  mishnahw_att.cReferencing.attribute.cRef
+mishnahw_att.cReferencing.attribute.cRef =
+  
+  ## (canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
+  ##         scheme defined in a refsDecl element in the TEI header
+  attribute cRef { mishnahw_data.text }?
 mishnahw_att.datable.w3c.attributes =
   mishnahw_att.datable.w3c.attribute.when,
   mishnahw_att.datable.w3c.attribute.notBefore,
@@ -259,6 +267,24 @@ mishnahw_att.datable.attribute.calendar =
   ## indicates the system or calendar to which the date represented by the content of this
   ##         element belongs.
   attribute calendar { mishnahw_data.pointer }?
+sch:pattern [
+  id = "calendar-constraint-calendar"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@calendar]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "string-length(.) gt 0"
+      "@calendar indicates the system or calendar to which the date represented by the content of this element belongs, but this element has no textual content."
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
 mishnahw_att.datable.attribute.period =
   
   ## supplies a pointer to some location defining a named
@@ -273,7 +299,7 @@ mishnahw_att.datcat.attribute.datcat =
   ## contains a PID (persistent identifier) that aligns the given element with the appropriate 
   ##         Data Category (or categories) in ISOcat.
   attribute ns1:datcat {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.datcat.attribute.valueDatcat =
   
@@ -281,7 +307,7 @@ mishnahw_att.datcat.attribute.valueDatcat =
   ##         element or the value of the given attribute with the appropriate simple Data
   ##         Category (or categories) in ISOcat.
   attribute ns1:valueDatcat {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.declarable.attributes =
   mishnahw_att.declarable.attribute.default
@@ -307,7 +333,7 @@ mishnahw_att.declaring.attribute.decls =
   ## header, which are understood to apply to the element bearing this
   ## attribute and its content.
   attribute decls {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.divLike.attributes =
   mishnahw_att.divLike.attribute.org,
@@ -395,7 +421,7 @@ mishnahw_att.responsibility.attribute.resp =
   ## (responsible party) indicates the agency responsible for the intervention or interpretation, for example an
   ##         editor or transcriber.
   attribute resp {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.editLike.attributes =
   mishnahw_att.dimensions.attributes,
@@ -420,18 +446,7 @@ mishnahw_att.editLike.attribute.evidence =
          ## the intervention or interpretation has been made by the editor, cataloguer, or
          ##             scholar on the basis of their expertise.
          "conjecture"
-       | xsd:Name),
-      (
-       ## there is internal evidence to support the intervention.
-       "internal"
-       | 
-         ## there is external evidence to support the intervention.
-         "external"
-       | 
-         ## the intervention or interpretation has been made by the editor, cataloguer, or
-         ##             scholar on the basis of their expertise.
-         "conjecture"
-       | xsd:Name)*
+       | xsd:Name)+
     }
   }?
 mishnahw_att.editLike.attribute.source =
@@ -439,7 +454,7 @@ mishnahw_att.editLike.attribute.source =
   ## contains a list of one or more pointers indicating sources
   ##       supporting the given  intervention or interpretation.
   attribute source {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.editLike.attribute.instant =
   
@@ -454,6 +469,7 @@ mishnahw_att.global.attributes =
   mishnahw_att.global.attribute.n,
   mishnahw_att.global.attribute.xmllang,
   mishnahw_att.global.attribute.rend,
+  mishnahw_att.global.attribute.style,
   mishnahw_att.global.attribute.rendition,
   mishnahw_att.global.attribute.xmlbase,
   mishnahw_att.global.attribute.xmlspace
@@ -476,14 +492,20 @@ mishnahw_att.global.attribute.rend =
   
   ## (rendition) indicates how the element in question was rendered or presented in the source text.
   attribute rend {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
+mishnahw_att.global.attribute.style =
+  
+  ## contains an expression in some formal style definition language
+  ## which defines the rendering or presentation
+  ## used for this element in the source text 
+  attribute style { mishnahw_data.text }?
 mishnahw_att.global.attribute.rendition =
   
   ## points to a description of the rendering or presentation used for this element in the
   ##         source text.
   attribute rendition {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.global.attribute.xmlbase =
   
@@ -496,12 +518,10 @@ mishnahw_att.global.attribute.xmlspace =
   ##       managed by  applications. 
   attribute xml:space {
     
-    ## the processor should treat white space according to the
-    ##	default XML white space handling rules
+    ## signals that the application's default white-space processing modes are acceptable
     "default"
     | 
-      ## the processor should preserve unchanged any and all
-      ##	white space in the source
+      ## indicates the intent that applications preserve all white space
       "preserve"
   }?
 mishnahw_att.handFeatures.attributes =
@@ -521,14 +541,14 @@ mishnahw_att.handFeatures.attribute.scribeRef =
   ## points to a full description of the scribe concerned, typically supplied by a person element
   ##       elsewhere in the description.
   attribute scribeRef {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.handFeatures.attribute.script =
   
   ## characterizes the particular script or writing style used by
   ## this hand, for example secretary, copperplate, Chancery, Italian, etc.
   attribute script {
-    list { mishnahw_data.name, mishnahw_data.name* }
+    list { mishnahw_data.name+ }
   }?
 mishnahw_att.handFeatures.attribute.scriptRef =
   
@@ -536,7 +556,7 @@ mishnahw_att.handFeatures.attribute.scriptRef =
   ## this hand, typically supplied by a scriptNote element
   ##       elsewhere in the description.
   attribute scriptRef {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.handFeatures.attribute.medium =
   
@@ -563,7 +583,7 @@ mishnahw_att.internetMedia.attribute.mimeType =
   
   ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
   attribute mimeType {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.measurement.attributes =
   mishnahw_att.measurement.attribute.unit,
@@ -643,7 +663,7 @@ mishnahw_att.measurement.attribute.commodity =
   
   ## indicates the substance that is being measured
   attribute commodity {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.naming.attributes =
   mishnahw_att.canonical.attributes,
@@ -661,13 +681,13 @@ mishnahw_att.naming.attribute.nymRef =
   ##        named by
   ##       the element bearing it.
   attribute nymRef {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.placement.attributes =
   mishnahw_att.placement.attribute.place
 mishnahw_att.placement.attribute.place =
   
-  ## 
+  ## specifies where this item is placed
   ## Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6] overleaf; 7] above; 8] end; 9] inline; 10] inspace
   attribute place {
     list {
@@ -701,38 +721,7 @@ mishnahw_att.placement.attribute.place =
        | 
          ##  in a predefined space, for example left by an earlier scribe.
          "inspace"
-       | xsd:Name),
-      (
-       ## below the line
-       "below"
-       | 
-         ## at the foot of the page
-         "bottom"
-       | 
-         ## in the margin (left, right, or both)
-         "margin"
-       | 
-         ## at the top of the page
-         "top"
-       | 
-         ## on the opposite, i.e. facing, page
-         "opposite"
-       | 
-         ## on the other side of the leaf
-         "overleaf"
-       | 
-         ## above the line
-         "above"
-       | 
-         ## at the end of e.g. chapter or volume.
-         "end"
-       | 
-         ## within the body of the text.
-         "inline"
-       | 
-         ##  in a predefined space, for example left by an earlier scribe.
-         "inspace"
-       | xsd:Name)*
+       | xsd:Name)+
     }
   }?
 mishnahw_att.typed.attributes =
@@ -761,7 +750,7 @@ sch:pattern [
   "\x{a}" ~
   "      "
   sch:rule [
-    context = "tei:*[@targetLang]"
+    context = "tei:*[not(self::tei:schemaSpec)][@targetLang]"
     "\x{a}" ~
     "            "
     sch:assert [
@@ -778,7 +767,7 @@ mishnahw_att.pointing.attribute.target =
   
   ## specifies the destination of the reference by supplying one or more URI References
   attribute target {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.pointing.attribute.evaluate =
   
@@ -871,7 +860,7 @@ mishnahw_att.sourced.attribute.ed =
   ##       the associated feature (for example, a  page, column, or line
   ##       break) occurs at this point in the text.
   attribute ed {
-    list { mishnahw_data.code, mishnahw_data.code* }
+    list { mishnahw_data.code+ }
   }?
 mishnahw_att.spanning.attributes =
   mishnahw_att.spanning.attribute.spanTo
@@ -880,6 +869,25 @@ mishnahw_att.spanning.attribute.spanTo =
   ## indicates the end of a span initiated by the element
   ##	bearing this attribute.
   attribute spanTo { mishnahw_data.pointer }?
+mishnahw_att.styleDef.attributes =
+  mishnahw_att.styleDef.attribute.scheme
+mishnahw_att.styleDef.attribute.scheme =
+  
+  ## identifies the language used to describe the rendition.
+  attribute scheme {
+    
+    ## Cascading Stylesheet Language
+    "css"
+    | 
+      ## Extensible Stylesheet Language Formatting Objects
+      "xslfo"
+    | 
+      ## Informal free text description
+      "free"
+    | 
+      ## A user-defined rendition description language
+      "other"
+  }?
 mishnahw_att.transcriptional.attributes =
   mishnahw_att.editLike.attributes,
   mishnahw_att.transcriptional.attribute.hand,
@@ -936,16 +944,6 @@ mishnahw_model.nameLike.agent_sequenceRepeatable =
   mishnahw_name+, mishnahw_persName+
 mishnahw_model.segLike =
   mishnahw_seg | mishnahw_pc | mishnahw_c | mishnahw_w
-mishnahw_model.segLike_alternation =
-  mishnahw_seg | mishnahw_pc | mishnahw_c | mishnahw_w
-mishnahw_model.segLike_sequence =
-  mishnahw_seg, mishnahw_pc, mishnahw_c, mishnahw_w
-mishnahw_model.segLike_sequenceOptional =
-  mishnahw_seg?, mishnahw_pc?, mishnahw_c?, mishnahw_w?
-mishnahw_model.segLike_sequenceOptionalRepeatable =
-  mishnahw_seg*, mishnahw_pc*, mishnahw_c*, mishnahw_w*
-mishnahw_model.segLike_sequenceRepeatable =
-  mishnahw_seg+, mishnahw_pc+, mishnahw_c+, mishnahw_w+
 mishnahw_model.hiLike = mishnahw_hi
 mishnahw_model.hiLike_alternation = mishnahw_hi
 mishnahw_model.hiLike_sequence = mishnahw_hi
@@ -1008,20 +1006,6 @@ mishnahw_model.emphLike_sequenceRepeatable =
   mishnahw_title+
 mishnahw_model.highlighted =
   mishnahw_model.hiLike | mishnahw_model.emphLike
-mishnahw_model.highlighted_alternation =
-  mishnahw_model.hiLike_alternation
-  | mishnahw_model.emphLike_alternation
-mishnahw_model.highlighted_sequence =
-  mishnahw_model.hiLike_sequence, mishnahw_model.emphLike_sequence
-mishnahw_model.highlighted_sequenceOptional =
-  mishnahw_model.hiLike_sequenceOptional?,
-  mishnahw_model.emphLike_sequenceOptional?
-mishnahw_model.highlighted_sequenceOptionalRepeatable =
-  mishnahw_model.hiLike_sequenceOptionalRepeatable*,
-  mishnahw_model.emphLike_sequenceOptionalRepeatable*
-mishnahw_model.highlighted_sequenceRepeatable =
-  mishnahw_model.hiLike_sequenceRepeatable+,
-  mishnahw_model.emphLike_sequenceRepeatable+
 mishnahw_model.dateLike = mishnahw_date | mishnahw_time
 mishnahw_model.dateLike_alternation = mishnahw_date | mishnahw_time
 mishnahw_model.dateLike_sequence = mishnahw_date, mishnahw_time
@@ -1081,28 +1065,8 @@ mishnahw_model.egLike_sequenceOptional = empty
 mishnahw_model.egLike_sequenceOptionalRepeatable = empty
 mishnahw_model.egLike_sequenceRepeatable = notAllowed
 mishnahw_model.graphicLike = mishnahw_graphic | mishnahw_binaryObject
-mishnahw_model.graphicLike_alternation =
-  mishnahw_graphic | mishnahw_binaryObject
-mishnahw_model.graphicLike_sequence =
-  mishnahw_graphic, mishnahw_binaryObject
-mishnahw_model.graphicLike_sequenceOptional =
-  mishnahw_graphic?, mishnahw_binaryObject?
-mishnahw_model.graphicLike_sequenceOptionalRepeatable =
-  mishnahw_graphic*, mishnahw_binaryObject*
-mishnahw_model.graphicLike_sequenceRepeatable =
-  mishnahw_graphic+, mishnahw_binaryObject+
 mishnahw_model.pPart.msdesc =
   mishnahw_dimensions | mishnahw_locus | mishnahw_locusGrp
-mishnahw_model.pPart.msdesc_alternation =
-  mishnahw_dimensions | mishnahw_locus | mishnahw_locusGrp
-mishnahw_model.pPart.msdesc_sequence =
-  mishnahw_dimensions, mishnahw_locus, mishnahw_locusGrp
-mishnahw_model.pPart.msdesc_sequenceOptional =
-  mishnahw_dimensions?, mishnahw_locus?, mishnahw_locusGrp?
-mishnahw_model.pPart.msdesc_sequenceOptionalRepeatable =
-  mishnahw_dimensions*, mishnahw_locus*, mishnahw_locusGrp*
-mishnahw_model.pPart.msdesc_sequenceRepeatable =
-  mishnahw_dimensions+, mishnahw_locus+, mishnahw_locusGrp+
 mishnahw_model.pPart.editorial =
   mishnahw_choice
   | mishnahw_abbr
@@ -1237,21 +1201,6 @@ mishnahw_model.pPart.transcriptional_sequenceRepeatable =
   mishnahw_undo+
 mishnahw_model.pPart.edit =
   mishnahw_model.pPart.editorial | mishnahw_model.pPart.transcriptional
-mishnahw_model.pPart.edit_alternation =
-  mishnahw_model.pPart.editorial_alternation
-  | mishnahw_model.pPart.transcriptional_alternation
-mishnahw_model.pPart.edit_sequence =
-  mishnahw_model.pPart.editorial_sequence,
-  mishnahw_model.pPart.transcriptional_sequence
-mishnahw_model.pPart.edit_sequenceOptional =
-  mishnahw_model.pPart.editorial_sequenceOptional?,
-  mishnahw_model.pPart.transcriptional_sequenceOptional?
-mishnahw_model.pPart.edit_sequenceOptionalRepeatable =
-  mishnahw_model.pPart.editorial_sequenceOptionalRepeatable*,
-  mishnahw_model.pPart.transcriptional_sequenceOptionalRepeatable*
-mishnahw_model.pPart.edit_sequenceRepeatable =
-  mishnahw_model.pPart.editorial_sequenceRepeatable+,
-  mishnahw_model.pPart.transcriptional_sequenceRepeatable+
 mishnahw_model.linePart =
   mishnahw_model.segLike
   | mishnahw_model.hiLike
@@ -1259,96 +1208,21 @@ mishnahw_model.linePart =
   | mishnahw_choice
   | mishnahw_line
 mishnahw_model.ptrLike = mishnahw_ptr | mishnahw_ref
-mishnahw_model.ptrLike_alternation = mishnahw_ptr | mishnahw_ref
-mishnahw_model.ptrLike_sequence = mishnahw_ptr, mishnahw_ref
-mishnahw_model.ptrLike_sequenceOptional = mishnahw_ptr?, mishnahw_ref?
-mishnahw_model.ptrLike_sequenceOptionalRepeatable =
-  mishnahw_ptr*, mishnahw_ref*
-mishnahw_model.ptrLike_sequenceRepeatable = mishnahw_ptr+, mishnahw_ref+
 mishnahw_model.lPart = notAllowed
-mishnahw_model.lPart_alternation = notAllowed
-mishnahw_model.lPart_sequence = empty
-mishnahw_model.lPart_sequenceOptional = empty
-mishnahw_model.lPart_sequenceOptionalRepeatable = empty
-mishnahw_model.lPart_sequenceRepeatable = notAllowed
 mishnahw_model.global.meta =
   mishnahw_index
   | mishnahw_substJoin
   | mishnahw_listTranspose
   | mishnahw_join
   | mishnahw_joinGrp
-mishnahw_model.global.meta_alternation =
-  mishnahw_index
-  | mishnahw_substJoin
-  | mishnahw_listTranspose
-  | mishnahw_join
-  | mishnahw_joinGrp
-mishnahw_model.global.meta_sequence =
-  mishnahw_index,
-  mishnahw_substJoin,
-  mishnahw_listTranspose,
-  mishnahw_join,
-  mishnahw_joinGrp
-mishnahw_model.global.meta_sequenceOptional =
-  mishnahw_index?,
-  mishnahw_substJoin?,
-  mishnahw_listTranspose?,
-  mishnahw_join?,
-  mishnahw_joinGrp?
-mishnahw_model.global.meta_sequenceOptionalRepeatable =
-  mishnahw_index*,
-  mishnahw_substJoin*,
-  mishnahw_listTranspose*,
-  mishnahw_join*,
-  mishnahw_joinGrp*
-mishnahw_model.global.meta_sequenceRepeatable =
-  mishnahw_index+,
-  mishnahw_substJoin+,
-  mishnahw_listTranspose+,
-  mishnahw_join+,
-  mishnahw_joinGrp+
 mishnahw_model.milestoneLike =
   mishnahw_milestone
   | mishnahw_gb
   | mishnahw_pb
   | mishnahw_lb
   | mishnahw_cb
+  | mishnahw_fw
   | mishnahw_anchor
-mishnahw_model.milestoneLike_alternation =
-  mishnahw_milestone
-  | mishnahw_gb
-  | mishnahw_pb
-  | mishnahw_lb
-  | mishnahw_cb
-  | mishnahw_anchor
-mishnahw_model.milestoneLike_sequence =
-  mishnahw_milestone,
-  mishnahw_gb,
-  mishnahw_pb,
-  mishnahw_lb,
-  mishnahw_cb,
-  mishnahw_anchor
-mishnahw_model.milestoneLike_sequenceOptional =
-  mishnahw_milestone?,
-  mishnahw_gb?,
-  mishnahw_pb?,
-  mishnahw_lb?,
-  mishnahw_cb?,
-  mishnahw_anchor?
-mishnahw_model.milestoneLike_sequenceOptionalRepeatable =
-  mishnahw_milestone*,
-  mishnahw_gb*,
-  mishnahw_pb*,
-  mishnahw_lb*,
-  mishnahw_cb*,
-  mishnahw_anchor*
-mishnahw_model.milestoneLike_sequenceRepeatable =
-  mishnahw_milestone+,
-  mishnahw_gb+,
-  mishnahw_pb+,
-  mishnahw_lb+,
-  mishnahw_cb+,
-  mishnahw_anchor+
 mishnahw_model.gLike = mishnahw_g
 mishnahw_model.biblLike =
   mishnahw_bibl
@@ -1402,11 +1276,6 @@ mishnahw_model.listLike_sequenceOptionalRepeatable =
 mishnahw_model.listLike_sequenceRepeatable =
   mishnahw_list+, mishnahw_listBibl+
 mishnahw_model.noteLike = mishnahw_note
-mishnahw_model.noteLike_alternation = mishnahw_note
-mishnahw_model.noteLike_sequence = mishnahw_note
-mishnahw_model.noteLike_sequenceOptional = mishnahw_note?
-mishnahw_model.noteLike_sequenceOptionalRepeatable = mishnahw_note*
-mishnahw_model.noteLike_sequenceRepeatable = mishnahw_note+
 mishnahw_model.lLike = mishnahw_l
 mishnahw_model.lLike_alternation = mishnahw_l
 mishnahw_model.lLike_sequence = mishnahw_l
@@ -1428,51 +1297,11 @@ mishnahw_model.stageLike_sequenceOptionalRepeatable = mishnahw_stage*
 mishnahw_model.stageLike_sequenceRepeatable = mishnahw_stage+
 mishnahw_model.entryPart = notAllowed
 mishnahw_model.global.edit = mishnahw_gap | mishnahw_space
-mishnahw_model.global.edit_alternation = mishnahw_gap | mishnahw_space
-mishnahw_model.global.edit_sequence = mishnahw_gap, mishnahw_space
-mishnahw_model.global.edit_sequenceOptional =
-  mishnahw_gap?, mishnahw_space?
-mishnahw_model.global.edit_sequenceOptionalRepeatable =
-  mishnahw_gap*, mishnahw_space*
-mishnahw_model.global.edit_sequenceRepeatable =
-  mishnahw_gap+, mishnahw_space+
 mishnahw_model.divPart =
   mishnahw_model.lLike
   | mishnahw_model.pLike
   | mishnahw_lg
   | mishnahw_sp
-mishnahw_model.divPart_alternation =
-  mishnahw_model.lLike_alternation
-  | mishnahw_model.pLike_alternation
-  | mishnahw_lg
-  | mishnahw_sp
-mishnahw_model.divPart_sequence =
-  mishnahw_model.lLike_sequence,
-  mishnahw_model.pLike_sequence,
-  mishnahw_lg,
-  mishnahw_sp
-mishnahw_model.divPart_sequenceOptional =
-  mishnahw_model.lLike_sequenceOptional?,
-  mishnahw_model.pLike_sequenceOptional?,
-  mishnahw_lg?,
-  mishnahw_sp?
-mishnahw_model.divPart_sequenceOptionalRepeatable =
-  mishnahw_model.lLike_sequenceOptionalRepeatable*,
-  mishnahw_model.pLike_sequenceOptionalRepeatable*,
-  mishnahw_lg*,
-  mishnahw_sp*
-mishnahw_model.divPart_sequenceRepeatable =
-  mishnahw_model.lLike_sequenceRepeatable+,
-  mishnahw_model.pLike_sequenceRepeatable+,
-  mishnahw_lg+,
-  mishnahw_sp+
-mishnahw_model.persStateLike = mishnahw_persName
-mishnahw_model.persStateLike_alternation = mishnahw_persName
-mishnahw_model.persStateLike_sequence = mishnahw_persName
-mishnahw_model.persStateLike_sequenceOptional = mishnahw_persName?
-mishnahw_model.persStateLike_sequenceOptionalRepeatable =
-  mishnahw_persName*
-mishnahw_model.persStateLike_sequenceRepeatable = mishnahw_persName+
 mishnahw_model.placeNamePart =
   mishnahw_placeName | mishnahw_region | mishnahw_settlement
 mishnahw_model.placeNamePart_alternation =
@@ -1504,7 +1333,9 @@ mishnahw_model.publicationStmtPart =
   | mishnahw_idno
   | mishnahw_availability
 mishnahw_model.availabilityPart = mishnahw_licence
-mishnahw_model.glossLike = mishnahw_desc | mishnahw_gloss
+mishnahw_model.certLike = notAllowed
+mishnahw_model.descLike = mishnahw_desc
+mishnahw_model.glossLike = mishnahw_gloss
 mishnahw_model.quoteLike = mishnahw_quote | mishnahw_cit
 mishnahw_model.quoteLike_alternation = mishnahw_quote | mishnahw_cit
 mishnahw_model.quoteLike_sequence = mishnahw_quote, mishnahw_cit
@@ -1552,46 +1383,6 @@ mishnahw_model.respLike =
   | mishnahw_sponsor
   | mishnahw_funder
   | mishnahw_principal
-mishnahw_model.respLike_alternation =
-  mishnahw_author
-  | mishnahw_editor
-  | mishnahw_respStmt
-  | mishnahw_meeting
-  | mishnahw_sponsor
-  | mishnahw_funder
-  | mishnahw_principal
-mishnahw_model.respLike_sequence =
-  mishnahw_author,
-  mishnahw_editor,
-  mishnahw_respStmt,
-  mishnahw_meeting,
-  mishnahw_sponsor,
-  mishnahw_funder,
-  mishnahw_principal
-mishnahw_model.respLike_sequenceOptional =
-  mishnahw_author?,
-  mishnahw_editor?,
-  mishnahw_respStmt?,
-  mishnahw_meeting?,
-  mishnahw_sponsor?,
-  mishnahw_funder?,
-  mishnahw_principal?
-mishnahw_model.respLike_sequenceOptionalRepeatable =
-  mishnahw_author*,
-  mishnahw_editor*,
-  mishnahw_respStmt*,
-  mishnahw_meeting*,
-  mishnahw_sponsor*,
-  mishnahw_funder*,
-  mishnahw_principal*
-mishnahw_model.respLike_sequenceRepeatable =
-  mishnahw_author+,
-  mishnahw_editor+,
-  mishnahw_respStmt+,
-  mishnahw_meeting+,
-  mishnahw_sponsor+,
-  mishnahw_funder+,
-  mishnahw_principal+
 mishnahw_model.divWrapper =
   mishnahw_meeting
   | mishnahw_byline
@@ -1601,62 +1392,7 @@ mishnahw_model.divWrapper =
   | mishnahw_salute
   | mishnahw_docAuthor
   | mishnahw_docDate
-mishnahw_model.divWrapper_alternation =
-  mishnahw_meeting
-  | mishnahw_byline
-  | mishnahw_dateline
-  | mishnahw_argument
-  | mishnahw_epigraph
-  | mishnahw_salute
-  | mishnahw_docAuthor
-  | mishnahw_docDate
-mishnahw_model.divWrapper_sequence =
-  mishnahw_meeting,
-  mishnahw_byline,
-  mishnahw_dateline,
-  mishnahw_argument,
-  mishnahw_epigraph,
-  mishnahw_salute,
-  mishnahw_docAuthor,
-  mishnahw_docDate
-mishnahw_model.divWrapper_sequenceOptional =
-  mishnahw_meeting?,
-  mishnahw_byline?,
-  mishnahw_dateline?,
-  mishnahw_argument?,
-  mishnahw_epigraph?,
-  mishnahw_salute?,
-  mishnahw_docAuthor?,
-  mishnahw_docDate?
-mishnahw_model.divWrapper_sequenceOptionalRepeatable =
-  mishnahw_meeting*,
-  mishnahw_byline*,
-  mishnahw_dateline*,
-  mishnahw_argument*,
-  mishnahw_epigraph*,
-  mishnahw_salute*,
-  mishnahw_docAuthor*,
-  mishnahw_docDate*
-mishnahw_model.divWrapper_sequenceRepeatable =
-  mishnahw_meeting+,
-  mishnahw_byline+,
-  mishnahw_dateline+,
-  mishnahw_argument+,
-  mishnahw_epigraph+,
-  mishnahw_salute+,
-  mishnahw_docAuthor+,
-  mishnahw_docDate+
 mishnahw_model.divTopPart = mishnahw_model.headLike | mishnahw_opener
-mishnahw_model.divTopPart_alternation =
-  mishnahw_model.headLike_alternation | mishnahw_opener
-mishnahw_model.divTopPart_sequence =
-  mishnahw_model.headLike_sequence, mishnahw_opener
-mishnahw_model.divTopPart_sequenceOptional =
-  mishnahw_model.headLike_sequenceOptional?, mishnahw_opener?
-mishnahw_model.divTopPart_sequenceOptionalRepeatable =
-  mishnahw_model.headLike_sequenceOptionalRepeatable*, mishnahw_opener*
-mishnahw_model.divTopPart_sequenceRepeatable =
-  mishnahw_model.headLike_sequenceRepeatable+, mishnahw_opener+
 mishnahw_model.divTop =
   mishnahw_model.divWrapper | mishnahw_model.divTopPart
 mishnahw_model.pLike.front =
@@ -1675,31 +1411,6 @@ mishnahw_model.divBottomPart =
   | mishnahw_closer
   | mishnahw_signed
   | mishnahw_postscript
-mishnahw_model.divBottomPart_alternation =
-  mishnahw_trailer
-  | mishnahw_closer
-  | mishnahw_signed
-  | mishnahw_postscript
-mishnahw_model.divBottomPart_sequence =
-  mishnahw_trailer,
-  mishnahw_closer,
-  mishnahw_signed,
-  mishnahw_postscript
-mishnahw_model.divBottomPart_sequenceOptional =
-  mishnahw_trailer?,
-  mishnahw_closer?,
-  mishnahw_signed?,
-  mishnahw_postscript?
-mishnahw_model.divBottomPart_sequenceOptionalRepeatable =
-  mishnahw_trailer*,
-  mishnahw_closer*,
-  mishnahw_signed*,
-  mishnahw_postscript*
-mishnahw_model.divBottomPart_sequenceRepeatable =
-  mishnahw_trailer+,
-  mishnahw_closer+,
-  mishnahw_signed+,
-  mishnahw_postscript+
 mishnahw_model.divBottom =
   mishnahw_model.divWrapper | mishnahw_model.divBottomPart
 mishnahw_model.titlepagePart =
@@ -1716,11 +1427,6 @@ mishnahw_model.titlepagePart =
   | mishnahw_docImprint
   | mishnahw_docDate
 mishnahw_model.msQuoteLike = mishnahw_title
-mishnahw_model.msQuoteLike_alternation = mishnahw_title
-mishnahw_model.msQuoteLike_sequence = mishnahw_title
-mishnahw_model.msQuoteLike_sequenceOptional = mishnahw_title?
-mishnahw_model.msQuoteLike_sequenceOptionalRepeatable = mishnahw_title*
-mishnahw_model.msQuoteLike_sequenceRepeatable = mishnahw_title+
 mishnahw_model.msItemPart =
   mishnahw_model.quoteLike
   | mishnahw_model.respLike
@@ -1741,16 +1447,6 @@ mishnahw_model.choicePart =
   | mishnahw_seg
 mishnahw_model.imprintPart =
   mishnahw_publisher | mishnahw_biblScope | mishnahw_pubPlace
-mishnahw_model.imprintPart_alternation =
-  mishnahw_publisher | mishnahw_biblScope | mishnahw_pubPlace
-mishnahw_model.imprintPart_sequence =
-  mishnahw_publisher, mishnahw_biblScope, mishnahw_pubPlace
-mishnahw_model.imprintPart_sequenceOptional =
-  mishnahw_publisher?, mishnahw_biblScope?, mishnahw_pubPlace?
-mishnahw_model.imprintPart_sequenceOptionalRepeatable =
-  mishnahw_publisher*, mishnahw_biblScope*, mishnahw_pubPlace*
-mishnahw_model.imprintPart_sequenceRepeatable =
-  mishnahw_publisher+, mishnahw_biblScope+, mishnahw_pubPlace+
 mishnahw_model.catDescPart = notAllowed
 mishnahw_model.physDescPart_sequenceOptional =
   mishnahw_objectDesc?, mishnahw_handDesc?
@@ -1822,31 +1518,6 @@ mishnahw_model.pPart.data =
   | mishnahw_model.measureLike
   | mishnahw_model.addressLike
   | mishnahw_model.nameLike
-mishnahw_model.pPart.data_alternation =
-  mishnahw_model.dateLike_alternation
-  | mishnahw_model.measureLike_alternation
-  | mishnahw_model.addressLike_alternation
-  | mishnahw_model.nameLike_alternation
-mishnahw_model.pPart.data_sequence =
-  mishnahw_model.dateLike_sequence,
-  mishnahw_model.measureLike_sequence,
-  mishnahw_model.addressLike_sequence,
-  mishnahw_model.nameLike_sequence
-mishnahw_model.pPart.data_sequenceOptional =
-  mishnahw_model.dateLike_sequenceOptional?,
-  mishnahw_model.measureLike_sequenceOptional?,
-  mishnahw_model.addressLike_sequenceOptional?,
-  mishnahw_model.nameLike_sequenceOptional?
-mishnahw_model.pPart.data_sequenceOptionalRepeatable =
-  mishnahw_model.dateLike_sequenceOptionalRepeatable*,
-  mishnahw_model.measureLike_sequenceOptionalRepeatable*,
-  mishnahw_model.addressLike_sequenceOptionalRepeatable*,
-  mishnahw_model.nameLike_sequenceOptionalRepeatable*
-mishnahw_model.pPart.data_sequenceRepeatable =
-  mishnahw_model.dateLike_sequenceRepeatable+,
-  mishnahw_model.measureLike_sequenceRepeatable+,
-  mishnahw_model.addressLike_sequenceRepeatable+,
-  mishnahw_model.nameLike_sequenceRepeatable+
 mishnahw_model.inter =
   mishnahw_model.egLike
   | mishnahw_model.biblLike
@@ -1854,41 +1525,6 @@ mishnahw_model.inter =
   | mishnahw_model.listLike
   | mishnahw_model.stageLike
   | mishnahw_model.qLike
-mishnahw_model.inter_alternation =
-  mishnahw_model.egLike_alternation
-  | mishnahw_model.biblLike_alternation
-  | mishnahw_model.labelLike_alternation
-  | mishnahw_model.listLike_alternation
-  | mishnahw_model.stageLike_alternation
-  | mishnahw_model.qLike_alternation
-mishnahw_model.inter_sequence =
-  mishnahw_model.egLike_sequence,
-  mishnahw_model.biblLike_sequence,
-  mishnahw_model.labelLike_sequence,
-  mishnahw_model.listLike_sequence,
-  mishnahw_model.stageLike_sequence,
-  mishnahw_model.qLike_sequence
-mishnahw_model.inter_sequenceOptional =
-  mishnahw_model.egLike_sequenceOptional?,
-  mishnahw_model.biblLike_sequenceOptional?,
-  mishnahw_model.labelLike_sequenceOptional?,
-  mishnahw_model.listLike_sequenceOptional?,
-  mishnahw_model.stageLike_sequenceOptional?,
-  mishnahw_model.qLike_sequenceOptional?
-mishnahw_model.inter_sequenceOptionalRepeatable =
-  mishnahw_model.egLike_sequenceOptionalRepeatable*,
-  mishnahw_model.biblLike_sequenceOptionalRepeatable*,
-  mishnahw_model.labelLike_sequenceOptionalRepeatable*,
-  mishnahw_model.listLike_sequenceOptionalRepeatable*,
-  mishnahw_model.stageLike_sequenceOptionalRepeatable*,
-  mishnahw_model.qLike_sequenceOptionalRepeatable*
-mishnahw_model.inter_sequenceRepeatable =
-  mishnahw_model.egLike_sequenceRepeatable+,
-  mishnahw_model.biblLike_sequenceRepeatable+,
-  mishnahw_model.labelLike_sequenceRepeatable+,
-  mishnahw_model.listLike_sequenceRepeatable+,
-  mishnahw_model.stageLike_sequenceRepeatable+,
-  mishnahw_model.qLike_sequenceRepeatable+
 mishnahw_model.common = mishnahw_model.divPart | mishnahw_model.inter
 mishnahw_model.phrase =
   mishnahw_model.segLike
@@ -1952,8 +1588,56 @@ mishnahw_att.personal.attribute.full =
 mishnahw_att.personal.attribute.sort =
   
   ## specifies the sort order of the name component in relation
-  ## to others within the personal name.
+  ## to others within the name.
   attribute sort { mishnahw_data.count }?
+mishnahw_att.milestoneUnit.attributes =
+  mishnahw_att.milestoneUnit.attribute.unit
+mishnahw_att.milestoneUnit.attribute.unit =
+  
+  ## provides a conventional name for the kind of section changing at this milestone.
+  ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered
+  attribute unit {
+    
+    ## physical page breaks (synonymous with the pb element).
+    "page"
+    | 
+      ## column breaks.
+      "column"
+    | 
+      ## line breaks (synonymous with the lb element).
+      "line"
+    | 
+      ## any units termed book, liber, etc.
+      "book"
+    | 
+      ## individual poems in a collection.
+      "poem"
+    | 
+      ## cantos or other major sections of a poem.
+      "canto"
+    | 
+      ## changes of speaker or narrator.
+      "speaker"
+    | 
+      ## stanzas within a poem, book, or canto.
+      "stanza"
+    | 
+      ## acts within a play.
+      "act"
+    | 
+      ## scenes within a play or act.
+      "scene"
+    | 
+      ## sections of any kind.
+      "section"
+    | 
+      ## passages not present in the reference edition.
+      "absent"
+    | 
+      ## passages present in the text, but not to be included as part of the reference.
+      "unnumbered"
+    | xsd:Name
+  }
 mishnahw_p =
   
   ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
@@ -2134,10 +1818,7 @@ mishnahw_gloss =
     mishnahw_att.translatable.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.pointing.attributes,
-    
-    ## (canonical reference) identifies the associated term element using a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef { mishnahw_data.pointer }?,
+    mishnahw_att.cReferencing.attributes,
     empty
   }
 mishnahw_term =
@@ -2152,10 +1833,7 @@ mishnahw_term =
     mishnahw_att.typed.attributes,
     mishnahw_att.canonical.attributes,
     mishnahw_att.sortable.attributes,
-    
-    ## identifies the associated gloss element using a canonical reference from a
-    ##           scheme defined in a refsDecl element in the TEI header
-    attribute cRef { mishnahw_data.pointer }?,
+    mishnahw_att.cReferencing.attributes,
     empty
   }
 mishnahw_sic =
@@ -2212,12 +1890,31 @@ mishnahw_gap =
   ##     reasons described in the TEI header, as part of sampling practice, or because the material is
   ##     illegible, invisible, or inaudible. [3.4.3. ]
   element gap {
-    mishnahw_model.glossLike*,
+    (mishnahw_model.descLike | mishnahw_model.certLike)*,
+    mishnahw_att.global.attributes,
+    mishnahw_att.editLike.attribute.evidence,
+    mishnahw_att.editLike.attribute.source,
+    mishnahw_att.editLike.attribute.instant,
+    mishnahw_att.dimensions.attribute.unit,
+    mishnahw_att.dimensions.attribute.quantity,
+    mishnahw_att.dimensions.attribute.precision,
+    mishnahw_att.dimensions.attribute.scope,
+    mishnahw_att.ranging.attribute.atLeast,
+    mishnahw_att.ranging.attribute.atMost,
+    mishnahw_att.ranging.attribute.min,
+    mishnahw_att.ranging.attribute.max,
+    mishnahw_att.ranging.attribute.confidence,
+    mishnahw_att.responsibility.attribute.cert,
+    mishnahw_att.responsibility.attribute.resp,
+    
+    ## indicates the size of the object concerned using a project-specific vocabulary combining
+    ##         quantity and units in a single string of words. 
+    attribute extent { mishnahw_data.count }?,
     
     ## gives the reason for omission. Sample values include sampling,
     ##         inaudible, irrelevant, cancelled.
     attribute reason {
-      list { mishnahw_data.word, mishnahw_data.word* }
+      list { mishnahw_data.word+ }
     }?,
     
     ## in the case of text omitted from the transcription because of deliberate deletion by an
@@ -2228,20 +1925,6 @@ mishnahw_gap =
     ##         it can be identified.
     ## Sample values include: 1] rubbing; 2] mildew; 3] smoke
     attribute agent { mishnahw_data.enumerated }?,
-    mishnahw_att.global.attributes,
-    mishnahw_att.editLike.attribute.evidence,
-    mishnahw_att.editLike.attribute.source,
-    mishnahw_att.editLike.attribute.instant,
-    mishnahw_att.dimensions.attribute.unit,
-    mishnahw_att.dimensions.attribute.quantity,
-    
-    ## indicates the size of the object concerned using a project-specific vocabulary combining
-    ##         quantity and units in a single string of words. 
-    attribute extent { mishnahw_data.count }?,
-    mishnahw_att.dimensions.attribute.precision,
-    mishnahw_att.dimensions.attribute.scope,
-    mishnahw_att.ranging.attributes,
-    mishnahw_att.responsibility.attributes,
     empty
   }
 mishnahw_add =
@@ -2281,7 +1964,7 @@ mishnahw_unclear =
     
     ## indicates why the material is hard to transcribe.
     attribute reason {
-      list { mishnahw_data.word, mishnahw_data.word* }
+      list { mishnahw_data.word+ }
     }?,
     
     ## Where the difficulty in transcription arises from action (partial deletion, etc.)
@@ -2300,7 +1983,9 @@ mishnahw_name =
   element name {
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
-    mishnahw_att.naming.attributes,
+    mishnahw_att.personal.attributes,
+    mishnahw_att.datable.attributes,
+    mishnahw_att.editLike.attributes,
     mishnahw_att.typed.attributes,
     empty
   }
@@ -2445,11 +2130,7 @@ mishnahw_abbr =
     mishnahw_macro.phraseSeq,
     mishnahw_att.global.attributes,
     mishnahw_att.responsibility.attributes,
-    
-    ## allows the encoder to classify the abbreviation according to some convenient
-    ##                 typology.
-    ## Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscription; 5] acronym; 6] title; 7] organization; 8] geographic
-    attribute type { mishnahw_data.enumerated }?,
+    mishnahw_att.typed.attributes,
     empty
   }
 mishnahw_expan =
@@ -2490,12 +2171,7 @@ mishnahw_ptr =
     mishnahw_att.internetMedia.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
-    
-    ## (canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef {
-      list { mishnahw_data.word, mishnahw_data.word* }
-    }?,
+    mishnahw_att.cReferencing.attributes,
     empty
   }
 mishnahw_ref =
@@ -2527,12 +2203,7 @@ mishnahw_ref =
     mishnahw_att.internetMedia.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
-    
-    ## (canonical reference) specifies the destination of the reference by supplying a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef {
-      list { mishnahw_data.word, mishnahw_data.word* }
-    }?,
+    mishnahw_att.cReferencing.attributes,
     empty
   }
 mishnahw_list =
@@ -2636,7 +2307,7 @@ mishnahw_note =
     ## points to the end of the span to which the note is attached, if the note is not embedded
     ##         in the text at that point.
     attribute targetEnd {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -2648,7 +2319,8 @@ mishnahw_index =
     mishnahw_att.global.attributes,
     mishnahw_att.spanning.attributes,
     
-    ## supplies a name to specify which index (of several) the index entry belongs to.
+    ## a single word which follows the rules defining a
+    ##         legal XML name (see ), supplying a name to specify which index (of several) the index entry belongs to.
     attribute indexName { mishnahw_data.name }?,
     empty
   }
@@ -2656,7 +2328,7 @@ mishnahw_graphic =
   
   ## indicates the location of an inline graphic, illustration, or figure. [3.9. ]
   element graphic {
-    mishnahw_model.glossLike*,
+    mishnahw_model.descLike*,
     mishnahw_att.global.attributes,
     mishnahw_att.internetMedia.attributes,
     mishnahw_att.declaring.attributes,
@@ -2694,7 +2366,7 @@ mishnahw_binaryObject =
     ## The encoding used to encode the binary data. If not specified, this is assumed to be
     ##           Base64.
     attribute encoding {
-      list { mishnahw_data.word, mishnahw_data.word* }
+      list { mishnahw_data.word+ }
     }?,
     empty
   }
@@ -2706,55 +2378,11 @@ mishnahw_milestone =
   element milestone {
     empty,
     mishnahw_att.global.attributes,
+    mishnahw_att.milestoneUnit.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.sourced.attributes,
     mishnahw_att.spanning.attributes,
     mishnahw_att.breaking.attributes,
-    
-    ## provides a conventional name for the kind of section changing at this milestone.
-    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered
-    attribute unit {
-      
-      ## physical page breaks (synonymous with the pb element).
-      "page"
-      | 
-        ## column breaks.
-        "column"
-      | 
-        ## line breaks (synonymous with the lb element).
-        "line"
-      | 
-        ## any units termed book, liber, etc.
-        "book"
-      | 
-        ## individual poems in a collection.
-        "poem"
-      | 
-        ## cantos or other major sections of a poem.
-        "canto"
-      | 
-        ## changes of speaker or narrator.
-        "speaker"
-      | 
-        ## stanzas within a poem, book, or canto.
-        "stanza"
-      | 
-        ## acts within a play.
-        "act"
-      | 
-        ## scenes within a play or act.
-        "scene"
-      | 
-        ## sections of any kind.
-        "section"
-      | 
-        ## passages not present in the reference edition.
-        "absent"
-      | 
-        ## passages present in the text, but not to be included as part of the reference.
-        "unnumbered"
-      | xsd:Name
-    },
     empty
   }
 mishnahw_gb =
@@ -2839,7 +2467,8 @@ mishnahw_monogr =
           | mishnahw_textLang
           | mishnahw_author
           | mishnahw_editor
-          | mishnahw_respStmt)*))?,
+          | mishnahw_respStmt)*)
+      | mishnahw_idno)?,
      (mishnahw_model.noteLike | mishnahw_meeting)*,
      (mishnahw_edition,
       (mishnahw_idno | mishnahw_editor | mishnahw_respStmt)*)*,
@@ -2917,6 +2546,7 @@ mishnahw_title =
     mishnahw_macro.paraContent,
     mishnahw_att.global.attributes,
     mishnahw_att.canonical.attributes,
+    mishnahw_att.typed.attributes,
     
     ## indicates the bibliographic level for a title, that is, whether
     ##                                         it identifies an article, book, journal, series, or
@@ -2944,10 +2574,6 @@ mishnahw_title =
         ##                                                   published by a commercial press)
         "u"
     }?,
-    
-    ## classifies the title according to some convenient typology.
-    ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
-    attribute type { mishnahw_data.enumerated }?,
     empty
   }
 mishnahw_meeting =
@@ -2963,6 +2589,7 @@ mishnahw_imprint =
   ## groups information relating to the publication or distribution
   ##         of a bibliographic item. [3.11.2.3. ]
   element imprint {
+    (mishnahw_classCode, mishnahw_catRef)*,
     ((mishnahw_model.imprintPart | mishnahw_model.dateLike),
      mishnahw_respStmt*,
      mishnahw_model.global*)+,
@@ -3045,6 +2672,7 @@ mishnahw_bibl =
     mishnahw_att.declarable.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.sortable.attributes,
+    mishnahw_att.docStatus.attributes,
     empty
   }
 mishnahw_biblStruct =
@@ -3054,11 +2682,15 @@ mishnahw_biblStruct =
   element biblStruct {
     (mishnahw_analytic*,
      (mishnahw_monogr, mishnahw_series*)+,
-     (mishnahw_model.noteLike | mishnahw_idno | mishnahw_relatedItem)*),
+     (mishnahw_model.noteLike
+      | mishnahw_idno
+      | mishnahw_model.ptrLike
+      | mishnahw_relatedItem)*),
     mishnahw_att.global.attributes,
     mishnahw_att.declarable.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.sortable.attributes,
+    mishnahw_att.docStatus.attributes,
     empty
   }
 mishnahw_listBibl =
@@ -3182,8 +2814,8 @@ mishnahw_lg =
            sch:assert [
              test =
                "count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) > 0"
-             "An <lg> \x{a}" ~
-             "        must contain at least one child <l>, <lg> or <gap>."
+             "An lg element\x{a}" ~
+             "        must contain at least one child l, lg or gap element."
            ]
            "\x{a}" ~
            "            "
@@ -3313,13 +2945,13 @@ mishnahw_teiHeader =
   ##     prefixed to every TEI-conformant text. [2.1.1.  15.1. ]
   element teiHeader {
     (mishnahw_fileDesc, mishnahw_encodingDesc, mishnahw_revisionDesc),
+    mishnahw_att.global.attributes,
     
     ## specifies the kind of document to which the header is attached, for example whether it
     ##         is a corpus or individual text.
     ## Sample values include: 1] text; 2] corpus
     [ a:defaultValue = "text" ]
     attribute type { mishnahw_data.enumerated }?,
-    mishnahw_att.global.attributes,
     empty
   }
 mishnahw_fileDesc =
@@ -3373,7 +3005,8 @@ mishnahw_editionStmt =
   
   ## (edition statement) groups information relating to one edition of a text. [2.2.2.  2.2. ]
   element editionStmt {
-    (mishnahw_model.pLike+ | (mishnahw_edition, mishnahw_respStmt*)),
+    (mishnahw_model.pLike+
+     | (mishnahw_edition, mishnahw_model.respLike*)),
     mishnahw_att.global.attributes,
     empty
   }
@@ -3623,6 +3256,7 @@ mishnahw_biblFull =
     mishnahw_att.global.attributes,
     mishnahw_att.declarable.attributes,
     mishnahw_att.sortable.attributes,
+    mishnahw_att.docStatus.attributes,
     empty
   }
 mishnahw_encodingDesc =
@@ -3876,10 +3510,21 @@ mishnahw_rendition =
     attribute scope { mishnahw_data.enumerated }?,
     empty
   }
+mishnahw_styleDefDecl =
+  
+  ##  (style definition language declaration) specifies the name of the formal language in which style or
+  ##   renditional information is supplied elsewhere in the document.
+  element styleDefDecl {
+    mishnahw_model.pLike*,
+    mishnahw_att.global.attributes,
+    mishnahw_att.declarable.attributes,
+    mishnahw_att.styleDef.attributes,
+    empty
+  }
 mishnahw_refsDecl =
   
   ## (references declaration) specifies how canonical references are constructed for this
-  ##   text. [2.3.5.3.  2.3.  2.3.5. ]
+  ##   text. [2.3.6.3.  2.3.  2.3.6. ]
   element refsDecl {
     (mishnahw_model.pLike+
      | mishnahw_cRefPattern+
@@ -3891,7 +3536,7 @@ mishnahw_refsDecl =
 mishnahw_cRefPattern =
   
   ## (canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into
-  ##     a URI.  [2.3.5.3.  2.3.5.  2.3.5.2. ]
+  ##     a URI.  [2.3.6.3.  2.3.6.  2.3.6.2. ]
   element cRefPattern {
     mishnahw_model.pLike*,
     mishnahw_att.global.attributes,
@@ -3907,50 +3552,12 @@ mishnahw_cRefPattern =
   }
 mishnahw_refState =
   
-  ## (reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.5.3.  2.3.5. ]
+  ## (reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.6.3.  2.3.6. ]
   element refState {
     empty,
     mishnahw_att.global.attributes,
+    mishnahw_att.milestoneUnit.attributes,
     mishnahw_att.sourced.attributes,
-    
-    ## indicates what kind of state is changing at this milestone.
-    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] stanza; 8] act; 9] scene; 10] section; 11] absent
-    attribute unit {
-      
-      ## page breaks in the reference edition. 
-      "page"
-      | 
-        ## column breaks. 
-        "column"
-      | 
-        ## line breaks. 
-        "line"
-      | 
-        ## any units termed book, liber, etc. 
-        "book"
-      | 
-        ## individual poems in a collection. 
-        "poem"
-      | 
-        ## cantos or other major sections of a poem. 
-        "canto"
-      | 
-        ## stanzas within a poem, book, or canto. 
-        "stanza"
-      | 
-        ## acts within a play. 
-        "act"
-      | 
-        ## scenes within a play or act. 
-        "scene"
-      | 
-        ## sections of any kind. 
-        "section"
-      | 
-        ## passages not present in the reference edition.
-        "absent"
-      | xsd:Name
-    },
     
     ## specifies the fixed length of the reference component.
     attribute length { mishnahw_data.count }?,
@@ -3962,16 +3569,16 @@ mishnahw_refState =
 mishnahw_classDecl =
   
   ## (classification declarations) contains one or more taxonomies defining any classificatory
-  ## codes used elsewhere in the text. [2.3.6.  2.3. ]
+  ## codes used elsewhere in the text. [2.3.7.  2.3. ]
   element classDecl {
     mishnahw_taxonomy+, mishnahw_att.global.attributes, empty
   }
 mishnahw_taxonomy =
   
   ## defines a typology either implicitly, by means of a bibliographic
-  ##     citation, or explicitly by a structured taxonomy. [2.3.6. ]
+  ##     citation, or explicitly by a structured taxonomy. [2.3.7. ]
   element taxonomy {
-    (mishnahw_model.glossLike*
+    ((mishnahw_model.glossLike | mishnahw_model.descLike)*
      | mishnahw_category+
      | (mishnahw_model.biblLike, mishnahw_category*)),
     mishnahw_att.global.attributes,
@@ -3980,9 +3587,10 @@ mishnahw_taxonomy =
 mishnahw_category =
   
   ## contains an individual descriptive category, possibly nested within a superordinate
-  ##     category, within a user-defined taxonomy. [2.3.6. ]
+  ##     category, within a user-defined taxonomy. [2.3.7. ]
   element category {
-    ((mishnahw_catDesc+ | mishnahw_model.glossLike*),
+    ((mishnahw_catDesc+
+      | (mishnahw_model.descLike | mishnahw_model.glossLike)*),
      mishnahw_category*),
     mishnahw_att.global.attributes,
     empty
@@ -3990,10 +3598,41 @@ mishnahw_category =
 mishnahw_catDesc =
   
   ## (category description) describes some category within a taxonomy or text typology, either in the form of a brief
-  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.6. ]
+  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.7. ]
   element catDesc {
     (text | mishnahw_model.limitedPhrase | mishnahw_model.catDescPart)*,
     mishnahw_att.global.attributes,
+    empty
+  }
+mishnahw_geoDecl =
+  
+  ## (geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
+  ##     the geo element elsewhere within the document. [2.3.8. ]
+  element geoDecl {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.declarable.attributes,
+    
+    ## supplies a commonly used code name for the datum employed.
+    ## Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) 
+    [ a:defaultValue = "WGS84" ]
+    attribute datum {
+      
+      ## (World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
+      ##             the World Geodetic System.
+      "WGS84"
+      | 
+        ## (Military Grid Reference System) the values supplied are geospatial entity object codes, based on
+        "MGRS"
+      | 
+        ## (ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.
+        "OSGB36"
+      | 
+        ## (European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
+        ##             to the European Datum coordinate system.
+        "ED50"
+      | xsd:Name
+    }?,
     empty
   }
 mishnahw_appInfo =
@@ -4103,7 +3742,7 @@ mishnahw_keywords =
     
     ## identifies the controlled vocabulary within which the set of keywords concerned is
     ##         defined. 
-    attribute scheme { mishnahw_data.pointer },
+    attribute scheme { mishnahw_data.pointer }?,
     empty
   }
 mishnahw_classCode =
@@ -4169,7 +3808,7 @@ mishnahw_change =
     
     ## points to one or more elements that belong to this change.
     attribute target {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -4186,37 +3825,6 @@ mishnahw_listChange =
     ## elements is to be considered significant or not
     [ a:defaultValue = "true" ]
     attribute ordered { mishnahw_data.truthValue }?,
-    empty
-  }
-mishnahw_geoDecl =
-  
-  ## (geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
-  ##     the geo element elsewhere within the document.
-  element geoDecl {
-    mishnahw_macro.phraseSeq,
-    mishnahw_att.global.attributes,
-    mishnahw_att.declarable.attributes,
-    
-    ## supplies a commonly used code name for the datum employed.
-    ## Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) 
-    [ a:defaultValue = "WGS84" ]
-    attribute datum {
-      
-      ## (World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
-      ##             the World Geodetic System.
-      "WGS84"
-      | 
-        ## (Military Grid Reference System) the values supplied are geospatial entity object codes, based on
-        "MGRS"
-      | 
-        ## (ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.
-        "OSGB36"
-      | 
-        ## (European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
-        ##             to the European Datum coordinate system.
-        "ED50"
-      | xsd:Name
-    }?,
     empty
   }
 mishnahw_TEI =
@@ -4334,21 +3942,29 @@ mishnahw_div1 =
           ((mishnahw_model.div2Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    
-    ## (identifier) provides a unique identifier for the element bearing the attribute.
-    attribute xml:id { xsd:ID },
     mishnahw_att.global.attribute.n,
     mishnahw_att.global.attribute.xmllang,
     mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.style,
     mishnahw_att.global.attribute.rendition,
     mishnahw_att.global.attribute.xmlbase,
     mishnahw_att.global.attribute.xmlspace,
-    mishnahw_att.global.linking.attributes,
-    mishnahw_att.global.facs.attributes,
-    mishnahw_att.global.change.attributes,
+    mishnahw_att.global.linking.attribute.corresp,
+    mishnahw_att.global.linking.attribute.synch,
+    mishnahw_att.global.linking.attribute.sameAs,
+    mishnahw_att.global.linking.attribute.copyOf,
+    mishnahw_att.global.linking.attribute.next,
+    mishnahw_att.global.linking.attribute.prev,
+    mishnahw_att.global.linking.attribute.exclude,
+    mishnahw_att.global.linking.attribute.select,
+    mishnahw_att.global.facs.attribute.facs,
+    mishnahw_att.global.change.attribute.change,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
     empty
   }
 mishnahw_div2 =
@@ -4363,21 +3979,29 @@ mishnahw_div2 =
           ((mishnahw_model.div3Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    
-    ## (identifier) provides a unique identifier for the element bearing the attribute.
-    attribute xml:id { xsd:ID },
     mishnahw_att.global.attribute.n,
     mishnahw_att.global.attribute.xmllang,
     mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.style,
     mishnahw_att.global.attribute.rendition,
     mishnahw_att.global.attribute.xmlbase,
     mishnahw_att.global.attribute.xmlspace,
-    mishnahw_att.global.linking.attributes,
-    mishnahw_att.global.facs.attributes,
-    mishnahw_att.global.change.attributes,
+    mishnahw_att.global.linking.attribute.corresp,
+    mishnahw_att.global.linking.attribute.synch,
+    mishnahw_att.global.linking.attribute.sameAs,
+    mishnahw_att.global.linking.attribute.copyOf,
+    mishnahw_att.global.linking.attribute.next,
+    mishnahw_att.global.linking.attribute.prev,
+    mishnahw_att.global.linking.attribute.exclude,
+    mishnahw_att.global.linking.attribute.select,
+    mishnahw_att.global.facs.attribute.facs,
+    mishnahw_att.global.change.attribute.change,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
     empty
   }
 mishnahw_div3 =
@@ -4391,21 +4015,29 @@ mishnahw_div3 =
           ((mishnahw_model.div4Like | mishnahw_model.divGenLike),
            mishnahw_model.global*)*)),
       (mishnahw_model.divBottom, mishnahw_model.global*)*)?),
-    
-    ## (identifier) provides a unique identifier for the element bearing the attribute.
-    attribute xml:id { xsd:ID },
     mishnahw_att.global.attribute.n,
     mishnahw_att.global.attribute.xmllang,
     mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.style,
     mishnahw_att.global.attribute.rendition,
     mishnahw_att.global.attribute.xmlbase,
     mishnahw_att.global.attribute.xmlspace,
-    mishnahw_att.global.linking.attributes,
-    mishnahw_att.global.facs.attributes,
-    mishnahw_att.global.change.attributes,
+    mishnahw_att.global.linking.attribute.corresp,
+    mishnahw_att.global.linking.attribute.synch,
+    mishnahw_att.global.linking.attribute.sameAs,
+    mishnahw_att.global.linking.attribute.copyOf,
+    mishnahw_att.global.linking.attribute.next,
+    mishnahw_att.global.linking.attribute.prev,
+    mishnahw_att.global.linking.attribute.exclude,
+    mishnahw_att.global.linking.attribute.select,
+    mishnahw_att.global.facs.attribute.facs,
+    mishnahw_att.global.change.attribute.change,
     mishnahw_att.divLike.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.declaring.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
     empty
   }
 mishnahw_trailer =
@@ -4501,7 +4133,7 @@ mishnahw_signed =
   ## (signature) contains the closing salutation, etc., appended to a foreword,
   ## dedicatory epistle, or other division of a text.  [4.2.2. ]
   element signed {
-    mishnahw_macro.phraseSeq, mishnahw_att.global.attributes, empty
+    mishnahw_macro.paraContent, mishnahw_att.global.attributes, empty
   }
 mishnahw_postscript =
   
@@ -4688,7 +4320,7 @@ mishnahw_att.global.facs.attribute.facs =
   
   ## (facsimile) points to all or part of an image which corresponds with the content of the element.
   attribute facs {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.global.change.attributes =
   mishnahw_att.global.change.attribute.change
@@ -4698,7 +4330,7 @@ mishnahw_att.global.change.attribute.change =
   ##       a state or revision campaign to which the element bearing this
   ##       attribute and its children have been assigned by the encoder.
   attribute change {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_surfaceGrp =
   
@@ -4763,6 +4395,20 @@ mishnahw_damage =
     mishnahw_att.damaged.attributes,
     empty
   }
+mishnahw_fw =
+  
+  ## (forme work) contains a running head (e.g. a header, footer), catchword, or
+  ##   similar material appearing on the current page. [11.6. ]
+  element fw {
+    mishnahw_macro.phraseSeq,
+    mishnahw_att.global.attributes,
+    mishnahw_att.placement.attributes,
+    
+    ## classifies the material encoded according to some useful typology.
+    ## Sample values include: 1] header; 2] footer; 3] pageNum(page number) ; 4] lineNum(line number) ; 5] sig(signature) ; 6] catch(catchword) 
+    attribute type { mishnahw_data.enumerated }?,
+    empty
+  }
 mishnahw_am =
   
   ## (abbreviation marker) contains a sequence of letters or signs present in an
@@ -4791,7 +4437,7 @@ mishnahw_space =
   
   ## indicates the location of a significant space in the copy text. [11.5.1. ]
   element space {
-    mishnahw_model.glossLike*,
+    mishnahw_model.descLike*,
     mishnahw_att.global.attributes,
     mishnahw_att.dimensions.attributes,
     
@@ -4825,7 +4471,7 @@ mishnahw_subst =
            "\x{a}" ~
            "               "
            sch:assert [
-             test = "child::add and child::del"
+             test = "child::tei:add and child::tei:del"
              "\x{a}" ~
              "        Subst must have at least one child add and at least one child del"
            ]
@@ -4843,7 +4489,7 @@ mishnahw_substJoin =
   
   ## (substitution join) identifies a series of  possibly fragmented additions, deletions or other revisions on a manuscript that combine to make up a single intervention in the text
   element substJoin {
-    mishnahw_model.glossLike*,
+    (mishnahw_model.descLike | mishnahw_model.certLike)*,
     mishnahw_att.global.attributes,
     mishnahw_att.pointing.attributes,
     mishnahw_att.transcriptional.attributes,
@@ -4861,7 +4507,7 @@ mishnahw_supplied =
     
     ## indicates why the text has had to be supplied.
     attribute reason {
-      list { mishnahw_data.word, mishnahw_data.word* }
+      list { mishnahw_data.word+ }
     }?,
     empty
   }
@@ -4876,7 +4522,7 @@ mishnahw_surplus =
     
     ## indicates the grounds for believing this text to be superfluous.
     attribute reason {
-      list { mishnahw_data.word, mishnahw_data.word* }
+      list { mishnahw_data.word+ }
     }?,
     empty
   }
@@ -4917,7 +4563,7 @@ mishnahw_metamark =
     ## identifies one or more elements to which the function
     ##	 indicated by the metamark applies. 
     attribute target {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -4946,7 +4592,7 @@ mishnahw_redo =
     ## points to one or more elements representing the
     ##	 interventions which are being reasserted.
     attribute target {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -4982,7 +4628,7 @@ mishnahw_undo =
     ## points to one or more elements representing the
     ##	 interventions which are to be reverted or undone.
     attribute target {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -5000,14 +4646,14 @@ mishnahw_att.global.linking.attribute.corresp =
   ## (corresponds) points to elements that correspond to the current
   ##       element in some way.
   attribute corresp {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.global.linking.attribute.synch =
   
   ## (synchronous) points to elements that are synchronous with the current
   ##       element.
   attribute synch {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.global.linking.attribute.sameAs =
   
@@ -5034,7 +4680,7 @@ mishnahw_att.global.linking.attribute.exclude =
   ## points to elements that are in exclusive alternation
   ##       with the current element.
   attribute exclude {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_att.global.linking.attribute.select =
   
@@ -5044,13 +4690,35 @@ mishnahw_att.global.linking.attribute.select =
   ##       uncertainty is marked as reduced by the number of alternants not
   ##       selected.
   attribute select {
-    list { mishnahw_data.pointer, mishnahw_data.pointer* }
+    list { mishnahw_data.pointer+ }
   }?
 mishnahw_ab =
   
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. ]
   element ab {
     mishnahw_macro.paraContent,
+    mishnahw_att.global.attribute.n,
+    mishnahw_att.global.attribute.xmllang,
+    mishnahw_att.global.attribute.rend,
+    mishnahw_att.global.attribute.style,
+    mishnahw_att.global.attribute.rendition,
+    mishnahw_att.global.attribute.xmlbase,
+    mishnahw_att.global.attribute.xmlspace,
+    mishnahw_att.global.linking.attribute.corresp,
+    mishnahw_att.global.linking.attribute.synch,
+    mishnahw_att.global.linking.attribute.sameAs,
+    mishnahw_att.global.linking.attribute.copyOf,
+    mishnahw_att.global.linking.attribute.next,
+    mishnahw_att.global.linking.attribute.prev,
+    mishnahw_att.global.linking.attribute.exclude,
+    mishnahw_att.global.linking.attribute.select,
+    mishnahw_att.global.facs.attribute.facs,
+    mishnahw_att.global.change.attribute.change,
+    mishnahw_att.typed.attributes,
+    mishnahw_att.declaring.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
     
     ## specifies whether or not the block is complete. 
     [ a:defaultValue = "N" ]
@@ -5071,20 +4739,6 @@ mishnahw_ab =
         ## (final) the final part of an incomplete block
         "F"
     }?,
-    
-    ## (identifier) provides a unique identifier for the element bearing the attribute.
-    attribute xml:id { xsd:ID },
-    mishnahw_att.global.attribute.n,
-    mishnahw_att.global.attribute.xmllang,
-    mishnahw_att.global.attribute.rend,
-    mishnahw_att.global.attribute.rendition,
-    mishnahw_att.global.attribute.xmlbase,
-    mishnahw_att.global.attribute.xmlspace,
-    mishnahw_att.global.linking.attributes,
-    mishnahw_att.global.facs.attributes,
-    mishnahw_att.global.change.attributes,
-    mishnahw_att.typed.attributes,
-    mishnahw_att.declaring.attributes,
     empty
   }
 mishnahw_anchor =
@@ -5103,6 +4757,7 @@ mishnahw_seg =
     (text
      | mishnahw_model.pPart.transcriptional
      | mishnahw_model.milestoneLike
+     | mishnahw_model.pPart.editorial
      | mishnahw_model.segLike
      | mishnahw_listTranspose)*,
     mishnahw_att.global.attributes,
@@ -5115,7 +4770,7 @@ mishnahw_join =
   
   ## identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. [16.7. ]
   element join {
-    (mishnahw_model.glossLike*)
+    ((mishnahw_model.descLike | mishnahw_model.certLike)*)
     >> sch:pattern [
          id = "join-constraint-joinTargets1"
          "\x{a}" ~
@@ -5229,13 +4884,10 @@ mishnahw_msDesc =
     (mishnahw_msIdentifier,
      mishnahw_model.headLike*,
      (mishnahw_model.pLike+
-      | (mishnahw_msContents?,
-         mishnahw_physDesc?,
-         empty?,
-         empty?,
-         empty*))),
+      | (mishnahw_msContents?, mishnahw_physDesc?))),
     mishnahw_att.global.attributes,
     mishnahw_att.sortable.attributes,
+    mishnahw_att.typed.attributes,
     empty
   }
 mishnahw_dimensions =
@@ -5385,9 +5037,7 @@ mishnahw_msIdentifier =
   ## the  manuscript being described.  [10.4. ]
   element msIdentifier {
     ((mishnahw_model.placeNamePart_sequenceOptional,
-      empty?,
       mishnahw_repository?,
-      empty*,
       mishnahw_idno?),
      empty*)
     >> sch:pattern [
@@ -5429,16 +5079,13 @@ mishnahw_msContents =
   ##     part, either as a series of paragraphs or as a series of structured manuscript items. [10.6. ]
   element msContents {
     (mishnahw_model.pLike+
-     | (empty?,
-        mishnahw_textLang?,
-        mishnahw_titlePage?,
-        (mishnahw_msItem)*)),
+     | (mishnahw_textLang?, mishnahw_titlePage?, (mishnahw_msItem)*)),
     mishnahw_att.global.attributes,
     mishnahw_att.msExcerpt.attributes,
     
     ## identifies the text types or classifications applicable to this object.
     attribute class {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -5458,7 +5105,7 @@ mishnahw_msItem =
     ## identifies the text types or classifications applicable to this
     ## item
     attribute class {
-      list { mishnahw_data.pointer, mishnahw_data.pointer* }
+      list { mishnahw_data.pointer+ }
     }?,
     empty
   }
@@ -5492,8 +5139,7 @@ mishnahw_supportDesc =
   
   ## (support description) groups elements describing the physical support for the written part of a manuscript. [10.7.1. ]
   element supportDesc {
-    (mishnahw_model.pLike+
-     | (mishnahw_support?, mishnahw_extent?, empty*, empty?, empty?)),
+    (mishnahw_model.pLike+ | (mishnahw_support?, mishnahw_extent?)),
     mishnahw_att.global.attributes,
     
     ## a short project-defined name for the material composing
@@ -5524,7 +5170,7 @@ mishnahw_layoutDesc =
   
   ## (layout description) collects the set of layout descriptions applicable to a manuscript. [10.7.2. ]
   element layoutDesc {
-    (mishnahw_model.pLike+ | (empty?, mishnahw_layout+)),
+    (mishnahw_model.pLike+ | mishnahw_layout+),
     mishnahw_att.global.attributes,
     empty
   }
@@ -5558,7 +5204,7 @@ mishnahw_handDesc =
   
   ## (description of hands) contains a description of all the different kinds of writing  used in a manuscript. [10.7.2. ]
   element handDesc {
-    (mishnahw_model.pLike+ | (empty?, mishnahw_handNote+)),
+    (mishnahw_model.pLike+ | mishnahw_handNote+),
     mishnahw_att.global.attributes,
     
     ## specifies the number of distinct hands identified within the manuscript
@@ -5577,31 +5223,31 @@ mishnahw_att.datable.custom.attribute.when-custom =
   
   ## supplies the value of a date or time in some standard form.
   attribute when-custom {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.datable.custom.attribute.notBefore-custom =
   
   ## specifies the earliest possible date for the event in some custom standard form.
   attribute notBefore-custom {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.datable.custom.attribute.notAfter-custom =
   
   ## specifies the latest possible date for the event in some custom standard form.
   attribute notAfter-custom {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.datable.custom.attribute.from-custom =
   
   ## indicates the starting point of the period in some standard form.
   attribute from-custom {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.datable.custom.attribute.to-custom =
   
   ## indicates the ending point of the period in some standard form.
   attribute to-custom {
-    list { mishnahw_data.word, mishnahw_data.word* }
+    list { mishnahw_data.word+ }
   }?
 mishnahw_att.datable.custom.attribute.datingPoint =
   
@@ -5609,7 +5255,7 @@ mishnahw_att.datable.custom.attribute.datingPoint =
   attribute datingPoint { mishnahw_data.pointer }?
 mishnahw_att.datable.custom.attribute.datingMethod =
   
-  ## supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.
+  ## supplies a pointer to a calendar element or other means of interpreting the values of the custom dating attributes.
   attribute datingMethod { mishnahw_data.pointer }?
 mishnahw_att.datable.iso.attributes =
   mishnahw_att.datable.iso.attribute.when-iso,
@@ -5645,7 +5291,7 @@ mishnahw_placeName =
     mishnahw_att.datable.attributes,
     mishnahw_att.editLike.attributes,
     mishnahw_att.global.attributes,
-    mishnahw_att.naming.attributes,
+    mishnahw_att.personal.attributes,
     mishnahw_att.typed.attributes,
     empty
   }
@@ -5723,7 +5369,7 @@ mishnahw_pc =
   }
 mishnahw_g =
   
-  ## (character or glyph) represents a non-standard character or glyph. [5. ]
+  ## (character or glyph) represents a glyph, or a non-standard character. [5. ]
   element g {
     text,
     mishnahw_att.global.attributes,

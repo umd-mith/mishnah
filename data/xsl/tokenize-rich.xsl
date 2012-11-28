@@ -154,6 +154,7 @@
                 <!-- Currently selects only "original" text. Can be altered to include to include
                     added corrected text as well. 
                     Can also be altered to deal with cases of known hands-->
+                <!-- Have now added seg for poem-like text in columns. Need to verify that this does not cause errors -->
                 <xsl:for-each select="node()">
                     <xsl:choose>
                         <xsl:when test="self::text()">
@@ -199,8 +200,9 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <!-- Nodes to be removed altogether-->
+            <!-- NB includes fw  -->
             <xsl:when
-                test="self::tei:g[@ref='#fill'] | self::tei:note | self::tei:space | self::tei:surplus | self::tei:milestone | self::comment()">
+                test="self::tei:g[@ref='#fill'] | self::tei:note | self::tei:space | self::tei:surplus | self::tei:milestone | self::tei:fw | self::comment()">
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:otherwise>
@@ -254,7 +256,7 @@
     </xsl:template>
     <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within"> </xsl:template>
     <xsl:template
-        match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note"
+        match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw"
         mode="preproc-within"/>
     <xsl:template match="//tei:unclear | //tei:gap" mode="preproc-within">
         <xsl:text>[ ]</xsl:text>
