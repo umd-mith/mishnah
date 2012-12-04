@@ -5,7 +5,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-10-26T13:47:57Z. 
+# Schema generated from ODD source 2012-11-27T20:27:15Z. 
 # Edition: 2.2.0. Last updated on 25th October 2012.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
 #
@@ -4389,7 +4389,8 @@ mishnahw_damage =
      | mishnahw_lb
      | mishnahw_note
      | mishnahw_unclear
-     | mishnahw_seg)*,
+     | mishnahw_seg
+     | mishnahw_surplus)*,
     mishnahw_att.global.attributes,
     mishnahw_att.typed.attributes,
     mishnahw_att.damaged.attributes,
