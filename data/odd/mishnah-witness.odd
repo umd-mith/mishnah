@@ -54,7 +54,7 @@
 
                     <!-- Additional modules -->
                     <moduleRef key="transcr"
-                        except="addSpan damageSpan delSpan ex facsimile gb handNotes handShift surface zone"/>
+                        except="addSpan delSpan ex facsimile handNotes handShift surface zone"/>
                     <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
                     <moduleRef key="linking" include="ab anchor seg join joinGrp"/>
                     <moduleRef key="msdescription"
@@ -234,7 +234,16 @@
                             <attDef ident="xml:id" mode="change" usage="req"/>
                         </attList>
                     </elementSpec>
-
+                    
+                    <!-- modifying damageSpan to occur only within damage -->
+                    <elementSpec module="transcr" ident="damageSpan" mode="change">
+                        <attList>
+                            <attDef ident="spanTo" mode="change" usage="req"/>
+                            <attDef ident="corresp" mode="change" usage="req"/>
+                        </attList>
+                    </elementSpec>
+                    
+                    <!-- modifying gap-->
                     <elementSpec module="core" ident="gap" mode="change">
                         <attList>
                             <attDef ident="extent" mode="change">
@@ -243,6 +252,7 @@
                                 </datatype>
                             </attDef>
                         </attList>
+                        
                     </elementSpec>
 
                     <!-- Constrain the content model of damage. Covers three cases: 1) damaged but still readable text (unadorned inside <damage>);

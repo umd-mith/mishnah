@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!--<?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>-->
-<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../derivative/digital_mishnah_witness-TestISOSCH.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness-TestISOSCH.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -61,9 +61,7 @@
                                 <locus n="1r" facs="ww.genizah.org">C96888</locus>
                                 <locus n="1v" facs="ww.genizah.org">C96887</locus>
                             </locusGrp>
-                            <join target="g2.xml"/>
-                            <join target="g6.xml"/>
-                            <join target="g7.xml"/>
+                            <join target="g2.xml g4.xml g7.xml"/>
                             <title>Mishnah</title>
                         </msItem>
                     </msContents>
@@ -125,7 +123,7 @@
                         <pb n="1r" xml:id="g6.1r" next="#g6.1r.pageEnd"/>
                         <ab xml:id="G6.4.2.1.1">
                             <damage><damageSpan xml:id="g6.damBeg.1r.1a" spanTo="#g6.damEnd.1r.1a"
-                                    /><gap extent="13" unit="chars"/><unclear extent="3"
+                                    /><gap reason="damage"/><unclear extent="3"
                                     unit="chars"/><anchor xml:id="g6.damEnd.1r.1a"/>ע שא<damageSpan
                                     xml:id="g6.damBeg.1r.1b" spanTo="#g6.damEnd.1r.2a"/><gap
                                     extent="2" unit="chars"/></damage>
@@ -134,7 +132,7 @@
                                     /><gap extent="6" unit="chars"/><unclear extent="3" unit="chars"
                                     >חלו</unclear><anchor xml:id="g6.damEnd.1r.2a"/>ק<damageSpan
                                     xml:id="g6.damBeg.1r.2b" spanTo="#g6.damEnd.1r.2b"/><unclear
-                                    extent="1" unit="chars">ו</unclear><gap extent="1" unit="chars"
+                                    extent="1" unit="chars">ו</unclear><gap reason="damage" extent="1" unit="chars"
                                     /><anchor xml:id="g6.damEnd.1r.2b"/></damage>ה אומר
                                     <damage>כ<damageSpan xml:id="g6.damBeg.1r.2c"
                                     spanTo="#g6.damEnd.1r.3a"/><gap extent="4" unit="chars"
