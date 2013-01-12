@@ -20,6 +20,7 @@
     </xd:doc>
     <!-- Need to run flattening stylsheet then unflattentopages -->
     <!--Updated transformations to result in valid TEI in xml output and valid HTML in html output -->
+   
     <xsl:template match="*|@*|text()|processing-instruction()">
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|processing-instruction()"/>
@@ -37,7 +38,7 @@
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <link rel="stylesheet" type="text/css"
-                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    href="../css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
                     <xsl:value-of
@@ -226,24 +227,25 @@
     <!-- remove the temporary supplied text -->
     <xsl:template match="tei:supplied"> </xsl:template>
     <!-- Hide in CSS. Eventually, extract order name and tractate name from id. -->
-    <xsl:template match="tei:milestone[@unit='Order']">
+    <xsl:template match="tei:milestone[@unit='Order' or @unit='div1']">
         <span class="ord"> Order <xsl:value-of select="./@xml:id"/>
         </span>
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:milestone[@unit='Tractate']">
+    <xsl:template match="tei:milestone[@unit='Tractate' or @unit='div2']">
         <span class="tr"> Tractate <xsl:value-of select="./@xml:id"/>
         </span>
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:milestone[@unit='Chapter']">
+    <xsl:template match="tei:milestone[@unit='Chapter' or @unit='div3']">
         <xsl:variable name="ref">
             <xsl:value-of select="./@xml:id"/>
         </xsl:variable>
+
         <span>
             <xsl:attribute name="class">chapter</xsl:attribute>
             <xsl:analyze-string select="$ref"
-                regex="^P_(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+                regex="^P_([^\.]+)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                 <xsl:matching-substring>
                     <xsl:value-of select="regex-group(4)"/>
                 </xsl:matching-substring>
@@ -261,7 +263,7 @@
         <span>
             <xsl:attribute name="class">mishnah</xsl:attribute>
             <xsl:analyze-string select="$ref"
-                regex="^P_(\c+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
+                regex="^P_([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
                 <xsl:matching-substring>
                     <xsl:value-of select="regex-group(5)"/>
                 </xsl:matching-substring>
