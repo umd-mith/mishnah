@@ -22,7 +22,7 @@
     </xd:doc>
     <!-- Need to run flattening stylsheet then unflattentopages -->
     <!--Updated transformations to result in valid TEI in xml output and valid HTML in html output -->
-    <xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=pg</xsl:param>
+    <xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
     <xsl:variable name="params">
         <xsl:analyze-string select="$rqs"
@@ -62,13 +62,13 @@
             <xsl:when test="$params/my:mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'mishnah-ch'"/>
-                    
-                        <xsl:analyze-string select="@xml:id"
-                            regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
-                            <xsl:matching-substring>
-                                <xsl:value-of select="regex-group(5)"/>
-                            </xsl:matching-substring>
-                        </xsl:analyze-string>
+
+                    <xsl:analyze-string select="@xml:id"
+                        regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(5)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
                 </xsl:element>
                 <xsl:element name="p" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'mishnah'"/>
@@ -88,6 +88,8 @@
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
+                <!--<link rel="stylesheet" type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    title="Documentary"/>-->
                 <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
@@ -105,6 +107,20 @@
                 <h2 style="font-size:80%;">[<a href="demo">Back to Demo Home Page</a>] [<a
                         href="browse">Back to Browse</a>]</h2>
                 <h2 style="font-size:80%;"/>
+                <div class="nav">
+                    <span class="last">|&lt; Last</span>
+                    <span class="next">&lt;&lt; Next </span>
+                    <span class="first">First &gt;|</span>
+                    <span class="prev">Previous &gt;&gt;</span>
+                    <form action="get" class="current-block">Browse by:<br/>
+                        <span class="current"><input type="radio" name="mode" value="pg"/>Page<input
+                                type="text" name="pg" size="8"/></span><span class="current"
+                                >&#160;&#160;<input type="radio" name="mode" value="col"
+                                checked="checked"/>Column<input type="text" name="col" size="8"
+                            /></span><span class="current">&#160;&#160;<input type="radio"
+                                name="mode" value="ch"/>Chapter<input type="text" name="ch" size="8"
+                            /></span><input type="submit" class="submForm"/></form>
+                </div>
                 <div class="meta" dir="ltr">
                     <xsl:variable name="nli"
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type
@@ -533,13 +549,16 @@
                     </xsl:if>
                     <xsl:apply-templates/>
                 </div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
+                    <hr> </hr>
+                </div>
             </xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">
                 <xsl:apply-templates/>
             </xsl:if>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-            <hr/>
+            <hr> </hr>
         </div>
     </xsl:template>
     <xsl:template match="tei:div[@type='column']">
@@ -556,6 +575,37 @@
                         name="class" select="'pageNo'"/>folio <xsl:value-of
                         select="./ancestor::tei:div[@type='page']/@n"/></xsl:element>
             </xsl:if>
+            <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:attribute name="class" select="'colNo'"/>
+                <xsl:value-of select="./@n"/>
+            </xsl:element>
+            <xsl:if test="descendant::tei:lb[position() = 1]/@n &gt; 1">
+                <xsl:variable name="firstline">
+                    <xsl:value-of select="descendant::tei:lb[position() = 1]/@n"/>
+                </xsl:variable>
+                <xsl:variable name="char">
+                    <br xmlns="http://www.w3.org/1999/xhtml"/>
+                </xsl:variable>
+                <xsl:call-template name="add-char">
+                    <xsl:with-param name="howMany" select="$firstline - 1"/>
+                    <xsl:with-param name="char" select="$char"/>
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:apply-templates/>
+        </div>
+        <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
+            <hr> </hr>
+        </div>
+    </xsl:template>
+    <xsl:template match="tei:div[@type='singCol']">
+        <xsl:variable name="col">
+            <xsl:value-of select="@n"/>
+        </xsl:variable>
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:attribute name="class">columnA</xsl:attribute>
+
+
+
             <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:attribute name="class" select="'colNo'"/>
                 <xsl:value-of select="./@n"/>
@@ -593,14 +643,14 @@
             </xsl:element>
         </xsl:element>
         <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-            <hr/>
+            <hr> </hr>
         </div>
     </xsl:template>
     <!-- PB and CB only exist in ch mode -->
     <xsl:template match="tei:pb">
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">pageNo-ch</xsl:attribute>
-            <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"></xsl:value-of>
+            <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>
@@ -609,7 +659,7 @@
     <xsl:template match="tei:cb">
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">colNo-ch</xsl:attribute>
-            <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"></xsl:value-of>
+            <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>
@@ -656,24 +706,27 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:ref">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                select="'bibQuote'"/> <xsl:apply-templates/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:attribute name="class" select="'bibQuote'"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:sic">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                select="'sic'"/> <xsl:apply-templates/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:attribute name="class" select="'sic'"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:corr">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                select="'corr'"/> <xsl:apply-templates/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:attribute name="class" select="'corr'"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     <!-- Process <damage> -->
     <xsl:template match="tei:unclear">
         <xsl:choose>
-            <xsl:when test="not($params/my:mode)">
+            <xsl:when test="not($params/my:mode='ch')">
                 <!-- In page and col mode -->
                 <!-- Represent unclear text as periods using extent-->
                 <!-- When text is present in <unclear> add difference between @extent and
@@ -685,8 +738,9 @@
                 ','')))"
                     />
                 </xsl:variable>
-                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
-                        name="class" select="'unclear'"/> <!-- replacement string of thin-space/period/thin-space -->
+                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:attribute name="class" select="'unclear'"/>
+                    <!-- replacement string of thin-space/period/thin-space -->
                     <xsl:variable name="dots" as="xs:string">
                         <xsl:text>&#8201;.&#8201;</xsl:text>
                     </xsl:variable>
@@ -746,9 +800,9 @@
                     <xsl:apply-templates select="current-group()"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
-                            name="class" select="'damage'"/> <xsl:apply-templates
-                            select="current-group()"/>
+                    <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                        <xsl:attribute name="class" select="'damage'"/>
+                        <xsl:apply-templates select="current-group()"/>
                     </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
@@ -758,8 +812,9 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:orig">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                select="'pointed'"/> <xsl:value-of select="."/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:attribute name="class" select="'pointed'"/>
+            <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:reg">
@@ -814,7 +869,7 @@
             <xsl:when test="$params/my:mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'label-ch'"/>
-                <xsl:value-of select="."/>
+                    <xsl:value-of select="."/>
                 </xsl:element>
             </xsl:when>
         </xsl:choose>

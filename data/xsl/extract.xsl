@@ -4,7 +4,7 @@
     xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
     xmlns:local="local-functions.uri">
-    <xsl:param name="rqs">ch=4.2.6&amp;pg=163r&amp;col=163rA&amp;mode=pg</xsl:param>
+    <xsl:param name="rqs">ch=4.2.6&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
     <xsl:variable name="params">
         <xsl:analyze-string select="$rqs"
