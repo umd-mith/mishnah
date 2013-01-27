@@ -4,55 +4,38 @@
     xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
     xmlns:local="local-functions.uri">
-    <xsl:param name="rqs">ch=4.2.6&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>
+    
+    <xsl:param name="ch" select="'4.2.6'"/>
+    <xsl:param name="pg" select="'163r'"/>
+    <xsl:param name="col" select="'163rA'"/>
+    <xsl:param name="mode" select="'pg'"/>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
-    <xsl:variable name="params">
-        <xsl:analyze-string select="$rqs"
-            regex="([^&amp;]*)&amp;([^&amp;]*)&amp;([^&amp;]*)&amp;([^&amp;]*)">
-            <xsl:matching-substring>
-                <ch>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(1),'='))"/>
-                </ch>
-                <pg>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(2),'='))"/>
-                </pg>
-                <col>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(3),'='))"/>
-                </col>
-                <mode>
-                    <xsl:value-of select="substring-after(regex-group(4),'=')"/>
-                </mode>
-            </xsl:matching-substring>
-        </xsl:analyze-string>
-    </xsl:variable>
-    <xsl:variable name="witFile">
-        <xsl:value-of select="normalize-space(concat('../tei/',$wit,'.xml'))"/>
-    </xsl:variable>
+   
     <xsl:param name="start">
         <!-- Select start node based on selected paramenters. On non-existant chs, pages, cols, goes to first in witness file. -->
         <xsl:choose>
-            <xsl:when test="$params/tei:mode = 'pg'">
+            <xsl:when test="$mode = 'pg'">
                 <xsl:choose>
-                    <xsl:when test="//tei:pb[@xml:id = $params/tei:pg]">
-                        <xsl:value-of select="//tei:pb[@xml:id = $params/tei:pg]/@xml:id"/>
+                    <xsl:when test="//tei:pb[@xml:id = concat($wit,'.',$pg)]">
+                        <xsl:value-of select="//tei:pb[@xml:id = concat($wit,'.',$pg)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="//tei:pb[1]/@xml:id"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'col'">
+            <xsl:when test="$mode = 'col'">
                 <xsl:choose>
-                    <xsl:when test="//tei:cb[@xml:id = $params/tei:col]">
-                        <xsl:value-of select="//tei:cb[@xml:id = $params/tei:col]/@xml:id"/>
+                    <xsl:when test="//tei:cb[@xml:id = concat($wit,'.',$col)]">
+                        <xsl:value-of select="//tei:cb[@xml:id = concat($wit,'.',$col)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="//tei:pb[1]/@xml:id"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'ch' and //tei:div3[@xml:id = $params/tei:ch]">
-                <xsl:value-of select="//tei:div3[@xml:id = $params/tei:ch]/@xml:id"/>
+            <xsl:when test="$mode = 'ch' and //tei:div3[@xml:id = concat($wit,'.',$ch)]">
+                <xsl:value-of select="//tei:div3[@xml:id = concat($wit,'.',$ch)]/@xml:id"/>
             </xsl:when>
             <xsl:otherwise>null</xsl:otherwise>
         </xsl:choose>
@@ -61,7 +44,7 @@
     <xsl:param name="end">
         <!-- Assign end node as following pb or cb for page or column -->
         <xsl:choose>
-            <xsl:when test="$params/tei:mode = 'pg'">
+            <xsl:when test="$mode = 'pg'">
                 <xsl:choose>
                     <xsl:when test="//tei:pb[@xml:id = $start]/following::tei:pb[1]">
                         <xsl:value-of
@@ -69,7 +52,7 @@
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'col'">
+            <xsl:when test="$mode = 'col'">
                 <xsl:choose>
                     <xsl:when
                         test="//tei:cb[@xml:id = $start]/following::tei:cb[1] &lt;&lt; //tei:cb[@xml:id = $start]/following::tei:pb[1]">
@@ -91,7 +74,7 @@
                     <xsl:otherwise>null</xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'ch'">
+            <xsl:when test="$mode = 'ch'">
                 <xsl:value-of select="//div3[@xml:id = $start]/following-sibling::div3[1]"/>
             </xsl:when>
             <xsl:otherwise>null</xsl:otherwise>
@@ -106,7 +89,7 @@
     <xsl:template match="tei:body">
 
         <xsl:choose>
-            <xsl:when test="$params/tei:mode= 'pg'">
+            <xsl:when test="$mode= 'pg'">
                 <xsl:element name="div">
                     <xsl:attribute name="type">page</xsl:attribute>
                     <xsl:attribute name="n"
@@ -114,7 +97,7 @@
                     <xsl:apply-templates mode="phase1"/>
                 </xsl:element>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'col'">
+            <xsl:when test="$mode = 'col'">
                 <xsl:element name="div">
                     <xsl:attribute name="type">page</xsl:attribute>
                     <xsl:attribute name="n">
@@ -133,7 +116,7 @@
                     </xsl:element>
                 </xsl:element>
             </xsl:when>
-            <xsl:when test="$params/tei:mode = 'ch'">
+            <xsl:when test="$mode = 'ch'">
                 <!-- Do nothing. We simply pull the appropriate div3 from the file -->
             </xsl:when>
         </xsl:choose>
@@ -193,15 +176,16 @@
     </xsl:template>
 
     <xsl:template match="/">
+        
         <xsl:variable name="holding">
             <xsl:apply-templates select="tei:TEI/tei:text/tei:body"/>
         </xsl:variable>
         <xsl:variable name="to-group">
             <xsl:choose>
-                <xsl:when test="$params/tei:mode = 'pg'">
+                <xsl:when test="$mode = 'pg'">
                     <xsl:apply-templates select="$holding/*" mode="phase2"/>
                 </xsl:when>
-                <xsl:when test="$params/tei:mode = 'col'">
+                <xsl:when test="$mode = 'col'">
                     <xsl:apply-templates select="$holding/*" mode="phase2"/>
                 </xsl:when>
             </xsl:choose>
@@ -212,7 +196,7 @@
             <text>
                 <body>
                     <xsl:choose>
-                        <xsl:when test="$params/tei:mode='pg'">
+                        <xsl:when test="$mode='pg'">
                             <xsl:choose>
                                 <xsl:when test="//tei:cb">
                                     <!-- page has columns -->
@@ -226,11 +210,11 @@
                             </xsl:choose>
                         </xsl:when>
 
-                        <xsl:when test="$params/tei:mode='col'">
+                        <xsl:when test="$mode='col'">
 
                             <xsl:apply-templates select="$to-group/tei:div" mode="sing-col"/>
                         </xsl:when>
-                        <xsl:when test="$params/tei:mode='ch'">
+                        <xsl:when test="$mode='ch'">
                             <xsl:element name="div">
                                 <xsl:attribute name="type">chap</xsl:attribute>
                                 <xsl:attribute name="n" select="$start"/>

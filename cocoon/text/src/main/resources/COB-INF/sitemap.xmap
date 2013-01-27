@@ -23,10 +23,8 @@
                 src="org.apache.cocoon.serialization.XMLSerializer">
                 <indent>yes</indent>
             </map:serializer>
-            <map:serializer
-                name="html-no-indent"     
-                src="org.apache.cocoon.serialization.HTMLSerializer"
-                mime-type="text/html">
+            <map:serializer name="html-no-indent"
+                src="org.apache.cocoon.serialization.HTMLSerializer" mime-type="text/html">
                 <indent>no</indent>
             </map:serializer>
             <map:serializer name="tei-no-indent" mime-type="application/xml"
@@ -186,40 +184,88 @@
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:serialize type="tei"/>
             </map:match>
-            
+
+            <!-- Test map:when and parameters -->
+            <map:match pattern="*.test-mode1.html">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:select type="request-parameter">
+                    <map:parameter name="parameter-name" value="mode"/>
+                    <map:when test="ch">
+                        <map:transform src="resource://xsl/ch.xsl" type="xslt-saxon">
+                            <map:parameter name="mode" value="{request-param:mode}"/>
+                        </map:transform>
+                        <map:serialize type="html"/>
+                    </map:when>
+                    <map:otherwise>
+                        <map:transform src="resource://xsl/not-ch.xsl" type="xslt-saxon">
+                            <map:parameter name="mode" value="{request-param:mode}"/>
+                        </map:transform>
+                        <map:serialize type="html"/>
+                    </map:otherwise>
+                </map:select>
+            </map:match>
+
             <!-- experimenting with parameterized  browse-->
-            <map:match pattern="*.pages-pg-col.html">
+            <map:match pattern="*.browse-param.html">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform src="resource://xsl/extract.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
-                <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                <map:select type="request-parameter">
+                    <map:parameter name="parameter-name" value="mode"/>
+                    <map:when test="ch">
+                        <!-- If chunked by chapter -->
+                        <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
+                    </map:when>
+                    <map:otherwise>
+                        <!-- do nothing -->
+                    </map:otherwise>
+                </map:select>
+                <map:transform src="resource://xsl/pages-to-html-param.xsl" type="xslt-saxon">
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
                 <map:serialize type="tei-no-indent"/>
             </map:match>
-           
+
             <map:match pattern="*.pages-pgcol.html">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform src="resource://xsl/extract.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
                 <map:transform src="resource://xsl/pages-to-html-param.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
                 <map:serialize type="tei-no-indent"/>
-            </map:match>           
+            </map:match>
             <map:match pattern="*.pages-ch.html">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform src="resource://xsl/extract.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
                 <map:transform src="resource://xsl/flat-to-pages.xsl" type="xslt-saxon"/>
                 <map:transform src="resource://xsl/pages-to-html-param.xsl" type="xslt-saxon">
-                    <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="pg" value="{request-param:pg}"/>
+                    <map:parameter name="col" value="{request-param:col}"/>
+                    <map:parameter name="ch" value="{request-param:ch}"/>
+                    <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
                 <map:serialize type="tei-no-indent"/>
-            </map:match>           
+            </map:match>
         </map:pipeline>
     </map:pipelines>
 </map:sitemap>

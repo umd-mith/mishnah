@@ -22,26 +22,83 @@
     </xd:doc>
     <!-- Need to run flattening stylsheet then unflattentopages -->
     <!--Updated transformations to result in valid TEI in xml output and valid HTML in html output -->
-    <xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>
+    <!--<xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>-->
+
+    <xsl:param name="ch" select="'4.2.6'"/>
+    <xsl:param name="pg" select="'163r'"/>
+    <xsl:param name="col" select="'157rB'"/>
+    <xsl:param name="mode" select="'col'"/>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
-    <xsl:variable name="params">
-        <xsl:analyze-string select="$rqs"
-            regex="([^&amp;]*)&amp;([^&amp;]*)&amp;([^&amp;]*)&amp;([^&amp;]*)">
-            <xsl:matching-substring>
-                <my:ch>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(1),'='))"/>
-                </my:ch>
-                <my:pg>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(2),'='))"/>
-                </my:pg>
-                <my:col>
-                    <xsl:value-of select="concat($wit, '.', substring-after(regex-group(3),'='))"/>
-                </my:col>
-                <my:mode>
-                    <xsl:value-of select="substring-after(regex-group(4),'=')"/>
-                </my:mode>
-            </xsl:matching-substring>
-        </xsl:analyze-string>
+    <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
+    <xsl:variable name="thisId">
+        <!-- locates first, last, next, prev for processing links -->
+        <xsl:choose>
+            <xsl:when test="$mode='pg'">
+                <xsl:value-of select="normalize-space(concat($wit,'.',$pg))"/>
+            </xsl:when>
+            <xsl:when test="$mode='col'">
+                <xsl:value-of select="normalize-space(concat($wit,'.',$col))"/>
+            </xsl:when>
+            <xsl:when test="$mode='ch'">
+                <xsl:value-of select="normalize-space(concat($wit,'.',$ch))"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="thisPgColCh">
+        <xsl:variable name="thisElement">
+            <xsl:copy-of select="document($thisURI)//element()[@xml:id=$thisId]"/>
+        </xsl:variable>
+        <xsl:variable name="name" select="$thisElement/element()/name()"/>
+        <xsl:variable name="id" select="$thisElement/element()/@xml:id"/>
+        <this>
+            <xsl:value-of select="$id"/>
+        </this>
+        <first>
+            <xsl:choose>
+                <xsl:when
+                    test="document($thisURI,(document('')))/*/*//*/preceding::element()[name()=$name]">
+                    <xsl:value-of
+                        select="(document($thisURI,(document('')))/*/*//*)[name()=$name][1]/@xml:id"
+                    />
+                </xsl:when>
+                <xsl:otherwise>null</xsl:otherwise>
+            </xsl:choose>
+        </first>
+        <last>
+            <xsl:choose>
+                <xsl:when
+                    test="document($thisURI,(document('')))/*/*//*/following::element()[name()=$name]">
+                    <xsl:value-of
+                        select="(document($thisURI,(document('')))/*/*//*)[name()=$name][last()]/@xml:id"
+                    />
+                </xsl:when>
+                <xsl:otherwise>null</xsl:otherwise>
+            </xsl:choose>
+
+        </last>
+        <prev>
+            <xsl:choose>
+                <xsl:when
+                    test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]">
+                    <xsl:value-of
+                        select="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]/@xml:id"
+                    />
+                </xsl:when>
+                <xsl:otherwise>null</xsl:otherwise>
+            </xsl:choose>
+        </prev>
+        <next>
+            <xsl:choose>
+                <xsl:when
+                    test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]">
+                    <xsl:value-of
+                        select="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]/@xml:id"
+                    />
+                </xsl:when>
+                <xsl:otherwise>null</xsl:otherwise>
+            </xsl:choose>
+        </next>
+
     </xsl:variable>
     <xsl:template match="*|@*|text()|processing-instruction()">
         <xsl:copy>
@@ -59,7 +116,7 @@
     <xsl:template match="tei:ab">
 
         <xsl:choose>
-            <xsl:when test="$params/my:mode='ch'">
+            <xsl:when test="$mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'mishnah-ch'"/>
 
@@ -88,8 +145,9 @@
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
-                <!--<link rel="stylesheet" type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
-                    title="Documentary"/>-->
+                <link rel="stylesheet" type="text/css"
+                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    title="Documentary"/>
                 <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
@@ -108,18 +166,119 @@
                         href="browse">Back to Browse</a>]</h2>
                 <h2 style="font-size:80%;"/>
                 <div class="nav">
-                    <span class="last">|&lt; Last</span>
-                    <span class="next">&lt;&lt; Next </span>
-                    <span class="first">First &gt;|</span>
-                    <span class="prev">Previous &gt;&gt;</span>
-                    <form action="get" class="current-block">Browse by:<br/>
-                        <span class="current"><input type="radio" name="mode" value="pg"/>Page<input
-                                type="text" name="pg" size="8"/></span><span class="current"
-                                >&#160;&#160;<input type="radio" name="mode" value="col"
-                                checked="checked"/>Column<input type="text" name="col" size="8"
-                            /></span><span class="current">&#160;&#160;<input type="radio"
-                                name="mode" value="ch"/>Chapter<input type="text" name="ch" size="8"
-                            /></span><input type="submit" class="submForm"/></form>
+                    <!-- variables for building urls for paramaterized links -->
+                    <xsl:variable name="goNext">
+                        <xsl:variable name="ref"
+                            select="substring-after($thisPgColCh/tei:next,concat($wit,'.'))"/>
+                            mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                                ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                            test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                            test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                    </xsl:variable>
+                    <xsl:variable name="goFirst">
+                        <xsl:variable name="ref"
+                            select="substring-after($thisPgColCh/tei:first,concat($wit,'.'))"/>
+                            mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                                ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                            test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                            test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                    </xsl:variable>
+                    <xsl:variable name="goPrev">
+                        <xsl:variable name="ref"
+                            select="substring-after($thisPgColCh/tei:prev,concat($wit,'.'))"/>
+                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                                test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                                    test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                    </xsl:variable>
+                    <xsl:variable name="goLast">
+                        <xsl:variable name="ref"
+                            select="substring-after($thisPgColCh/tei:last,concat($wit,'.'))"/>
+                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                                test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                                    test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                    </xsl:variable>
+                    <span class="last">
+                        <xsl:choose>
+                            <xsl:when test="$thisPgColCh/tei:last='null'">|&lt; Last</xsl:when>
+                            <xsl:otherwise>
+                                <a href="{$wit}.browse-param.html?{normalize-space($goLast)}">|&lt;
+                                    Last</a>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </span>
+                    <span class="next">
+                        <xsl:choose>
+                            <xsl:when test="$thisPgColCh/tei:next='null'">&lt;&lt; Next</xsl:when>
+                            <xsl:otherwise>
+                                <a href="{$wit}.browse-param.html?{normalize-space($goNext)}"
+                                    >&lt;&lt; Next</a>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </span>
+                    <span class="first">
+                        <xsl:choose>
+                            <xsl:when test="$thisPgColCh/tei:first='null'">First &gt;|</xsl:when>
+                            <xsl:otherwise>
+                                <a href="{$wit}.browse-param.html?{normalize-space($goFirst)}">First
+                                    &gt;|</a>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </span>
+                    <span class="prev">
+                        <xsl:choose>
+                            <xsl:when test="$thisPgColCh/tei:prev='null'">Previous
+                                &gt;&gt;</xsl:when>
+                            <xsl:otherwise>
+                                <a href="{$wit}.browse-param.html?{normalize-space($goPrev)}"
+                                    >Previous &gt;&gt;</a>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </span>
+                    <form action="{$wit}.browse-param.html" method="get" class="current-block"
+                        >Browse by:<br/>
+                        <span class="current"><xsl:variable name="refValue"><xsl:choose>
+                                    <xsl:when test="$mode='pg'"><xsl:value-of
+                                            select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                        /></xsl:when><xsl:otherwise><xsl:value-of
+                                            select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:pb[1]/@xml:id,concat($wit,'.'))"
+                                        /></xsl:otherwise>
+                                </xsl:choose></xsl:variable><xsl:choose><xsl:when test="$mode='pg'"
+                                        ><input type="radio" name="mode" value="pg"
+                                        checked="checked"/></xsl:when><xsl:otherwise><input
+                                        type="radio" name="mode" value="pg"
+                                /></xsl:otherwise></xsl:choose>Page<input type="text" name="pg"
+                                size="8" value="{$refValue}"/></span>
+                        <span class="current"><xsl:variable name="refValue"><xsl:choose>
+                                    <xsl:when test="$mode='col'"><xsl:value-of
+                                            select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                        /></xsl:when><xsl:otherwise><xsl:value-of
+                                            select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:col[1]/@xml:id,concat($wit,'.'))"
+                                        /></xsl:otherwise>
+                                </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
+                                    test="$mode='col'"><input type="radio" name="mode" value="col"
+                                        checked="checked"/></xsl:when><xsl:otherwise><input
+                                        type="radio" name="mode" value="col"
+                                /></xsl:otherwise></xsl:choose>Column<input type="text" name="col"
+                                size="8" value="{$refValue}"/></span>
+                        <span class="current"><xsl:variable name="refValue"><xsl:choose>
+                                    <xsl:when test="$mode='ch'"><xsl:value-of
+                                            select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                        /></xsl:when><xsl:otherwise><xsl:choose><xsl:when
+                                                test="document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3"
+                                                  ><xsl:value-of
+                                                  select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3/@xml:id,concat($wit,'.'))"
+                                                /></xsl:when><xsl:otherwise><xsl:value-of
+                                                  select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:div3[1]/@xml:id,concat($wit,'.'))"
+                                                /></xsl:otherwise></xsl:choose></xsl:otherwise>
+                                </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
+                                    test="$mode='ch'"><input type="radio" name="mode" value="ch"
+                                        checked="checked"/></xsl:when><xsl:otherwise><input
+                                        type="radio" name="mode" value="ch"
+                                /></xsl:otherwise></xsl:choose>Chapter<input type="text" name="ch"
+                                size="8" value="{$refValue}"/></span><input type="submit"
+                            class="submForm"/></form>
                 </div>
                 <div class="meta" dir="ltr">
                     <xsl:variable name="nli"
@@ -364,7 +523,7 @@
     </xsl:template>
     <xsl:template match="tei:lb[@n]">
         <xsl:choose>
-            <xsl:when test="$params/my:mode='ch'">
+            <xsl:when test="$mode='ch'">
                 <!-- in compact ch mode mark major and minor line numbers, here set at 5 and 10 lines -->
                 <xsl:choose>
                     <xsl:when test="(@n + 1) mod 5 = 0 and (@n +1) mod 2 = 1">
@@ -410,7 +569,7 @@
         <!-- in page or col view -->
         <!-- needs to be redone for @unit='lines' -->
         <xsl:choose>
-            <xsl:when test="not($params/my:mode='ch')">
+            <xsl:when test="not($mode='ch')">
                 <xsl:call-template name="add-char">
                     <xsl:with-param name="howMany" select="./@extent"/>
                     <xsl:with-param name="char" select="'&#160;'"/>
@@ -424,13 +583,13 @@
             <xsl:when test="@reason='Maimonides' or @reason='Bavli' or @reason='Yerushalmi' ">
                 <!-- no not process if in ch mode -->
                 <xsl:choose>
-                    <xsl:when test="$params/my:mode='ch'">
+                    <xsl:when test="$mode='ch'">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                             <xsl:attribute name="class" select="'skipped'"/>
                             <xsl:value-of select="@extent"/>
                         </xsl:element>
                     </xsl:when>
-                    <xsl:when test="not($params/my:mode = 'ch')">
+                    <xsl:when test="not($mode = 'ch')">
                         <xsl:if test="./@unit='chars'">
                             <xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
@@ -451,7 +610,7 @@
             </xsl:when>
             <xsl:when test="not(@reason='Maimonides' or @reason='Bavli' or @reason='Yerushalmi')">
                 <xsl:choose>
-                    <xsl:when test="not($params/my:mode='ch')">
+                    <xsl:when test="not($mode='ch')">
                         <xsl:choose>
                             <!-- NB: Need to fix last <gap> of div -->
                             <!--  -->
@@ -506,7 +665,7 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
-                    <xsl:when test="$params/my:mode='ch'">
+                    <xsl:when test="$mode='ch'">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                             <xsl:attribute name="class" select="'gap-ch'"/>
                             <xsl:value-of select="@extent"/>
@@ -678,7 +837,7 @@
     <xsl:template match="tei:add[not(@type='comm')]">
 
         <xsl:choose>
-            <xsl:when test="$params/my:mode='ch'">
+            <xsl:when test="$mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'add'"/>
                     <xsl:apply-templates/>
@@ -698,6 +857,22 @@
             <xsl:attribute name="class" select="'del'"/>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:metamark[@function='transposition']">
+        <xsl:choose>
+            <xsl:when test="string-length(.)=0">
+                <!-- For now do nothing. At some point refine handling of this -->
+            </xsl:when>
+            <xsl:when test="string-length(.) &gt; 0">
+                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                    <xsl:attribute name="class" select="'metamark'"/>
+                    <xsl:value-of select="."/>
+                </xsl:element>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:listTranspose">
+        <!-- For now, skip this element. -->
     </xsl:template>
     <xsl:template match="tei:quote">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
@@ -726,7 +901,7 @@
     <!-- Process <damage> -->
     <xsl:template match="tei:unclear">
         <xsl:choose>
-            <xsl:when test="not($params/my:mode='ch')">
+            <xsl:when test="not($mode='ch')">
                 <!-- In page and col mode -->
                 <!-- Represent unclear text as periods using extent-->
                 <!-- When text is present in <unclear> add difference between @extent and
@@ -774,7 +949,7 @@
                 </xsl:element>
             </xsl:when>
             <!-- in compact ch mode -->
-            <xsl:when test="$params/my:mode='ch'">
+            <xsl:when test="$mode='ch'">
                 <xsl:choose>
                     <xsl:when test="@extent">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -850,7 +1025,7 @@
     <xsl:template match="//tei:label">
         <xsl:choose>
             <!-- pg and col mode -->
-            <xsl:when test="not($params/my:mode='ch')">
+            <xsl:when test="not($mode='ch')">
                 <xsl:choose>
                     <xsl:when test=".[contains(@rend,'margin-right')]">
                         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
@@ -866,7 +1041,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="$params/my:mode='ch'">
+            <xsl:when test="$mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'label-ch'"/>
                     <xsl:value-of select="."/>
