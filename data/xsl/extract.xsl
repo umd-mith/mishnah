@@ -7,8 +7,8 @@
     
     <xsl:param name="ch" select="'4.2.6'"/>
     <xsl:param name="pg" select="'163r'"/>
-    <xsl:param name="col" select="'163rA'"/>
-    <xsl:param name="mode" select="'pg'"/>
+    <xsl:param name="col" select="'163rB'"/>
+    <xsl:param name="mode" select="'col'"/>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
    
     <xsl:param name="start">
@@ -57,13 +57,13 @@
                     <xsl:when
                         test="//tei:cb[@xml:id = $start]/following::tei:cb[1] &lt;&lt; //tei:cb[@xml:id = $start]/following::tei:pb[1]">
                         <xsl:value-of
-                            select="//descendant-or-self::tei:cb[@xml:id = $start]/following::tei:cb[1]/@xml:id"
+                            select="//tei:cb[@xml:id = $start]/following::tei:cb[1]/@xml:id"
                         />
                     </xsl:when>
                     <xsl:when
                         test="//tei:cb[@xml:id = $start]/following::tei:cb[1] &gt;&gt; //tei:cb[@xml:id = $start]/following::tei:pb[1]">
                         <xsl:value-of
-                            select="//descendant-or-self::tei:pb[@xml:id = $start]/following::tei:cb[1]/@xml:id"
+                            select="//descendant-or-self::tei:cb[@xml:id = $start]/following::tei:pb[1]/@xml:id"
                         />
                     </xsl:when>
                     <xsl:when
@@ -80,9 +80,6 @@
             <xsl:otherwise>null</xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-
-
-
 
     <!-- process the pages between endpoints in phase1 mode -->
     <!-- modifies a stylesheet written by Sebastian Rahtz -->
@@ -113,6 +110,7 @@
                             />
                         </xsl:attribute>
                         <xsl:apply-templates mode="phase1"/>
+                        
                     </xsl:element>
                 </xsl:element>
             </xsl:when>
@@ -176,7 +174,6 @@
     </xsl:template>
 
     <xsl:template match="/">
-        
         <xsl:variable name="holding">
             <xsl:apply-templates select="tei:TEI/tei:text/tei:body"/>
         </xsl:variable>
@@ -190,6 +187,8 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
+        
+        
         <TEI>
             <xsl:copy-of select="processing-instruction()"/>
             <xsl:copy-of select="tei:TEI/tei:teiHeader"/>
@@ -316,7 +315,7 @@
             </ab>
         </div>
     </xsl:template>
-    <!-- Final adjustment in for single-column view of page with 2 columns -->
+    <!-- Final adjustment for single-column view of page with 2 columns -->
     <xsl:template match="tei:div[parent::tei:div]" mode="sing-col">
         <!-- There has got to be a way not to copy element and attributes AGAIN -->
 

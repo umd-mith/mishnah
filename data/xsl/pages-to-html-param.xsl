@@ -24,9 +24,9 @@
     <!--Updated transformations to result in valid TEI in xml output and valid HTML in html output -->
     <!--<xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>-->
 
-    <xsl:param name="ch" select="'4.2.6'"/>
-    <xsl:param name="pg" select="'163r'"/>
-    <xsl:param name="col" select="'157rB'"/>
+    <xsl:param name="ch"/>
+    <xsl:param name="pg"/>
+    <xsl:param name="col"/>
     <xsl:param name="mode" select="'col'"/>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
@@ -145,10 +145,8 @@
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
-                <link rel="stylesheet" type="text/css"
-                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
-                    title="Documentary"/>
-                <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
+               
+                <link rel="stylesheet" type="text/css" href="https://github.com/umd-mith/mishnah/blob/master/data/css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
                     <xsl:value-of
@@ -690,6 +688,7 @@
         <div class="page" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:if test="not(descendant::tei:div[1][@type='column'])">
                 <div class="oneCol">
+                    <!-- when original laid out in a single column -->
                     <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
                             name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
                         /></xsl:element>
@@ -708,17 +707,16 @@
                     </xsl:if>
                     <xsl:apply-templates/>
                 </div>
-                <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-                    <hr> </hr>
-                </div>
+                
             </xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">
                 <xsl:apply-templates/>
             </xsl:if>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-            <hr> </hr>
+            <hr/>
         </div>
+        
     </xsl:template>
     <xsl:template match="tei:div[@type='column']">
         <xsl:variable name="col">
@@ -752,18 +750,17 @@
             </xsl:if>
             <xsl:apply-templates/>
         </div>
-        <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-            <hr> </hr>
-        </div>
+      
     </xsl:template>
     <xsl:template match="tei:div[@type='singCol']">
+        <!-- browsing in single column view -->
+        <!-- CSS for column A will apply throughout -->
         <xsl:variable name="col">
             <xsl:value-of select="@n"/>
         </xsl:variable>
         <div xmlns="http://www.w3.org/1999/xhtml">
+      
             <xsl:attribute name="class">columnA</xsl:attribute>
-
-
 
             <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:attribute name="class" select="'colNo'"/>
