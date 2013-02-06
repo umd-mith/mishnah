@@ -146,7 +146,7 @@
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                
-                <link rel="stylesheet" type="text/css" href="https://github.com/umd-mith/mishnah/blob/master/data/css/FormattingforHTML.css"
+                <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
                     <xsl:value-of
