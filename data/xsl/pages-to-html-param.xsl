@@ -145,7 +145,9 @@
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
-               
+                <link rel="stylesheet" type="text/css"
+                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    title="Documentary"/>
                 <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
                     title="Documentary"/>
                 <title>
