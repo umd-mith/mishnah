@@ -272,6 +272,7 @@
                                     <rng:ref name="unclear"/>
                                     <rng:ref name="seg"/>
                                     <rng:ref name="surplus"/>
+                                    <rng:ref name="metamark"/>
                                 </rng:choice>
                             </rng:zeroOrMore>
                         </content>
@@ -288,13 +289,17 @@
                                     <rng:ref name="model.pPart.editorial"/>
                                     <rng:ref name="model.segLike"/>
                                     <rng:ref name="listTranspose"/>
+                                    <rng:ref name="metamark"/>
+                                    <!-- Allows notes to be specific to segment -->
+                                    <rng:ref name="note"/>
+                                    
                                 </rng:choice>
                             </rng:zeroOrMore>
                           
                         </content>
                     </elementSpec>
                     
-                    <!-- del may include c and other transcriptional, analytic, and milestone elements  -->
+                    <!-- del may include c, choice and other transcriptional, editorial, analytic, and milestone elements  -->
                     <elementSpec module="core" ident="del" mode="change">
                         <content>
                             <rng:zeroOrMore>
@@ -303,6 +308,7 @@
                                     <rng:ref name="model.pPart.transcriptional"/>
                                     <rng:ref name="model.milestoneLike"/>
                                     <rng:ref name="model.segLike"/>
+                                    <rng:ref name="model.pPart.editorial"/>
                                 </rng:choice>
                             </rng:zeroOrMore>
                         </content>

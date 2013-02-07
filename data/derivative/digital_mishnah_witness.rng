@@ -3,9 +3,9 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2012-11-27T20:27:41Z. 
-Edition: 2.2.0. Last updated on 25th October 2012.
-Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
+Schema generated from ODD source 2013-02-07T12:42:30Z. 
+Edition: 2.3.0. Last updated on 17th January 2013.
+Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 
 --><!--This work is copyright Trevor Muñoz and Maryland Institute for Technology in
                         the Humanities and licensed under a Creative Commons
@@ -148,7 +148,7 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
       <data type="string"/>
    </define>
    <define name="mishnahw_data.code">
-      <data type="anyURI"/>
+      <ref name="mishnahw_data.word"/>
    </define>
    <define name="mishnahw_data.name">
       <data type="Name"/>
@@ -258,7 +258,7 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.2.0/
    <define name="mishnahw_att.ranging.attribute.confidence">
       <optional>
          <attribute name="confidence">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The degree of statistical confidence (between zero and one) that a value falls within the range
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the degree of statistical confidence (between zero and one) that a value falls within the range
         specified by min and max, or the proportion of observed values that fall within that range.</a:documentation>
             <ref name="mishnahw_data.probability"/>
          </attribute>
@@ -338,7 +338,7 @@ Sample values include: 1] all; 2] most; 3] range</a:documentation>
    <define name="mishnahw_att.damaged.attribute.hand">
       <optional>
          <attribute name="hand">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">In the case of damage (deliberate defacement, inking out, etc.) assignable to a distinct
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">in the case of damage (deliberate defacement, inking out, etc.) assignable to a distinct
         hand, signifies the hand responsible for the damage.</a:documentation>
             <ref name="mishnahw_data.pointer"/>
          </attribute>
@@ -356,7 +356,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
    <define name="mishnahw_att.damaged.attribute.degree">
       <optional>
          <attribute name="degree">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Signifies the degree of damage according to a convenient scale. The damage tag
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">signifies the degree of damage according to a convenient scale. The damage tag
         with the degree attribute should only be used where the text may be read with
         some confidence; text supplied from other sources should be tagged as supplied.</a:documentation>
             <choice>
@@ -472,7 +472,9 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 context="tei:*[@calendar]">
-            <sch:assert test="string-length(.) gt 0">@calendar indicates the system or calendar to which the date represented by the content of this element belongs, but this element has no textual content.</sch:assert>
+            <sch:assert test="string-length(.) gt 0">
+@calendar indicates the system or calendar to which the date represented by the content of this element
+belongs, but this <sch:name/> element has no textual content.</sch:assert>
           </sch:rule>
    </pattern>
    <define name="mishnahw_att.datable.attribute.period">
@@ -552,10 +554,37 @@ attribute and its content.</a:documentation>
          </attribute>
       </optional>
    </define>
+   <define name="mishnahw_att.fragmentable.attributes">
+      <ref name="mishnahw_att.fragmentable.attribute.part"/>
+   </define>
+   <define name="mishnahw_att.fragmentable.attribute.part">
+      <optional>
+         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
+                    a:defaultValue="N">
+            <a:documentation>specifies whether or not its parent element is fragmented
+      in some way, typically by some other overlapping structure : for
+      example a speech which is divided between two or more verse
+      stanzas, a paragraph which is split across a page division, a
+      verse line which is divided between two speakers.</a:documentation>
+            <choice>
+               <value>Y</value>
+               <a:documentation> (yes) the element is fragmented in some (unspecified) respect</a:documentation>
+               <value>N</value>
+               <a:documentation> (no) either the element is not fragmented, or no claim is made as to its completeness.</a:documentation>
+               <value>I</value>
+               <a:documentation> (initial) this is the initial part of a fragmented element</a:documentation>
+               <value>M</value>
+               <a:documentation> (medial) this is a medial part of a fragmented element</a:documentation>
+               <value>F</value>
+               <a:documentation> (final) this is the final part of a fragmented element</a:documentation>
+            </choice>
+         </attribute>
+      </optional>
+   </define>
    <define name="mishnahw_att.divLike.attributes">
+      <ref name="mishnahw_att.fragmentable.attributes"/>
       <ref name="mishnahw_att.divLike.attribute.org"/>
       <ref name="mishnahw_att.divLike.attribute.sample"/>
-      <ref name="mishnahw_att.divLike.attribute.part"/>
    </define>
    <define name="mishnahw_att.divLike.attribute.org">
       <optional>
@@ -592,28 +621,6 @@ attribute and its content.</a:documentation>
                <a:documentation>position of sampled material within original unknown.</a:documentation>
                <value>complete</value>
                <a:documentation>division is not a sample.</a:documentation>
-            </choice>
-         </attribute>
-      </optional>
-   </define>
-   <define name="mishnahw_att.divLike.attribute.part">
-      <optional>
-         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
-                    a:defaultValue="N">
-            <a:documentation>specifies whether or not the division is fragmented by
-		some other structural element, for example a speech which is
-		divided between two or more verse stanzas.</a:documentation>
-            <choice>
-               <value>Y</value>
-               <a:documentation>(yes) the division is incomplete in some respect</a:documentation>
-               <value>N</value>
-               <a:documentation>(no) either the division is complete, or no claim is made as to its completeness.</a:documentation>
-               <value>I</value>
-               <a:documentation>(initial) the initial part of an incomplete division</a:documentation>
-               <value>M</value>
-               <a:documentation>(medial) a medial part of an incomplete division</a:documentation>
-               <value>F</value>
-               <a:documentation>(final) the final part of an incomplete division</a:documentation>
             </choice>
          </attribute>
       </optional>
@@ -704,7 +711,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
       <optional>
          <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="instant"
                     a:defaultValue="false">
-            <a:documentation>Is this an instant revision?</a:documentation>
+            <a:documentation>indicates whether this is an instant revision or not.</a:documentation>
             <ref name="mishnahw_data.xTruthValue"/>
          </attribute>
       </optional>
@@ -743,7 +750,7 @@ Suggested values include: 1] internal; 2] external; 3] conjecture</a:documentati
       <optional>
          <attribute name="xml:lang">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(language) indicates the language of the element content using a tag generated
-        according to BCP 47
+        according to BCP 47. 
          </a:documentation>
             <ref name="mishnahw_data.language"/>
          </attribute>
@@ -902,6 +909,46 @@ writing medium, e.g. pencil</a:documentation>
             </list>
          </attribute>
       </optional>
+   </define>
+   <define name="mishnahw_att.media.attributes">
+      <ref name="mishnahw_att.internetMedia.attributes"/>
+      <ref name="mishnahw_att.media.attribute.width"/>
+      <ref name="mishnahw_att.media.attribute.height"/>
+      <ref name="mishnahw_att.media.attribute.scale"/>
+   </define>
+   <define name="mishnahw_att.media.attribute.width">
+      <optional>
+         <attribute name="width">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Where the media are displayed, indicates the  display width </a:documentation>
+            <ref name="mishnahw_data.outputMeasurement"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.media.attribute.height">
+      <optional>
+         <attribute name="height">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Where the media are displayed, indicates the display height</a:documentation>
+            <ref name="mishnahw_data.outputMeasurement"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.media.attribute.scale">
+      <optional>
+         <attribute name="scale">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Where the media are displayed, indicates a scale factor to
+      be applied when generating the desired display size</a:documentation>
+            <ref name="mishnahw_data.numeric"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.resourced.attributes">
+      <ref name="mishnahw_att.resourced.attribute.url"/>
+   </define>
+   <define name="mishnahw_att.resourced.attribute.url">
+      <attribute name="url">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(uniform resource locator) specifies the URL from which the media concerned may be obtained.</a:documentation>
+         <ref name="mishnahw_data.pointer"/>
+      </attribute>
    </define>
    <define name="mishnahw_att.measurement.attributes">
       <ref name="mishnahw_att.measurement.attribute.unit"/>
@@ -1164,37 +1211,14 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
    </define>
    <define name="mishnahw_att.segLike.attributes">
       <ref name="mishnahw_att.datcat.attributes"/>
+      <ref name="mishnahw_att.fragmentable.attributes"/>
       <ref name="mishnahw_att.segLike.attribute.function"/>
-      <ref name="mishnahw_att.segLike.attribute.part"/>
    </define>
    <define name="mishnahw_att.segLike.attribute.function">
       <optional>
          <attribute name="function">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the function of the segment.</a:documentation>
             <ref name="mishnahw_data.enumerated"/>
-         </attribute>
-      </optional>
-   </define>
-   <define name="mishnahw_att.segLike.attribute.part">
-      <optional>
-         <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
-                    a:defaultValue="N">
-            <a:documentation>specifies whether or not the segment is fragmented by some other
-structural element, for example a clause which is divided between two
-or more sentences.</a:documentation>
-            <choice>
-               <value>Y</value>
-               <a:documentation>(yes) the segment is incomplete in some respect</a:documentation>
-               <value>N</value>
-               <a:documentation>(no) either the segment is complete, or no claim is made as to
-its completeness</a:documentation>
-               <value>I</value>
-               <a:documentation>(initial) the initial part of an incomplete segment</a:documentation>
-               <value>M</value>
-               <a:documentation>(medial) a medial part of an incomplete segment</a:documentation>
-               <value>F</value>
-               <a:documentation>(final) the final part of an incomplete segment</a:documentation>
-            </choice>
          </attribute>
       </optional>
    </define>
@@ -1209,10 +1233,11 @@ its completeness</a:documentation>
          </attribute>
       </optional>
    </define>
-   <define name="mishnahw_att.sourced.attributes">
-      <ref name="mishnahw_att.sourced.attribute.ed"/>
+   <define name="mishnahw_att.edition.attributes">
+      <ref name="mishnahw_att.edition.attribute.ed"/>
+      <ref name="mishnahw_att.edition.attribute.edRef"/>
    </define>
-   <define name="mishnahw_att.sourced.attribute.ed">
+   <define name="mishnahw_att.edition.attribute.ed">
       <optional>
          <attribute name="ed">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(edition) supplies an arbitrary identifier for the source edition in which
@@ -1221,6 +1246,20 @@ its completeness</a:documentation>
             <list>
                <oneOrMore>
                   <ref name="mishnahw_data.code"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.edition.attribute.edRef">
+      <optional>
+         <attribute name="edRef">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (edition reference) provides a pointer to the source edition in which
+      the associated feature (for example, a  page, column, or line
+      break) occurs at this point in the text.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <ref name="mishnahw_data.pointer"/>
                </oneOrMore>
             </list>
          </attribute>
@@ -1238,6 +1277,25 @@ its completeness</a:documentation>
          </attribute>
       </optional>
    </define>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="spanTo-constraint-spanTo-2">
+      <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                context="tei:*[@spanTo]">
+         <sch:assert test="following::*[@xml:id=substring(current()/@target,2)]">
+The element indicated by @spanTo must follow the current element <sch:name/>
+         </sch:assert>
+      </sch:rule>
+   </pattern>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="spanTo-constraint-spanTo-3">
+      <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                context="tei:*[@spanTo]">
+         <sch:assert test="id(substring(@spanTo,2))">
+@spanTo on <sch:name/> must point to  the identifier of some element  in this document</sch:assert>
+      </sch:rule>
+   </pattern>
    <define name="mishnahw_att.styleDef.attributes">
       <ref name="mishnahw_att.styleDef.attribute.scheme"/>
    </define>
@@ -1255,6 +1313,28 @@ its completeness</a:documentation>
                <value>other</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A user-defined rendition description language</a:documentation>
             </choice>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.timed.attributes">
+      <ref name="mishnahw_att.timed.attribute.start"/>
+      <ref name="mishnahw_att.timed.attribute.end"/>
+   </define>
+   <define name="mishnahw_att.timed.attribute.start">
+      <optional>
+         <attribute name="start">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location within a temporal alignment at
+      which this element begins.</a:documentation>
+            <ref name="mishnahw_data.pointer"/>
+         </attribute>
+      </optional>
+   </define>
+   <define name="mishnahw_att.timed.attribute.end">
+      <optional>
+         <attribute name="end">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location within a temporal alignment at
+      which this element ends.</a:documentation>
+            <ref name="mishnahw_data.pointer"/>
          </attribute>
       </optional>
    </define>
@@ -1669,6 +1749,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    </define>
    <define name="mishnahw_model.graphicLike">
       <choice>
+         <ref name="mishnahw_media"/>
          <ref name="mishnahw_graphic"/>
          <ref name="mishnahw_binaryObject"/>
       </choice>
@@ -2280,6 +2361,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahw_model.global.edit">
       <choice>
          <ref name="mishnahw_gap"/>
+         <ref name="mishnahw_damageSpan"/>
          <ref name="mishnahw_space"/>
       </choice>
    </define>
@@ -2593,6 +2675,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.respLike"/>
          <ref name="mishnahw_model.msQuoteLike"/>
          <ref name="mishnahw_bibl"/>
+         <ref name="mishnahw_biblStruct"/>
          <ref name="mishnahw_listBibl"/>
          <ref name="mishnahw_textLang"/>
          <ref name="mishnahw_msItem"/>
@@ -2747,6 +2830,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_model.respLike"/>
          <ref name="mishnahw_model.imprintPart"/>
          <ref name="mishnahw_series"/>
+         <ref name="mishnahw_citedRange"/>
          <ref name="mishnahw_bibl"/>
          <ref name="mishnahw_relatedItem"/>
          <ref name="mishnahw_textLang"/>
@@ -2869,6 +2953,21 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahw_listTranspose"/>
       </choice>
    </define>
+   <define name="mishnahw_att.source.attributes">
+      <ref name="mishnahw_att.source.attribute.source"/>
+   </define>
+   <define name="mishnahw_att.source.attribute.source">
+      <optional>
+         <attribute name="source">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (pointer to a bibliographical source reference) provides a pointer to the bibliographical source from which a quotation or citation is drawn.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <ref name="mishnahw_data.pointer"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+      </optional>
+   </define>
    <define name="mishnahw_model.resourceLike">
       <choice>
          <ref name="mishnahw_sourceDoc"/>
@@ -2950,6 +3049,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
          <ref name="mishnahw_macro.paraContent"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.declaring.attributes"/>
+         <ref name="mishnahw_att.fragmentable.attributes"/>
          <empty/>
       </element>
    </define>
@@ -3049,6 +3149,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.msExcerpt.attributes"/>
+         <ref name="mishnahw_att.source.attributes"/>
          <empty/>
       </element>
    </define>
@@ -3061,6 +3162,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
          <ref name="mishnahw_macro.specialPara"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.ascribed.attributes"/>
+         <ref name="mishnahw_att.source.attributes"/>
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">may be used to indicate whether the offset passage is spoken or thought, or to
@@ -3305,6 +3407,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
                <ref name="mishnahw_model.pPart.transcriptional"/>
                <ref name="mishnahw_model.milestoneLike"/>
                <ref name="mishnahw_model.segLike"/>
+               <ref name="mishnahw_choice"/>
             </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
@@ -3411,7 +3514,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
    </define>
    <define name="mishnahw_street">
       <element name="street">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">a full street address including any name or number identifying a
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a full street address including any name or number identifying a
         building as well as the name of the street or route on which it is
         located. [3.5.2. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
@@ -3544,7 +3647,14 @@ Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage</a
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.responsibility.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.typed.attribute.subtype"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">allows the encoder to classify the abbreviation according to some convenient
+                typology.</a:documentation>
+               <ref name="mishnahw_data.enumerated"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3567,7 +3677,7 @@ Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage</a
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="@target and @cRef">Only one of the
-	attributes 'target' and 'cRef' may be supplied.</report>
+attributes @target and @cRef may be supplied on <name/>.</report>
             </rule>
          </pattern>
     
@@ -3590,7 +3700,8 @@ Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage</a
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="@target and @cRef">Only one of the
-	attributes 'target' and 'cRef' may be supplied.</report>
+	attributes @target' and @cRef' may be supplied on <name/>
+               </report>
             </rule>
          </pattern>
     
@@ -3693,6 +3804,8 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
   typically but not exclusively in a list or glossary. [3.7. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.placement.attributes"/>
          <empty/>
       </element>
    </define>
@@ -3736,7 +3849,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahw_note">
       <element name="note">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.6.  9.3.5.4. ]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.7.  9.3.5.4. ]</a:documentation>
          <ref name="mishnahw_macro.specialPara"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.placement.attributes"/>
@@ -3787,6 +3900,32 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <empty/>
       </element>
    </define>
+   <define name="mishnahw_media">
+      <element name="media">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location of any form of external media such as
+  an audio or video clip etc. [3.9. ]</a:documentation>
+         <zeroOrMore>
+            <ref name="mishnahw_model.descLike"/>
+         </zeroOrMore>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.media.attribute.width"/>
+         <ref name="mishnahw_att.media.attribute.height"/>
+         <ref name="mishnahw_att.media.attribute.scale"/>
+         <ref name="mishnahw_att.resourced.attributes"/>
+         <ref name="mishnahw_att.declaring.attributes"/>
+         <ref name="mishnahw_att.timed.attributes"/>
+         <attribute name="mimeType">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type</a:documentation>
+            <list>
+               <oneOrMore>
+                  <ref name="mishnahw_data.word"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahw_graphic">
       <element name="graphic">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location of an inline graphic, illustration, or figure. [3.9. ]</a:documentation>
@@ -3794,57 +3933,21 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
             <ref name="mishnahw_model.descLike"/>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.internetMedia.attributes"/>
+         <ref name="mishnahw_att.media.attributes"/>
+         <ref name="mishnahw_att.resourced.attributes"/>
          <ref name="mishnahw_att.declaring.attributes"/>
-         <optional>
-            <attribute name="width">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The display width of the image</a:documentation>
-               <ref name="mishnahw_data.outputMeasurement"/>
-            </attribute>
-         </optional>
-         <optional>
-            <attribute name="height">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The display height of the image</a:documentation>
-               <ref name="mishnahw_data.outputMeasurement"/>
-            </attribute>
-         </optional>
-         <optional>
-            <attribute name="scale">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A scale factor to be applied to the image to make it the desired display size</a:documentation>
-               <ref name="mishnahw_data.numeric"/>
-            </attribute>
-         </optional>
-         <attribute name="url">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(uniform resource locator) A URL which refers to the image itself.</a:documentation>
-            <ref name="mishnahw_data.pointer"/>
-         </attribute>
          <empty/>
       </element>
    </define>
    <define name="mishnahw_binaryObject">
       <element name="binaryObject">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides encoded binary data representing an inline graphic or other object.</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides encoded binary data representing an inline graphic,
+  audio, video or other object. [3.9. ]</a:documentation>
          <text/>
          <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.internetMedia.attributes"/>
-         <optional>
-            <attribute name="width">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The display width of the object</a:documentation>
-               <ref name="mishnahw_data.outputMeasurement"/>
-            </attribute>
-         </optional>
-         <optional>
-            <attribute name="height">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The display height of the object</a:documentation>
-               <ref name="mishnahw_data.outputMeasurement"/>
-            </attribute>
-         </optional>
-         <optional>
-            <attribute name="scale">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A scale factor to be applied to the object to make it the desired display size</a:documentation>
-               <ref name="mishnahw_data.numeric"/>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.media.attributes"/>
+         <ref name="mishnahw_att.timed.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
          <optional>
             <attribute name="encoding">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The encoding used to encode the binary data. If not specified, this is assumed to be
@@ -3868,7 +3971,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.milestoneUnit.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.sourced.attributes"/>
+         <ref name="mishnahw_att.edition.attributes"/>
          <ref name="mishnahw_att.spanning.attributes"/>
          <ref name="mishnahw_att.breaking.attributes"/>
          <empty/>
@@ -3892,7 +3995,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.sourced.attributes"/>
+         <ref name="mishnahw_att.edition.attributes"/>
          <ref name="mishnahw_att.spanning.attributes"/>
          <ref name="mishnahw_att.breaking.attributes"/>
          <empty/>
@@ -3904,7 +4007,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.sourced.attributes"/>
+         <ref name="mishnahw_att.edition.attributes"/>
          <ref name="mishnahw_att.spanning.attributes"/>
          <ref name="mishnahw_att.breaking.attributes"/>
          <empty/>
@@ -3917,7 +4020,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
-         <ref name="mishnahw_att.sourced.attributes"/>
+         <ref name="mishnahw_att.edition.attributes"/>
          <ref name="mishnahw_att.spanning.attributes"/>
          <ref name="mishnahw_att.breaking.attributes"/>
          <empty/>
@@ -3954,12 +4057,14 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                      <choice>
                         <ref name="mishnahw_author"/>
                         <ref name="mishnahw_editor"/>
+                        <ref name="mishnahw_meeting"/>
                         <ref name="mishnahw_respStmt"/>
                      </choice>
                      <zeroOrMore>
                         <choice>
                            <ref name="mishnahw_author"/>
                            <ref name="mishnahw_editor"/>
+                           <ref name="mishnahw_meeting"/>
                            <ref name="mishnahw_respStmt"/>
                         </choice>
                      </zeroOrMore>
@@ -3988,6 +4093,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                            <ref name="mishnahw_textLang"/>
                            <ref name="mishnahw_author"/>
                            <ref name="mishnahw_editor"/>
+                           <ref name="mishnahw_meeting"/>
                            <ref name="mishnahw_respStmt"/>
                         </choice>
                      </zeroOrMore>
@@ -3998,10 +4104,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                </choice>
             </optional>
             <zeroOrMore>
-               <choice>
-                  <ref name="mishnahw_model.noteLike"/>
-                  <ref name="mishnahw_meeting"/>
-               </choice>
+               <ref name="mishnahw_model.noteLike"/>
             </zeroOrMore>
             <zeroOrMore>
                <ref name="mishnahw_edition"/>
@@ -4009,6 +4112,8 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                   <choice>
                      <ref name="mishnahw_idno"/>
                      <ref name="mishnahw_editor"/>
+                     <ref name="mishnahw_sponsor"/>
+                     <ref name="mishnahw_funder"/>
                      <ref name="mishnahw_respStmt"/>
                   </choice>
                </zeroOrMore>
@@ -4061,7 +4166,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahw_editor">
       <element name="editor">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">secondary statement of responsibility for a bibliographic item, for example the name of an
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a secondary statement of responsibility for a bibliographic item, for example the name of an
     individual, institution or organization, (or of several such) acting as editor, compiler,
     translator, etc.  [3.11.2.2. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
@@ -4114,7 +4219,14 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
          <ref name="mishnahw_macro.paraContent"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.canonical.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
+         <ref name="mishnahw_att.typed.attribute.subtype"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the title according to some convenient typology.
+Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) </a:documentation>
+               <ref name="mishnahw_data.enumerated"/>
+            </attribute>
+         </optional>
          <optional>
             <attribute name="level">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the bibliographic level for a title, that is, whether
@@ -4192,10 +4304,33 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahw_biblScope">
       <element name="biblScope">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(scope of citation) defines the scope of a bibliographic reference, for example as a
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(scope of bibliographic reference) defines the scope of a bibliographic reference, for example as a
         list of page numbers, or a named subdivision of a larger work. [3.11.2.3. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
+         <optional>
+            <attribute name="unit">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the unit of information conveyed by the element, e.g. columns, pages, volume.
+Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines) ; 5] chap(chapter) ; 6] part</a:documentation>
+               <choice>
+                  <value>vol</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(volume) the element contains a volume number.</a:documentation>
+                  <value>issue</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains an issue number, or volume and
+            issue numbers.</a:documentation>
+                  <value>pp</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(pages) the element contains a page number or page range.</a:documentation>
+                  <value>ll</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (lines) the element contains a line number or line range.</a:documentation>
+                  <value>chap</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(chapter) the element contains a chapter indication (number
+            and/or title)</a:documentation>
+                  <value>part</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a part of a book or collection.</a:documentation>
+                  <data type="Name"/>
+               </choice>
+            </attribute>
+         </optional>
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the type of information conveyed by the element, e.g.
@@ -4222,13 +4357,58 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
          </optional>
          <optional>
             <attribute name="from">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the starting point of the range of units indicated by the type attribute.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the starting point of the range of units indicated by the unit attribute.</a:documentation>
                <ref name="mishnahw_data.word"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="to">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the end-point of the range of units indicated by the type attribute.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the end-point of the range of units indicated by the unit attribute.</a:documentation>
+               <ref name="mishnahw_data.word"/>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_citedRange">
+      <element name="citedRange">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (cited range) defines the range of cited content, often represented by pages or other units [3.11.2.3. ]</a:documentation>
+         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.pointing.attributes"/>
+         <optional>
+            <attribute name="unit">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the type of information conveyed by the element, e.g.
+                columns, pages, volume.
+Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lines) ; 5] chap (chapter) ; 6] part</a:documentation>
+               <choice>
+                  <value>vol</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (volume) the element contains a volume number.</a:documentation>
+                  <value>issue</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains an issue number, or volume and
+                        issue numbers.</a:documentation>
+                  <value>pp</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (pages) the element contains a page number or page range.</a:documentation>
+                  <value>ll</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (lines) the element contains a line number or line range.</a:documentation>
+                  <value>chap</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (chapter) the element contains a chapter indication (number
+                        and/or title)</a:documentation>
+                  <value>part</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a part of a book or collection.</a:documentation>
+                  <data type="Name"/>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="from">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the starting point of the range of units indicated by the unit attribute.</a:documentation>
+               <ref name="mishnahw_data.word"/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="to">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the end-point of the range of units indicated by the unit attribute.</a:documentation>
                <ref name="mishnahw_data.word"/>
             </attribute>
          </optional>
@@ -4289,6 +4469,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
                   <ref name="mishnahw_idno"/>
                   <ref name="mishnahw_model.ptrLike"/>
                   <ref name="mishnahw_relatedItem"/>
+                  <ref name="mishnahw_citedRange"/>
                </choice>
             </zeroOrMore>
          </group>
@@ -4325,7 +4506,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
    <define name="mishnahw_relatedItem">
       <element name="relatedItem">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains or references some other bibliographic item which is related to the present one in
-    some specified manner, for example as a constituent or alternative version of it. [3.11.2.5. ]</a:documentation>
+    some specified manner, for example as a constituent or alternative version of it. [3.11.2.6. ]</a:documentation>
          <optional>
             <choice>
                <ref name="mishnahw_model.biblLike"/>
@@ -4339,8 +4520,9 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                           test="@target and count( child::* ) &gt; 0">If the 'target' attribute is used, the
-        relatedItem element must be empty</sch:report>
+                           test="@target and count( child::* ) &gt; 0">
+If the @target attribute on <sch:name/> is used, the
+relatedItem element must be empty</sch:report>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -4371,24 +4553,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(verse line) contains a single, possibly incomplete, line of verse. [3.12.1.  3.12.  7.2.5. ]</a:documentation>
          <ref name="mishnahw_macro.paraContent"/>
          <ref name="mishnahw_att.global.attributes"/>
-         <optional>
-            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
-                       a:defaultValue="N">
-               <a:documentation>specifies whether or not the line is metrically complete. </a:documentation>
-               <choice>
-                  <value>Y</value>
-                  <a:documentation>(yes) the line is metrically incomplete</a:documentation>
-                  <value>N</value>
-                  <a:documentation>(no) either the line is complete, or no claim is made as to its completeness</a:documentation>
-                  <value>I</value>
-                  <a:documentation>(initial) the initial part of an incomplete line</a:documentation>
-                  <value>M</value>
-                  <a:documentation>(medial) a medial part of an incomplete line</a:documentation>
-                  <value>F</value>
-                  <a:documentation>(final) the final part of an incomplete line</a:documentation>
-               </choice>
-            </attribute>
-         </optional>
+         <ref name="mishnahw_att.fragmentable.attributes"/>
          <empty/>
       </element>
    </define>
@@ -4447,7 +4612,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
    </define>
    <define name="mishnahw_sp">
       <element name="sp">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(speech) An individual speech in a performance text, or a passage presented as such in a prose or
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(speech) contains an individual speech in a performance text, or a passage presented as such in a prose or
     verse text. [3.12.2.  3.12.  7.2.2. ]</a:documentation>
          <group>
             <zeroOrMore>
@@ -4480,7 +4645,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
    </define>
    <define name="mishnahw_speaker">
       <element name="speaker">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A specialized form of heading or label, giving the name of one or more speakers in a
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a specialized form of heading or label, giving the name of one or more speakers in a
         dramatic text or fragment. [3.12.2. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
@@ -4699,8 +4864,7 @@ creation of an electronic text. [2.2.1. ]</a:documentation>
    </define>
    <define name="mishnahw_extent">
       <element name="extent">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the approximate size of a text as stored on some carrier medium, whether digital
-    or non-digital, specified in any convenient units. [2.2.3.  2.2.  3.11.2.3. ]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the approximate size of a text stored on some carrier medium or of some other object, digital  or non-digital,  specified in any convenient units. [2.2.3.  2.2.  3.11.2.3.  10.7.1. ]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
          <empty/>
@@ -5060,22 +5224,32 @@ during the encoding of a text. [2.3.3.  2.3.  15.3.2. ]</a:documentation>
    <define name="mishnahw_quotation">
       <element name="quotation">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies editorial practice adopted with respect to quotation marks in the original.  [2.3.3.  15.3.2. ]</a:documentation>
-         <oneOrMore>
+         <zeroOrMore>
             <ref name="mishnahw_model.pLike"/>
-         </oneOrMore>
+         </zeroOrMore>
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="quotation-constraint-quotationContents">
+            <rule context="tei:quotation">
+               <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                       test="not(@marks) and not (tei:p)">
+On <name/>, either the @marks attribute should be used, or a paragraph of description provided</report>
+            </rule>
+         </pattern>
+    
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.declarable.attributes"/>
          <optional>
-            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="marks"
-                       a:defaultValue="all">
-               <a:documentation>(quotation marks) indicates whether or not quotation marks have been retained as content within the text. </a:documentation>
+            <attribute name="marks">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(quotation marks) indicates whether or not quotation marks have been retained as content within the text. </a:documentation>
                <choice>
                   <value>none</value>
-                  <a:documentation>no quotation marks have been retained </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">no quotation marks have been retained </a:documentation>
                   <value>some</value>
-                  <a:documentation>some quotation marks have been retained </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">some quotation marks have been retained </a:documentation>
                   <value>all</value>
-                  <a:documentation>all quotation marks have been retained </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">all quotation marks have been retained </a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -5176,7 +5350,7 @@ during the encoding of a text. [2.3.3.  2.3.  15.3.2. ]</a:documentation>
          <ref name="mishnahw_macro.limitedContent"/>
          <ref name="mishnahw_att.global.attributes"/>
          <attribute name="gi">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(element name) the name (generic identifier) of the element indicated by the tag.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(element name) specifies the name (generic identifier) of the element indicated by the tag.</a:documentation>
             <ref name="mishnahw_data.name"/>
          </attribute>
          <optional>
@@ -5194,9 +5368,12 @@ during the encoding of a text. [2.3.3.  2.3.  15.3.2. ]</a:documentation>
          </optional>
          <optional>
             <attribute name="render">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the identifier of a rendition element which defines how this element
-        is to be rendered.</a:documentation>
-               <ref name="mishnahw_data.pointer"/>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the identifier of a rendition element which defines how this element was rendered in the source text.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <ref name="mishnahw_data.pointer"/>
+                  </oneOrMore>
+               </list>
             </attribute>
          </optional>
          <empty/>
@@ -5211,7 +5388,7 @@ during the encoding of a text. [2.3.3.  2.3.  15.3.2. ]</a:documentation>
          </oneOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <attribute name="name">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the full formal name of the namespace concerned.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the full formal name of the namespace concerned.</a:documentation>
             <ref name="mishnahw_data.namespace"/>
          </attribute>
          <empty/>
@@ -5253,7 +5430,7 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
    <define name="mishnahw_styleDefDecl">
       <element name="styleDefDecl">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (style definition language declaration) specifies the name of the formal language in which style or
-  renditional information is supplied elsewhere in the document.</a:documentation>
+  renditional information is supplied elsewhere in the document. [2.3.5. ]</a:documentation>
          <zeroOrMore>
             <ref name="mishnahw_model.pLike"/>
          </zeroOrMore>
@@ -5291,16 +5468,58 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
             <ref name="mishnahw_model.pLike"/>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
-         <attribute name="matchPattern">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies a regular expression against which the values of cRef attributes
+         <ref name="mishnahw_att.patternReplacement.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_att.patternReplacement.attributes">
+      <ref name="mishnahw_att.patternReplacement.attribute.matchPattern"/>
+      <ref name="mishnahw_att.patternReplacement.attribute.replacementPattern"/>
+   </define>
+   <define name="mishnahw_att.patternReplacement.attribute.matchPattern">
+      <attribute name="matchPattern">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies a regular expression against which the values of other attributes
         can be matched.</a:documentation>
-            <ref name="mishnahw_data.pattern"/>
-         </attribute>
-         <attribute name="replacementPattern">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies a replacement pattern which, once subpattern substitution
+         <ref name="mishnahw_data.pattern"/>
+      </attribute>
+   </define>
+   <define name="mishnahw_att.patternReplacement.attribute.replacementPattern">
+      <attribute name="replacementPattern">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies a replacement pattern which, once subpattern substitution
         has been performed, provides a URI.</a:documentation>
-            <text/>
+         <text/>
+      </attribute>
+   </define>
+   <define name="mishnahw_prefixDef">
+      <element name="prefixDef">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (prefixing scheme used in data.pointer values) defines a prefixing scheme used in data.pointer values,
+  showing how abbreviated URIs using the scheme may be expanded into full URIs. [16.2.3. ]</a:documentation>
+         <zeroOrMore>
+            <ref name="mishnahw_model.pLike"/>
+         </zeroOrMore>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.patternReplacement.attributes"/>
+         <attribute name="ident">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies the identifier which functions as the prefix for an abbreviated
+          pointing scheme such as a private URI scheme. The prefix constitutes the 
+        text preceding the first colon.</a:documentation>
+            <ref name="mishnahw_data.name"/>
          </attribute>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_listPrefixDef">
+      <element name="listPrefixDef">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (list of prefix definitions) contains a list of definitions of prefixing schemes used in data.pointer values, showing how abbreviated URIs using each scheme may be expanded into full URIs. [16.2.3. ]</a:documentation>
+         <group>
+            <oneOrMore>
+               <choice>
+                  <ref name="mishnahw_prefixDef"/>
+                  <ref name="mishnahw_listPrefixDef"/>
+               </choice>
+            </oneOrMore>
+         </group>
+         <ref name="mishnahw_att.global.attributes"/>
          <empty/>
       </element>
    </define>
@@ -5310,7 +5529,7 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
          <empty/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.milestoneUnit.attributes"/>
-         <ref name="mishnahw_att.sourced.attributes"/>
+         <ref name="mishnahw_att.edition.attributes"/>
          <optional>
             <attribute name="length">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the fixed length of the reference component.</a:documentation>
@@ -6285,7 +6504,7 @@ on its title page or at the head or end of the work. [4.2.2.  4.5. ]</a:document
    </define>
    <define name="mishnahw_argument">
       <element name="argument">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A formal list or prose description of the topics addressed by
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a formal list or prose description of the topics addressed by
 	a subdivision of a text. [4.2.  4.6. ]</a:documentation>
          <group>
             <zeroOrMore>
@@ -6814,11 +7033,99 @@ rectangular space.</a:documentation>
                <ref name="mishnahw_unclear"/>
                <ref name="mishnahw_seg"/>
                <ref name="mishnahw_surplus"/>
+               <ref name="mishnahw_metamark"/>
             </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.damaged.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_damageSpan">
+      <element name="damageSpan">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(damaged span of text) marks the beginning of a longer sequence of text which is
+  damaged in some way but still legible. [11.3.3.1. ]</a:documentation>
+         <empty/>
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="damageSpan-constraint-spanTo">
+            <rule context="tei:damageSpan">
+               <assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                       test="@spanTo">
+The @spanTo attribute of <name/> is required.</assert>
+            </rule>
+         </pattern>
+    
+  
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="damageSpan-constraint-spanTo_fr">
+            <rule context="tei:damageSpan">
+               <assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                       test="@spanTo">L'attribut spanTo est requis.</assert>
+            </rule>
+         </pattern>
+    
+         <ref name="mishnahw_att.global.attribute.xmlid"/>
+         <ref name="mishnahw_att.global.attribute.n"/>
+         <ref name="mishnahw_att.global.attribute.xmllang"/>
+         <ref name="mishnahw_att.global.attribute.rend"/>
+         <ref name="mishnahw_att.global.attribute.style"/>
+         <ref name="mishnahw_att.global.attribute.rendition"/>
+         <ref name="mishnahw_att.global.attribute.xmlbase"/>
+         <ref name="mishnahw_att.global.attribute.xmlspace"/>
+         <ref name="mishnahw_att.global.linking.attribute.synch"/>
+         <ref name="mishnahw_att.global.linking.attribute.sameAs"/>
+         <ref name="mishnahw_att.global.linking.attribute.copyOf"/>
+         <ref name="mishnahw_att.global.linking.attribute.next"/>
+         <ref name="mishnahw_att.global.linking.attribute.prev"/>
+         <ref name="mishnahw_att.global.linking.attribute.exclude"/>
+         <ref name="mishnahw_att.global.linking.attribute.select"/>
+         <ref name="mishnahw_att.global.facs.attribute.facs"/>
+         <ref name="mishnahw_att.global.change.attribute.change"/>
+         <ref name="mishnahw_att.damaged.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <attribute name="corresp">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(corresponds) points to elements that correspond to the current
+      element in some way.</a:documentation>
+            <list>
+               <oneOrMore>
+                  <ref name="mishnahw_data.pointer"/>
+               </oneOrMore>
+            </list>
+         </attribute>
+         <attribute name="spanTo">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the end of a span initiated by the element
+	bearing this attribute.</a:documentation>
+            <ref name="mishnahw_data.pointer"/>
+         </attribute>
+        
+        
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="spanTo-constraint-spanTo-2">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      context="tei:*[@spanTo]">
+               <sch:assert test="following::*[@xml:id=substring(current()/@target,2)]">
+The element indicated by @spanTo must follow the current element <sch:name/>
+               </sch:assert>
+            </sch:rule>
+         </pattern>      
+      
+        
+        
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="spanTo-constraint-spanTo-3">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      context="tei:*[@spanTo]">
+               <sch:assert test="id(substring(@spanTo,2))">
+@spanTo on <sch:name/> must point to  the identifier of some element  in this document</sch:assert>
+            </sch:rule>
+         </pattern>
+     
          <empty/>
       </element>
    </define>
@@ -6871,7 +7178,10 @@ cancellation of an editorial or authorial marking or instruction. [11.3.1.6. ]</
       <element name="space">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the location of a significant space in the copy text. [11.5.1. ]</a:documentation>
          <zeroOrMore>
-            <ref name="mishnahw_model.descLike"/>
+            <choice>
+               <ref name="mishnahw_model.descLike"/>
+               <ref name="mishnahw_model.certLike"/>
+            </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.dimensions.attributes"/>
@@ -6914,7 +7224,7 @@ the space.</a:documentation>
                <assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="child::tei:add and child::tei:del">
-        Subst must have at least one child add and at least one child del</assert>
+                  <name/> must have at least one child add and at least one child del</assert>
             </rule>
          </pattern>
     
@@ -7244,28 +7554,11 @@ the space.</a:documentation>
          <ref name="mishnahw_att.global.change.attribute.change"/>
          <ref name="mishnahw_att.typed.attributes"/>
          <ref name="mishnahw_att.declaring.attributes"/>
+         <ref name="mishnahw_att.fragmentable.attributes"/>
          <attribute name="xml:id">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
             <data type="ID"/>
          </attribute>
-         <optional>
-            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
-                       a:defaultValue="N">
-               <a:documentation>specifies whether or not the block is complete. </a:documentation>
-               <choice>
-                  <value>Y</value>
-                  <a:documentation>(yes) the block is incomplete</a:documentation>
-                  <value>N</value>
-                  <a:documentation>(no) either the block is complete, or no claim is made as to its completeness</a:documentation>
-                  <value>I</value>
-                  <a:documentation>(initial) the initial part of an incomplete block</a:documentation>
-                  <value>M</value>
-                  <a:documentation>(medial) a medial part of an incomplete block</a:documentation>
-                  <value>F</value>
-                  <a:documentation>(final) the final part of an incomplete block</a:documentation>
-               </choice>
-            </attribute>
-         </optional>
          <empty/>
       </element>
    </define>
@@ -7289,6 +7582,8 @@ the space.</a:documentation>
                <ref name="mishnahw_model.pPart.editorial"/>
                <ref name="mishnahw_model.segLike"/>
                <ref name="mishnahw_listTranspose"/>
+               <ref name="mishnahw_metamark"/>
+               <ref name="mishnahw_note"/>
             </choice>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
@@ -7312,8 +7607,9 @@ the space.</a:documentation>
             <rule context="tei:join">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                       test="@target and @targets">You may not supply both 
-	@target and @targets</report>
+                       test="@target and @targets">
+You may not supply both @target and @targets on <name/>
+               </report>
             </rule>
          </pattern>
     
@@ -7323,8 +7619,9 @@ the space.</a:documentation>
             <rule context="tei:join">
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                       test="not(@target) and not(@targets)">You must
-	supply either @target or @targets</report>
+                       test="not(@target) and not(@targets)">
+You must supply either @target or @targets on <name/>
+               </report>
             </rule>
          </pattern>
     
@@ -7334,8 +7631,9 @@ the space.</a:documentation>
             <rule context="tei:join">
                <assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                       test="contains(@target,' ')">You must supply at least two
-values for @target</assert>
+                       test="contains(@target,' ')">
+You must supply at least two values for @target on <name/>
+               </assert>
             </rule>
          </pattern>
     
@@ -7460,7 +7758,7 @@ manuscript or other text-bearing object. [10.1. ]</a:documentation>
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="count(tei:width)&gt; 1">
-	Width element may appear once only
+The element <name/> may appear once only
       </report>
             </rule>
          </pattern>
@@ -7470,7 +7768,7 @@ manuscript or other text-bearing object. [10.1. ]</a:documentation>
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="count(tei:height)&gt; 1">
-	Height element may appear once only
+The element <name/> may appear once only
       </report>
             </rule>
          </pattern>
@@ -7480,7 +7778,7 @@ manuscript or other text-bearing object. [10.1. ]</a:documentation>
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="count(tei:depth)&gt; 1">
-	Depth element may appear once only
+The element <name/> may appear once only
       </report>
             </rule>
          </pattern>
@@ -7604,8 +7902,8 @@ the  manuscript being described.  [10.4. ]</a:documentation>
                <report xmlns:rng="http://relaxng.org/ns/structure/1.0"
                        xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="local-name(*[1])='idno' or                              local-name(*[1])='altIdentifier' or        .='' ">
-	    You must supply either a locator of some type or a
-	    name</report>
+You must supply either a locator of some type or a name for <name/>
+               </report>
             </rule>
          </pattern>
     
@@ -8057,7 +8355,7 @@ etc. which make up the physical support for the written part of a manuscript. [1
    </define>
    <define name="mishnahw_pc">
       <element name="pc">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (punctuation character) a character or string of characters regarded as constituting a
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (punctuation character) contains a character or string of characters regarded as constituting a
   single punctuation mark. [17.1. ]</a:documentation>
          <zeroOrMore>
             <choice>

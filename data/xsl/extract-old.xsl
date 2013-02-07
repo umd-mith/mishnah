@@ -6,32 +6,31 @@
     xmlns:local="local-functions.uri">
     
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'1v'"/>
+    <xsl:param name="pg" select="'158v'"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
-    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationsStmt/tei:idno[@type='local']/text()"/>
-    
+    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
+   
     <xsl:param name="start">
         <!-- Select start node based on selected paramenters. On non-existant chs, pages, cols, goes to first in witness file. -->
         <xsl:choose>
             <xsl:when test="$mode = 'pg'">
-                
                 <xsl:choose>
-                    <xsl:when test="(//tei:pb)[@xml:id = concat($wit,'.',$pg)]">
+                    <xsl:when test="//tei:pb[@xml:id = concat($wit,'.',$pg)]">
                         <xsl:value-of select="//tei:pb[@xml:id = concat($wit,'.',$pg)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="(//tei:pb)[1]/@xml:id"/>
+                        <xsl:value-of select="//tei:pb[1]/@xml:id"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:when test="$mode = 'col'">
                 <xsl:choose>
-                    <xsl:when test="(//tei:cb)[@xml:id = concat($wit,'.',$col)]">
+                    <xsl:when test="//tei:cb[@xml:id = concat($wit,'.',$col)]">
                         <xsl:value-of select="//tei:cb[@xml:id = concat($wit,'.',$col)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="(//tei:cb)[1]/@xml:id"/>
+                        <xsl:value-of select="//tei:pb[1]/@xml:id"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
@@ -178,7 +177,8 @@
     </xsl:template>
 
     <xsl:template match="/">
-       
+        <start><xsl:copy-of select="$start"></xsl:copy-of></start>
+        <end><xsl:copy-of select="$end"></xsl:copy-of></end>
         <xsl:variable name="holding">
             <xsl:apply-templates select="tei:TEI/tei:text/tei:body"/>
         </xsl:variable>

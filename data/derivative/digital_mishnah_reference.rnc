@@ -1,13 +1,14 @@
 default namespace = "http://www.tei-c.org/ns/1.0"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
-namespace ns1 = "http://www.w3.org/2001/XInclude"
+namespace ns1 = "http://www.isocat.org/ns/dcr"
+namespace ns2 = "http://www.w3.org/2001/XInclude"
 namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2012-05-22T16:11:16Z. 
-# Edition: 2.0.2 Last updated on 2nd February 2012.
-# Edition Location: http://www.tei-c.org/Vault/P5/2.0.2/
+# Schema generated from ODD source 2013-02-07T12:54:18Z. 
+# Edition: 2.3.0. Last updated on 17th January 2013.
+# Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 #
 
 # This work is copyright Trevor Muñoz and Maryland Institute for Technology in
@@ -18,7 +19,8 @@ mishnahrmacro.paraContent =
    | mishnahrmodel.gLike
    | mishnahrmodel.phrase
    | mishnahrmodel.inter
-   | mishnahrmodel.global)*
+   | mishnahrmodel.global
+   | mishnahrlg)*
 mishnahrmacro.limitedContent =
   (text | mishnahrmodel.limitedPhrase | mishnahrmodel.inter)*
 mishnahrmacro.phraseSeq =
@@ -35,7 +37,6 @@ mishnahrmacro.specialPara =
    | mishnahrmodel.inter
    | mishnahrmodel.divPart
    | mishnahrmodel.global)*
-mishnahrmacro.xtext = (text | mishnahrmodel.gLike)*
 mishnahrdata.certainty = "high" | "medium" | "low" | "unknown"
 mishnahrdata.probability =
   xsd:double { minInclusive = "0" maxInclusive = "1" }
@@ -66,9 +67,9 @@ mishnahrdata.outputMeasurement =
 mishnahrdata.pattern = xsd:token
 mishnahrdata.pointer = xsd:anyURI
 mishnahrdata.version = xsd:token { pattern = "[\d]+(\.[\d]+){0,2}" }
-mishnahrdata.key = xsd:string
 mishnahrdata.word = xsd:token { pattern = "(\p{L}|\p{N}|\p{P}|\p{S})+" }
-mishnahrdata.code = xsd:anyURI
+mishnahrdata.text = xsd:string
+mishnahrdata.code = mishnahrdata.word
 mishnahrdata.name = xsd:Name
 mishnahrdata.enumerated = mishnahrdata.name
 mishnahrdata.temporal.iso =
@@ -86,7 +87,7 @@ mishnahratt.ascribed.attribute.who =
   
   ## indicates the person, or group of people, to whom the element content is ascribed.
   attribute who {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.canonical.attributes =
   mishnahratt.canonical.attribute.key,
@@ -95,13 +96,13 @@ mishnahratt.canonical.attribute.key =
   
   ## provides an externally-defined means of identifying the entity (or entities) being
   ##         named, using a coded value of some kind.
-  attribute key { mishnahrdata.key }?
+  attribute key { mishnahrdata.text }?
 mishnahratt.canonical.attribute.ref =
   
   ## (reference) provides an explicit means of locating a full definition for the entity being named by
   ##         means of one or more URIs.
   attribute ref {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.ranging.attributes =
   mishnahratt.ranging.attribute.atLeast,
@@ -131,7 +132,7 @@ mishnahratt.ranging.attribute.max =
   attribute max { mishnahrdata.numeric }?
 mishnahratt.ranging.attribute.confidence =
   
-  ## The degree of statistical confidence (between zero and one) that a value falls within the range
+  ## specifies the degree of statistical confidence (between zero and one) that a value falls within the range
   ##         specified by min and max, or the proportion of observed values that fall within that range.
   attribute confidence { mishnahrdata.probability }?
 mishnahratt.dimensions.attributes =
@@ -171,9 +172,7 @@ mishnahratt.dimensions.attribute.extent =
   
   ## indicates the size of the object concerned using a project-specific vocabulary combining
   ##         quantity and units in a single string of words. 
-  attribute extent {
-    list { mishnahrdata.word, mishnahrdata.word* }
-  }?
+  attribute extent { mishnahrdata.text }?
 mishnahratt.dimensions.attribute.precision =
   
   ## characterizes the precision of the values specified by the other attributes.
@@ -191,6 +190,13 @@ mishnahratt.breaking.attribute.break =
   ##	bearing this attribute should be considered to mark the end of
   ##	an orthographic token in the same way as whitespace.
   attribute break { mishnahrdata.enumerated }?
+mishnahratt.cReferencing.attributes =
+  mishnahratt.cReferencing.attribute.cRef
+mishnahratt.cReferencing.attribute.cRef =
+  
+  ## (canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
+  ##         scheme defined in a refsDecl element in the TEI header
+  attribute cRef { mishnahrdata.text }?
 mishnahratt.datable.w3c.attributes =
   mishnahratt.datable.w3c.attribute.when,
   mishnahratt.datable.w3c.attribute.notBefore,
@@ -232,12 +238,52 @@ mishnahratt.datable.attribute.calendar =
   ## indicates the system or calendar to which the date represented by the content of this
   ##         element belongs.
   attribute calendar { mishnahrdata.pointer }?
+sch:pattern [
+  id = "calendar-constraint-calendar"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@calendar]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "string-length(.) gt 0"
+      "\x{a}" ~
+      "@calendar indicates the system or calendar to which the date represented by the content of this element\x{a}" ~
+      "belongs, but this "
+      sch:name [ ]
+      " element has no textual content."
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
 mishnahratt.datable.attribute.period =
   
   ## supplies a pointer to some location defining a named
   ##         period of time within which the datable item is understood to
   ##         have occurred.
   attribute period { mishnahrdata.pointer }?
+mishnahratt.datcat.attributes =
+  mishnahratt.datcat.attribute.datcat,
+  mishnahratt.datcat.attribute.valueDatcat
+mishnahratt.datcat.attribute.datcat =
+  
+  ## contains a PID (persistent identifier) that aligns the given element with the appropriate 
+  ##         Data Category (or categories) in ISOcat.
+  attribute ns1:datcat {
+    list { mishnahrdata.pointer+ }
+  }?
+mishnahratt.datcat.attribute.valueDatcat =
+  
+  ## contains a PID (persistent identifier) that aligns the content of the given
+  ##         element or the value of the given attribute with the appropriate simple Data
+  ##         Category (or categories) in ISOcat.
+  attribute ns1:valueDatcat {
+    list { mishnahrdata.pointer+ }
+  }?
 mishnahratt.declarable.attributes =
   mishnahratt.declarable.attribute.default
 mishnahratt.declarable.attribute.default =
@@ -261,12 +307,39 @@ mishnahratt.declaring.attribute.decls =
   ## header, which are understood to apply to the element bearing this
   ## attribute and its content.
   attribute decls {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
+  }?
+mishnahratt.fragmentable.attributes =
+  mishnahratt.fragmentable.attribute.part
+mishnahratt.fragmentable.attribute.part =
+  
+  ## specifies whether or not its parent element is fragmented
+  ##       in some way, typically by some other overlapping structure : for
+  ##       example a speech which is divided between two or more verse
+  ##       stanzas, a paragraph which is split across a page division, a
+  ##       verse line which is divided between two speakers.
+  [ a:defaultValue = "N" ]
+  attribute part {
+    
+    ##  (yes) the element is fragmented in some (unspecified) respect
+    "Y"
+    | 
+      ##  (no) either the element is not fragmented, or no claim is made as to its completeness.
+      "N"
+    | 
+      ##  (initial) this is the initial part of a fragmented element
+      "I"
+    | 
+      ##  (medial) this is a medial part of a fragmented element
+      "M"
+    | 
+      ##  (final) this is the final part of a fragmented element
+      "F"
   }?
 mishnahratt.divLike.attributes =
+  mishnahratt.fragmentable.attributes,
   mishnahratt.divLike.attribute.org,
-  mishnahratt.divLike.attribute.sample,
-  mishnahratt.divLike.attribute.part
+  mishnahratt.divLike.attribute.sample
 mishnahratt.divLike.attribute.org =
   
   ## (organization) specifies how the content of the division is organized.
@@ -305,29 +378,6 @@ mishnahratt.divLike.attribute.sample =
       ## division is not a sample.
       "complete"
   }?
-mishnahratt.divLike.attribute.part =
-  
-  ## specifies whether or not the division is fragmented by
-  ##		some other structural element, for example a speech which is
-  ##		divided between two or more verse stanzas.
-  [ a:defaultValue = "N" ]
-  attribute part {
-    
-    ## (yes) the division is incomplete in some respect
-    "Y"
-    | 
-      ## (no) either the division is complete, or no claim is made as to its completeness.
-      "N"
-    | 
-      ## (initial) the initial part of an incomplete division
-      "I"
-    | 
-      ## (medial) a medial part of an incomplete division
-      "M"
-    | 
-      ## (final) the final part of an incomplete division
-      "F"
-  }?
 mishnahratt.docStatus.attributes =
   mishnahratt.docStatus.attribute.status
 mishnahratt.docStatus.attribute.status =
@@ -349,7 +399,7 @@ mishnahratt.responsibility.attribute.resp =
   ## (responsible party) indicates the agency responsible for the intervention or interpretation, for example an
   ##         editor or transcriber.
   attribute resp {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.editLike.attributes =
   mishnahratt.dimensions.attributes,
@@ -374,18 +424,7 @@ mishnahratt.editLike.attribute.evidence =
          ## the intervention or interpretation has been made by the editor, cataloguer, or
          ##             scholar on the basis of their expertise.
          "conjecture"
-       | xsd:Name),
-      (
-       ## there is internal evidence to support the intervention.
-       "internal"
-       | 
-         ## there is external evidence to support the intervention.
-         "external"
-       | 
-         ## the intervention or interpretation has been made by the editor, cataloguer, or
-         ##             scholar on the basis of their expertise.
-         "conjecture"
-       | xsd:Name)*
+       | xsd:Name)+
     }
   }?
 mishnahratt.editLike.attribute.source =
@@ -393,11 +432,11 @@ mishnahratt.editLike.attribute.source =
   ## contains a list of one or more pointers indicating sources
   ##       supporting the given  intervention or interpretation.
   attribute source {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.editLike.attribute.instant =
   
-  ## Is this an instant revision?
+  ## indicates whether this is an instant revision or not.
   [ a:defaultValue = "false" ]
   attribute instant { mishnahrdata.xTruthValue }?
 mishnahratt.global.attributes =
@@ -407,6 +446,7 @@ mishnahratt.global.attributes =
   mishnahratt.global.attribute.n,
   mishnahratt.global.attribute.xmllang,
   mishnahratt.global.attribute.rend,
+  mishnahratt.global.attribute.style,
   mishnahratt.global.attribute.rendition,
   mishnahratt.global.attribute.xmlbase,
   mishnahratt.global.attribute.xmlspace
@@ -418,27 +458,31 @@ mishnahratt.global.attribute.n =
   
   ## (number) gives a number (or other label) for an element, which is not necessarily unique within
   ##         the document.
-  attribute n {
-    list { mishnahrdata.word, mishnahrdata.word* }
-  }?
+  attribute n { mishnahrdata.text }?
 mishnahratt.global.attribute.xmllang =
   
   ## (language) indicates the language of the element content using a tag generated
-  ##         according to BCP 47
+  ##         according to BCP 47. 
   ##          
   attribute xml:lang { mishnahrdata.language }?
 mishnahratt.global.attribute.rend =
   
   ## (rendition) indicates how the element in question was rendered or presented in the source text.
   attribute rend {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
+mishnahratt.global.attribute.style =
+  
+  ## contains an expression in some formal style definition language
+  ## which defines the rendering or presentation
+  ## used for this element in the source text 
+  attribute style { mishnahrdata.text }?
 mishnahratt.global.attribute.rendition =
   
   ## points to a description of the rendering or presentation used for this element in the
   ##         source text.
   attribute rendition {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.global.attribute.xmlbase =
   
@@ -451,21 +495,12 @@ mishnahratt.global.attribute.xmlspace =
   ##       managed by  applications. 
   attribute xml:space {
     
-    ## the processor should treat white space according to the
-    ##	default XML white space handling rules
+    ## signals that the application's default white-space processing modes are acceptable
     "default"
     | 
-      ## the processor should preserve unchanged any and all
-      ##	white space in the source
+      ## indicates the intent that applications preserve all white space
       "preserve"
   }?
-mishnahratt.handFeatures.attributes =
-  mishnahratt.handFeatures.attribute.scribe,
-  mishnahratt.handFeatures.attribute.scribeRef,
-  mishnahratt.handFeatures.attribute.script,
-  mishnahratt.handFeatures.attribute.scriptRef,
-  mishnahratt.handFeatures.attribute.medium,
-  mishnahratt.handFeatures.attribute.scope
 mishnahratt.handFeatures.attribute.scribe =
   
   ## gives a name or other identifier for the scribe
@@ -476,14 +511,14 @@ mishnahratt.handFeatures.attribute.scribeRef =
   ## points to a full description of the scribe concerned, typically supplied by a person element
   ##       elsewhere in the description.
   attribute scribeRef {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.handFeatures.attribute.script =
   
   ## characterizes the particular script or writing style used by
   ## this hand, for example secretary, copperplate, Chancery, Italian, etc.
   attribute script {
-    list { mishnahrdata.name, mishnahrdata.name* }
+    list { mishnahrdata.name+ }
   }?
 mishnahratt.handFeatures.attribute.scriptRef =
   
@@ -491,7 +526,7 @@ mishnahratt.handFeatures.attribute.scriptRef =
   ## this hand, typically supplied by a scriptNote element
   ##       elsewhere in the description.
   attribute scriptRef {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.handFeatures.attribute.medium =
   
@@ -518,8 +553,31 @@ mishnahratt.internetMedia.attribute.mimeType =
   
   ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
   attribute mimeType {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
+mishnahratt.media.attributes =
+  mishnahratt.internetMedia.attributes,
+  mishnahratt.media.attribute.width,
+  mishnahratt.media.attribute.height,
+  mishnahratt.media.attribute.scale
+mishnahratt.media.attribute.width =
+  
+  ## Where the media are displayed, indicates the  display width 
+  attribute width { mishnahrdata.outputMeasurement }?
+mishnahratt.media.attribute.height =
+  
+  ## Where the media are displayed, indicates the display height
+  attribute height { mishnahrdata.outputMeasurement }?
+mishnahratt.media.attribute.scale =
+  
+  ## Where the media are displayed, indicates a scale factor to
+  ##       be applied when generating the desired display size
+  attribute scale { mishnahrdata.numeric }?
+mishnahratt.resourced.attributes = mishnahratt.resourced.attribute.url
+mishnahratt.resourced.attribute.url =
+  
+  ## (uniform resource locator) specifies the URL from which the media concerned may be obtained.
+  attribute url { mishnahrdata.pointer }
 mishnahratt.interpLike.attributes =
   mishnahratt.responsibility.attributes,
   mishnahratt.interpLike.attribute.type,
@@ -534,7 +592,7 @@ mishnahratt.interpLike.attribute.inst =
   ## (instances) points to instances of the analysis or interpretation represented
   ## by the current element.
   attribute inst {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.measurement.attributes =
   mishnahratt.measurement.attribute.unit,
@@ -614,7 +672,7 @@ mishnahratt.measurement.attribute.commodity =
   
   ## indicates the substance that is being measured
   attribute commodity {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.naming.attributes =
   mishnahratt.canonical.attributes,
@@ -632,12 +690,12 @@ mishnahratt.naming.attribute.nymRef =
   ##        named by
   ##       the element bearing it.
   attribute nymRef {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.placement.attributes = mishnahratt.placement.attribute.place
 mishnahratt.placement.attribute.place =
   
-  ## 
+  ## specifies where this item is placed
   ## Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6] overleaf; 7] above; 8] end; 9] inline; 10] inspace
   attribute place {
     list {
@@ -671,38 +729,7 @@ mishnahratt.placement.attribute.place =
        | 
          ##  in a predefined space, for example left by an earlier scribe.
          "inspace"
-       | xsd:Name),
-      (
-       ## below the line
-       "below"
-       | 
-         ## at the foot of the page
-         "bottom"
-       | 
-         ## in the margin (left, right, or both)
-         "margin"
-       | 
-         ## at the top of the page
-         "top"
-       | 
-         ## on the opposite, i.e. facing, page
-         "opposite"
-       | 
-         ## on the other side of the leaf
-         "overleaf"
-       | 
-         ## above the line
-         "above"
-       | 
-         ## at the end of e.g. chapter or volume.
-         "end"
-       | 
-         ## within the body of the text.
-         "inline"
-       | 
-         ##  in a predefined space, for example left by an earlier scribe.
-         "inspace"
-       | xsd:Name)*
+       | xsd:Name)+
     }
   }?
 mishnahratt.typed.attributes =
@@ -717,13 +744,37 @@ mishnahratt.typed.attribute.subtype =
   ## provides a sub-categorization of the element, if needed
   attribute subtype { mishnahrdata.enumerated }?
 mishnahratt.pointing.attributes =
+  mishnahratt.pointing.attribute.targetLang,
   mishnahratt.pointing.attribute.target,
   mishnahratt.pointing.attribute.evaluate
+mishnahratt.pointing.attribute.targetLang =
+  
+  ## specifies the language of the content to be found at the destination referenced by target, using a language tag generated
+  ##         according to BCP 47.
+  attribute targetLang { mishnahrdata.language }?
+sch:pattern [
+  id = "targetLang-constraint-targetLang"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[not(self::tei:schemaSpec)][@targetLang]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "count(@target)"
+      "@targetLang can only be used if @target is specified."
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
 mishnahratt.pointing.attribute.target =
   
   ## specifies the destination of the reference by supplying one or more URI References
   attribute target {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.pointing.attribute.evaluate =
   
@@ -747,49 +798,35 @@ mishnahratt.pointing.attribute.evaluate =
       "none"
   }?
 mishnahratt.segLike.attributes =
-  mishnahratt.segLike.attribute.function,
-  mishnahratt.segLike.attribute.part
+  mishnahratt.datcat.attributes,
+  mishnahratt.fragmentable.attributes,
+  mishnahratt.segLike.attribute.function
 mishnahratt.segLike.attribute.function =
   
   ## characterizes the function of the segment.
   attribute function { mishnahrdata.enumerated }?
-mishnahratt.segLike.attribute.part =
-  
-  ## specifies whether or not the segment is fragmented by some other
-  ## structural element, for example a clause which is divided between two
-  ## or more sentences.
-  [ a:defaultValue = "N" ]
-  attribute part {
-    
-    ## (yes) the segment is incomplete in some respect
-    "Y"
-    | 
-      ## (no) either the segment is complete, or no claim is made as to
-      ## its completeness
-      "N"
-    | 
-      ## (initial) the initial part of an incomplete segment
-      "I"
-    | 
-      ## (medial) a medial part of an incomplete segment
-      "M"
-    | 
-      ## (final) the final part of an incomplete segment
-      "F"
-  }?
 mishnahratt.sortable.attributes = mishnahratt.sortable.attribute.sortKey
 mishnahratt.sortable.attribute.sortKey =
   
   ## supplies the sort key for this element in an index, list or group which contains it.
   attribute sortKey { mishnahrdata.word }?
-mishnahratt.sourced.attributes = mishnahratt.sourced.attribute.ed
-mishnahratt.sourced.attribute.ed =
+mishnahratt.edition.attributes =
+  mishnahratt.edition.attribute.ed, mishnahratt.edition.attribute.edRef
+mishnahratt.edition.attribute.ed =
   
   ## (edition) supplies an arbitrary identifier for the source edition in which
   ##       the associated feature (for example, a  page, column, or line
   ##       break) occurs at this point in the text.
   attribute ed {
-    list { mishnahrdata.code, mishnahrdata.code* }
+    list { mishnahrdata.code+ }
+  }?
+mishnahratt.edition.attribute.edRef =
+  
+  ##  (edition reference) provides a pointer to the source edition in which
+  ##       the associated feature (for example, a  page, column, or line
+  ##       break) occurs at this point in the text.
+  attribute edRef {
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.spanning.attributes = mishnahratt.spanning.attribute.spanTo
 mishnahratt.spanning.attribute.spanTo =
@@ -797,6 +834,79 @@ mishnahratt.spanning.attribute.spanTo =
   ## indicates the end of a span initiated by the element
   ##	bearing this attribute.
   attribute spanTo { mishnahrdata.pointer }?
+sch:pattern [
+  id = "spanTo-constraint-spanTo-2"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@spanTo]"
+    "\x{a}" ~
+    "         "
+    sch:assert [
+      test = "following::*[@xml:id=substring(current()/@target,2)]"
+      "\x{a}" ~
+      "The element indicated by @spanTo must follow the current element "
+      sch:name [ ]
+      "\x{a}" ~
+      "         "
+    ]
+    "\x{a}" ~
+    "      "
+  ]
+  "\x{a}" ~
+  "   "
+]
+sch:pattern [
+  id = "spanTo-constraint-spanTo-3"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@spanTo]"
+    "\x{a}" ~
+    "         "
+    sch:assert [
+      test = "id(substring(@spanTo,2))"
+      "\x{a}" ~
+      "@spanTo on "
+      sch:name [ ]
+      " must point to  the identifier of some element  in this document"
+    ]
+    "\x{a}" ~
+    "      "
+  ]
+  "\x{a}" ~
+  "   "
+]
+mishnahratt.styleDef.attributes = mishnahratt.styleDef.attribute.scheme
+mishnahratt.styleDef.attribute.scheme =
+  
+  ## identifies the language used to describe the rendition.
+  attribute scheme {
+    
+    ## Cascading Stylesheet Language
+    "css"
+    | 
+      ## Extensible Stylesheet Language Formatting Objects
+      "xslfo"
+    | 
+      ## Informal free text description
+      "free"
+    | 
+      ## A user-defined rendition description language
+      "other"
+  }?
+mishnahratt.timed.attributes =
+  mishnahratt.timed.attribute.start, mishnahratt.timed.attribute.end
+mishnahratt.timed.attribute.start =
+  
+  ## indicates the location within a temporal alignment at
+  ##       which this element begins.
+  attribute start { mishnahrdata.pointer }?
+mishnahratt.timed.attribute.end =
+  
+  ## indicates the location within a temporal alignment at
+  ##       which this element ends.
+  attribute end { mishnahrdata.pointer }?
 mishnahratt.transcriptional.attributes =
   mishnahratt.editLike.attributes,
   mishnahratt.transcriptional.attribute.hand,
@@ -835,12 +945,11 @@ mishnahratt.transcriptional.attribute.seq =
   ##       the encoded features carrying this attribute are believed to have occurred.
   attribute seq { mishnahrdata.count }?
 mishnahratt.translatable.attributes =
-  mishnahratt.translatable.attribute.version
-mishnahratt.translatable.attribute.version =
+  mishnahratt.translatable.attribute.versionDate
+mishnahratt.translatable.attribute.versionDate =
   
-  ## specifies the version name or number of the source from
-  ##	which the translated version was derived
-  attribute version { mishnahrdata.word }?
+  ## specifies the date on which the source text was extracted and sent to the translator
+  attribute versionDate { mishnahrdata.temporal.w3c }?
 mishnahrmodel.nameLike.agent = mishnahrname | mishnahrpersName
 mishnahrmodel.nameLike.agent_alternation =
   mishnahrname | mishnahrpersName
@@ -852,11 +961,6 @@ mishnahrmodel.nameLike.agent_sequenceOptionalRepeatable =
 mishnahrmodel.nameLike.agent_sequenceRepeatable =
   mishnahrname+, mishnahrpersName+
 mishnahrmodel.segLike = mishnahrw
-mishnahrmodel.segLike_alternation = mishnahrw
-mishnahrmodel.segLike_sequence = mishnahrw
-mishnahrmodel.segLike_sequenceOptional = mishnahrw?
-mishnahrmodel.segLike_sequenceOptionalRepeatable = mishnahrw*
-mishnahrmodel.segLike_sequenceRepeatable = mishnahrw+
 mishnahrmodel.hiLike = mishnahrhi
 mishnahrmodel.hiLike_alternation = mishnahrhi
 mishnahrmodel.hiLike_sequence = mishnahrhi
@@ -919,19 +1023,6 @@ mishnahrmodel.emphLike_sequenceRepeatable =
   mishnahrtitle+
 mishnahrmodel.highlighted =
   mishnahrmodel.hiLike | mishnahrmodel.emphLike
-mishnahrmodel.highlighted_alternation =
-  mishnahrmodel.hiLike_alternation | mishnahrmodel.emphLike_alternation
-mishnahrmodel.highlighted_sequence =
-  mishnahrmodel.hiLike_sequence, mishnahrmodel.emphLike_sequence
-mishnahrmodel.highlighted_sequenceOptional =
-  mishnahrmodel.hiLike_sequenceOptional?,
-  mishnahrmodel.emphLike_sequenceOptional?
-mishnahrmodel.highlighted_sequenceOptionalRepeatable =
-  mishnahrmodel.hiLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.emphLike_sequenceOptionalRepeatable*
-mishnahrmodel.highlighted_sequenceRepeatable =
-  mishnahrmodel.hiLike_sequenceRepeatable+,
-  mishnahrmodel.emphLike_sequenceRepeatable+
 mishnahrmodel.dateLike = mishnahrdate | mishnahrtime
 mishnahrmodel.dateLike_alternation = mishnahrdate | mishnahrtime
 mishnahrmodel.dateLike_sequence = mishnahrdate, mishnahrtime
@@ -957,17 +1048,8 @@ mishnahrmodel.egLike_sequence = empty
 mishnahrmodel.egLike_sequenceOptional = empty
 mishnahrmodel.egLike_sequenceOptionalRepeatable = empty
 mishnahrmodel.egLike_sequenceRepeatable = notAllowed
-mishnahrmodel.graphicLike = mishnahrgraphic | mishnahrbinaryObject
-mishnahrmodel.graphicLike_alternation =
-  mishnahrgraphic | mishnahrbinaryObject
-mishnahrmodel.graphicLike_sequence =
-  mishnahrgraphic, mishnahrbinaryObject
-mishnahrmodel.graphicLike_sequenceOptional =
-  mishnahrgraphic?, mishnahrbinaryObject?
-mishnahrmodel.graphicLike_sequenceOptionalRepeatable =
-  mishnahrgraphic*, mishnahrbinaryObject*
-mishnahrmodel.graphicLike_sequenceRepeatable =
-  mishnahrgraphic+, mishnahrbinaryObject+
+mishnahrmodel.graphicLike =
+  mishnahrmedia | mishnahrgraphic | mishnahrbinaryObject
 mishnahrmodel.offsetLike = notAllowed
 mishnahrmodel.offsetLike_alternation = notAllowed
 mishnahrmodel.offsetLike_sequence = empty
@@ -1042,46 +1124,10 @@ mishnahrmodel.pPart.transcriptional_sequenceRepeatable =
   mishnahrapp+
 mishnahrmodel.pPart.edit =
   mishnahrmodel.pPart.editorial | mishnahrmodel.pPart.transcriptional
-mishnahrmodel.pPart.edit_alternation =
-  mishnahrmodel.pPart.editorial_alternation
-  | mishnahrmodel.pPart.transcriptional_alternation
-mishnahrmodel.pPart.edit_sequence =
-  mishnahrmodel.pPart.editorial_sequence,
-  mishnahrmodel.pPart.transcriptional_sequence
-mishnahrmodel.pPart.edit_sequenceOptional =
-  mishnahrmodel.pPart.editorial_sequenceOptional?,
-  mishnahrmodel.pPart.transcriptional_sequenceOptional?
-mishnahrmodel.pPart.edit_sequenceOptionalRepeatable =
-  mishnahrmodel.pPart.editorial_sequenceOptionalRepeatable*,
-  mishnahrmodel.pPart.transcriptional_sequenceOptionalRepeatable*
-mishnahrmodel.pPart.edit_sequenceRepeatable =
-  mishnahrmodel.pPart.editorial_sequenceRepeatable+,
-  mishnahrmodel.pPart.transcriptional_sequenceRepeatable+
 mishnahrmodel.ptrLike = mishnahrptr | mishnahrref
-mishnahrmodel.ptrLike_alternation = mishnahrptr | mishnahrref
-mishnahrmodel.ptrLike_sequence = mishnahrptr, mishnahrref
-mishnahrmodel.ptrLike_sequenceOptional = mishnahrptr?, mishnahrref?
-mishnahrmodel.ptrLike_sequenceOptionalRepeatable =
-  mishnahrptr*, mishnahrref*
-mishnahrmodel.ptrLike_sequenceRepeatable = mishnahrptr+, mishnahrref+
 mishnahrmodel.lPart = notAllowed
-mishnahrmodel.lPart_alternation = notAllowed
-mishnahrmodel.lPart_sequence = empty
-mishnahrmodel.lPart_sequenceOptional = empty
-mishnahrmodel.lPart_sequenceOptionalRepeatable = empty
-mishnahrmodel.lPart_sequenceRepeatable = notAllowed
 mishnahrmodel.global.meta =
   mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
-mishnahrmodel.global.meta_alternation =
-  mishnahrindex | mishnahrinterp | mishnahrinterpGrp | mishnahrlink
-mishnahrmodel.global.meta_sequence =
-  mishnahrindex, mishnahrinterp, mishnahrinterpGrp, mishnahrlink
-mishnahrmodel.global.meta_sequenceOptional =
-  mishnahrindex?, mishnahrinterp?, mishnahrinterpGrp?, mishnahrlink?
-mishnahrmodel.global.meta_sequenceOptionalRepeatable =
-  mishnahrindex*, mishnahrinterp*, mishnahrinterpGrp*, mishnahrlink*
-mishnahrmodel.global.meta_sequenceRepeatable =
-  mishnahrindex+, mishnahrinterp+, mishnahrinterpGrp+, mishnahrlink+
 mishnahrmodel.milestoneLike =
   mishnahrmilestone
   | mishnahrgb
@@ -1089,41 +1135,6 @@ mishnahrmodel.milestoneLike =
   | mishnahrlb
   | mishnahrcb
   | mishnahranchor
-mishnahrmodel.milestoneLike_alternation =
-  mishnahrmilestone
-  | mishnahrgb
-  | mishnahrpb
-  | mishnahrlb
-  | mishnahrcb
-  | mishnahranchor
-mishnahrmodel.milestoneLike_sequence =
-  mishnahrmilestone,
-  mishnahrgb,
-  mishnahrpb,
-  mishnahrlb,
-  mishnahrcb,
-  mishnahranchor
-mishnahrmodel.milestoneLike_sequenceOptional =
-  mishnahrmilestone?,
-  mishnahrgb?,
-  mishnahrpb?,
-  mishnahrlb?,
-  mishnahrcb?,
-  mishnahranchor?
-mishnahrmodel.milestoneLike_sequenceOptionalRepeatable =
-  mishnahrmilestone*,
-  mishnahrgb*,
-  mishnahrpb*,
-  mishnahrlb*,
-  mishnahrcb*,
-  mishnahranchor*
-mishnahrmodel.milestoneLike_sequenceRepeatable =
-  mishnahrmilestone+,
-  mishnahrgb+,
-  mishnahrpb+,
-  mishnahrlb+,
-  mishnahrcb+,
-  mishnahranchor+
 mishnahrmodel.gLike = notAllowed
 mishnahrmodel.biblLike =
   mishnahrbibl | mishnahrbiblStruct | mishnahrbiblFull
@@ -1154,48 +1165,46 @@ mishnahrmodel.labelLike_sequenceRepeatable =
 mishnahrmodel.listLike =
   mishnahrlist
   | mishnahrlistBibl
+  | mishnahrlistApp
   | mishnahrlistWit
   | mishnahrlistPerson
   | mishnahrlistPlace
 mishnahrmodel.listLike_alternation =
   mishnahrlist
   | mishnahrlistBibl
+  | mishnahrlistApp
   | mishnahrlistWit
   | mishnahrlistPerson
   | mishnahrlistPlace
 mishnahrmodel.listLike_sequence =
   mishnahrlist,
   mishnahrlistBibl,
+  mishnahrlistApp,
   mishnahrlistWit,
   mishnahrlistPerson,
   mishnahrlistPlace
 mishnahrmodel.listLike_sequenceOptional =
   mishnahrlist?,
   mishnahrlistBibl?,
+  mishnahrlistApp?,
   mishnahrlistWit?,
   mishnahrlistPerson?,
   mishnahrlistPlace?
 mishnahrmodel.listLike_sequenceOptionalRepeatable =
   mishnahrlist*,
   mishnahrlistBibl*,
+  mishnahrlistApp*,
   mishnahrlistWit*,
   mishnahrlistPerson*,
   mishnahrlistPlace*
 mishnahrmodel.listLike_sequenceRepeatable =
   mishnahrlist+,
   mishnahrlistBibl+,
+  mishnahrlistApp+,
   mishnahrlistWit+,
   mishnahrlistPerson+,
   mishnahrlistPlace+
 mishnahrmodel.noteLike = mishnahrnote | mishnahrwitDetail
-mishnahrmodel.noteLike_alternation = mishnahrnote | mishnahrwitDetail
-mishnahrmodel.noteLike_sequence = mishnahrnote, mishnahrwitDetail
-mishnahrmodel.noteLike_sequenceOptional =
-  mishnahrnote?, mishnahrwitDetail?
-mishnahrmodel.noteLike_sequenceOptionalRepeatable =
-  mishnahrnote*, mishnahrwitDetail*
-mishnahrmodel.noteLike_sequenceRepeatable =
-  mishnahrnote+, mishnahrwitDetail+
 mishnahrmodel.lLike = mishnahrl
 mishnahrmodel.lLike_alternation = mishnahrl
 mishnahrmodel.lLike_sequence = mishnahrl
@@ -1216,47 +1225,12 @@ mishnahrmodel.stageLike_sequenceOptionalRepeatable = mishnahrstage*
 mishnahrmodel.stageLike_sequenceRepeatable = mishnahrstage+
 mishnahrmodel.entryPart = notAllowed
 mishnahrmodel.global.edit = mishnahrgap
-mishnahrmodel.global.edit_alternation = mishnahrgap
-mishnahrmodel.global.edit_sequence = mishnahrgap
-mishnahrmodel.global.edit_sequenceOptional = mishnahrgap?
-mishnahrmodel.global.edit_sequenceOptionalRepeatable = mishnahrgap*
-mishnahrmodel.global.edit_sequenceRepeatable = mishnahrgap+
 mishnahrmodel.divPart =
   mishnahrmodel.lLike | mishnahrmodel.pLike | mishnahrlg | mishnahrsp
-mishnahrmodel.divPart_alternation =
-  mishnahrmodel.lLike_alternation
-  | mishnahrmodel.pLike_alternation
-  | mishnahrlg
-  | mishnahrsp
-mishnahrmodel.divPart_sequence =
-  mishnahrmodel.lLike_sequence,
-  mishnahrmodel.pLike_sequence,
-  mishnahrlg,
-  mishnahrsp
-mishnahrmodel.divPart_sequenceOptional =
-  mishnahrmodel.lLike_sequenceOptional?,
-  mishnahrmodel.pLike_sequenceOptional?,
-  mishnahrlg?,
-  mishnahrsp?
-mishnahrmodel.divPart_sequenceOptionalRepeatable =
-  mishnahrmodel.lLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.pLike_sequenceOptionalRepeatable*,
-  mishnahrlg*,
-  mishnahrsp*
-mishnahrmodel.divPart_sequenceRepeatable =
-  mishnahrmodel.lLike_sequenceRepeatable+,
-  mishnahrmodel.pLike_sequenceRepeatable+,
-  mishnahrlg+,
-  mishnahrsp+
 mishnahrmodel.persStateLike = mishnahrpersName
-mishnahrmodel.persStateLike_alternation = mishnahrpersName
-mishnahrmodel.persStateLike_sequence = mishnahrpersName
-mishnahrmodel.persStateLike_sequenceOptional = mishnahrpersName?
-mishnahrmodel.persStateLike_sequenceOptionalRepeatable =
-  mishnahrpersName*
-mishnahrmodel.persStateLike_sequenceRepeatable = mishnahrpersName+
 mishnahrmodel.personLike = mishnahrpersonGrp
-mishnahrmodel.personPart = mishnahrmodel.persStateLike | mishnahrbibl
+mishnahrmodel.personPart =
+  mishnahrmodel.persStateLike | mishnahrbibl | mishnahridno
 mishnahrmodel.placeNamePart = mishnahrplaceName
 mishnahrmodel.placeNamePart_alternation = mishnahrplaceName
 mishnahrmodel.placeNamePart_sequence = mishnahrplaceName
@@ -1287,8 +1261,10 @@ mishnahrmodel.publicationStmtPart =
   | mishnahrauthority
   | mishnahridno
   | mishnahravailability
-mishnahrmodel.availabilityPart = mishnahrp | mishnahrlicence
-mishnahrmodel.glossLike = mishnahrdesc | mishnahrgloss
+mishnahrmodel.availabilityPart = mishnahrlicence
+mishnahrmodel.certLike = notAllowed
+mishnahrmodel.descLike = mishnahrdesc
+mishnahrmodel.glossLike = mishnahrgloss
 mishnahrmodel.quoteLike = mishnahrquote | mishnahrcit
 mishnahrmodel.quoteLike_alternation = mishnahrquote | mishnahrcit
 mishnahrmodel.quoteLike_sequence = mishnahrquote, mishnahrcit
@@ -1335,46 +1311,6 @@ mishnahrmodel.respLike =
   | mishnahrsponsor
   | mishnahrfunder
   | mishnahrprincipal
-mishnahrmodel.respLike_alternation =
-  mishnahrauthor
-  | mishnahreditor
-  | mishnahrrespStmt
-  | mishnahrmeeting
-  | mishnahrsponsor
-  | mishnahrfunder
-  | mishnahrprincipal
-mishnahrmodel.respLike_sequence =
-  mishnahrauthor,
-  mishnahreditor,
-  mishnahrrespStmt,
-  mishnahrmeeting,
-  mishnahrsponsor,
-  mishnahrfunder,
-  mishnahrprincipal
-mishnahrmodel.respLike_sequenceOptional =
-  mishnahrauthor?,
-  mishnahreditor?,
-  mishnahrrespStmt?,
-  mishnahrmeeting?,
-  mishnahrsponsor?,
-  mishnahrfunder?,
-  mishnahrprincipal?
-mishnahrmodel.respLike_sequenceOptionalRepeatable =
-  mishnahrauthor*,
-  mishnahreditor*,
-  mishnahrrespStmt*,
-  mishnahrmeeting*,
-  mishnahrsponsor*,
-  mishnahrfunder*,
-  mishnahrprincipal*
-mishnahrmodel.respLike_sequenceRepeatable =
-  mishnahrauthor+,
-  mishnahreditor+,
-  mishnahrrespStmt+,
-  mishnahrmeeting+,
-  mishnahrsponsor+,
-  mishnahrfunder+,
-  mishnahrprincipal+
 mishnahrmodel.divWrapper =
   mishnahrmeeting
   | mishnahrbyline
@@ -1384,62 +1320,7 @@ mishnahrmodel.divWrapper =
   | mishnahrsalute
   | mishnahrdocAuthor
   | mishnahrdocDate
-mishnahrmodel.divWrapper_alternation =
-  mishnahrmeeting
-  | mishnahrbyline
-  | mishnahrdateline
-  | mishnahrargument
-  | mishnahrepigraph
-  | mishnahrsalute
-  | mishnahrdocAuthor
-  | mishnahrdocDate
-mishnahrmodel.divWrapper_sequence =
-  mishnahrmeeting,
-  mishnahrbyline,
-  mishnahrdateline,
-  mishnahrargument,
-  mishnahrepigraph,
-  mishnahrsalute,
-  mishnahrdocAuthor,
-  mishnahrdocDate
-mishnahrmodel.divWrapper_sequenceOptional =
-  mishnahrmeeting?,
-  mishnahrbyline?,
-  mishnahrdateline?,
-  mishnahrargument?,
-  mishnahrepigraph?,
-  mishnahrsalute?,
-  mishnahrdocAuthor?,
-  mishnahrdocDate?
-mishnahrmodel.divWrapper_sequenceOptionalRepeatable =
-  mishnahrmeeting*,
-  mishnahrbyline*,
-  mishnahrdateline*,
-  mishnahrargument*,
-  mishnahrepigraph*,
-  mishnahrsalute*,
-  mishnahrdocAuthor*,
-  mishnahrdocDate*
-mishnahrmodel.divWrapper_sequenceRepeatable =
-  mishnahrmeeting+,
-  mishnahrbyline+,
-  mishnahrdateline+,
-  mishnahrargument+,
-  mishnahrepigraph+,
-  mishnahrsalute+,
-  mishnahrdocAuthor+,
-  mishnahrdocDate+
 mishnahrmodel.divTopPart = mishnahrmodel.headLike | mishnahropener
-mishnahrmodel.divTopPart_alternation =
-  mishnahrmodel.headLike_alternation | mishnahropener
-mishnahrmodel.divTopPart_sequence =
-  mishnahrmodel.headLike_sequence, mishnahropener
-mishnahrmodel.divTopPart_sequenceOptional =
-  mishnahrmodel.headLike_sequenceOptional?, mishnahropener?
-mishnahrmodel.divTopPart_sequenceOptionalRepeatable =
-  mishnahrmodel.headLike_sequenceOptionalRepeatable*, mishnahropener*
-mishnahrmodel.divTopPart_sequenceRepeatable =
-  mishnahrmodel.headLike_sequenceRepeatable+, mishnahropener+
 mishnahrmodel.divTop =
   mishnahrmodel.divWrapper | mishnahrmodel.divTopPart
 mishnahrmodel.pLike.front =
@@ -1455,25 +1336,6 @@ mishnahrmodel.pLike.front =
   | mishnahrdocDate
 mishnahrmodel.divBottomPart =
   mishnahrtrailer | mishnahrcloser | mishnahrsigned | mishnahrpostscript
-mishnahrmodel.divBottomPart_alternation =
-  mishnahrtrailer | mishnahrcloser | mishnahrsigned | mishnahrpostscript
-mishnahrmodel.divBottomPart_sequence =
-  mishnahrtrailer, mishnahrcloser, mishnahrsigned, mishnahrpostscript
-mishnahrmodel.divBottomPart_sequenceOptional =
-  mishnahrtrailer?,
-  mishnahrcloser?,
-  mishnahrsigned?,
-  mishnahrpostscript?
-mishnahrmodel.divBottomPart_sequenceOptionalRepeatable =
-  mishnahrtrailer*,
-  mishnahrcloser*,
-  mishnahrsigned*,
-  mishnahrpostscript*
-mishnahrmodel.divBottomPart_sequenceRepeatable =
-  mishnahrtrailer+,
-  mishnahrcloser+,
-  mishnahrsigned+,
-  mishnahrpostscript+
 mishnahrmodel.divBottom =
   mishnahrmodel.divWrapper | mishnahrmodel.divBottomPart
 mishnahrmodel.titlepagePart =
@@ -1489,12 +1351,6 @@ mishnahrmodel.titlepagePart =
   | mishnahrdocEdition
   | mishnahrdocImprint
   | mishnahrdocDate
-mishnahrmodel.msQuoteLike = mishnahrtitle
-mishnahrmodel.msQuoteLike_alternation = mishnahrtitle
-mishnahrmodel.msQuoteLike_sequence = mishnahrtitle
-mishnahrmodel.msQuoteLike_sequenceOptional = mishnahrtitle?
-mishnahrmodel.msQuoteLike_sequenceOptionalRepeatable = mishnahrtitle*
-mishnahrmodel.msQuoteLike_sequenceRepeatable = mishnahrtitle+
 mishnahrmodel.choicePart =
   mishnahrsic
   | mishnahrcorr
@@ -1508,31 +1364,6 @@ mishnahrmodel.imprintPart =
   | mishnahrbiblScope
   | mishnahrpubPlace
   | mishnahrdistributor
-mishnahrmodel.imprintPart_alternation =
-  mishnahrpublisher
-  | mishnahrbiblScope
-  | mishnahrpubPlace
-  | mishnahrdistributor
-mishnahrmodel.imprintPart_sequence =
-  mishnahrpublisher,
-  mishnahrbiblScope,
-  mishnahrpubPlace,
-  mishnahrdistributor
-mishnahrmodel.imprintPart_sequenceOptional =
-  mishnahrpublisher?,
-  mishnahrbiblScope?,
-  mishnahrpubPlace?,
-  mishnahrdistributor?
-mishnahrmodel.imprintPart_sequenceOptionalRepeatable =
-  mishnahrpublisher*,
-  mishnahrbiblScope*,
-  mishnahrpubPlace*,
-  mishnahrdistributor*
-mishnahrmodel.imprintPart_sequenceRepeatable =
-  mishnahrpublisher+,
-  mishnahrbiblScope+,
-  mishnahrpubPlace+,
-  mishnahrdistributor+
 mishnahrmodel.catDescPart = notAllowed
 mishnahrmodel.addressLike = mishnahremail | mishnahraddress
 mishnahrmodel.addressLike_alternation = mishnahremail | mishnahraddress
@@ -1594,6 +1425,7 @@ mishnahrmodel.biblPart =
   mishnahrmodel.respLike
   | mishnahrmodel.imprintPart
   | mishnahrseries
+  | mishnahrcitedRange
   | mishnahrbibl
   | mishnahrrelatedItem
   | mishnahrtextLang
@@ -1611,31 +1443,6 @@ mishnahrmodel.pPart.data =
   | mishnahrmodel.measureLike
   | mishnahrmodel.addressLike
   | mishnahrmodel.nameLike
-mishnahrmodel.pPart.data_alternation =
-  mishnahrmodel.dateLike_alternation
-  | mishnahrmodel.measureLike_alternation
-  | mishnahrmodel.addressLike_alternation
-  | mishnahrmodel.nameLike_alternation
-mishnahrmodel.pPart.data_sequence =
-  mishnahrmodel.dateLike_sequence,
-  mishnahrmodel.measureLike_sequence,
-  mishnahrmodel.addressLike_sequence,
-  mishnahrmodel.nameLike_sequence
-mishnahrmodel.pPart.data_sequenceOptional =
-  mishnahrmodel.dateLike_sequenceOptional?,
-  mishnahrmodel.measureLike_sequenceOptional?,
-  mishnahrmodel.addressLike_sequenceOptional?,
-  mishnahrmodel.nameLike_sequenceOptional?
-mishnahrmodel.pPart.data_sequenceOptionalRepeatable =
-  mishnahrmodel.dateLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.measureLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.addressLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.nameLike_sequenceOptionalRepeatable*
-mishnahrmodel.pPart.data_sequenceRepeatable =
-  mishnahrmodel.dateLike_sequenceRepeatable+,
-  mishnahrmodel.measureLike_sequenceRepeatable+,
-  mishnahrmodel.addressLike_sequenceRepeatable+,
-  mishnahrmodel.nameLike_sequenceRepeatable+
 mishnahrmodel.inter =
   mishnahrmodel.egLike
   | mishnahrmodel.biblLike
@@ -1643,41 +1450,6 @@ mishnahrmodel.inter =
   | mishnahrmodel.listLike
   | mishnahrmodel.stageLike
   | mishnahrmodel.qLike
-mishnahrmodel.inter_alternation =
-  mishnahrmodel.egLike_alternation
-  | mishnahrmodel.biblLike_alternation
-  | mishnahrmodel.labelLike_alternation
-  | mishnahrmodel.listLike_alternation
-  | mishnahrmodel.stageLike_alternation
-  | mishnahrmodel.qLike_alternation
-mishnahrmodel.inter_sequence =
-  mishnahrmodel.egLike_sequence,
-  mishnahrmodel.biblLike_sequence,
-  mishnahrmodel.labelLike_sequence,
-  mishnahrmodel.listLike_sequence,
-  mishnahrmodel.stageLike_sequence,
-  mishnahrmodel.qLike_sequence
-mishnahrmodel.inter_sequenceOptional =
-  mishnahrmodel.egLike_sequenceOptional?,
-  mishnahrmodel.biblLike_sequenceOptional?,
-  mishnahrmodel.labelLike_sequenceOptional?,
-  mishnahrmodel.listLike_sequenceOptional?,
-  mishnahrmodel.stageLike_sequenceOptional?,
-  mishnahrmodel.qLike_sequenceOptional?
-mishnahrmodel.inter_sequenceOptionalRepeatable =
-  mishnahrmodel.egLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.biblLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.labelLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.listLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.stageLike_sequenceOptionalRepeatable*,
-  mishnahrmodel.qLike_sequenceOptionalRepeatable*
-mishnahrmodel.inter_sequenceRepeatable =
-  mishnahrmodel.egLike_sequenceRepeatable+,
-  mishnahrmodel.biblLike_sequenceRepeatable+,
-  mishnahrmodel.labelLike_sequenceRepeatable+,
-  mishnahrmodel.listLike_sequenceRepeatable+,
-  mishnahrmodel.stageLike_sequenceRepeatable+,
-  mishnahrmodel.qLike_sequenceRepeatable+
 mishnahrmodel.common =
   mishnahrmodel.divPart | mishnahrmodel.inter | mishnahrinclude
 mishnahrmodel.phrase =
@@ -1707,10 +1479,12 @@ mishnahrmodel.encodingDescPart =
   | mishnahrsamplingDecl
   | mishnahreditorialDecl
   | mishnahrtagsDecl
+  | mishnahrstyleDefDecl
   | mishnahrrefsDecl
+  | mishnahrlistPrefixDef
   | mishnahrclassDecl
-  | mishnahrappInfo
   | mishnahrgeoDecl
+  | mishnahrappInfo
   | mishnahrvariantEncoding
 mishnahrmodel.editorialDeclPart =
   mishnahrcorrection
@@ -1725,6 +1499,13 @@ mishnahrmodel.profileDescPart =
   | mishnahrlangUsage
   | mishnahrtextClass
   | mishnahrcalendarDesc
+mishnahratt.source.attributes = mishnahratt.source.attribute.source
+mishnahratt.source.attribute.source =
+  
+  ##  (pointer to a bibliographical source reference) provides a pointer to the bibliographical source from which a quotation or citation is drawn.
+  attribute source {
+    list { mishnahrdata.pointer+ }
+  }?
 mishnahrmodel.resourceLike = notAllowed
 mishnahratt.personal.attributes =
   mishnahratt.naming.attributes,
@@ -1750,9 +1531,57 @@ mishnahratt.personal.attribute.full =
 mishnahratt.personal.attribute.sort =
   
   ## specifies the sort order of the name component in relation
-  ## to others within the personal name.
+  ## to others within the name.
   attribute sort { mishnahrdata.count }?
 mishnahrmodel.placeLike = mishnahrplace
+mishnahratt.milestoneUnit.attributes =
+  mishnahratt.milestoneUnit.attribute.unit
+mishnahratt.milestoneUnit.attribute.unit =
+  
+  ## provides a conventional name for the kind of section changing at this milestone.
+  ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered
+  attribute unit {
+    
+    ## physical page breaks (synonymous with the pb element).
+    "page"
+    | 
+      ## column breaks.
+      "column"
+    | 
+      ## line breaks (synonymous with the lb element).
+      "line"
+    | 
+      ## any units termed book, liber, etc.
+      "book"
+    | 
+      ## individual poems in a collection.
+      "poem"
+    | 
+      ## cantos or other major sections of a poem.
+      "canto"
+    | 
+      ## changes of speaker or narrator.
+      "speaker"
+    | 
+      ## stanzas within a poem, book, or canto.
+      "stanza"
+    | 
+      ## acts within a play.
+      "act"
+    | 
+      ## scenes within a play or act.
+      "scene"
+    | 
+      ## sections of any kind.
+      "section"
+    | 
+      ## passages not present in the reference edition.
+      "absent"
+    | 
+      ## passages present in the text, but not to be included as part of the reference.
+      "unnumbered"
+    | xsd:Name
+  }
 mishnahrp =
   
   ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
@@ -1760,6 +1589,7 @@ mishnahrp =
     mishnahrmacro.paraContent,
     mishnahratt.global.attributes,
     mishnahratt.declaring.attributes,
+    mishnahratt.fragmentable.attributes,
     empty
   }
 mishnahrforeign =
@@ -1797,13 +1627,13 @@ mishnahrdistinct =
     attribute type { mishnahrdata.enumerated }?,
     
     ## specifies how the phrase is distinct diachronically
-    attribute time { mishnahrdata.key }?,
+    attribute time { mishnahrdata.text }?,
     
     ## specifies how the phrase is distinct diatopically
-    attribute space { mishnahrdata.key }?,
+    attribute space { mishnahrdata.text }?,
     
     ## specifies how the phrase is distinct diastatically
-    attribute social { mishnahrdata.key }?,
+    attribute social { mishnahrdata.text }?,
     empty
   }
 mishnahrsaid =
@@ -1834,18 +1664,20 @@ mishnahrquote =
     mishnahrmacro.specialPara,
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
+    mishnahratt.source.attributes,
     empty
   }
 mishnahrq =
   
-  ## (separated from the surrounding text with quotation marks) contains material which is marked as (ostensibly) being somehow different than the
-  ##     surrounding text, for any one of a variety of reasons including, but not limited to: direct
+  ## (quoted) contains material which is distinguished from the
+  ##     surrounding text using quotation marks or a similar method, for any one of a variety of reasons including, but not limited to: direct
   ##     speech or thought, technical terms or jargon, authorial distance, quotations from elsewhere, and
   ##     passages that are mentioned but not used. [3.3.3. ]
   element q {
     mishnahrmacro.specialPara,
     mishnahratt.global.attributes,
     mishnahratt.ascribed.attributes,
+    mishnahratt.source.attributes,
     
     ## may be used to indicate whether the offset passage is spoken or thought, or to
     ##         characterize it more finely.
@@ -1900,7 +1732,7 @@ mishnahrcit =
   }
 mishnahrmentioned =
   
-  ## marks words or phrases mentioned, not used. [3.3.4. ]
+  ## marks words or phrases mentioned, not used. [3.3.3. ]
   element mentioned {
     mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
   }
@@ -1932,10 +1764,7 @@ mishnahrgloss =
     mishnahratt.translatable.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.pointing.attributes,
-    
-    ## (canonical reference) identifies the associated term element using a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef { mishnahrdata.pointer }?,
+    mishnahratt.cReferencing.attributes,
     empty
   }
 mishnahrterm =
@@ -1950,16 +1779,12 @@ mishnahrterm =
     mishnahratt.typed.attributes,
     mishnahratt.canonical.attributes,
     mishnahratt.sortable.attributes,
-    
-    ## identifies the associated gloss element using a canonical reference from a
-    ##           scheme defined in a refsDecl element in the TEI header
-    attribute cRef { mishnahrdata.pointer }?,
+    mishnahratt.cReferencing.attributes,
     empty
   }
 mishnahrsic =
   
-  ## (latin for thus or so
-  ##   ) contains text reproduced although apparently incorrect or inaccurate. [3.4.1. ]
+  ## (Latin for thus or so) contains text reproduced although apparently incorrect or inaccurate. [3.4.1. ]
   element sic {
     mishnahrmacro.paraContent,
     mishnahratt.global.attributes,
@@ -2011,14 +1836,14 @@ mishnahrgap =
   ##     reasons described in the TEI header, as part of sampling practice, or because the material is
   ##     illegible, invisible, or inaudible. [3.4.3. ]
   element gap {
-    mishnahrmodel.glossLike*,
+    (mishnahrmodel.descLike | mishnahrmodel.certLike)*,
     mishnahratt.global.attributes,
     mishnahratt.editLike.attributes,
     
     ## gives the reason for omission. Sample values include sampling,
     ##         inaudible, irrelevant, cancelled.
     attribute reason {
-      list { mishnahrdata.word, mishnahrdata.word* }
+      list { mishnahrdata.word+ }
     }?,
     
     ## in the case of text omitted from the transcription because of deliberate deletion by an
@@ -2065,7 +1890,7 @@ mishnahrunclear =
     
     ## indicates why the material is hard to transcribe.
     attribute reason {
-      list { mishnahrdata.word, mishnahrdata.word* }
+      list { mishnahrdata.word+ }
     }?,
     
     ## Where the difficulty in transcription arises from action (partial deletion, etc.)
@@ -2084,7 +1909,9 @@ mishnahrname =
   element name {
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
-    mishnahratt.naming.attributes,
+    mishnahratt.personal.attributes,
+    mishnahratt.datable.attributes,
+    mishnahratt.editLike.attributes,
     mishnahratt.typed.attributes,
     empty
   }
@@ -2095,10 +1922,7 @@ mishnahrrs =
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
     mishnahratt.naming.attributes,
-    
-    ## indicates more specifically the object referred to by the referencing string.
-    ##         When suitable, values should be drawn from an existing ontology, such as the BBN's proposed answer categories.
-    attribute type { mishnahrdata.enumerated }?,
+    mishnahratt.typed.attributes,
     empty
   }
 mishnahremail =
@@ -2127,7 +1951,7 @@ mishnahraddrLine =
   }
 mishnahrstreet =
   
-  ## a full street address including any name or number identifying a
+  ## contains a full street address including any name or number identifying a
   ##         building as well as the name of the street or route on which it is
   ##         located. [3.5.2. ]
   element street {
@@ -2232,10 +2056,10 @@ mishnahrabbr =
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
     mishnahratt.responsibility.attributes,
+    mishnahratt.typed.attribute.subtype,
     
     ## allows the encoder to classify the abbreviation according to some convenient
     ##                 typology.
-    ## Sample values include: 1] suspension; 2] contraction; 3] brevigraph; 4] superscription; 5] acronym; 6] title; 7] organization; 8] geographic
     attribute type { mishnahrdata.enumerated }?,
     empty
   }
@@ -2264,7 +2088,9 @@ mishnahrptr =
            sch:report [
              test = "@target and @cRef"
              "Only one of the\x{a}" ~
-             "	attributes 'target' and 'cRef' may be supplied."
+             "attributes @target and @cRef may be supplied on "
+             sch:name [ ]
+             "."
            ]
            "\x{a}" ~
            "            "
@@ -2277,12 +2103,7 @@ mishnahrptr =
     mishnahratt.internetMedia.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declaring.attributes,
-    
-    ## (canonical reference) specifies the destination of the pointer by supplying a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef {
-      list { mishnahrdata.word, mishnahrdata.word* }
-    }?,
+    mishnahratt.cReferencing.attributes,
     empty
   }
 mishnahrref =
@@ -2301,7 +2122,10 @@ mishnahrref =
            sch:report [
              test = "@target and @cRef"
              "Only one of the\x{a}" ~
-             "	attributes 'target' and 'cRef' may be supplied."
+             "	attributes @target' and @cRef' may be supplied on "
+             sch:name [ ]
+             "\x{a}" ~
+             "               "
            ]
            "\x{a}" ~
            "            "
@@ -2314,12 +2138,7 @@ mishnahrref =
     mishnahratt.internetMedia.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declaring.attributes,
-    
-    ## (canonical reference) specifies the destination of the reference by supplying a canonical reference from a
-    ##         scheme defined in a refsDecl element in the TEI header
-    attribute cRef {
-      list { mishnahrdata.word, mishnahrdata.word* }
-    }?,
+    mishnahratt.cReferencing.attributes,
     empty
   }
 mishnahrlist =
@@ -2373,7 +2192,11 @@ mishnahrlabel =
   ## contains any label or heading used to identify part of a text,
   ##   typically but not exclusively in a list or glossary. [3.7. ]
   element label {
-    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    mishnahratt.placement.attributes,
+    empty
   }
 mishnahrhead =
   
@@ -2407,7 +2230,7 @@ mishnahrheadItem =
   }
 mishnahrnote =
   
-  ## contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.6.  9.3.5.4. ]
+  ## contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.7.  9.3.5.4. ]
   element note {
     mishnahrmacro.specialPara,
     mishnahratt.global.attributes,
@@ -2423,7 +2246,7 @@ mishnahrnote =
     ## points to the end of the span to which the note is attached, if the note is not embedded
     ##         in the text at that point.
     attribute targetEnd {
-      list { mishnahrdata.pointer, mishnahrdata.pointer* }
+      list { mishnahrdata.pointer+ }
     }?,
     empty
   }
@@ -2435,53 +2258,58 @@ mishnahrindex =
     mishnahratt.global.attributes,
     mishnahratt.spanning.attributes,
     
-    ## supplies a name to specify which index (of several) the index entry belongs to.
+    ## a single word which follows the rules defining a
+    ##         legal XML name (see ), supplying a name to specify which index (of several) the index entry belongs to.
     attribute indexName { mishnahrdata.name }?,
+    empty
+  }
+mishnahrmedia =
+  
+  ## indicates the location of any form of external media such as
+  ##   an audio or video clip etc. [3.9. ]
+  element media {
+    mishnahrmodel.descLike*,
+    mishnahratt.typed.attributes,
+    mishnahratt.global.attributes,
+    mishnahratt.media.attribute.width,
+    mishnahratt.media.attribute.height,
+    mishnahratt.media.attribute.scale,
+    mishnahratt.resourced.attributes,
+    mishnahratt.declaring.attributes,
+    mishnahratt.timed.attributes,
+    
+    ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
+    attribute mimeType {
+      list { mishnahrdata.word+ }
+    },
     empty
   }
 mishnahrgraphic =
   
   ## indicates the location of an inline graphic, illustration, or figure. [3.9. ]
   element graphic {
-    mishnahrmodel.glossLike*,
+    mishnahrmodel.descLike*,
     mishnahratt.global.attributes,
-    mishnahratt.internetMedia.attributes,
+    mishnahratt.media.attributes,
+    mishnahratt.resourced.attributes,
     mishnahratt.declaring.attributes,
-    
-    ## The display width of the image
-    attribute width { mishnahrdata.outputMeasurement }?,
-    
-    ## The display height of the image
-    attribute height { mishnahrdata.outputMeasurement }?,
-    
-    ## A scale factor to be applied to the image to make it the desired display size
-    attribute scale { mishnahrdata.numeric }?,
-    
-    ## (uniform resource locator) A URL which refers to the image itself.
-    attribute url { mishnahrdata.pointer },
     empty
   }
 mishnahrbinaryObject =
   
-  ## provides encoded binary data representing an inline graphic or other object.
+  ## provides encoded binary data representing an inline graphic,
+  ##   audio, video or other object. [3.9. ]
   element binaryObject {
     text,
     mishnahratt.global.attributes,
-    mishnahratt.internetMedia.attributes,
-    
-    ## The display width of the object
-    attribute width { mishnahrdata.outputMeasurement }?,
-    
-    ## The display height of the object
-    attribute height { mishnahrdata.outputMeasurement }?,
-    
-    ## A scale factor to be applied to the object to make it the desired display size
-    attribute scale { mishnahrdata.numeric }?,
+    mishnahratt.media.attributes,
+    mishnahratt.timed.attributes,
+    mishnahratt.typed.attributes,
     
     ## The encoding used to encode the binary data. If not specified, this is assumed to be
     ##           Base64.
     attribute encoding {
-      list { mishnahrdata.word, mishnahrdata.word* }
+      list { mishnahrdata.word+ }
     }?,
     empty
   }
@@ -2493,55 +2321,11 @@ mishnahrmilestone =
   element milestone {
     empty,
     mishnahratt.global.attributes,
+    mishnahratt.milestoneUnit.attributes,
     mishnahratt.typed.attributes,
-    mishnahratt.sourced.attributes,
+    mishnahratt.edition.attributes,
     mishnahratt.spanning.attributes,
     mishnahratt.breaking.attributes,
-    
-    ## provides a conventional name for the kind of section changing at this milestone.
-    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] speaker; 8] stanza; 9] act; 10] scene; 11] section; 12] absent; 13] unnumbered
-    attribute unit {
-      
-      ## physical page breaks (synonymous with the pb element).
-      "page"
-      | 
-        ## column breaks.
-        "column"
-      | 
-        ## line breaks (synonymous with the lb element).
-        "line"
-      | 
-        ## any units termed book, liber, etc.
-        "book"
-      | 
-        ## individual poems in a collection.
-        "poem"
-      | 
-        ## cantos or other major sections of a poem.
-        "canto"
-      | 
-        ## changes of speaker or narrator.
-        "speaker"
-      | 
-        ## stanzas within a poem, book, or canto.
-        "stanza"
-      | 
-        ## acts within a play.
-        "act"
-      | 
-        ## scenes within a play or act.
-        "scene"
-      | 
-        ## sections of any kind.
-        "section"
-      | 
-        ## passages not present in the reference edition.
-        "absent"
-      | 
-        ## passages present in the text, but not to be included as part of the reference.
-        "unnumbered"
-      | xsd:Name
-    },
     empty
   }
 mishnahrgb =
@@ -2563,7 +2347,7 @@ mishnahrpb =
     empty,
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
-    mishnahratt.sourced.attributes,
+    mishnahratt.edition.attributes,
     mishnahratt.spanning.attributes,
     mishnahratt.breaking.attributes,
     empty
@@ -2575,7 +2359,7 @@ mishnahrlb =
     empty,
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
-    mishnahratt.sourced.attributes,
+    mishnahratt.edition.attributes,
     mishnahratt.spanning.attributes,
     mishnahratt.breaking.attributes,
     empty
@@ -2588,7 +2372,7 @@ mishnahrcb =
     empty,
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
-    mishnahratt.sourced.attributes,
+    mishnahratt.edition.attributes,
     mishnahratt.spanning.attributes,
     mishnahratt.breaking.attributes,
     empty
@@ -2614,8 +2398,14 @@ mishnahrmonogr =
   ## (monographic level) contains bibliographic elements describing an item (e.g. a book or journal) published as an
   ##     independent item (i.e. as a separate physical object). [3.11.2.1. ]
   element monogr {
-    ((((mishnahrauthor | mishnahreditor | mishnahrrespStmt),
-       (mishnahrauthor | mishnahreditor | mishnahrrespStmt)*,
+    ((((mishnahrauthor
+        | mishnahreditor
+        | mishnahrmeeting
+        | mishnahrrespStmt),
+       (mishnahrauthor
+        | mishnahreditor
+        | mishnahrmeeting
+        | mishnahrrespStmt)*,
        mishnahrtitle+,
        (mishnahridno
         | mishnahrtextLang
@@ -2626,10 +2416,16 @@ mishnahrmonogr =
           | mishnahrtextLang
           | mishnahrauthor
           | mishnahreditor
-          | mishnahrrespStmt)*))?,
-     (mishnahrmodel.noteLike | mishnahrmeeting)*,
+          | mishnahrmeeting
+          | mishnahrrespStmt)*)
+      | (mishnahrauthority, mishnahridno))?,
+     mishnahrmodel.noteLike*,
      (mishnahredition,
-      (mishnahridno | mishnahreditor | mishnahrrespStmt)*)*,
+      (mishnahridno
+       | mishnahreditor
+       | mishnahrsponsor
+       | mishnahrfunder
+       | mishnahrrespStmt)*)*,
      mishnahrimprint,
      (mishnahrimprint | mishnahrextent | mishnahrbiblScope)*),
     mishnahratt.global.attributes,
@@ -2666,7 +2462,7 @@ mishnahrauthor =
   }
 mishnahreditor =
   
-  ## secondary statement of responsibility for a bibliographic item, for example the name of an
+  ## contains a secondary statement of responsibility for a bibliographic item, for example the name of an
   ##     individual, institution or organization, (or of several such) acting as editor, compiler,
   ##     translator, etc.  [3.11.2.2. ]
   element editor {
@@ -2704,6 +2500,11 @@ mishnahrtitle =
     mishnahrmacro.paraContent,
     mishnahratt.global.attributes,
     mishnahratt.canonical.attributes,
+    mishnahratt.typed.attribute.subtype,
+    
+    ## classifies the title according to some convenient typology.
+    ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
+    attribute type { mishnahrdata.enumerated }?,
     
     ## indicates the bibliographic level for a title, that is, whether
     ##                                         it identifies an article, book, journal, series, or
@@ -2731,10 +2532,6 @@ mishnahrtitle =
         ##                                                   published by a commercial press)
         "u"
     }?,
-    
-    ## classifies the title according to some convenient typology.
-    ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
-    attribute type { mishnahrdata.enumerated }?,
     empty
   }
 mishnahrmeeting =
@@ -2750,6 +2547,7 @@ mishnahrimprint =
   ## groups information relating to the publication or distribution
   ##         of a bibliographic item. [3.11.2.3. ]
   element imprint {
+    (mishnahrclassCode, mishnahrcatRef)*,
     ((mishnahrmodel.imprintPart | mishnahrmodel.dateLike),
      mishnahrrespStmt*,
      mishnahrmodel.global*)+,
@@ -2765,11 +2563,37 @@ mishnahrpublisher =
   }
 mishnahrbiblScope =
   
-  ## (scope of citation) defines the scope of a bibliographic reference, for example as a
+  ## (scope of bibliographic reference) defines the scope of a bibliographic reference, for example as a
   ##         list of page numbers, or a named subdivision of a larger work. [3.11.2.3. ]
   element biblScope {
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
+    
+    ## identifies the unit of information conveyed by the element, e.g. columns, pages, volume.
+    ## Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines) ; 5] chap(chapter) ; 6] part
+    attribute unit {
+      
+      ## (volume) the element contains a volume number.
+      "vol"
+      | 
+        ## the element contains an issue number, or volume and
+        ##             issue numbers.
+        "issue"
+      | 
+        ## (pages) the element contains a page number or page range.
+        "pp"
+      | 
+        ##  (lines) the element contains a line number or line range.
+        "ll"
+      | 
+        ## (chapter) the element contains a chapter indication (number
+        ##             and/or title)
+        "chap"
+      | 
+        ## the element identifies a part of a book or collection.
+        "part"
+      | xsd:Name
+    }?,
     
     ## identifies the type of information conveyed by the element, e.g.
     ##                 columns, pages, volume.
@@ -2798,10 +2622,52 @@ mishnahrbiblScope =
       | xsd:Name
     }?,
     
-    ## specifies the starting point of the range of units indicated by the type attribute.
+    ## specifies the starting point of the range of units indicated by the unit attribute.
     attribute from { mishnahrdata.word }?,
     
-    ## specifies the end-point of the range of units indicated by the type attribute.
+    ## specifies the end-point of the range of units indicated by the unit attribute.
+    attribute to { mishnahrdata.word }?,
+    empty
+  }
+mishnahrcitedRange =
+  
+  ##  (cited range) defines the range of cited content, often represented by pages or other units [3.11.2.3. ]
+  element citedRange {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.pointing.attributes,
+    
+    ## identifies the type of information conveyed by the element, e.g.
+    ##                 columns, pages, volume.
+    ## Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lines) ; 5] chap (chapter) ; 6] part
+    attribute unit {
+      
+      ##  (volume) the element contains a volume number.
+      "vol"
+      | 
+        ## the element contains an issue number, or volume and
+        ##                         issue numbers.
+        "issue"
+      | 
+        ##  (pages) the element contains a page number or page range.
+        "pp"
+      | 
+        ##  (lines) the element contains a line number or line range.
+        "ll"
+      | 
+        ##  (chapter) the element contains a chapter indication (number
+        ##                         and/or title)
+        "chap"
+      | 
+        ## the element identifies a part of a book or collection.
+        "part"
+      | xsd:Name
+    }?,
+    
+    ## specifies the starting point of the range of units indicated by the unit attribute.
+    attribute from { mishnahrdata.word }?,
+    
+    ## specifies the end-point of the range of units indicated by the unit attribute.
     attribute to { mishnahrdata.word }?,
     empty
   }
@@ -2832,6 +2698,7 @@ mishnahrbibl =
     mishnahratt.declarable.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.sortable.attributes,
+    mishnahratt.docStatus.attributes,
     empty
   }
 mishnahrbiblStruct =
@@ -2841,11 +2708,16 @@ mishnahrbiblStruct =
   element biblStruct {
     (mishnahranalytic*,
      (mishnahrmonogr, mishnahrseries*)+,
-     (mishnahrmodel.noteLike | mishnahridno | mishnahrrelatedItem)*),
+     (mishnahrmodel.noteLike
+      | mishnahridno
+      | mishnahrmodel.ptrLike
+      | mishnahrrelatedItem
+      | mishnahrcitedRange)*),
     mishnahratt.global.attributes,
     mishnahratt.declarable.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.sortable.attributes,
+    mishnahratt.docStatus.attributes,
     empty
   }
 mishnahrlistBibl =
@@ -2865,7 +2737,7 @@ mishnahrlistBibl =
 mishnahrrelatedItem =
   
   ## contains or references some other bibliographic item which is related to the present one in
-  ##     some specified manner, for example as a constituent or alternative version of it. [3.11.2.5. ]
+  ##     some specified manner, for example as a constituent or alternative version of it. [3.11.2.6. ]
   element relatedItem {
     ((mishnahrmodel.biblLike | mishnahrmodel.ptrLike)?)
     >> sch:pattern [
@@ -2878,8 +2750,11 @@ mishnahrrelatedItem =
            "               "
            sch:report [
              test = "@target and count( child::* ) > 0"
-             "If the 'target' attribute is used, the\x{a}" ~
-             "        relatedItem element must be empty"
+             "\x{a}" ~
+             "If the @target attribute on "
+             sch:name [ ]
+             " is used, the\x{a}" ~
+             "relatedItem element must be empty"
            ]
            "\x{a}" ~
            "            "
@@ -2920,31 +2795,12 @@ mishnahrl =
   element l {
     mishnahrmacro.paraContent,
     mishnahratt.global.attributes,
-    
-    ## specifies whether or not the line is metrically complete. 
-    [ a:defaultValue = "N" ]
-    attribute part {
-      
-      ## (yes) the line is metrically incomplete
-      "Y"
-      | 
-        ## (no) either the line is complete, or no claim is made as to its completeness
-        "N"
-      | 
-        ## (initial) the initial part of an incomplete line
-        "I"
-      | 
-        ## (medial) a medial part of an incomplete line
-        "M"
-      | 
-        ## (final) the final part of an incomplete line
-        "F"
-    }?,
+    mishnahratt.fragmentable.attributes,
     empty
   }
 mishnahrlg =
   
-  ## (line group) contains a group of verse lines functioning as a formal unit, e.g. a stanza, refrain,
+  ## (line group) contains one or more verse lines functioning as a formal unit, e.g. a stanza, refrain,
   ##         verse paragraph, etc. [3.12.1.  3.12.  7.2.5. ]
   element lg {
     ((mishnahrmodel.divTop | mishnahrmodel.global)*,
@@ -2957,7 +2813,27 @@ mishnahrlg =
       | mishnahrmodel.labelLike
       | mishnahrmodel.global
       | mishnahrlg)*,
-     (mishnahrmodel.divBottom, mishnahrmodel.global*)*),
+     (mishnahrmodel.divBottom, mishnahrmodel.global*)*)
+    >> sch:pattern [
+         id = "lg-constraint-atleast1oflggapl"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:lg"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test =
+               "count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) > 0"
+             "An lg element\x{a}" ~
+             "        must contain at least one child l, lg or gap element."
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
     mishnahratt.global.attributes,
     mishnahratt.divLike.attributes,
     mishnahratt.typed.attributes,
@@ -2966,7 +2842,7 @@ mishnahrlg =
   }
 mishnahrsp =
   
-  ## (speech) An individual speech in a performance text, or a passage presented as such in a prose or
+  ## (speech) contains an individual speech in a performance text, or a passage presented as such in a prose or
   ##     verse text. [3.12.2.  3.12.  7.2.2. ]
   element sp {
     (mishnahrmodel.global*,
@@ -2984,7 +2860,7 @@ mishnahrsp =
   }
 mishnahrspeaker =
   
-  ## A specialized form of heading or label, giving the name of one or more speakers in a
+  ## contains a specialized form of heading or label, giving the name of one or more speakers in a
   ##         dramatic text or fragment. [3.12.2. ]
   element speaker {
     mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
@@ -3107,8 +2983,7 @@ mishnahrfileDesc =
   }
 mishnahrtitleStmt =
   
-  ## (title statement) groups information about the title of a work and those responsible for its intellectual
-  ##     content. [2.2.1.  2.2. ]
+  ## (title statement) groups information about the title of a work and those responsible for its content. [2.2.1.  2.2. ]
   element titleStmt {
     (mishnahrtitle+, mishnahrmodel.respLike*),
     mishnahratt.global.attributes,
@@ -3144,7 +3019,7 @@ mishnahreditionStmt =
   
   ## (edition statement) groups information relating to one edition of a text. [2.2.2.  2.2. ]
   element editionStmt {
-    (mishnahrmodel.pLike+ | (mishnahredition, mishnahrrespStmt*)),
+    (mishnahrmodel.pLike+ | (mishnahredition, mishnahrmodel.respLike*)),
     mishnahratt.global.attributes,
     empty
   }
@@ -3156,8 +3031,7 @@ mishnahredition =
   }
 mishnahrextent =
   
-  ## describes the approximate size of a text as stored on some carrier medium, whether digital
-  ##     or non-digital, specified in any convenient units. [2.2.3.  2.2.  3.11.2.3. ]
+  ## describes the approximate size of a text stored on some carrier medium or of some other object, digital  or non-digital,  specified in any convenient units. [2.2.3.  2.2.  3.11.2.3.  10.7.1. ]
   element extent {
     mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
   }
@@ -3180,7 +3054,7 @@ mishnahrdistributor =
 mishnahrauthority =
   
   ## (release authority) supplies the name of a person or other agency responsible for
-  ##   making an electronic file available, other than a publisher or
+  ##   making a work available, other than a publisher or
   ##   distributor. [2.2.4. ]
   element authority {
     mishnahrmacro.phraseSeq.limited,
@@ -3193,7 +3067,7 @@ mishnahridno =
   ##   such as a bibliographic item, a person, a title, an organization,
   ##   etc. in a standardized way. [2.2.4.  2.2.5.  3.11.2.3. ]
   element idno {
-    mishnahrmacro.xtext,
+    (text | mishnahrmodel.gLike | mishnahridno)*,
     mishnahratt.global.attributes,
     mishnahratt.sortable.attributes,
     
@@ -3207,7 +3081,7 @@ mishnahravailability =
   ## supplies information about the availability of a text, for example any restrictions on its
   ##     use or distribution, its copyright status, any licence applying to it, etc. [2.2.4. ]
   element availability {
-    mishnahrmodel.availabilityPart+,
+    (mishnahrmodel.availabilityPart | mishnahrmodel.pLike)+,
     mishnahratt.global.attributes,
     mishnahratt.declarable.attributes,
     
@@ -3284,6 +3158,7 @@ mishnahrbiblFull =
     mishnahratt.global.attributes,
     mishnahratt.declarable.attributes,
     mishnahratt.sortable.attributes,
+    mishnahratt.docStatus.attributes,
     empty
   }
 mishnahrencodingDesc =
@@ -3391,12 +3266,32 @@ mishnahrquotation =
   
   ## specifies editorial practice adopted with respect to quotation marks in the original.  [2.3.3.  15.3.2. ]
   element quotation {
-    mishnahrmodel.pLike+,
+    (mishnahrmodel.pLike*)
+    >> sch:pattern [
+         id = "quotation-constraint-quotationContents"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:quotation"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "not(@marks) and not (tei:p)"
+             "\x{a}" ~
+             "On "
+             sch:name [ ]
+             ", either the @marks attribute should be used, or a paragraph of description provided"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
     mishnahratt.global.attributes,
     mishnahratt.declarable.attributes,
     
     ## (quotation marks) indicates whether or not quotation marks have been retained as content within the text. 
-    [ a:defaultValue = "all" ]
     attribute marks {
       
       ## no quotation marks have been retained 
@@ -3487,7 +3382,7 @@ mishnahrtagUsage =
     mishnahrmacro.limitedContent,
     mishnahratt.global.attributes,
     
-    ## (element name) the name (generic identifier) of the element indicated by the tag.
+    ## (element name) specifies the name (generic identifier) of the element indicated by the tag.
     attribute gi { mishnahrdata.name },
     
     ## specifies the number of occurrences of this element within the text.
@@ -3497,9 +3392,10 @@ mishnahrtagUsage =
     ##         distinct value for the global xml:id attribute. 
     attribute withId { mishnahrdata.count }?,
     
-    ## specifies the identifier of a rendition element which defines how this element
-    ##         is to be rendered.
-    attribute render { mishnahrdata.pointer }?,
+    ## specifies the identifier of a rendition element which defines how this element was rendered in the source text.
+    attribute render {
+      list { mishnahrdata.pointer+ }
+    }?,
     empty
   }
 mishnahrnamespace =
@@ -3510,7 +3406,7 @@ mishnahrnamespace =
     mishnahrtagUsage+,
     mishnahratt.global.attributes,
     
-    ## the full formal name of the namespace concerned.
+    ## specifies the full formal name of the namespace concerned.
     attribute name { mishnahrdata.namespace },
     empty
   }
@@ -3541,13 +3437,25 @@ mishnahrrendition =
     ## where CSS is used, provides a way of defining
     ## pseudo-elements, that is, styling rules
     ## applicable to specific sub-portions of an element.
-    attribute scope { text }?,
+    ## Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after
+    attribute scope { mishnahrdata.enumerated }?,
+    empty
+  }
+mishnahrstyleDefDecl =
+  
+  ##  (style definition language declaration) specifies the name of the formal language in which style or
+  ##   renditional information is supplied elsewhere in the document. [2.3.5. ]
+  element styleDefDecl {
+    mishnahrmodel.pLike*,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.styleDef.attributes,
     empty
   }
 mishnahrrefsDecl =
   
   ## (references declaration) specifies how canonical references are constructed for this
-  ##   text. [2.3.5.3.  2.3.  2.3.5. ]
+  ##   text. [2.3.6.3.  2.3.  2.3.6. ]
   element refsDecl {
     (mishnahrmodel.pLike+ | mishnahrcRefPattern+ | mishnahrrefState+),
     mishnahratt.global.attributes,
@@ -3557,66 +3465,57 @@ mishnahrrefsDecl =
 mishnahrcRefPattern =
   
   ## (canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into
-  ##     a URI.  [2.3.5.3.  2.3.5.  2.3.5.2. ]
+  ##     a URI.  [2.3.6.3.  2.3.6.  2.3.6.2. ]
   element cRefPattern {
     mishnahrmodel.pLike*,
     mishnahratt.global.attributes,
+    mishnahratt.patternReplacement.attributes,
+    empty
+  }
+mishnahratt.patternReplacement.attributes =
+  mishnahratt.patternReplacement.attribute.matchPattern,
+  mishnahratt.patternReplacement.attribute.replacementPattern
+mishnahratt.patternReplacement.attribute.matchPattern =
+  
+  ## specifies a regular expression against which the values of other attributes
+  ##         can be matched.
+  attribute matchPattern { mishnahrdata.pattern }
+mishnahratt.patternReplacement.attribute.replacementPattern =
+  
+  ## specifies a replacement pattern which, once subpattern substitution
+  ##         has been performed, provides a URI.
+  attribute replacementPattern { text }
+mishnahrprefixDef =
+  
+  ##  (prefixing scheme used in data.pointer values) defines a prefixing scheme used in data.pointer values,
+  ##   showing how abbreviated URIs using the scheme may be expanded into full URIs. [16.2.3. ]
+  element prefixDef {
+    mishnahrmodel.pLike*,
+    mishnahratt.global.attributes,
+    mishnahratt.patternReplacement.attributes,
     
-    ## specifies a regular expression against which the values of cRef attributes
-    ##         can be matched.
-    attribute matchPattern { mishnahrdata.pattern },
-    
-    ## specifies a replacement pattern which, once subpattern substitution
-    ##         has been performed, provides a URI.
-    attribute replacementPattern { text },
+    ## supplies the identifier which functions as the prefix for an abbreviated
+    ##           pointing scheme such as a private URI scheme. The prefix constitutes the 
+    ##         text preceding the first colon.
+    attribute ident { mishnahrdata.name },
+    empty
+  }
+mishnahrlistPrefixDef =
+  
+  ##  (list of prefix definitions) contains a list of definitions of prefixing schemes used in data.pointer values, showing how abbreviated URIs using each scheme may be expanded into full URIs. [16.2.3. ]
+  element listPrefixDef {
+    (mishnahrprefixDef | mishnahrlistPrefixDef)+,
+    mishnahratt.global.attributes,
     empty
   }
 mishnahrrefState =
   
-  ## (reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.5.3.  2.3.5. ]
+  ## (reference state) specifies one component of a canonical reference defined by the milestone method. [2.3.6.3.  2.3.6. ]
   element refState {
     empty,
     mishnahratt.global.attributes,
-    mishnahratt.sourced.attributes,
-    
-    ## indicates what kind of state is changing at this milestone.
-    ## Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] canto; 7] stanza; 8] act; 9] scene; 10] section; 11] absent
-    attribute unit {
-      
-      ## page breaks in the reference edition. 
-      "page"
-      | 
-        ## column breaks. 
-        "column"
-      | 
-        ## line breaks. 
-        "line"
-      | 
-        ## any units termed book, liber, etc. 
-        "book"
-      | 
-        ## individual poems in a collection. 
-        "poem"
-      | 
-        ## cantos or other major sections of a poem. 
-        "canto"
-      | 
-        ## stanzas within a poem, book, or canto. 
-        "stanza"
-      | 
-        ## acts within a play. 
-        "act"
-      | 
-        ## scenes within a play or act. 
-        "scene"
-      | 
-        ## sections of any kind. 
-        "section"
-      | 
-        ## passages not present in the reference edition.
-        "absent"
-      | xsd:Name
-    },
+    mishnahratt.milestoneUnit.attributes,
+    mishnahratt.edition.attributes,
     
     ## specifies the fixed length of the reference component.
     attribute length { mishnahrdata.count }?,
@@ -3628,16 +3527,16 @@ mishnahrrefState =
 mishnahrclassDecl =
   
   ## (classification declarations) contains one or more taxonomies defining any classificatory
-  ## codes used elsewhere in the text. [2.3.6.  2.3. ]
+  ## codes used elsewhere in the text. [2.3.7.  2.3. ]
   element classDecl {
     mishnahrtaxonomy+, mishnahratt.global.attributes, empty
   }
 mishnahrtaxonomy =
   
   ## defines a typology either implicitly, by means of a bibliographic
-  ##     citation, or explicitly by a structured taxonomy. [2.3.6. ]
+  ##     citation, or explicitly by a structured taxonomy. [2.3.7. ]
   element taxonomy {
-    (mishnahrmodel.glossLike*
+    ((mishnahrmodel.glossLike | mishnahrmodel.descLike)*
      | mishnahrcategory+
      | (mishnahrmodel.biblLike, mishnahrcategory*)),
     mishnahratt.global.attributes,
@@ -3646,19 +3545,52 @@ mishnahrtaxonomy =
 mishnahrcategory =
   
   ## contains an individual descriptive category, possibly nested within a superordinate
-  ##     category, within a user-defined taxonomy. [2.3.6. ]
+  ##     category, within a user-defined taxonomy. [2.3.7. ]
   element category {
-    ((mishnahrcatDesc+ | mishnahrmodel.glossLike*), mishnahrcategory*),
+    ((mishnahrcatDesc+
+      | (mishnahrmodel.descLike | mishnahrmodel.glossLike)*),
+     mishnahrcategory*),
     mishnahratt.global.attributes,
     empty
   }
 mishnahrcatDesc =
   
   ## (category description) describes some category within a taxonomy or text typology, either in the form of a brief
-  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.6. ]
+  ##     prose description or in terms of the situational parameters used by the TEI formal textDesc. [2.3.7. ]
   element catDesc {
     (text | mishnahrmodel.limitedPhrase | mishnahrmodel.catDescPart)*,
     mishnahratt.global.attributes,
+    empty
+  }
+mishnahrgeoDecl =
+  
+  ## (geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
+  ##     the geo element elsewhere within the document. [2.3.8. ]
+  element geoDecl {
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.declarable.attributes,
+    
+    ## supplies a commonly used code name for the datum employed.
+    ## Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) 
+    [ a:defaultValue = "WGS84" ]
+    attribute datum {
+      
+      ## (World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
+      ##             the World Geodetic System.
+      "WGS84"
+      | 
+        ## (Military Grid Reference System) the values supplied are geospatial entity object codes, based on
+        "MGRS"
+      | 
+        ## (ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.
+        "OSGB36"
+      | 
+        ## (European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
+        ##             to the European Datum coordinate system.
+        "ED50"
+      | xsd:Name
+    }?,
     empty
   }
 mishnahrappInfo =
@@ -3755,7 +3687,7 @@ mishnahrkeywords =
     
     ## identifies the controlled vocabulary within which the set of keywords concerned is
     ##         defined. 
-    attribute scheme { mishnahrdata.pointer },
+    attribute scheme { mishnahrdata.pointer }?,
     empty
   }
 mishnahrclassCode =
@@ -3821,7 +3753,7 @@ mishnahrchange =
     
     ## points to one or more elements that belong to this change.
     attribute target {
-      list { mishnahrdata.pointer, mishnahrdata.pointer* }
+      list { mishnahrdata.pointer+ }
     }?,
     empty
   }
@@ -3840,37 +3772,6 @@ mishnahrlistChange =
     attribute ordered { mishnahrdata.truthValue }?,
     empty
   }
-mishnahrgeoDecl =
-  
-  ## (geographic coordinates declaration) documents the notation and the datum used for geographic coordinates expressed as content of
-  ##     the geo element elsewhere within the document.
-  element geoDecl {
-    mishnahrmacro.phraseSeq,
-    mishnahratt.global.attributes,
-    mishnahratt.declarable.attributes,
-    
-    ## supplies a commonly used code name for the datum employed.
-    ## Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Grid Reference System) ; 3] OSGB36(ordnance survey great britain) ; 4] ED50(European Datum coordinate system) 
-    [ a:defaultValue = "WGS84" ]
-    attribute datum {
-      
-      ## (World Geodetic System) a pair of numbers to be interpreted as latitude followed by longitude according to
-      ##             the World Geodetic System.
-      "WGS84"
-      | 
-        ## (Military Grid Reference System) the values supplied are geospatial entity object codes, based on
-        "MGRS"
-      | 
-        ## (ordnance survey great britain) the value supplied is to be interpreted as a British National Grid Reference.
-        "OSGB36"
-      | 
-        ## (European Datum coordinate system) the value supplied is to be interpreted as latitude followed by longitude according
-        ##             to the European Datum coordinate system.
-        "ED50"
-      | xsd:Name
-    }?,
-    empty
-  }
 mishnahrTEI =
   
   ## (TEI document) contains a single TEI-conformant document,
@@ -3886,7 +3787,7 @@ mishnahrTEI =
        ],
     mishnahratt.global.attributes,
     
-    ## specifies the version number of the TEI Guidelines against
+    ## specifies the major version number of the TEI Guidelines against
     ##       which this document is valid.
     attribute version { mishnahrdata.version }?,
     empty
@@ -4009,7 +3910,10 @@ mishnahrtrailer =
   
   ## contains a closing title or footer appearing at the end of a division of a text.  [4.2.4.  4.2. ]
   element trailer {
-    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+    mishnahrmacro.phraseSeq,
+    mishnahratt.global.attributes,
+    mishnahratt.typed.attributes,
+    empty
   }
 mishnahrbyline =
   
@@ -4027,13 +3931,13 @@ mishnahrbyline =
 mishnahrdateline =
   
   ## contains a brief description of the place, date, time, etc. of production of a letter,
-  ##     newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  [4.2.4.  4.2.2. ]
+  ##     newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer.  [4.2.2. ]
   element dateline {
     mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
   }
 mishnahrargument =
   
-  ## A formal list or prose description of the topics addressed by
+  ## contains a formal list or prose description of the topics addressed by
   ##	a subdivision of a text. [4.2.  4.6. ]
   element argument {
     ((mishnahrmodel.global | mishnahrmodel.headLike)*,
@@ -4053,7 +3957,7 @@ mishnahrepigraph =
 mishnahropener =
   
   ## groups together dateline, byline, salutation, and similar phrases appearing as a preliminary
-  ##     group at the start of a division, especially of a letter. [4.2.4.  4.2. ]
+  ##     group at the start of a division, especially of a letter. [4.2. ]
   element opener {
     (text
      | mishnahrmodel.gLike
@@ -4086,25 +3990,25 @@ mishnahrcloser =
 mishnahrsalute =
   
   ## (salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other
-  ##     division of a text, or the salutation in the closing of a letter, preface, etc. [4.2.4.  4.2.2. ]
+  ##     division of a text, or the salutation in the closing of a letter, preface, etc. [4.2.2. ]
   element salute {
     mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
   }
 mishnahrsigned =
   
   ## (signature) contains the closing salutation, etc., appended to a foreword,
-  ## dedicatory epistle, or other division of a text.  [4.2.4.  4.2.2. ]
+  ## dedicatory epistle, or other division of a text.  [4.2.2. ]
   element signed {
-    mishnahrmacro.phraseSeq, mishnahratt.global.attributes, empty
+    mishnahrmacro.paraContent, mishnahratt.global.attributes, empty
   }
 mishnahrpostscript =
   
   ## contains a postscript, e.g. to a letter. [4.2. ]
   element postscript {
-    ((mishnahrmodel.divTopPart*,
-      mishnahrmodel.common+,
-      mishnahrmodel.divBottomPart*)
-     | mishnahrmodel.global)*,
+    ((mishnahrmodel.global | mishnahrmodel.divTopPart)*,
+     mishnahrmodel.common,
+     (mishnahrmodel.global | mishnahrmodel.common)*,
+     (mishnahrmodel.divBottomPart, mishnahrmodel.global*)*),
     mishnahratt.global.attributes,
     empty
   }
@@ -4270,13 +4174,16 @@ mishnahratt.global.analytic.attribute.ana =
   ## (analysis) indicates one or more elements containing interpretations of the
   ## element on which the ana attribute appears.
   attribute ana {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahrinterp =
   
   ## (interpretation) summarizes a specific interpretative annotation which can be linked to a span of text. [17.3. ]
   element interp {
-    (text | mishnahrmodel.gLike | mishnahrmodel.glossLike)*,
+    (text
+     | mishnahrmodel.gLike
+     | mishnahrmodel.descLike
+     | mishnahrmodel.certLike)*,
     mishnahratt.global.attributes,
     mishnahratt.interpLike.attributes,
     empty
@@ -4285,7 +4192,7 @@ mishnahrinterpGrp =
   
   ## (interpretation group) collects together a set of related interpretations which share responsibility or type. [17.3. ]
   element interpGrp {
-    (mishnahrmodel.glossLike*, mishnahrinterp+),
+    (mishnahrmodel.descLike*, mishnahrinterp+),
     mishnahratt.global.attributes,
     mishnahratt.interpLike.attributes,
     empty
@@ -4304,14 +4211,14 @@ mishnahratt.global.linking.attribute.corresp =
   ## (corresponds) points to elements that correspond to the current
   ##       element in some way.
   attribute corresp {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.global.linking.attribute.synch =
   
   ## (synchronous) points to elements that are synchronous with the current
   ##       element.
   attribute synch {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.global.linking.attribute.sameAs =
   
@@ -4338,7 +4245,7 @@ mishnahratt.global.linking.attribute.exclude =
   ## points to elements that are in exclusive alternation
   ##       with the current element.
   attribute exclude {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahratt.global.linking.attribute.select =
   
@@ -4348,7 +4255,7 @@ mishnahratt.global.linking.attribute.select =
   ##       uncertainty is marked as reduced by the number of alternants not
   ##       selected.
   attribute select {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
 mishnahrlink =
   
@@ -4366,7 +4273,10 @@ mishnahrlink =
            sch:report [
              test = "@target and @targets"
              "You may not supply both \x{a}" ~
-             "	@target and @targets"
+             "	@target and @targets on "
+             sch:name [ ]
+             "\x{a}" ~
+             "               "
            ]
            "\x{a}" ~
            "            "
@@ -4385,7 +4295,10 @@ mishnahrlink =
            sch:report [
              test = "not(@target) and not(@targets)"
              "You must\x{a}" ~
-             "	supply either @target or @targets"
+             "	supply either @target or @targets on "
+             sch:name [ ]
+             "\x{a}" ~
+             "               "
            ]
            "\x{a}" ~
            "            "
@@ -4404,7 +4317,10 @@ mishnahrlink =
            sch:assert [
              test = "contains(@target,' ')"
              "You must supply at least two\x{a}" ~
-             "values for @target"
+             "values for @target on "
+             sch:name [ ]
+             "\x{a}" ~
+             "               "
            ]
            "\x{a}" ~
            "            "
@@ -4431,34 +4347,11 @@ mishnahrab =
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. ]
   element ab {
     mishnahrmodel.global*,
-    (mishnahrlabel*,
-     (mishnahrw
-      | mishnahrlink
-      | mishnahrpersName
-      | mishnahrplaceName)*),
-    
-    ## specifies whether or not the block is complete. 
-    [ a:defaultValue = "N" ]
-    attribute part {
-      
-      ## (yes) the block is incomplete
-      "Y"
-      | 
-        ## (no) either the block is complete, or no claim is made as to its completeness
-        "N"
-      | 
-        ## (initial) the initial part of an incomplete block
-        "I"
-      | 
-        ## (medial) a medial part of an incomplete block
-        "M"
-      | 
-        ## (final) the final part of an incomplete block
-        "F"
-    }?,
+    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declaring.attributes,
+    mishnahratt.fragmentable.attributes,
     empty
   }
 mishnahranchor =
@@ -4474,7 +4367,7 @@ mishnahrmodel.rdgLike = mishnahrrdg
 mishnahrapp =
   
   ## (apparatus entry) contains one entry in a critical apparatus, with an optional
-  ## lemma and at least one reading. [12.1.1. ]
+  ## lemma and usually one or more reading or a note on the relevant passage. [12.1.1. ]
   element app {
     (mishnahrmodel.global*,
      (mishnahrlem,
@@ -4496,10 +4389,11 @@ mishnahrapp =
            "               "
            sch:assert [
              test =
-               "count( descendant::tei:lem[ generate-id(       current() ) = generate-id( ancestor::tei:app[1] ) ]) <       2"
-             "Only one <lem> element may appear within a single\x{a}" ~
-             "      apparatus entry, whether it appears outside a <rdgGrp>\x{a}" ~
-             "      element or within it."
+               "count( descendant::tei:lem[ generate-id(    current() ) = generate-id(    ancestor::tei:app[1] ) ]) <       2"
+             "\x{a}" ~
+             "Only one <lem> element may appear within a single  apparatus\x{a}" ~
+             "entry, whether it appears outside a <rdgGrp>\x{a}" ~
+             "element or within it."
            ]
            "\x{a}" ~
            "            "
@@ -4524,8 +4418,19 @@ mishnahrapp =
     ## (location) indicates the location of the variation, when the
     ## location-referenced method of apparatus markup is used.
     attribute loc {
-      list { mishnahrdata.word, mishnahrdata.word* }
+      list { mishnahrdata.word+ }
     }?,
+    empty
+  }
+mishnahrlistApp =
+  
+  ## (list of apparatus entries) contains a list of apparatus entries.  [12.2. ]
+  element listApp {
+    (mishnahrmodel.headLike*, (mishnahrapp | mishnahrlistApp)+),
+    mishnahratt.global.attributes,
+    mishnahratt.sortable.attributes,
+    mishnahratt.declarable.attributes,
+    mishnahratt.typed.attributes,
     empty
   }
 mishnahrlem =
@@ -4540,6 +4445,7 @@ mishnahrlem =
      | mishnahrmodel.rdgPart)*,
     mishnahratt.global.attributes,
     mishnahratt.textCritical.attributes,
+    mishnahratt.witnessed.attributes,
     empty
   }
 mishnahrrdg =
@@ -4554,6 +4460,7 @@ mishnahrrdg =
      | mishnahrmodel.rdgPart)*,
     mishnahratt.global.attributes,
     mishnahratt.textCritical.attributes,
+    mishnahratt.witnessed.attributes,
     empty
   }
 mishnahrrdgGrp =
@@ -4583,7 +4490,7 @@ mishnahrwitDetail =
     ## (witnesses) indicates the sigil or sigla for the witnesses to which the
     ## detail refers.
     attribute wit {
-      list { mishnahrdata.pointer, mishnahrdata.pointer* }
+      list { mishnahrdata.pointer+ }
     },
     
     ## describes the type of information given about the witness.
@@ -4709,22 +4616,22 @@ mishnahratt.rdgPart.attribute.wit =
   ## (witness or witnesses) contains a list of one or more sigla indicating the witnesses
   ## which begin or end at this point.
   attribute wit {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
-mishnahratt.textCritical.attributes =
-  mishnahratt.responsibility.attributes,
-  mishnahratt.textCritical.attribute.wit,
-  mishnahratt.textCritical.attribute.type,
-  mishnahratt.textCritical.attribute.cause,
-  mishnahratt.textCritical.attribute.varSeq,
-  mishnahratt.textCritical.attribute.hand
-mishnahratt.textCritical.attribute.wit =
+mishnahratt.witnessed.attributes = mishnahratt.witnessed.attribute.wit
+mishnahratt.witnessed.attribute.wit =
   
   ## (witness or witnesses) contains a list of one or more pointers indicating the witnesses
   ## which attest to a given reading.
   attribute wit {
-    list { mishnahrdata.pointer, mishnahrdata.pointer* }
+    list { mishnahrdata.pointer+ }
   }?
+mishnahratt.textCritical.attributes =
+  mishnahratt.responsibility.attributes,
+  mishnahratt.textCritical.attribute.type,
+  mishnahratt.textCritical.attribute.cause,
+  mishnahratt.textCritical.attribute.varSeq,
+  mishnahratt.textCritical.attribute.hand
 mishnahratt.textCritical.attribute.type =
   
   ## classifies the reading according to some useful typology.
@@ -4759,31 +4666,31 @@ mishnahratt.datable.custom.attribute.when-custom =
   
   ## supplies the value of a date or time in some standard form.
   attribute when-custom {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.datable.custom.attribute.notBefore-custom =
   
   ## specifies the earliest possible date for the event in some custom standard form.
   attribute notBefore-custom {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.datable.custom.attribute.notAfter-custom =
   
   ## specifies the latest possible date for the event in some custom standard form.
   attribute notAfter-custom {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.datable.custom.attribute.from-custom =
   
   ## indicates the starting point of the period in some standard form.
   attribute from-custom {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.datable.custom.attribute.to-custom =
   
   ## indicates the ending point of the period in some standard form.
   attribute to-custom {
-    list { mishnahrdata.word, mishnahrdata.word* }
+    list { mishnahrdata.word+ }
   }?
 mishnahratt.datable.custom.attribute.datingPoint =
   
@@ -4791,7 +4698,7 @@ mishnahratt.datable.custom.attribute.datingPoint =
   attribute datingPoint { mishnahrdata.pointer }?
 mishnahratt.datable.custom.attribute.datingMethod =
   
-  ## supplies a pointer to a calendarDesc element or other means of interpreting the values of the custom dating attributes.
+  ## supplies a pointer to a calendar element or other means of interpreting the values of the custom dating attributes.
   attribute datingMethod { mishnahrdata.pointer }?
 mishnahrmodel.persNamePart =
   mishnahrforename
@@ -4848,8 +4755,9 @@ mishnahratt.datable.iso.attribute.to-iso =
   attribute to-iso { mishnahrdata.temporal.iso }?
 mishnahrpersName =
   
-  ## (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including any
-  ##     or all of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. ]
+  ## (personal name) contains a proper noun or proper-noun phrase referring to a
+  ##   person, possibly including one or more of
+  ##   the person's forenames, surnames, honorifics, added names, etc. [13.2.1. ]
   element persName {
     mishnahrmacro.phraseSeq,
     mishnahratt.global.attributes,
@@ -4909,14 +4817,14 @@ mishnahrplaceName =
     mishnahratt.datable.attributes,
     mishnahratt.editLike.attributes,
     mishnahratt.global.attributes,
-    mishnahratt.naming.attributes,
+    mishnahratt.personal.attributes,
     mishnahratt.typed.attributes,
     empty
   }
 mishnahrgeo =
   
   ## (geographical coordinates) contains any expression of a set of geographic coordinates, representing a point, line, or area on the surface of the earth in some
-  ##         notation.
+  ##         notation. [13.3.4.1. ]
   element geo {
     text,
     mishnahratt.global.attributes,
@@ -4927,7 +4835,7 @@ mishnahrlistPerson =
   
   ## (list of persons) contains a list of descriptions, each of which provides information about an identifiable
   ##     person or a group of people, for example the participants in a language interaction, or the
-  ##     people referred to in a historical source.  [15.2.  2.4.  15.3.2. ]
+  ##     people referred to in a historical source.  [13.3.2.  15.2.  2.4.  15.3.2. ]
   element listPerson {
     (mishnahrmodel.headLike*,
      (mishnahrmodel.personLike | mishnahrlistPerson)+,
@@ -4954,7 +4862,7 @@ mishnahrlistPlace =
   }
 mishnahrlocation =
   
-  ## defines the location of a place as a set of geographical coordinates, in terms of a other named geo-political entities, or as an
+  ## defines the location of a place as a set of geographical coordinates, in terms of other named geo-political entities, or as an
   ##         address.
   element location {
     (mishnahrmodel.labelLike
@@ -4989,7 +4897,7 @@ mishnahrpersonGrp =
     
     ## specifies the size or approximate size of the group.
     attribute size {
-      list { mishnahrdata.word, mishnahrdata.word* }
+      list { mishnahrdata.word+ }
     }?,
     empty
   }
@@ -5002,7 +4910,10 @@ mishnahrplace =
       | (mishnahrmodel.labelLike
          | mishnahrmodel.placeStateLike
          | mishnahrmodel.placeEventLike)*),
-     (mishnahrmodel.noteLike | mishnahrmodel.biblLike)*,
+     (mishnahrmodel.noteLike
+      | mishnahrmodel.biblLike
+      | mishnahridno
+      | mishnahrlink)*,
      (mishnahrmodel.placeLike | mishnahrlistPlace)*),
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
@@ -5027,7 +4938,7 @@ mishnahrw =
     
     ## provides a lemma for the word, such as an uninflected
     ##       dictionary entry form.
-    attribute lemma { mishnahrdata.key }?,
+    attribute lemma { mishnahrdata.text }?,
     
     ## provides a pointer to a definition of the lemma for the
     ##       word, for example in an online lexicon. 
@@ -5037,7 +4948,7 @@ mishnahrw =
 mishnahrinclude =
   
   ## The W3C XInclude element
-  element ns1:include {
+  element ns2:include {
     mishnahrfallback?,
     
     ## pointer to the resource being included
@@ -5073,5 +4984,5 @@ mishnahrinclude =
 mishnahrfallback =
   
   ## Wrapper for fallback elements if an XInclude fails
-  element ns1:fallback { (text)+ }
+  element ns2:fallback { (text)+ }
 start = mishnahrTEI

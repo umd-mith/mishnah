@@ -28,7 +28,7 @@
     <xsl:param name="pg"/>
     <xsl:param name="col"/>
     <xsl:param name="mode" select="'col'"/>
-    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:idno/text()"/>
+    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
     <xsl:variable name="thisId">
         <!-- locates first, last, next, prev for processing links -->
@@ -689,8 +689,11 @@
     <xsl:template match="tei:div[@type='page']">
         <div class="page" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:if test="not(descendant::tei:div[1][@type='column'])">
-                <div class="oneCol">
+                <!-- there are not multiple comments in this view -->
+                <xsl:choose>
+                    <xsl:when test="not(descendant::tei:div[@type='singCol'])">
                     <!-- when original laid out in a single column -->
+                <div class="oneCol">
                     <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
                             name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
                         /></xsl:element>
@@ -710,8 +713,15 @@
                     <xsl:apply-templates/>
                 </div>
                 
-            </xsl:if>
+            </xsl:when>
+                <xsl:when test="descendant::tei:div[@type='singCol']">
+                    <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
+                        name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
+                        /></xsl:element>
+                    <xsl:apply-templates/>
+                </xsl:when></xsl:choose></xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">
+                <!-- there are multiple columns in this view -->
                 <xsl:apply-templates/>
             </xsl:if>
         </div>
@@ -768,18 +778,6 @@
                 <xsl:attribute name="class" select="'colNo'"/>
                 <xsl:value-of select="./@n"/>
             </xsl:element>
-            <xsl:if test="descendant::tei:lb[position() = 1]/@n &gt; 1">
-                <xsl:variable name="firstline">
-                    <xsl:value-of select="descendant::tei:lb[position() = 1]/@n"/>
-                </xsl:variable>
-                <xsl:variable name="char">
-                    <br xmlns="http://www.w3.org/1999/xhtml"/>
-                </xsl:variable>
-                <xsl:call-template name="add-char">
-                    <xsl:with-param name="howMany" select="$firstline - 1"/>
-                    <xsl:with-param name="char" select="$char"/>
-                </xsl:call-template>
-            </xsl:if>
             <xsl:apply-templates/>
         </div>
     </xsl:template>

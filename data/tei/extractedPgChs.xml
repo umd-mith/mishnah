@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?><?xml-stylesheet type="text/css"
-    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?><teiHeader>
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?><?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?><teiHeader type="text">
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of ***</title>
+                <title>An electronic transcription of Cairo Genizah Fragment TS E2.71
+                    (Cambridge)</title>
                 <editor>
-                    <persName>Hayim Lapin</persName>
+                    <persName instant="false" full="yes">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
-                    <resp/>
-                    <persName/>
-                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>-->
+                    <resp>transcriber</resp>
+                    <persName instant="false" full="yes">Nurit Ezer</persName>
                 </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -23,80 +24,79 @@
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
-                <idno type="local">P00001</idno>
-                <!--<availability>
-                    <licence><!-\- We'll need one of these; TBD -\-></licence>
-                </availability>-->
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <idno type="local">S01832</idno>
+                <availability status="restricted" default="false">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
+                </availability>
+                <date instant="false">2012-11-30</date>
+
             </publicationStmt>
             <notesStmt>
-                <note>
-                    <p/>
-                    <!--Prose description. Use the following as model
-                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                <note anchored="true">
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers BQ 10:6-8</p>
                     <p>Transcription from online images of the manuscript, available at
                         http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
-                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
-                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
-                        Sciences, Kaufmann A50, except when preserved remains make such restoration
-                        unlikely.</p>
-                    <p>EDITED BY: Hayim Lapin</p>-->
+                        https://fgp.genizah.org. FGP nos. C211267-C211268. Recto and verso are
+                        registered in reverse order</p>
+                    <p>Dimensions: 29.4 x 25.7. Approximately 2.7 characters per cm.</p>
+                    <p>EDITED BY: Hayim Lapin</p>
                 </note>
             </notesStmt>
-            <sourceDesc>
+            <sourceDesc default="false">
                 <msDesc>
                     <msIdentifier>
-                        <settlement/>
-                        <repository/>
-                        <idno type="genizah-CUL"><!-- Shelf Mark here. for Oxford, e.g.,
-                            @type=genizah-Oxf etc.--></idno>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS E2.71</idno>
+
                     </msIdentifier>
-                    <msContents>
-                        <msItem>
+
+                    <msContents defective="false">
+
+                        <msItem defective="false">
                             <locusGrp>
-                                <locus/>
-                                <!-- Points to images. Other uses? Use the following as model
-                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
-                                <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                                <locus n="1v" facs="ww.genizah.org">C211268</locus>
+                                <locus n="1r" facs="ww.genizah.org">C211267</locus>
                             </locusGrp>
                             <title>Mishnah</title>
+                            
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote script="SCRIPT">
-                                <date><!-- placeholder --></date>
-                                <region><!-- placeholder --></region>
-                            </handNote>
-                        </handDesc>
-                        <!--<objectDesc form="FORM">
+                        <objectDesc form="folio">
                             <supportDesc>
                                 <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                                <extent>1</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="NUMBER">
-                                    <!-\- at longest/widest -\->
-                                    <dimensions scope="frag-sheet">
-                                        <width unit="cm"/>
-                                        <height unit="cm"/>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">25.7</width>
+                                        <height unit="cm">29.44</height>
                                     </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm"/>
-                                        <height unit="cm">15.5</height>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">19.8</width>
+                                        <height unit="cm">23.3</height>
                                     </dimensions>
-                                    <dimensions scope="frag-chars">
-                                        <width unit="chars"/>
-                                        <height unit="lines"/>
-                                        <dim type="char-p-cm"/>
+                                    <dimensions scope="col-writ">
+                                        <width unit="chars">54</width>
+                                        <height unit="lines">36</height>
+                                        <dim type="char-p-cm">2.7</dim>
                                     </dimensions>
                                 </layout>
                             </layoutDesc>
-                        </objectDesc>-->
+                        </objectDesc>
+                        <handDesc>
+                            <handNote script="Oriental Square">
+                                <date notBefore="1000" notAfter="1300" instant="false">11th-13th c.</date>
+                                <region><!-- placeholder --></region>
+                                <desc>pointed-Babylonian sporadic</desc>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -104,47 +104,126 @@
         <encodingDesc>
             <tagsDecl><!-- placeholder --></tagsDecl>
         </encodingDesc>
-        <revisionDesc>
-            <change/>
-            <change/>
-            <change/>
-            <change/>
+        <revisionDesc status="draft">
+            <change when="2012-10-20" who="Nurit Ezer" corresp="ref.xml#NE" status="draft">Transcription</change>
+            <change when="2012-11-30" who="Hayim Lapin" corresp="ref.xml#HL" status="draft">Markup</change>
         </revisionDesc>
-    </teiHeader><text><body><div type="page" n="163r"><div type="singCol" n="163rB"><ab><milestone unit="div1" xml:id="P_P00001.4"/><milestone unit="div2" xml:id="P_P00001.4.3"/><milestone unit="div3" xml:id="P_P00001.4.3.1"/><milestone unit="ab" xml:id="P_P00001.4.3.1.2"/><gap reason="Maimonides" extent="12" unit="lines"/>
-                        <milestone unit="ab" xml:id="P_P00001.4.3.1.3"/><label rend="size() align() pad(rl)">ג</label><add type="comm" place="margin-left" hand="#h3">פ"ג</add>
-                            <add type="comm" place="margin-left" hand="#h2">ס"ל<lb/>חייבת</add>
-                            המקיף את חבירו משלש <lb n="13"/> רוחותיו וגדר את הראשונה ואת השניה ואת
-                                השלישית<lb n="14"/> אין מחייבין אותו <choice>
-                                <abbr>ר<am rend="raised-dot">׳</am></abbr>
-                                <expan>רבי</expan>
-                            </choice> יוסי <choice>
-                                <abbr>אומ<am rend="raised-dot">׳</am></abbr>
-                                <expan>אומר</expan>
-                            </choice> אם עמד <add place="margin-left" hand="#h2">חברו</add> וגדר את <choice>
-                                <abbr>הרביע<am rend="raised-dot">׳</am></abbr>
-                                <expan>הרביעית</expan>
-                            </choice>
-                            <lb n="15"/> <seg>מגל<add place="above" hand="#h2"><unclear>ג</unclear></add>לין</seg> עליו את הכל<lb n="16"/><gap reason="Maimonides" extent="8" unit="lines"/>
-                        <milestone unit="ab" xml:id="P_P00001.4.3.1.4"/><label rend="size() align() pad(rl)">ד</label><add type="comm" place="margin-left" hand="#h3">פ"ג</add>
-                            כותל <lb n="25"/> חצר שנפל מחייבין אותו לבנותו עד ארבע <choice>
-                                <abbr>אמו<am rend="raised-dot">׳</am></abbr>
-                                <expan>אמור</expan>
-                            </choice> בחזקת <lb n="26"/> שנתן עד שיביא ראיה שלא נתן מארבע אמות
-                            ולמעלה <lb n="27"/> אין מחייבין אותו סמך לו כותל אחר אף על פי שלא
-                                <surplus>נ</surplus>
-                            <lb n="28"/> נתן עליו את התקרה מגלגלין עליו את הכל בחזקת
-                                <surplus>ש</surplus>
-                            <lb n="29"/> שלא נתן עד שיביא ראייה שנתן <lb n="30"/><gap reason="Maimonides" extent="16" unit="lines"/>
-                        <milestone unit="ab" xml:id="P_P00001.4.3.1.5"/> כופין אותו לבנות בית <lb n="47"/> שער ודלת לחצר
-                            <seg>ר<del rend="FIXME" hand="#h2"><am rend="raised-dot">׳</am></del><add place="above" hand="#h2">בן</add><note>Annotator provides the expansion רבן for the abbreviation.</note></seg> שמעון בן גמליאל אומר לא כל
-                                <surplus>ה</surplus>
-                            <lb n="48"/> החצירות <seg>רא<add place="inline" hand="#h2">ו</add>יות</seg> לבית
-                            שער <seg><del rend="FIXME" hand="#h2">ו</del>כופין</seg> אותו לבנות לעיר <lb n="49"/> חומה <seg><add place="above" hand="#h2">ו</add>דלתים</seg> ובריח רבן שמעון בן
-                            גמליאל אומר לא <surplus>כ</surplus>
-                            <lb n="50"/> כל <choice>
-                                <abbr>העירו<am rend="raised-dot">׳</am></abbr>
-                                <expan>העירות</expan>
-                            </choice> ראויות לחומה <seg><add place="above" hand="#h2">ו</add>כמה</seg> יהא בעיר
-                            ויהיה כאנשי <lb n="51"/> העיר שנים עשר חדש <add place="above" hand="#h2">ואם</add> קנה <add place="above" hand="#h2">בה</add> בית דירה הרי
-                            הוא כאנשי <surplus>ה</surplus>
-                            <lb n="52"/> העיר מיד<lb n="53"/><gap reason="Maimonides" extent="4" unit="lines"/></ab></div></div></body></text></TEI>
+    </teiHeader><text><body><div type="page" n="1v"><ab><milestone unit="div1" xml:id="P_S01832.4"/><milestone unit="div2" xml:id="P_S01832.4.1"/><milestone unit="div3" xml:id="P_S01832.4.1.8"/>
+                        <ab xml:id="S01832.4.1.8.6" part="N"> ומנחת ע<c rend="tall" part="N">ל</c> ראשה והעמיד <c rend="tall" part="N">ל</c>ה עדים ובא <c rend="tall" part="N">ל</c>פני <choice>
+                                <abbr>ר<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">רבי</expan>
+                            </choice> עקיבא ואמר <c rend="tall" part="N">ל</c>ו רבי <c rend="tall" part="N">ל</c>זו
+                            אני נותן ארבע <lb n="1"/> מאו<damage>ת</damage> זוז אמר לו לא
+                                <damage>א</damage>מרתה כלום שהחובל בעצמו אף על פי שאינו רשאי
+                                <damage>פ</damage>טו<damage>ר</damage>
+                            <lb n="2"/> ואחרים שחבלו בו חייבין הקוצץ את נטיעותיו אף על פי שאינו
+                                    <damage>רש<unclear reason="damage" unit="chars" extent="2" instant="false"/></damage> פט<damage>ור</damage> ואחרים <lb n="3"/> שקצצו את
+                            נטיעותיו חייבין<pc rend="°" unit="unitEnd" part="N">:</pc></ab>
+                        <ab xml:id="S01832.4.1.8.7" part="N"> אף על פי שהוא נותן לו אי<unclear exclude="#S01832.4.1.8.7.med-nun #S01832.4.1.8.7.fin-nun" reason="orth" instant="false">
+                                <c xml:id="S01832.4.1.8.7.med-nun" part="N">נ</c><c xml:id="S01832.4.1.8.7.fin-nun" part="N">ן</c></unclear>
+                                    נמ<damage><unclear reason="damage" unit="chars" extent="6" instant="false"/>ש</damage>יבקש <lb n="4"/> הימנו <choice>
+                                <abbr>שנ<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">שנאמר</expan>
+                            </choice> ועתה השב אשת האיש כי נביא הוא <choice>
+                                <abbr>וגו<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">וגומר</expan>
+                            </choice> ומניין שלא יהא ה<damage><unclear reason="damage" unit="chars" extent="4" instant="false"/></damage> אכזרי <lb n="5"/>
+                            <choice>
+                                <abbr>שנ<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">שנאמר</expan>
+                            </choice> ויתפלל אברהם אל האלהים <choice>
+                                <abbr>וגו<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">וגומר</expan>
+                            </choice> האומר סמה את עיני קטע <damage>א<gap reason="damage" unit="chars" extent="5" instant="false"/><unclear reason="damage" instant="false">ב</unclear>ר
+                                    א<gap reason="damage" unit="chars" extent="1" instant="false"/></damage>
+                            <lb n="6"/> רגלי חייב על מנת פטור חייב קרע את כסו<damage><unclear reason="damage" unit="chars" extent="2" instant="false"/></damage> ושבר את כדי
+                            חייב על <damage><gap reason="damage" unit="chars" extent="11" instant="false"/></damage>
+                            <lb n="7"/> עשה כן לאיש פלוני על מנת פטור וחייב בין בגופו ובין בממונו<pc rend="°" unit="unitEnd" part="N">:</pc></ab>
+                    <milestone unit="div3" xml:id="P_S01832.4.1.9"/>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.1"/>
+                            <damage><gap reason="damage" unit="chars" extent="5" instant="false"/></damage>
+                            <lb n="8"/> עצים ועשא<damage>ן</damage> כלים צ<damage>מ</damage>ר ועשאו
+                            בגדים משלם כשעת הגזיל<damage>ה גזל פרה <gap reason="damage" unit="chars" extent="11" instant="false"/></damage>
+                            <lb n="9"/> ורחל טעונה וג<damage>זזה</damage> משלם <damage>ד</damage>מי
+                            פרה עו<damage><unclear instant="false">בר</unclear>ת לילד</damage> ודמ<damage>י <unclear reason="damage" unit="chars" extent="2" instant="false"/>ל טעונה ל<unclear reason="damage" unit="chars" extent="3" instant="false"/><gap reason="damage" unit="chars" extent="9" instant="false"/></damage>
+                            <lb n="10"/> אצלו וילדה ורח<damage><unclear reason="damage" unit="chars" extent="1" instant="false"/></damage> ניטענ<damage>ה</damage>
+                            <damage>אצ</damage>לו וגזז<damage>ה</damage> מש<damage>ל</damage>ם
+                                <damage>כ</damage>שעת הגזלה זה הכל<damage>ל <gap reason="damage" unit="chars" extent="15" instant="false"/></damage>
+                            <lb n="11"/> כשעת הגזילה<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.2"/> גזל בהמה והיזקינה עבדים וה<damage>זקינו</damage>
+                            משלם כשעת <damage>ה<gap reason="damage" unit="chars" extent="4" instant="false"/></damage>
+                            <choice>
+                                <abbr>ר<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">רבי</expan>
+                            </choice> מ<damage><gap reason="damage" unit="chars" extent="3" instant="false"/></damage>
+                            <lb n="12"/>
+                            <choice>
+                                <abbr>אומ<am rend="null" instant="false">׳</am></abbr>
+                                <expan instant="false">אומר</expan>
+                            </choice> יאמר לו בעבדים הרי עבדך לפניך<pc rend="°" unit="unitEnd" part="N">:</pc><milestone unit="MSMishnah"/> גזל מטבע
+                            וני<damage>סד</damage>ק פירות וה<damage><gap reason="damage" unit="chars" extent="5" instant="false"/></damage> יין <lb n="13"/> והחמיץ משלם
+                            כשעת הגזילה מטבע ונפסל תרומה ונטמאת וחמץ <damage><gap reason="damage" unit="chars" extent="2" instant="false"/>ב</damage>ר ע<damage>ל<gap reason="damage" unit="chars" extent="2" instant="false"/></damage>
+                            <lb n="14"/> הפסח בהמה ונעברה בה עבירה או שניפסלה מעל גבי המזבח או שהיתה
+                                יוצא<lb n="15"/> להיסקל יאמר לו הרי שלך לפניך<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.3"/> נתן לא<damage>ו</damage>מנין לתקן וקילקלו חייבין
+                            לשלם <lb n="16"/> נתן <choice>
+                                <orig>לֵחָרש</orig>
+                                <reg instant="false">לחרש</reg>
+                            </choice> שידה תיבה ומגדל לתקן וקילקל חייב לשלם הבניי שקיבל
+                                <damage>ע</damage>ליו א<c rend="larger" part="N">ת</c>
+                            <lb n="17"/> הכותל לסותרו ושיבר את האבנים או שהזיק חייב לשלם היה סותר
+                                    <damage><unclear reason="damage" unit="chars" extent="2" instant="false"/><unclear reason="damage" instant="false">ד</unclear>
+                                <unclear reason="damage" unit="chars" extent="6" instant="false"/><unclear reason="damage" instant="false"><c rend="tall" part="N">ל</c></unclear></damage>
+                            <lb n="18"/> מצד אחר פטור ואם מחמת המכה חייב<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.4"/> נתן צמר לצבע והקד<damage>יח</damage>ה
+                                יור<damage>ה</damage>
+                            <lb n="19"/> נותן לו דמי צמרו צבעו כעור אם השבח יותר על
+                                    <damage>ה<unclear exclude="#S01832.4.1.9.4.yod #S01832.4.1.9.waw" reason="orth" instant="false">
+                                    <c xml:id="S01832.4.1.8.7.waw" part="N">ו</c><c xml:id="S01832.4.1.8.7.yod" part="N">י</c></unclear></damage>צאה נותן לו את היצ<damage><unclear reason="damage" instant="false">י</unclear></damage>אה <surplus instant="false">??</surplus><lb n="20"/> ואם היצאה יתירה על השבח נותן לו את השבח <damage><unclear reason="damage" unit="chars" extent="3" instant="false"/> ל</damage>צבוע לו אדום
+                                ו<damage>צבעו <surplus instant="false">?</surplus></damage><note anchored="true">Possible traces of
+                                a letter.</note>
+                            <lb n="21"/> שחור שחור וצבעו אדום <choice>
+                                <abbr>ר<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr>אומ<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">אומר</expan>
+                            </choice> נותן לו דמי צימרו <choice>
+                                <abbr>ר<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr><damage><c rend="lig" part="N">או</c></damage>מ<am rend="overdot" instant="false">׳</am></abbr>
+                                <expan instant="false">אומר</expan>
+                            </choice> אם <lb n="22"/> השבח י<damage>ת</damage>ר על היצאה נותן לו את
+                            היצאה ואם היצאה יתירה על השב<damage>ח</damage> נותן ל<damage>ו</damage>
+                            <lb n="23"/> א<damage>ת ה</damage>שבח<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.5"/> הגוזל את חבירו שווה פרוטה ונישבע לו יוליכנו
+                                    א<damage>ח<gap reason="damage" unit="chars" extent="1" instant="false"/></damage>יו א<damage>פילו</damage><lb n="24"/> למדיי לא יתן לא
+                            לבנו ולא לשלוחו אבל נותן הוא לשלוח בית דין ואם מת יח<damage>זיר</damage>
+                            <lb n="25"/> ליורשיו<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.6"/> נתן לו את הקרן ולא נתן לו את החומש מחל לו על
+                            הקרן <damage>ולא מ<unclear reason="damage" unit="chars" extent="2" instant="false"/></damage>
+                            <lb n="26"/> לו על החומש מחל לו על זה ועל זה חוץ מפחות שוה פרוטה בקרן
+                            אינו צ<damage><gap reason="damage" unit="chars" extent="2" instant="false"/>ך</damage>
+                            <lb n="27"/> לילך אחריו<pc rend="°" unit="unitEnd" part="N">:</pc><milestone unit="MSMishnah"/> נ<c rend="larger" part="N">ת</c>ן לו את החומש ולא נתן לו
+                            את הקרן מחל לו על החומש ולא <lb n="28"/> מחל לו על הקרן מחל לו על זה ועל
+                            זה חוץ משווה פרוטה בקרן הרי זה צריך <damage>לילך</damage>
+                            <lb n="29"/> אחריו<pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.7"/> נתן לו את הקרן ונשבע לו על החומש הרי זה משלם
+                            חומש על חומש<lb n="30"/> עד שתיתמ<damage>ע</damage>ט <damage><unclear reason="damage" unit="chars" extent="3" instant="false"/>ן</damage> משווה פרוטה
+                            וכן בפיקדון או בתשומת יד או בג<damage>זל</damage>
+                            <lb n="31"/> או עשק א<damage>ת <gap reason="damage" unit="chars" extent="6" instant="false"/>ו</damage> מצא אבדה וכחש בה ונשבע על שקר הרי זה
+                                    <damage><unclear reason="damage" extent="4" unit="chars" instant="false">??ל?</unclear></damage>
+                            <lb n="32"/> קרן וחומש <damage><gap reason="damage" unit="chars" extent="4" instant="false"/></damage><pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.8"/><damage><gap reason="damage" unit="chars" extent="1" instant="false"/>י</damage>כן פיקדוני ואמר לו אבד משביעך אני ואמר
+                                אמ<damage>ן</damage>
+                            <lb n="33"/> והע<damage>ידים</damage> מ<damage><gap reason="damage" unit="chars" extent="10" instant="false"/>אכ</damage>לו משלם את הקרן אם הודה
+                            מעצמו משלם <lb n="34"/>
+                            <damage><gap reason="damage" unit="chars" extent="12" instant="false"/></damage><pc rend="°" unit="unitEnd" part="N">:</pc>
+                        <milestone unit="ab" xml:id="P_S01832.4.1.9.9"/>
+                            <damage><gap reason="damage" unit="chars" extent="5" instant="false"/>ק</damage>דוני
+                            ואמר לו ניגנב משביעך אני ואמר <surplus instant="false">?</surplus><lb n="35"/>
+                            <damage><gap reason="damage" unit="chars" extent="24" instant="false"/> מ</damage>שלם
+                            תשלומי כפל אם הודה מעצ<damage>מו</damage>
+                            <lb n="36"/>
+                            </ab></div></body></text></TEI>
