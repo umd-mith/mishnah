@@ -149,9 +149,9 @@
                 <map:transform src="resource://xsl/demo.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
-            <map:match pattern="browse">
+            <map:match pattern="browse-old">
                 <map:generate src="resource://tei/ref.xml"/>
-                <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/browse-old.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
             <map:match pattern="css/*.css">
@@ -188,17 +188,13 @@
             
 
             <!-- experimenting with parameterized  browse-->
-            <!-- Temp pipeline to see why "pg" mode gives two pages -->
-            <map:match pattern="*.extract-param.html">
-                <map:generate src="resource://tei/{1}.xml"/>
-                <map:transform src="resource://xsl/extract.xsl" type="xslt-saxon">
-                    <map:parameter name="pg" value="{request-param:pg}"/>
-                    <map:parameter name="col" value="{request-param:col}"/>
-                    <map:parameter name="ch" value="{request-param:ch}"/>
-                    <map:parameter name="mode" value="{request-param:mode}"/>
-                </map:transform>
-                <map:serialize type="tei-no-indent"/>
+            <map:match pattern="browse">
+                <map:generate src="resource://tei/ref.xml"/>
+                <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
+                <map:serialize type="html"/>
             </map:match>
+            
+            <!-- extract page col ch -->
             
             <!-- working pipeline for whole -->
             <map:match pattern="*.browse-param.html">

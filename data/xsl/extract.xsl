@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
+    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd its tei local" version="2.0"
     xmlns:local="local-functions.uri">
     
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'1v'"/>
+    <xsl:param name="pg" select="'151r'"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
-    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationsStmt/tei:idno[@type='local']/text()"/>
+    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     
     <xsl:param name="start">
         <!-- Select start node based on selected paramenters. On non-existant chs, pages, cols, goes to first in witness file. -->
@@ -17,7 +17,7 @@
             <xsl:when test="$mode = 'pg'">
                 
                 <xsl:choose>
-                    <xsl:when test="(//tei:pb)[@xml:id = concat($wit,'.',$pg)]">
+                    <xsl:when test="//tei:pb[@xml:id = concat($wit,'.',$pg)]">
                         <xsl:value-of select="//tei:pb[@xml:id = concat($wit,'.',$pg)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -27,7 +27,7 @@
             </xsl:when>
             <xsl:when test="$mode = 'col'">
                 <xsl:choose>
-                    <xsl:when test="(//tei:cb)[@xml:id = concat($wit,'.',$col)]">
+                    <xsl:when test="//tei:cb[@xml:id = concat($wit,'.',$col)]">
                         <xsl:value-of select="//tei:cb[@xml:id = concat($wit,'.',$col)]/@xml:id"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -195,6 +195,8 @@
         
         
         <TEI>
+            <start><xsl:copy-of select="$start"></xsl:copy-of></start>
+           <end> <xsl:copy-of select="$end"></xsl:copy-of></end>
             <xsl:copy-of select="processing-instruction()"/>
             <xsl:copy-of select="tei:TEI/tei:teiHeader"/>
             <text>

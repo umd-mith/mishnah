@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+--><?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of Genizah Fragment Cambridge University TS AS
+                    81.75</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName>Nurit Ezer</persName>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">S04944</idno>
+                <availability>
+                    <licence><!-- We'll need one of these; TBD --></licence>
+                </availability>
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers Bava Metsi'a 2:11 - 3:7.</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        https://fgp.genizah.org. FGP nos. C101629-C101630. Recto and verso are
+                        registered in reverse order.</p>
+                    <p>Dimensions: ca. 11.6x16 cm; Written surface, ca. 12.8x8.5; ca. 30 chars to a
+                        line (3.5 char/cm). Nineteen-twenty lines per page</p>
+                    <p>Hand and format are similar to TS AS 81.74</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>Univerity Library</repository>
+                        <idno type="genizah-CUL">TS AS 81.75</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <!-- Still considering this use of locus -->
+                            <locusGrp>
+                                <locus n="1r" facs="www.genizah.org">C101630</locus>
+                                <locus n="1v" facs="www.genizah.org">C101629</locus>
+                            </locusGrp>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc>
+                                <support><!-- placeholder --></support>
+                                <extent>1 leaf</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout>
+                                    <note>Recto and verso are registered in reverse order.</note>
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">11.6</width>
+                                        <height unit="cm">16</height>
+                                    </dimensions>
+                                    <dimensions scope="col">
+                                        <width unit="cm">8.5</width>
+                                        <height unit="cm">12.8</height>
+                                    </dimensions>
+                                    <dimensions scope="col-chars">
+                                        <width unit="chars">30</width>
+                                        <height unit="lines">19</height>
+                                        <dim type="char-per-cm">3.5</dim>
+                                    </dimensions>
+                                </layout>
+                                <layout/>
+                            </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <handNote>
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                                <desc>Hand is similar to <idno type="genizah-CUL">TS AS
+                                    81.74</idno></desc>
+                            </handNote>
+                        </handDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- Placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2011-11-29" who="Nurit Ezer">Transcription</change>
+            <change when="2011-12-06" who="Hayim Lapin">Begun XML tagging</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="S04944.4">
+                <div2 xml:id="S04944.4.2">
+                    <div3 xml:id="S04944.4.2.2">
+                        <pb n="1v" xml:id="S04944.1v" next="S04944.1r"/>
+                        <ab xml:id="S04944.4.2.2.11"><damage>ר</damage>בו שלו <damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.1a" spanTo="#S04944.damEnd.1v.1a"/><unclear
+                                    extent="4" unit="chars">קודמ</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.1a"/>ת אב<damageSpan
+                                    xml:id="S04944.damBeg.1v.1b" spanTo="#S04944.damEnd.1v.1b"/><unclear
+                                    extent="3" unit="chars">ידת </unclear><anchor
+                                    xml:id="S04944.damEnd.1v.1b"/>אב<damageSpan xml:id="S04944.damBeg.1v.1c"
+                                    spanTo="#S04944.damEnd.1v.1c"/><unclear extent="9" unit="chars">יו
+                                    ואבידת ר</unclear><anchor xml:id="S04944.damEnd.1v.1c"/>ב<damageSpan
+                                    xml:id="S04944.damBeg.1v.1d" spanTo="#S04944.damEnd.1v.1d"/><unclear
+                                    extent="1">ו</unclear><anchor xml:id="S04944.damEnd.1d"
+                                /></damage><lb n="1"/><damage>שלרב</damage>ו ק<damage>
+                                <damageSpan xml:id="S04944.damBeg.1v.2a" spanTo="#S04944.damEnd.1v.2a"
+                                    /><unclear extent="2">וד</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.2a"/>מ</damage>ת מש<damage>לאב<damageSpan
+                                    xml:id="S04944.damBeg.1v.2b" spanTo="#S04944.damEnd.1v.2b"/><unclear
+                                    extent="8" unit="chars">יו שאביו מ</unclear><gap extent="1"
+                                    /><unclear extent="3" unit="chars">יאו</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.2b"/> ל<damageSpan xml:id="S04944.damBeg.2c"
+                                    spanTo="#S04944.damEnd.1v.2c"/><unclear extent="2" unit="chars"
+                                    >חי</unclear><gap extent="1"/><anchor xml:id="S04944.damEnd.1v.2c"/>
+                            </damage><lb n="2"/>העולם הזה רבו שלימד<damage>ו ח<damageSpan
+                                    xml:id="S04944.damBeg.1v.3" spanTo="#S04944.damEnd.1v.3"/><unclear
+                                    extent="1">כ</unclear><anchor xml:id="S04944.damEnd.1v.3"
+                                /></damage>מ<damage>ה מביאו</damage> לחיי <lb n="3"/>העולם הבא<pc
+                                type="unitEnd">:</pc></ab>
+                        <note>The final halakhah of this chapter appears to be missing</note>
+                        <trailer xml:id="S04944.4.2.2.T">
+                            <choice>
+                                <abbr>סל<am rend="overdot">׳</am> פר<am rend="overdot">׳</am></abbr>
+                                <expan>סליק פירקא</expan>
+                            </choice>
+                        </trailer>
+                    </div3>
+                    <div3 xml:id="S04944.4.2.3">
+                        <ab xml:id="S04944.4.2.3.1"><space extent="4" unit="chars"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1v.4" spanTo="#S04944.damEnd.1v.4"
+                                    /><unclear extent="10" unit="chars"/><anchor
+                                    xml:id="S04944.damEnd.1v.4"/></damage>
+                            <lb n="4"/>חברו בהמה או כלים <damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.5a" spanTo="#S04944.damEnd.1v.5a"/><unclear
+                                    extent="5" unit="chars"/><anchor xml:id="S04944.damEnd.1v.5a"/>ו
+                                    או<damageSpan xml:id="S04944.damBeg.1v.5b" spanTo="#S04944.damEnd.1v.5b"
+                                    /><gap extent="5" unit="chars"/><unclear extent="3" unit="chars"
+                                    /><anchor xml:id="S04944.damEnd.1v.5b"/></damage>
+                            <lb n="5"/>ולא רצה להשבע <damage>שהרי <damageSpan
+                                    xml:id="S04944.damBeg.1v.6" spanTo="#S04944.damEnd.1v.6"/><unclear
+                                    extent="1" unit="chars">א</unclear><gap extent="12" unit="chars"
+                                    /><anchor xml:id="S04944.damEnd.1v.6"/></damage>
+                            <lb n="6"/>אם נמצא <damage>הג</damage>נב משלם ת<damage>שלומ<damageSpan
+                                    xml:id="S04944.damBeg.1v.7" spanTo="#S04944.damEnd.1v.7"/><gap
+                                    extent="7" unit="chars"/><unclear extent="2" unit="chars"
+                                    /><anchor xml:id="S04944.damEnd.1v.7"/></damage><note>The available
+                                space is somewhat short for the expected text. There may be an
+                                omission or the use of abbreviation in the damaged text.</note>
+                            <lb n="7"/>ומ<damage>כר</damage> מ<damage>של</damage>ם תשלומי
+                                אר<damage>בעה</damage> וחמש<damage>ה</damage> ל<damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.8" spanTo="#S04944.damEnd.1v.8"/><unclear
+                                    extent="2" unit="chars">מי</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.8"/></damage>
+                            <lb n="8"/>משל<damage>ם למ</damage>י שהפקדון אצלו<damage> נשבע
+                                    ו<damageSpan xml:id="S04944.damBeg.1v.9a" spanTo="#S04944.damEnd.1v.9a"
+                                    /><unclear extent="1" unit="chars">ל</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.9a"/>א <damageSpan xml:id="S04944.damBeg.1v.9b"
+                                    spanTo="#S04944.damEnd.1v.9b"/><unclear extent="2" unit="chars"
+                                    >רצ</unclear><anchor xml:id="S04944.damEnd.1v.9b"/>ה </damage><lb
+                                n="9"/><!-- Thru here --><damage> לשלם <damageSpan
+                                    xml:id="S04944.damBeg.1v.10a" spanTo="#S04944.damEnd.1v.10a"/><unclear
+                                    extent="3" unit="chars">נימ</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.10a"/>צא ה<damageSpan
+                                    xml:id="S04944.damBeg.1v.10b" spanTo="#S04944.damEnd.1v.10b"/><unclear
+                                    extent="1" unit="chars">ג</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.10b"/>נב משלם <damageSpan
+                                    xml:id="S04944.damBeg.1v.10c" spanTo="#S04944.damEnd.1v.10c"/><unclear
+                                    extent="1" unit="chars">ת</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.10c"/></damage>שלומ<damage>י כפל<damageSpan
+                                    xml:id="S04944.damBeg.1v.10d" spanTo="#S04944.damEnd.1v.10d"/><unclear
+                                    extent="2" unit="chars"/><anchor xml:id="S04944.damEnd.1v.10d"
+                                /></damage><note>Traces of two or three letters visible. Possibly
+                                surplus text at the end of the line.</note>
+                            <lb n="10"/>טב<damage>ח ומ</damage>כר משל<damage>ם</damage>
+                                תשלומ<damage>י</damage> ארב<damage>עה ו<damageSpan
+                                    xml:id="S04944.damBeg.1v.11" spanTo="#S04944.damEnd.1v.11"/><unclear
+                                    extent="4" unit="chars">חמיש</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.11"/></damage>ה <lb n="11"/>למי
+                                מש<damage>ל</damage>ם לבעל פיקדו<damage>ן</damage><pc type="unitEnd"
+                                >:</pc></ab>
+                        <ab xml:id="S04944.4.2.3.2"> השו<damage>כר פרה </damage><lb n="12"
+                                />מח<damage>ב</damage>ירו ו<damage>ה<damageSpan
+                                    xml:id="S04944.damBeg.1v.13a" spanTo="#S04944.damEnd.1v.13a"/><unclear
+                                    extent="5" unit="chars">שאילו</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.13a"/>
+                                <choice>
+                                    <orig>לאַחֵר</orig>
+                                    <reg>לאחר</reg>
+                                </choice> ומת</damage>ה כדרכה י<damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.13b" spanTo="#S04944.damEnd.1v.13b"/><unclear
+                                    extent="3" unit="chars">שבע</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.13b"/></damage>
+                            <lb n="13"/><choice>
+                                <orig>שׂ</orig>
+                                <reg>ש</reg>
+                            </choice>וכ<damage>ר</damage> שמת<damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.14a" spanTo="#S04944.damEnd.1v.14a"/><unclear
+                                    extent="5" unit="chars">ה כדרכ</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.14a"/>ה והש<damageSpan
+                                    xml:id="S04944.damBeg.1v.14b" spanTo="#S04944.damEnd.1v.14b"/><gap
+                                    extent="1"/><unclear extent="1" unit="chars">א</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.14b"/>ל <choice>
+                                    <orig>מְשַלֵ</orig>
+                                    <reg>משל</reg>
+                                </choice>י<damageSpan xml:id="S04944.damBeg.1v.14c"
+                                    spanTo="#S04944.damEnd.1v.14c"/><unclear extent="1" unit="chars"
+                                    >ם</unclear><anchor xml:id="S04944.damEnd.1v.14c"/></damage><lb
+                                n="14"/><choice>
+                                <orig>לָשּׂ</orig>
+                                <reg>לש</reg>
+                            </choice>וכ <damage><damageSpan xml:id="S04944.damBeg.1v.15a"
+                                    spanTo="#S04944.damEnd.1v.15a"/><unclear extent="1" unit="chars"
+                                    >ר</unclear><anchor xml:id="S04944.damEnd.1v.15a"/>
+                                <choice>
+                                    <abbr>אמ<am rend="overdot">׳</am></abbr>
+                                    <expan>אמר</expan>
+                                </choice>
+                                <damageSpan xml:id="S04944.damBeg.1v.15b" spanTo="#S04944.damEnd.1v.15b"
+                                    /><unclear extent="1" unit="chars">ר׳</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.15b"/> יו<damageSpan
+                                    xml:id="S04944.damBeg.1v.15c" spanTo="#S04944.damEnd.1v.15c"/><unclear
+                                    extent="1" unit="chars">ס</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.15c"/>י כאי<damageSpan
+                                    xml:id="S04944.damBeg.1v.15d" spanTo="#S04944.damEnd.1v.15d"/><gap
+                                    extent="4"/><unclear extent="1" unit="chars">ה</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.15d"/>ל<damageSpan
+                                    xml:id="S04944.damBeg.1v.15e" spanTo="#S04944.damEnd.1v.15e"/><unclear
+                                    extent="5" unit="chars">ה עושה</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.15e"/>
+                            </damage>
+                            <lb n="15"/><damage>סח<damageSpan xml:id="S04944.damBeg.1v.16a"
+                                    spanTo="#S04944.damEnd.1v.16a"/><unclear extent="1" unit="chars"
+                                    >ו</unclear><anchor xml:id="S04944.damEnd.1v.16a"/>ר</damage>ה בפרתו ש<damage><choice>
+                                    <orig>לָ</orig>
+                                    <reg>ל</reg>
+                                </choice><damageSpan xml:id="S04944.damBeg.1v.16b"
+                                    spanTo="#S04944.damEnd.1v.16b"/><gap extent="1"/><unclear extent="1"
+                                    unit="chars">ה</unclear><anchor xml:id="S04944.damEnd.1v.16b"/>
+                                    אי<damageSpan xml:id="S04944.damBeg.1v.16c"
+                                    spanTo="#S04944.damEnd.1v.16c"/><unclear extent="2" unit="chars"
+                                    >לא</unclear><anchor xml:id="S04944.damEnd.1v.16c"/> ת<damageSpan
+                                    xml:id="S04944.damBeg.1v.16d" spanTo="#S04944.damEnd.1v.16d"/><unclear
+                                    extent="7" unit="chars">חזור פרה</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.16d"/></damage><lb n="16"/><choice>
+                                <orig>לָבְעלים</orig>
+                                <reg>לבעלים</reg>
+                            </choice><pc type="unitEnd">:</pc></ab>
+                        <ab xml:id="S04944.4.2.3.3"> אמר לש<damage>נים <damageSpan
+                                    xml:id="S04944.damBeg.1v.17a" spanTo="#S04944.damEnd.1v.17a"/><unclear
+                                    extent="2" unit="chars">גז</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.17a"/>ל</damage>תי מי<damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.17b" spanTo="#S04944.damEnd.1v.17b"/><unclear
+                                    extent="2" unit="chars">אח</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.17b"/></damage>ד <lb n="17"
+                                    />מכ<damage><damageSpan xml:id="S04944.damBeg.1v.18a"
+                                    spanTo="#S04944.damEnd.1v.18a"/><unclear extent="1" unit="chars"
+                                    >ם</unclear><anchor xml:id="S04944.damEnd.1v.18a"/></damage>
+                                    מ<damage><damageSpan xml:id="S04944.damBeg.1v.18b"
+                                    spanTo="#S04944.damEnd.1v.18b"/><unclear extent="1" unit="chars"><choice>
+                                        <orig>נֵ</orig>
+                                        <reg>נ</reg>
+                                    </choice></unclear><anchor xml:id="S04944.damEnd.1v.18b"/></damage>ה
+                            ואיני י<damage>וד</damage>ע מ<damage><damageSpan
+                                    xml:id="S04944.damBeg.1v.18c" spanTo="#S04944.damEnd.1v.18c"/><unclear
+                                    extent="1" unit="chars">א</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.18c"/>יז</damage>ה מכ<c rend="long">ם</c>
+                            <lb n="18"/>או <damage><damageSpan xml:id="S04944.damBeg.1v.19a"
+                                    spanTo="#S04944.damEnd.1v.19a"/><unclear extent="1" unit="chars"
+                                    >א</unclear><anchor xml:id="S04944.damEnd.1v.19a"/>בי</damage>ו
+                            שלאחד מ<damage>יכ</damage>ם <damage> ה<damageSpan
+                                    xml:id="S04944.damBeg.1v.19b" spanTo="#S04944.damEnd.1v.19b"/><unclear
+                                    extent="1" unit="chars">פ</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.19b"/>ק</damage>יד אצלי <lb n="19"
+                                    /><damage><damageSpan xml:id="S04944.damBeg.1v.20a"
+                                    spanTo="#S04944.damEnd.1v.20a"/><unclear extent="1" unit="chars"
+                                    >מ</unclear><anchor xml:id="S04944.damEnd.1v.20a"/><choice>
+                                    <orig>נֵ</orig>
+                                    <reg>נ</reg>
+                                </choice>א ואיני י</damage>ודע א<damage>י <damageSpan
+                                    xml:id="S04944.damBeg.1v.20b" spanTo="#S04944.damEnd.1v.20b"/><unclear
+                                    extent="2" unit="chars">זה</unclear><anchor
+                                    xml:id="S04944.damEnd.1v.20b"/> ה</damage>וא נו<choice>
+                                <orig>תֿ</orig>
+                                <reg>ת</reg>
+                            </choice><damage>ן</damage>
+                            <lb n="20"/><pb n="1r" xml:id="S04944.1r"/><damage> ל<damageSpan
+                                    xml:id="S04944.damBeg.1r.1a" spanTo="#S04944.damEnd.1r.1a"/><unclear
+                                    extent="6" unit="chars">זה מנא ולז</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.1a"/>ה<damageSpan xml:id="S04944.damBeg.1r.1b"
+                                    spanTo="#S04944.damEnd.1r.1b"/><unclear unit="chars" extent="6"> מנא
+                                    שהו</unclear><anchor xml:id="S04944.damEnd.1r.1b"/>דה מ<damageSpan
+                                    xml:id="S04944.damBeg.1r.1c" spanTo="#S04944.damEnd.1r.1c"/><unclear
+                                    extent="2" unit="chars">פי</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.1c"/> עצ</damage>מו<pc type="unitEnd"
+                                rend="none">:</pc></ab>
+                        <ab xml:id="S04944.4.2.3.4">שנים <lb n="1"/><damage>שה<damageSpan
+                                    xml:id="S04944.damBeg.1r.2a" spanTo="#S04944.damEnd.1r.2a"/><unclear
+                                    extent="6" unit="chars">פקידו א</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.2a"/>צל א<damageSpan
+                                    xml:id="S04944.damBeg.1r.2b" spanTo="#S04944.damEnd.1r.2b"/><unclear
+                                    extent="7" unit="chars">חד זה מנה</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.2b"/> ו<damageSpan xml:id="S04944.damBeg.1r.2c"
+                                    spanTo="#S04944.damEnd.1r.2c"/><unclear extent="1" unit="chars"
+                                    >ז</unclear><anchor xml:id="S04944.damEnd.1r.2c"/></damage>ה מאתים
+                                <damage>זה או</damage>מר <lb n="2"/> מא<damage><damageSpan
+                                    xml:id="S04944.damBeg.1r.3a" spanTo="#S04944.damEnd.1r.3a"/><unclear
+                                    extent="3" unit="chars">תים</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.3a"/> ש<damageSpan xml:id="S04944.damBeg.1r.3b"
+                                    spanTo="#S04944.damEnd.1r.3b"/><unclear extent="3" unit="chars">לי
+                                    וז</unclear><anchor xml:id="S04944.damEnd.1r.3b"/>ה <damageSpan
+                                    xml:id="S04944.damBeg.1r.3c" spanTo="#S04944.damEnd.1r.3c"/><unclear
+                                    extent="2" unit="chars">או</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.3c"/>מ<damageSpan xml:id="S04944.damBeg.1r.3d"
+                                    spanTo="#S04944.damEnd.1r.3d"/><unclear extent="5" unit="chars">ר
+                                    מאתי</unclear><anchor xml:id="S04944.damEnd.1r.3d"/>ם</damage> שלי <choice>
+                                <orig>נו<c rend="lig">תֵן</c></orig>
+                                <reg>נותן</reg>
+                            </choice> לזה מנא <lb n="3"/>ול<damage>זה <damageSpan
+                                    xml:id="S04944.damBeg.1r.4a" spanTo="#S04944.damEnd.1r.4a"/><gap
+                                    extent="2"/><unclear extent="3" unit="chars">א
+                                    וה</unclear><anchor xml:id="S04944.damEnd.1r.4a"/>שאר<damageSpan
+                                    xml:id="S04944.damBeg.1r.4b" spanTo="#S04944.damEnd.1r.4b"/><unclear
+                                    extent="5" unit="chars"> יהא מו</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.4b"/><choice>
+                                    <orig>נַ</orig>
+                                    <reg>נ</reg>
+                                </choice><damageSpan xml:id="S04944.damBeg.1r.4c"
+                                    spanTo="#S04944.damEnd.1r.4c"/><unclear extent="1" unit="chars"
+                                    >ח</unclear><anchor xml:id="S04944.damEnd.1r.4c"/></damage> עד שיבוא
+                                <c rend="lig">אל</c>יהו<lb n="4"/><damage>
+                                <damageSpan xml:id="S04944.damBeg.1r.5" spanTo="#S04944.damEnd.1r.5"
+                                    /><unclear extent="2" unit="chars"/><gap extent="7"/><unclear
+                                    extent="2" unit="chars"/><gap extent="2"/><unclear extent="7"
+                                    unit="chars">?? הפסיד</unclear><anchor xml:id="S04944.damEnd.1r.5"/>
+                                <choice>
+                                    <orig>הָרַ</orig>
+                                    <reg>הר</reg>
+                                </choice></damage><choice>
+                                <orig>מָו</orig>
+                                <reg>מו</reg>
+                            </choice><damage>י אילא</damage>
+                            <lb n="5"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.6" spanTo="#S04944.damEnd.1r.6"
+                                    /><unclear extent="3" unit="chars">הכל</unclear><gap extent="12"
+                                    /><unclear extent="3" unit="chars"> ??ש</unclear><gap extent="2"
+                                    /><unclear extent="1" unit="chars">א</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.6"/></damage>
+                            <c rend="lig">אל</c>י<damage>הו</damage></ab>
+                        <ab xml:id="S04944.4.2.3.5"><c rend="lig">וכן</c> שני <lb n="6"/>
+                            <damage>כלי<damageSpan xml:id="S04944.damBeg.1r.7a"
+                                    spanTo="#S04944.damEnd.1r.7a"/><unclear extent="2" unit="chars">ם
+                                    ?</unclear><anchor xml:id="S04944.damEnd.1r.7a"/>ח<damageSpan
+                                    xml:id="S04944.damBeg.1r.7b" spanTo="#S04944.damEnd.1r.7b"/><unclear
+                                    extent="13" unit="chars">ד יפה מנא ואחד יפ</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.7b"/>ה <damageSpan xml:id="S04944.damBeg.1r.7c"
+                                    spanTo="#S04944.damEnd.1r.7c"/><unclear extent="1" unit="chars"
+                                    >א</unclear><anchor xml:id="S04944.damEnd.1r.7c"/>ל<damageSpan
+                                    xml:id="S04944.damBeg.1r.7d" spanTo="#S04944.damEnd.1r.7d"/><unclear
+                                    extent="1" unit="chars">ף</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.7d"/> זוז</damage> זה <damage>א<damageSpan
+                                    xml:id="S04944.damBeg.1r.7e" spanTo="#S04944.damEnd.1r.7e"/><unclear
+                                    extent="3" unit="chars">ומר</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.7e"/></damage>
+                            <lb n="7"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.8a" spanTo="#S04944.damEnd.1r.8a"
+                                    /><gap extent="1"/><anchor xml:id="S04944.damEnd.1r.8a"/>פה</damage>
+                            שלי וזה אומר <damage>יפ</damage>ה ש<damage>ל<damageSpan
+                                    xml:id="S04944.damBeg.1r.8b" spanTo="#S04944.damEnd.1r.8b"/><unclear
+                                    extent="5" unit="chars">י נותן</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.8b"/> את <damageSpan
+                                    xml:id="S04944.damBeg.1r.8c" spanTo="#S04944.damEnd.1r.8c"/><unclear
+                                    extent="2" unit="chars">הק</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.8c"/>טן</damage>
+                            <lb n="8"/>
+                            <damage>לאחד</damage> מהם <damage><damageSpan xml:id="S04944.damBeg.1r.9a"
+                                    spanTo="#S04944.damEnd.1r.9a"/><unclear extent="1" unit="chars"
+                                    >ו</unclear><anchor xml:id="S04944.damEnd.1r.9a"/>מת</damage>וך גדול
+                            נותן דמ<damage><damageSpan xml:id="S04944.damBeg.1r.9b"
+                                    spanTo="#S04944.damEnd.1r.9b"/><unclear extent="2" unit="chars">י
+                                    ק</unclear><anchor xml:id="S04944.damEnd.1r.9b"/>טן ל<damageSpan
+                                    xml:id="S04944.damBeg.1r.9c" spanTo="#S04944.damEnd.1r.9c"/><unclear
+                                    extent="3" unit="chars">שני</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.9c"/></damage>
+                            <lb n="9"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.10a" spanTo="#S04944.damEnd.1r.10a"
+                                    /><unclear extent="4" unit="chars">והשא</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.10a"/>ר</damage> יהא <damage>מ</damage>ו<choice>
+                                <orig>נָּ</orig>
+                                <reg>נ</reg>
+                            </choice>ח עד <damage>ש<damageSpan xml:id="S04944.damBeg.1r.10b"
+                                    spanTo="#S04944.damEnd.1r.10b"/><unclear extent="1" unit="chars"
+                                    >י</unclear><anchor xml:id="S04944.damEnd.1r.10b"/></damage>בוא
+                                    <damage><c rend="lig">אל</c><damageSpan
+                                    xml:id="S04944.damBeg.1r.10c" spanTo="#S04944.damEnd.1r.10c"/><unclear
+                                    extent="2" unit="chars">יה</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.10c"/>ו</damage>
+                            <choice>
+                                <abbr>אמ<am rend="overdot">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <lb n="10"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.11a" spanTo="#S04944.damEnd.1r.11a"
+                                    /><gap extent="2"/><unclear extent="1" unit="chars"/><gap
+                                    extent="3"/><anchor xml:id="S04944.damEnd.1r.11a"/></damage> אם כן
+                            מה הפסיד <choice>
+                                <orig>הָרַמָוי</orig>
+                                <reg>הרמוי</reg>
+                            </choice>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.11b" spanTo="#S04944.damEnd.1r.11b"
+                                    /><unclear extent="2" unit="chars">אי</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.11b"/>ל</damage>א הכל <lb n="11"/>
+                            <damage><damageSpan xml:id="S04944.damBeg.1r.12a" spanTo="#S04944.damEnd.1r.12a"
+                                    /><unclear extent="1" unit="chars">י</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.12a"/>הא מו</damage>נח <damage><damageSpan
+                                    xml:id="S04944.damBeg.1r.12b" spanTo="#S04944.damEnd.1r.12b"/><unclear
+                                    extent="2" unit="chars">עד</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.12b"/></damage> שיבוא <c rend="lig"
+                            >אל</c>יהו:<space/></ab>
+                        <ab xml:id="S04944.4.2.3.6"> המפקיד <lb n="12"/>
+                            <damage>פירו<damageSpan xml:id="S04944.damBeg.1r.13a"
+                                    spanTo="#S04944.damEnd.1r.13a"/><unclear extent="2" unit="chars">ת
+                                    א</unclear><anchor xml:id="S04944.damEnd.1r.13a"/></damage>צל
+                                    <damage><damageSpan xml:id="S04944.damBeg.1r.13b"
+                                    spanTo="#S04944.damEnd.1r.13b"/><unclear extent="2" unit="chars"
+                                    >חב</unclear><anchor xml:id="S04944.damEnd.1r.13b"/>ירו</damage>
+                                    אפי<damage><damageSpan xml:id="S04944.damBeg.1r.13c"
+                                    spanTo="#S04944.damEnd.1r.13c"/><unclear extent="4" unit="chars">לו
+                                    הן</unclear><anchor xml:id="S04944.damEnd.1r.13c"/> א</damage>ובדין
+                                <damage>ל</damage>א יגע <lb n="13"/>
+                            <damage>בהן רב<damageSpan xml:id="S04944.damBeg.1r.14a"
+                                    spanTo="#S04944.damEnd.1r.14a"/><unclear extent="1" unit="chars"
+                                    >ן</unclear><anchor xml:id="S04944.damEnd.1r.14a"/> שמ<damageSpan
+                                    xml:id="S04944.damBeg.1r.14b" spanTo="#S04944.damEnd.1r.14b"/><gap
+                                    extent="3"/><unclear extent="1" unit="chars"/><anchor
+                                    xml:id="S04944.damEnd.1r.14b"/>
+                                <choice><abbr>גמ<am rend="unknown"
+                                        >׳</am></abbr><expan>גמליאל</expan></choice></damage>
+                            <choice><abbr rend="overdot"
+                                >אומ<am>׳</am></abbr><expan>אומר</expan></choice>
+                            <damage>ימ</damage>כרם <damage>ב</damage>בית דין <lb n="14"/>
+                            <damage>מפנ<damageSpan xml:id="S04944.damBeg.1r.15"
+                                    spanTo="#S04944.damEnd.1r.15"/><unclear extent="7" unit="chars"
+                                    /><anchor xml:id="S04944.damEnd.1r.15"/> שי</damage>ב אבדה </ab>
+                        <ab xml:id="S04944.4.2.3.7"><space/> המפקיד פירו<damage>ת</damage>
+                            <lb n="15"/><damage> אצל חבי<damageSpan xml:id="S04944.damBeg.1r.16a"
+                                    spanTo="#S04944.damEnd.1r.16a"/><unclear extent="6" unit="chars">רו
+                                    ???? </unclear><anchor xml:id="S04944.damEnd.1r.16a"/> ל<damageSpan
+                                    xml:id="S04944.damBeg.1r.16b" spanTo="#S04944.damEnd.1r.16b"/><unclear
+                                    extent="1" unit="chars">ו</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.16b"/> חי</damage>סרונ<damage><damageSpan
+                                    xml:id="S04944.damBeg.1r.16c" spanTo="#S04944.damEnd.1r.16c"/><unclear
+                                    extent="1" unit="chars">ו</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.16c"/></damage>
+                            <choice>
+                                <orig>לַחִיטִין</orig>
+                                <reg>לחיטין</reg>
+                            </choice> ו<damage>ל</damage>אור<damage><damageSpan
+                                    xml:id="S04944.damBeg.1r.16d" spanTo="#S04944.damEnd.1r.16d"/><unclear
+                                    extent="1" unit="chars">ז</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.16d"/></damage>
+                            <lb n="16"/> תשע<damage>ת</damage>
+                            <add place="above" hand="2h">חצאי</add>
+                            <damage>קב<damageSpan xml:id="S04944.damBeg.1r.17" spanTo="#S04944.damEnd.1r.17"
+                                    /><unclear extent="2" unit="chars">י?</unclear><gap extent="3"
+                                    /><anchor xml:id="S04944.damEnd.1r.17"/>ר</damage>
+                            <choice>ל<orig>שׂ</orig><reg>ש</reg>עורים</choice> ולד<choice>
+                                <orig>וֹ</orig>
+                                <reg>ו</reg>
+                            </choice><damage><choice>
+                                    <orig>חַ</orig>
+                                    <reg>ח</reg>
+                                </choice>ן</damage> תשעת <lb n="17"/>
+                            <damage><del rend="overline"><choice>
+                                        <orig>חצָאֵי</orig>
+                                        <reg>חצאי</reg>
+                                    </choice></del><damageSpan xml:id="S04944.damBeg.1r.18a"
+                                    spanTo="#S04944.damEnd.1r.18a"/><unclear extent="4" unit="chars"
+                                    >קבין</unclear><gap extent="5"/><anchor
+                                    xml:id="S04944.damEnd.1r.18a"/><choice>
+                                    <orig>לְכוסמין</orig>
+                                    <reg>לכוסמין</reg>
+                                </choice> ו<damageSpan xml:id="S04944.damBeg.1r.18b"
+                                    spanTo="#S04944.damEnd.1r.18b"/><unclear extent="4" unit="chars"
+                                    >לזרע</unclear><anchor xml:id="S04944.damEnd.1r.18b"
+                                /></damage><note>Some traced of ink present after קבין.</note> פשתן
+                                <lb n="18"/>
+                            <damage>ש<damageSpan xml:id="S04944.damBeg.1r.19a"
+                                    spanTo="#S04944.damEnd.1r.19a"/><unclear extent="9" unit="chars">לשת
+                                    סאין לכ</unclear><anchor xml:id="S04944.damEnd.1r.19a"/>ור
+                                    <damageSpan xml:id="S04944.damBeg.1r.19b" spanTo="#S04944.damEnd.1r.19b"
+                                    /><unclear extent="1" unit="chars">ה</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.19b"/></damage>כל ל<damage>פי ה<damageSpan
+                                    xml:id="S04944.damBeg.1r.19c" spanTo="#S04944.damEnd.1r.19c"/><unclear
+                                    extent="4" unit="chars">מדה ו</unclear><anchor
+                                    xml:id="S04944.damEnd.1r.19c"/></damage>הכל   <lb n="19"/>
+                            <milestone xml:id="S04944.1r.pageEnd" unit="page"/></ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>

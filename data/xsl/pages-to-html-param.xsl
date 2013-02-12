@@ -58,7 +58,7 @@
                 <xsl:when
                     test="document($thisURI,(document('')))/*/*//*/preceding::element()[name()=$name]">
                     <xsl:value-of
-                        select="(document($thisURI,(document('')))/*/*//*)[name()=$name][1]/@xml:id"
+                        select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[1]/@xml:id"
                     />
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
@@ -69,7 +69,7 @@
                 <xsl:when
                     test="document($thisURI,(document('')))/*/*//*/following::element()[name()=$name]">
                     <xsl:value-of
-                        select="(document($thisURI,(document('')))/*/*//*)[name()=$name][last()]/@xml:id"
+                        select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[last()]/@xml:id"
                     />
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
@@ -92,7 +92,7 @@
                 <xsl:when
                     test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]">
                     <xsl:value-of
-                        select="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]/@xml:id"
+                        select="((document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name])[1]/@xml:id"
                     />
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
@@ -253,9 +253,9 @@
                         <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                     <xsl:when test="$mode='col'"><xsl:value-of
                                             select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
-                                        /></xsl:when><xsl:otherwise><xsl:value-of
-                                            select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:col[1]/@xml:id,concat($wit,'.'))"
-                                        /></xsl:otherwise>
+                                    /></xsl:when><xsl:otherwise><xsl:value-of
+                                        select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb[1]/@xml:id,concat($wit,'.'))"
+                                    /></xsl:otherwise>
                                 </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
                                     test="$mode='col'"><input type="radio" name="mode" value="col"
                                         checked="checked"/></xsl:when><xsl:otherwise><input
