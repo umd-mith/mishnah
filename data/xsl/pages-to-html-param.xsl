@@ -148,8 +148,7 @@
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
                     title="Documentary"/>
-                <link rel="stylesheet" type="text/css" href="../css/FormattingforHTML.css"
-                    title="Documentary"/>
+                
                 <title>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
