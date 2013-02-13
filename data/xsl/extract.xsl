@@ -6,7 +6,7 @@
     xmlns:local="local-functions.uri">
     
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'151r'"/>
+    <xsl:param name="pg" select="'244r'"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
     <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
@@ -192,11 +192,8 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        
-        
+       
         <TEI>
-            <start><xsl:copy-of select="$start"></xsl:copy-of></start>
-           <end> <xsl:copy-of select="$end"></xsl:copy-of></end>
             <xsl:copy-of select="processing-instruction()"/>
             <xsl:copy-of select="tei:TEI/tei:teiHeader"/>
             <text>
@@ -255,7 +252,7 @@
         </div>
     </xsl:template>
     <xsl:template match="tei:div1" mode="phase2">
-        <milestone>
+        <xsl:copy-of select="./preceding-sibling::node()"></xsl:copy-of><milestone>
             <xsl:attribute name="unit" select="name()"/>
             <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
         </milestone>
@@ -270,7 +267,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:div2" mode="phase2">
-        <milestone>
+        <xsl:copy-of select="./preceding-sibling::node()"></xsl:copy-of><milestone>
             <xsl:attribute name="unit" select="name()"/>
             <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
         </milestone>
@@ -284,6 +281,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:div3" mode="phase2">
+        <xsl:copy-of select="./preceding-sibling::node()"></xsl:copy-of>
         <milestone>
             <xsl:attribute name="unit" select="name()"/>
             <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>

@@ -28,7 +28,8 @@
     <xsl:param name="pg"/>
     <xsl:param name="col"/>
     <xsl:param name="mode" select="'col'"/>
-    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
+    <xsl:variable name="wit"
+        select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
     <xsl:variable name="thisId">
         <!-- locates first, last, next, prev for processing links -->
@@ -148,7 +149,7 @@
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
                     title="Documentary"/>
-                
+
                 <title>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
@@ -185,18 +186,18 @@
                     <xsl:variable name="goPrev">
                         <xsl:variable name="ref"
                             select="substring-after($thisPgColCh/tei:prev,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                                test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
-                                    test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                            mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                                ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                            test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                            test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                     </xsl:variable>
                     <xsl:variable name="goLast">
                         <xsl:variable name="ref"
                             select="substring-after($thisPgColCh/tei:last,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                                test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
-                                    test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
+                            mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
+                                ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
+                            test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                            test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                     </xsl:variable>
                     <span class="last">
                         <xsl:choose>
@@ -252,9 +253,9 @@
                         <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                     <xsl:when test="$mode='col'"><xsl:value-of
                                             select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
-                                    /></xsl:when><xsl:otherwise><xsl:value-of
-                                        select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb[1]/@xml:id,concat($wit,'.'))"
-                                    /></xsl:otherwise>
+                                        /></xsl:when><xsl:otherwise><xsl:value-of
+                                            select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb[1]/@xml:id,concat($wit,'.'))"
+                                        /></xsl:otherwise>
                                 </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
                                     test="$mode='col'"><input type="radio" name="mode" value="col"
                                         checked="checked"/></xsl:when><xsl:otherwise><input
@@ -691,34 +692,38 @@
                 <!-- there are not multiple comments in this view -->
                 <xsl:choose>
                     <xsl:when test="not(descendant::tei:div[@type='singCol'])">
-                    <!-- when original laid out in a single column -->
-                <div class="oneCol">
-                    <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
-                            name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
-                        /></xsl:element>
-                    <xsl:if test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
-                        <xsl:variable name="firstline">
-                            <xsl:value-of
-                                select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"/>
-                        </xsl:variable>
-                        <xsl:variable name="char">
-                            <br xmlns="http://www.w3.org/1999/xhtml"/>
-                        </xsl:variable>
-                        <xsl:call-template name="add-char">
-                            <xsl:with-param name="howMany" select="$firstline - 1"/>
-                            <xsl:with-param name="char" select="$char"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                    <xsl:apply-templates/>
-                </div>
-                
-            </xsl:when>
-                <xsl:when test="descendant::tei:div[@type='singCol']">
-                    <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
-                        name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
-                        /></xsl:element>
-                    <xsl:apply-templates/>
-                </xsl:when></xsl:choose></xsl:if>
+                        <!-- when original laid out in a single column -->
+                        <div class="oneCol">
+                            <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
+                                    ><xsl:attribute name="class" select="'pageNo'"/>Folio
+                                    <xsl:value-of select="./@n"/></xsl:element>
+                            <xsl:if
+                                test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
+                                <xsl:variable name="firstline">
+                                    <xsl:value-of
+                                        select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"
+                                    />
+                                </xsl:variable>
+                                <xsl:variable name="char">
+                                    <br xmlns="http://www.w3.org/1999/xhtml"/>
+                                </xsl:variable>
+                                <xsl:call-template name="add-char">
+                                    <xsl:with-param name="howMany" select="$firstline - 1"/>
+                                    <xsl:with-param name="char" select="$char"/>
+                                </xsl:call-template>
+                            </xsl:if>
+                            <xsl:apply-templates/>
+                        </div>
+
+                    </xsl:when>
+                    <xsl:when test="descendant::tei:div[@type='singCol']">
+                        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
+                                name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
+                            /></xsl:element>
+                        <xsl:apply-templates/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:if>
             <xsl:if test="descendant::tei:div[1][@type='column']">
                 <!-- there are multiple columns in this view -->
                 <xsl:apply-templates/>
@@ -727,7 +732,7 @@
         <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
             <hr/>
         </div>
-        
+
     </xsl:template>
     <xsl:template match="tei:div[@type='column']">
         <xsl:variable name="col">
@@ -761,7 +766,7 @@
             </xsl:if>
             <xsl:apply-templates/>
         </div>
-      
+
     </xsl:template>
     <xsl:template match="tei:div[@type='singCol']">
         <!-- browsing in single column view -->
@@ -770,7 +775,7 @@
             <xsl:value-of select="@n"/>
         </xsl:variable>
         <div xmlns="http://www.w3.org/1999/xhtml">
-      
+
             <xsl:attribute name="class">columnA</xsl:attribute>
 
             <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
