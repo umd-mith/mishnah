@@ -142,7 +142,10 @@
                     <map:parameter name="default.mcite" value="4.2.2.1"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
-                <map:serialize type="tei"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                    <map:parameter name="menu-mode" value="collation"/>
+                </map:transform>
+                <map:serialize type="html"/>
             </map:match>
             <map:match pattern="">
                 <map:generate src="resource://html/demo.html"/>

@@ -3,9 +3,10 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:cx="http://interedition.eu/collatex/ns/1.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:my="http://dev.digitalmishnah.org/local-functions.uri"
-    xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd cx tei my" version="2.0">
+    exclude-result-prefixes="xd cx tei my" version="2.0">
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
+    <!--xmlns="http://www.w3.org/1999/xhtml"-->
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Dec 8, 2011</xd:p>
@@ -39,25 +40,15 @@ pipeline. -->
         document('../tei/ref.xml')/tei:TEI/tei:text/tei:body/tei:div1/tei:div2/tei:div3[@xml:id='ref.4.2.2']/tei:ab
         return substring-after($ab/@xml:id, 'ref.')"/>
     <xsl:template match="/">
-        <html xmlns="http://www.w3.org/1999/xhtml">
+        <!--<html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/CollatexOutput.css"
                     title="Documentary"/>
                 <title>Sample Output Collatex Output</title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-            </head>
-            <body xsl:exclude-result-prefixes="#all" dir="rtl">
-                <h1><a name="top"/>Digital Mishnah Project</h1>
-                <div class="contents">
-                    <h2 style="font-size:80%;"> [<a href="demo">Back to Demo Home</a><xsl:text>] [</xsl:text>
-                        <a href="#select">Select Passage and Witnesses</a><xsl:text>] [</xsl:text>
-                        <a href="#align">Alignment Table Format</a>
-                        <xsl:text>] [</xsl:text>
-                        <a href="#text-appar">Text with Apparatus</a>
-                        <xsl:text>] [</xsl:text>
-                        <a href="#synopsis">Parallel Column Synopsis</a>] </h2>
-                </div>
+            </head>-->
+            <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">
                 <h2>Sample Collatex Output</h2>
                 <h2>
                     <xsl:variable name="ref-cit" select="tei:TEI/tei:text/tei:body/tei:div/@n"> </xsl:variable>
@@ -160,7 +151,7 @@ pipeline. -->
                     class="link"><a href="#top">[top]</a></span></h3>
                 <p class="descr-text">The alignment table may scroll to the left. Use the scroll bar
                     to see additional columns. </p>
-                <div class="alignment-table">
+                <div class="alignment-table" dir="rtl">
                     <table dir="rtl">
                         <xsl:for-each select="tei:TEI/tei:text/tei:body/tei:div/tei:ab">
                             <tr>
@@ -556,8 +547,9 @@ this -->
                         </tr>
                     </table>
                 </div>
-            </body>
-        </html>
+            </div>
+            <!--</body>
+        </html>-->
     </xsl:template>
     <xsl:template name="tokenize-params">
         <xsl:param name="src"/>
