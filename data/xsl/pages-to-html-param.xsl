@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns:its="http://www.w3.org/2005/11/its"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local my tei"
     version="2.0" xmlns:my="http://http://dev.digitalmishnah.org/local-functions.uri"
     xmlns:local="local-functions.uri">
 
-    <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"
-        doctype-public="-//W3C//DTD HTML 4.01//EN"
-        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+    <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
+<!--        doctype-public="-//W3C//DTD HTML 4.01//EN"
+        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>-->
     <xsl:strip-space
         elements=" tei:choice and tei:am and
         tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap
@@ -144,10 +144,10 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="/">
-        <html xmlns="http://www.w3.org/1999/xhtml">
+        <!--<html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <link rel="stylesheet" type="text/css"
-                    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
+                    href="./css/FormattingforHTML.css"
                     title="Documentary"/>
                 <link rel="stylesheet" type="text/css"
                     href="../css/FormattingforHTML.css"
@@ -159,14 +159,20 @@
                 </title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>
-            <body xsl:exclude-result-prefixes="#all" dir="rtl">
-                <h1>
+            <body xsl:exclude-result-prefixes="#all" dir="rtl">-->
+                <div xsl:exclude-result-prefixes="tei" dir="rtl">
+                  <xsl:attribute name="title">
+                    <xsl:value-of
+                      select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
+                      exclude-result-prefixes="#all"/>
+                  </xsl:attribute>
+                <h2>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
-                </h1>
-                <h2 style="font-size:80%;">[<a href="demo">Back to Demo Home Page</a>] [<a
+                </h2>
+                <!--<h2 style="font-size:80%;">[<a href="demo">Back to Demo Home Page</a>] [<a
                         href="browse">Back to Browse</a>]</h2>
-                <h2 style="font-size:80%;"/>
+                <h2 style="font-size:80%;"/>-->
                 <div class="nav">
                     <!-- variables for building urls for paramaterized links -->
                     <xsl:variable name="goNext">
@@ -250,7 +256,7 @@
                                         ><input type="radio" name="mode" value="pg"
                                         checked="checked"/></xsl:when><xsl:otherwise><input
                                         type="radio" name="mode" value="pg"
-                                /></xsl:otherwise></xsl:choose>Page<input type="text" name="pg"
+                                /></xsl:otherwise></xsl:choose>Page <input type="text" name="pg"
                                 size="8" value="{$refValue}"/></span>
                         <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                     <xsl:when test="$mode='col'"><xsl:value-of
@@ -262,7 +268,7 @@
                                     test="$mode='col'"><input type="radio" name="mode" value="col"
                                         checked="checked"/></xsl:when><xsl:otherwise><input
                                         type="radio" name="mode" value="col"
-                                /></xsl:otherwise></xsl:choose>Column<input type="text" name="col"
+                                /></xsl:otherwise></xsl:choose>Column <input type="text" name="col"
                                 size="8" value="{$refValue}"/></span>
                         <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                     <xsl:when test="$mode='ch'"><xsl:value-of
@@ -278,8 +284,8 @@
                                     test="$mode='ch'"><input type="radio" name="mode" value="ch"
                                         checked="checked"/></xsl:when><xsl:otherwise><input
                                         type="radio" name="mode" value="ch"
-                                /></xsl:otherwise></xsl:choose>Chapter<input type="text" name="ch"
-                                size="8" value="{$refValue}"/></span><input type="submit"
+                                /></xsl:otherwise></xsl:choose>Chapter <input type="text" name="ch"
+                                size="8" value="{$refValue}"/></span><input type="submit" value="Submit"
                             class="submForm"/></form>
                 </div>
                 <div class="meta" dir="ltr">
@@ -466,10 +472,16 @@
                 </div>
                 <h2>Transcription</h2>
                 <xsl:apply-templates select="//tei:text"/>
-                <h2>Notes</h2>
-                <xsl:apply-templates select="//tei:note[ancestor::tei:body]" mode="notes"/>
-            </body>
-        </html>
+                <div class="notes">
+                  <h2>Notes</h2>
+                  <xsl:if test="count(//tei:note[ancestor::tei:body]) = 0">
+                    <p class="empty">There are no notes available.</p>
+                  </xsl:if>
+                  <xsl:apply-templates select="//tei:note[ancestor::tei:body]" mode="notes"/>
+                </div>
+            </div>
+            <!--</body>
+        </html>-->
     </xsl:template>
     <xsl:template match="tei:body |tei:text | tei:c | tei:g | //tei:pc |tei:c | tei:am">
         <xsl:apply-templates/>

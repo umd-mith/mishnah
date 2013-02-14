@@ -15,7 +15,7 @@
                 <title>Browse Digital Mishnah Files</title>
             </head>
             <body style="width:75%; margin-right:15%; margin-left:15%;">-->
-        <div class="browse">
+        <div class="browse" title="Browse Digital Mishnah Files">
                 <h2>Browse Files from the Digital Mishnah Project</h2>
                 <p>Files are stored as XML, following the TEI (Text Encoding Initiative)
                     specifications. They are presented in converted into HTML using XSLT on the fly,

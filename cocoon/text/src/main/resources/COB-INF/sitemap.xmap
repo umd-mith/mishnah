@@ -146,16 +146,12 @@
             </map:match>
             <map:match pattern="">
                 <map:generate src="resource://html/demo.html"/>
-                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
-                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
-                </map:transform>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
             <map:match pattern="demo">
                 <map:generate src="resource://html/demo.html"/>
-                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
-                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
-                </map:transform>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
             <map:match pattern="browse-old">
@@ -206,9 +202,7 @@
             <map:match pattern="browse">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
-                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
-                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
-                </map:transform>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
             
@@ -238,7 +232,10 @@
                     <map:parameter name="ch" value="{request-param:ch}"/>
                     <map:parameter name="mode" value="{request-param:mode}"/>
                 </map:transform>
-                <map:serialize type="tei-no-indent"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                    <map:parameter name="menu-mode" value="browse-param"/>
+                </map:transform>
+                <map:serialize type="html"/>
             </map:match>
 
             
