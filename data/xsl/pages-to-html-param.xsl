@@ -149,7 +149,9 @@
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/FormattingforHTML.css"
                     title="Documentary"/>
-
+                <link rel="stylesheet" type="text/css"
+                    href="../css/FormattingforHTML.css"
+                    title="Documentary"/>
                 <title>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
@@ -688,8 +690,8 @@
     </xsl:template>
     <xsl:template match="tei:div[@type='page']">
         <div class="page" xmlns="http://www.w3.org/1999/xhtml">
-            <xsl:if test="not(descendant::tei:div[1][@type='column'])">
-                <!-- there are not multiple comments in this view -->
+            <xsl:choose><xsl:when test="not(descendant::tei:div[@type='column'])">
+                <!-- there are not multiple comlumns in this view -->
                 <xsl:choose>
                     <xsl:when test="not(descendant::tei:div[@type='singCol'])">
                         <!-- when original laid out in a single column -->
@@ -717,17 +719,18 @@
 
                     </xsl:when>
                     <xsl:when test="descendant::tei:div[@type='singCol']">
+                        <!-- A multi-column original presented in single column view -->
                         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
                                 name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
                             /></xsl:element>
                         <xsl:apply-templates/>
                     </xsl:when>
                 </xsl:choose>
-            </xsl:if>
-            <xsl:if test="descendant::tei:div[1][@type='column']">
+            </xsl:when>
+            <xsl:when test="descendant::tei:div[@type='column']">
                 <!-- there are multiple columns in this view -->
                 <xsl:apply-templates/>
-            </xsl:if>
+            </xsl:when></xsl:choose>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
             <hr/>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd its tei local" version="2.0"
-    xmlns:local="local-functions.uri">
-    
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:its="http://www.w3.org/2005/11/its"
+    xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="xd its tei local" version="2.0" xmlns:local="local-functions.uri">
+
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'242v'"/>
+    <xsl:param name="pg" select="'243r'"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
-    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
-    
+    <xsl:variable name="wit"
+        select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
+
     <xsl:param name="start">
         <!-- Select start node based on selected paramenters. On non-existant chs, pages, cols, goes to first in witness file. -->
         <xsl:choose>
             <xsl:when test="$mode = 'pg'">
-                
+
                 <xsl:choose>
                     <xsl:when test="//tei:pb[@xml:id = concat($wit,'.',$pg)]">
                         <xsl:value-of select="//tei:pb[@xml:id = concat($wit,'.',$pg)]/@xml:id"/>
@@ -58,8 +58,7 @@
                     <xsl:when
                         test="//tei:cb[@xml:id = $start]/following::tei:cb[1] &lt;&lt; //tei:cb[@xml:id = $start]/following::tei:pb[1]">
                         <xsl:value-of
-                            select="//tei:cb[@xml:id = $start]/following::tei:cb[1]/@xml:id"
-                        />
+                            select="//tei:cb[@xml:id = $start]/following::tei:cb[1]/@xml:id"/>
                     </xsl:when>
                     <xsl:when
                         test="//tei:cb[@xml:id = $start]/following::tei:cb[1] &gt;&gt; //tei:cb[@xml:id = $start]/following::tei:pb[1]">
@@ -82,49 +81,69 @@
         </xsl:choose>
     </xsl:param>
 
-    <!-- process the pages between endpoints in phase1 mode -->
-    <!-- modifies a stylesheet written by Sebastian Rahtz -->
-    <xsl:template match="tei:body">
-
-        <xsl:choose>
-            <xsl:when test="$mode= 'pg'">
-                <xsl:element name="div">
-                    <xsl:attribute name="type">page</xsl:attribute>
-                    <xsl:attribute name="n"
-                        select="substring-after(//tei:pb[@xml:id = $start]/@xml:id, concat($wit, '.' ))"/>
-                    <xsl:apply-templates mode="phase1"/>
-                </xsl:element>
-            </xsl:when>
-            <xsl:when test="$mode = 'col'">
-                <xsl:element name="div">
-                    <xsl:attribute name="type">page</xsl:attribute>
-                    <xsl:attribute name="n">
-                        <xsl:value-of
-                            select="substring-after(//tei:cb[@xml:id = $start]/preceding::tei:pb[1]/@xml:id, concat($wit, '.' ))"
-                        />
-                    </xsl:attribute>
+    <xsl:template match="/">
+        <xsl:variable name="extract">
+            <xsl:apply-templates mode="extract"/>
+        </xsl:variable>
+        <xsl:variable name="flat">
+            <xsl:choose>
+                <xsl:when test="$mode='col' or $mode='pg'">
                     <xsl:element name="div">
-                        <xsl:attribute name="type">singCol</xsl:attribute>
+                        <xsl:attribute name="type">page</xsl:attribute>
                         <xsl:attribute name="n">
-                            <xsl:value-of
-                                select="substring-after(//tei:cb[@xml:id = $start]/@xml:id, concat($wit, '.'))"
-                            />
+                            <xsl:if test="$mode='pg'"><xsl:value-of select="substring-after($start,concat($wit,'.'))"></xsl:value-of></xsl:if>
+                            <xsl:if test="$mode='col'"><xsl:value-of select="substring-after(*/*/*//tei:cb[@xml:id=$start]/preceding-sibling::tei:pb[1]/@xml:id,concat($wit,'.'))"></xsl:value-of></xsl:if>
                         </xsl:attribute>
-
-                            <!-- extract the selected elements and text -->
-                            <xsl:apply-templates mode="phase1"/>
-                        
-                        
+                        <xsl:apply-templates select="$extract/*" mode="flatten"/>
                     </xsl:element>
-                </xsl:element>
-            </xsl:when>
-            <xsl:when test="$mode = 'ch'">
-                <!-- Do nothing. We simply pull the appropriate div3 from the file -->
-            </xsl:when>
-        </xsl:choose>
+                </xsl:when>
+                <xsl:when test="$mode='ch'">
+                    <xsl:element name="div">
+                        <xsl:attribute name="type">chap</xsl:attribute>
+                        <xsl:attribute name="n" select="$start"/>
+                        <xsl:copy-of
+                            select="*/*/*/*/*/tei:div3[@xml:id = $start]/preceding::tei:pb[1]"/>
+                        <xsl:copy-of
+                            select="*/*/*/*/*/tei:div3[@xml:id = $start]/preceding::tei:cb[1]"/>
+                        <xsl:copy-of select="*/*/*/*/*/tei:div3[@xml:id = $start]/*"/>
+                    </xsl:element>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <TEI>
+
+            <xsl:copy-of select="processing-instruction()"/>
+            <xsl:copy-of select="tei:TEI/tei:teiHeader"/>
+            <text>
+                <body>
+                    <xsl:choose>
+                        <xsl:when test="$mode='pg' and $flat//tei:cb">
+                            <!-- Chunked by page, original has multiple columns -->
+                            <xsl:apply-templates select="$flat/tei:div" mode="two-cols"/>
+                        </xsl:when>
+                        <xsl:when test="$mode='pg' and not($flat//tei:cb)">
+                            <!-- chunked by page, original has single column -->
+                            <!-- Page is a single column page -->
+                            <xsl:apply-templates select="$flat/tei:div" mode="one-col"/>
+                        </xsl:when>
+                        <xsl:when test="$mode='col'">
+                            <!-- chunked by page, original has single column -->
+                            <!-- Page is a single column page -->
+                            <xsl:apply-templates select="$flat/tei:div" mode="sing-col"/>
+                        </xsl:when>
+                        <xsl:when test="$mode='ch'">
+                            <!-- chunked by extracted chapter, presented in "compact" view-->
+                            <xsl:copy-of select="$flat"></xsl:copy-of>
+                        </xsl:when>
+                    </xsl:choose>
+                </body>
+            </text>
+        </TEI>
     </xsl:template>
 
-    <xsl:template match="text()" mode="phase1">
+    <!-- process the pages between endpoints in extract mode -->
+    <!-- modifies a stylesheet written by Sebastian Rahtz -->
+    <xsl:template match="text()" mode="extract">
         <xsl:choose>
             <xsl:when test="preceding::element()[@xml:id=$end]"> </xsl:when>
             <xsl:when test="following::element()[@xml:id=$start]"> </xsl:when>
@@ -134,12 +153,12 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="*" mode="phase1">
+    <xsl:template match="*" mode="extract">
         <xsl:choose>
             <xsl:when test=".//element()[@xml:id=$start or @xml:id=$end]">
                 <xsl:copy>
                     <xsl:copy-of select="@*"/>
-                    <xsl:apply-templates mode="phase1"/>
+                    <xsl:apply-templates mode="extract"/>
                 </xsl:copy>
             </xsl:when>
             <xsl:when
@@ -148,11 +167,63 @@
                 <xsl:copy-of select="."/>
             </xsl:when>
             <xsl:when test="preceding::element()[@xml:id=$start] and $end = 'null'">
-               <xsl:copy-of select="."/>
+                <xsl:copy-of select="."/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:ab" mode="phase1">
+
+    <!-- Flatten mode: Convert numbered divs heads and trailers to milestones -->
+
+    <xsl:template match="tei:div1" mode="flatten">
+
+        <milestone>
+            <xsl:attribute name="unit" select="name()"/>
+            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
+        </milestone>
+        <xsl:for-each select="*">
+            <xsl:choose>
+                <xsl:when test="self::tei:div2|self::tei:head|self::tei:trailer">
+                    <xsl:apply-templates select="." mode="flatten"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template match="tei:div2" mode="flatten">
+        <milestone>
+            <xsl:attribute name="unit" select="name()"/>
+            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
+        </milestone>
+        <xsl:for-each select="*">
+            <xsl:choose>
+                <xsl:when test="self::tei:div3|self::tei:head|self::tei:trailer">
+                    <xsl:apply-templates select="." mode="flatten"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template match="tei:div3" mode="flatten">
+        <milestone>
+            <xsl:attribute name="unit" select="name()"/>
+            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
+        </milestone>
+        <xsl:for-each select="*">
+            <xsl:choose>
+                <xsl:when test="self::tei:ab|self::tei:head|self::tei:trailer">
+                    <xsl:apply-templates select="." mode="flatten"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template match="tei:ab" mode="flatten">
         <xsl:choose>
             <xsl:when test="preceding::element()[@xml:id=$end]"> </xsl:when>
             <xsl:when test="following::element()[@xml:id=$start]"> </xsl:when>
@@ -161,11 +232,11 @@
                     <xsl:attribute name="unit" select="'ab'"/>
                     <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"> </xsl:attribute>
                 </milestone>
-                <xsl:apply-templates mode="phase1"/>
+                <xsl:copy-of select="*|text()|comment()"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="tei:head|tei:trailer" mode="phase1">
+    <xsl:template match="tei:head|tei:trailer" mode="flatten">
         <xsl:choose>
             <xsl:when test="preceding::element()[@xml:id=$end]"> </xsl:when>
             <xsl:when test="following::element()[@xml:id=$start]"> </xsl:when>
@@ -175,121 +246,11 @@
                 </label>
             </xsl:otherwise>
         </xsl:choose>
+
     </xsl:template>
 
-    <xsl:template match="/">
-       
-        <xsl:variable name="holding">
-            <xsl:apply-templates select="tei:TEI/tei:text/tei:body"/>
-        </xsl:variable>
-        <xsl:variable name="to-group">
-            <xsl:choose>
-                <xsl:when test="$mode = 'pg'">
-                    <xsl:apply-templates select="$holding/*" mode="phase2"/>
-                </xsl:when>
-                <xsl:when test="$mode = 'col'">
-                    <xsl:apply-templates select="$holding/*" mode="phase2"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:variable>
-       
-        
-        <TEI>
 
-            <xsl:copy-of select="processing-instruction()"/>
-            <xsl:copy-of select="tei:TEI/tei:teiHeader"/>
-            <text>
-                <body>
-                    <xsl:choose>
-                        <xsl:when test="$mode='pg'">
-                            <xsl:choose>
-                                <xsl:when test="//tei:cb">
-                                    <!-- page has columns -->
-                                    <xsl:apply-templates select="$to-group/tei:div" mode="two-cols"
-                                    />
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <!-- Page is a single column page -->
-                                    <xsl:apply-templates select="$to-group" mode="one-col"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:when>
-
-                        <xsl:when test="$mode='col'">
-
-                            <xsl:apply-templates select="$to-group/tei:div" mode="sing-col"/>
-                        </xsl:when>
-                        <xsl:when test="$mode='ch'">
-                            <xsl:element name="div">
-                                <xsl:attribute name="type">chap</xsl:attribute>
-                                <xsl:attribute name="n" select="$start"/>
-                                <xsl:copy-of
-                                    select="*/*/*/*/*/tei:div3[@xml:id = $start]/preceding::tei:pb[1]"/>
-                                <xsl:copy-of
-                                    select="*/*/*/*/*/tei:div3[@xml:id = $start]/preceding::tei:cb[1]"/>
-                                <xsl:copy-of select="*/*/*/*/*/tei:div3[@xml:id = $start]/*"/>
-                            </xsl:element>
-                        </xsl:when>
-                    </xsl:choose>
-                </body>
-            </text>
-        </TEI>
-    </xsl:template>
-
-    <!-- Convert containing numbered divs to milestones -->
-    <xsl:template match="tei:div" mode="phase2">
-        <div>
-            <xsl:copy-of select="@*"/>
-            <xsl:choose>
-                <xsl:when test="tei:div1">
-                    <xsl:apply-templates select="tei:div1" mode="phase2"/>
-                </xsl:when>
-                <xsl:when test="tei:div">
-                    <xsl:apply-templates select="tei:div" mode="phase2"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="*|processing-instruction()|comment()|text()"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </div>
-    </xsl:template>
-    <xsl:template match="tei:div1" mode="phase2">
-        <milestone>
-            <xsl:attribute name="unit" select="name()"/>
-            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
-        </milestone>
-        <xsl:choose>
-            <xsl:when test="tei:div2">
-
-                <xsl:apply-templates select="tei:div2" mode="phase2"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:copy-of select="*|processing-instruction()|comment()|text()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="tei:div2" mode="phase2">
-        <milestone>
-            <xsl:attribute name="unit" select="name()"/>
-            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
-        </milestone>
-        <xsl:choose>
-            <xsl:when test="tei:div3">
-                <xsl:apply-templates select="tei:div3" mode="phase2"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:copy-of select="*|processing-instruction()|comment()|text()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="tei:div3" mode="phase2">
-        <milestone>
-            <xsl:attribute name="unit" select="name()"/>
-            <xsl:attribute name="xml:id" select="concat('P_',@xml:id)"/>
-        </milestone>
-        <xsl:copy-of select="*|comment()|text()"/>
-    </xsl:template>
-    <!-- Final adjustments for pages with two columns -->
+    <!-- Adjustments for pages with two columns -->
     <xsl:template match="tei:div" mode="two-cols">
         <!-- There has got to be a way not to copy element and attributes AGAIN -->
         <div>
@@ -321,14 +282,17 @@
             </ab>
         </div>
     </xsl:template>
-    <!-- Final adjustment for single-column view of page with 2 columns -->
-    <xsl:template match="tei:div[parent::tei:div]" mode="sing-col">
+    
+    <xsl:template match="tei:div" mode="sing-col">
+        <!-- Original has multiple columns,view is chunked by single column -->
+        <!-- Adjustment for single-column view of page with 2 columns -->
         <!-- There has got to be a way not to copy element and attributes AGAIN -->
 
         <div>
-            <xsl:copy-of select="parent::tei:div/@*"/>
+            <xsl:copy-of select="@*"/>
             <div>
-                <xsl:copy-of select="@*"/>
+                <xsl:attribute name="type">singCol</xsl:attribute>
+                <xsl:attribute name="n" select="$col"></xsl:attribute>
                 <ab>
                     <xsl:copy-of select="node()|text()"/>
                 </ab>
@@ -336,9 +300,8 @@
         </div>
     </xsl:template>
     <xsl:template match="tei:div" mode="one-col">
+        <!-- original is a single column text -->
         <!-- There has got to be a way not to copy element and attributes AGAIN -->
-
-
         <div>
             <xsl:copy-of select="@*"/>
             <ab>
