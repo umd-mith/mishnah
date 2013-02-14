@@ -144,9 +144,18 @@
                 </map:transform>
                 <map:serialize type="tei"/>
             </map:match>
+            <map:match pattern="">
+                <map:generate src="resource://html/demo.html"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
+                </map:transform>
+                <map:serialize type="html"/>
+            </map:match>
             <map:match pattern="demo">
-                <map:generate src="resource://tei/demo.xml"/>
-                <map:transform src="resource://xsl/demo.xsl" type="xslt-saxon"/>
+                <map:generate src="resource://html/demo.html"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
+                </map:transform>
                 <map:serialize type="html"/>
             </map:match>
             <map:match pattern="browse-old">
@@ -156,6 +165,12 @@
             </map:match>
             <map:match pattern="css/*.css">
                 <map:read src="resource://css/{1}.css" mime-type="text/css"/>
+            </map:match>
+            <map:match pattern="images/*.png">
+                <map:read src="resource://images/{1}.png" mime-type="image/png"/>
+            </map:match>
+            <map:match pattern="images/favicon.ico">
+                <map:read src="resource://images/favicon.ico" mime-type="image/ico"/>
             </map:match>
             <map:match pattern="*.flat.xml">
                 <map:generate src="resource://tei/{1}.xml"/>
@@ -191,6 +206,9 @@
             <map:match pattern="browse">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                  <map:parameter name="title" value="Digital Mishnah Project Demo"/>
+                </map:transform>
                 <map:serialize type="html"/>
             </map:match>
             

@@ -10,12 +10,13 @@
         </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <html>
+        <!--<html>
             <head>
                 <title>Browse Digital Mishnah Files</title>
             </head>
-            <body style="width:75%; margin-right:15%; margin-left:15%;">
-                <h1 style="text-align:center">Browse Files from the Digital Mishnah Project</h1>
+            <body style="width:75%; margin-right:15%; margin-left:15%;">-->
+        <div class="browse">
+                <h2>Browse Files from the Digital Mishnah Project</h2>
                 <p>Files are stored as XML, following the TEI (Text Encoding Initiative)
                     specifications. They are presented in converted into HTML using XSLT on the fly,
                     using a Cocoon pipeline. Most sigla for manuscript witnesses are based on the Thesaurus of Talmud
@@ -34,8 +35,7 @@
                 <table style="width:90%; margin-right:5%; margin-left:5%;">
                     <xsl:apply-templates select="*/*/*/tei:sourceDesc/tei:listWit//tei:listWit"/>
                 </table>
-            </body>
-        </html>
+        </div>
     </xsl:template>
     <xsl:template match="tei:witness[@corresp]">
        
