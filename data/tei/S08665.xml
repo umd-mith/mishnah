@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of ***</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp/>
+                    <persName/>
+                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                        Studies</sponsor>
+                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                        Literature</sponsor>-->
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local"/>
+                <!--<availability>
+                    <licence><!-\- We'll need one of these; TBD -\-></licence>
+                </availability>-->
+                <date><!-- placeholder --></date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p/>
+                    <!--Prose description. Use the following as model
+                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
+                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
+                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
+                        Sciences, Kaufmann A50, except when preserved remains make such restoration
+                        unlikely.</p>
+                    <p>EDITED BY: Hayim Lapin</p>-->
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement/>
+                        <repository/>
+                        <idno type="genizah-CUL"
+                            ><!-- Shelf Mark here. for Oxford, e.g.,
+                            @type=genizah-Oxf etc.--></idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <locusGrp>
+                                <locus/>
+                                <!-- Points to images. Other uses? Use the following as model
+                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
+                                <locus n="2r" facs="www.genizah.org">C166193</locus>
+                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
+                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                            </locusGrp>
+                            <title>Mishnah</title>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <handDesc>
+                            <handNote script="SCRIPT">
+                                <date><!-- placeholder --></date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                        </handDesc>
+                        <!--<objectDesc form="FORM">
+                            <supportDesc>
+                                <support>Parchment</support>
+                                <extent>2 leaves</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="NUMBER">
+                                    <!-\- at longest/widest -\->
+                                    <dimensions scope="frag-sheet">
+                                        <width unit="cm"/>
+                                        <height unit="cm"/>
+                                    </dimensions>
+                                    <dimensions scope="frag-col">
+                                        <width unit="cm"/>
+                                        <height unit="cm">15.5</height>
+                                    </dimensions>
+                                    <dimensions scope="frag-chars">
+                                        <width unit="chars"/>
+                                        <height unit="lines"/>
+                                        <dim type="char-p-cm"/>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>-->
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change/>
+            <change/>
+            <change/>
+            <change/>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <!-- Excellent work so far -->
+            <!-- Remember not to start an xml:id with "#"; the # points to another id -->
+            <div1 xml:id="S08665.4">
+                <div2 xml:id="S08665.4.8">
+                    <div3 xml:id="S08665.4.8.4">
+                        <pb xml:id="S08665.1" n="1"/>    <!-- How do I label each page? --><!-- HL: This is 1r, then 1v, 2r, 2v -->
+                        <ab xml:id="S08665.4.8.4.9">
+                            בטומאה לא דורכין ולא בוצ<damage>ר</damage>ין עמו אבל מוליכין <damage>עמו</damage> חביות לגת ומביאין<lb n="1"/>
+                            עמו מן הגת<pc type="stop" rend="˙">.</pc> <!-- This actually looks more like a raised circle --><!-- HL: you can use "˚" =raised ring, Unicode 02DA  --> נח<damage>תו</damage>ם שהוא עושה בטומאה לא לש<damage><unclear exclude="#S08665.4.8.4.9.waw #S08665.4.8.4.9.yod" reason="orth"><c xml:id="S08665.4.8.4.9.waw">ו</c><c xml:id="S08665.4.8.4.9.yod">י</c></unclear></damage><damage>ן</damage> ולא עורכין עמו<pc type="stop" rend="˙">.</pc><pc type="stop" rend="˙">.</pc> א<c rend="long">ב</c>ל<lb n="2"/>
+                            מוליכין ע<damage>מו</damage> פת לפלטיר<pc type="unitEnd" rend="׳">:</pc>
+                        </ab>
+                        <ab xml:id="S08665.4.8.4.10">
+                            נוכרי שנימצא עומד בצד הבור של יין אם יש<lb n="3"/>
+                            לו עליו מלו<damage>ה א</damage>סור ואם אין לו עליו מלוה מותר נפל לבור ועלה ומדדו בקנה והיתי<damage>ז</damage><lb n="4"/>
+                            את הצירעה בקנה היה מטפיח על פי הח<damage>ב</damage>ית מורתחת כל אלו היה מ<damage>עש</damage>ה אמר<damage>ו</damage><lb n="5"/>
+                            ימכר <choice><abbr>ר<am rend="overdot">׳</am></abbr><expan>רבי</expan></choice> שמעון מתיר נטל אתה חבית ו<damage><unclear exclude="#S08665.4.8.4.10.zayin #S08665.4.8.4.10.yod" reason="orth"><c xml:id="S08665.4.8.4.10.zayin">ז</c><c xml:id="S08665.4.8.4.10.yod">י</c></unclear></damage>רקה לבור זה היה מעשה ו<damage>הכשירו<pc type="unitEnd" rend="˙">:</pc></damage><lb n="6"/>            <!-- pc looks like a raised circle -->
+                        </ab>
+                        <ab xml:id="S08665.4.8.4.11">
+                            המטהר יינו של נוכרי ונתנו בירשותו בבית שהוא פתוח לרשות הר<damage>בים בעיר</damage><lb n="7"/>
+                            שיש בה גוים וישר<c rend="lig">אל</c> מותר בעיר שכולה גוים שסור עד שיושב <damage>שם</damage> שו<damage>מר</damage><lb n="8"/>
+                            ואין השומר צריך להיות יושב ומשמר ואף על פי שהוא יוצא ונכנס מותר<lb n="9"/>
+                            <choice><abbr>ר<am rend="overdot">׳</am></abbr><expan>רבי</expan></choice> שמעון בן <c rend="lig">אל</c>עזר <choice><abbr>אומ<am rend="overdot">׳</am></abbr><expan>אומר</expan></choice> כל רשות גוים אחת<pc type="unitEnd" rend="׳">:</pc>
+                        </ab>
+                        <ab xml:id="S08665.4.8.4.12">
+                            המטהר יינו של נוכרי ונו<c rend="long">ת</c>נו<lb n="10"/>
+                            ברשותו והלה כותב לו שניתקבלתי ממר מעות אבל אם ירצה יש<damage>ר<c rend="lig">אל</c> להוציאו</damage><lb n="11"/>
+                            אינו מ<damage>ניח</damage>ו עד שיתין לו את מעותיו זה היה מעשה בבית שאן ו<damage>אסרו <choice><abbr>חכמ<am rend="overdot">׳</am></abbr><expan>חכמים</expan></choice><pc type="unitEnd" rend="˙">:</pc></damage><lb n="12"/>    <!-- pc here looks like a raised circle -->
+                        </ab>
+                    </div3>
+                    <div3 xml:id="S08665.4.8.5"><head rend="align(indent-right) size() pad(l)"><damage>פ</damage>רק ה</head>
+                        <ab xml:id="S08665.4.8.5.1">
+                            השוכר <damage>א</damage>ת הפועל לעשות עמו ביין נסך שכרו אשור שכרו<lb n="13"/>
+                            <damage>לעשות ע</damage>מו מלאכה <damage><unclear extent="1" unit="chars">?א?</unclear></damage>חרת אף על פי שאמר לו העבר לי חבית <damage>של יין</damage> נסך<lb n="14"/>
+                            <damage>ממקום למ</damage>קום ש<damage>כ</damage>רו מות<damage>ר</damage> השוכר את החמור להביא עליה יין <damage>נ<c rend="long">ס</c>ך</damage><lb n="15"/>
+                            <damage>שכרה</damage> אסור שכרך לישב עליה אף על פי שהניח לגינו עליה שכרה מו<damage><unclear extent="1" unit="chars">?ת?</unclear></damage>ר<lb n="16"/>
+                        </ab>
+                        <ab xml:id="S08665.4.8.5.2"><label rend="align() size() pad(r)"/>
+                            <damage>יין</damage> נסך שנפ<damage>ל</damage> על גבי ענבים ידיחן והן מותרות אם היו מבוקעו<c rend="long">ת</c><lb n="17"/>
+                            <damage>אסורות</damage> מ<damage>ע</damage>שה בבית<damage><unclear exclude="#S08665.4.8.5.2.final-mem #S08665.4.8.5.5.samekh" reason="orth"><c xml:id="S08665.4.8.5.2.final-mem">ם</c><c xml:id="S08665.4.8.5.2.samekh">ס</c></unclear></damage> בן זינון שהיה מביא גרוגרות בספינה ו <damage>נשתברו</damage><lb n="18"/>
+                            <damage>חביות של</damage> יין נסך על גביהן ובא מעשה לפני <choice><abbr>חכמ<am rend="overdot">׳</am></abbr><expan>חכמים</expan></choice> והיתירו זה הכלל כל<lb n="19"/>
+                            <damage>שהיא בהניי</damage>תו בנותן טעם אסור וכל שאינו בהנייתו בנותן טעם מו<damage>תר</damage><lb n="20"/>
+                            <damage>כגון החומץ ש</damage>נפל לגריסין<pc type="unitEnd" rend=":">:</pc>       <!-- Rendered as a colon in the manuscript -->
+                        </ab>
+                        <ab xml:id="S08665.4.8.5.3"><label rend="align() size() pad(r)"/>
+                            נוכרי שהיה מעביר עם ישר<c rend="lig">אל</c> כדי <damage>י</damage>ין <surplus reason="fill">מ</surplus><lb n="21"/>
+                            <damage>מ<unclear extent="1" unit="chars">?מ?</unclear>קום למקום א</damage>ם היה בחזקת <damage>מש</damage>תמר מותר ואם מודיעו שהו<damage>א</damage> מפלג<lb n="22"/>
+                            <damage>כדי שישתום ויס</damage>תום וייגב רבן <choice><abbr>שמע<am rend="overdot">׳</am></abbr><expan>שמעון</expan></choice> בן <choice><abbr>גמל<am rend="overdot">׳</am></abbr><expan>גמליאל</expan></choice> <choice><abbr>אומ<am rend="overdot">׳</am></abbr><expan>אומר</expan></choice> כדי שיפתח ויא<damage>גוף ותיג<unclear extent="1" unit="chars">?ב?</unclear></damage><lb n="23"/>
+                        </ab>
+                        <ab xml:id="S08665.4.8.5.4"><label rend="align() size() pad(r)"/>
+                            <damage>המניח יינו בק</damage>רון או בספינה והלך לו בקפונדריה נכנס למדינה ורחץ<lb n="24"/>
+                            <damage>מותר אם מודי</damage>עו שהוא מפליג כדי שישתום ויסתום ויגוף ותיגב רבן<lb n="25"/>
+                            <damage>שמעון בן <choice><abbr>גמל<am rend="overdot">׳</am></abbr><expan>גמליאל</expan></choice></damage> <choice><abbr>אומ<am rend="overdot">׳</am></abbr><expan>אומר</expan></choice> כדי שיפתח ויגוף ותיגב<pc type="stop" rend="˙">.</pc><!-- Raised circle rather than overdot in the manuscript --> המנוח נוכרי <damage>בחנו<c rend="long">ת</c>ו</damage><lb n="26"/>
+                            <damage>אף על פי שוא יוצ</damage>א וניכנס מותר אם מודיעו שהוא מפלג כד<damage>י שישתום</damage><lb n="27"/>
+                            ויסתום <damage>ויגוף ויגב</damage> רבן שמעון בן <choice><abbr>גמל<am rend="overdot">׳</am></abbr><expan>גמליאל</expan></choice> <choice><abbr>אומ<am rend="overdot">׳</am></abbr><expan>אומר</expan></choice> כדי שיפתח ויאגוף <damage>ותיגב<pc type="unitEnd" rend="˙">:</pc><!-- Raised circle rather than overdot in the manuscript --></damage><lb n="28"/>
+                        </ab>
+                        <ab xml:id="S08665.4.8.5.5"><label rend="align() size() pad(r)"/>
+                            היה <damage>אוכל <unclear extent="3" unit="chars">?עמו?</unclear> ע</damage>ל השולחן והניח לפניו לגין על השלחן ולגין <damage>על ה<unclear extent="5" unit="chars">?ל?</unclear>י</damage><lb n="29"/>
+                            והניחו ויצא <damage>ממשעל</damage> השלחן אסור ומה שעל הדלפקי מותר <damage>אם אמר</damage><lb n="30"/>
+                        </ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
