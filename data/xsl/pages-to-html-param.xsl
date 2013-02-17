@@ -7,8 +7,7 @@
     xmlns:local="local-functions.uri">
 
     <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
-<!--        doctype-public="-//W3C//DTD HTML 4.01//EN"
-        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>-->
+
     <xsl:strip-space
         elements=" tei:choice and tei:am and
         tei:gap and xs:comment and tei:orig and tei:reg and tei:unclear and tei:damage and tei:gap
@@ -25,9 +24,9 @@
     <!--<xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>-->
 
     <xsl:param name="ch"/>
-    <xsl:param name="pg"/>
+    <xsl:param name="pg">243r</xsl:param>
     <xsl:param name="col"/>
-    <xsl:param name="mode" select="'col'"/>
+    <xsl:param name="mode" select="'pg'"/>
     <xsl:variable name="wit"
         select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
@@ -45,9 +44,9 @@
             </xsl:when>
         </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="thisPgColCh">
+    <xsl:variable name="thisPgColCh" xmlns="http://www.tei-c.org/ns/1.0">
         <xsl:variable name="thisElement">
-            <xsl:copy-of select="document($thisURI)//element()[@xml:id=$thisId]"/>
+            <xsl:copy-of select="document($thisURI,(document('')))//element()[@xml:id=$thisId]"/>
         </xsl:variable>
         <xsl:variable name="name" select="$thisElement/element()/name()"/>
         <xsl:variable name="id" select="$thisElement/element()/@xml:id"/>
@@ -166,7 +165,8 @@
                       select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
                       exclude-result-prefixes="#all"/>
                   </xsl:attribute>
-                <h2>
+                    
+                    <h2>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </h2>
