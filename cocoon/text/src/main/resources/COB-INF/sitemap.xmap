@@ -205,7 +205,9 @@
             <map:match pattern="browse">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
-                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/html-frame.xsl" type="xslt-saxon">
+                    <map:parameter name="menu-mode" value="browse-home"/>
+                </map:transform>
                 <map:serialize type="html"/>
             </map:match>
             

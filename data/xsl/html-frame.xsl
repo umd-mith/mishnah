@@ -20,6 +20,9 @@
           <xsl:value-of select="div/@title"/>
         </title>
         <link href="./css/demo-styles.css" rel="stylesheet" type="text/css"/>
+        <xsl:if test="$menu-mode = 'browse-home'">
+          <link href="./css/browse-home.css" rel="stylesheet" type="text/css"/>
+        </xsl:if>
         <xsl:if test="$menu-mode ='browse-param'">
           <link href="./css/FormattingforHTML.css" rel="stylesheet" type="text/css"/>
         </xsl:if>
@@ -39,6 +42,15 @@
           have to do for now.
         -->
         <xsl:choose>
+          <xsl:when test="$menu-mode = 'browse-home'">
+            <div class="contents">
+              <h2>
+                <a href="demo">Back to demo home</a>
+                <a href="#about">About the Witness List</a>
+                <a href="#witList">Witness List</a>
+              </h2>
+            </div>
+          </xsl:when>
           <xsl:when test="$menu-mode = 'browse-param'">
             <div class="contents">
               <h2>

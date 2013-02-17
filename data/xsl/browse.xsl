@@ -15,9 +15,12 @@
                 <title>Browse Digital Mishnah Files</title>
             </head>
             <body style="width:75%; margin-right:15%; margin-left:15%;">-->
+        
+            
         <div class="browse" title="Browse Digital Mishnah Files">
-                <h2>Browse Files from the Digital Mishnah Project</h2>
-                <p>Files are stored as XML, following the TEI (Text Encoding Initiative)
+            <h2>Browse Files from the Digital Mishnah Project</h2>
+            <h2>About the Witnesses and Witness List<a name="about" > </a>&#xA0;<span
+                class="link"><a href="#top">[Top]</a></span></h2><p>Files are stored as XML, following the TEI (Text Encoding Initiative)
                     specifications. They are presented in converted into HTML using XSLT on the fly,
                     using a Cocoon pipeline. Most sigla for manuscript witnesses are based on the Thesaurus of Talmud
                     Manuscripts, ed. Sussmann et al., Jerusalem: Yad Izhak ben Zvi and Friedenberg
@@ -32,7 +35,8 @@
                 <p>The heading "J.G.M." refers to joined Genizah fragments as identified in the Sussmann Catalog. At a later stage, the project will provide virtual joins of such fragments. It will also extend joining to other manuscripts (e.g., the Maimonides autograph ms).</p>
                 <p>Click "TEI/XML" to see the underlying TEI encoding.</p>
 
-                <table style="width:90%; margin-right:5%; margin-left:5%;">
+            <h2>Witness List<a name="witList" > </a>&#xA0;<span
+                class="link"><a href="#top">[Top]</a></span></h2><table style="width:90%; margin-right:5%; margin-left:5%;">
                     <xsl:apply-templates select="*/*/*/tei:sourceDesc/tei:listWit//tei:listWit"/>
                 </table>
         </div>
