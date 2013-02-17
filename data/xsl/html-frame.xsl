@@ -19,7 +19,6 @@
         <title>
           <xsl:value-of select="div/@title"/>
         </title>
-        <link href="./css/FormattingforHTML.css" rel="stylesheet" type="text/css"/>
         <link href="./css/demo-styles.css" rel="stylesheet" type="text/css"/>
         <xsl:if test="$menu-mode ='browse-param'">
           <link href="./css/FormattingforHTML.css" rel="stylesheet" type="text/css"/>
