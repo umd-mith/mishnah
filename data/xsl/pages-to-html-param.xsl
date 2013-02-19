@@ -24,9 +24,9 @@
     <!--<xsl:param name="rqs">ch=4.2.10&amp;pg=163r&amp;col=163rA&amp;mode=col</xsl:param>-->
 
     <xsl:param name="ch"/>
-    <xsl:param name="pg">243r</xsl:param>
+    <xsl:param name="pg"/>
     <xsl:param name="col"/>
-    <xsl:param name="mode" select="'pg'"/>
+    <xsl:param name="mode"/>
     <xsl:variable name="wit"
         select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
@@ -143,22 +143,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="/">
-        <!--<html xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-                <link rel="stylesheet" type="text/css"
-                    href="./css/FormattingforHTML.css"
-                    title="Documentary"/>
-                <link rel="stylesheet" type="text/css"
-                    href="../css/FormattingforHTML.css"
-                    title="Documentary"/>
-                <title>
-                    <xsl:value-of
-                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
-                        exclude-result-prefixes="#all"/>
-                </title>
-                <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-            </head>
-            <body xsl:exclude-result-prefixes="#all" dir="rtl">-->
+        
                 <div xsl:exclude-result-prefixes="tei" dir="rtl">
                   <xsl:attribute name="title">
                     <xsl:value-of
@@ -166,6 +151,14 @@
                       exclude-result-prefixes="#all"/>
                   </xsl:attribute>
                     
+                  <div class="about" style="direction:ltr;">
+                      <h2>About the Browse Page</h2>
+                      <p>The top region of this page provides navigation controls to browse through the document.</p> <ul style="direction:ltr"><li>By default, the initial view is in <hi>page</hi> mode, and the first page of the document. (Since this is a demo, if the source document is not completely transcribed, the initial view presents the first encoded page</li>
+                      <li>Where the page in the source document is in multiple columns users can select <hi>column</hi> mode, and browse by individual column.</li>
+                      <li>Users may also select <b><i>chapter</i></b> mode and view individual chapters in a more compact format.</li></ul>
+                      <p>The radio buttons allow the user to change the browsing mode. The <b><i>First</i></b>, <b><i>Last</i></b>, <b><i>Previous</i></b>, and <b><i>Next</i></b> links allow the browser to page through the document. It is possible also to jump to a specific page, column, or chapter by entering the location in the appropriate text field.</p><p>The table below the navigation controls presents information on repository, hands, provenance and other data, including, where available, links to the National Library of Israel catalog.</p>
+                      <p>Finally, the selected text and any notes are presented below the metadata.</p>
+                  </div>
                     <h2>
                     <xsl:value-of
                         select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>

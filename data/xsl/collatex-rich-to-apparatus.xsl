@@ -48,7 +48,20 @@ pipeline. -->
                 <title>Sample Output Collatex Output</title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>-->
-            <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">
+        <div class="about">
+            <h2>About the Collate Function Page</h2>
+            <p>This page allows users to select individual witnesses and presentation order, and present the result in a number of formats. For the present, the function is only enabled for the initial demonstration text of <i>Bava Metsi'a</i> Chapter 2. As the corpus of texts expands, this functionality will be expanded as well.</p>
+            <p>Users select a specific passage ("Mishnah") using the drop down menus, use the selection list that follows to select witnesses, and select the "Collate" button.</p>
+            <p>When the page reloads, output will be presented below the selection list. A number of output types are demonstrated:</p>
+                <ul>
+                    <li><hi>Alignment table</hi>, in which each each witness is presented horizontally, and each token (word) is aligned with its corresponding element in the other witnesses. </li>
+                    <li><hi>Text with Apparatus</hi>. The witness selected with the lowest selection number (typically 1) is the default base text. The apparatus coordinates the collation output to the base text.</li>
+                    <li><hi>Parallel-Column Synopsis</hi>. Using the order from the selection list, this section of the output page presents the selected text in parallel columns.</li>
+                </ul>
+            <p>Future versions will present the different output types on distinct pages.</p>
+            
+        </div>    
+        <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">
                 <h2>Sample Collatex Output</h2>
                 <h2>
                     <xsl:variable name="ref-cit" select="tei:TEI/tei:text/tei:body/tei:div/@n"> </xsl:variable>

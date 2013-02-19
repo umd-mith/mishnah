@@ -5,7 +5,7 @@
     exclude-result-prefixes="xd its tei local" version="2.0" xmlns:local="local-functions.uri">
 
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'243r'"/>
+    <xsl:param name="pg" select="'134r'"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
     <xsl:variable name="wit"

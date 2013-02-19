@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- If you do not use THIS document for further work, PLEASE copy between the end of this comment until the comment with the **** and replace what you have in your text with these lines. -->
+<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<!-- I added the link to "for-transcribers.xsl" that I asked you to add -->
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
+<!-- *********** -->
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Mishnah Bava Qamma Ch. 1, Kaufmann Ms</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Chapter 1 of tractate Bava Qamma from the Kaufman ms. (MS A 50, Oriental
+                    Collection of the Library of the Hungarian Academy of Sciences)</p>
+                <p>Transcription and Tagging by Elana Wenner, edited by Naftali Cohn</p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl> </tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <list>
+                <item>
+                    <date/>Original transcription done during Fall Semester 2012</item>
+                <item>
+                    <date>December, 2013</date>: Begun transcription and tagging by Elana
+                    Wenner</item>
+            </list>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <!-- removed attributes referring to language, now unnecessary. -->
+        <body>
+            <!-- Instead of Kauf. or Kauf.BQ. or Kauf.., use S07326 througout -->
+            <div1 xml:id="Kauf..4">
+                <!-- HL: what you labeled <title> below goes here as <head> -->
+                <head xml:id="S0732.4.H"
+                    ><!-- you need to enter and format the introductory formula: בשם ... נתחיל סדר נזיקין --></head>
+                <div2 xml:id="Kauf..BavaQamma">
+                    <div3 xml:id="Kauf..4.1.1" n="Chapter1">
+                        <pb n="128r"/>
+                        <cb n="128rA"/>
+                        <head>Kauf.BQ.4.1.1.1<!-- This should either be blank  --></head>
+                        <ab xml:id="Kauf.BQ.4.1.1.1">
+                            <milestone unit="BQMishnah" n="1"/>
+                            <!-- please use US spelling: center not centre; otherwise we need to search for multiple variations -->
+                            <!-- HL: This is <head> not <title> and it belongs to the seder not the pereq or mishnah, so it goes  within div1 above <title rend="size () alignment(centre) pad()">
+                                <seg rend="align col1"> בשם <choice>
+                                        <abbr>א<c type="abbr" rend="overmark"
+                                                >׳<!-\- Use am rather than c [a change in coding practices; you may have seen conflicting instructions (sorry). <am> does not take type; its type is implicit "abbreviation mark" -\-></c></abbr>
+                                        <expan>אלהים</expan>
+                                    </choice>מביט עמקים<lb n="1"/> נתחיל סדר נזיקים<pc type="stop"
+                                        rend="׳">.</pc></seg></title>--><lb
+                                n="2"/> ארבעה אבות נזיקים השור והבור<lb n="3"/> והמבעה וההבער לא
+                            השור כהרי <surplus reason="fill">המ</surplus><lb n="4"/> המבעה ולא המבעה
+                            כהרי השור לא<lb n="5"/> זה וזה שיש בהן רוח חיים
+                            <!-- HL: Instead of this, see my insertion immediately following ו <add hand="2h"
+                                rend="size(small) alignment() pad() superscript">כ</add>הרי-->
+                                האש<lb n="6"/><seg><del rend="strikethrough">ו</del><add hand="h2"
+                                    place="above">כ</add>הרי</seg> שאין בה רוח חיים לא זה וזה
+                                שדרכן<lb n="7"/> לילך ולהזיק ו <add hand="2h">כ</add>הרי הבור שאין
+                            דרכו לילך<lb n="8"/> ולהזיק הצד השווה שבהן שהדרכן <surplus reason="fill"
+                                >ל</surplus><lb n="9"/> להזיק ושמירתן עליך וכשהזיק חב<lb n="10"/>
+                            המזיק משלם תשלומי נזק במיטב הארץ<lb n="11"/></ab>
+                        <!-- HL: div3 contains a chapter, ab contains a mishnah as printed in standard editions. I have moved the xml:id to the ab</div3> 
+                         <div3 xml:id = "BQ.4.1.1.2">-->
+                        <ab xml:id="S07326.4.1.1.2"><label rend="align() size() pad(rl)">ב<pc
+                                    rend="׳"/></label>כל שחבתי בשמירתו היכשרתי <surplus
+                                reason="fill"><damage>א</damage></surplus><lb n="12"/> את נזקו
+                            היכשרתי במקצת נזקו חבתי <lb n="13"/> בתשלומי נזקו כהכשר כל נזקו נכסים
+                                <lb n="14"/> שאין בהן מעילה ונכסים שהן שלבני <lb n="15"/> ברית
+                            ונכסים מיוחדים חוץ מרשות <lb n="16"/> המיוחדת למזיק ורשות הניזק והמזיק
+                                <lb n="17"/> וכשהיזיק חב המזיק משלם תשלומי <lb n="18"/> נזק במיטב
+                                הארץ<pc rend="unit end">:</pc><label rend="align() size() pad(r)"
+                                    >ג<pc rend="overline">׳</pc></label>שום כסף בשווה</ab>
+                        <lb n="19"/>
+                        <!--HL: Again, do not close and open div3. The xml:id should be on ab</div3>
+                            <div3 xml:id= "BQ.4.1.1.3">-->
+                        <ab>כסף בפני בית דין על פי עדים בני חורים <lb n="20"/>
+                            <add hand="2h" rend="size(small) align() pad(b)">ו</add>בני ברית והנשים
+                            בכלל הנזק והניזק <surplus reason="fill">וה</surplus><lb n="21"/>
+                            <w>והמז<add hand="2h"><add rend="size(small) superscript"
+                                >י</add></add>ק</w>
+                            <w>בתש<del hand="2h" rend="strikethrough">י</del>לומים</w><pc
+                                type="unitEnd">:</pc><label rend="align() size() pad(r)">ד<pc
+                                    rend="overline">'</pc></label>חמשה תמים</ab>
+                        <lb n="22"/>
+                        <!-- HL: again </div3>
+                    <div3 xml:id="BQ.4.1.1.4">-->
+                        <ab>וחמשה מועדים הבהמה אינה מועדת<lb n="23"/> לא ליגח ולא ליגוף ולא לישוך
+                            ולא לירבוץ<lb n="24"/> ולא לבעוט השן מועדת לאכל <del hand="2h"
+                                rend="strikethrough">כל</del>את<lb n="25"/> הראוי לה והרגל מועדת
+                            לשבור כדרך<lb n="26"/> הילוכה ושור המועד ושור המזיק ברשות<lb n="27"/>
+                            הניזק והאדם<pc type="UnitEnd">:</pc><label rend="size() align() pad(rl)"
+                                    >ה<pc rend="overline">׳</pc></label>הזאב והארי והדוב<lb n="28"/><cb/>
+                            <cb n="128rB"/> והנמר והפרדלס והנחש הרי אילו <surplus reason="fill"
+                                >מ</surplus><lb n="1"/> מועדים <choice>
+                                <abbr>ר<!-- Here and below, I am removing type="abbr" from am. --><am
+                                        rend="'">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> אלעזר <choice>
+                                <abbr>אומ<am rend="'"/></abbr>
+                                <expan>אומר</expan>
+                            </choice> בזמן שהן תרבות<lb n="2"/> אינן מועדים והנחש מועד לעולם מה<lb
+                                n="3"/> ב <add hand="2h"
+                                rend="size(smaller) align() pad() superscript">י</add>ן תם למועד אלא
+                            שהתם משלם חצי<lb n="4"/> נזק ומגופו והמועד משלם נזק שלם מן<lb n="5"/>
+                            העליה <pc type="unitEnd">:</pc>
+                            <!-- the following is not <label> but <trailer> --><label
+                                rend="size() align(center) pad(rl)"><choice>
+                                    <abbr>פר<am rend="overline">'</am></abbr>
+                                    <expan>פרק</expan>
+                                </choice>א<am rend="overline">'</am><choice>
+                                    <abbr>הל<am rend="overline">'</am></abbr>
+                                    <expan>הלכה</expan>
+                                </choice> ה<am rend="overline">'</am></label></ab>
+                    </div3>
+                    <lb n="6"/>
+
+                    <!-- what's wrong with te above abbreviations?? You put them within <pc> I removed the enclosing <pc> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- I closed div3, div2, div1, etc. and temporarily put all of the remaining text into an ab, so that you can have valid xml -->
+
+
+
+                    <div3>
+                        <ab> מועדים ר' אלעזר אומ'ר בזמן שהן תרבות אינן מועדים והנחש מועד לעולם מה
+                            ב(י)ן תם למועד אלא שהתם משלם חצי נזק ומגופו והמועד משלם נזק שלם מן
+                            והמזיק בתש[י]לומים </ab>
+
+
+
+
+
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
