@@ -48,10 +48,12 @@ pipeline. -->
                 <title>Sample Output Collatex Output</title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>-->
-        <div id="shown" class="about" style="direction:ltr;"><p>
-            <a href="javascript:toggle('hidden')">About This Page</a></p></div>
+        <div class="about">
+            <h2>Collation Output</h2>
+            <div id="shown" style="direction:ltr;"><p>
+            <a href="javascript:toggle('hidden')">[About this page ...]</a></p></div>
         <div id="hidden"
-            class="about" style="direction:ltr;display:none;"><p><a
+            style="direction:ltr;display:none;"><p><a
                 href="javascript:toggle('hidden')">[... Hide description]</a></p>
             <p>This page allows users to select individual witnesses and presentation order, and present the result in a number of formats. For the present, the function is only enabled for the initial demonstration text of <i>Bava Metsi'a</i> Chapter 2. As the corpus of texts expands, this functionality will be expanded as well.</p>
             <p>Users select a specific passage ("Mishnah") using the drop down menus, use the selection list that follows to select witnesses, and select the "Collate" button.</p>
@@ -65,9 +67,9 @@ pipeline. -->
             <p><a
                 href="javascript:toggle('hidden')">[... Hide description]</a></p>
             
-        </div>    
+        </div></div>    
         <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">
-                <h2>Sample Collatex Output</h2>
+                
                 <h2>
                     <xsl:variable name="ref-cit" select="tei:TEI/tei:text/tei:body/tei:div/@n"> </xsl:variable>
                     <xsl:variable name="look-up">
