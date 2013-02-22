@@ -58,8 +58,7 @@
             <div class="contents">
               <h2>
                 <a href="demo">Back to demo home</a>
-                <a href="#about">About the Witness List</a>
-                <a href="#witList">Witness List</a>
+                <a href="collate-hl">Go to collate page</a>
               </h2>
             </div>
           </xsl:when>
@@ -68,6 +67,7 @@
               <h2>
                 <a href="demo">Back to demo home</a>
                 <a href="browse">Back to browse page</a>
+                <a href="collate-hl">Go to collate page</a>
               </h2>
             </div>
           </xsl:when>
@@ -97,8 +97,8 @@
             <div class="credit">The technological infrastructure for this project has been supported
               in part by a generous grant from <a href="http://aws.amazon.com/" target="_blank"
                 >Amazon Web Services</a>.<br/> Except where otherwise noted, content on this site is
-              licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"
-                >Creative Commons Attribution 3.0 License</a>. </div>
+              licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"
+                >Creative Commons Attribution-Non-Commerical 3.0 License</a>. </div>
           </div>
         </footer>
       </body>
