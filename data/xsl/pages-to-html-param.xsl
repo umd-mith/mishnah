@@ -150,14 +150,17 @@
                       select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
                       exclude-result-prefixes="#all"/>
                   </xsl:attribute>
-                    
-                  <div class="about" style="direction:ltr;">
-                      <h2>About the Browse Page</h2>
+                    <div id="shown" class="about" style="direction:ltr;"><p>
+                        <a href="javascript:toggle('hidden')">About This Page</a></p></div>
+                    <div id="hidden"
+                        class="about" style="direction:ltr;display:none;"><p><a
+                            href="javascript:toggle('hidden')">[... Hide description]</a></p>
                       <p>The top region of this page provides navigation controls to browse through the document.</p> <ul style="direction:ltr"><li>By default, the initial view is in <hi>page</hi> mode, and the first page of the document. (Since this is a demo, if the source document is not completely transcribed, the initial view presents the first encoded page</li>
                       <li>Where the page in the source document is in multiple columns users can select <hi>column</hi> mode, and browse by individual column.</li>
                       <li>Users may also select <b><i>chapter</i></b> mode and view individual chapters in a more compact format.</li></ul>
                       <p>The radio buttons allow the user to change the browsing mode. The <b><i>First</i></b>, <b><i>Last</i></b>, <b><i>Previous</i></b>, and <b><i>Next</i></b> links allow the browser to page through the document. It is possible also to jump to a specific page, column, or chapter by entering the location in the appropriate text field.</p><p>The table below the navigation controls presents information on repository, hands, provenance and other data, including, where available, links to the National Library of Israel catalog.</p>
                       <p>Finally, the selected text and any notes are presented below the metadata.</p>
+                      <p><a href="javascript:toggle('hidden')">[... Hide description]</a></p>
                   </div>
                     <h2>
                     <xsl:value-of

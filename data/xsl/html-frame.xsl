@@ -30,6 +30,18 @@
           <link href="./css/CollatexOutput.css" rel="stylesheet" type="text/css"/>
         </xsl:if>
         <link href="./images/favicon.ico" rel="icon" type="image/ico"/>
+        <script type="text/javascript" language="JavaScript">
+          function toggle(id) {
+          var state = document.getElementById(id).style.display;
+          if (state == 'block') {
+          document.getElementById(id).style.display = 'none';
+          document.getElementById('shown').style.display = 'block';
+          } else {
+          document.getElementById(id).style.display = 'block';
+          document.getElementById('shown').style.display = 'none';
+          }
+          }
+        </script>
       </head>
       <body>
         <header id="header">

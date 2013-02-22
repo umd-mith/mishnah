@@ -48,8 +48,11 @@ pipeline. -->
                 <title>Sample Output Collatex Output</title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>-->
-        <div class="about">
-            <h2>About the Collate Function Page</h2>
+        <div id="shown" class="about" style="direction:ltr;"><p>
+            <a href="javascript:toggle('hidden')">About This Page</a></p></div>
+        <div id="hidden"
+            class="about" style="direction:ltr;display:none;"><p><a
+                href="javascript:toggle('hidden')">[... Hide description]</a></p>
             <p>This page allows users to select individual witnesses and presentation order, and present the result in a number of formats. For the present, the function is only enabled for the initial demonstration text of <i>Bava Metsi'a</i> Chapter 2. As the corpus of texts expands, this functionality will be expanded as well.</p>
             <p>Users select a specific passage ("Mishnah") using the drop down menus, use the selection list that follows to select witnesses, and select the "Collate" button.</p>
             <p>When the page reloads, output will be presented below the selection list. A number of output types are demonstrated:</p>
@@ -59,6 +62,8 @@ pipeline. -->
                     <li><hi>Parallel-Column Synopsis</hi>. Using the order from the selection list, this section of the output page presents the selected text in parallel columns.</li>
                 </ul>
             <p>Future versions will present the different output types on distinct pages.</p>
+            <p><a
+                href="javascript:toggle('hidden')">[... Hide description]</a></p>
             
         </div>    
         <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">
