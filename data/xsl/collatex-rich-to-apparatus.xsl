@@ -51,10 +51,10 @@ pipeline. -->
         <div class="about">
             <h2>Collation Output</h2>
             <div id="shown" style="direction:ltr;"><p>
-            <a href="javascript:toggle('hidden')">[About this page ...]</a></p></div>
+            <a class="toggle" href="javascript:toggle('hidden')">About this Page</a></p></div>
         <div id="hidden"
-            style="direction:ltr;display:none;"><p><a
-                href="javascript:toggle('hidden')">[... Hide description]</a></p>
+            style="direction:ltr;display:none;"><p><a class="toggle"
+                href="javascript:toggle('hidden')">Hide Description</a></p>
             <p>This page allows users to select individual witnesses and presentation order, and present the result in a number of formats. For the present, the function is only enabled for the initial demonstration text of <i>Bava Metsi'a</i> Chapter 2. As the corpus of texts expands, this functionality will be expanded as well.</p>
             <p>Users select a specific passage ("Mishnah") using the drop down menus, use the selection list that follows to select witnesses, and select the "Collate" button.</p>
             <p>When the page reloads, output will be presented below the selection list. A number of output types are demonstrated:</p>
@@ -64,8 +64,8 @@ pipeline. -->
                     <li><hi>Parallel-Column Synopsis</hi>. Using the order from the selection list, this section of the output page presents the selected text in parallel columns.</li>
                 </ul>
             <p>Future versions will present the different output types on distinct pages.</p>
-            <p><a
-                href="javascript:toggle('hidden')">[... Hide description]</a></p>
+            <p><a class="toggle"
+                href="javascript:toggle('hidden')">Hide Description</a></p>
             
         </div></div>    
         <div xsl:exclude-result-prefixes="tei" title="Sample CollateX Output" class="collation">

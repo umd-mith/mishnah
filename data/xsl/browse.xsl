@@ -20,9 +20,9 @@
         <div class="about" title="Browse Digital Mishnah Files">
             <h2>Browse Files from the Digital Mishnah Project</h2>
             <div id="shown" style="direction:ltr;"><p>
-                <a href="javascript:toggle('hidden')">[About this page ...]</a></p></div>
-            <div id="hidden" style="direction:ltr;display:none;"><p><a
-                href="javascript:toggle('hidden')">[... Hide description]</a></p><p>Files are stored as XML, following the TEI (Text Encoding Initiative)
+                <a class="toggle" href="javascript:toggle('hidden')">About this Page</a></p></div>
+            <div id="hidden" style="direction:ltr;display:none;"><p><a class="toggle" 
+                href="javascript:toggle('hidden')">Hide Description</a></p><p>Files are stored as XML, following the TEI (Text Encoding Initiative)
                     specifications. They are presented in converted into HTML using XSLT on the fly,
                     using a Cocoon pipeline. Most sigla for manuscript witnesses are based on the <i>Thesaurus of Talmud
                     Manuscripts</i>, ed. Sussmann et al. (Jerusalem: Yad Izhak ben Zvi and Friedenberg
@@ -36,8 +36,8 @@
                     include only Chapter 2 of Bava Metsi'a, and are gradually being replaced.</p>
                 <p>The heading "J.G.M." refers to joined Genizah fragments as identified in the Sussmann Catalog. At a later stage, the project will provide virtual joins of such fragments. It will also extend joining to other manuscripts (e.g., the Maimonides autograph ms).</p>
                 <p>Click "TEI/XML" to see the underlying TEI encoding.</p>
-                <p><a
-                    href="javascript:toggle('hidden')">[... Hide description]</a></p></div>
+                <p><a class="toggle"
+                    href="javascript:toggle('hidden')">Hide Description</a></p></div>
 
             </div>
         <div class="browse"><h2>Witness List</h2><table style="width:90%; margin-right:5%; margin-left:5%;">

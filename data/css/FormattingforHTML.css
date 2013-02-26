@@ -17,6 +17,7 @@ div.page{
     padding-top:12pt;
     margin-left:4em;
     margin-right:4em;
+    line-height:.75;
 
 }
 div.nav{
@@ -36,16 +37,20 @@ div.oneCol{
     padding:1em;
     margin-right:3em;
     margin-left:3em;
+    line-height:.75;
 }
 div.chap{
     width:50%;
     position:relative;
     padding:1em;
     margin-right:5%;
+    line-height:.75;
 
 }
 
-hr { color: #ddd; }
+hr{
+    color:#ddd;
+}
 
 div.hr{
     clear:both;
@@ -65,6 +70,7 @@ div.columnA{
     margin-right:2em;
     margin-left:2.5em;
     direction:rtl;
+    line-height:.75;
 }
 div.columnB{
     float:left;
@@ -74,9 +80,10 @@ div.columnB{
     margin-right:2.5em;
     margin-left:2em;
     direction:rtl;
+    line-height:.75;
 }
 table.meta{
-    padding: 4px 0px;
+    padding:4px 0px;
     border-top:1px solid #999;
     border-bottom:1px solid #999;
     vertical-align:top;
@@ -96,7 +103,11 @@ td.descr{
     padding-right:1em;
     vertical-align:top;
 }
-h1, h2, h3 { color: #55211B; }
+h1,
+h2,
+h3{
+    color:#55211B;
+}
 h1{
     font-size:larger;
     direction:ltr;
@@ -104,15 +115,14 @@ h1{
     text-align:center;
 }
 
-h2, h3{
+h2,
+h3{
     font-size:medium;
     direction:ltr;
     margin-top:1em;
     text-align:center;
 }
-body{
-    line-height:150%;
-}
+
 p{
     direction:ltr;
     text-align:left;
@@ -120,14 +130,14 @@ p{
 }
 
 .current-block{
-    padding: 12px;
+    padding:12px;
     direction:ltr;
     text-align:left;
     float:left;
     width:57%;
     border:solid #ddd 0.5pt;
     clear:none;
-    line-height:16pt;
+    line-height:1;
 }
 div.current{
     direction:ltr;
@@ -143,7 +153,7 @@ span.next{
 span.last{
     width:8%;
     float:left;
-        text-align:left;
+    text-align:left;
     margin:auto;
     top:auto;
 }
@@ -173,8 +183,9 @@ span.selMode{
     margin:0em 1em;
 }
 .submForm{
-     float:right;margin-top:-48pt;
-     
+    float:right;
+    margin-top:-48pt;
+
 }
 span.ord{
     display:none;
@@ -215,9 +226,9 @@ span.metamark:before{
 }
 span.metamark:after{
     content:"]";
-    }
- span.metamark{
-    font-size:70%; 
+}
+span.metamark{
+    font-size:70%;
     vertical-align:top;
 }
 span.missing{
@@ -382,4 +393,4 @@ span.marg-label-r{
     right:.2em;
 }
 
-/* CSS Document *
+/* CSS Document */
