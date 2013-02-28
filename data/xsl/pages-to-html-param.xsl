@@ -316,7 +316,7 @@
                                 <xsl:value-of
                                     select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='sheet']/tei:height"/>
                                 <xsl:text>
-                                × </xsl:text>
+                                &#215; </xsl:text>
                                 <xsl:value-of
                                     select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='sheet']/tei:width"
                                 /> cm</td>
@@ -357,7 +357,7 @@
                             <td class="descr"><xsl:value-of
                                     select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-cm']/tei:height"
                                     /><xsl:text>
-                                × </xsl:text><xsl:value-of
+                                &#215; </xsl:text><xsl:value-of
                                     select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/tei:dimensions[@scope='col-cm']/tei:width"
                                 /> cm</td>
                         </tr>
