@@ -5,7 +5,7 @@
     exclude-result-prefixes="xd its tei local" version="2.0" xmlns:local="local-functions.uri">
 
     <xsl:param name="ch" select="''"/>
-    <xsl:param name="pg" select="'134r'"/>
+    <xsl:param name="pg" select="''"/>
     <xsl:param name="col" select="''"/>
     <xsl:param name="mode" select="'pg'"/>
     <xsl:variable name="wit"
@@ -51,6 +51,7 @@
                         <xsl:value-of
                             select="//tei:pb[@xml:id = $start]/following::tei:pb[1]/@xml:id"/>
                     </xsl:when>
+                    <xsl:otherwise>null</xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:when test="$mode = 'col'">
@@ -242,8 +243,9 @@
             <xsl:when test="following::element()[@xml:id=$start]"> </xsl:when>
             <xsl:otherwise>
                 <label>
-                    <xsl:copy-of select="text()"/>
+                    <xsl:copy-of select="node()"/>
                 </label>
+                
             </xsl:otherwise>
         </xsl:choose>
 
