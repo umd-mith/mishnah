@@ -159,6 +159,8 @@
                                     <rng:choice>
                                         <rng:ref name="w"/>
                                         <rng:ref name="link"/>
+                                        <rng:ref name="persName"/>
+                                        <rng:ref name="placeName"/>
                                     </rng:choice>
                                 </rng:zeroOrMore>
                             </rng:group>
@@ -170,7 +172,7 @@
                             <rng:ref name="model.global"/>
                         </rng:zeroOrMore>
                     </elementSpec>
-                    <!-- Adding the XInclude elements from mishnah_reference_test.odd -->
+                    <!-- Adding the XInclude elements -->
                     <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
                         ns="http://www.w3.org/2001/XInclude" mode="add">
                         <desc>The W3C XInclude element</desc>

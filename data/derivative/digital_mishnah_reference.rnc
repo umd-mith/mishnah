@@ -6,7 +6,7 @@ namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2013-02-07T12:54:18Z. 
+# Schema generated from ODD source 2013-02-28T15:31:16Z. 
 # Edition: 2.3.0. Last updated on 17th January 2013.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 #
@@ -4347,7 +4347,11 @@ mishnahrab =
   ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. ]
   element ab {
     mishnahrmodel.global*,
-    (mishnahrlabel*, (mishnahrw | mishnahrlink)*),
+    (mishnahrlabel*,
+     (mishnahrw
+      | mishnahrlink
+      | mishnahrpersName
+      | mishnahrplaceName)*),
     mishnahratt.global.attributes,
     mishnahratt.typed.attributes,
     mishnahratt.declaring.attributes,

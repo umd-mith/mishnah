@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>-->
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-<!--<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
-<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -32,10 +32,10 @@
                 </address>
                 <idno type="local">S01832</idno>
                 <availability status="restricted">
-                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                    <licence>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
                         Center for Jewish Studies and licensed under a <ref
                             target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
-                            Commons Attribution 3.0 Unported License</ref>.</p>
+                            Commons Attribution 3.0 Unported License</ref>.</licence>
                 </availability>
                 <date>2012-11-30</date>
 
@@ -69,11 +69,11 @@
                                 <locus n="1r" facs="ww.genizah.org">C211267</locus>
                             </locusGrp>
                             <title>Mishnah</title>
-                            
+
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <objectDesc form="folio">
+                        <objectDesc form="codex">
                             <supportDesc>
                                 <support>Parchment</support>
                                 <extent>1</extent>
@@ -181,9 +181,9 @@
                                 <damage>כ</damage>שעת הגזלה זה הכל<damage>ל <gap reason="damage"
                                     unit="chars" extent="15"/></damage>
                             <lb n="11"/> כשעת הגזילה<pc rend="°" unit="unitEnd">:</pc></ab>
-                        <ab xml:id="S01832.4.1.9.2"> גזל בהמה והיזקינה עבדים וה<damage>זקינו</damage>
-                            משלם כשעת <damage>ה<gap reason="damage" unit="chars" extent="4"
-                                /></damage>
+                        <ab xml:id="S01832.4.1.9.2"> גזל בהמה והיזקינה עבדים
+                                וה<damage>זקינו</damage> משלם כשעת <damage>ה<gap reason="damage"
+                                    unit="chars" extent="4"/></damage>
                             <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -203,8 +203,8 @@
                             <lb n="14"/> הפסח בהמה ונעברה בה עבירה או שניפסלה מעל גבי המזבח או שהיתה
                                 יוצא<lb n="15"/> להיסקל יאמר לו הרי שלך לפניך<pc rend="°"
                                 unit="unitEnd">:</pc></ab>
-                        <ab xml:id="S01832.4.1.9.3"> נתן לא<damage>ו</damage>מנין לתקן וקילקלו חייבין
-                            לשלם <lb n="16"/> נתן <choice>
+                        <ab xml:id="S01832.4.1.9.3"> נתן לא<damage>ו</damage>מנין לתקן וקילקלו
+                            חייבין לשלם <lb n="16"/> נתן <choice>
                                 <orig>לֵחָרש</orig>
                                 <reg>לחרש</reg>
                             </choice> שידה תיבה ומגדל לתקן וקילקל חייב לשלם הבניי שקיבל
@@ -219,15 +219,16 @@
                         <ab xml:id="S01832.4.1.9.4"> נתן צמר לצבע והקד<damage>יח</damage>ה
                                 יור<damage>ה</damage>
                             <lb n="19"/> נותן לו דמי צמרו צבעו כעור אם השבח יותר על
-                                    <damage>ה<unclear exclude="#S01832.4.1.9.4.yod #S01832.4.1.9.waw"
-                                    reason="orth">
-                                    <c xml:id="S01832.4.1.8.7.waw">ו</c><c xml:id="S01832.4.1.8.7.yod"
-                                        >י</c></unclear></damage>צאה נותן לו את היצ<damage><unclear
-                                    reason="damage">י</unclear></damage>אה <surplus>??</surplus><lb
-                                n="20"/> ואם היצאה יתירה על השבח נותן לו את השבח <damage><unclear
-                                    reason="damage" unit="chars" extent="3"/> ל</damage>צבוע לו אדום
-                                ו<damage>צבעו <surplus>?</surplus></damage><note>Possible traces of
-                                a letter.</note>
+                                    <damage>ה<unclear
+                                    exclude="#S01832.4.1.9.4.yod #S01832.4.1.9.waw" reason="orth">
+                                    <c xml:id="S01832.4.1.8.7.waw">ו</c><c
+                                        xml:id="S01832.4.1.8.7.yod">י</c></unclear></damage>צאה נותן
+                            לו את היצ<damage><unclear reason="damage">י</unclear></damage>אה
+                                <surplus>??</surplus><lb n="20"/> ואם היצאה יתירה על השבח נותן לו את
+                            השבח <damage><unclear reason="damage" unit="chars" extent="3"/>
+                                ל</damage>צבוע לו אדום ו<damage>צבעו
+                                <surplus>?</surplus></damage><note>Possible traces of a
+                                letter.</note>
                             <lb n="21"/> שחור שחור וצבעו אדום <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -284,8 +285,8 @@
                             <damage><gap reason="damage" unit="chars" extent="24"/> מ</damage>שלם
                             תשלומי כפל אם הודה מעצ<damage>מו</damage>
                             <lb n="36"/>
-                            <pb n="1r" xml:id="S01832.1r"/> מש<c rend="tall">ל</c>ם קרן וחומש ואשם<pc
-                                rend="°" unit="unitEnd">:</pc></ab>
+                            <pb n="1r" xml:id="S01832.1r"/> מש<c rend="tall">ל</c>ם קרן וחומש
+                                ואשם<pc rend="°" unit="unitEnd">:</pc></ab>
                         <ab xml:id="S01832.4.1.9.10"> הגוז<c rend="tall">ל</c> אביו ונשבע <c
                                 rend="tall">ל</c>ו ומת הרי זה מש<c rend="tall">ל</c>ם
                                 קרן<surplus>??</surplus><lb n="1"/> וחומש לבני<damage>ו

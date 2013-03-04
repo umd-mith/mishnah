@@ -1,11 +1,12 @@
 default namespace = "http://www.tei-c.org/ns/1.0"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 namespace ns1 = "http://www.isocat.org/ns/dcr"
+namespace ns2 = "http://www.w3.org/2001/XInclude"
 namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace sch = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2013-02-12T12:23:18Z. 
+# Schema generated from ODD source 2013-02-28T16:27:24Z. 
 # Edition: 2.3.0. Last updated on 17th January 2013.
 # Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 #
@@ -1601,7 +1602,8 @@ mishnahw_model.inter =
   | mishnahw_model.listLike
   | mishnahw_model.stageLike
   | mishnahw_model.qLike
-mishnahw_model.common = mishnahw_model.divPart | mishnahw_model.inter
+mishnahw_model.common =
+  mishnahw_model.divPart | mishnahw_model.inter | mishnahw_include
 mishnahw_model.phrase =
   mishnahw_model.segLike
   | mishnahw_model.highlighted
@@ -5761,4 +5763,44 @@ mishnahw_w =
     attribute lemmaRef { mishnahw_data.pointer }?,
     empty
   }
+mishnahw_include =
+  
+  ## The W3C XInclude element
+  element ns2:include {
+    mishnahw_fallback?,
+    
+    ## pointer to the resource being included
+    attribute href { mishnahw_data.pointer }?,
+    
+    ##
+    [ a:defaultValue = "xml" ]
+    attribute parse {
+      
+      ##
+      "xml"
+      | 
+        ##
+        "text"
+    }?,
+    
+    ##
+    attribute xpointer { text }?,
+    
+    ##
+    attribute encoding { text }?,
+    
+    ##
+    attribute accept { text }?,
+    
+    ##
+    attribute accept-charset { text }?,
+    
+    ##
+    attribute accept-language { text }?,
+    empty
+  }
+mishnahw_fallback =
+  
+  ## Wrapper for fallback elements if an XInclude fails
+  element ns2:fallback { (text)+ }
 start = mishnahw_TEI

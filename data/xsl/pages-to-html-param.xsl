@@ -1031,7 +1031,7 @@
     <xsl:template match="//tei:trailer">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="node()"/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="//tei:label">
@@ -1064,7 +1064,7 @@
     <xsl:template match="//tei:head">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates select="node()"/>
+            <xsl:apply-templates select="*"/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:note[ancestor::tei:body]">

@@ -1,13 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- *********************************************************************************************************** -->
-<!-- *********************************************************************************************************** -->
-<error msg="Failed to compile stylesheet. 1 error detected." exclass="class pl.psnc.dl.ege.exception.ConverterException" >pl.psnc.dl.ege.exception.ConverterException: Failed to compile stylesheet. 1 error detected.
-	at pl.psnc.dl.ege.MultiXslConverter.convert(MultiXslConverter.java:107)
-	at pl.psnc.dl.ege.component.NamedConverter.convert(NamedConverter.java:44)
-	at pl.psnc.dl.ege.ConversionPerformer.run(ConversionPerformer.java:44)
-	at java.lang.Thread.run(Thread.java:619)
-</error>
-
-<!-- *********************************************************************************************************** -->
-<!-- *********************************************************************************************************** -->
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://purl.oclc.org/dsdl/schematron"
+        xmlns:oxdoc="http://www.oxygenxml.com/ns/doc/xsl"
+        queryBinding="xslt2">
+   <title>ISO Schematron rules</title>
+   <!--namespaces:--><ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+   <ns prefix="rng" uri="http://relaxng.org/ns/structure/1.0"/>
+   <sch:ns xmlns:sch="http://purl.oclc.org/dsdl/schematron" prefix="tei"
+           uri="http://www.tei-c.org/ns/1.0"/>
+   <!--keys:--><!--patterns:--><!--constraints:--><pattern id="att.datable-constraint-calendar">
+      <rule context="tei:*[@calendar]">
+            <assert test="string-length(.) gt 0">
+@calendar indicates the system or calendar to which the date represented by the content of this element
+belongs, but this <name/> element has no textual content.</assert>
+          </rule>
+   </pattern>
+   <pattern id="att.typed-constraint-subtypeTyped">
+      <rule context="*[@subtype]">
+	        <assert test="@type">The <name/> element should not be categorized in detail with @subtype
+ unless also categorized in general with @type</assert>
+      </rule>
+   </pattern>
+   <pattern id="att.pointing-constraint-targetLang">
+      <rule context="tei:*[not(self::tei:schemaSpec)][@targetLang]">
+            <assert test="count(@target)">@targetLang can only be used if @target is specified.</assert>
+          </rule>
+   </pattern>
+   <pattern id="att.spanning-constraint-spanTo-2">
+      <rule context="tei:*[@spanTo]">
+         <assert test="following::*[@xml:id=substring(current()/@target,2)]">
+The element indicated by @spanTo must follow the current element <name/>
+         </assert>
+      </rule>
+   </pattern>
+   <pattern id="att.spanning-constraint-spanTo-3">
+      <rule context="tei:*[@spanTo]">
+         <assert test="id(substring(@spanTo,2))">
+@spanTo on <name/> must point to  the identifier of some element  in this document</assert>
+      </rule>
+   </pattern>
+   <pattern id="ptr-constraint-ptrAtts">
+      <rule context="tei:ptr">
+         <report test="@target and @cRef">Only one of the
+attributes @target and @cRef may be supplied on <name/>.</report>
+      </rule>
+   </pattern>
+   <pattern id="ref-constraint-refAtts">
+      <rule context="tei:ref">
+         <report test="@target and @cRef">Only one of the
+	attributes @target' and @cRef' may be supplied on <name/>
+         </report>
+      </rule>
+   </pattern>
+   <pattern id="relatedItem-constraint-targetorcontent1">
+      <rule context="tei:relatedItem">
+         <report test="@target and count( child::* ) &gt; 0">
+If the @target attribute on <name/> is used, the
+relatedItem element must be empty</report>
+         <assert test="@target or child::*">A relatedItem element should have either a 'target' attribute
+        or a child element to indicate the related bibliographic item</assert>
+      </rule>
+   </pattern>
+   <pattern id="lg-constraint-atleast1oflggapl">
+      <rule context="tei:lg">
+         <assert test="count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) &gt; 0">An lg element
+        must contain at least one child l, lg or gap element.</assert>
+      </rule>
+   </pattern>
+   <pattern id="quotation-constraint-quotationContents">
+      <rule context="tei:quotation">
+         <report test="not(@marks) and not (tei:p)">
+On <name/>, either the @marks attribute should be used, or a paragraph of description provided</report>
+      </rule>
+   </pattern>
+   <pattern id="link-constraint-linkTargets1">
+      <rule context="tei:link">
+         <report test="@target and @targets">You may not supply both 
+	@target and @targets on <name/>
+         </report>
+      </rule>
+   </pattern>
+   <pattern id="link-constraint-linkTargets2">
+      <rule context="tei:link">
+         <report test="not(@target) and not(@targets)">You must
+	supply either @target or @targets on <name/>
+         </report>
+      </rule>
+   </pattern>
+   <pattern id="link-constraint-linkTargets3">
+      <rule context="tei:link">
+         <assert test="contains(@target,' ')">You must supply at least two
+values for @target on <name/>
+         </assert>
+      </rule>
+   </pattern>
+   <pattern id="app-constraint-only1lem">
+      <rule context="tei:app">
+         <assert test="count( descendant::tei:lem[ generate-id(    current() ) = generate-id(    ancestor::tei:app[1] ) ]) &lt;       2">
+Only one &lt;lem&gt; element may appear within a single  apparatus
+entry, whether it appears outside a &lt;rdgGrp&gt;
+element or within it.</assert>
+      </rule>
+   </pattern>
+</schema>
