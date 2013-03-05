@@ -50,7 +50,7 @@
             <xsl:variable name="fileURI">
                 <xsl:value-of select="concat('../tei/',@corresp)"/>
             </xsl:variable>
-            <tr>
+        <tr style="vertical-align:top">
                 <td style="font-weight:bold; padding-right:5;">
                     <xsl:variable name="source" xmlns:tei="http://www.tei-c.org/ns/1.0">
                         <xsl:sequence select="document($fileURI,(document('')))"/>
