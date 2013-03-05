@@ -48,7 +48,7 @@
       <body>
         <header id="header">
           <a href="demo">
-            <img src="./images/mishnah_logo.png" width="413" height="61" alt="Digital Mishnah"/>
+            <img src="./images/mishnah-logo.png" width="413" height="61" alt="Digital Mishnah"/>
           </a>
         </header>
         <!--
