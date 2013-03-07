@@ -29,9 +29,12 @@
         </xsl:if>
         <xsl:if test="$menu-mode = 'collation'">
           <link href="./css/CollatexOutput.css" rel="stylesheet" type="text/css"/>
+          
         </xsl:if>
        
+        
         <link href="./images/favicon.ico" rel="icon" type="image/ico"/>
+        <link href="./images/bg-page.jpg" rel="jpg" type="image/jpg"/>
         <script type="text/javascript" language="JavaScript">
           function toggle(id) {
           var state = document.getElementById(id).style.display;
@@ -47,6 +50,7 @@
       </head>
       <body>
         <header id="header">
+          
           <a href="demo">
             <img src="./images/mishnah-logo.png" width="413" height="61" alt="Digital Mishnah"/>
           </a>

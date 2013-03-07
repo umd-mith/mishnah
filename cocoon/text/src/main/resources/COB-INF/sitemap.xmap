@@ -169,6 +169,9 @@
             <map:match pattern="images/*.png">
                 <map:read src="resource://images/{1}.png" mime-type="image/png"/>
             </map:match>
+            <map:match pattern="images/*.jpg">
+                <map:read src="resource://images/{1}.jpg" mime-type="image/jpg"/>
+            </map:match>
             <map:match pattern="images/favicon.ico">
                 <map:read src="resource://images/favicon.ico" mime-type="image/ico"/>
             </map:match>
