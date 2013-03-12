@@ -1,107 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>
-<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of ***</title>
+                <title>An electronic transcription of Cambridge Genizah Fragment ENA 1487/61 (New York)</title>
                 <editor>
                     <persName>Hayim Lapin</persName>
                 </editor>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
                 <respStmt>
-                    <resp/>
-                    <persName/>
-                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>-->
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#NE">Nurit Ezer</persName>
                 </respStmt>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#LJ">Leor Jacoby</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
                 <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
                 <address>
-                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>0301 Hornbake Library</addrLine>
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">S06241</idno>
-                <!--<availability>
-                    <licence><!-\- We'll need one of these; TBD -\-></licence>
-                </availability>-->
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <availability>
+                    <licence>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0/">Creative
+                            Commons Attribution Non-Commercial 3.0 Unported License</ref>.</licence>
+                </availability>
+                <date>2013-03-10</date>
             </publicationStmt>
             <notesStmt>
                 <note>
-                    <p/>
-                    <!--Prose description. Use the following as model
-                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
+                        <p>Fragment in the Elkan Natan Adler Collection, Jewish Theological Seminary, NY.
+                        Covers Sanhedrin 10.5 - 11.6, Makkot 1.1.</p>
                     <p>Transcription from online images of the manuscript, available at
-                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
-                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
-                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
-                        Sciences, Kaufmann A50, except when preserved remains make such restoration
-                        unlikely.</p>
-                    <p>EDITED BY: Hayim Lapin</p>-->
+                        https://fgp.genizah.org. FGP nos. C10852-C10853</p>
+                    <p>Recto and verso are registered in reverse order.</p>
+                    <p>EDITED BY: Hayim Lapin</p>
                 </note>
             </notesStmt>
             <sourceDesc>
                 <msDesc>
                     <msIdentifier>
-                        <settlement/>
-                        <repository/>
-                        <idno type="genizah-CUL">ENA 1487/61</idno>
+                        <settlement>New York City</settlement>
+                        <repository>Jewish Theological Seminary</repository>
+                        <idno type="genizah-JTS">ENA 1487/61</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
                             <locusGrp>
-                                <locus/>
-                                <!-- Points to images. Other uses? Use the following as model
-                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
-                                <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
+                                <!-- THIS SECTION NEEDS WORK GLOBALLY -->
+                                 
+                                <locus n="1v" facs="www.genizah.org">C10853</locus>
+                                <locus n="1r" facs="www.genizah.org">C10852</locus>
+                                
                             </locusGrp>
                             <title>Mishnah</title>
                         </msItem>
                     </msContents>
                     <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc>
+                                <support>Parchment</support>
+                                <extent>1</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- at longest/widest -->
+                                    
+                        <dimensions scope="frag">
+                            <width unit="cm">8.6</width>
+                            <height unit="cm">26.5</height>
+                        </dimensions>
+                        
+                        <dimensions scope="col-cm">
+                            <width atLeast="8.5" atMost="8.6" unit="cm">8.6</width>
+                            <height atLeast="11.5" atMost="11.6" unit="cm">11.6</height>
+                        </dimensions>
+                        <dimensions scope="col-writ">
+                            <width atLeast="21" atMost="23" unit="chars">22</width>
+                            <height unit="lines">15</height>
+                            <dim type="char-p-cm">2.6</dim>
+                        </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
                         <handDesc>
-                            <handNote script="SCRIPT">
-                                <date><!-- placeholder --></date>
+                            <handNote script="Oriental Square">
+                                <date notBefore="1000" notAfter="1300">11th-13th c.</date>
                                 <region><!-- placeholder --></region>
                             </handNote>
                         </handDesc>
-                        <!--<objectDesc form="FORM">
-                            <supportDesc>
-                                <support>Parchment</support>
-                                <extent>2 leaves</extent>
-                            </supportDesc>
-                            <layoutDesc>
-                                <layout columns="NUMBER">
-                                    <!-\- at longest/widest -\->
-                                    <dimensions scope="frag-sheet">
-                                        <width unit="cm"/>
-                                        <height unit="cm"/>
-                                    </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm"/>
-                                        <height unit="cm">15.5</height>
-                                    </dimensions>
-                                    <dimensions scope="frag-chars">
-                                        <width unit="chars"/>
-                                        <height unit="lines"/>
-                                        <dim type="char-p-cm"/>
-                                    </dimensions>
-                                </layout>
-                            </layoutDesc>
-                        </objectDesc>-->
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -121,73 +129,135 @@
 
             <div1 xml:id="S06241.4">
 
-                <pb xml:id="S016241.1v" n="1v"/>
+                <pb xml:id="S016241.1v" n="1v" next="#S06241.1r"/>
                 <div2 xml:id="S06241.4.4">
                     <div3 xml:id="S06241.4.4.10">
-                        <ab xml:id="S06241.4.4.10.5"> <damage><gap reason="damage" extent="32" unit="chars"
-                            />עים ?-בי-?ן מתוכ{ה <gap reason="damage" extent="8" unit="chars"/></damage> <lb
-                                n="1"/> <damage><gap reason="damage" extent="6" unit="chars"/></damage></ab>
-                        <ab xml:id="S06241.4.4.10.6"><damage><gap reason="damage" extent="21" unit="chars"
-                            /></damage>וך רחובה אין לה ר<damage>חוב עוש<gap reason="damage" extent="2" unit="chars"
-                            /></damage> <lb n="2"/> <damage><gap reason="damage" extent="31" unit="chars"/>ת</damage>וכה
-                            שנ'אמר אל תוך <damage>רחובה ושר<gap reason="damage" extent="2" unit="chars"/></damage>
-                                <lb n="3"/> <damage><gap reason="damage" extent="26" unit="chars"/></damage>שלל
-                            שמים מיכן אמ<damage>רו <gap reason="damage" extent="9" unit="chars"/></damage> <lb
-                                n="4"/> <damage><gap reason="damage" extent="30" unit="chars"/></damage>כתבי הקודש
-                            יגניזו: <damage><gap reason="damage" extent="5" unit="chars"/></damage> <lb n="5"/>
-                                <damage><gap reason="damage" extent="30" unit="chars"/>עי</damage>ר נידחת מעלה אני
-                            עליך כא<damage><gap reason="damage" extent="3" unit="chars"/></damage> <lb n="6"/>
-                                <damage><gap reason="damage" extent="29" unit="chars"/><unclear reason="damage">ל</unclear></damage>א תבנה עוד לא
-                            ת<damage>ע</damage>ש<damage>ה</damage> אפילו גנות <lb n="7"/> <damage><gap reason="damage" extent="35"
-                                unit="chars"/>מ'ר</damage> לא תבנה עוד עוד לכמות שהיי<damage>ת</damage> <lb n="8"/> <damage><gap
-                                reason="damage" extent="30" unit="chars"/></damage>: י'ג' לא <damage>ידב</damage>ק בידך
-                            מאומה מ<damage>ן</damage> <lb n="9"/> <damage><gap reason="damage" extent="29" unit="chars"
-                            />ר</damage>שעים בעולם ח<damage>רון</damage> אף בעולם <lb n="10"/> <damage><gap reason="damage"
-                                extent="29" unit="chars"/>ן</damage> העולם:</ab>
+                        <ab xml:id="S06241.4.4.10.5">
+                            <damage><gap reason="damage" extent="32" unit="chars"/>עים <unclear
+                                    reason="damage">בי</unclear></damage>ן מתוכ<damage>ה <gap
+                                    reason="damage" extent="8" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage><gap reason="damage" extent="6" unit="chars"/></damage></ab>
+                        <ab xml:id="S06241.4.4.10.6"><damage><gap reason="damage" extent="21"
+                                    unit="chars"/></damage>וך רחובה אין לה ר<damage>חוב עוש<gap
+                                    reason="damage" extent="2" unit="chars"/></damage>
+                            <lb n="2"/>
+                            <damage><gap reason="damage" extent="31" unit="chars"/>ת</damage>וכה <choice>
+                                <abbr>ש<am rend="overdot">׳</am>נ</abbr>
+                                <expan>שנאמר</expan>
+                            </choice> אל תוך <damage>רחובה ושר<gap reason="damage" extent="2"
+                                    unit="chars"/></damage>
+                            <lb n="3"/>
+                            <damage><gap reason="damage" extent="26" unit="chars"/></damage>שלל שמים
+                            מיכן אמ<damage>רו <gap reason="damage" extent="9" unit="chars"
+                                /></damage>
+                            <lb n="4"/>
+                            <damage><gap reason="damage" extent="30" unit="chars"/></damage>כתבי
+                            הקודש יגניזו<pc rend="°">:</pc>
+                            <damage><gap reason="damage" extent="5" unit="chars"/></damage>
+                            <lb n="5"/>
+                            <damage><gap reason="damage" extent="30" unit="chars"/>עי</damage>ר
+                            נידחת מעלה אני עליך כא<damage><gap reason="damage" extent="3"
+                                    unit="chars"/></damage>
+                            <lb n="6"/>
+                            <damage><gap reason="damage" extent="29" unit="chars"/><unclear
+                                    reason="damage">ל</unclear></damage>א תבנה עוד לא
+                                ת<damage>ע</damage>ש<damage>ה</damage> אפילו גנות <lb n="7"/>
+                            <damage><gap reason="damage" extent="35" unit="chars"/><unclear
+                                    reason="damage" extent="1" unit="chars">מ</unclear></damage> לא
+                            תבנה עוד עוד לכמות שהיי<damage>ת</damage>
+                            <lb n="8"/>
+                            <damage><gap reason="damage" extent="30" unit="chars"/></damage><pc
+                                rend="°">:</pc>
+                            <label>י<am rend="overdot">׳</am>ג<am rend="overdot">׳</am></label> לא
+                                <damage>ידב</damage>ק בידך מאומה מ<damage>ן</damage>
+                            <lb n="9"/>
+                            <damage><gap reason="damage" extent="29" unit="chars"/>ר</damage>שעים
+                            בעולם ח<damage>רון</damage> אף בעולם <lb n="10"/>
+                            <damage><gap reason="damage" extent="29" unit="chars"/>ן</damage>
+                                העולם<pc rend="°">:</pc></ab>
                     </div3>
                     <div3 xml:id="S06241.4.4.11">
-                        <ab xml:id="S06241.4.4.11.1"> *פרק י'א' הלכות* <lb n="11"/> <damage><gap
-                                reason="damage" extent="28" unit="chars"/></damage>גונב נפש מישראל וזקן ממרא
-                                <lb n="12"/> <damage><gap reason="damage" extent="29" unit="chars"/></damage> עבודה
-                            זר<damage>ה</damage> והבא על אש<damage>ת</damage> <lb n="13"/> <damage><gap reason="damage" extent="25"
-                                unit="chars"/>ב</damage>יו ואמו א<damage><gap reason="damage" extent="2"
-                                unit="chars"/></damage>ו חייב עד שיעש<damage>ה</damage> <lb n="14"/> <damage><gap reason="damage"
-                                extent="28" unit="chars"/></damage>לל לאחר מיתה חייב והמ<damage>כה</damage></ab>
+                        <head xml:id="S06241.4.4.11.T">פרק<am rend="overmark"/> י<am rend="overdot"
+                                >׳</am>א<am rend="overdot">׳</am> הלכות</head>
+                        <lb n="11"/>
+                        <ab xml:id="S06241.4.4.11.1"><damage><gap reason="damage" extent="28"
+                                    unit="chars"/></damage>גונב נפש מישראל וזקן ממרא <lb n="12"/>
+                            <damage><gap reason="damage" extent="29" unit="chars"/></damage> עבודה
+                                זר<damage>ה</damage> והבא על אש<damage>ת</damage>
+                            <lb n="13"/>
+                            <damage><gap reason="damage" extent="25" unit="chars"/>ב</damage>יו ואמו
+                                    א<damage><gap reason="damage" extent="2" unit="chars"
+                            /></damage>ו חייב עד שיעש<damage>ה</damage>
+                            <lb n="14"/>
+                            <damage><gap reason="damage" extent="28" unit="chars"/></damage>לל לאחר
+                            מיתה חייב והמ<damage>כה</damage></ab>
                         <lb n="15"/>
-                        <pb xml:id="S06241.1r" n="1r"/>
-                        <ab xml:id="S06241.4.4.11.4"> <damage><gap reason="damage" extent="14" unit="chars"
-                            />תין <gap reason="damage" extent="33" unit="chars"/></damage> <lb n="1"/> <damage><gap
-                                reason="damage" extent="7" unit="chars"/>א</damage> ר'בי יהודה אומ<damage><gap
-                                reason="damage" extent="30" unit="chars"/></damage> <lb n="2"/> <damage>כותבי</damage>ן
-                            ושולחין לכל המקו<damage><gap reason="damage" extent="31" unit="chars"/></damage> <lb
-                                n="3"/> <damage><unclear reason="damage">ב</unclear></damage>בית דין:</ab>
-                        <ab xml:id="S06241.4.4.11.5"> <damage><unclear reason="FIXME">ו/ז</unclear></damage> <damage>ו</damage>נביא ה<damage><gap reason="damage"
-                                extent="26" unit="chars"/></damage> <lb n="4"/> <damage><gap reason="damage"
-                                extent="1" unit="chars"/></damage>בל הכובש את נבואתו <damage>ו<gap reason="damage"
-                                extent="32" unit="chars"/></damage> <lb n="5"/> <damage><gap reason="damage"
-                                extent="4" unit="chars"/></damage> מיתתו בידי שמים ש<damage><gap reason="damage"
-                                extent="14" unit="chars"/></damage></ab>
+                        <pb xml:id="S06241.1r" n="1r" prev="#S016241.1v"/>
+                        <ab xml:id="S06241.4.4.11.4">
+                            <damage><gap reason="damage" extent="14" unit="chars"/>תין <gap
+                                    reason="damage" extent="33" unit="chars"/></damage>
+                            <lb n="1"/>
+                            <damage><gap reason="damage" extent="7" unit="chars"/>א</damage>
+                            <damage><choice>
+                                    <abbr>ר<am>׳</am></abbr>
+                                    <expan>רבי</expan>
+                                </choice></damage> יהודה אומ<damage><gap reason="damage" extent="30"
+                                    unit="chars"/></damage>
+                            <lb n="2"/>
+                            <damage>כותבי</damage>ן ושולחין לכל המקו<damage><gap reason="damage"
+                                    extent="31" unit="chars"/></damage>
+                            <lb n="3"/>
+                            <damage><unclear reason="damage">ב</unclear></damage>בית דין<pc rend="°"
+                                >:</pc></ab>
+                        <ab xml:id="S06241.4.4.11.5">
+                            <damage><unclear>ו/ז</unclear></damage>
+                            <damage>ו</damage>נביא ה<damage><gap reason="damage" extent="26"
+                                    unit="chars"/></damage>
+                            <lb n="4"/>
+                            <damage><gap reason="damage" extent="1" unit="chars"/></damage>בל הכובש
+                            את נבואתו <damage>ו<gap reason="damage" extent="32" unit="chars"
+                                /></damage>
+                            <lb n="5"/>
+                            <damage><gap reason="damage" extent="4" unit="chars"/></damage> מיתתו
+                            בידי שמים ש<damage><gap reason="damage" extent="14" unit="chars"
+                                /></damage></ab>
                         <ab xml:id="S06241.4.4.11.6">
-                            <damage><gap reason="damage" extent="9" unit="chars"/></damage> <lb n="6"/> <damage>ע</damage>בודה זרה
-                            ואמר כך אמרה <damage>ע<gap reason="damage" extent="30" unit="chars"/></damage> <lb
-                                n="7"/> הטמא ולטהר את הטהור הב<damage>א<gap reason="damage" extent="27"
-                                unit="chars"/></damage> <lb n="8"/> לנשואין אף על פי שלא נבעל<damage><unclear reason="damage">ה</unclear><gap
-                                reason="damage" extent="27" unit="chars"/></damage> <lb n="9"/> ובועלה הא כל
-                            הזוממין מקד<damage><unclear reason="damage">מ</unclear><gap reason="damage" extent="25" unit="chars"/></damage> <lb
-                                n="10"/> ובועלה:</ab><trailer xml:id="S01724.4.4.11.T"><add hand="2h" place="FIXME">סנהדרין</add> פרק י'ב' הלכ<unclear reason="damage">ו</unclear><gap
-                            reason="damage" extent="2" unit="chars"/>*</trailer><!-- Whole trailer needs to be worked on --></div3>
+                            <damage><gap reason="damage" extent="9" unit="chars"/></damage>
+                            <lb n="6"/>
+                            <damage>ע</damage>בודה זרה ואמר כך אמרה <damage>ע<gap reason="damage"
+                                    extent="30" unit="chars"/></damage>
+                            <lb n="7"/> הטמא ולטהר את הטהור הב<damage>א<gap reason="damage"
+                                    extent="27" unit="chars"/></damage>
+                            <lb n="8"/> לנשואין אף על פי שלא נבעל<damage><unclear reason="damage"
+                                    >ה</unclear><gap reason="damage" extent="27" unit="chars"
+                                /></damage>
+                            <lb n="9"/> ובועלה הא כל הזוממין מקד<damage><unclear reason="damage"
+                                    >מ</unclear><gap reason="damage" extent="25" unit="chars"
+                                /></damage>
+                            <lb n="10"/> ובועלה<pc rend="°">:</pc></ab>
+                        <trailer xml:id="S01724.4.4.11.T"><note>Modern hand (pencil) has added
+                                "סנהדרין."</note> פרק<am rend="overmark"/> י<am rend="overdot"
+                                >׳</am>ב<am rend="overdot">׳</am> הלכ<unclear reason="damage"
+                                >ו</unclear><gap reason="damage" extent="2" unit="chars"/></trailer>
+                        <!-- Whole trailer needs to be worked on -->
+                    </div3>
                 </div2>
                 <div2 xml:id="S06241.4.5">
                     <div3 xml:id="S06241.4.5.1">
-                        <ab xml:id="S06241.4.5.1.1"> <damage><gap reason="damage" extent="20" unit="chars"
-                            /></damage> <lb n="11"/> מעידין אנו את איש פלוני ש<damage><gap reason="damage"
-                                extent="28" unit="chars"/></damage> <lb n="12"/> יעשה זה בן גרושה או בן
-                                חל<damage><gap reason="damage" extent="29" unit="chars"/></damage> <lb n="13"/> את
-                            איש פלוני <damage>שה</damage>וא חייב ל<damage><gap reason="damage" extent="31" unit="chars"/></damage>
-                                <lb n="14"/> ארבעים מעי<damage><gap reason="damage" extent="2" unit="chars"
-                            /></damage>ן אנו את <damage>א<gap reason="damage" extent="22" unit="chars"/></damage> <lb
-                                n="15"/> כתובתה והלוא בין היום ובי<damage><gap reason="damage" extent="30"
-                                unit="chars"/></damage></ab>
+                        <ab xml:id="S06241.4.5.1.1">
+                            <damage><gap reason="damage" extent="20" unit="chars"/></damage>
+                            <lb n="11"/> מעידין אנו את איש פלוני ש<damage><gap reason="damage"
+                                    extent="28" unit="chars"/></damage>
+                            <lb n="12"/> יעשה זה בן גרושה או בן חל<damage><gap reason="damage"
+                                    extent="29" unit="chars"/></damage>
+                            <lb n="13"/> את איש פלוני <damage>שה</damage>וא חייב ל<damage><gap
+                                    reason="damage" extent="31" unit="chars"/></damage>
+                            <lb n="14"/> ארבעים מעי<damage><gap reason="damage" extent="2"
+                                    unit="chars"/></damage>ן אנו את <damage>א<gap reason="damage"
+                                    extent="22" unit="chars"/></damage>
+                            <lb n="15"/> כתובתה והלוא בין היום ובי<damage><gap reason="damage"
+                                    extent="30" unit="chars"/></damage></ab>
                         <lb n="16"/>
                     </div3>
                 </div2>

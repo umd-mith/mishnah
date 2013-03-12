@@ -3,11 +3,11 @@
         xmlns:oxdoc="http://www.oxygenxml.com/ns/doc/xsl"
         queryBinding="xslt2">
    <title>ISO Schematron rules</title>
-   <!--namespaces:--><ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+   <!--namespaces:-->
+<ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
    <ns prefix="rng" uri="http://relaxng.org/ns/structure/1.0"/>
-   <sch:ns xmlns:sch="http://purl.oclc.org/dsdl/schematron" prefix="tei"
-           uri="http://www.tei-c.org/ns/1.0"/>
-   <!--keys:--><!--patterns:--><!--constraints:--><pattern id="att.datable-constraint-calendar">
+   <!--constraints:-->
+<pattern id="att.datable-constraint-calendar">
       <rule context="tei:*[@calendar]">
             <assert test="string-length(.) gt 0">
 @calendar indicates the system or calendar to which the date represented by the content of this element

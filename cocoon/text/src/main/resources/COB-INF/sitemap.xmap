@@ -16,10 +16,11 @@
 -->
 <map:sitemap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://apache.org/cocoon/sitemap/1.0 http://cocoon.apache.org/schema/sitemap/cocoon-sitemap-1.0.xsd"
-    xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+    xmlns:map="http://apache.org/cocoon/sitemap/1.0"
+    xmlns:cinclude="http://apache.org/cocoon/include/1.0">
     <map:components>
         <map:serializers>
-            
+
             <map:serializer name="tei" mime-type="application/xml"
                 src="org.apache.cocoon.serialization.XMLSerializer">
                 <indent>yes</indent>
@@ -35,6 +36,10 @@
                 <indent>no</indent>
                 <encoding>UTF-8</encoding>
             </map:serializer>
+            <map:serializer name="text" 
+                src="org.apache.cocoon.serialization.TextSerializer"
+                mime-type="text/plain" 
+                logger="sitemap.serializer.text" />
         </map:serializers>
         <map:transformers>
             <map:transformer name="collatex" src="edu.umd.mith.mishnah.cocoon.CollateXTransformer"/>
@@ -42,6 +47,8 @@
                 src="org.apache.cocoon.transformation.TraxTransformer">
                 <xslt-processor-role>saxon</xslt-processor-role>
             </map:transformer>
+            <map:transformer name="cinclude"
+                src="org.apache.cocoon.transformation.CIncludeTransformer"/>
         </map:transformers>
     </map:components>
     <map:pipelines>
@@ -206,9 +213,7 @@
                 <map:serialize type="tei"/>
             </map:match>
 
-            
-
-            <!-- experimenting with parameterized  browse-->
+            <!-- experimenting with parameterized browse-->
             <map:match pattern="browse">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
@@ -218,8 +223,7 @@
                 <map:serialize type="html"/>
             </map:match>
             
-            
-            <!-- working pipeline for whole -->
+            <!-- Parameterized Browse: working pipeline for whole -->
             <map:match pattern="*.browse-param.html">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform src="resource://xsl/extract.xsl" type="xslt-saxon">
@@ -249,8 +253,18 @@
                 </map:transform>
                 <map:serialize type="html"/>
             </map:match>
+            <!-- Testing Include -->
+            <map:match pattern="*.include-prep">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/include.xsl" type="xslt-saxon"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            <map:match pattern="*.include">
+                <map:generate src="cocoon:/{1}.include-prep"/>
+                <map:transform type="cinclude"></map:transform>
+                <map:serialize type="xml"></map:serialize>
+            </map:match>
 
-            
         </map:pipeline>
     </map:pipelines>
 </map:sitemap>
