@@ -1,0 +1,40 @@
+@charset "utf-8"
+
+hi{ font:italic}
+text {direction:rtl; text-align:right; }
+div1 {direction:rtl; text-align:right;}
+body {direction:rtl; text-align:right; }
+head {display:block; direction:rtl; text-align:right; margin-right:10px;}
+trailer {display:block; direction:rtl; text-align:right; margin-right:10px;}
+emph {text-decoration:underline;}
+label {text-decoration:underline; padding:0 5px;}
+corr{ display:none}
+note { display:none }
+quote {color:brown}
+surplus:before {content:"/"; font-size:large}
+surplus:after {content:"/"; font-size:large}
+item {display:block; line-height:normal; margin-right:10px; margin-left:10px }
+tr {vertical-align:top; }
+ab:before {content:"[" attr(n) "]"}
+ab {display:block; line-height:30px; margin-right:10px; direction:rtl; }
+p { display:block; line-height:normal; margin-right:10px; }
+persName {color:#00F}
+lb {display:block;}
+damageSpan:before{ content:"⸢";}
+anchor:after{ content:"⸣";}
+gap:before {  content:attr(extent); vertical-align: super; font-size:70%; }				  
+del:before { content: "(" attr(extent);}
+del {text-decoration:none}
+del:after { content: ")";}
+add:before { content:"["; }
+add:after { content:"]"; }
+unclear:before { content:attr(extent); vertical-align: super; font-size:70%}
+unclear {border-top:thin dotted  }
+cb:before{ content:"[" attr(n); }
+cb:after{ content:"]"; }
+cb{display:block; margin-right:10px; }
+pb:before{ content:"[" attr(n); }
+pb:after{ content:"]"; }
+pb{display:block; margin-right:10px; }
+expan{ display:none; }
+supplied{ font-size:smaller }
