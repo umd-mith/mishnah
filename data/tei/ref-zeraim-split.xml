@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><!-- Holding document for texts being processed to be included in tokenized text of ref.xml. --><!-- XSLT will need to tokenize, add xml:ids, generate distinct documents. -->
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Information about the source</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="ref.1" n="Zeraim">
+                <!--ref to file containing Berakhot, ref-0101.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0101.xml"/>
+                <!--ref to file containing Peah, ref-0102.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0102.xml"/>
+                <!--ref to file containing Demai, ref-0103.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0103.xml"/>
+                <!--ref to file containing Kilayim, ref-0104.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0104.xml"/>
+                <!--ref to file containing Sheviit, ref-0105.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0105.xml"/>
+                <!--ref to file containing Terumot, ref-0106.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0106.xml"/>
+                <!--ref to file containing Maaserot, ref-0107.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0107.xml"/>
+                <!--ref to file containing MaaserSheni, ref-0108.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0108.xml"/>
+                <!--ref to file containing Hallah, ref-0109.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0109.xml"/>
+                <!--ref to file containing Orla, ref-0110.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0110.xml"/>
+                <!--ref to file containing Bikkurim, ref-0111.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0111.xml"/>
+            </div1>
+        </body>
+    </text>
+</TEI>

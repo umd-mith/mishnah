@@ -39,15 +39,19 @@
                 </respStmt>
             </titleStmt>
             <publicationStmt>
-                <p>This document contains the text of the Vilna edition of the Mishnah, slightly
+                <idno type="local">ref</idno>
+            </publicationStmt>
+            <notesStmt>
+                <note>This document contains the text of the Vilna edition of the Mishnah, slightly
                     normalized and all punctuation removed, as the basis for the alignment of the
                     witnesses to the text of the Mishnah. The text below uses the unvocalized text
                     at <ptr target="http://he.wikisource.org/wiki"/>, corrected to reflect the text
                     of Yakhin u-Boaz. Changes are introduced as necessary to account for varying
                     textual traditions to allow for proper pointing from the witness files to
                     ref.xml<!-- Bibliography -->
-                </p>
-            </publicationStmt>
+                </note>
+
+            </notesStmt>
             <sourceDesc>
                 <listWit>
                     <!-- Mishnah Texts -->
@@ -104,14 +108,17 @@
 
                     <listWit n="Genizah Texts">
                         <listWit xml:id="J.G.M.155">
-                            <witness xml:id="S01724" n="G" corresp="S01724.xml">Cairo Genizah Fragment TS E1.108 f. 1r - 1v (Cambridge) <desc>Sanhedrin 10.3 -
-                                11.6; Makkot 1.1</desc>
-                                
+                            <witness xml:id="S01724" n="G" corresp="S01724.xml">Cairo Genizah
+                                Fragment TS E1.108 f. 1r - 1v (Cambridge) <desc>Sanhedrin 10.3 -
+                                    11.6; Makkot 1.1</desc>
                             </witness>
-                            <witness xml:id="S01832" n="G" corresp="S01832.xml">Cairo Genizah Fragment TS E2.71 f. 1v - 1r (Cambridge)<desc>Bava Qamma 10:6 - 8</desc>
-                                
+                            <witness xml:id="S01832" n="G" corresp="S01832.xml">Cairo Genizah
+                                Fragment TS E2.71 f. 1v - 1r (Cambridge)<desc>Bava Qamma 10:6 -
+                                    8</desc>
                             </witness>
-                            <witness xml:id="S01835" n="G" corresp="S01835.xml">Cairo Genizah Fragment TS E2.74 f. 1v - 1r (Cambridge)<desc>Sanhedrin 5:2 - 7.1</desc>       
+                            <witness xml:id="S01835" n="G" corresp="S01835.xml">Cairo Genizah
+                                Fragment TS E2.74 f. 1v - 1r (Cambridge)<desc>Sanhedrin 5:2 -
+                                    7.1</desc>
                             </witness>
                             <witness xml:id="S03524" n="G" corresp="S03524.xml">Cairo Genizah
                                 Fragment TS NS 329.286 f. 1r - 1v (Cambridge)<desc>Bava Qamma 10:8 -
@@ -129,8 +136,9 @@
                                 AS 78.235 f. 1r-1v (Cambridge)<desc>Bava Metsi'a BM 1:5 - 8; 2:1, 7
                                     - 9</desc>
                             </witness>
-                            <witness xml:id="S06241" corresp="S04561.xml">Genizah Fragment TS
-                                AS 78.118 f. 1r-1v (Cambridge)<desc>Sanhedrin 7:1 - 10.</desc></witness>
+                            <witness xml:id="S06241" corresp="S04561.xml">Genizah Fragment TS AS
+                                78.118 f. 1r-1v (Cambridge)<desc>Sanhedrin 7:1 -
+                                10.</desc></witness>
                         </listWit>
                         <listWit xml:id="J.G.M.156">
                             <witness xml:id="S01715" n="G" corresp="S01715.xml">Cairo Genizah
@@ -154,16 +162,19 @@
                                     2:1-2</desc>
                             </witness>
                         </listWit>
-                        <listWit n="Other Genizah Fragments"><witness xml:id="S01719" corresp="S01719.xml">Cairo Genizah Fragment T-S
-                            E1.103 f. 1r - 1v (Cambridge)<desc>Bava Metsi'a 8:8 9:8</desc></witness>
-                        <witness xml:id="S04944" n="G" corresp="S04944.xml">Cairo Genizah Fragment
-                            TS E1.105(Cambridge)<desc>Bava Batra 6:8 - 8:4</desc>
-                        </witness>
-                        <witness xml:id="S04636" n="G" corresp="S04636.xml">Cairo Genizah Fragment
-                            TS AS 78.261 (Cambridge)<desc>Bava Qamma BQ 10:2 - 3, 7-9; Bava Metsi'a
-                                2:10 - 11; 3:3 - 4</desc>
-                        </witness>
-                    </listWit></listWit>
+                        <listWit n="Other Genizah Fragments">
+                            <witness xml:id="S01719" corresp="S01719.xml">Cairo Genizah Fragment T-S
+                                E1.103 f. 1r - 1v (Cambridge)<desc>Bava Metsi'a 8:8
+                                9:8</desc></witness>
+                            <witness xml:id="S04944" n="G" corresp="S04944.xml">Cairo Genizah
+                                Fragment TS E1.105(Cambridge)<desc>Bava Batra 6:8 - 8:4</desc>
+                            </witness>
+                            <witness xml:id="S04636" n="G" corresp="S04636.xml">Cairo Genizah
+                                Fragment TS AS 78.261 (Cambridge)<desc>Bava Qamma BQ 10:2 - 3, 7-9;
+                                    Bava Metsi'a 2:10 - 11; 3:3 - 4</desc>
+                            </witness>
+                        </listWit>
+                    </listWit>
 
                 </listWit>
             </sourceDesc>
@@ -209,44 +220,78 @@
     </teiHeader>
     <text>
         <body>
-            <div1 xml:id="ref.1" n="Zeraim">
-                <!-- "ref." means: Replace with witness identifier -->
-                <div2 xml:id="ref.1.1" n="Berakhot" type="tractate">
-                    <xi:include href="ref-0101.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-                </div2>
-                <div2 xml:id="ref.1.2" n="Peah" type="tractate"/>
-                <div2 xml:id="ref.1.3" n="Demai" type="tractate"/>
-                <div2 xml:id="ref.1.4" n="Kilayim" type="tractate"/>
-                <div2 xml:id="ref.1.5" n="Sheviit" type="tractate"/>
-                <div2 xml:id="ref.1.6" n="Terumot" type="tractate"/>
-                <div2 xml:id="ref.1.7" n="Maaserot" type="tractate"/>
-                <div2 xml:id="ref.1.8" n="MaaserSheni" type="tractate"/>
-                <div2 xml:id="ref.1.9" n="Hallah" type="tractate"/>
-                <div2 xml:id="ref.1.10" n="Orla" type="tractate"/>
-                <div2 xml:id="ref.1.11" n="Bikkurim" type="tractate"/>
+            <!-- NOTE: Text supplied from Bar Ilan version of Vilna text, with permission. 
+                Does not include heads and trailers for Orders-->
+            <div1 xml:id="ref.1" n="Zeraim" type="Order">
+                <!--ref to file containing Berakhot, ref-0101.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0101.xml"/>
+                <!--ref to file containing Peah, ref-0102.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0102.xml"/>
+                <!--ref to file containing Demai, ref-0103.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0103.xml"/>
+                <!--ref to file containing Kilayim, ref-0104.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0104.xml"/>
+                <!--ref to file containing Sheviit, ref-0105.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0105.xml"/>
+                <!--ref to file containing Terumot, ref-0106.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0106.xml"/>
+                <!--ref to file containing Maaserot, ref-0107.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0107.xml"/>
+                <!--ref to file containing MaaserSheni, ref-0108.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0108.xml"/>
+                <!--ref to file containing Hallah, ref-0109.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0109.xml"/>
+                <!--ref to file containing Orla, ref-0110.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0110.xml"/>
+                <!--ref to file containing Bikkurim, ref-0111.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0111.xml"/>
+
             </div1>
             <div1 xml:id="ref.2" n="Moed" type="Order">
-                <div2 xml:id="ref.2.1" n="Shabbat" type="tractate"/>
-                <div2 xml:id="ref.2.2" n="Eruvin" type="tractate"/>
-                <div2 xml:id="ref.2.3" n="Pesahim" type="tractate"/>
-                <div2 xml:id="ref.2.4" n="Sheqalim" type="tractate"/>
-                <div2 xml:id="ref.2.5" n="Yoma" type="tractate"/>
-                <div2 xml:id="ref.2.6" n="Sukkah" type="tractate"/>
-                <div2 xml:id="ref.2.7" n="Besah" type="tractate"/>
-                <div2 xml:id="ref.2.8" n="Rosh_Hashanah" type="tractate"/>
-                <div2 xml:id="ref.2.9" n="Taanit" type="tractate"/>
-                <div2 xml:id="ref.2.10" n="Megillah" type="tractate"/>
-                <div2 xml:id="ref.2.11" n="MoedQatan" type="tractate"/>
-                <div2 xml:id="ref.2.12" n="Hagigah" type="tractate"/>
+                <!--ref to file containing Shabbat, ref-0201.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0201.xml"/>
+                <!--ref to file containing Eruvin, ref-0202.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0202.xml"/>
+                <!--ref to file containing Pesahim, ref-0203.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0203.xml"/>
+                <!--ref to file containing Sheqalim, ref-0204.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0204.xml"/>
+                <!--ref to file containing Yoma, ref-0205.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0205.xml"/>
+                <!--ref to file containing Sukkah, ref-0206.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0206.xml"/>
+                <!--ref to file containing Besah, ref-0207.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0207.xml"/>
+                <!--ref to file containing Rosh_Hashanah, ref-0208.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0208.xml"/>
+                <!--ref to file containing Taanit, ref-0209.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0209.xml"/>
+                <!--ref to file containing Megillah, ref-0210.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0210.xml"/>
+                <!--ref to file containing Moed_Qatan, ref-0211.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0211.xml"/>
+                <!--ref to file containing Hagigah, ref-0212.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0212.xml"/>
             </div1>
             <div1 xml:id="ref.3" n="Nashim" type="Order">
-                <div2 xml:id="ref.3.1" n="Yebamot" type="tractate"/>
-                <div2 xml:id="ref.3.2" n="Ketubot" type="tractate"/>
-                <div2 xml:id="ref.3.3" n="Nedarim" type="tractate"/>
-                <div2 xml:id="ref.3.4" n="Nazir" type="tractate"/>
-                <div2 xml:id="ref.3.5" n="Sotah" type="tractate"/>
-                <div2 xml:id="ref.3.6" n="Gitin" type="tractate"/>
-                <div2 xml:id="ref.3.7" n="Qiddushin" type="tractate"/>
+                <head xml:id="ref.3.H">
+                    <w xml:id="ref.3.H.1">סדר</w>
+                    <w xml:id="ref.3.H.2">נשים</w>
+                </head>
+                <!--ref to file containing Yebamot, ref-0301.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0301.xml"/>
+                <!--ref to file containing Ketubot, ref-0302.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0302.xml"/>
+                <!--ref to file containing Nedarim, ref-0303.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0303.xml"/>
+                <!--ref to file containing Nazir, ref-0304.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0304.xml"/>
+                <!--ref to file containing Sotah, ref-0305.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0305.xml"/>
+                <!--ref to file containing Gitin, ref-0306.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0306.xml"/>
+                <!--ref to file containing Qiddushin, ref-0307.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0307.xml"/>
             </div1>
             <div1 xml:id="ref.4" n="Neziqin" type="Order">
                 <div2 xml:id="ref.4.1" n="Bava_Qamma">
@@ -15934,40 +15979,70 @@
                         <trailer xml:id="ref.4.3.10.T"/>
                     </div3>
                 </div2>
-                <div2 xml:id="ref.4.4" n="Sanhedrin" type="tractate"/>
-                <div2 xml:id="ref.4.5" n="Makkot" type="tractate"/>
-                <div2 xml:id="ref.4.6" n="Shevuot" type="tractate"/>
-                <div2 xml:id="ref.4.7" n="Eduyot" type="tractate"/>
-                <div2 xml:id="ref.4.8" n="AvodahZarah" type="tractate"/>
-                <div2 xml:id="ref.4.9" n="Avot" type="tractate"/>
-                <div2 xml:id="ref.4.10" n="Horayot" type="tractate"/>
+                <!--ref to file containing Sanhedrin, ref-0404.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0404.xml"/>
+                <!--ref to file containing Makkot, ref-0405.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0405.xml"/>
+                <!--ref to file containing Shevuot, ref-0406.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0406.xml"/>
+                <!--ref to file containing Eduyot, ref-0407.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0407.xml"/>
+                <!--ref to file containing Avodah_Zarah, ref-0408.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0408.xml"/>
+                <!--ref to file containing Avot, ref-0409.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0409.xml"/>
+                <!--ref to file containing Horayot, ref-0410.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0410.xml"/>
             </div1>
             <div1 xml:id="ref.5" n="Qodashin" type="Order">
-                <div2 xml:id="ref.5.1" n="Zevahim" type="tractate"/>
-                <div2 xml:id="ref.5.2" n="Menahot" type="tractate"/>
-                <div2 xml:id="ref.5.3" n="Hulin" type="tractate"/>
-                <div2 xml:id="ref.5.4" n="Bekhorot" type="tractate"/>
-                <div2 xml:id="ref.5.5" n="Arakhin" type="tractate"/>
-                <div2 xml:id="ref.5.6" n="Temurah" type="tractate"/>
-                <div2 xml:id="ref.5.7" n="Keritot" type="tractate"/>
-                <div2 xml:id="ref.5.8" n="Meilah" type="tractate"/>
-                <div2 xml:id="ref.5.9" n="Tamid" type="tractate"/>
-                <div2 xml:id="ref.5.10" n="Middot" type="tractate"/>
-                <div2 xml:id="ref.5.11" n="Qinnim" type="tractate"/>
+                <!--ref to file containing Zevahim, ref-0501.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0501.xml"/>
+                <!--ref to file containing Menahot, ref-0502.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0502.xml"/>
+                <!--ref to file containing Hulin, ref-0503.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0503.xml"/>
+                <!--ref to file containing Bekhorot, ref-0504.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0504.xml"/>
+                <!--ref to file containing Arakhin, ref-0505.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0505.xml"/>
+                <!--ref to file containing Temurah, ref-0506.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0506.xml"/>
+                <!--ref to file containing Keritot, ref-0507.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0507.xml"/>
+                <!--ref to file containing Meilah, ref-0508.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0508.xml"/>
+                <!--ref to file containing Tamid, ref-0509.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0509.xml"/>
+                <!--ref to file containing Middot, ref-0510.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0510.xml"/>
+                <!--ref to file containing Qinnim, ref-0511.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0511.xml"/>
             </div1>
             <div1 xml:id="ref.6" n="Toharot" type="Order">
-                <div2 xml:id="ref.6.1" n="Kelim" type="Tractate"/>
-                <div2 xml:id="ref.6.2" n="Ohalot" type="Tractate"/>
-                <div2 xml:id="ref.6.3" n="Negaim" type="Tractate"/>
-                <div2 xml:id="ref.6.4" n="Parah" type="Tractate"/>
-                <div2 xml:id="ref.6.5" n="Toharot" type="Tractate"/>
-                <div2 xml:id="ref.6.6" n="Miqvaot" type="Tractate"/>
-                <div2 xml:id="ref.6.7" n="Niddah" type="Tractate"/>
-                <div2 xml:id="ref.6.8" n="Makhshirin" type="Tractate"/>
-                <div2 xml:id="ref.6.9" n="Zabim" type="Tractate"/>
-                <div2 xml:id="ref.6.10" n="TevulYom" type="Tractate"/>
-                <div2 xml:id="ref.6.11" n="Yadayim" type="Tractate"/>
-                <div2 xml:id="ref.6.12" n="Uqtsim" type="Tractate"/>
+                <!--ref to file containing Kelim, ref-0601.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0601.xml"/>
+                <!--ref to file containing Ohalot, ref-0602.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0602.xml"/>
+                <!--ref to file containing Negaim, ref-0603.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0603.xml"/>
+                <!--ref to file containing Parah, ref-0604.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0604.xml"/>
+                <!--ref to file containing Toharot, ref-0605.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0605.xml"/>
+                <!--ref to file containing Miqvaot, ref-0606.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0606.xml"/>
+                <!--ref to file containing Niddah, ref-0607.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0607.xml"/>
+                <!--ref to file containing Makhshirin, ref-0608.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0608.xml"/>
+                <!--ref to file containing Zabim, ref-0609.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0609.xml"/>
+                <!--ref to file containing TevulYom, ref-0610.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0610.xml"/>
+                <!--ref to file containing Yadayim, ref-0611.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0611.xml"/>
+                <!--ref to file containing Uqtsim, ref-0612.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0612.xml"/>
             </div1>
         </body>
         <back>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><!-- Holding document for texts being processed to be included in tokenized text of ref.xml. --><!-- XSLT will need to tokenize, add xml:ids, generate distinct documents. -->
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Information about the source</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="ref.2" n="Moed" type="Order">
+                <!--ref to file containing Shabbat, ref-0201.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0201.xml"/>
+                <!--ref to file containing Eruvin, ref-0202.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0202.xml"/>
+                <!--ref to file containing Pesahim, ref-0203.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0203.xml"/>
+                <!--ref to file containing Sheqalim, ref-0204.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0204.xml"/>
+                <!--ref to file containing Yoma, ref-0205.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0205.xml"/>
+                <!--ref to file containing Sukkah, ref-0206.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0206.xml"/>
+                <!--ref to file containing Besah, ref-0207.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0207.xml"/>
+                <!--ref to file containing Rosh_Hashanah, ref-0208.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0208.xml"/>
+                <!--ref to file containing Taanit, ref-0209.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0209.xml"/>
+                <!--ref to file containing Megillah, ref-0210.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0210.xml"/>
+                <!--ref to file containing Moed_Qatan, ref-0211.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0211.xml"/>
+                <!--ref to file containing Hagigah, ref-0212.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0212.xml"/>
+            </div1>
+        </body>
+    </text>
+</TEI>

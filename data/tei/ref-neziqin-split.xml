@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><!-- Holding document for texts being processed to be included in tokenized text of ref.xml. --><!-- XSLT will need to tokenize, add xml:ids, generate distinct documents. -->
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Information about the source</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="ref.4" n="Neziqin" type="Order">
+                <!--ref to file containing Sanhedrin, ref-0404.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0404.xml"/>
+                <!--ref to file containing Makkot, ref-0405.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0405.xml"/>
+                <!--ref to file containing Shevuot, ref-0406.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0406.xml"/>
+                <!--ref to file containing Eduyot, ref-0407.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0407.xml"/>
+                <!--ref to file containing Avodah_Zarah, ref-0408.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0408.xml"/>
+                <!--ref to file containing Avot, ref-0409.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0409.xml"/>
+                <!--ref to file containing Horayot, ref-0410.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0410.xml"/>
+            </div1>
+        </body>
+    </text>
+</TEI>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?><!-- Holding document for texts being processed to be included in tokenized text of ref.xml. --><!-- XSLT will need to tokenize, add xml:ids, generate distinct documents. -->
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Publication Information</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Information about the source</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="ref.3" n="Nashim" type="Order">
+                <head xml:id="ref.3.H">
+                    <w xml:id="ref.3.H.1">סדר</w>
+                    <w xml:id="ref.3.H.2">נשים</w>
+                </head>
+                <!--ref to file containing Yebamot, ref-0301.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0301.xml"/>
+                <!--ref to file containing Ketubot, ref-0302.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0302.xml"/>
+                <!--ref to file containing Nedarim, ref-0303.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0303.xml"/>
+                <!--ref to file containing Nazir, ref-0304.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0304.xml"/>
+                <!--ref to file containing Sotah, ref-0305.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0305.xml"/>
+                <!--ref to file containing Gitin, ref-0306.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0306.xml"/>
+                <!--ref to file containing Qiddushin, ref-0307.xml-->
+                <xi:include xmlns:tei="http://www.tei-c.org/ns/1.0" href="ref-0307.xml"/>
+            </div1>
+
+        </body>
+    </text>
+</TEI>
