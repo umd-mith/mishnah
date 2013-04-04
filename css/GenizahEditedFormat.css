@@ -1,40 +1,217 @@
-@charset "utf-8"
-
-hi{ font:italic}
-text {direction:rtl; text-align:right; }
-div1 {direction:rtl; text-align:right;}
-body {direction:rtl; text-align:right; }
-head {display:block; direction:rtl; text-align:right; margin-right:10px;}
-trailer {display:block; direction:rtl; text-align:right; margin-right:10px;}
-emph {text-decoration:underline;}
-label {text-decoration:underline; padding:0 5px;}
-corr{ display:none}
-note { display:none }
-quote {color:brown}
-surplus:before {content:"/"; font-size:large}
-surplus:after {content:"/"; font-size:large}
-item {display:block; line-height:normal; margin-right:10px; margin-left:10px }
-tr {vertical-align:top; }
-ab:before {content:"[" attr(n) "]"}
-ab {display:block; line-height:30px; margin-right:10px; direction:rtl; }
-p { display:block; line-height:normal; margin-right:10px; }
-persName {color:#00F}
-lb {display:block;}
-damageSpan:before{ content:"⸢";}
-anchor:after{ content:"⸣";}
-gap:before {  content:attr(extent); vertical-align: super; font-size:70%; }				  
-del:before { content: "(" attr(extent);}
-del {text-decoration:none}
-del:after { content: ")";}
-add:before { content:"["; }
-add:after { content:"]"; }
-unclear:before { content:attr(extent); vertical-align: super; font-size:70%}
-unclear {border-top:thin dotted  }
-cb:before{ content:"[" attr(n); }
-cb:after{ content:"]"; }
-cb{display:block; margin-right:10px; }
-pb:before{ content:"[" attr(n); }
-pb:after{ content:"]"; }
-pb{display:block; margin-right:10px; }
-expan{ display:none; }
-supplied{ font-size:smaller }
+html{
+    direction:rtl;
+    text-align:right;
+}
+ab{
+    direction:rtl;
+    display:block;
+    line-height:30px;
+    margin-right:10px;
+    direction:rtl;
+}
+c{
+    background-color:#F0F;
+}
+ab:before{
+    content:"[" attr(n) "]"
+}
+abbr{
+    text-decoration:underline
+}
+add:after{
+    content:"]";
+}
+add:before{
+    content:"[";
+}
+anchor:after{
+    content:"⸣";
+}
+body{
+    direction:rtl;
+    text-align:right;
+}
+cb:after{
+    content:"]";
+}
+cb:before{
+    content:"[" attr(xml\:id) "\/" attr(n);
+}
+cb{
+    display:block;
+    margin-right:10px;
+}
+choice{
+    background:#FFC;
+}
+corr{
+    display:none;
+}
+damage{
+    border-top:thin dotted
+}
+damage:before{
+    content:attr(extent);
+    vertical-align:super;
+    font-size:70%
+}
+damageSpan:before{
+    content:"⸢";
+}
+del{
+    text-decoration:none
+}
+del:after{
+    content:")";
+}
+del:before{
+    content:"(" attr(extent);
+}
+div1{
+    direction:rtl;
+    text-align:right;
+}
+emph{
+    text-decoration:underline;
+}
+expan{
+    vertical-align:super;
+    font-size:70%;
+}
+gap:after{
+    content:"⸣";
+    vertical-align:super;
+    font-size:70%;
+}
+gap:before{
+    content:"⸢" attr(extent);
+    vertical-align:super;
+    font-size:70%;
+}
+head{
+    display:block;
+    direction:rtl;
+    text-align:right;
+    margin-right:10px;
+}
+hi{
+    font-style:italic
+}
+item{
+    display:block;
+    line-height:normal;
+    margin-right:10px;
+    margin-left:10px
+}
+label{
+    text-decoration:underline;
+    padding:0 5px;
+}
+lb{
+    display:block;
+}
+link:before{
+    content:attr(target);
+    vertical-align:super;
+    font-size:xx-small
+}
+note{
+    display:none
+}
+orig:after{
+    content:"*";
+    font-size:10px
+}
+p{
+    width:600px;
+    display:block;
+    line-height:normal;
+    margin-left:200px;
+    position:absolute;
+}
+left{
+    display:block;
+    float:left;
+    clear:left;
+    width:150px;
+    margin-left:-195px;
+    background-color:#CCC;
+}
+right{
+    display:block;
+    float:right;
+    clear:right;
+    width:150px;
+    margin-right:-155px;
+    background-color:#CCC;
+}
+above{
+    font-size:75%;
+    vertical-align:baseline;
+    position:relative;
+    top:-10px;
+}
+pb:after{
+    content:"]";
+}
+pb:before{
+    content:"[" attr(xml\:id) "\/" attr(n);
+}
+pb{
+    display:block;
+    margin-right:10px;
+}
+persName{
+    color:#00F
+}
+ptr:before{
+    content:attr(target);
+    vertical-align:super;
+    font-size:xx-small
+}
+quote{
+    color:brown
+}
+ref:after{
+    content:")"
+}
+ref:before{
+    content:" ("
+}
+seg{
+    background-color:#CCC
+}
+reg{
+    display:none;
+}
+supplied{
+    font-size:smaller
+}
+surplus:after{
+    content:"/"
+}
+surplus:before{
+    content:"/"
+}
+text{
+    direction:rtl;
+    text-align:right;
+}
+tr{
+    vertical-align:top;
+}
+trailer{
+    display:block;
+    direction:rtl;
+    text-align:right;
+    margin-right:10px;
+}
+unclear{
+    border-top:thin;
+    color:#999;
+}
+unclear:before{
+    content:attr(extent);
+    vertical-align:super;
+    font-size:70%
+}
