@@ -3,13 +3,13 @@
     xmlns:my="local-functions.uri" version="2.0"
     xmlns:tei="http://www.tei-c.org/ns/1.0">
     <xsl:output indent="yes" encoding="UTF-8"/>
-    <!-- Possible values for getList: all, tract, ch, m -->
-    <xsl:param name="getList"/>
-    <xsl:param name="cit" select="'4.3'"/>
+    <!-- Possible values for unit: all, tract, ch, m -->
+    <xsl:param name="unit" select="'ch'"/>
+    <xsl:param name="mcite" select="'4.2.2'"/>
     <xsl:variable name="use-param">
         <xsl:choose>
-            <xsl:when test="$getList = ''"><xsl:text>all</xsl:text></xsl:when>
-            <xsl:otherwise><xsl:value-of select="$getList"></xsl:value-of></xsl:otherwise>
+            <xsl:when test="$unit = ''"><xsl:text>all</xsl:text></xsl:when>
+            <xsl:otherwise><xsl:value-of select="$unit"></xsl:value-of></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     
@@ -57,23 +57,24 @@
                 </xsl:for-each-group>
             </xsl:when>
             <xsl:when test="$use-param='m'">
+                
                 <xsl:for-each-group select="$composite/my:mishnah" group-by="@n">
-                    <xsl:if test="current-grouping-key()=$cit">
-                        <my:m-compos>
+                    <xsl:if test="current-grouping-key()=$mcite">
+                        <my:m-active-compos>
                             <xsl:attribute name="n" select="current-grouping-key()"/>
                             <xsl:for-each-group select="current-group()" group-by="@name">
                                 <my:wit-compos>
                                     <xsl:value-of select="current-grouping-key()"/>
                                 </my:wit-compos>
                             </xsl:for-each-group>
-                        </my:m-compos>
+                        </my:m-active-compos>
                     </xsl:if>
 
                 </xsl:for-each-group>
             </xsl:when>
             <xsl:when test="$use-param='ch'">
                 <xsl:for-each-group select="$composite/my:mishnah" group-by="@chapter">
-                    <xsl:if test="current-grouping-key()=$cit">
+                    <xsl:if test="current-grouping-key()=$mcite">
                         <my:ch-compos>
                             <xsl:attribute name="n" select="current-grouping-key()"/>
                             <xsl:for-each-group select="current-group()" group-by="@name">
@@ -88,7 +89,7 @@
             </xsl:when>
             <xsl:when test="$use-param='tract'">
                 <xsl:for-each-group select="$composite/my:mishnah" group-by="@tractate">
-                    <xsl:if test="current-grouping-key()=$cit">
+                    <xsl:if test="current-grouping-key()=$mcite">
                         <my:ch-compos>
                             <xsl:attribute name="n" select="current-grouping-key()"/>
                             <xsl:for-each-group select="current-group()" group-by="@name">

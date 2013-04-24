@@ -11,18 +11,18 @@
         and <my:composList> for composite index of all witnesses -->
     <!-- Uses fairly obtrusive (and not well conceived) javascript -->
 
-    <xsl:param name="unit" select="'ch'"/>
-    <xsl:param name="mcite" select="'4.2.2'"/>
-    <xsl:variable name="prevLookup">
-
-        <!-- reconstructs the previous lookup from xslt parameters, and uses as parameters in javascript:toggle() -->
+    <xsl:param name="unit" select="'m'"/>
+    <xsl:param name="mcite" select="'4.3.9.2'"/>
+    <!--<xsl:variable name="prevLookup">
+        
+        <!-\- reconstructs the previous lookup from xslt parameters, and uses as parameters in javascript:toggle() -\->
         <xsl:choose>
             <xsl:when test="$unit = 'm'">
                 <my:prevM>
-                    <xsl:value-of select="concat('ref.',$mcite)"/>
+                    <xsl:value-of
+                        select="concat('id.',$mcite)"/>
                 </my:prevM>
                 <my:prevCh>
-
                     <xsl:value-of
                         select="/my:div/my:struct/my:order/my:tract/my:chapter/my:mishnah[@xml:id=concat('ref.',$mcite)]/parent::my:chapter/@xml:id"
                     />
@@ -38,49 +38,85 @@
                     />
                 </my:prevOrd>
             </xsl:when>
-            <xsl:when test="$unit = 'ch'">
-                <my:prevCh>
-                    <xsl:value-of
-                        select="/my:div/my:struct/my:order/my:tract/my:chapter[@xml:id=concat('ref.',$mcite)]/@xml:id"
-                    />
-                </my:prevCh>
-                <my:prevTract>
-                    <xsl:value-of
-                        select="/my:div/my:struct/my:order/my:tract/my:chapter[@xml:id=concat('ref.',$mcite)]/parent::my:tract/@xml:id"
-                    />
-                </my:prevTract>
-                <my:prevOrd>
-                    <xsl:value-of
-                        select="/my:div/my:struct/my:order/my:tract/my:chapter/my:mishnah[@xml:id=concat('ref.',$mcite)]/ancestor::my:order/@n"
-                    />
-                </my:prevOrd>
-            </xsl:when>
         </xsl:choose>
-    </xsl:variable>
+    </xsl:variable>-->
     <xsl:template match="/">
-        <div class="dropdown" xmlns="http://www.w3.org/1999/xhtml">
-            <h3>Select Passage</h3>
-            <ul class="order">
-                <xsl:apply-templates/>
-            </ul>
-            <!--Adapted from https://developer.mozilla.org/en-US/docs/DOM/element.scrollIntoView-->
-            <xsl:variable name="scrollTo">
-                <xsl:choose>
-                    <xsl:when test="$unit='ch'">
-                        <xsl:value-of select="$prevLookup/my:prevCh"/>
-                    </xsl:when>
-                    <xsl:when test="$unit='m'">
-                        <xsl:value-of select="$prevLookup/my:prevM"/>
-                    </xsl:when>
-                </xsl:choose>
+        <html xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <title>Test Dropdown</title>
+                <style type="text/css">
+                    .order,
+                    .order li,
+                    .order ul{
+                        margin:0px;
+                        list-style:none;
+                        outside:none;
+                    }
+                    ul.order{
+                        height:200px;
+                        width:200px;
+                        overflow:auto;
+                        padding:0px;
+                        font-weight:bold;
+                    }
+                    
+                    ul.tract{
+                        padding-left:1em;
+                        font-style:italic;
+                        font-weight:normal;
+                        display:none;
+                    }
+                    
+                    ul.chapt{
+                        padding-left:1em;
+                        font-style:normal;
+                        display:none;
+                    }
+                    ul.mish{
+                        padding-left:1em;
+                        font-style:italic;
+                        display:none;
+                    }
+                    li.whole-ch{
+                        padding-left:0em;
+                    }
+                    li.indiv-m:before{
+                        padding-left:0em;
+                    }</style>
+                <script type="text/javascript" language="JavaScript">
+                    function toggle(id) {
+                    var state = document.getElementById(id).style.display;
+                    if (state == 'block') {
+                    document.getElementById(id).style.display = 'none';
+                    document.getElementById('shown').style.display = 'block';
+                    } else {
+                    document.getElementById(id).style.display = 'block';
+                    document.getElementById('shown').style.display = 'none';
+                    }
+                    }
+                   
+                </script>
+            </head>
+            <body>
+                <div class="dropdown">
+                    <h3>Select from the following</h3>
+                    <ul class="order">
+                        <xsl:apply-templates/>
+                    </ul>
+                    <!--<!-\- Restores previous search. Need to do a more responsible job of this. -\->
+                    <script>
+                        javascript:toggle('Neziqin');
+                    </script>
+                    <script>
+                        javascript:toggle('Bava_Metsia');
+                    </script>
+                    <script>
+                        javascript:toggle('ref.4.2.9');
+                    </script>-->
+                </div>
+            </body>
 
-            </xsl:variable>
-
-            <script>
-                var showThis = document.getElementById(<xsl:value-of select="$scrollTo"/>);
-                showThis.scrollIntoView(true);</script>
-
-        </div>
+        </html>
     </xsl:template>
     <xsl:template match="div|my:struct">
         <xsl:apply-templates/>
@@ -104,7 +140,6 @@
                 test="substring-after(@xml:id,'ref.') = //my:tract-compos/@n">
                 <!-- This tractate has chapter children -->
                 <li class="tract-text" xmlns="http://www.w3.org/1999/xhtml">
-
                     <a class="toggle" href="javascript:toggle('{@n}')">
                         <xsl:value-of select="replace(@n,'_',' ')"/>
                     </a>
@@ -125,7 +160,6 @@
             <xsl:when test="substring-after(@xml:id,'ref.') = //my:ch-compos/@n">
                 <!-- This chapter has mishnah children -->
                 <li xmlns="http://www.w3.org/1999/xhtml" class="ch-text">
-
                     <a class="toggle" href="javascript:toggle('{@xml:id}')"
                         >Chapter <xsl:value-of
                             select="substring-after(@xml:id, concat(parent::my:tract/@xml:id, '.'))"
@@ -133,13 +167,9 @@
                     <xsl:if
                         test="substring-after(@xml:id,'ref.') = //my:ch-compos/@n">
                         <ul class="mish" id="{@xml:id}">
-                            <xsl:if test="@xml:id = $prevLookup/my:prevCh">
-                                <xsl:attribute name="style"
-                                    >display:block</xsl:attribute>
-                            </xsl:if>
-                            <li>
+                            <li class="whole-ch" id="concat('id.',substring-after(@xml:id,'ref.')">
                                 <a
-                                    href="compare?unit=ch&amp;mcite={substring-after(@xml:id,'ref.')}&amp;tractName={ancestor::my:tract/@n}"
+                                    href="compare?unit=ch&amp;mcite={substring-after(@xml:id,'ref.')}"
                                     >Whole Chapter</a>
                             </li>
                             <xsl:apply-templates/>
@@ -162,7 +192,7 @@
                 <!-- This Mishnah has text -->
                 <li xmlns="http://www.w3.org/1999/xhtml" class="indiv-m">
                     <a
-                        href="compare?unit=m&amp;mcite={substring-after(@xml:id,'ref.')}&amp;tractName={ancestor::my:tract/@n}">
+                        href="compare?unit=m&amp;mcite={substring-after(@xml:id,'ref.')}">
                         <xsl:value-of
                             select="concat('Mishnah ',substring-after(@xml:id, concat(ancestor::my:tract/@xml:id, '.')))"
                         />

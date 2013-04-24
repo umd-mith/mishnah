@@ -43,6 +43,7 @@
     </xsl:variable>
     
     <xsl:template match="/">
+        
        <html>
             <head>
                 <link rel="stylesheet" type="text/css"

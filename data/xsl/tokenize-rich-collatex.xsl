@@ -14,8 +14,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=6&amp;ParmA=5&amp;Camb=4&amp;Maim=3&amp;Paris=2&amp;Nap=1&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
-    <xsl:param name="mcite" select="'4.2.2.1'"/>
+        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=5&amp;Camb=&amp;Maim=&amp;S08174=3&amp;P00001=3&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114=2&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.10'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:template match="//tei:div">
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0">

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:its="http://www.w3.org/2005/11/its" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local" version="2.0"
-    xmlns:local="local-functions.uri">
-    <xsl:strip-space elements="tei:w tei:reg tei:c tei:expan tei:g"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:its="http://www.w3.org/2005/11/its"
+    xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="xd xs its local" version="2.0" xmlns:local="local-functions.uri">
+    <xsl:strip-space elements="tei:w tei:reg tei:c tei:expan tei:g tei:lb"/>
     <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -14,8 +13,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=&amp;Camb=&amp;Maim=&amp;Paris=&amp;Nap=&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114=2&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
-    <xsl:param name="mcite" select="'4.2.2.1'"/>
+        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=5&amp;Camb=&amp;Maim=&amp;S08174=3&amp;P00001=3&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114=2&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+    <xsl:param name="mcite" select="'4.2.2.10'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <!--    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
     <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/>-->
@@ -55,8 +54,7 @@
                         </xsl:attribute>
                         <xsl:variable name="uriList">
                             <xsl:call-template name="buildURI">
-                                <xsl:with-param name="wits" select="//tei:witness[@corresp]"
-                                > </xsl:with-param>
+                                <xsl:with-param name="wits" select="//tei:witness[@corresp]"> </xsl:with-param>
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:for-each select="$uriList/tei:uri">
@@ -72,16 +70,13 @@
                                     <!-- Preprocess pass 1. By sibling recursion (mode = "preproc-1")
                                     and processing within sibling nodes ("preproc-within"), convert
                                     to text + a few select elements. -->
-                                    <xsl:apply-templates mode="preproc-1"
-                                        select="$mExtract/tei:extract/node()[1]"/>
+                                    <xsl:apply-templates mode="preproc-1" select="$mExtract/tei:extract/node()[1]"/>
                                 </xsl:variable>
                                 <xsl:variable name="mTokenize">
-                                    <xsl:apply-templates mode="tokenize"
-                                        select="$mPreproc-1/node()[1]"/>
+                                    <xsl:apply-templates mode="tokenize" select="$mPreproc-1/node()[1]"/>
                                 </xsl:variable>
                                 <xsl:variable name="cleaned">
-                                    <xsl:apply-templates select="$mTokenize/element()[1]"
-                                        mode="final"/>
+                                    <xsl:apply-templates select="$mTokenize/element()[1]" mode="final"/>
                                 </xsl:variable>
                                 <xsl:copy-of select="$cleaned"/>
                             </ab>
@@ -97,8 +92,7 @@
                 <xsl:value-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
-            <xsl:when
-                test="self::tei:c[(@rend != 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
+            <xsl:when test="self::tei:c[(@rend != 'nonlettermark')] | self::tei:g[not(@ref = '#fill')]">
                 <xsl:value-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
@@ -112,13 +106,14 @@
             <xsl:when test="self::tei:w">
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
                     <xsl:for-each select="node()">
-                        <xsl:apply-templates select="." mode="preproc-within"/>
+                        <xsl:variable name="temp"><xsl:apply-templates select="." mode="preproc-within" /></xsl:variable>
+                        <xsl:value-of select="translate($temp,' ','')"></xsl:value-of>
                     </xsl:for-each>
                     <seg>
                         <xsl:copy-of select="node()"/>
                     </seg>
                     <reg>
-                        <xsl:value-of select="normalize-space(translate(.,'?סןוי','שם*'))"/>
+                        <xsl:value-of select="translate(normalize-space(translate(.,'?סןוי','שם*')),' ','')"/>
                     </reg>
                 </xsl:element>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
@@ -247,6 +242,7 @@
     <xsl:template match="tei:g[@type!='wordbreak']" mode="preproc-within">
         <xsl:value-of select="."/>
     </xsl:template>
+    
     <xsl:template match="tei:lb[not(parent::tei:w)] | tei:pb | tei:cb" mode="preproc-within">
         <xsl:element name="{name()}">
             <xsl:attribute name="n">
@@ -254,9 +250,8 @@
             </xsl:attribute>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within"> </xsl:template>
-    <xsl:template
-        match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw"
+    <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within"></xsl:template>
+    <xsl:template match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw"
         mode="preproc-within"/>
     <xsl:template match="//tei:unclear | //tei:gap" mode="preproc-within">
         <xsl:text>[ ]</xsl:text>
@@ -283,6 +278,7 @@
                 </xsl:choose>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="tokenize"/>
             </xsl:when>
+            
             <xsl:otherwise>
                 <xsl:copy-of select="."/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="tokenize"/>
@@ -320,22 +316,18 @@
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:copy-of
-                        select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                    <xsl:copy-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                     <xsl:element name="reg" namespace="http://www.tei-c.org/ns/1.0">
                         <xsl:text>–</xsl:text>
                     </xsl:element>
                     <xsl:if test="following-sibling::tei:w[normalize-space(text())][1]/tei:expan">
                         <xsl:element name="expan" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"
-                            />
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"/>
                         </xsl:element>
                     </xsl:if>
                 </xsl:element>
                 <xsl:apply-templates mode="final"
-                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"
-                />
+                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"/>
             </xsl:when>
             <xsl:when
                 test="self::tei:w[normalize-space(text()) = 'לפי' and
@@ -358,22 +350,18 @@
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:value-of
-                        select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                    <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                     <reg>
                         <xsl:text>–</xsl:text>
                     </reg>
                     <xsl:if test="following-sibling::tei:w[normalize-space(text())][1]/tei:expan">
                         <xsl:element name="expan" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"
-                            />
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"/>
                         </xsl:element>
                     </xsl:if>
                 </xsl:element>
                 <xsl:apply-templates mode="final"
-                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"
-                />
+                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"/>
             </xsl:when>
             <xsl:when test="self::tei:w[text() = 'אי'] or self::tei:w[text() = 'ואי']">
                 <!-- Match following <w> with forms of zeh -->
@@ -408,8 +396,7 @@
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                             <reg>
                                 <xsl:text>–</xsl:text>
                             </reg>
@@ -450,17 +437,14 @@
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                             <reg>
                                 <xsl:text>–</xsl:text>
                             </reg>
-                            <xsl:if
-                                test="following-sibling::tei:w[normalize-space(text())][1]/tei:expan">
+                            <xsl:if test="following-sibling::tei:w[normalize-space(text())][1]/tei:expan">
                                 <xsl:element name="expan" namespace="http://www.tei-c.org/ns/1.0">
                                     <xsl:value-of
-                                        select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"
-                                    />
+                                        select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"/>
                                 </xsl:element>
                             </xsl:if>
                         </xsl:element>
@@ -473,17 +457,14 @@
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][2]/text()"/>
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][2]/text()"/>
                             <reg>
                                 <xsl:text>–</xsl:text>
                             </reg>
-                            <xsl:if
-                                test="following-sibling::tei:w[normalize-space(text())][2]/tei:expan">
+                            <xsl:if test="following-sibling::tei:w[normalize-space(text())][2]/tei:expan">
                                 <xsl:element name="expan" namespace="http://www.tei-c.org/ns/1.0">
                                     <xsl:value-of
-                                        select="following-sibling::tei:w[normalize-space(text())][2]/tei:expan"
-                                    />
+                                        select="following-sibling::tei:w[normalize-space(text())][2]/tei:expan"/>
                                 </xsl:element>
                             </xsl:if>
                         </xsl:element>
@@ -523,15 +504,13 @@
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:value-of
-                        select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                    <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                     <reg>
                         <xsl:text>–</xsl:text>
                     </reg>
                 </xsl:element>
                 <xsl:apply-templates mode="final"
-                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"
-                />
+                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"/>
             </xsl:when>
             <!-- ezehu -->
             <xsl:when test="self::tei:w[contains(./text(), 'איזהו') or contains(./text(), 'אזהו')]">
@@ -592,26 +571,21 @@
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:copy-of
-                        select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
+                    <xsl:copy-of select="following-sibling::tei:w[normalize-space(text())][1]/text()"/>
                     <xsl:element name="reg" namespace="http://www.tei-c.org/ns/1.0">
                         <xsl:text>–</xsl:text>
                     </xsl:element>
                     <xsl:if test="following-sibling::tei:w[normalize-space(text())][1]/tei:expan">
                         <xsl:element name="expan" namespace="http://www.tei-c.org/ns/1.0">
-                            <xsl:value-of
-                                select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"
-                            />
+                            <xsl:value-of select="following-sibling::tei:w[normalize-space(text())][1]/tei:expan"/>
                         </xsl:element>
                     </xsl:if>
                 </xsl:element>
                 <xsl:apply-templates mode="final"
-                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"
-                />
+                    select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"/>
             </xsl:when>
             <!-- 3. regularize final alef to heh -->
-            <xsl:when
-                test="self::tei:w[substring(tei:reg/text(),string-length(tei:reg/text())) = 'א']">
+            <xsl:when test="self::tei:w[substring(tei:reg/text(),string-length(tei:reg/text())) = 'א']">
                 <xsl:variable name="num" select="string-length(tei:reg/text())"/>
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
                     <xsl:value-of select="text()"/>
@@ -642,8 +616,7 @@
                 </w>
                 <!-- recurse -->
                 <xsl:call-template name="tokenize-wds">
-                    <xsl:with-param name="src" select="translate(substring-after($src,' '),'?','*')"
-                    />
+                    <xsl:with-param name="src" select="translate(substring-after($src,' '),'?','*')"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
@@ -666,14 +639,10 @@
                 <w>
                     <xsl:value-of select="normalize-space($abbr)"/>
                     <expan>
-                        <xsl:value-of
-                            select="normalize-space(translate(substring-before($src,' '),'?','*'))"
-                        />
+                        <xsl:value-of select="normalize-space(translate(substring-before($src,' '),'?','*'))"/>
                     </expan>
                     <reg>
-                        <xsl:value-of
-                            select="normalize-space(translate(substring-before($src,' '),'?סןוי','*שם'))"
-                        />
+                        <xsl:value-of select="normalize-space(translate(substring-before($src,' '),'?סןוי','*שם'))"/>
                     </reg>
                 </w>
                 <!-- recurse -->
@@ -711,14 +680,11 @@
                                     <xsl:value-of select="0"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of
-                                        select="substring-after(substring-before($src,'&amp;'),'=')"
-                                    />
+                                    <xsl:value-of select="substring-after(substring-before($src,'&amp;'),'=')"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
-                        />
+                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"/>
                     </sortWit>
                 </xsl:if>
                 <!-- recurse -->
@@ -731,8 +697,7 @@
                 <sortWit>
                     <xsl:attribute name="sortOrder">
                         <xsl:choose>
-                            <xsl:when
-                                test="substring-after($src,'=')
+                            <xsl:when test="substring-after($src,'=')
                             =''">
                                 <xsl:value-of select="0"/>
                             </xsl:when>

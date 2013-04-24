@@ -40,6 +40,15 @@
             <map:serializer name="text"
                 src="org.apache.cocoon.serialization.TextSerializer"
                 mime-type="text/plain" logger="sitemap.serializer.text"/>
+            <map:serializer name="xhtml"
+                src="org.apache.cocoon.serialization.XMLSerializer"
+                mime-type="text/html" logger="sitemap.serializer.xhtml"
+                pool-max="64">
+                <doctype-public>-//W3C//DTD XHTML 1.0
+                    Strict//EN</doctype-public>
+                <doctype-system>http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</doctype-system>
+                <encoding>UTF-8</encoding>
+            </map:serializer>
         </map:serializers>
         <map:transformers>
             <map:transformer name="collatex"
@@ -83,6 +92,9 @@
             <map:match pattern="css/*.css">
                 <map:read src="resource://css/{1}.css" mime-type="text/css"/>
             </map:match>
+            <map:match pattern="static-index-ref">
+                <map:read src="resource://static/index.xml"/>
+            </map:match>
             <map:match pattern="images/*.png">
                 <map:read src="resource://images/{1}.png" mime-type="image/png"
                 />
@@ -102,10 +114,10 @@
             <!-- Only *.xml called as such? -->
             <map:match pattern="*.xml">
                 <map:generate src="resource://tei/{1}.xml"/>
-                <map:transform type="xinclude"/>
+                <!-- <map:transform type="xinclude"/>-->
                 <map:serialize type="tei"/>
             </map:match>
-            <map:match pattern="*.flat.xml">
+            <map:match pattern="flat/*.xml">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform type="xinclude"/>
                 <map:transform src="resource://xsl/tei-to-flat.xsl"
@@ -119,7 +131,7 @@
                     type="xslt-saxon"/>
                 <map:serialize type="tei"/>
             </map:match>-->
-            <map:match pattern="*.pages.xml">
+            <map:match pattern="pages/*.xml">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform type="xinclude"/>
                 <map:transform src="resource://xsl/tei-to-flat.xsl"
@@ -128,7 +140,7 @@
                     type="xslt-saxon"/>
                 <map:serialize type="tei"/>
             </map:match>
-            <map:match pattern="*.pages.html">
+            <map:match pattern="pages/*.html">
                 <map:generate src="resource://tei/{1}.xml"/>
                 <map:transform src="resource://xsl/tei-to-flat.xsl"
                     type="xslt-saxon"/>
@@ -197,14 +209,16 @@
                     <map:part src="cocoon:/collatex-rich" element="collatex"/>
                 </map:aggregate>
                 <map:transform
-                    src="resource://xsl/merge-tokens-to-collatex-cocoon.xsl"
+                    src="resource://xsl/merge-tokens-to-collatex-cocoon-2.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
                 <map:serialize type="xml"/>
             </map:match>
-            <map:match pattern="tokenize-rich-collatex-merge-output">
+
+            <!--            To Delete as unused?
+                <map:match pattern="tokenize-rich-collatex-merge-output">
                 <map:aggregate element="site">
                     <map:part src="cocoon:/tokenize-rich" element="tokens"/>
                     <map:part src="cocoon:/collatex-rich" element="collatex"/>
@@ -216,7 +230,8 @@
                     src="resource://xsl/collatex-rich-to-apparatus.xsl"
                     type="xslt-saxon"/>
                 <map:serialize type="tei"/>
-            </map:match>
+            </map:match>-->
+
             <!-- The working pipeline for collation output in initial demo -->
             <!-- Can either delete earlier pieces that tested stages along the way, 
                 or call those stages here. -->
@@ -324,50 +339,151 @@
             <map:match pattern="index-compos">
                 <map:generate src="cocoon:/index-include"/>
                 <map:transform type="cinclude"/>
+                <map:serialize type="xml"/>
+            </map:match>
+
+            <!-- iii. Generate a list from index-compos that groups showing witnesses for each selected group
+                      $unit = "all" goes through whole corpus and groups witnesses by each Mishnah 
+                      using $unit = "m" "ch" or "tr" will list witnesses for the particular citation, 
+                      as specified in $mcite -->
+            <!-- iii.a. for dropdown need a pipeline that always does "all." 
+                    Is there a better way of doing this? -->
+            <map:match pattern="group-list-all">
+                <map:generate src="cocoon:/index-compos"/>
                 <map:transform src="resource://xsl/groupFromIndex.xsl"
                     type="xslt-saxon">
-                    <map:parameter name="getList"
-                        value="{request-param:getList}"/>
-                    <map:parameter name="cit" value="{request-param:cit}"/>
+                    <map:parameter name="unit" value="all"/>
                 </map:transform>
                 <map:serialize type="xml"/>
             </map:match>
-            <!-- iii. generate a separate index for ref.xml for comparison to index of witnesses -->
+            <!-- iii.b. Varies output based on "unit" parameter -->
+            <map:match pattern="group-list-unit">
+                <map:generate src="cocoon:/index-compos"/>
+                <map:transform src="resource://xsl/groupFromIndex.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                </map:transform>
+                <map:serialize type="xml"/>
+            </map:match>
+
+            <!-- iv.  Generate a separate index for ref.xml for comparison to index of witnesses -->
             <!--      Note: When project expands so that at least one witness contains whole Mishnah, can rewrite xsl to
-                      exclude this step and pipelines that call it -->
+                      exclude this step and pipelines that call it 
+                      Could also bundle ref.xml in index-compos, and group-list -->
             <map:match pattern="index-ref">
                 <map:generate src="cocoon:/ref.xml"/>
                 <map:transform src="resource://xsl/index-ref.xsl"/>
                 <map:serialize type="xml"/>
             </map:match>
-            <!-- Dropdown menu for whole (new) -->
-            <map:match pattern="collate-dropdown">
+
+            <!-- v.  extract witlist only from ref.xml? -->
+
+            <!-- Dropdown menu for whole M (new) -->
+            <map:match pattern="compare-dropdown">
+                <map:parameter name="unit" value="all"/>
+                <map:parameter name="mcite" value=""/>
                 <map:aggregate element="div">
-                    <map:part src="cocoon:/index-ref"/>
-                    <map:part src="cocoon:/index-compos"/>
+                    <map:part src="resource://static/index.xml"/>
+                    <map:part src="cocoon:/group-list-all"/>
                 </map:aggregate>
                 <map:transform src="resource://xsl/dropdownTractsChs.xsl"
                     type="xslt-saxon"/>
+                <map:serialize type="xml"/>
+            </map:match>
+
+            <!-- Selection list (form) (replaces form in collate-hl) -->
+            <map:match pattern="compare-select-form">
+                <map:generate src="cocoon:/group-list-unit">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                </map:generate>
+                <map:transform src="resource://xsl/collate-select-list.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="tractName"
+                        value="{request-param:tractName}"/>
+                    <map:parameter name="alignType"
+                        value="{request-param:alignType}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
                 <map:serialize type="html"/>
             </map:match>
-            <!-- Selection list (form) (replaces form in collate-hl) -->
-            
-            <!-- Dropdown to select Mishnah (replaces old dropdown from collate-hl -->
 
-
-
-            <!-- Testing Include -->
-            <map:match pattern="*.include-prep">
-                <map:generate src="resource://tei/{1}.xml"/>
-                <map:transform src="resource://xsl/include.xsl"
+            <!-- Pipeline to include collations of individual mishnah or whole chapters broken into indidividual mishnayyot. -->
+            <map:match pattern="multi-merge">
+                <map:generate src="resource://static/index.xml"/>
+                <map:transform src="resource://xsl/cinclude-for-collatex.xsl"
+                    type="xslt-saxon">
+                    <!-- problems with content of params require kludgy processing in the xslt template -->
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="tractName"
+                        value="{request-param:tractName}"/>
+                    <map:parameter name="alignType"
+                        value="{request-param:alignType}"/>
+                    <map:parameter name="rqs" value="{request:queryString}"/>
+                </map:transform>
+                <map:transform type="cinclude"/>
+                <map:transform
+                    src="resource://xsl/collatex-rich-apparatus-multi.xsl"
                     type="xslt-saxon"/>
                 <map:serialize type="xml"/>
             </map:match>
-            <map:match pattern="*.include">
-                <map:generate src="cocoon:/{1}.include-prep"/>
-                <map:transform type="cinclude"/>
+
+            <!-- Pipeline to create the entire comparison structure -->
+            <map:match pattern="compare">
+                <map:aggregate element="tempDiv">
+                    <map:part src="cocoon:/compare-dropdown"/>
+                    <map:part src="cocoon:/compare-select-form"/>
+                    <map:part src="cocoon:/multi-merge"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/assemble-compare.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                </map:transform>
+                <map:transform src="resource://xsl/html-frame.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="menu-mode" value="compare"/>
+                </map:transform>
+                <map:serialize type="html"/>
+            </map:match>
+
+
+
+            <!-- Experiment working with cinclude rather than xinclude -->
+            <!-- Caching not working yet -->
+            <map:match pattern="*.no-include">
+                <!-- when ref.xml is fully revised, will include header only + 
+                    skeleton elements and xinclude instructions -->
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:serialize type="tei"/>
+            </map:match>
+            <!-- Experiment convert xinclude instructions to cinclude to see if faster. -->
+            <map:match pattern="cinc/*.xinclude-to-cinclude">
+                <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform src="resource://xsl/xinclude-to-cinclude.xsl"
+                    type="xslt-saxon"/>
                 <map:serialize type="xml"/>
             </map:match>
+            <map:match pattern="cinc/*.cinclude">
+                <map:generate src="cocoon:/cinc/{1}.xinclude-to-cinclude"/>
+                <map:transform type="cinclude">
+                    <!--<map:parameter name="support-caching" value="true"/>-->
+                </map:transform>
+                <map:serialize type="xml"/>
+            </map:match>
+            <!-- need to do more to implement caching. -->
+            <map:match pattern="cinc2/*.cinclude2">
+                <map:generate src="cocoon:/cinc/{1}.xinclude-to-cinclude"/>
+                <map:transform type="cinclude">
+                    <map:parameter name="support-caching" value="true"/>
+                </map:transform>
+                <map:serialize type="xml"/>
+            </map:match>
+            <!-- End xinclude to cinclude experiment. -->
         </map:pipeline>
     </map:pipelines>
 </map:sitemap>
