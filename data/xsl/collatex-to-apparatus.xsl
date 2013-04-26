@@ -82,7 +82,7 @@ pipeline. -->
                 <link rel="stylesheet" type="text/css"
                     href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/CollatexOutput.css"
                     title="Documentary"/>
-                <title>Sample Output Collatex Output</title>
+                <title>Sample Collatex Output</title>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
             </head>
             <body xsl:exclude-result-prefixes="#all" dir="rtl">

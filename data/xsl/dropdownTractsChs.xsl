@@ -59,7 +59,7 @@
     </xsl:variable>
     <xsl:template match="/">
         <div class="dropdown" xmlns="http://www.w3.org/1999/xhtml">
-            <h3>Select Passage</h3>
+            <h3>Select Passages<a class="tooltip">[?]<span class="help"><em>Select Passage</em>Use this dropdown menu to select a passage for comparison. You can select a single mishnah or a whole chapter.</span></a></h3>
             <ul class="order">
                 <xsl:apply-templates/>
             </ul>

@@ -13,7 +13,7 @@
     </xsl:template>
     <xsl:template match="tempDiv">
         <div class="about">
-            <xsl:copy-of select="*[local-name()= 'div'][@class = 'about']"/>
+            <xsl:copy-of select="*[local-name()= 'div'][@class = 'about']" />
         </div>
         <xsl:copy-of select="*[local-name()= 'div'][@class = 'dropdown']"/>
         <xsl:copy-of select="*[local-name()= 'div'][@class = 'selectionList']"/>

@@ -20,7 +20,12 @@
     xmlns:cinclude="http://apache.org/cocoon/include/1.0">
     <map:components>
         <map:serializers>
-
+            <map:serializer name="html"
+                src="org.apache.cocoon.serialization.HTMLSerializer"
+                mime-type="text/html">
+                <indent>yes</indent>
+                <encoding>UTF-8</encoding>
+            </map:serializer>
             <map:serializer name="tei" mime-type="application/xml"
                 src="org.apache.cocoon.serialization.XMLSerializer">
                 <indent>yes</indent>

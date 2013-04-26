@@ -17,7 +17,7 @@
             <body style="width:75%; margin-right:15%; margin-left:15%;">-->
         
             
-        <div class="about" title="Browse Digital Mishnah Files">
+        <div class="about" title="Digital Mishnah Project: Browse Witnesses">
             <h2>Browse Files from the Digital Mishnah Project</h2>
             <div id="shown" style="direction:ltr;"><p>
                 <a class="toggle" href="javascript:toggle('hidden')">About this Page</a></p></div>

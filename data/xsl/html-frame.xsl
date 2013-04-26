@@ -20,7 +20,6 @@
                 <title>
                     <xsl:value-of select="div/@title"/>
                 </title>
-                <!--<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>-->
                 <link href="./css/demo-styles.css" rel="stylesheet"
                     type="text/css"/>
                 <xsl:if test="$menu-mode = 'browse-home'">

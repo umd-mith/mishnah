@@ -13,17 +13,17 @@ div.meta{
 div.page{
     width:70em;
     position:relative;
-
     padding-top:12pt;
     margin-left:4em;
     margin-right:4em;
-    overflow-x:scroll;
+    /*overflow-x:scroll;*/
 
 
 }
 div.nav{
     line-height:16pt;
     font-size:75%;
+    font-family:Arial, Helvetica, sans-serif;
     display:block;
     direction:ltr;
     width:65em;
@@ -31,6 +31,14 @@ div.nav{
 
 }
 
+div.browse-container{
+    width:75%;
+    overflow-x:scroll;
+    overflow-y:hidden; /*why did height start causing trouble?*/
+    margin:0 10% 0 10%;
+    border-left:#722C25 dashed 1px;
+
+}
 div.oneCol{
     width:45em;
     direction:rtl;
@@ -47,7 +55,7 @@ div.chap{
     margin-right:5%;
 }
 
-hr{
+/*hr{
     color:#ddd;
 }
 
@@ -56,10 +64,10 @@ div.hr{
     width:75%;
     margin:20px auto;
     height:5px;
-    color:#999;
-    border:#999;
-    background-color:#999;
-}
+    color:#722C25;
+    border:#722C25;
+    background-color:#722C25;
+}*/
 div.columnA{
     float:right;
     position:relative;
@@ -127,7 +135,7 @@ p{
     text-align:left;
     /* margin-left:8em; */
 }
-br {
+br{
     line-height:1;
 
 }
@@ -152,6 +160,7 @@ span.next{
     float:left;
     margin:auto;
     top:auto;
+    font-weight:bold;
 }
 span.last{
     width:8%;
@@ -159,6 +168,7 @@ span.last{
     text-align:left;
     margin:auto;
     top:auto;
+    font-weight:bold;
 }
 span.first{
     width:8%;
@@ -166,6 +176,7 @@ span.first{
     float:right;
     margin:auto;
     top:auto;
+    font-weight:bold;
 }
 span.prev{
     width:10%;
@@ -174,7 +185,7 @@ span.prev{
     position:relative;
     top:auto;
     text-align:right;
-
+    font-weight:bold;
 }
 span.selMode{
     width:auto;
@@ -187,7 +198,7 @@ span.selMode{
 }
 .submForm{
     float:right;
-    margin-top:-48pt;
+    margin-top:0;
 
 }
 span.ord{
