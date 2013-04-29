@@ -15,7 +15,7 @@
     <xsl:param name="mcite" select="'4.2.2'"/>
     <xsl:variable name="prevLookup">
 
-        <!-- reconstructs the previous lookup from xslt parameters, and uses as parameters in javascript:toggle() -->
+        <!-- reconstructs the previous lookup from xslt parameters, and uses as parameters in javascript:menuToggle() -->
         <xsl:choose>
             <xsl:when test="$unit = 'm'">
                 <my:prevM>
@@ -90,7 +90,7 @@
     </xsl:template>
     <xsl:template match="my:order">
         <li xmlns="http://www.w3.org/1999/xhtml">
-            <a class="toggle" href="javascript:toggle('{@n}')">
+            <a class="toggle" href="javascript:menuToggle('{@n}')">
                 <xsl:value-of select="@n"/>
             </a>
             <ul class="tract" id="{@n}">
@@ -105,7 +105,7 @@
                 <!-- This tractate has chapter children -->
                 <li class="tract-text" xmlns="http://www.w3.org/1999/xhtml">
 
-                    <a class="toggle" href="javascript:toggle('{@n}')">
+                    <a class="toggle" href="javascript:menuToggle('{@n}')">
                         <xsl:value-of select="replace(@n,'_',' ')"/>
                     </a>
                     <ul class="chapt" id="{@n}">
@@ -126,7 +126,7 @@
                 <!-- This chapter has mishnah children -->
                 <li xmlns="http://www.w3.org/1999/xhtml" class="ch-text">
 
-                    <a class="toggle" href="javascript:toggle('{@xml:id}')"
+                    <a class="toggle" href="javascript:menuToggle('{@xml:id}')"
                         >Chapter <xsl:value-of
                             select="substring-after(@xml:id, concat(parent::my:tract/@xml:id, '.'))"
                         /></a>

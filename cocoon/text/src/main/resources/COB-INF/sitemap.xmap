@@ -22,9 +22,12 @@
         <map:serializers>
             <map:serializer name="html"
                 src="org.apache.cocoon.serialization.HTMLSerializer"
-                mime-type="text/html">
+                mime-type="text/html; charset=UTF-8">
                 <indent>yes</indent>
                 <encoding>UTF-8</encoding>
+                <doctype-public>-//W3C//DTD HTML 4.01
+                    Transitional//EN</doctype-public>
+                <doctype-system>http://www.w3.org/TR/html4/loose.dtd</doctype-system>
             </map:serializer>
             <map:serializer name="tei" mime-type="application/xml"
                 src="org.apache.cocoon.serialization.XMLSerializer">
@@ -413,7 +416,7 @@
                         value="{request-param:alignType}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
-                <map:serialize type="html"/>
+                <map:serialize type="xml"/>
             </map:match>
 
             <!-- Pipeline to include collations of individual mishnah or whole chapters broken into indidividual mishnayyot. -->
@@ -448,6 +451,8 @@
                     type="xslt-saxon">
                     <map:parameter name="unit" value="{request-param:unit}"/>
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="tractName"
+                        value="{request-param:tractName}"/>
                 </map:transform>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon">

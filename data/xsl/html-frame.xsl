@@ -14,11 +14,11 @@
 
     <xsl:param name="menu-mode"/>
 
-    <xsl:template match="/">
+    <xsl:template match="/" exclude-result-prefixes="tei">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <title>
-                    <xsl:value-of select="div/@title"/>
+                    <xsl:value-of select="div[@class='about']/@title"/>
                 </title>
                 <link href="./css/demo-styles.css" rel="stylesheet"
                     type="text/css"/>
@@ -44,6 +44,7 @@
                 <link href="./images/favicon.ico" rel="icon" type="image/ico"/>
                 <link href="./images/bg-page.jpg" rel="jpg" type="image/jpg"/>
                 <script type="text/javascript" language="JavaScript">
+                    //script toggles selected element by id (descriptive text) and the calling elements 'shown' and 'hidden'
           function toggle(id) {
           var state = document.getElementById(id).style.display;
           if (state == 'block') {
@@ -52,8 +53,15 @@
           } else {
           document.getElementById(id).style.display = 'block';
           document.getElementById('shown').style.display = 'none';
-          }
-          }
+          }}
+          //this one only toggles the selected element by ID, not the elements 'shown' or 'hidden'
+          function menuToggle(id) {
+          var state = document.getElementById(id).style.display;
+          if (state == 'block') {
+          document.getElementById(id).style.display = 'none';
+          } else {
+          document.getElementById(id).style.display = 'block';
+          }}
         </script>
             </head>
             <body>
@@ -74,17 +82,19 @@
                             <h2>
                                 <a href="demo">Demo Home</a>
                                 <a href="compare">Compare Witnesses</a>
-                                <a href="http://www.digitalmishnah.org">Blog</a>
+                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
+                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
                     <xsl:when test="$menu-mode = 'browse-param'">
                         <div class="contents">
                             <h2>
-                                <a href="demo">Back to demo home</a>
-                                <a href="browse">Back to browse page</a>
+                                <a href="demo">Demo Home</a>
+                                <a href="browse">Compare Witnesses</a>
                                 <a href="compare">Go to collate page</a>
-                                <a href="http://www.digitalmishnah.org">Blog</a>
+                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
+                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -97,6 +107,8 @@
                                 <a href="#align">Alignment table format</a>
                                 <a href="#text-appar">Text with apparatus</a>
                                 <a href="#synopsis">Parallel column synopsis</a>
+                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
+                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -106,7 +118,8 @@
                                 <a href="demo">Back to demo home</a>
                                 <a href="browse">Go to browse page</a>
                                 <a href="#output">Output</a>
-                                <a href="http://www.digitalmishnah.org">Blog</a>
+                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
+                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>

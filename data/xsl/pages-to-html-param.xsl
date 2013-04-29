@@ -227,7 +227,7 @@
                                     /></xsl:otherwise>
                             </xsl:choose></xsl:variable><xsl:choose><xsl:when test="$mode='pg'"><input type="radio" name="mode" value="pg" checked="checked"
                                     /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="pg"/></xsl:otherwise></xsl:choose>Page <input type="text" name="pg"
-                            size="8" value="{$refValue}"/></span>
+                            size="5" value="{$refValue}"/></span>
                     <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                 <xsl:when test="$mode='col'"><xsl:value-of select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
                                         /></xsl:when><xsl:otherwise><xsl:value-of
@@ -235,7 +235,7 @@
                                     /></xsl:otherwise>
                             </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when test="$mode='col'"><input type="radio" name="mode" value="col" checked="checked"
                                 /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="col"/></xsl:otherwise></xsl:choose>Column <input type="text" name="col"
-                            size="8" value="{$refValue}"/></span>
+                            size="5" value="{$refValue}"/></span>
                     <span class="current"><xsl:variable name="refValue"><xsl:choose>
                                 <xsl:when test="$mode='ch'"><xsl:value-of select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
                                             /></xsl:when><xsl:otherwise><xsl:choose><xsl:when
@@ -246,7 +246,7 @@
                                             /></xsl:otherwise></xsl:choose></xsl:otherwise>
                             </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when test="$mode='ch'"><input type="radio" name="mode" value="ch" checked="checked"
                                 /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="ch"/></xsl:otherwise></xsl:choose>Chapter <input type="text" name="ch"
-                            size="8" value="{$refValue}"/></span><input type="submit" value="Submit" class="submForm"/></form>
+                            size="5" value="{$refValue}"/></span><input type="submit" value="Submit" class="submForm"/></form>
             </div>
             <div class="meta" dir="ltr">
                 <xsl:variable name="nli" select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type
@@ -742,9 +742,7 @@
                 <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
-        <div xmlns="http://www.w3.org/1999/xhtml" class="hr">
-            <hr> </hr>
-        </div>
+        
     </xsl:template>
     <!-- PB and CB only exist in ch mode -->
     <xsl:template match="tei:pb">
