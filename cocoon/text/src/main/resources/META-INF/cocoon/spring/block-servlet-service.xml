@@ -17,7 +17,7 @@
   specific language governing permissions and limitations
   und
 -->
-<!-- $Id: block-servlet-service.xml 642117 2008-03-28 08:03:19Z reinhard $ -->
+<!-- $Id: block-servlet-service.xml 642116 2008-03-28 08:00:47Z reinhard $ -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:servlet="http://cocoon.apache.org/schema/servlet"
@@ -25,7 +25,7 @@
                            http://cocoon.apache.org/schema/servlet http://cocoon.apache.org/schema/servlet/cocoon-servlet-1.0.xsd">
 
   <bean name="edu.umd.mith.mishnah.text.service" class="org.apache.cocoon.sitemap.SitemapServlet">
-    <servlet:context mount-path="/text" context-path="blockcontext:/text/"/>
+    <servlet:context mount-path="/text" context-path="blockcontext:/text-0.1/"/>
   </bean>
 
 </beans>
