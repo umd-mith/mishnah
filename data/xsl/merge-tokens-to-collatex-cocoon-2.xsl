@@ -98,64 +98,10 @@
     <xsl:template match="/site/tokens//tei:teiHeader"/>
     <xsl:template match="/site/collatex"/>
     <xsl:variable name="witlist">
-        <xsl:variable name="params">
-            <xsl:call-template name="tokenize-params">
-                <xsl:with-param name="src" select="$rqs"/>
-            </xsl:call-template>
-        </xsl:variable>
+        <xsl:variable name="params" select="my:parse-rqs($rqs)"/>
         <xsl:for-each select="$params/tei:sortWit[text()]">
             <xsl:sort select="@sortOrder"/>
             <xsl:copy-of select="."/>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:template name="tokenize-params">
-        <xsl:param name="src"/>
-        <xsl:choose>
-            <xsl:when test="contains($src,'&amp;')">
-                <!-- build first token element -->
-                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
-                    <sortWit>
-                        <xsl:attribute name="sortOrder">
-                            <xsl:choose>
-                                <xsl:when
-                                    test="substring-after(substring-before($src,'&amp;'),'=')
-                                    =''">
-                                    <xsl:value-of select="0"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of
-                                        select="substring-after(substring-before($src,'&amp;'),'=')"
-                                    />
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"
-                        />
-                    </sortWit>
-                </xsl:if>
-                <!-- recurse -->
-                <xsl:call-template name="tokenize-params">
-                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- last token, end recursion -->
-                <sortWit>
-                    <xsl:attribute name="sortOrder">
-                        <xsl:choose>
-                            <xsl:when
-                                test="substring-after($src,'=')
-                                =''">
-                                <xsl:value-of select="0"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="substring-after($src,'=')"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:value-of select="substring-before($src,'=')"/>
-                </sortWit>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
 </xsl:stylesheet>

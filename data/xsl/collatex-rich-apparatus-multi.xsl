@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:its="http://www.w3.org/2005/11/its"
-    xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its my"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its my fn"
     version="2.0" xmlns:my="local-functions.uri">
     <xsl:strip-space elements="*"/>
     <xsl:output indent="yes" method="html" omit-xml-declaration="no" encoding="UTF-8"/>
@@ -12,18 +13,26 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
+
+    <xsl:function name="my:parse-rqs" as="element(tei:sortWit)*">
+      <xsl:param name="rqs" as="xs:string"/>
+      <xsl:for-each select="fn:tokenize($rqs, '&amp;')[
+        fn:tokenize(., '=')[1] != 'mcite' and string(fn:tokenize(., '=')[2])
+      ]">
+        <xsl:variable name="kv" select="fn:tokenize(., '=')"/>
+        <sortWit sortOrder="{$kv[2]}">
+          <xsl:value-of select="$kv[1]"/>
+        </sortWit>
+      </xsl:for-each>
+    </xsl:function>
+
     <xsl:variable name="alignType" select="/tei:struct/tei:alignType"/>
     <xsl:variable name="mcite" select="/tei:struct/tei:mcite"/>
     <xsl:variable name="unit" select="/tei:struct/tei:unit"/>
     <xsl:variable name="tractName" select="/tei:struct/tei:tractName"/>
     <xsl:variable name="rqs" select="/tei:struct/tei:rqs"/>
     <xsl:variable name="queryParams" xpath-default-namespace="http://www.tei-c.org/ns/1.0">
-        <xsl:variable name="params">
-            <xsl:call-template name="tokenize-params">
-                <xsl:with-param name="src" select="$rqs"/>
-            </xsl:call-template>
-        </xsl:variable>
-        <xsl:for-each select="$params/tei:sortWit[@sortOrder != 0]">
+        <xsl:for-each select="my:parse-rqs($rqs)">
             <xsl:sort select="@sortOrder" data-type="number"/>
             <xsl:copy-of select="."/>
         </xsl:for-each>
@@ -633,52 +642,4 @@ this -->
         </div>
     </xsl:template>
     <xsl:template match="tei:teiHeader | tei:alignType | tei:unit | tei:mcite | tei:tractName | tei:rqs" mode="#all"/>
-
-    <xsl:template name="tokenize-params">
-        <!-- revise me -->
-        <xsl:param name="src"/>
-        <xsl:choose>
-            <xsl:when test="contains($src,'&amp;')">
-                <!-- build first token element -->
-                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
-                    <tei:sortWit xpath-default-namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:attribute name="sortOrder">
-                            <xsl:choose>
-                                <xsl:when
-                                    test="substring-after(substring-before($src,'&amp;'),'=')
-                                    =''">
-                                    <xsl:value-of select="0"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="substring-after(substring-before($src,'&amp;'),'=')"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:value-of select="substring-before(substring-before($src,'&amp;'),'=')"/>
-                    </tei:sortWit>
-                </xsl:if>
-                <!-- recurse -->
-                <xsl:call-template name="tokenize-params">
-                    <xsl:with-param name="src" select="substring-after($src,'&amp;')"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- last token, end recursion -->
-                <tei:sortWit xpath-default-namespace="http://www.tei-c.org/ns/1.0">
-                    <xsl:attribute name="sortOrder">
-                        <xsl:choose>
-                            <xsl:when test="substring-after($src,'=')
-                                =''">
-                                <xsl:value-of select="0"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="substring-after($src,'=')"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:value-of select="substring-before($src,'=')"/>
-                </tei:sortWit>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
 </xsl:stylesheet>

@@ -58,7 +58,7 @@ pipeline. -->
                             </xsl:attribute>
                             <xsl:attribute name="state">
                                 <xsl:value-of
-                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@state"
+                                    select="$data/cx:row[@sigil=$witness]/cx:cell[position()=$position]/@cx:state"
                                 />
                             </xsl:attribute>
                             <xsl:attribute name="sort-order" select="position()"/>
@@ -178,7 +178,7 @@ pipeline. -->
                                 <xsl:for-each select="$readings-list/my:lemma">
                                     <td>
                                         <xsl:if
-                                            test="./my:reading[@sort-order=$sort-order]/@state =
+                                            test="./my:reading[@sort-order=$sort-order]/@cx:state =
 'variant'">
                                             <xsl:attribute name="class" select="'variant'"/>
                                         </xsl:if>

@@ -10,6 +10,7 @@
     <xsl:param name="rqs"
         select="'mcite=4.2.2.3&amp;unit=m&amp;tractName=Bava_Metsia&amp;Kauf=1&amp;ParmA=2&amp;Camb=3&amp;S00651=&amp;S08174=6&amp;P00001=&amp;Vilna=4&amp;Mun=&amp;Hamb=&amp;Vat114=5&amp;Vat115=&amp;Vat117=&amp;Leid=&amp;S03524=&amp;S04533=&amp;S04589=&amp;S04624=&amp;S01715=&amp;S05134=&amp;S04944=&amp;S04636=&amp;alignType=align'"/>
     <xsl:param name="alignType" select="'align'"/>
+    <xsl:param name="algorithm" select="dekker"/>
     <xsl:param name="mcite" select="'4.2.2.3'"/>
     <xsl:param name="unit" select="'m'"/>
     <xsl:param name="tractName" select="'Bava_Metsia'"/>
@@ -32,6 +33,9 @@
             <my:param>
                 <xsl:value-of select="concat('tractName=',$tractName,'&amp;')"/>
             </my:param>
+            <!--<my:param>
+                <xsl:value-of select="concat('algorithm=',$algorithm,'&amp;')"/>
+            </my:param>-->
         </xsl:variable>
         <xsl:variable name="tempStr1"
             select="concat(substring-before($string,$my:remove/my:param[1]),substring-after($string,$my:remove/my:param[1]))"/>
@@ -41,6 +45,8 @@
             select="concat(substring-before($tempStr2,$my:remove/my:param[3]),substring-after($tempStr2,$my:remove/my:param[3]))"/>
         <xsl:variable name="tempStr4"
             select="concat(substring-before($tempStr3,$my:remove/my:param[4]),substring-after($tempStr3,$my:remove/my:param[4]))"/>
+        <!--<xsl:variable name="tempStr5"
+            select="concat(substring-before($tempStr4,$my:remove/my:param[5]),substring-after($tempStr4,$my:remove/my:param[5]))"/>-->
         <!-- truncate last &amp; -->
         <xsl:value-of select="substring($tempStr4,1,string-length($tempStr4) - 1)"/>
     </xsl:variable>
