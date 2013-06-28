@@ -18,26 +18,28 @@
   under the License.
 -->
 <!-- $Id: pom.xml 643595 2008-04-01 21:40:49Z reinhard $ -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    
+
     <!--<parent>
     <groupId>edu.umd.mith.mishnah</groupId>
     <artifactId>cocoon</artifactId>
     <version>0.1</version>
   </parent>-->
-    
+
     <name>Digital Mishnah Text Block</name>
     <groupId>edu.umd.mith.mishnah</groupId>
     <artifactId>text</artifactId>
     <version>0.1</version>
-    
+
     <properties>
         <scala.version>2.9.1</scala.version>
     </properties>
-    
+
     <repositories>
         <repository>
             <id>CollateX repository</id>
@@ -49,7 +51,7 @@
             <url>http://scala-tools.org/repo-releases</url>
         </repository>
     </repositories>
-    
+
     <pluginRepositories>
         <pluginRepository>
             <id>scala-tools.releases</id>
@@ -57,7 +59,7 @@
             <url>http://scala-tools.org/repo-releases</url>
         </pluginRepository>
     </pluginRepositories>
-    
+
     <dependencies>
         <dependency>
             <groupId>eu.interedition.collatex</groupId>
@@ -111,13 +113,13 @@
             <version>1.6.4</version>
         </dependency>
     </dependencies>
-    
+
     <build>
         <!--<sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>-->
         <resources>
             <resource>
-                <directory>src/main/resources</directory> 
+                <directory>src/main/resources</directory>
             </resource>
             <resource>
                 <directory>../../data/</directory>
@@ -144,7 +146,8 @@
                 <version>6.1.25</version>
                 <configuration>
                     <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                        <connector
+                            implementation="org.mortbay.jetty.nio.SelectChannelConnector">
                             <port>8888</port>
                             <maxIdleTime>30000</maxIdleTime>
                         </connector>
@@ -185,7 +188,7 @@
                     <args>
                         <arg>-unchecked</arg>
                         <arg>-deprecation</arg>
-                    </args> 
+                    </args>
                 </configuration>
                 <executions>
                     <execution>
@@ -205,7 +208,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!--<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
@@ -230,5 +233,5 @@
       </plugin>-->
         </plugins>
     </build>
-    
+
 </project>
