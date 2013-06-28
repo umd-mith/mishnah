@@ -64,9 +64,10 @@
                     </xsl:choose>
                 </xsl:for-each-group>
             </xsl:variable>
-            <!--<xsl:copy-of select="$grouped-1"></xsl:copy-of>-->
-            
-            <xsl:variable name="grouped-2"><xsl:for-each-group select="$grouped-1/node()" group-adjacent="boolean(self::tei:damage)">
+            <!--<GROUPED_1><xsl:copy-of select="$grouped-1"></xsl:copy-of></GROUPED_1>-->
+
+            <xsl:variable name="grouped-2">
+                <xsl:for-each-group select="$grouped-1/*" group-adjacent="boolean(self::tei:damage)">
                 <xsl:choose>
                     <xsl:when test="current-grouping-key()">
                         <damage>
@@ -74,11 +75,14 @@
                         </damage>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:apply-templates select="current-group()"/>
+                        <xsl:copy-of select="current-group()"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each-group></xsl:variable>
-            <xsl:for-each-group select="$grouped-2/node()" group-adjacent="boolean(self::tei:damage)">
+<!-- <GROUPED_2>
+                <xsl:copy-of select="$grouped-2"></xsl:copy-of></GROUPED_2>-->
+            
+            <xsl:for-each-group select="$grouped-2/*" group-adjacent="boolean(self::tei:damage)">
                 <xsl:choose>
                     <xsl:when test="current-grouping-key()">
                         <damage>
