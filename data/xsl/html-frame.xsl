@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xd"
+    xmlns:html="http://www.w3.org/1999/xhtml"
     version="2.0">
     <xsl:output encoding="UTF-8" indent="yes" method="html"/>
     <xd:doc scope="stylesheet">
@@ -18,7 +19,7 @@
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <title>
-                    <xsl:value-of select="div[@class='about']/@title"/>
+                    <xsl:value-of select="html:div[@class='about']/@title"/>
                 </title>
                 <link href="./css/demo-styles.css" rel="stylesheet"
                     type="text/css"/>
