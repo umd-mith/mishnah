@@ -19,7 +19,7 @@
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
                 <title>
-                    <xsl:value-of select="html:div[@class='about']/@title"/>
+                    <xsl:value-of select="html:div[@class='about']/@title | div[@class='about']/@title"/>
                 </title>
                 <link href="./css/demo-styles.css" rel="stylesheet"
                     type="text/css"/>
