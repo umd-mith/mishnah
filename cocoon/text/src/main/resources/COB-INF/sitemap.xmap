@@ -176,7 +176,8 @@
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
                 <map:transform type="collatex"/>
-                <map:transform src="resource://xsl/separate-witnesses.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/separate-witnesses.xsl"
+                    type="xslt-saxon"/>
                 <map:transform src="resource://xsl/apparatus.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
@@ -213,11 +214,13 @@
                 <map:transform src="resource://xsl/tokenize-rich-collatex.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
-                    <map:parameter name="algorithm" value="{request-param:algorithm}"/>
+                    <map:parameter name="algorithm"
+                        value="{request-param:algorithm}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
                 <map:transform type="collatex"/>
-                <map:transform src="resource://xsl/separate-witnesses.xsl" type="xslt-saxon"/>
+                <map:transform src="resource://xsl/separate-witnesses.xsl"
+                    type="xslt-saxon"/>
                 <map:serialize type="xml"/>
             </map:match>
             <map:match pattern="merge">
