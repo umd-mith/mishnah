@@ -68,7 +68,7 @@
             <body>
                 -->
         <div class="output-container">
-            <a name="output"/>
+            <a name="output"></a>
             <div class="hr">
                 <hr> </hr>
             </div>
