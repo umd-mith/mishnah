@@ -88,13 +88,13 @@
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon"/>
-                <map:serialize type="html"/>
+                <map:serialize type="xhtml"/>
             </map:match>
             <map:match pattern="demo">
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon"/>
-                <map:serialize type="html"/>
+                <map:serialize type="xhtml"/>
             </map:match>
 
             <map:match pattern="css/*.css">
@@ -122,7 +122,7 @@
             <!-- Only *.xml called as such? -->
             <map:match pattern="*.xml">
                 <map:generate src="resource://tei/{1}.xml"/>
-                <!-- <map:transform type="xinclude"/>-->
+                <map:transform type="xinclude"/>
                 <map:serialize type="tei"/>
             </map:match>
             <map:match pattern="flat/*.xml">
@@ -150,6 +150,7 @@
             </map:match>
             <map:match pattern="pages/*.html">
                 <map:generate src="resource://tei/{1}.xml"/>
+                <map:transform type="xinclude"/>
                 <map:transform src="resource://xsl/tei-to-flat.xsl"
                     type="xslt-saxon"/>
                 <map:transform src="resource://xsl/flat-to-pages.xsl"
@@ -266,19 +267,19 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="collation"/>
                 </map:transform>
-                <map:serialize type="html"/>
+                <map:serialize type="xhtml"/>
             </map:match>
             <!-- End collation output pipelines -->
 
             <!-- Pipelines for browsing witnesses -->
-            <!-- Initial, non-parameterized browse -->
+            <!-- Initial, non-parameterized browse DELETE -->
             <map:match pattern="browse-old">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse-old.xsl"
                     type="xslt-saxon"/>
                 <map:serialize type="html"/>
             </map:match>
-            <!-- experimenting with parameterized browse - DELETE?-->
+            <!-- experimenting with parameterized browse -->
             <map:match pattern="browse">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/browse.xsl" type="xslt-saxon"/>
@@ -286,8 +287,9 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="browse-home"/>
                 </map:transform>
-                <map:serialize type="html"/>
+                <map:serialize type="xhtml"/>
             </map:match>
+
 
             <!-- Parameterized Browse: working pipeline for whole -->
             <map:match pattern="*.browse-param.html">
@@ -321,7 +323,7 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="browse-param"/>
                 </map:transform>
-                <map:serialize type="html"/>
+                <map:serialize type="xhtml"/>
             </map:match>
             <!-- End parameterized browze -->
 
@@ -329,6 +331,7 @@
             <!-- creates an index of all abs in matching witness for building selection lists and dropdown menus-->
             <map:match pattern="*.index">
                 <map:generate src="resource://tei/{1}.xml"/>
+
                 <map:transform src="resource://xsl/index-wit.xsl"
                     type="xslt-saxon"/>
                 <map:serialize type="xml"/>
