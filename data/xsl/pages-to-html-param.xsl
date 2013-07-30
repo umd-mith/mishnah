@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xd xs its local my tei" version="2.0"
-    xmlns:my="http://http://dev.digitalmishnah.org/local-functions.uri"
-    xmlns:local="local-functions.uri">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local my tei" version="2.0"
+    xmlns:my="http://http://dev.digitalmishnah.org/local-functions.uri" xmlns:local="local-functions.uri">
 
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
 
@@ -27,8 +24,7 @@
     <xsl:param name="pg"/>
     <xsl:param name="col"/>
     <xsl:param name="mode"/>
-    <xsl:variable name="wit"
-        select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
+    <xsl:variable name="wit" select="tei:TEI/tei:teiHeader//tei:publicationStmt/tei:idno[@type='local']/text()"/>
     <xsl:variable name="thisURI" select="concat('../tei/',$wit,'.xml')"/>
     <xsl:variable name="thisId">
         <!-- locates first, last, next, prev for processing links -->
@@ -55,22 +51,16 @@
         </this>
         <first>
             <xsl:choose>
-                <xsl:when
-                    test="document($thisURI,(document('')))/*/*//*/preceding::element()[name()=$name]">
-                    <xsl:value-of
-                        select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[1]/@xml:id"
-                    />
+                <xsl:when test="document($thisURI,(document('')))/*/*//*/preceding::element()[name()=$name]">
+                    <xsl:value-of select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[1]/@xml:id"/>
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
             </xsl:choose>
         </first>
         <last>
             <xsl:choose>
-                <xsl:when
-                    test="document($thisURI,(document('')))/*/*//*/following::element()[name()=$name]">
-                    <xsl:value-of
-                        select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[last()]/@xml:id"
-                    />
+                <xsl:when test="document($thisURI,(document('')))/*/*//*/following::element()[name()=$name]">
+                    <xsl:value-of select="((document($thisURI,(document('')))/*/*//*)[name()=$name])[last()]/@xml:id"/>
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
             </xsl:choose>
@@ -78,36 +68,29 @@
         </last>
         <prev>
             <xsl:choose>
-                <xsl:when
-                    test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]">
-                    <xsl:value-of
-                        select="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]/@xml:id"
-                    />
+                <xsl:when test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]">
+                    <xsl:value-of select="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/preceding::element()[name()=$name][1]/@xml:id"/>
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
             </xsl:choose>
         </prev>
         <next>
             <xsl:choose>
-                <xsl:when
-                    test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]">
-                    <xsl:value-of
-                        select="((document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name])[1]/@xml:id"
-                    />
+                <xsl:when test="(document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name][1]">
+                    <xsl:value-of select="((document($thisURI,(document('')))/*/*//*)[@xml:id=$id]/following::element()[name()=$name])[1]/@xml:id"/>
                 </xsl:when>
                 <xsl:otherwise>null</xsl:otherwise>
             </xsl:choose>
         </next>
 
     </xsl:variable>
-    
+
     <xsl:template match="*|@*|text()|processing-instruction()">
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|processing-instruction()"/>
         </xsl:copy>
     </xsl:template>
-    <xsl:template
-        match="//tei:anchor | //tei:damageSpan |
+    <xsl:template match="//tei:anchor | //tei:damageSpan |
         tei:milestone[@unit='MSMishnah'] | tei:milestone[@unit='fragment']"> </xsl:template>
     <!-- for now ignoring fw for running heads etc. -->
     <xsl:template match="//tei:fw"/>
@@ -121,8 +104,7 @@
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'mishnah-ch'"/>
 
-                    <xsl:analyze-string select="@xml:id"
-                        regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
+                    <xsl:analyze-string select="@xml:id" regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
                         <xsl:matching-substring>
                             <xsl:value-of select="regex-group(5)"/>
                         </xsl:matching-substring>
@@ -146,13 +128,11 @@
     <xsl:template match="/">
         <div xsl:exclude-result-prefixes="tei" dir="rtl">
             <xsl:attribute name="title">
-               <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"
-                    exclude-result-prefixes="#all"/>
+                <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" exclude-result-prefixes="#all"/>
             </xsl:attribute>
             <div class="about">
                 <h2>
-                    <xsl:value-of
-                        select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
+                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title"/>
                 </h2>
                 <div id="shown" style="direction:ltr;">
                     <p>
@@ -163,28 +143,19 @@
                     <p>
                         <a class="toggle" href="javascript:toggle('hidden')">Hide Description</a>
                     </p>
-                    <p>The top region of this page provides navigation controls to browse through
-                        the document.</p>
+                    <p>The top region of this page provides navigation controls to browse through the document.</p>
                     <ul style="direction:ltr">
-                        <li>By default, the initial view is in <hi>page</hi> mode, and the first
-                            page of the document. (Since this is a demo, if the source document is
-                            not completely transcribed, the initial view presents the first encoded
-                            page</li>
-                        <li>Where the page in the source document is in multiple columns users can
-                            select <hi>column</hi> mode, and browse by individual column.</li>
-                        <li>Users may also select <b><i>chapter</i></b> mode and view individual
-                            chapters in a more compact format.</li>
+                        <li>By default, the initial view is in <hi>page</hi> mode, and the first page of the document. (Since this is a demo, if the source document is
+                            not completely transcribed, the initial view presents the first encoded page</li>
+                        <li>Where the page in the source document is in multiple columns users can select <hi>column</hi> mode, and browse by individual column.</li>
+                        <li>Users may also select <b><i>chapter</i></b> mode and view individual chapters in a more compact format.</li>
                     </ul>
-                    <p>The radio buttons allow the user to change the browsing mode. The
-                                <b><i>First</i></b>, <b><i>Last</i></b>, <b><i>Previous</i></b>, and
-                                <b><i>Next</i></b> links allow the browser to page through the
-                        document. It is possible also to jump to a specific page, column, or chapter
-                        by entering the location in the appropriate text field.</p>
-                    <p>The table below the navigation controls presents information on repository,
-                        hands, provenance and other data, including, where available, links to the
-                        National Library of Israel catalog.</p>
-                    <p>Finally, the selected text and any notes are presented below the
-                        metadata.</p>
+                    <p>The radio buttons allow the user to change the browsing mode. The <b><i>First</i></b>, <b><i>Last</i></b>, <b><i>Previous</i></b>, and
+                                <b><i>Next</i></b> links allow the browser to page through the document. It is possible also to jump to a specific page, column, or
+                        chapter by entering the location in the appropriate text field.</p>
+                    <p>The table below the navigation controls presents information on repository, hands, provenance and other data, including, where available, links to
+                        the National Library of Israel catalog.</p>
+                    <p>Finally, the selected text and any notes are presented below the metadata.</p>
                     <p>
                         <a class="toggle" href="javascript:toggle('hidden')">Hide Description</a>
                     </p>
@@ -195,46 +166,33 @@
                         href="browse">Back to Browse</a>]</h2>
                 <h2 style="font-size:80%;"/>-->
             <div class="nav">
-                
+
                 <!-- variables for building urls for paramaterized links -->
                 <xsl:variable name="goNext">
-                    <xsl:variable name="ref"
-                        select="substring-after($thisPgColCh/tei:next,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                        test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:next,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if
+                        test="$mode='pg'"><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
                         test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                 </xsl:variable>
                 <xsl:variable name="goFirst">
-                    <xsl:variable name="ref"
-                        select="substring-after($thisPgColCh/tei:first,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                        test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:first,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if
+                        test="$mode='pg'"><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
                         test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                 </xsl:variable>
                 <xsl:variable name="goPrev">
-                    <xsl:variable name="ref"
-                        select="substring-after($thisPgColCh/tei:prev,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                        test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:prev,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if
+                        test="$mode='pg'"><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
                         test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                 </xsl:variable>
                 <xsl:variable name="goLast">
-                    <xsl:variable name="ref"
-                        select="substring-after($thisPgColCh/tei:last,concat($wit,'.'))"/>
-                        mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='pg'"
-                            ><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if
-                        test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
+                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:last,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if
+                        test="$mode='pg'"><xsl:value-of select="$ref"/></xsl:if>&amp;col=<xsl:if test="$mode='col'"><xsl:value-of select="$ref"/></xsl:if>&amp;ch=<xsl:if
                         test="$mode='ch'"><xsl:value-of select="$ref"/></xsl:if>
                 </xsl:variable>
                 <span class="last">
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:last='null'">|&lt; Last</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goLast)}">|&lt;
-                                Last</a>
+                            <a href="{$wit}.browse-param.html?{normalize-space($goLast)}">|&lt; Last</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -242,8 +200,7 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:next='null'">&lt;&lt; Next</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goNext)}">&lt;&lt;
-                                Next</a>
+                            <a href="{$wit}.browse-param.html?{normalize-space($goNext)}">&lt;&lt; Next</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -251,8 +208,7 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:first='null'">First &gt;|</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goFirst)}">First
-                                &gt;|</a>
+                            <a href="{$wit}.browse-param.html?{normalize-space($goFirst)}">First &gt;|</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -260,66 +216,51 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:prev='null'">Previous &gt;&gt;</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goPrev)}">Previous
-                                &gt;&gt;</a>
+                            <a href="{$wit}.browse-param.html?{normalize-space($goPrev)}">Previous &gt;&gt;</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
                 <form action="{$wit}.browse-param.html" method="get" class="current-block">Browse by:<br/>
                     <span class="current"><xsl:variable name="refValue"><xsl:choose>
-                                <xsl:when test="$mode='pg'"><xsl:value-of
-                                        select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
-                                    /></xsl:when><xsl:otherwise><xsl:value-of
+                                <xsl:when test="$mode='pg'"><xsl:value-of select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                        /></xsl:when><xsl:otherwise><xsl:value-of
                                         select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:pb[1]/@xml:id,concat($wit,'.'))"
                                     /></xsl:otherwise>
-                            </xsl:choose></xsl:variable><xsl:choose><xsl:when test="$mode='pg'"
-                                    ><input type="radio" name="mode" value="pg" checked="checked"
-                                /></xsl:when><xsl:otherwise><input type="radio" name="mode"
-                                    value="pg"/></xsl:otherwise></xsl:choose>Page <input type="text"
-                            name="pg" size="5" value="{$refValue}"/></span>
+                            </xsl:choose></xsl:variable><xsl:choose><xsl:when test="$mode='pg'"><input type="radio" name="mode" value="pg" checked="checked"
+                                    /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="pg"/></xsl:otherwise></xsl:choose>Page <input type="text" name="pg"
+                            size="5" value="{$refValue}"/></span>
                     <span class="current"><xsl:variable name="refValue"><xsl:choose>
-                                <xsl:when test="$mode='col'"><xsl:value-of
-                                        select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
-                                    /></xsl:when><xsl:otherwise><xsl:value-of
+                                <xsl:when test="$mode='col'"><xsl:value-of select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                        /></xsl:when><xsl:otherwise><xsl:value-of
                                         select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb[1]/@xml:id,concat($wit,'.'))"
                                     /></xsl:otherwise>
-                            </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
-                                test="$mode='col'"><input type="radio" name="mode" value="col"
-                                    checked="checked"/></xsl:when><xsl:otherwise><input type="radio"
-                                    name="mode" value="col"/></xsl:otherwise></xsl:choose>Column
-                            <input type="text" name="col" size="5" value="{$refValue}"/></span>
+                            </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when test="$mode='col'"><input type="radio" name="mode" value="col" checked="checked"
+                                /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="col"/></xsl:otherwise></xsl:choose>Column <input type="text" name="col"
+                            size="5" value="{$refValue}"/></span>
                     <span class="current"><xsl:variable name="refValue"><xsl:choose>
-                                <xsl:when test="$mode='ch'"><xsl:value-of
-                                        select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
-                                    /></xsl:when><xsl:otherwise><xsl:choose><xsl:when
-                                            test="document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3"
-                                                ><xsl:value-of
+                                <xsl:when test="$mode='ch'"><xsl:value-of select="substring-after($thisPgColCh/tei:this,concat($wit,'.'))"
+                                            /></xsl:when><xsl:otherwise><xsl:choose><xsl:when
+                                            test="document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3"><xsl:value-of
                                                 select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3/@xml:id,concat($wit,'.'))"
                                             /></xsl:when><xsl:otherwise><xsl:value-of
                                                 select="substring-after(document($thisURI)//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:div3[1]/@xml:id,concat($wit,'.'))"
                                             /></xsl:otherwise></xsl:choose></xsl:otherwise>
-                            </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when
-                                test="$mode='ch'"><input type="radio" name="mode" value="ch"
-                                    checked="checked"/></xsl:when><xsl:otherwise><input type="radio"
-                                    name="mode" value="ch"/></xsl:otherwise></xsl:choose>Chapter
-                            <input type="text" name="ch" size="5" value="{$refValue}"/></span><input
-                        type="submit" value="Submit" class="submForm"/></form>
+                            </xsl:choose></xsl:variable>&#160;&#160;<xsl:choose><xsl:when test="$mode='ch'"><input type="radio" name="mode" value="ch" checked="checked"
+                                /></xsl:when><xsl:otherwise><input type="radio" name="mode" value="ch"/></xsl:otherwise></xsl:choose>Chapter <input type="text" name="ch"
+                            size="5" value="{$refValue}"/></span><input type="submit" value="Submit" class="submForm"/></form>
             </div>
             <div class="meta" dir="ltr">
-                <xsl:variable name="nli"
-                    select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type
+                <xsl:variable name="nli" select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type
                         = 'nli-ref']"/>
                 <table class="meta">
 
                     <tr>
                         <td class="data">Repository</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:repository"/>
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:repository"/>
                             <xsl:text>
                             (</xsl:text>
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:settlement"/>
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:settlement"/>
                             <xsl:text>) </xsl:text>
                         </td>
                         <td class="data">Dimensions:</td>
@@ -328,9 +269,7 @@
                     <tr>
                         <td class="data">Id no.</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:idno"/>
                         </td>
                         <td class="data">Sheet</td>
                         <td class="descr">
@@ -345,8 +284,7 @@
                     <tr>
                         <td class="data">Hand</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/@script"/>
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/@script"/>
                             <xsl:choose>
                                 <xsl:when
                                     test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]"
@@ -385,9 +323,7 @@
                     <tr>
                         <td class="data">Date</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:date"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:date"/>
                         </td>
                         <td class="data">Lines per column</td>
                         <td class="descr">
@@ -399,9 +335,7 @@
                     <tr>
                         <td class="data">Region</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:region"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote[1]/tei:region"/>
                         </td>
                         <td class="data">Characters/line</td>
                         <td class="descr">
@@ -413,9 +347,7 @@
                     <tr>
                         <td class="data">Format</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/@form"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/@form"/>
                         </td>
                         <td class="data">Characters/cm</td>
                         <td class="descr">
@@ -427,9 +359,7 @@
                     <tr>
                         <td class="data">Material</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/@material"/>
                         </td>
                         <td class="data"/>
                         <td class="descr"/>
@@ -437,9 +367,8 @@
                     <tr>
                         <td class="data">Extent</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent"
-                            /> leaves </td>
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:supportDesc/tei:extent"/>
+                            leaves </td>
                         <td class="data">Contributions:</td>
                         <td class="descr"/>
                     </tr>
@@ -447,35 +376,28 @@
                         <td class="data">Columns</td>
                         <td class="descr">
                             <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/@columns"
-                            />
+                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:objectDesc/tei:layoutDesc/tei:layout/@columns"/>
                         </td>
                         <td class="data">Transcription</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='transcriber']/tei:persName"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='transcriber']/tei:persName"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="data">Scribe</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:persName"
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:persName"
                                 separator="; "/>
                         </td>
                         <td class="data">Markup</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='markup']/tei:persName"
-                            />
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:respStmt[./tei:resp/text()='markup']/tei:persName"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="data">Place of copying</td>
                         <td class="descr">
-                            <xsl:value-of
-                                select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:placeName"
+                            <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:placeName"
                                 separator="; "/>
                         </td>
                         <td class="data">
@@ -513,14 +435,12 @@
     <xsl:template match="tei:supplied"> </xsl:template>
     <!-- Hide in CSS. Eventually, extract order name and tractate name from id. -->
     <xsl:template match="tei:milestone[@unit='Order' or @unit='div1']">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                >ord</xsl:attribute> Order <xsl:value-of select="./@xml:id"/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class">ord</xsl:attribute> Order <xsl:value-of select="./@xml:id"/>
         </xsl:element>
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:milestone[@unit='Tractate' or @unit='div2']">
-        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class"
-                >tr</xsl:attribute> Tractate <xsl:value-of select="./@xml:id"/>
+        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class">tr</xsl:attribute> Tractate <xsl:value-of select="./@xml:id"/>
         </xsl:element>
         <xsl:apply-templates/>
     </xsl:template>
@@ -531,8 +451,7 @@
 
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">chapter</xsl:attribute>
-            <xsl:analyze-string select="$ref"
-                regex="^P_([^\.]+)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+            <xsl:analyze-string select="$ref" regex="^P_([^\.]+)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                 <xsl:matching-substring>
                     <xsl:value-of select="regex-group(4)"/>
                 </xsl:matching-substring>
@@ -549,8 +468,7 @@
         </xsl:variable>
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class">mishnah</xsl:attribute>
-            <xsl:analyze-string select="$ref"
-                regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
+            <xsl:analyze-string select="$ref" regex="^([^\.]+?)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})\.([0-9]{{1,2}})">
                 <xsl:matching-substring>
                     <xsl:value-of select="regex-group(5)"/>
                 </xsl:matching-substring>
@@ -569,8 +487,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>
-                        </xsl:element>
+                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>&#xa0; </xsl:element>
                     </xsl:when>
                     <xsl:when test="(@n + 1) mod 5 = 0 and (@n +1) mod 2 = 0">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -578,8 +495,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>
-                        </xsl:element>
+                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>&#xa0; </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- do nothing -->
@@ -596,7 +512,7 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <br xmlns="http://www.w3.org/1999/xhtml"/>
+                        <br xmlns="http://www.w3.org/1999/xhtml"> &#xa0;</br>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:otherwise>
@@ -663,39 +579,32 @@
                             <!-- the other handlings of tei:gap -->
                             <!-- These use cases needs fixing -->
                             <!-- will need to be altered when change coding of damage -->
-                            <xsl:when
-                                test="preceding::*[1]/self::tei:lb and
+                            <xsl:when test="preceding::*[1]/self::tei:lb and
                         not(preceding::node()[1]/text()|tei:unclear)">
-                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                        ><xsl:attribute name="class" select="'missing'"
-                                        /><xsl:call-template name="add-char">
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'missing'"/><xsl:call-template
+                                        name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
                                         <xsl:with-param name="char" select="'&#160;'"/>
                                     </xsl:call-template>]</xsl:element>
                             </xsl:when>
-                            <xsl:when
-                                test="following::*[1]/self::tei:lb and
+                            <xsl:when test="following::*[1]/self::tei:lb and
                         not(following::node()[1]/text()|tei:unclear)">
-                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                        ><xsl:attribute name="class" select="'missing'"
-                                        />[<xsl:call-template name="add-char">
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'missing'"/>[<xsl:call-template
+                                        name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
                                         <xsl:with-param name="char" select="'&#160;'"/>
                                     </xsl:call-template></xsl:element>
                             </xsl:when>
-                            <xsl:when
-                                test="following::tei:lb[1]/@n='1' and not(preceding::node()[1]/text())">
-                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                        ><xsl:attribute name="class" select="'missing'"
-                                        /><xsl:call-template name="add-char">
+                            <xsl:when test="following::tei:lb[1]/@n='1' and not(preceding::node()[1]/text())">
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'missing'"/><xsl:call-template
+                                        name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
                                         <xsl:with-param name="char" select="'&#160;'"/>
                                     </xsl:call-template>]</xsl:element>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                        ><xsl:attribute name="class" select="'missing'"
-                                        />[<xsl:call-template name="add-char">
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'missing'"/>[<xsl:call-template
+                                        name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
                                         <xsl:with-param name="char" select="'&#160;'"/>
                                     </xsl:call-template>]</xsl:element>
@@ -732,15 +641,11 @@
                         <xsl:when test="not(descendant::tei:div[@type='singCol'])">
                             <!-- when original laid out in a single column -->
                             <div class="oneCol">
-                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                        ><xsl:attribute name="class" select="'pageNo'"/>Folio
-                                        <xsl:value-of select="./@n"/></xsl:element>
-                                <xsl:if
-                                    test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'pageNo'"/>Folio <xsl:value-of
+                                        select="./@n"/></xsl:element>
+                                <xsl:if test="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n &gt; 1">
                                     <xsl:variable name="firstline">
-                                        <xsl:value-of
-                                            select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"
-                                        />
+                                        <xsl:value-of select="descendant::tei:lb[count(preceding::tei:lb) = 0]/@n"/>
                                     </xsl:variable>
                                     <xsl:variable name="char">
                                         <br xmlns="http://www.w3.org/1999/xhtml"/>
@@ -756,9 +661,8 @@
                         </xsl:when>
                         <xsl:when test="descendant::tei:div[@type='singCol']">
                             <!-- A multi-column original presented in single column view -->
-                            <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"
-                                    ><xsl:attribute name="class" select="'pageNo'"/>Folio
-                                    <xsl:value-of select="./@n"/></xsl:element>
+                            <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'pageNo'"/>Folio <xsl:value-of select="./@n"
+                                /></xsl:element>
                             <xsl:apply-templates/>
                         </xsl:when>
                     </xsl:choose>
@@ -781,8 +685,7 @@
                 <xsl:if test="contains($col, 'B')">columnB</xsl:if>
             </xsl:attribute>
             <xsl:if test="contains($col, 'A')">
-                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute
-                        name="class" select="'pageNo'"/>folio <xsl:value-of
+                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml"><xsl:attribute name="class" select="'pageNo'"/>folio <xsl:value-of
                         select="./ancestor::tei:div[@type='page']/@n"/></xsl:element>
             </xsl:if>
             <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
@@ -829,8 +732,7 @@
                 <xsl:attribute name="class" select="'chap'"/>
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class">chapter-ch</xsl:attribute>
-                    <xsl:analyze-string select="@n"
-                        regex="^([^\.]+)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
+                    <xsl:analyze-string select="@n" regex="^([^\.]+)\.([0-9])\.([0-9]{{1,2}})\.([0-9]{{1,2}})$">
                         <xsl:matching-substring>
                             <xsl:value-of select="regex-group(4)"/>
                         </xsl:matching-substring>
@@ -848,8 +750,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>
-        </xsl:element>
+            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>&#xa0; </xsl:element>
     </xsl:template>
     <xsl:template match="tei:cb">
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -857,8 +758,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>
-        </xsl:element>
+            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>&#xa0; </xsl:element>
     </xsl:template>
     <xsl:template match="tei:surplus">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
@@ -944,10 +844,8 @@
             the number of characters present in the form of dots-->
                 <xsl:variable name="adj-length">
                     <!-- Removes spaces and geresh from string length -->
-                    <xsl:value-of
-                        select="number(string-length(translate(normalize-space(.),'&#x32;&#1523;
-                ','')))"
-                    />
+                    <xsl:value-of select="number(string-length(translate(normalize-space(.),'&#x32;&#1523;
+                ','')))"/>
                 </xsl:variable>
                 <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'unclear'"/>
@@ -959,8 +857,7 @@
                         <!-- converts node to text  and replaces ? with dots. Assumes that will not be
                         retaining child nodes of unclear. This may change.  -->
                         <xsl:when test="string(.)">
-                            <xsl:value-of
-                                select="normalize-space(replace(. except tei:note,'\?',$dots))"/>
+                            <xsl:value-of select="normalize-space(replace(. except tei:note,'\?',$dots))"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="''"/>
@@ -1055,7 +952,12 @@
     <xsl:template match="//tei:trailer">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates select="node()"/>
+            <xsl:choose>
+                <xsl:when test="not(string(.))">
+                    <xsl:apply-templates select="node()"/>
+                </xsl:when>
+                <xsl:otherwise>&#xa0;</xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     <xsl:template match="//tei:label">
@@ -1070,17 +972,27 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:choose><xsl:when test="not(string(.))and not(node())">&#160;</xsl:when><xsl:otherwise><xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class" select="'label'"/>
-                            <xsl:apply-templates select="node()"/>
-                        </xsl:element></xsl:otherwise></xsl:choose>
+                        <xsl:choose>
+                            <xsl:when test="not(string(.))and not(node())">&#160;</xsl:when>
+                            <xsl:otherwise>
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:attribute name="class" select="'label'"/>
+                                    <xsl:apply-templates select="node()"/>
+                                </xsl:element>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:when test="$mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'label-ch'"/>
-                    <xsl:value-of select="."/>
+                    <xsl:choose>
+                        <xsl:when test="not(string(.))and not(node())">&#xa0;</xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
             </xsl:when>
         </xsl:choose>
@@ -1088,7 +1000,12 @@
     <xsl:template match="//tei:head">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates select="*"/>
+            <xsl:choose>
+                <xsl:when test="not(string(.))">&#xa0;</xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*"/>&#xa0;
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:note[ancestor::tei:body]">
@@ -1135,10 +1052,8 @@
                 <xsl:value-of select="ancestor::tei:div[@type='page']/@n"/>
                 <xsl:if test="ancestor::tei:div[@type='column']">
                     <xsl:choose>
-                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'A')"
-                            >A</xsl:when>
-                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'B')"
-                            >B</xsl:when>
+                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'A')">A</xsl:when>
+                        <xsl:when test="contains(ancestor::tei:div[@type='column']/@n, 'B')">B</xsl:when>
                     </xsl:choose>
                 </xsl:if>
                 <xsl:text>, l. </xsl:text>

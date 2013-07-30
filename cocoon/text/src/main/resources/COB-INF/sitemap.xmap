@@ -88,13 +88,13 @@
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon"/>
-                <map:serialize type="xhtml"/>
+                <map:serialize type="html"/>
             </map:match>
             <map:match pattern="demo">
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon"/>
-                <map:serialize type="xhtml"/>
+                <map:serialize type="html"/>
             </map:match>
 
             <map:match pattern="css/*.css">
@@ -267,7 +267,7 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="collation"/>
                 </map:transform>
-                <map:serialize type="xhtml"/>
+                <map:serialize type="html"/>
             </map:match>
             <!-- End collation output pipelines -->
 
@@ -287,7 +287,7 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="browse-home"/>
                 </map:transform>
-                <map:serialize type="xhtml"/>
+                <map:serialize type="html"/>
             </map:match>
 
 
@@ -323,7 +323,7 @@
                     type="xslt-saxon">
                     <map:parameter name="menu-mode" value="browse-param"/>
                 </map:transform>
-                <map:serialize type="xhtml"/>
+                <map:serialize type="html"/>
             </map:match>
             <!-- End parameterized browze -->
 
