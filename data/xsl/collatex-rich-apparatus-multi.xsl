@@ -76,22 +76,22 @@
             </head>
             <body>
                 -->
-        <div class="output-container">
-            <a name="output"/>
+        <div xmlns="http://www.w3.org/1999/xhtml" class="output-container">
+            <a name="output">&#160;</a>
             <div class="hr">
                 <hr> </hr>
             </div>
            
             <xsl:choose>
                 <xsl:when test="normalize-space($checkIfWits) ='' or $mishnNo = 'null' or $chaptNo ='null' or $alignType=''">
-                    <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment"/>Output Will Display Here&#xA0;<span
+                    <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Output Will Display Here&#xA0;<span
                             class="link"><a href="#top">[top]</a></span></h3>
                     <p style="text-align:center;">Select Source, Witnesses, and Comparison Type From the Panel Above</p>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:choose>
                         <xsl:when test="$alignType= 'synopsis'">
-                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment"/>Parallel-Column
+                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Parallel-Column
                                     Synopsis&#xA0;<span class="link"><a href="#top">[top]</a></span></h3>
                             <xsl:choose>
                                 <xsl:when test="$unit = 'm'">
@@ -111,13 +111,13 @@
                             </xsl:choose>
                         </xsl:when>
                         <xsl:when test="$alignType = 'align'">
-                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment"/>Alignment Table, <xsl:value-of
+                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Alignment Table, <xsl:value-of
                                     select="translate($tractName,'_',' ')"/>&#xA0;Chapter&#xA0;<xsl:value-of
                                     select="$chaptNo"/>&#xA0;<span class="link"><a href="#top">[top]</a></span></h3>
                             <xsl:apply-templates mode="alignment"/>
                         </xsl:when>
                         <xsl:when test="$alignType = 'apparatus'">
-                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment"/>Text and Apparatus,
+                            <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Text and Apparatus,
                                     <xsl:value-of select="translate($tractName,'_',' ')"
                                     />&#xA0;Chapter&#xA0;<xsl:value-of select="$chaptNo"/>&#xA0;<span class="link"><a
                                         href="#top">[top]</a></span></h3>
@@ -276,7 +276,7 @@
                 <span class="lb10" xmlns="http://www.w3.org/1999/xhtml"/>
             </xsl:when>
             <xsl:otherwise>
-                <span class="lb" xmlns="http://www.w3.org/1999/xhtml"/>
+                <span class="lb" xmlns="http://www.w3.org/1999/xhtml">&#160;</span>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -302,7 +302,7 @@
 
 
     <xsl:template match="tei:div" mode="alignment">
-        <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment"/>Mishnah <xsl:value-of
+        <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Mishnah <xsl:value-of
                 select="substring-after(@n,concat($mcite,'.'))"/></h3>
 
         <div class="alignment-table" xmlns="http://www.w3.org/1999/xhtml" dir="rtl">
@@ -342,7 +342,7 @@
         </div>
     </xsl:template>
     <xsl:template match="tei:div" mode="apparatus">
-        <h3 class="apparatus" xmlns="http://www.w3.org/1999/xhtml"><a name="apparatus"/>Mishnah <xsl:value-of
+        <h3 class="apparatus" xmlns="http://www.w3.org/1999/xhtml"><a name="apparatus">&#160;</a>Mishnah <xsl:value-of
                 select="substring-after(@n,concat($mcite,'.'))"/></h3>
 
         <div class="text" dir="rtl">
@@ -371,7 +371,7 @@
                     </xsl:when>
                     <xsl:when test="self::tei:lb and @n mod 5 = 0">
                         <xsl:text> | </xsl:text>
-                        <span class="lb">
+                        <span class="lb" xmlns="http://www.w3.org/1999/xhtml">
                             <xsl:value-of select="@n"/>
                         </span>
                     </xsl:when>
@@ -537,7 +537,7 @@ this -->
                                                             </xsl:otherwise>
                                                         </xsl:choose>
                                                     </xsl:for-each-group>
-                                                </span>
+                                                    &#160;</span>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <span class="readings">
@@ -553,17 +553,17 @@ this -->
                                                             </bdo>
                                                         </xsl:otherwise>
                                                     </xsl:choose>
-                                                </span>
+                                                    &#160;</span>
                                                 <span class="witnesses">
                                                     <xsl:value-of select="current-group()/@witness"/>
                                                     <xsl:text> </xsl:text>
-                                                </span>
+                                                    &#160;</span>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:when>
                                 </xsl:choose>
                             </xsl:for-each-group>
-                        </span>
+                            &#160;</span>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- Now process all the "single" readings -->
@@ -616,14 +616,14 @@ this -->
                                                             </xsl:otherwise>
                                                             </xsl:choose>
                                                             </xsl:for-each-group>
-                                                        </span>
+                                                            &#160; </span>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <span class="readings">
                                                             <bdo dir="rtl">
                                                             <xsl:value-of select="current-group()[1]/@rdg"/>
                                                             </bdo>
-                                                        </span>
+                                                            &#160;</span>
                                                         <span class="witnesses">
                                                             <xsl:value-of select="current-group()/@witness"/>
                                                             <xsl:text> </xsl:text>
@@ -633,7 +633,7 @@ this -->
                                             </xsl:when>
                                         </xsl:choose>
                                     </xsl:for-each-group>
-                                </span>
+                                    &#160;</span>
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:otherwise>

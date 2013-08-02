@@ -3,7 +3,7 @@
     xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its local my tei" version="2.0"
     xmlns:my="http://http://dev.digitalmishnah.org/local-functions.uri" xmlns:local="local-functions.uri">
 
-    <xsl:output method="html" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
 
     <xsl:strip-space
         elements=" tei:choice and tei:am and
@@ -84,6 +84,7 @@
         </next>
 
     </xsl:variable>
+
     <xsl:template match="*|@*|text()|processing-instruction()">
         <xsl:copy>
             <xsl:apply-templates select="*|@*|text()|processing-instruction()"/>
@@ -125,7 +126,6 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="/">
-
         <div xsl:exclude-result-prefixes="tei" dir="rtl">
             <xsl:attribute name="title">
                 <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" exclude-result-prefixes="#all"/>
@@ -166,6 +166,7 @@
                         href="browse">Back to Browse</a>]</h2>
                 <h2 style="font-size:80%;"/>-->
             <div class="nav">
+
                 <!-- variables for building urls for paramaterized links -->
                 <xsl:variable name="goNext">
                     <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:next,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if
@@ -486,8 +487,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>
-                        </xsl:element>
+                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>&#xa0; </xsl:element>
                     </xsl:when>
                     <xsl:when test="(@n + 1) mod 5 = 0 and (@n +1) mod 2 = 0">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -495,8 +495,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>
-                        </xsl:element>
+                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>&#xa0; </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- do nothing -->
@@ -513,7 +512,7 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <br xmlns="http://www.w3.org/1999/xhtml"/>
+                        <br xmlns="http://www.w3.org/1999/xhtml"> &#xa0;</br>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:otherwise>
@@ -742,7 +741,7 @@
                 <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
-        
+
     </xsl:template>
     <!-- PB and CB only exist in ch mode -->
     <xsl:template match="tei:pb">
@@ -751,8 +750,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>
-        </xsl:element>
+            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>&#xa0; </xsl:element>
     </xsl:template>
     <xsl:template match="tei:cb">
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -760,8 +758,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>
-        </xsl:element>
+            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>&#xa0; </xsl:element>
     </xsl:template>
     <xsl:template match="tei:surplus">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
@@ -955,7 +952,12 @@
     <xsl:template match="//tei:trailer">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates select="node()"/>
+            <xsl:choose>
+                <xsl:when test="not(string(.))">
+                    <xsl:apply-templates select="node()"/>
+                </xsl:when>
+                <xsl:otherwise>&#xa0;</xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     <xsl:template match="//tei:label">
@@ -970,17 +972,27 @@
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class" select="'label'"/>
-                            <xsl:apply-templates select="node()"/>
-                        </xsl:element>
+                        <xsl:choose>
+                            <xsl:when test="not(string(.))and not(node())">&#160;</xsl:when>
+                            <xsl:otherwise>
+                                <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:attribute name="class" select="'label'"/>
+                                    <xsl:apply-templates select="node()"/>
+                                </xsl:element>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:when test="$mode='ch'">
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'label-ch'"/>
-                    <xsl:value-of select="."/>
+                    <xsl:choose>
+                        <xsl:when test="not(string(.))and not(node())">&#xa0;</xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:element>
             </xsl:when>
         </xsl:choose>
@@ -988,7 +1000,12 @@
     <xsl:template match="//tei:head">
         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
             <xsl:attribute name="class" select="'label'"/>
-            <xsl:apply-templates select="*"/>
+            <xsl:choose>
+                <xsl:when test="not(string(.))">&#xa0;</xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*"/>&#xa0;
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:note[ancestor::tei:body]">

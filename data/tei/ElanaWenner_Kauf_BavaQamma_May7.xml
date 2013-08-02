@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Note that I changed the instructions up here to check against  different schema and use a different location for the stylesheet --><?oxygen RNGSchema="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rnc" type="compact"?>
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?><?xml-stylesheet type="text/css"
+    href="http://rawgithub.com/umd-mith/mishnah/gh-pages/css/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<!--<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>-->
+<!--<?oxygen RNGSchema="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/tei_all_Mishnah.rnc" type="compact"?>-->
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Mishnah Bava Qamma Ch. 1, Kaufmann Ms</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Published as a sample text for a digital edition of the Mishnah, using oXygen</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Chapter 1 of tractate Bava Qamma from the Kaufman ms. (MS A 50, Oriental
+                    Collection of the Library of the Hungarian Academy of Sciences)</p>
+                <p>Transcription and Tagging by Elana Wenner, edited by Naftali Cohn</p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl> </tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <list>
+                <item>
+                    <date/>Original transcription done during Fall Semester 2012</item>
+                <item>
+                    <date>December, 2013</date>: Begun transcription and tagging by Elana
+                    Wenner</item>
+            </list>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <!-- Instead of Kauf. or Kauf.BQ. or Kauf.., use S07326 througout -->
+            <div1 xml:id="S07326.4">
+                <head xml:id="S0732.4.H">
+                    <seg rend="align col1"> בשם <choice>
+                            <abbr>א<am rend="overmark"
+                                >׳</am><!-- I removed the attribute type, which was causing an error. am is "typed" by definition: it refers to an abbreviation mark -->
+                            </abbr>
+                            <expan>אלהים</expan>
+                        </choice>מביט עמקים<lb n="1"/>נתחיל סדר נזיקים <pc type="stop" rend="׳"
+                            >'</pc></seg></head>
+                <lb/>
+                <!-- HL: You had the slash on lb BEFORE the element name -->
+                <div2 xml:id="S07326.4.1">
+                    <div3 xml:id="S07326.4.1.1" n="Chapter1">
+                        <pb n="128r"/>
+                        <cb n="128rA"/>
+                        <head xml:id="S07326.4.1.1.H"><!--Kauf.BQ.4.1.1.1--><!-- This should either be blank  EW: what do you mean by this-->
+                            <!-- Sorry, something left out: Should be either blank (if there is no title to the Masekhet, or contain the title. Wht you have is what should be in the xml:id --></head>
+                        <ab xml:id="S07326.4.1.1.1">
+                            <milestone unit="BQMishnah" n="1"/> n="2"/> ארבעה אבות נזיקים השור
+                                והבור<lb n="3"/> והמבעה וההבער לא השור כהרי <surplus reason="fill"
+                                >המ</surplus><lb n="4"/> המבעה ולא המבעה כהרי השור לא<lb n="5"/> זה
+                            וזה שיש בהן רוח חיים האש<lb n="6"/><seg><del rend="strikethrough"
+                                    >ו</del><add hand="h2" place="above">כ</add>הרי</seg> שאין בה
+                            רוח חיים לא זה וזה שדרכן<lb n="7"/> לילך ולהזיק ו <add hand="2h"
+                            >כ</add>הרי הבור שאין דרכו לילך<lb n="8"/> ולהזיק הצד השווה שבהן שהדרכן
+                                <surplus reason="fill">ל</surplus><lb n="9"/> להזיק ושמירתן עליך
+                            וכשהזיק חב<lb n="10"/> המזיק משלם תשלומי נזק במיטב הארץ<lb n="11"/></ab>
+                        <!-- HL: div3 contains a chapter, ab contains a mishnah as printed in standard editions. I have moved the xml:id to the ab</div3> 
+                         <div3 xml:id = "BQ.4.1.1.2">-->
+                        <ab xml:id="S07326.4.1.1.2"><label rend="align() size() pad(rl)">ב<pc
+                                    rend="׳"/></label>כל שחבתי בשמירתו היכשרתי <surplus
+                                reason="fill"><damage>א</damage></surplus><lb n="12"/> את נזקו
+                            היכשרתי במקצת נזקו חבתי <lb n="13"/> בתשלומי נזקו כהכשר כל נזקו נכסים
+                                <lb n="14"/> שאין בהן מעילה ונכסים שהן שלבני <lb n="15"/> ברית
+                            ונכסים מיוחדים חוץ מרשות <lb n="16"/> המיוחדת למזיק ורשות הניזק והמזיק
+                                <lb n="17"/> וכשהיזיק חב המזיק משלם תשלומי <lb n="18"/> נזק במיטב
+                                הארץ<pc rend="unit end"
+                            >:</pc><!-- HL: Mishnah transition here --></ab>
+                        <ab xml:id="S07326.4.1.1.3"><label rend="align() size() pad(r)">ג<pc
+                                    rend="overline">׳</pc></label>שום כסף בשווה<!--</ab> HL: Mishnah does not end here-->
+                            <lb n="19"/>
+                            <!-- no Mishnah break here 
+                        <ab>--> כסף בפני בית
+                            דין על פי עדים בני חורים <lb n="20"/>
+                            <add hand="2h" rend="size(small) align() pad(b)">ו</add>בני ברית והנשים
+                            בכלל הנזק והניזק <surplus reason="fill">וה</surplus><lb n="21"/>
+                            <w>והמז<add hand="2h"><add rend="size(small) superscript"
+                                >י</add></add>ק</w>
+                            <w>בתש<del hand="2h" rend="strikethrough">י</del>לומים</w><pc
+                                type="unitEnd">:</pc></ab>
+                        <ab xml:id="S07326.4.1.1.4"><label rend="align() size() pad(r)"
+                                    >ד<!-- HL: pc should be am, right? --><pc rend="overline"
+                                >'</pc></label>חמשה תמים<!--</ab> HL: Mishna break does not go here-->
+                            <lb n="22"/>
+                            <!--<ab>-->וחמשה מועדים הבהמה אינה מועדת<lb n="23"/> לא ליגח ולא ליגוף
+                            ולא לישוך ולא לירבוץ<lb n="24"/> ולא לבעוט השן מועדת לאכל <del hand="2h"
+                                rend="strikethrough">כל</del>את<lb n="25"/> הראוי לה והרגל מועדת
+                            לשבור כדרך<lb n="26"/> הילוכה ושור המועד ושור המזיק ברשות<lb n="27"/>
+                            הניזק והאדם<pc type="UnitEnd">:</pc><label rend="size() align() pad(rl)"
+                                    >ה<pc rend="overline">׳</pc></label>הזאב והארי והדוב<lb n="28"/><cb/>
+                            <cb n="128rB"/> והנמר והפרדלס והנחש הרי אילו <surplus reason="fill"
+                                >מ</surplus><lb n="1"/> מועדים <choice>
+                                <abbr>ר<am rend="'">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> אלעזר <choice>
+                                <abbr>אומ<am rend="'"/></abbr>
+                                <expan>אומר</expan>
+                            </choice> בזמן שהן תרבות<lb n="2"/> אינן מועדים והנחש מועד לעולם מה<lb
+                                n="3"/> ב <add hand="2h"
+                                rend="size(smaller) align() pad() superscript">י</add>ן תם למועד אלא
+                            שהתם משלם חצי<lb n="4"/> נזק ומגופו והמועד משלם נזק שלם מן<lb n="5"/>
+                            העליה <pc type="unitEnd">:</pc></ab>
+                        <trailer rend="size() align(center) pad(rl)"><choice>
+                                <abbr>פר<am rend="overline">'</am></abbr>
+                                <expan>פרק</expan>
+                            </choice>א<am rend="overline">'</am><choice>
+                                <abbr>הל<am rend="overline">'</am></abbr>
+                                <expan>הלכה</expan>
+                            </choice> ה<am rend="overline">'</am></trailer>
+                        <!--</ab> HL: Trailer is the last content element in div3=chapter; it sits after the last ab-->
+                    </div3>
+                    <lb n="6"/>
+
+                    <!--<ab> HL: No new ab here, Comes inside div3=pereq -->
+                    <div3 xml:id="S07326.4.1.2">
+                        <head xml:id="S07326.4.1.2.H"/>
+                        <ab xml:id="S07326.4.1.2.1"> כיצד הרגל מועדת לשבר כדרך הילוכה<lb n="7"/>
+                            והבהמה מועדת להלך כדרכה ולשבר<lb n="8"/> היתה מבעטת או שהיו צרורות
+                                מנתוים<lb n="9"/> מתחת רגליה ושיברה את הכלים משלם<lb n="10"/> חצי
+                            נזק דרסה על הכלי ושברתו ונפל <lb n="11"/> על כלי אחר ושברו על הראשון
+                                משלם<lb n="12"/>
+                            <!--<addhand="h2"><addplace="margin right">שלם</addplace></addhand>-->
+                            <!-- HL: not like the preceding, but like this: --><add
+                                hand="h2" place="margin-right">שלם</add> נזק ועל האחרון משלם חצי נזק
+                                <pc type="UnitEnd">:</pc><label rend="size() align() pad(rl)"
+                                    >ב<!-- These should be am, not pc. Please check these and fix --><pc
+                                    rend="overline">׳</pc></label><lb n="13"/> התרנגלים מועדים להלך
+                            כדרכן ולשבר <lb n="14"/>
+                            <del hand="h2" rend="strikethrough">ולשבר</del> היה ד <pc>
+                                <!-- EW: what do I categorize this punctuation as? -->
+                                <!-- If I understand which mark you mean, I think it is caused by gap in the ink of the horizontal stroke of aleph, rather than an actual mark --></pc>
+                            לי <add hand="h2" rend="superscript">ל</add> קשור ברגלו או שהיה <lb
+                                n="15"/> קשור ברגלו או שהיה <lb n="16"/> מחרם ושיבר את הכלים משלם
+                            חצי <lb n="17"/></ab>
+                        <!-- HL: Mishnah break here -->
+                        <ab xml:id="S07326.4.1.2.2"> נזק <pc type="UnitEnd">:</pc><label
+                                rend="size() align() pad(rl)">ג<pc rend="overline"
+                            >׳</pc></label><!--</ab>  HL: no Mishnah end here --> כיצד השן מועדת
+                            לאכל את <lb n="18"/> הראוי לה והבהמה מועדת לאכל פירות <lb n="19"/>
+                            וירקות אכלה כסות אוכלים משלם חצי <lb n="20"/> נזק במי רברבים אמורים
+                            ברשות הניזק <lb n="21"/> אבל ברשות הרבים פטור ואם נהנת <lb n="22"/> משלם
+                            מה שנהנת <pc type="UnitEnd">:</pc>
+                            <label rend="size() align() pad(rl)"
+                                    >ד<!-- This is am=abbreviation mark rather than pc=punctuation character --><am
+                                    rend="overline"
+                            >׳</am></label><!-- HL: ab does not end here </ab>, but earlier--> כיצד
+                            משלם <lb n="23"/> מה שנהנת מתוך החמת משלם מה <surplus reason="fill"
+                                    >שהי<am rend="overline"
+                                >'</am></surplus><!-- for surplus, just do the characters and the abbreviation mark --><lb
+                                n="24"/> שהיזיקה <pc type="UnitEnd">:</pc><label
+                                rend="size() align() pad(rl)">ה<pc rend="overline"
+                            >׳</pc></label></ab>
+
+                        <ab> הכלב והגדי שקפצו מעל <lb n="25"/> הגג ושיברו את הכלים משלם נזק שלם <lb
+                                n="26"/> מפני שהן מועדים כלב שנטל את החררה <lb n="27"/>
+                            <!--HL: You had: <pb xml:id="S0732.4.H"/> Should be:-->
+                            <pb xml:id="S0732.128v" n="128v"/>
+                            <!-- Needs column notice too --> והלך לו לגריש אכל את החררה <surplus
+                                reason="fill">הד<am rend="overdot">'</am></surplus><lb n="1"/>
+                            והדליק את הגריש על החררה משלם <lb n="2"/> נזק שלם ועל הגריש משלם חצי <lb
+                                n="3"/> נזק <pc type="UnitEnd"
+                            >:</pc><!-- Mishnah transition here: --></ab>
+                        <ab xml:id="S07326.4.1.2.4"><label rend="size() align() pad(rl)">ו<pc
+                                    rend="overline"
+                            >׳</pc></label><!--</ab> HL: No ab=Mishnah ending here--> אי זה הוא תם
+                            ואי זה הוא <lb n="4"/> מועד מועד שהעידו בו שלושה ימים <lb n="5"/> ותם
+                            שיחזור בו שלושה ימים דברי <lb n="6"/>
+                            <choice>
+                                <abbr>ר<am rend="overdot">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>יהודה <choice>
+                                <abbr>ר<am rend="overdot">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>מאיר <choice>
+                                <abbr>אומ<am rend="overdot">'</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> מועד שהעידו<lb n="7"/> בו שלשה פעמים ותם שיהו התינוקות <lb
+                                n="7"/> ממשמשים בו <pc type="UnitEnd"
+                            >:</pc><!-- Mishnh transition here: --></ab>
+                        <ab xml:id="S07326.4.1.2.5"><label rend="size() align() pad(rl)">ז<pc
+                                    rend="overline"
+                            >׳</pc></label><!--</ab> HL: No Mishnah end here--> ושור המזיק<lb n="8"
+                            /> ברשות הנזיק כיצד<damage><unclear extent="1" unit="chars"
+                                    ><!-- HL: re the preceding element: remember not to put a slash in if the element has content -->נגח</unclear></damage>
+                            נגף נשך<lb n="9"/> רבץ בעט ברשות הרבים משלם חצי <lb n="10"/> נזק ברשות
+                            הנזק <choice>
+                                <abbr>ר<am rend="overdot">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>טרפון <choice>
+                                <abbr>אומ<am rend="overdot">'</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>נזק<lb n="11"/> שלם<choice>
+                                <abbr>חכמ<am rend="overdot">'</am></abbr>
+                                <expan>חכמים</expan>
+                            </choice>
+                            <choice>
+                                <abbr>אומ<am rend="overdot">'</am></abbr>
+                                <expan>אומרים</expan>
+                            </choice> חצי נזק <pc type="UnitEnd">:</pc><label
+                                rend="size() align() pad(rl)">ח<pc rend="overline">׳</pc></label><!--</ab> HL: No Mishnah ending here-->
+                            <choice>
+                                <abbr>אמ<am rend="overdot">'</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>להם <lb n="12"/>
+                            <choice>
+                                <abbr>ר<am rend="overdot">'</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>טרפון מה אם במקום <!--what do I do with the mark on the "shehekel" - is that something I should document? -->
+                            <!-- HL: Looks like a correction by the original scribe, overwriting a previous letter, possibly yod? You can document it as <del rend="overwritten">?</del> -->
+                            שהקל על <lb n="13"/> השן ועל הרגל ברשות הרבים שהוא <lb n="14"/> פטור
+                            החמיר עליהם ברשות הניזק <lb n="15"/> לשלם נזק שלם מקום שהחמיר על <lb
+                                n="16"/> הקרן ברשות הרבים לשלם חצי נזק <lb n="17"/> אינו דין שנחמיר
+                            עליה ברשות <surplus><choice>
+                                    <abbr>הני<am rend="overdot">'</am></abbr>
+                                    <expan>הניזק</expan>
+                                </choice></surplus><lb n="18"/> הניזק לשלם נזק שלם אמרו לו דין <lb
+                                n="19"/> לבא מן הדין להיות כנדון מה ברשות <lb n="20"/> הרבים חצי נזק
+                            ואף ברשות הניזק <lb n="21"/> חצי נזק <pc type="UnitEnd">:</pc><label
+                                rend="size() align() pad(rl)">ט<pc rend="overline">׳</pc></label><!--</ab> no Mishnah end here-->
+                            <choice>
+                                <abbr>אמ<am rend="overdot">'</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> להם אני לא אדין <lb n="22"/> קרן מקרן ואני אדין קרן מרגל מה
+                                <lb n="23"/> אם במקום שהקל על השןועל הרגל <lb n="24"/> ברשות הרבים
+                            החמיר בקרן מקום <lb n="25"/> שהחמיר עליהם ברשות הניזק אינו <lb n="26"/>
+                            דין שנחמיר בקרן אמרו לו דיו לבוא <lb n="27"/> מן הדין שיהא כנדון מה
+                            ברשות הרבים <lb n="28"/>
+                            <cb/> חצי נזק אף <damage>ברשות</damage>הניזק ח<c rend="altform">צ</c> י
+                            <!-- I'm not sure if what Ive done here is right. I'm trying to note that the צ is written in a clearly legible but differently formed version. --><!-- HL"This is the correct way to do this--><!--</surplus> HL: There is no start to this surplus tag. Did you incompletely replace surplus with c?-->
+                            נזק <pc type="UnitEnd">:</pc></ab>
+                        <lb n="1"/>
+                        <!-- Start new Mishnah here: -->
+                        <ab xml:id="S07326.4.1.2.6"><label rend="size() align() pad(rl)">י<pc
+                                    rend="overline">׳</pc></label>אדם מועד לעולם בין שוגג בין<lb
+                                n="2"/> מזיד בין ער בין ישן ס<add hand="2h" place="above"
+                                rend="superscript">י</add>מא את עין <lb n="3"/> חבירו ושיבר את הכלים
+                            משלם נזק <lb n="4"/> שלם <pc type="UnitEnd">:</pc></ab>
+
+
+
+
+
+
+
+
+
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
