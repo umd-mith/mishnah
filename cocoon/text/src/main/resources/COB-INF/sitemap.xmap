@@ -213,7 +213,7 @@
                 <map:transform src="resource://xsl/tokenize-rich-collatex.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
-                    <!--<map:parameter name="algorithm" value="{request-param:algorithm}"/>-->
+                    <map:parameter name="algorithm" value="{request-param:algorithm}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
                 <map:transform type="collatex"/>
@@ -437,9 +437,9 @@
                 <map:transform src="resource://xsl/cinclude-for-collatex.xsl"
                     type="xslt-saxon">
                     <!-- problems with content of params require kludgy processing in the xslt template -->
+                    <!--<map:parameter name="algorithm" value="{request-param:algorithm}"/>-->
                     <map:parameter name="unit" value="{request-param:unit}"/>
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
-                    <!--<map:parameter name="algorithm" value="{request-param:algorithm}"/>-->
                     <map:parameter name="tractName"
                         value="{request-param:tractName}"/>
                     <map:parameter name="alignType"
