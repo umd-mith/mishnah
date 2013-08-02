@@ -23,16 +23,17 @@ belongs, but this <name/> element has no textual content.</assert>
    </pattern>
    <pattern id="att.spanning-constraint-spanTo-2">
       <rule context="tei:*[@spanTo]">
-         <assert test="following::*[@xml:id=substring(current()/@target,2)]">
-The element indicated by @spanTo must follow the current element <name/>
+         <assert test="id(substring(@spanTo,2)) and following::*[@xml:id=substring(current()/@spanTo,2)]">
+The element indicated by @spanTo (<value-of select="@spanTo"/>) must follow the current element <name/>
          </assert>
       </rule>
    </pattern>
-   <pattern id="att.spanning-constraint-spanTo-3">
-      <rule context="tei:*[@spanTo]">
-         <assert test="id(substring(@spanTo,2))">
-@spanTo on <name/> must point to  the identifier of some element  in this document</assert>
-      </rule>
+   <pattern id="att.styleDef-constraint-schemeVersionRequiresScheme">
+      <rule context="tei:*[@schemeVersion]">
+            <assert test="@scheme and not(@scheme = 'free')">
+              @schemeVersion can only be used if @scheme is specified.
+            </assert>
+          </rule>
    </pattern>
    <pattern id="ptr-constraint-ptrAtts">
       <rule context="tei:ptr">
@@ -70,31 +71,32 @@ On <name/>, either the @marks attribute should be used, or a paragraph of descri
    </pattern>
    <pattern id="link-constraint-linkTargets1">
       <rule context="tei:link">
-         <report test="@target and @targets">You may not supply both 
-	@target and @targets on <name/>
+         <report test="@target and @targets">You may not supply both @target and @targets on <name/>
          </report>
       </rule>
    </pattern>
    <pattern id="link-constraint-linkTargets2">
       <rule context="tei:link">
-         <report test="not(@target) and not(@targets)">You must
-	supply either @target or @targets on <name/>
+         <report test="not(@target) and not(@targets)">You must supply either @target or @targets on <name/>
          </report>
       </rule>
    </pattern>
    <pattern id="link-constraint-linkTargets3">
       <rule context="tei:link">
-         <assert test="contains(@target,' ')">You must supply at least two
-values for @target on <name/>
+         <assert test="contains(@targets,' ') or contains(@target,' ')">You must supply at least two values for  @target or @targets on <name/>
          </assert>
       </rule>
    </pattern>
-   <pattern id="app-constraint-only1lem">
-      <rule context="tei:app">
-         <assert test="count( descendant::tei:lem[ generate-id(    current() ) = generate-id(    ancestor::tei:app[1] ) ]) &lt;       2">
-Only one &lt;lem&gt; element may appear within a single  apparatus
-entry, whether it appears outside a &lt;rdgGrp&gt;
-element or within it.</assert>
+   <pattern id="rdgGrp-constraint-only1lem">
+      <rule context="tei:rdgGrp">
+         <assert test="count(tei:lem) &lt; 2">Only one &lt;lem&gt; element may appear within a &lt;rdgGrp&gt;</assert>
       </rule>
+   </pattern>
+   <pattern id="variantEncoding-constraint-variantEncodingLocation">
+      <rule context="tei:variantEncoding">
+            <assert test="(@location != 'external') or (@method != 'parallel-segmentation')">
+              The @location value "external" is inconsistent with the
+              parallel-segmentation method of apparatus markup.</assert>
+          </rule>
    </pattern>
 </schema>

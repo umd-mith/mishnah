@@ -3,9 +3,10 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2013-07-02T13:54:19Z. 
-Edition: 2.3.0. Last updated on 17th January 2013.
-Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
+Schema generated from ODD source 2013-08-02T11:56:42Z. 
+Edition: 2.5.0. Last updated on
+	26th July 2013.
+Edition Location: http://www.tei-c.org/Vault/P5/2.5.0/
 
 --><!--
                     This work is copyright Trevor Muñoz and Maryland Institute for Technology in
@@ -112,14 +113,9 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
       </choice>
    </define>
    <define name="mishnahrdata.language">
-      <data type="language"/>
-   </define>
-   <define name="mishnahrdata.sex">
       <choice>
-         <value>0</value>
-         <value>1</value>
-         <value>2</value>
-         <value>9</value>
+         <data type="language"/>
+         <value/>
       </choice>
    </define>
    <define name="mishnahrdata.namespace">
@@ -141,16 +137,24 @@ Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
          <param name="pattern">[\d]+(\.[\d]+){0,2}</param>
       </data>
    </define>
+   <define name="mishnahrdata.versionNumber">
+      <data type="token">
+         <param name="pattern">[\d]+[a-z]*[\d]*(\.[\d]+[a-z]*[\d]*){0,3}</param>
+      </data>
+   </define>
+   <define name="mishnahrdata.replacement">
+      <text/>
+   </define>
    <define name="mishnahrdata.word">
       <data type="token">
          <param name="pattern">(\p{L}|\p{N}|\p{P}|\p{S})+</param>
       </data>
    </define>
+   <define name="mishnahrdata.sex">
+      <ref name="mishnahrdata.word"/>
+   </define>
    <define name="mishnahrdata.text">
       <data type="string"/>
-   </define>
-   <define name="mishnahrdata.code">
-      <ref name="mishnahrdata.word"/>
    </define>
    <define name="mishnahrdata.name">
       <data type="Name"/>
@@ -522,7 +526,7 @@ attribute and its content.</a:documentation>
          <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="part"
                     a:defaultValue="N">
             <a:documentation>specifies whether or not its parent element is fragmented
-      in some way, typically by some other overlapping structure : for
+      in some way, typically by some other overlapping structure: for
       example a speech which is divided between two or more verse
       stanzas, a paragraph which is split across a page division, a
       verse line which is divided between two speakers.</a:documentation>
@@ -553,11 +557,11 @@ attribute and its content.</a:documentation>
             <a:documentation>(organization) specifies how the content of the division is organized.</a:documentation>
             <choice>
                <value>composite</value>
-               <a:documentation>composite content: i.e. no claim is made about the
+               <a:documentation>no claim is made about the
 		  sequence in which the immediate contents of this division
 		  are to be processed, or their inter-relationships.</a:documentation>
                <value>uniform</value>
-               <a:documentation>uniform content: i.e. the immediate contents of this
+               <a:documentation>the immediate contents of this
 		  element are regarded as forming a logical unit, to be
 		  processed in sequence.</a:documentation>
             </choice>
@@ -1237,9 +1241,9 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
       the associated feature (for example, a  page, column, or line
       break) occurs at this point in the text.</a:documentation>
             <list>
-               <ref name="mishnahrdata.code"/>
+               <ref name="mishnahrdata.word"/>
                <zeroOrMore>
-                  <ref name="mishnahrdata.code"/>
+                  <ref name="mishnahrdata.word"/>
                </zeroOrMore>
             </list>
          </attribute>
@@ -1277,22 +1281,14 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
                 xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 context="tei:*[@spanTo]">
-         <sch:assert test="following::*[@xml:id=substring(current()/@target,2)]">
-The element indicated by @spanTo must follow the current element <sch:name/>
+         <sch:assert test="id(substring(@spanTo,2)) and following::*[@xml:id=substring(current()/@spanTo,2)]">
+The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow the current element <sch:name/>
          </sch:assert>
-      </sch:rule>
-   </pattern>
-   <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="spanTo-constraint-spanTo-3">
-      <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                xmlns="http://www.tei-c.org/ns/1.0"
-                xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                context="tei:*[@spanTo]">
-         <sch:assert test="id(substring(@spanTo,2))">
-@spanTo on <sch:name/> must point to  the identifier of some element  in this document</sch:assert>
       </sch:rule>
    </pattern>
    <define name="mishnahratt.styleDef.attributes">
       <ref name="mishnahratt.styleDef.attribute.scheme"/>
+      <ref name="mishnahratt.styleDef.attribute.schemeVersion"/>
    </define>
    <define name="mishnahratt.styleDef.attribute.scheme">
       <optional>
@@ -1311,6 +1307,25 @@ The element indicated by @spanTo must follow the current element <sch:name/>
          </attribute>
       </optional>
    </define>
+   <define name="mishnahratt.styleDef.attribute.schemeVersion">
+      <optional>
+         <attribute name="schemeVersion">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a version number for the style language provided in scheme.</a:documentation>
+            <ref name="mishnahrdata.versionNumber"/>
+         </attribute>
+      </optional>
+   </define>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="schemeVersion-constraint-schemeVersionRequiresScheme">
+      <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                context="tei:*[@schemeVersion]">
+            <sch:assert test="@scheme and not(@scheme = 'free')">
+              @schemeVersion can only be used if @scheme is specified.
+            </sch:assert>
+          </sch:rule>
+   </pattern>
    <define name="mishnahratt.timed.attributes">
       <ref name="mishnahratt.timed.attribute.start"/>
       <ref name="mishnahratt.timed.attribute.end"/>
@@ -2257,6 +2272,7 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <choice>
          <ref name="mishnahrbibl"/>
          <ref name="mishnahrbiblStruct"/>
+         <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrbiblFull"/>
       </choice>
    </define>
@@ -2264,12 +2280,14 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       <choice>
          <ref name="mishnahrbibl"/>
          <ref name="mishnahrbiblStruct"/>
+         <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrbiblFull"/>
       </choice>
    </define>
    <define name="mishnahrmodel.biblLike_sequence">
       <ref name="mishnahrbibl"/>
       <ref name="mishnahrbiblStruct"/>
+      <ref name="mishnahrlistBibl"/>
       <ref name="mishnahrbiblFull"/>
    </define>
    <define name="mishnahrmodel.biblLike_sequenceOptional">
@@ -2278,6 +2296,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </optional>
       <optional>
          <ref name="mishnahrbiblStruct"/>
+      </optional>
+      <optional>
+         <ref name="mishnahrlistBibl"/>
       </optional>
       <optional>
          <ref name="mishnahrbiblFull"/>
@@ -2291,6 +2312,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrbiblStruct"/>
       </zeroOrMore>
       <zeroOrMore>
+         <ref name="mishnahrlistBibl"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="mishnahrbiblFull"/>
       </zeroOrMore>
    </define>
@@ -2300,6 +2324,9 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahrbiblStruct"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahrlistBibl"/>
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahrbiblFull"/>
@@ -2376,7 +2403,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.listLike">
       <choice>
          <ref name="mishnahrlist"/>
-         <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrlistApp"/>
          <ref name="mishnahrlistWit"/>
          <ref name="mishnahrlistPerson"/>
@@ -2386,7 +2412,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.listLike_alternation">
       <choice>
          <ref name="mishnahrlist"/>
-         <ref name="mishnahrlistBibl"/>
          <ref name="mishnahrlistApp"/>
          <ref name="mishnahrlistWit"/>
          <ref name="mishnahrlistPerson"/>
@@ -2395,7 +2420,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    </define>
    <define name="mishnahrmodel.listLike_sequence">
       <ref name="mishnahrlist"/>
-      <ref name="mishnahrlistBibl"/>
       <ref name="mishnahrlistApp"/>
       <ref name="mishnahrlistWit"/>
       <ref name="mishnahrlistPerson"/>
@@ -2404,9 +2428,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.listLike_sequenceOptional">
       <optional>
          <ref name="mishnahrlist"/>
-      </optional>
-      <optional>
-         <ref name="mishnahrlistBibl"/>
       </optional>
       <optional>
          <ref name="mishnahrlistApp"/>
@@ -2426,9 +2447,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
          <ref name="mishnahrlist"/>
       </zeroOrMore>
       <zeroOrMore>
-         <ref name="mishnahrlistBibl"/>
-      </zeroOrMore>
-      <zeroOrMore>
          <ref name="mishnahrlistApp"/>
       </zeroOrMore>
       <zeroOrMore>
@@ -2444,9 +2462,6 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    <define name="mishnahrmodel.listLike_sequenceRepeatable">
       <oneOrMore>
          <ref name="mishnahrlist"/>
-      </oneOrMore>
-      <oneOrMore>
-         <ref name="mishnahrlistBibl"/>
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahrlistApp"/>
@@ -2727,8 +2742,8 @@ Sample values include: 1] duplicate; 2] duplicate-partial; 3] excessStart; 4] ex
    </define>
    <define name="mishnahrmodel.personPart">
       <choice>
+         <ref name="mishnahrmodel.biblLike"/>
          <ref name="mishnahrmodel.persStateLike"/>
-         <ref name="mishnahrbibl"/>
          <ref name="mishnahridno"/>
       </choice>
    </define>
@@ -4034,7 +4049,7 @@ Suggested values include: 1] page; 2] column; 3] line; 4] book; 5] poem; 6] cant
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">may be used to indicate whether the offset passage is spoken or thought, or to
         characterize it more finely.
-Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] foreign(foreign words) ; 6] distinct(linguistically distinct) ; 7] term(technical term) ; 8] emph(rhetorically emphasized) ; 9] mentioned</a:documentation>
+Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] foreign; 6] distinct; 7] term; 8] emph; 9] mentioned</a:documentation>
                <choice>
                   <value>spoken</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">representation of speech</a:documentation>
@@ -4045,13 +4060,13 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
                   <value>soCalled</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">authorial distance</a:documentation>
                   <value>foreign</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(foreign words) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                   <value>distinct</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(linguistically distinct) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">linguistically distinct</a:documentation>
                   <value>term</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(technical term) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">technical term</a:documentation>
                   <value>emph</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(rhetorically emphasized) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">rhetorically emphasized</a:documentation>
                   <value>mentioned</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">refering to itself, not its normal referant</a:documentation>
                   <data type="Name"/>
@@ -4101,7 +4116,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
    <define name="mishnahrdesc">
       <element name="desc">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(description) contains a brief description of the object documented by its parent element, including its
-    intended usage, purpose, or application where this is appropriate. 22.4.4.  22.4.5.  22.4.6.  22.4.7. </a:documentation>
+    intended usage, purpose, or application where this is appropriate. 22.4.1. </a:documentation>
          <ref name="mishnahrmacro.limitedContent"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.translatable.attributes"/>
@@ -4111,7 +4126,7 @@ Suggested values include: 1] spoken; 2] thought; 3] written; 4] soCalled; 5] for
    <define name="mishnahrgloss">
       <element name="gloss">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies a phrase or word used to provide a gloss or definition for some other word or
-    phrase. 3.3.4. </a:documentation>
+    phrase. 3.3.4.  22.4.1. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.declaring.attributes"/>
@@ -4235,8 +4250,8 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
    </define>
    <define name="mishnahradd">
       <element name="add">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(addition) contains letters, words, or phrases inserted in the text by an
-        author, scribe, annotator, or corrector. 3.4.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(addition) contains letters, words, or phrases inserted in the source
+  text by an author, scribe, annotator, or corrector. 3.4.3. </a:documentation>
          <ref name="mishnahrmacro.paraContent"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.transcriptional.attributes"/>
@@ -4327,7 +4342,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
    <define name="mishnahraddress">
       <element name="address">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a postal  address, for example of a
-        publisher, an organization, or an individual. 3.5.2.  2.2.4.  3.11.2.3. </a:documentation>
+        publisher, an organization, or an individual. 3.5.2.  2.2.4.  3.11.2.4. </a:documentation>
          <group>
             <zeroOrMore>
                <ref name="mishnahrmodel.global"/>
@@ -4347,7 +4362,7 @@ Sample values include: 1] rubbing; 2] mildew; 3] smoke</a:documentation>
    </define>
    <define name="mishnahraddrLine">
       <element name="addrLine">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(address line) contains one line of a postal address. 3.5.2.  2.2.4.  3.11.2.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(address line) contains one line of a postal address. 3.5.2.  2.2.4.  3.11.2.4. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -4448,7 +4463,7 @@ Suggested values include: 1] cardinal; 2] ordinal; 3] fraction; 4] percentage</a
    </define>
    <define name="mishnahrdate">
       <element name="date">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a date in any format. 3.5.4.  2.2.4.  2.5.  3.11.2.3.  15.2.3.  13.3.6. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a date in any format. 3.5.4.  2.2.4.  2.5.  3.11.2.4.  15.2.3.  13.3.6. </a:documentation>
          <zeroOrMore>
             <choice>
                <text/>
@@ -4679,7 +4694,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahrnote">
       <element name="note">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a note or annotation. 3.8.1.  2.2.6.  3.11.2.7.  9.3.5.4. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a note or annotation. 3.8.1.  2.2.6.  3.11.2.8.  9.3.5.4. </a:documentation>
          <ref name="mishnahrmacro.specialPara"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.placement.attributes"/>
@@ -4813,7 +4828,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahrpb">
       <element name="pb">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(page break) marks the boundary between one page of a text and the next in a standard reference system. 3.10.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(page break) marks the start of a new page in a paginated document. 3.10.3. </a:documentation>
          <empty/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.typed.attributes"/>
@@ -4837,8 +4852,8 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
    </define>
    <define name="mishnahrcb">
       <element name="cb">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(column break) marks the boundary between one column of a text and the next
-        in a standard reference system. 3.10.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(column break) marks the beginning of a new column of a text on a
+  multi-column page. 3.10.3. </a:documentation>
          <empty/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.typed.attributes"/>
@@ -4858,7 +4873,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                <ref name="mishnahreditor"/>
                <ref name="mishnahrrespStmt"/>
                <ref name="mishnahrtitle"/>
-               <ref name="mishnahrref"/>
+               <ref name="mishnahrmodel.ptrLike"/>
                <ref name="mishnahrdate"/>
                <ref name="mishnahrtextLang"/>
                <ref name="mishnahridno"/>
@@ -4895,6 +4910,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                      </oneOrMore>
                      <zeroOrMore>
                         <choice>
+                           <ref name="mishnahrmodel.ptrLike"/>
                            <ref name="mishnahridno"/>
                            <ref name="mishnahrtextLang"/>
                            <ref name="mishnahreditor"/>
@@ -4906,12 +4922,12 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                      <oneOrMore>
                         <choice>
                            <ref name="mishnahrtitle"/>
-                           <ref name="mishnahrref"/>
+                           <ref name="mishnahrmodel.ptrLike"/>
+                           <ref name="mishnahridno"/>
                         </choice>
                      </oneOrMore>
                      <zeroOrMore>
                         <choice>
-                           <ref name="mishnahridno"/>
                            <ref name="mishnahrtextLang"/>
                            <ref name="mishnahrauthor"/>
                            <ref name="mishnahreditor"/>
@@ -4934,6 +4950,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                <zeroOrMore>
                   <choice>
                      <ref name="mishnahridno"/>
+                     <ref name="mishnahrmodel.ptrLike"/>
                      <ref name="mishnahreditor"/>
                      <ref name="mishnahrsponsor"/>
                      <ref name="mishnahrfunder"/>
@@ -4963,7 +4980,7 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                <text/>
                <ref name="mishnahrmodel.gLike"/>
                <ref name="mishnahrtitle"/>
-               <ref name="mishnahrref"/>
+               <ref name="mishnahrmodel.ptrLike"/>
                <ref name="mishnahreditor"/>
                <ref name="mishnahrrespStmt"/>
                <ref name="mishnahrbiblScope"/>
@@ -5047,19 +5064,20 @@ Suggested values include: 1] ordered; 2] bulleted; 3] simple; 4] gloss</a:docume
                                         unpublished material.</a:documentation>
                <choice>
                   <value>a</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(analytic) analytic title (article, poem, or other item
-                                                  published as part of a larger item) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(analytic) the title applies to an analytic item, such as an
+	  article, poem, or other work published as part of a larger item. </a:documentation>
                   <value>m</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(monographic) monographic title (book, collection, or
-                                                  other item published as a distinct item,
-                                                  including single volumes of multi-volume
-                                                  works) </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(monographic) the title applies to a monograph such as a book or
+          other item considered to be a distinct publication, including single
+          volumes of multi-volume works </a:documentation>
                   <value>j</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(journal) journal title </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(journal) the title applies to any serial or periodical
+	  publication such as a journal, magazine, or newspaper </a:documentation>
                   <value>s</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(series) series title </a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(series) the title applies to a series of otherwise distinct
+	  publications such as a collection </a:documentation>
                   <value>u</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(unpublished) title of unpublished material (including
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(unpublished) the title applies to any unpublished material (including
                                                   theses and dissertations unless
                                                   published by a commercial press)</a:documentation>
                </choice>
@@ -5091,27 +5109,31 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
    <define name="mishnahrimprint">
       <element name="imprint">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups information relating to the publication or distribution
-        of a bibliographic item. 3.11.2.3. </a:documentation>
-         <zeroOrMore>
-            <ref name="mishnahrclassCode"/>
-            <ref name="mishnahrcatRef"/>
-         </zeroOrMore>
-         <oneOrMore>
-            <choice>
-               <group>
-                  <ref name="mishnahrmodel.imprintPart"/>
-               </group>
-               <group>
-                  <ref name="mishnahrmodel.dateLike"/>
-               </group>
-            </choice>
+        of a bibliographic item. 3.11.2.4. </a:documentation>
+         <group>
             <zeroOrMore>
-               <ref name="mishnahrrespStmt"/>
+               <choice>
+                  <ref name="mishnahrclassCode"/>
+                  <ref name="mishnahrcatRef"/>
+               </choice>
             </zeroOrMore>
-            <zeroOrMore>
-               <ref name="mishnahrmodel.global"/>
-            </zeroOrMore>
-         </oneOrMore>
+            <oneOrMore>
+               <choice>
+                  <group>
+                     <ref name="mishnahrmodel.imprintPart"/>
+                  </group>
+                  <group>
+                     <ref name="mishnahrmodel.dateLike"/>
+                  </group>
+               </choice>
+               <zeroOrMore>
+                  <ref name="mishnahrrespStmt"/>
+               </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="mishnahrmodel.global"/>
+               </zeroOrMore>
+            </oneOrMore>
+         </group>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
       </element>
@@ -5119,7 +5141,7 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
    <define name="mishnahrpublisher">
       <element name="publisher">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides the name of the organization responsible for the publication or distribution of a
-        bibliographic item. 3.11.2.3.  2.2.4. </a:documentation>
+        bibliographic item. 3.11.2.4.  2.2.4. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -5128,28 +5150,30 @@ Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] sho
    <define name="mishnahrbiblScope">
       <element name="biblScope">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(scope of bibliographic reference) defines the scope of a bibliographic reference, for example as a
-        list of page numbers, or a named subdivision of a larger work. 3.11.2.3. </a:documentation>
+        list of page numbers, or a named subdivision of a larger work. 3.11.2.4. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <optional>
             <attribute name="unit">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the unit of information conveyed by the element, e.g. columns, pages, volume.
-Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines) ; 5] chap(chapter) ; 6] part</a:documentation>
+Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] part; 7] column</a:documentation>
                <choice>
-                  <value>vol</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(volume) the element contains a volume number.</a:documentation>
+                  <value>volume</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a volume number.</a:documentation>
                   <value>issue</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains an issue number, or volume and
             issue numbers.</a:documentation>
-                  <value>pp</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(pages) the element contains a page number or page range.</a:documentation>
-                  <value>ll</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (lines) the element contains a line number or line range.</a:documentation>
-                  <value>chap</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(chapter) the element contains a chapter indication (number
+                  <value>page</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a page number or page range.</a:documentation>
+                  <value>line</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a line number or line range.</a:documentation>
+                  <value>chapter</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a chapter indication (number
             and/or title)</a:documentation>
                   <value>part</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a part of a book or collection.</a:documentation>
+                  <value>column</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a column.</a:documentation>
                   <data type="Name"/>
                </choice>
             </attribute>
@@ -5195,7 +5219,7 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
    </define>
    <define name="mishnahrcitedRange">
       <element name="citedRange">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (cited range) defines the range of cited content, often represented by pages or other units 3.11.2.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (cited range) defines the range of cited content, often represented by pages or other units 3.11.2.4. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.pointing.attributes"/>
@@ -5203,22 +5227,24 @@ Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll (lines
             <attribute name="unit">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the type of information conveyed by the element, e.g.
                 columns, pages, volume.
-Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lines) ; 5] chap (chapter) ; 6] part</a:documentation>
+Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] part; 7] column</a:documentation>
                <choice>
-                  <value>vol</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (volume) the element contains a volume number.</a:documentation>
+                  <value>volume</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a volume number.</a:documentation>
                   <value>issue</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains an issue number, or volume and
                         issue numbers.</a:documentation>
-                  <value>pp</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (pages) the element contains a page number or page range.</a:documentation>
-                  <value>ll</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (lines) the element contains a line number or line range.</a:documentation>
-                  <value>chap</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (chapter) the element contains a chapter indication (number
+                  <value>page</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a page number or page range.</a:documentation>
+                  <value>line</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a line number or line range.</a:documentation>
+                  <value>chapter</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a chapter indication (number
                         and/or title)</a:documentation>
                   <value>part</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a part of a book or collection.</a:documentation>
+                  <value>column</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a column.</a:documentation>
                   <data type="Name"/>
                </choice>
             </attribute>
@@ -5240,7 +5266,7 @@ Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lin
    </define>
    <define name="mishnahrpubPlace">
       <element name="pubPlace">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(publication place) contains the name of the place where a bibliographic item was published. 3.11.2.3. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(publication place) contains the name of the place where a bibliographic item was published. 3.11.2.4. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.naming.attributes"/>
@@ -5315,7 +5341,6 @@ Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lin
                <choice>
                   <ref name="mishnahrmodel.biblLike"/>
                   <ref name="mishnahrmodel.milestoneLike"/>
-                  <ref name="mishnahrlistBibl"/>
                </choice>
             </oneOrMore>
          </group>
@@ -5329,7 +5354,7 @@ Suggested values include: 1] vol (volume) ; 2] issue; 3] pp (pages) ; 4] ll (lin
    <define name="mishnahrrelatedItem">
       <element name="relatedItem">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains or references some other bibliographic item which is related to the present one in
-    some specified manner, for example as a constituent or alternative version of it. 3.11.2.6. </a:documentation>
+    some specified manner, for example as a constituent or alternative version of it. 3.11.2.7. </a:documentation>
          <optional>
             <choice>
                <ref name="mishnahrmodel.biblLike"/>
@@ -5479,6 +5504,7 @@ relatedItem element must be empty</sch:report>
       <element name="stage">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(stage direction) contains any kind of stage direction within a dramatic text or fragment. 3.12.2.  3.12.  7.2.4. </a:documentation>
          <ref name="mishnahrmacro.specialPara"/>
+         <ref name="mishnahratt.ascribed.attributes"/>
          <ref name="mishnahratt.global.attributes"/>
          <optional>
             <attribute name="type">
@@ -5516,12 +5542,25 @@ Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] nove
     more TEI elements, each containing a single text header and a text. 4.  15.1. </a:documentation>
          <group>
             <ref name="mishnahrteiHeader"/>
-            <oneOrMore>
-               <choice>
-                  <ref name="mishnahrTEI"/>
-                  <ref name="mishnahrteiCorpus"/>
-               </choice>
-            </oneOrMore>
+            <choice>
+               <group>
+                  <oneOrMore>
+                     <ref name="mishnahrmodel.resourceLike"/>
+                  </oneOrMore>
+                  <zeroOrMore>
+                     <choice>
+                        <ref name="mishnahrTEI"/>
+                        <ref name="mishnahrteiCorpus"/>
+                     </choice>
+                  </zeroOrMore>
+               </group>
+               <oneOrMore>
+                  <choice>
+                     <ref name="mishnahrTEI"/>
+                     <ref name="mishnahrteiCorpus"/>
+                  </choice>
+               </oneOrMore>
+            </choice>
          </group>
          <ref name="mishnahratt.global.attributes"/>
          <optional>
@@ -5556,7 +5595,7 @@ Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist</a:documentation
    <define name="mishnahrtextLang">
       <element name="textLang">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(text language) describes the languages and writing systems identified within the bibliographic work  
-  being described, rather than its description.  3.11.2.3.  10.6.6. </a:documentation>
+  being described, rather than its description.  3.11.2.4.  10.6.6. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <optional>
@@ -5580,7 +5619,7 @@ Sample values include: 1] index; 2] toc; 3] figlist; 4] tablist</a:documentation
    </define>
    <define name="mishnahrteiHeader">
       <element name="teiHeader">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(TEI Header) supplies the descriptive and declarative information making up an electronic title page
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(TEI header) supplies the descriptive and declarative information making up an electronic title page
     prefixed to every TEI-conformant text. 2.1.1.  15.1. </a:documentation>
          <group>
             <ref name="mishnahrfileDesc"/>
@@ -5701,7 +5740,7 @@ creation of an electronic text. 2.2.1. </a:documentation>
    </define>
    <define name="mishnahrextent">
       <element name="extent">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the approximate size of a text stored on some carrier medium or of some other object, digital  or non-digital,  specified in any convenient units. 2.2.3.  2.2.  3.11.2.3.  10.7.1. </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the approximate size of a text stored on some carrier medium or of some other object, digital  or non-digital,  specified in any convenient units. 2.2.3.  2.2.  3.11.2.4.  10.7.1. </a:documentation>
          <ref name="mishnahrmacro.phraseSeq"/>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -5746,7 +5785,7 @@ distribution of a text. 2.2.4. </a:documentation>
       <element name="idno">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) supplies any form of identifier used to identify some object,
   such as a bibliographic item, a person, a title, an organization,
-  etc. in a standardized way. 2.2.4.  2.2.5.  3.11.2.3. </a:documentation>
+  etc. in a standardized way. 2.2.4.  2.2.5.  3.11.2.4. </a:documentation>
          <zeroOrMore>
             <choice>
                <text/>
@@ -5840,7 +5879,10 @@ distribution of a text. 2.2.4. </a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(notes statement) collects together any notes providing information about a text additional to that recorded
     in other parts of the bibliographic description. 2.2.6.  2.2. </a:documentation>
          <oneOrMore>
-            <ref name="mishnahrmodel.noteLike"/>
+            <choice>
+               <ref name="mishnahrmodel.noteLike"/>
+               <ref name="mishnahrrelatedItem"/>
+            </choice>
          </oneOrMore>
          <ref name="mishnahratt.global.attributes"/>
          <empty/>
@@ -6060,7 +6102,7 @@ On <name/>, either the @marks attribute should be used, or a paragraph of descri
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" name="form"
                        a:defaultValue="unknown">
                <a:documentation>specifies how quotation marks are indicated within the text.</a:documentation>
-               <text/>
+               <ref name="mishnahrdata.enumerated"/>
             </attribute>
          </optional>
          <empty/>
@@ -6204,21 +6246,7 @@ On <name/>, either the @marks attribute should be used, or a paragraph of descri
     text. 2.3.4. </a:documentation>
          <ref name="mishnahrmacro.limitedContent"/>
          <ref name="mishnahratt.global.attributes"/>
-         <optional>
-            <attribute name="scheme">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the language used to describe the rendition.</a:documentation>
-               <choice>
-                  <value>css</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Cascading Stylesheet Language</a:documentation>
-                  <value>xslfo</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Extensible Stylesheet Language Formatting Objects</a:documentation>
-                  <value>free</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Informal free text description</a:documentation>
-                  <value>other</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A user-defined rendition description language</a:documentation>
-               </choice>
-            </attribute>
-         </optional>
+         <ref name="mishnahratt.styleDef.attributes"/>
          <optional>
             <attribute name="scope">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">where CSS is used, provides a way of defining
@@ -6234,7 +6262,8 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
    <define name="mishnahrstyleDefDecl">
       <element name="styleDefDecl">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (style definition language declaration) specifies the name of the formal language in which style or
-  renditional information is supplied elsewhere in the document. 2.3.5. </a:documentation>
+  renditional information is supplied elsewhere in the document. The
+  specific version of the scheme may also be supplied. 2.3.5. </a:documentation>
          <zeroOrMore>
             <ref name="mishnahrmodel.pLike"/>
          </zeroOrMore>
@@ -6291,7 +6320,7 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
       <attribute name="replacementPattern">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies a replacement pattern which, once subpattern substitution
         has been performed, provides a URI.</a:documentation>
-         <text/>
+         <ref name="mishnahrdata.replacement"/>
       </attribute>
    </define>
    <define name="mishnahrprefixDef">
@@ -6343,7 +6372,7 @@ Sample values include: 1] first-line; 2] first-letter; 3] before; 4] after</a:do
          <optional>
             <attribute name="delim">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(delimiter) supplies a delimiting string following the reference component.</a:documentation>
-               <text/>
+               <ref name="mishnahrdata.text"/>
             </attribute>
          </optional>
          <empty/>
@@ -6459,7 +6488,7 @@ Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Gri
    <define name="mishnahrappInfo">
       <element name="appInfo">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(application information) records information about an application which has
-  edited the TEI file. </a:documentation>
+  edited the TEI file.  2.3.10. </a:documentation>
          <oneOrMore>
             <ref name="mishnahrmodel.applicationLike"/>
          </oneOrMore>
@@ -6469,7 +6498,7 @@ Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Gri
    </define>
    <define name="mishnahrapplication">
       <element name="application">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides information about an application which has acted upon the document.</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides information about an application which has acted upon the document. 2.3.10. </a:documentation>
          <group>
             <oneOrMore>
                <ref name="mishnahrmodel.labelLike"/>
@@ -6487,16 +6516,14 @@ Suggested values include: 1] WGS84(World Geodetic System) ; 2] MGRS(Military Gri
          <ref name="mishnahratt.typed.attributes"/>
          <ref name="mishnahratt.datable.attributes"/>
          <attribute name="ident">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Supplies an identifier for the application, independent of its version number or display
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies an identifier for the application, independent of its version number or display
         name.</a:documentation>
             <ref name="mishnahrdata.name"/>
          </attribute>
          <attribute name="version">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Supplies a version number for the application, independent of its identifier or display
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a version number for the application, independent of its identifier or display
         name.</a:documentation>
-            <data type="token">
-               <param name="pattern">[\d]+[a-z]*[\d]*(\.[\d]+[a-z]*[\d]*){0,3}</param>
-            </data>
+            <ref name="mishnahrdata.versionNumber"/>
          </attribute>
          <empty/>
       </element>
@@ -6692,7 +6719,7 @@ represented within a text. 2.4.2.  2.4.  15.3.2. </a:documentation>
    <define name="mishnahrlistChange">
       <element name="listChange">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups a number of change descriptions associated 
-with either the creation of a source text or the revision of an encoded text. </a:documentation>
+with either the creation of a source text or the revision of an encoded text.  2.5.  11.7. </a:documentation>
          <oneOrMore>
             <choice>
                <ref name="mishnahrlistChange"/>
@@ -6830,6 +6857,7 @@ teiCorpus element. 4.  15.1. </a:documentation>
          </group>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.declaring.attributes"/>
+         <ref name="mishnahratt.typed.attributes"/>
          <empty/>
       </element>
    </define>
@@ -7315,56 +7343,53 @@ publisher name), as given
 title page, prefaces, dedications, etc.)
 found  at the start of a document, before the main body. 4.6.  4. </a:documentation>
          <group>
-            <zeroOrMore>
-               <choice>
-                  <ref name="mishnahrmodel.frontPart"/>
-                  <ref name="mishnahrmodel.pLike.front"/>
-                  <ref name="mishnahrmodel.global"/>
-               </choice>
-            </zeroOrMore>
             <group>
-               <optional>
+               <zeroOrMore>
                   <choice>
-                     <group>
-                        <group>
-                           <ref name="mishnahrmodel.div1Like"/>
-                        </group>
-                        <zeroOrMore>
-                           <choice>
-                              <ref name="mishnahrmodel.frontPart"/>
-                              <ref name="mishnahrmodel.div1Like"/>
-                              <ref name="mishnahrmodel.global"/>
-                           </choice>
-                        </zeroOrMore>
-                     </group>
-                     <group>
-                        <group>
-                           <ref name="mishnahrmodel.divLike"/>
-                        </group>
-                        <zeroOrMore>
-                           <choice>
-                              <ref name="mishnahrmodel.frontPart"/>
-                              <ref name="mishnahrmodel.divLike"/>
-                              <ref name="mishnahrmodel.global"/>
-                           </choice>
-                        </zeroOrMore>
-                     </group>
+                     <ref name="mishnahrmodel.frontPart"/>
+                     <ref name="mishnahrmodel.pLike"/>
+                     <ref name="mishnahrmodel.pLike.front"/>
+                     <ref name="mishnahrmodel.global"/>
                   </choice>
-               </optional>
+               </zeroOrMore>
             </group>
-            <group>
-               <optional>
+            <optional>
+               <choice>
                   <group>
-                     <ref name="mishnahrmodel.divBottomPart"/>
+                     <ref name="mishnahrmodel.div1Like"/>
+                     <zeroOrMore>
+                        <choice>
+                           <ref name="mishnahrmodel.div1Like"/>
+                           <ref name="mishnahrmodel.frontPart"/>
+                           <ref name="mishnahrmodel.global"/>
+                        </choice>
+                     </zeroOrMore>
                   </group>
-                  <zeroOrMore>
-                     <choice>
-                        <ref name="mishnahrmodel.divBottomPart"/>
-                        <ref name="mishnahrmodel.global"/>
-                     </choice>
-                  </zeroOrMore>
-               </optional>
-            </group>
+                  <group>
+                     <ref name="mishnahrmodel.divLike"/>
+                     <zeroOrMore>
+                        <choice>
+                           <ref name="mishnahrmodel.divLike"/>
+                           <ref name="mishnahrmodel.frontPart"/>
+                           <ref name="mishnahrmodel.global"/>
+                        </choice>
+                     </zeroOrMore>
+                  </group>
+               </choice>
+               <group>
+                  <optional>
+                     <group>
+                        <ref name="mishnahrmodel.divBottom"/>
+                     </group>
+                     <zeroOrMore>
+                        <choice>
+                           <ref name="mishnahrmodel.divBottom"/>
+                           <ref name="mishnahrmodel.global"/>
+                        </choice>
+                     </zeroOrMore>
+                  </optional>
+               </group>
+            </optional>
          </group>
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.declaring.attributes"/>
@@ -7379,6 +7404,8 @@ found  at the start of a document, before the main body. 4.6.  4. </a:documentat
                <choice>
                   <ref name="mishnahrmodel.frontPart"/>
                   <ref name="mishnahrmodel.pLike.front"/>
+                  <ref name="mishnahrmodel.pLike"/>
+                  <ref name="mishnahrmodel.listLike"/>
                   <ref name="mishnahrmodel.global"/>
                </choice>
             </zeroOrMore>
@@ -7630,8 +7657,7 @@ element on which the ana attribute appears.</a:documentation>
                <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                           test="@target and @targets">You may not supply both 
-	@target and @targets on <sch:name/>
+                           test="@target and @targets">You may not supply both @target and @targets on <sch:name/>
                </sch:report>
             </rule>
          </pattern>
@@ -7643,8 +7669,7 @@ element on which the ana attribute appears.</a:documentation>
                <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                           test="not(@target) and not(@targets)">You must
-	supply either @target or @targets on <sch:name/>
+                           test="not(@target) and not(@targets)">You must supply either @target or @targets on <sch:name/>
                </sch:report>
             </rule>
          </pattern>
@@ -7656,8 +7681,7 @@ element on which the ana attribute appears.</a:documentation>
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                           test="contains(@target,' ')">You must supply at least two
-values for @target on <sch:name/>
+                           test="contains(@targets,' ') or contains(@target,' ')">You must supply at least two values for  @target or @targets on <sch:name/>
                </sch:assert>
             </rule>
          </pattern>
@@ -7734,19 +7758,6 @@ lemma and usually one or more reading or a note on the relevant passage. 12.1.1.
                </choice>
             </zeroOrMore>
          </group>
-    
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="app-constraint-only1lem">
-            <rule context="tei:app">
-               <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                           xmlns="http://www.tei-c.org/ns/1.0"
-                           xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                           test="count( descendant::tei:lem[ generate-id(    current() ) = generate-id(    ancestor::tei:app[1] ) ]) &lt;       2">
-Only one &lt;lem&gt; element may appear within a single  apparatus
-entry, whether it appears outside a &lt;rdgGrp&gt;
-element or within it.</sch:assert>
-            </rule>
-         </pattern>
-    
          <ref name="mishnahratt.global.attributes"/>
          <optional>
             <attribute name="type">
@@ -7757,15 +7768,13 @@ some convenient typology.</a:documentation>
          </optional>
          <optional>
             <attribute name="from">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the beginning of the lemma in the base text, if
-necessary.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the beginning of the lemma in the base text.</a:documentation>
                <ref name="mishnahrdata.pointer"/>
             </attribute>
          </optional>
          <optional>
             <attribute name="to">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the endpoint of the lemma in the base text, if
-necessary.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the endpoint of the lemma in the base text.</a:documentation>
                <ref name="mishnahrdata.pointer"/>
             </attribute>
          </optional>
@@ -7878,6 +7887,16 @@ relationship or other affinity. 12.1. </a:documentation>
                </choice>
             </oneOrMore>
          </group>
+    
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="rdgGrp-constraint-only1lem">
+            <rule context="tei:rdgGrp">
+               <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                           xmlns="http://www.tei-c.org/ns/1.0"
+                           xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                           test="count(tei:lem) &lt; 2">Only one &lt;lem&gt; element may appear within a &lt;rdgGrp&gt;</sch:assert>
+            </rule>
+         </pattern>
+    
          <ref name="mishnahratt.global.attributes"/>
          <ref name="mishnahratt.textCritical.attributes"/>
          <empty/>
@@ -8022,6 +8041,19 @@ or external to it.</a:documentation>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">apparatus appears outside the base text.</a:documentation>
             </choice>
          </attribute>
+        
+          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="location-constraint-variantEncodingLocation">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                      context="tei:variantEncoding">
+               <sch:assert test="(@location != 'external') or (@method != 'parallel-segmentation')">
+              The @location value "external" is inconsistent with the
+              parallel-segmentation method of apparatus markup.</sch:assert>
+            </sch:rule>
+         </pattern>
+        
          <empty/>
       </element>
    </define>
@@ -8343,7 +8375,7 @@ witness.</a:documentation>
    <define name="mishnahrlistPlace">
       <element name="listPlace">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(list of places) contains a list of places, optionally followed by a list of relationships (other than
-        containment) defined amongst them. </a:documentation>
+        containment) defined amongst them.  2.2.7.  13.3.4. </a:documentation>
          <group>
             <zeroOrMore>
                <ref name="mishnahrmodel.headLike"/>
@@ -8398,10 +8430,12 @@ witness.</a:documentation>
          <optional>
             <attribute name="sex">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the sex of the participant group.</a:documentation>
-               <choice>
+               <list>
                   <ref name="mishnahrdata.sex"/>
-                  <value>mixed</value>
-               </choice>
+                  <zeroOrMore>
+                     <ref name="mishnahrdata.sex"/>
+                  </zeroOrMore>
+               </list>
             </attribute>
          </optional>
          <optional>
@@ -8426,7 +8460,7 @@ witness.</a:documentation>
    </define>
    <define name="mishnahrplace">
       <element name="place">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains data about a geographic location</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains data about a geographic location 13.3.4. </a:documentation>
          <group>
             <zeroOrMore>
                <ref name="mishnahrmodel.headLike"/>
@@ -8496,7 +8530,7 @@ witness.</a:documentation>
    <define name="mishnahrlocation">
       <element name="location">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines the location of a place as a set of geographical coordinates, in terms of other named geo-political entities, or as an
-        address.</a:documentation>
+        address. 13.3.4. </a:documentation>
          <zeroOrMore>
             <choice>
                <ref name="mishnahrmodel.labelLike"/>

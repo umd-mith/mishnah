@@ -17,7 +17,7 @@
     <xsl:function name="my:parse-rqs" as="element(tei:sortWit)*">
       <xsl:param name="rqs" as="xs:string"/>
       <xsl:for-each select="fn:tokenize($rqs, '&amp;')[
-        fn:tokenize(., '=')[1] != 'mcite' and string(fn:tokenize(., '=')[2])
+        fn:tokenize(., '=')[1] != 'mcite' and fn:tokenize(., '=')[1] != 'algorithm' and string(fn:tokenize(., '=')[2])
       ]">
         <xsl:variable name="kv" select="fn:tokenize(., '=')"/>
         <sortWit sortOrder="{$kv[2]}">

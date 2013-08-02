@@ -219,7 +219,7 @@
         <xsl:choose>
             <xsl:when test="contains($src,'&amp;')">
                 <!-- build first token element -->
-                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite'))">
+                <xsl:if test="not(contains(substring-before($src,'&amp;'),'mcite')) and not(contains(substring-before($src,'&amp;'),'algorithm'))">
                     <sortWit>
                         <xsl:attribute name="sortOrder">
                             <xsl:choose>
