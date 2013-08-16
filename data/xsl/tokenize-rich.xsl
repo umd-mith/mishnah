@@ -3,8 +3,8 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:its="http://www.w3.org/2005/11/its"
     xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xd xs its local" version="2.0" xmlns:local="local-functions.uri">
-    <xsl:strip-space elements="tei:w tei:reg tei:c tei:expan tei:g tei:lb"/>
-    <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
+    <xsl:strip-space elements="tei:ab tei:w tei:reg tei:c tei:expan tei:g tei:lb tei:note tei:label tei:space tei:gap" />
+    <xsl:output indent="no" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 25, 2011</xd:p>
@@ -13,11 +13,9 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="rqs"
-        >mcite=4.2.2.1&amp;Kauf=1&amp;ParmA=5&amp;Camb=&amp;Maim=&amp;S08174=3&amp;P00001=3&amp;Vilna=&amp;Mun=&amp;Hamb=&amp;Vat114=2&amp;Leid=&amp;G2=&amp;G4=&amp;G6=&amp;G7=&amp;G1=&amp;G3=&amp;G5=&amp;G8=</xsl:param>
+        />
     <xsl:param name="mcite" select="'4.2.2.10'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
-    <!--    <xsl:variable name="queryParams" select="tokenize($rqs, '&amp;')"/>
-    <xsl:variable name="sel" select="for $p in $queryParams[starts-with(., 'wit=')] return substring-after($p, 'wit=')"/>-->
     <xsl:variable name="witlist">
         <xsl:variable name="params">
             <xsl:call-template name="tokenize-params">
@@ -31,8 +29,7 @@
     </xsl:variable>
     <xsl:template match="tei:text"/>
     <xsl:template match="tei:TEI/tei:teiHeader">
-        <TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0">
+        <TEI xmlns:xi="http://www.w3.org/2001/XInclude">
             <teiHeader>
                 <fileDesc>
                     <titleStmt>
@@ -107,7 +104,7 @@
                 <xsl:element name="w" namespace="http://www.tei-c.org/ns/1.0">
                     <xsl:for-each select="node()">
                         <xsl:variable name="temp"><xsl:apply-templates select="." mode="preproc-within" /></xsl:variable>
-                        <xsl:value-of select="translate($temp,' ','')"></xsl:value-of>
+                        <xsl:value-of select="translate(normalize-space($temp),' ','')"/>
                     </xsl:for-each>
                     <seg>
                         <xsl:copy-of select="node()"/>
@@ -137,7 +134,7 @@
                 <xsl:element name="{name()}">
                     <xsl:value-of select="."/>
                 </xsl:element>
-                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
+                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1" xml:space="default"/>
             </xsl:when>
             <xsl:when test="self::tei:lb">
                 <xsl:element name="{name()}">
@@ -166,7 +163,7 @@
                 </xsl:for-each>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
-            <xsl:when test="self::tei:choice">
+            <xsl:when test="self::tei:choice[child::tei:abbr]">
                 <xsl:variable name="expan" select="normalize-space(./tei:expan)"> </xsl:variable>
                 <xsl:variable name="abbr" select="normalize-space(./tei:abbr)"> </xsl:variable>
                 <xsl:choose>
@@ -190,8 +187,15 @@
                 </xsl:choose>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
+            <xsl:when test="self::tei:choice[child::tei:orig and child::tei:reg]">
+                <xsl:variable name="reg" select="normalize-space(./tei:reg)"> </xsl:variable>
+                <w><xsl:value-of select="./tei:orig"></xsl:value-of><reg>
+                    <xsl:value-of select="translate($reg,'?סןוי','*שם')"/>
+                </reg></w>
+                <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
+            </xsl:when>
             <xsl:when test="self::tei:damage">
-                <xsl:apply-templates select="./node()" mode="preproc-within"/>
+                <xsl:apply-templates select="./node()" mode="preproc-within" xml:space="default"/>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <!-- Nodes to be removed altogether-->
@@ -206,7 +210,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!-- These templates process notes within the siblings selected by sibling recursion -->
+    <!-- These templates process nodes within the siblings selected by sibling recursion -->
     <xsl:template match="//tei:choice" mode="preproc-within">
         <!-- For abbreviations embedded in other nodes (e.g., persName) use this template -->
         <xsl:variable name="expan" select="normalize-space(./tei:expan)"/>
@@ -250,8 +254,8 @@
             </xsl:attribute>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within"></xsl:template>
-    <xsl:template match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw"
+    <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within" xml:space="default"></xsl:template>
+    <xsl:template match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw | //tei:surplus"
         mode="preproc-within"/>
     <xsl:template match="//tei:unclear | //tei:gap" mode="preproc-within">
         <xsl:text>[ ]</xsl:text>
@@ -292,7 +296,7 @@
         <!-- 3. regularize final alef to heh -->
         <xsl:choose>
             <!-- 1. remove any empty <w>s with no text -->
-            <xsl:when test="self::tei:w[not(normalize-space(.))]">
+            <xsl:when test="self::tei:w[not(string(.))]">
                 <xsl:apply-templates mode="final" select="following-sibling::element()[1]"/>
             </xsl:when>
             <!-- 2. Concatenate or split shel, lefi-(kak), ke-(sad) for alignment -->
@@ -407,6 +411,8 @@
                             </reg>
                             <xsl:copy-of select="* except tei:reg"/>
                         </xsl:element>
+                        <xsl:apply-templates mode="final"
+                            select="following-sibling::tei:w[normalize-space(text())][1]/following-sibling::element()[1]"/>
                     </xsl:when>
                     <!-- e ze/zo hu/hi -->
                     <xsl:when

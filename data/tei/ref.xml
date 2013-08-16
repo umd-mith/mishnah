@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
+<?xml-stylesheet type="text/css" href="../css/TestMishnahStyleSheet.css" title="Mishnah Style Sheet" alternate="no"?>
 <?xml-model href="../derivative/digital_mishnah_reference.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <teiHeader>
@@ -12,28 +12,32 @@
                 </respStmt>
                 <respStmt>
                     <resp>Transcription and Markup</resp>
+                    <name xml:id="KC">Kinneret Colon</name>
                     <name xml:id="RE">Rutie Eckdish</name>
+                    <name xml:id="AbE">Abigail Ellis</name>
+                    <name xml:id="AE">Anja Engel</name>
                     <name xml:id="NE">Nurit Ezer</name>
+                    <!--<name xml:id="AF">Akiva Futter</name>-->
                     <name xml:id="DG">Daniel Goldberg</name>
                     <name xml:id="BH">Brian Horowitz</name>
+                    <name xml:id="KI">Kerstin Ipta</name>
+                    <name xml:id="KJ">Katrin Jansen</name>
+                    <name xml:id="RK">Robyn Kalwerisky</name>
                     <name xml:id="JK">Judah Kerbel</name>
+                    <name xml:id="UL">Uta Lohmann</name>
                     <name xml:id="AL">Alexandra Lupu</name>
                     <name xml:id="JM">Jonathan Margulis</name>
+                    <name xml:id="ML">Lehmann Matthias</name>
+                    <name xml:id="GN">Gerold Necker</name>
+                    <name xml:id="NN">Noah Niederhoffer</name>
                     <name xml:id="JDO">Justin Orr</name>
                     <name xml:id="MP">Michael Pollack</name>
                     <name xml:id="BR">Bruce Roth</name>
                     <name xml:id="AS">Atara Siegel</name>
                     <name xml:id="SS">Shlomo Strauss</name>
                     <name xml:id="YT">Yogev Terry</name>
-                    <name xml:id="AE">Anja Engel</name>
-                    <name xml:id="GW">Gerd Wildensee</name>
-                    <name xml:id="KJ">Katrin Jansen</name>
-                    <name xml:id="ML">Lehmann Matthias</name>
-                    <name xml:id="GN">Gerold Necker</name>
                     <name xml:id="MU">Martina Urban</name>
-                    <name xml:id="KI">Kerstin Ipta</name>
-                    <name xml:id="UL">Uta Lohmann</name>
-
+                    <name xml:id="GW">Gerd Wildensee</name>
                 </respStmt>
                 <respStmt>
                     <resp>Advisory</resp>
@@ -16283,6 +16287,20 @@
                 </div>
                 <div type="lang"/>
                 <div type="bibl">
+                    <biblStruct type="book" xml:id="Paris">
+                        <monogr>
+                            <title level="m" type="en">Mishnah-Codex Paris, Paris 328-329</title>
+                            <title level="m" type="he">משנה כתב יד פאריס, פאריס 328 - 329</title>
+                            <title level="m" type="rom">Mishnah Ketav Yad Paris, Paris 328 - 329</title>
+                            <title level="m" type="short-en">Mishnah-Codex Paris</title>
+                            <title level="m" type="short-he">כ"י פאריס</title>
+                            <imprint>
+                                <date>1973</date>
+                                <publisher>Makor</publisher>
+                                <pubPlace>Jerusalem</pubPlace>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
                     <biblStruct type="book" xml:id="elitzur">
                         <monogr>
                             <author>Elitzur, Yoel</author>
@@ -16435,6 +16453,20 @@
                             </imprint>
                         </monogr>
                     </biblStruct>
+                    <biblStruct xml:id="sassoon">
+                        <monogr>
+                            <editor>Sassoon, Solomon D.</editor>
+                            <editor>Edelmann, Rafael</editor>
+                            <title level="m">Maimonidis Commentarius in Mischnam e codicibus Hunt, 117 et Pococke
+                                295 in Bibliotheca Bodleiana Oxoniensi servatis et 72-73 Bibliothecae
+                                Sassooniensis Letchworth</title>
+                            <imprint>
+                                <publisher>Ejnar Munksgaard</publisher>
+                                <pubPlace>Copenhagen</pubPlace>
+                                <date>1956-1961</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
                     <biblStruct xml:id="synopse">
                         <monogr>
                             <editor corresp="#PS">Peter Schäfer</editor>
@@ -16492,6 +16524,22 @@
                         </monogr>
                         <note>Previously published in print, Jerusalem: Ha-makhon le-heqer
                             ha-mishnah, 1979.</note>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="sheri">
+                        <monogr>
+                            <editor>Sheri, A. F.</editor>
+                            <title level="m" type="en">The Babylonian Talmud Seder Nezikin, Codex Hambourg 165 (19)</title>
+                            <title level="m" type="he">תלמוד בבלי סדר נזיקין, כתב יד המבורג 165 )19(</title>
+                            <title level="m" type="rom">Talmud Bavli Seder Neziqin, Ketav Yad Hamburg 165 (19)</title>
+                            <title level="m" type="short-en">Hamb</title>
+                            <title level="m" type="short-he">כ״י המבורג</title>
+                            <imprint>
+                                <pubPlace>Jerusalem</pubPlace>
+                                <publisher>Makor</publisher>
+                                <date>1972</date>
+                            </imprint>
+                        </monogr>
+                        <note>Incorporates the graphic facsimile, Lazarus Goldschmidt, <hi>Der Traktat Neziqin, d.h. die zivilrechtswissenschaftliche Sektion, aus dem babylonischen Talmud</hi> (Berlin: Rokotnitz, 1914).</note>
                     </biblStruct>
                     <biblStruct type="book" xml:id="stem-str">
                         <monogr>

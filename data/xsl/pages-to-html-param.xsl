@@ -505,7 +505,7 @@
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="(./@n + 1) mod 5 = 0">
-                        <br xmlns="http://www.w3.org/1999/xhtml"/>
+                        <br xmlns="http://www.w3.org/1999/xhtml"> &#xa0;</br>
                         <xsl:element name="span" xmlns="http://www.w3.org/1999/xhtml">
                             <xsl:attribute name="class">lb</xsl:attribute>
                             <xsl:value-of select="(./@n + 1)"/>
