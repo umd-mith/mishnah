@@ -4,106 +4,115 @@
 <!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
 <?xml-stylesheet type="text/xsl" href="http://rawgithub.com/umd-mith/mishnah/gh-pages/data/tei/for-transcribers.xsl"?>
+<!-- [אבגדהכךעפףת][\u0591-\u05c7&&[^\u05bf]]{0,3}\u05bf[\u0591-\u05c7&&[^\u05bf]]{0,3} -->
+<!-- [בגדכךפףת][\u0591-\u05c7&&[^\u05bc\u05bf]][א-ת] -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An electronic transcription of ***</title>
+                <title>An electronic transcription of Kaufmann MS A50 ot the Mishnah</title>
                 <editor>
-                    <persName>Hayim Lapin</persName>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
-                    <resp/>
-                    <persName/>
-                    <!--<sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>-->
+                    <resp>transcriber</resp>
+                    <orgName corresp="ref.xml#LI">Lieberman Institute for Talmudic
+                        Research</orgName>
                 </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
                 <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
                 <address>
-                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>0301 Hornbake Library</addrLine>
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
                 <idno type="local">S07326</idno>
-                <!--<availability>
-                    <licence><!-\- We'll need one of these; TBD -\-></licence>
-                </availability>-->
-                <date><!-- placeholder --></date>
-                <!-- A publication date is required for TEI conformance -->
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution-NonCommercial 3.0 License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2013-08-25</date>
+
             </publicationStmt>
             <notesStmt>
                 <note>
-                    <p/>
-                    <!--Prose description. Use the following as model
-                        <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
-                        Covers Bava Qamma 2:1 - 3:5; 10:9 - 10; Bava Metsi'a 1:1 - 2:5</p>
-                    <p>Transcription from online images of the manuscript, available at
-                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
-                        https://fgp.genizah.org. FGP nos. C166192-C166195</p>
-                    <p>Supplied text based on Kaufmann ms, Library of the Hungarian Academy of
-                        Sciences, Kaufmann A50, except when preserved remains make such restoration
-                        unlikely.</p>
-                    <p>EDITED BY: Hayim Lapin</p>-->
+                    <p>The Kaufmann Manuscript of the Mishnah(MS A 50, Oriental Collection of the
+                        Library of the Hungarian Academy of Sciences)</p>
+                    <p>Transcriptions based on images available at
+                        http://kaufmann.mtak.hu/en/ms50/ms50-coll1.htm</p>
+                    <p>Premilinary transcription provided by the Lieberman Institute, and corrected
+                        and marked up by <persName corresp="ref.xml#AS">Atara Siegel</persName>.
+                        Supercedes Kauf.xml, transcribed by <persName corresp="ref.xml#JDO">Justin
+                            Orr</persName> and marked up by Hayim Lapin</p>
                 </note>
             </notesStmt>
             <sourceDesc>
                 <msDesc>
                     <msIdentifier>
-                        <settlement/>
-                        <repository/>
-                        <idno type="genizah-CUL"
-                            ><!-- Shelf Mark here. for Oxford, e.g.,
-                            @type=genizah-Oxf etc.--></idno>
+                        <settlement>Budapest</settlement>
+                        <repository>Library of the Hungarian Academy of Sciences</repository>
+                        <idno>A50</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
-                            <locusGrp>
-                                <locus/>
-                                <!-- Points to images. Other uses? Use the following as model
-                                 <locus n="2v" facs="www.genizah.org">C166192</locus>
-                                <locus n="2r" facs="www.genizah.org">C166193</locus>
-                                <locus n="1v" facs="ww.genizah.org">C166194</locus>
-                                <locus n="1r" facs="ww.genizah.org">C166195</locus>-->
-                            </locusGrp>
                             <title>Mishnah</title>
+                            <note type="nli-ref"
+                                >http://primo.nli.org.il/primo_library/libweb/action/dlDisplay.do?vid=NLI&amp;docId=NNL_ALEPH000191047</note>
                         </msItem>
                     </msContents>
                     <physDesc>
-                        <handDesc>
-                            <handNote script="SCRIPT">
-                                <date><!-- placeholder --></date>
-                                <region><!-- placeholder --></region>
-                            </handNote>
-                        </handDesc>
-                        <!--<objectDesc form="FORM">
-                            <supportDesc>
-                                <support>Parchment</support>
-                                <extent>2 leaves</extent>
+                        <objectDesc form="codex">
+                            <supportDesc material="parchment">
+                                <extent>286</extent>
                             </supportDesc>
                             <layoutDesc>
-                                <layout columns="NUMBER">
-                                    <!-\- at longest/widest -\->
-                                    <dimensions scope="frag-sheet">
-                                        <width unit="cm"/>
-                                        <height unit="cm"/>
+
+                                <layout columns="2">
+                                    <dimensions scope="sheet">
+                                        <height unit="cm">33</height>
+                                        <width unit="cm">28</width>
                                     </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm"/>
-                                        <height unit="cm">15.5</height>
+                                    <dimensions scope="col-cm">
+                                        <height unit="cm">25</height>
+                                        <width unit="cm">9.5</width>
                                     </dimensions>
-                                    <dimensions scope="frag-chars">
-                                        <width unit="chars"/>
-                                        <height unit="lines"/>
-                                        <dim type="char-p-cm"/>
+                                    <dimensions scope="col-writ">
+                                        <height unit="lines">30</height>
+                                        <width unit="chars">24</width>
+                                        <dim type="char-p-cm">2.63</dim>
                                     </dimensions>
+                                    <note>Dimensions based on Gergely catalog and personal
+                                        communication by Balazs Tamasi, of the Library of the
+                                        Hungarian Academy of Sciences</note>
                                 </layout>
                             </layoutDesc>
-                        </objectDesc>-->
+                        </objectDesc>
+                        <handDesc>
+                            <handNote scribe="first" script="Italian Square">
+                                <!-- or ancient oriental? Needs work-->
+                                <date notBefore="1000" notAfter="1300">11th-13th Century</date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                            <handNote scribe="second">
+                                <!-- Following is a temporary solution -->
+                                <desc>pointed<desc>Babylonian</desc></desc>
+                                <note>Second hand points the text using the Babylonian vocalization
+                                    than first scribe.</note>
+                            </handNote>
+                        </handDesc>
                     </physDesc>
                 </msDesc>
             </sourceDesc>
@@ -124,77 +133,84 @@
                 <pb xml:id="S07326.128r" n="128r"/>
                 <cb xml:id="S07326.128rA" n="128rA"/>
                 <head xml:id="S07326.4.H" rend="align(center) pad(rl)">בשם <choice><abbr><c
-                                rend="altform">א</c><am rend="׳"
-                        >׳</am><expan>אלוהים</expan></abbr></choice> מבְיט עמקים<lb n="1"/> נתחיל
-                    סדר נזיקים <am rend="׳">׳</am></head>
+                                rend="altform">א</c><am rend="geresh"
+                            >׳</am><expan>אלוהים</expan></abbr></choice> מבְיט עמקים<lb n="1"/>
+                    נתחיל סדר נזיקים<surplus reason="fill">׳</surplus></head>
                 <lb n="2"/>
                 <div2 xml:id="S07326.4.1">
                     <div3 xml:id="S07362.4.1.1">
                         <ab xml:id="S07362.4.1.1.1">‏ <milestone unit="MSMishnah" n="1"/> אַרְבָּעָה
                             אֲֿבוֹתֿ נְזִיקִים הַשׂוֹר וְהַבּוֹר <lb n="3"/> וְהַמַּבְֿעֶה
-                            וְהַהֶבִֿעֵר לֹא הַשּׁוֹר כְּהָרֵי <surplus reason="fill">המ<am rend="׳"
-                                    >׳</am></surplus><lb n="4"/> הַמַבְֿעֶהֿ וְלֹא הַמַבְֿעֶה
-                            כְּהָרֵי הַשּׁוֹר לֹא<lb n="5"/> זֶה וָזֶה שֶׁיִּשׁ בָּהֶן רוּח חַיִּים
-                                וַ<add hand="h2" place="above">כ</add>הֲרֵי הָאֵשׁ<lb n="6"/>
+                            וְהַהֶבִֿעֵר לֹא הַשּׁוֹר כְּהָרֵי <surplus reason="fill">ה<c
+                                    rend="altform">מ</c><am rend="geresh">׳</am></surplus><lb n="4"
+                            /> הַמַבְֿעֶהֿ וְלֹא הַמַבְֿעֶה כְּהָרֵי הַשּׁוֹר לֹא<lb n="5"/> זֶה
+                            וָזֶה שֶׁיִּשׁ בָּהֶן רוּח חַיִּים <del rend="strikethrough" hand="h2"
+                                >וַ</del><add hand="h2" place="above">כ</add>הֲרֵי הָאֵשׁ<lb n="6"/>
                             שֶׁאֵין בָּהּ רוּחַ חַיִים לֹא זֶה וָזֶה שֶׁ<del hand="h2"
-                                rend="strikethrough">ה</del>דַּרְכָּן<lb n="7"/> לֵילךְֿ וּלְהַזִּיק
-                                וַ<add hand="h2" place="above">כ</add>הֲרֵי הַבּוֹר שֶׁאֵין דַּרְכּו
-                                לֵילֵךְֿ<lb n="8"/> וּלְהַזִּיק הַצָּדֿ הַשָּׁוֶוה שֶׁבָּהֶן
+                                rend="strikethrough">ה</del>דַּרְכָּן<lb n="7"/> לֵילֵךְֿ
+                            וּלְהַזִּיק וַ<add hand="h2" place="above">כ</add>הֲרֵי הַבּוֹר שֶׁאֵין
+                            דַּרְכּו לֵילֵךְֿ<lb n="8"/> וּלְהַזִּיק הַצָּדֿ הַשָּׁוֶוה שֶׁבָּהֶן
                             שֶׁדַּרְכָּן <surplus reason="fill">ל<am rend="overmark"
                                 >׳</am></surplus><lb n="9"/> לְהַזִּיק ושְׁמִירָתָֿן עָלֶיךָֿ
                             וּכְֿשֶׁהִזִּיק חָבֿ<lb n="10"/> הַמַזִּיק מְשַׁלֵּם תַּשְׁלומֵי נֶזֶק
                             בְּמֵיטַבֿ הָאָרֶץ<lb n="11"/>
                         </ab>
                         <ab xml:id="S07362.4.1.1.2">‏ <milestone unit="MSMishnah" n="2"/>
-                            <label rend="align(right) pad(rl)">ב<am rend="׳">׳</am></label> כָּל
-                            שֶׁחַבְתִּי בִשְׁמִירָתוֹ הִכְשַׁרְתִּי <surplus reason="fill"><c
-                                    rend="altform">א</c><am rend="׳">׳</am></surplus><lb n="12"/>
-                            אֶת נִזְקוֹ הִיכְשַׁרְתִּי בְמִקְצָת נִזְקוֹ חַבְתִּי<lb n="13"/>
-                            בְתַשְׁלוּמֵי נִזְקוֹ כְּהֶכְשֵׁר כָּל נִזְקוֹ נְכָסִים<lb n="14"/>
-                            שֶׁאֵין בָּהֶן מְעִילָה וּנְכָסִים שֶׁהֵן שֶׁלִּ בְנֵי<lb n="15"/>
-                            בְרִית נְכָסִים מְיוּחָדִים חוּץ מֵרְשׁוּת<lb n="16"/> הַמְּיוּחֶדֶת
-                            לַמַּזִּיק וּרְשׁוּת הַנִּיזָּק וְהַמַּזִּיק <lb n="17"/>
-                            וּכְשֶׁהִיזִּיק חָב הַמַּזִּיק מְשַׁלֵּם תַּשְׁלוּמֵי<lb n="18"/> נֶזֶק
-                            בְּמֵיטַב הָאָרֶץ<pc rend=":">׃</pc>
+                            <label rend="align(right) pad(rl)">ב<am rend="geresh">׳</am></label>
+                            כָּל שֶׁחַבְֿתִּי בִשְׁמִירָתֿוֹ הִכְֿשַׁרְתִּי <surplus reason="fill"
+                                    ><c rend="altform">א</c><am rend="geresh">׳</am></surplus><lb
+                                n="12"/> אֶת נִזְקוֹ הִיכְֿשַׁרְתִּי בְֿמִקְצָתֿ נִזְקוֹ
+                                חַבְֿתִּי<lb n="13"/> בְֿתַֿשְׁלוּמֵי נִזְקוֹ כְּהֶכְֿשֵׁר כָּל
+                            נִזְקוֹ נְכָֿסִים<lb n="14"/> שֶׁאֵין בָּהֶן מְעִילָה וּנְכָֿסִים שֶׁהֵן
+                                שֶׁלִּבְֿנֵי<lb n="15"/> בְֿרִיתֿ נְכָֿסִים מְיוּחָדִֿים חוּץ
+                                מֵרְשׁוּתֿ<lb n="16"/> הַמְּיוּחֶדֶתֿ לַמַּזִּיק וּרְשׁוּתֿ
+                            הַנִּיזָּק וְהַמַּזִּיק <lb n="17"/> וּכְֿשֶׁהִיזִּיק חָבֿ הַמַּזִּיק
+                            מְשַׁלֵּם תַּשְׁלוּמֵי<lb n="18"/> נֶזֶק בְּמֵיטַבֿ הָאָרֶץ<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.1.3">‏ <milestone unit="MSMishnah" n="3"/>
-                            <label rend="align(center) pad(r)">ג<am rend="׳">׳</am></label> שׁום
-                            כֶּסֶף בְּשְׁווֶֹה <lb n="19"/> כֶֿסֶף בִּפְֿנֵי בֵֿיתֿ דִּין וְעַל פִּי
-                            עֵדִֿים בְנֵי חוֹרִים <lb n="20"/>
+                            <label rend="align(center) pad(r)">ג<am rend="geresh">׳</am></label>
+                            שׁום כֶּסֶף בְּשְׁווֶֹה <lb n="19"/> כֶֿסֶף בִּפְֿנֵי בֵֿיתֿ דִּין וְעַל
+                            פִּי עֵדִֿים בְנֵי חוֹרִים <lb n="20"/>
                             <add hand="h2" place="inline">ו</add>בְּנֵי בְֿרִיתֿ וְהַנָּשִׁים
-                            בְּכְֿלַל הַנֶזֶק וְהַנִּיזָק <surplus reason="fill">ו<am rend="׳"
-                                    >׳</am>ה<am rend="׳">׳</am></surplus><lb n="21"/> וְהַמַּזִּ<add
-                                hand="h2" place="above">י</add>ק בְּתַֿשְׁ<del hand="h2"
-                                rend="strike">י</del>לוּמִים<pc rend=":">׃</pc>
+                            בְּכְֿלַל הַנֶזֶק וְהַנִּיזָק <surplus reason="fill">ו<am rend="geresh"
+                                    >׳</am>ה<am rend="geresh">׳</am></surplus><lb n="21"/>
+                                וְהַמַּזִּ<add hand="h2" place="above">י</add>ק בְּתַֿ<del hand="h2"
+                                > </del>שְׁ<del hand="h2" rend="strike">י</del>לוּמִים<note>deletion
+                                of space between בת and שילומים is implicit.</note><pc rend="colon"
+                                >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.1.4">‏ <milestone unit="MSMishnah" n="4"/>
-                            <label rend="align(center) pad(rl)">ד<am rend="׳">׳</am></label>
+                            <label rend="align(center) pad(rl)">ד<am rend="geresh">׳</am></label>
                             חֲמִשָּׁה תַֿמִּים <lb n="22"/> וַחֲמִשָׁה מוּעָדִֿים הַבְּהֵמָה אֵינָה
                             מוּעֶדֶתֿ <lb n="23"/> לֹא לִיגַּח וְלֹא לִיגּוֹף וְלֹא לִישּׁוֹךְֿ
-                            וְלֹא לֶירְבּוֹץ <lb n="24"/> וְלֹא לבְעוֹט הַשֵּׁן מוּעֶדֶתֿ לאֹֿכל
+                            וְלֹא לֶירְבּוֹץ <lb n="24"/> וְלֹא לבְעוֹט הַשֵּׁן מוּעֶדֶתֿ לֹאכֿל
                                 <del hand="h2" rend="strikethrough">כל</del> אֶ<c rend="long">תֿ</c>
-                            <lb n="25"/> הָרָאוּיִ לָהּ וְהָרֶגֶֿל מוּעֶדֶֿת לִשַבֵור כְּדֶֿרֶךְֿ
-                                <lb n="26"/> הִילּוכָֿהּ וְשׁוֹר הַמוּעָדֿ וְשׁוֹר הַמַּזִּיק
-                            בִּרְשׁוּתֿ <lb n="27"/> הַנִּיזָּק וְהָאָדָֿם<pc rend=":">׃</pc>
+                            <lb n="25"/> הָרָאוּיִ לָהּ וְהָרֶגֶֿל מוּעֶדֶֿת לִשַבֵ<del hand="h2"
+                                >ו</del>ר כְּדֶֿרֶךְֿ <lb n="26"/> הִילּוכָֿהּ וְשׁוֹר הַמוּעָדֿ
+                            וְשׁוֹר הַמַּזִּיק בִּרְשׁוּתֿ <lb n="27"/> הַנִּיזָּק וְהָאָדָֿם<pc
+                                rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="5"/>
-                            <label rend="align(center) pad(r)">ה<am rend="׳">׳</am></label>
+                            <label rend="align(center) pad(r)">ה<am rend="geresh">׳</am></label>
                             הַזְּאֵבֿ וְהָאֲרִי וְהַדּוֹבֿ <lb n="28"/>
                             <cb xml:id="S07362.128rB" n="128rB"/> וְהַנָּמֵר וְהַפַּרְדְּלֵס
                             וְהַנָּחָשׁ הֲרֵי אֵילּו <surplus reason="fill"><c rend="altform"
-                                    >מ</c><am rend="׳">׳</am></surplus><lb n="1"/> מוּעִָדִֿים <choice>
-                                <abbr>ר<am rend="׳">׳</am></abbr>
+                                    >מ</c><am rend="geresh">׳</am></surplus><lb n="1"/> מוּעִָדִֿים <choice>
+                                <abbr>ר<am rend="geresh">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> אֶלְעָזָר <choice>
-                                <abbr>אוֹמֵ<am rend="׳">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am rend="geresh"
+                                        >׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> בִּזְמַן שֶׁהֵן תַּרְבּוּתֿ<lb n="2"/> אֵינָן מוּעָדִֿים
                             וְהַנָחָשׁ מוּעָדֿ לְעוֹלָם מַה<lb n="3"/> בֵּ<add hand="h2"
                                 place="above">י</add>ן תָּם לַמּוּעָדֿֿ אֶלָּא שֶׁהַתָּם מְשַׁלֵּם
                             חֲצִי <lb n="4"/> נֶזֶק וּמִגּוּפֿוֹ וְהַמּוּעָדֿ מְשַׁלֵּם נֶזֶק שָׁלֵם
-                            מִן <lb n="5"/> הַעֲלָיָה<pc rend=":">׃</pc>
+                            מִן <lb n="5"/> הַעֲלָיָה<pc rend="colon">׃</pc>
                         </ab>
-                        <trailer rend="align(center) pad(rl)">פר<am rend="׳">׳</am> א<am rend="׳"
-                                >׳</am> הל<am rend="׳">׳</am> ה<am rend="׳">׳</am></trailer>
+                        <trailer rend="align(center) pad(rl)">פר<am rend="geresh">׳</am> א<am
+                                rend="geresh">׳</am> הל<am rend="geresh">׳</am> ה<am rend="geresh"
+                                >׳</am></trailer>
                         <lb n="6"/>
                     </div3>
                     <div3 xml:id="S07362.4.1.2">
@@ -206,38 +222,40 @@
                             חֲצִי נֵֵֶזֶק דָּרְסָה עַל הַכֶּלִי וְשִׁבְּרַתּוּ וְנָפַֿל <lb n="11"/>
                             עַל כֶּלִי אֵַחֵר וּשְׁבָֿרוֹ עַל הָרִאֿשׁון מְשַׁלֵּם <lb n="12"/>
                             נֶזֶק <add hand="h2" place="margin-right">שָלֶם</add> וְעַל הָאַחֲרוֹן
-                            מְשַׁלֵּם חֲצִי נֶזֶק<pc rend=":">׃</pc>
+                            מְשַׁלֵּם חֲצִי נֶזֶק<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="2"/>
-                            <label rend="align(left) pad(rl)">ב<am rend="׳">׳</am></label><lb n="13"
-                            /> הַתַּרְנָגְלִים מוּעָדִֿים לְהַלֵּךְֿ כְּדַֿרְכָּן וּלְשַׁבֵּר <lb
-                                n="14"/>
+                            <label rend="align(left) pad(rl)">ב<am rend="geresh">׳</am></label><lb
+                                n="13"/> הַתַּרְנָגְלִים מוּעָדִֿים לְהַלֵּךְֿ כְּדַֿרְכָּן
+                            וּלְשַׁבֵּר <lb n="14"/>
                             <del hand="h2" rend="strikethrough">ולשבר</del> הָיָה דְלִי<add
                                 hand="h2" place="above">ל</add> קָשׁוּר בְּרַגְֿלו אוֹ שֶׁהָיָה <lb
                                 n="15"/>
                             <del hand="h2" rend="overwrite">מחֶרֶס</del><add hand="h2"
                                 place="overwrit">מֵהַדֶס</add> וְשִׁיבֵר אֶתֿ הַכֵּלִים מְשַׁלֵּם
-                            חֲצִי <lb n="16"/> נֶזֶק <pc rend=":">׃</pc>
+                            חֲצִי <lb n="16"/> נֶזֶק<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.2.2">‏ <milestone unit="MSMishnah" n="3"/>
-                            <label rend="align(center) pad(r)">ג<am rend="׳">׳</am></label>
-                                כֵּיצַד<am rend="׳">׳</am> הַשֵּׁן מוּעֶדֶתֿ לאכַֿל אֶתֿ <lb n="17"
-                            /> הָרָאוּיִ לָה וְהַבְּהֵמָה מוּעֶדֶתֿ לאכַֿל פֵּרוֹתֿ <lb n="18"/>
-                            וִירָקוֹת אָכְֿלָה כְֿסוּתֿ אוֹכֵֿלִים מְשַׁלֵּם חֲצִי <lb n="19"/>
-                            <!--the scribe here probably meant " או כלים but didn't leave a space" -->
+                            <label rend="align(center) pad(r)">ג<am rend="geresh">׳</am></label>
+                                כֵּיצַד<surplus reason="fill">׳</surplus> הַשֵּׁן מוּעֶדֶתֿ לאכַֿל
+                            אֶתֿ <lb n="17"/> הָרָאוּיִ לָה וְהַבְּהֵמָה מוּעֶדֶתֿ לאכַֿל פֵּרוֹתֿ
+                                <lb n="18"/> וִירָקוֹת אָכְֿלָה כְֿסוּתֿ אוֹכֵֿלִים מְשַׁלֵּם חֲצִי
+                                <lb n="19"/>
+                            <!--the scribe here probably meant " או כלים but didn't leave a space" --><!-- HL: You are correct, but we are retaining the scribal writing warts and all. -->
                             נֶֶזֶק בַּמֵּי דְבָֿרִים <c rend="altform">אֲ</c>מוּרִים בִּרְשׁוּתֿ
                             הִנִּיזַּק <lb n="20"/> אֲבַֿל בִּרְשׁוּתֿ הָרַבִּים פָּטוּר וְאִם
-                            נֶהְנֵתֿ <lb n="21"/> מְשַׁלֵּם מַהֿ שֶּׁנֶּהְנֵתֿ<pc rend=":">׃</pc> ּ
-                                <milestone unit="MSMishnah" n="4"/>
-                            <label rend="align(center) pad(rl)">ד<am rend="׳">׳</am></label>
+                            נֶהְנֵתֿ <lb n="21"/> מְשַׁלֵּם מַהֿ שֶּׁנֶּהְנֵתֿ<pc rend="colon"
+                                >׃</pc> ּ <milestone unit="MSMishnah" n="4"/>
+                            <label rend="align(center) pad(rl)">ד<am rend="geresh">׳</am></label>
                             כֵּיצַדֿ מְשַׁלֵּם <lb n="22"/> מַה שֶׁנֶּהְנֵתֿֿ אָכְֿלָה מִתּוֹךֿ
                             הָרְחָבָהֿ מְשַׁלֵּם <lb n="23"/> מַהֿ שֶּׁנֶהְנֵתֿ מִצְדָדֵֿי
                             הָרְחָבָֿה מְשַׁלֵּם מַה <lb n="24"/> שֶׁהִיזִּיקָה מִפֶּתַֿח הֶחָנוּתֿ
                             מְשַׁלֵּם מַהֿ <lb n="25"/> שֶׁנֶּהְנֵתֿ מִתּוךְ הֶחָנוּתֿ מְשַׁלֵּם מַה
-                                <surplus reason="fill">שה<am rend="׳">׳</am>י<am rend="׳"
-                                >׳</am></surplus><lb n="26"/> שֶׁהִיזִּיקָה<pc rend=":">׃</pc>
+                                <surplus reason="fill">שה<am rend="geresh">׳</am>י<am rend="geresh"
+                                    >׳</am></surplus><lb n="26"/> שֶׁהִיזִּיקָה<pc rend="colon"
+                                >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.2.3">‏ <milestone unit="MSMishnah" n="5"/>
-                            <label rend="align(center) pad(r)">ה<am rend="׳">׳</am></label>
+                            <label rend="align(center) pad(r)">ה<am rend="geresh">׳</am></label>
                             הַכֶּלֶבֿ וְהַגְּדִֿי שֶׁקָפְֿצוּ מֵעַל <lb n="27"/> הַגָּגֿ
                             וְשִׁיבְּרוּ אֶתֿ הַכֵּלִים מְשַׁלֵּםֵ נֶזֶק שָׁלֵם <lb n="28"/>
                             מִפְּנֵי שֶׁהֵן מוּעָדִֿים כֶּלֶבֿ שֶׁנָטַל אֶתֿ הַחֲרָרָה <lb n="29"/>
@@ -245,14 +263,14 @@
                             <cb xml:id="S07326.128vA" n="128vA"/> וְהָלַךְֿ לוֹ לַגָּדִֿישׁ אָכַֿל
                             אְתֿ הַחֲרָרַה <surplus>והד<am rend="overdot">׳</am></surplus><lb n="1"
                             /> והִדְֿליק אֶתֿ הגַדִֿישׁ עַל הַחֲרָרָה מְשַׁלֵּם <lb n="2"/> נֶזֵק
-                            שַׁלֵם וְעַל הַגָדִֿיש מְשַׁלֵּם חֲצִי <lb n="3"/> נֶזֶק<pc rend="״"
-                                >׃</pc>
+                            שַׁלֵם וְעַל הַגָדִֿיש מְשַׁלֵּם חֲצִי <lb n="3"/> נֶזֶק<pc
+                                rend="gershayyim">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.2.4">‏ <milestone unit="MSMishnah" n="6"/>
-                            <label rend="align(center) pad(rl)">ו<am rend="׳">׳</am></label> אֵי זֶה
-                            הוּא תָֿם וְאֵי זֶה הוּא <lb n="4"/> מוּעָדֿ מוּעָדֿ שֶהֵעִידֿוּ בֿוֹ
-                            שְׁלוֹשָׁה יָמִים <lb n="5"/> וְתָֿם שֶׁיַּחְזוֹר בּוֹ שְׁלוֹשָׁה יָמׅים
-                            דּׅבְֿרֵי <lb n="6"/>
+                            <label rend="align(center) pad(rl)">ו<am rend="geresh">׳</am></label>
+                            אֵי זֶה הוּא תָֿם וְאֵי זֶה הוּא <lb n="4"/> מוּעָדֿ מוּעָדֿ שֶהֵעִידֿוּ
+                            בֿוֹ שְׁלוֹשָׁה יָמִים <lb n="5"/> וְתָֿם שֶׁיַּחְזוֹר בּוֹ שְׁלוֹשָׁה
+                            יָמׅים דּׅבְֿרֵי <lb n="6"/>
                             <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -260,35 +278,35 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> מֵאׅיר <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am rend="׳"
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am rend="geresh"
                                         >׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> מוּעׇדֿ שֶׁהעִידֿוּ <lb n="7"/> בֿוֹ שְׁלֹשׇׁה פְֿעָמׅים
-                            וְתָֿם שֶׁיְהוּ הַתינוֹקוֹת <lb n="8"/> מְמַשְׁמְשׅים בּו<pc rend=":"
-                                >׃</pc>
+                            וְתָֿם שֶׁיְהוּ הַתינוֹקוֹת <lb n="8"/> מְמַשְׁמְשׅים בּו<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.2.5"> ‏ <milestone unit="MSMishnah" n="7"/>
-                            <label rend="align(center) pad(rl)">ז<am rend="׳">׳</am></label> וּשור
-                            הַמַזׅיק <lb n="9"/> בִּרְשׁות הַנִּיזַּק כֵּיצַד נָ<damage><gap
-                                    extent="1" unit="chars"/></damage>ח נָגַף נַשַךְֿ <lb n="10"/>
-                            רָבַֿץ בָּעַט בִּרְשׁוּת הָרַבִּים מְשַׁלֵם חֲצִי <lb n="11"/> נֶזֶק
-                            בִּרִשׁוּתֿ הַנִּזַּק <choice>
+                            <label rend="align(center) pad(rl)">ז<am rend="geresh">׳</am></label>
+                            וּשור הַמַזׅיק <lb n="9"/> בִּרְשׁות הַנִּיזַּק כֵּיצַד
+                                    נָ<damage><unclear extent="1" unit="chars"/></damage>ח נָגַף
+                            נַשַךְֿ <lb n="10"/> רָבַֿץ בָּעַט בִּרְשׁוּת הָרַבִּים מְשַׁלֵם חֲצִי
+                                <lb n="11"/> נֶזֶק בִּרִשׁוּתֿ הַנִּזַּק <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> טַרְפֿון <choice>
-                                <abbr><c rend="altform">א</c>ו<c rend="altform">מֵ</c><am rend="׳"
+                                <abbr><c rend="lig">או</c><c rend="altform">מֵ</c><am rend="geresh"
                                         >׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> נֶזֶק <lb n="12"/> שָׁלֵם <choice>
-                                <abbr>וַחֲכָׅ<c rend="altform">מׅ</c><am rend="׳">׳</am></abbr>
+                                <abbr>וַחֲכָׅ<c rend="altform">מׅ</c><am rend="geresh">׳</am></abbr>
                                 <expan>וחכמים</expan>
                             </choice>
                             <choice>
-                                <abbr>או<c rend="altform">מְ</c><am rend="׳">׳</am></abbr>
+                                <abbr>או<c rend="altform">מְ</c><am rend="geresh">׳</am></abbr>
                                 <expan>אומרים</expan>
-                            </choice> חֲצִי נֶזֶק<pc rend=":">׃</pc>
+                            </choice> חֲצִי נֶזֶק<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="8"/>
-                            <label rend="align(center) pad(r)">ח<am rend="׳">׳</am></label>
+                            <label rend="align(center) pad(r)">ח<am rend="geresh">׳</am></label>
                             <choice>
                                 <abbr><c rend="altform">אָ</c><c rend="altform">מַ</c><am
                                         rend="overmark">׳</am></abbr>
@@ -302,16 +320,16 @@
                             עֲלֵיהֶם בִּרְשׁוּתֿ הַנִּזַּק <lb n="16"/> לְשַׁלֵם נֶזֶק שלֵם מָקוֹם
                             שֶהֶחְמִיר עַל <lb n="17"/> הַקֶּרֶן בְרשׁוּת הָרַבִּים לשַׁלֵם חֲצִי
                             נֶזֶק <lb n="18"/> אֵינוּ דִֿין שֶׁנַחְמִיר עָלֶיהָ בִֿרְשוּתֿ <surplus
-                                reason="fill">ה<am rend="overmark">׳</am>ני <am rend="overmark"
-                                    >׳</am></surplus><lb n="19"/> הַנִּיזַק לְשַׁלֵם נֶזֶק שָׁלֵם
+                                reason="fill">ה<am rend="overmark">׳</am>נ<am rend="overmark"
+                                >׳</am>י</surplus><lb n="19"/> הַנִּיזַק לְשַׁלֵם נֶזֶק שָׁלֵם
                             אַמְרוּ לוֹ דַיוֹ <lb n="20"/> לַבָּא מִן הַדּׅין לִהְיוֹתֿ כַּנָּדֿוֹן
                             מַה בִּרְשׁוּתֿ <lb n="21"/> הָרַבִּים חֲצִי נֶזֶק וְאַף בִּרְשׁוּתֿ
-                            הַנִּיזַּק <lb n="22"/> חֲצִי נֶזֶק<pc rend=":">׃</pc>
+                            הַנִּיזַּק <lb n="22"/> חֲצִי נֶזֶק<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="9"/>
-                            <label>ט<am rend="׳">׳</am></label>
+                            <label>ט<am rend="geresh">׳</am></label>
                             <choice>
-                                <abbr><c rend="altform">אָ</c><c rend="altform">מַ</c><am rend="׳"
-                                        >׳</am></abbr>
+                                <abbr><c rend="altform">אָ</c><c rend="altform">מַ</c><am
+                                        rend="geresh">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice> לָהֶם אֲנׅי לֹא אָדֿׅׅין <lb n="23"/> קֶרִן מִקֶּרֶן וַאֲנׅי
                             אָדֿׅין קֶרֶן מֵרֶגֶֿל מַה <lb n="24"/> אִם בִּמְקוֹם שֶׁהֵקֵל עַל
@@ -321,15 +339,15 @@
                                 לַבָּ<del hand="h2" rend="strike">ו</del>א <lb n="28"/> מִן הַדִּין
                             שֶׁיְּהֵא כַּנָּדון מַה בִּרְשוּת הרַבּׅים <lb n="29"/>
                             <cb xml:id="S07326.128vB" n="128vB"/> חֲצִי נֶזֶק אַף
-                                בִּ<damage>ר</damage>שׁוּתֿ הַנּׅיזַּק חֲצׅי נֶזֶק <lb n="1"/>
-                            <pc rend=":">׃</pc>
+                                בִּ<damage>ר</damage>שׁוּתֿ הַנּׅיזַּק חֲצׅי נֶזֶק<pc rend="colon"
+                                >׃</pc><lb n="1"/>
                         </ab>
                         <ab xml:id="S07362.4.1.2.6">‏ <milestone unit="MSMishnah" n="10"/>
                             <label>י<am rend="overmark">׳</am></label> אָדָֿם מוּעָדֿ לעוֹלם בֵּין
                             שׁוֹגֵֿג בֵּין <lb n="2"/> מֵזִידֿֿ בֵּין ער בּׅין יָשֵׁן סׅ<add
                                 hand="h2" place="above">י</add>מָא אֶתֿ עֵֿין <lb n="3"/> חֲבֿירוֹ
-                            וְשיבֵּר אֶתֿ הַכֵּלׅים מְשַׁלֵּם נֶזֶק <lb n="4"/> שָׁלֵם <pc rend=":"
-                                >׃</pc>
+                            וְשיבֵּר אֶתֿ הַכֵּלׅים מְשַׁלֵּם נֶזֶק <lb n="4"/> שָׁלֵם<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">פר<am rend="overmark">׳</am> ב<am
                                 rend="overmark">׳</am> הל<am rend="overmark">׳</am> י<am
@@ -338,23 +356,23 @@
                     </div3>
                     <div3 xml:id="S07362.4.1.3">
                         <ab xml:id="S07362.4.1.3.1">‏ <milestone unit="MSMishnah" n="1"/>
-                                הַמַּנּׅי<damage>חַ</damage> אֶתֿ הַכַּדֿ בִּרְשׁוּתֿ הָרַבִּים
-                            וּבֲֿא <lb n="6"/> אַחֵר וְנִיתְֿקַל בָה וְשׁׅיבְּרָהּ פָּטוּר וְאִם <lb
-                                n="7"/> הוּּזַק בָּהּ בַּעַל הֶחָבִֿיתֿ חַיָּיב בּׅנׅיזְקוֹ <pc
-                                rend=":">׃</pc>
+                                    הַמַּנּׅי<damage><unclear reason="damage">ח</unclear></damage>ַ
+                            אֶתֿ הַכַּדֿ בִּרְשׁוּתֿ הָרַבִּים וּבֲֿא <lb n="6"/> אַחֵר וְנִיתְֿקַל
+                            בָה וְשׁׅיבְּרָהּ פָּטוּר וְאִם <lb n="7"/> הוּּזַק בָּהּ בַּעַל
+                            הֶחָבִֿיתֿ חַיָּיב בּׅנׅיזְקוֹ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="2"/>
                             <add hand="h2" place="margin-left"><label>ב<am rend="overdot"
                                     >׳</am></label></add>
                             <lb n="8"/> נִשְׁבְּרַה כַדּוֹ בֿׅרְשׁוּתֿ הָרַבִּים וְהֶחֱלִיק <lb
-                                n="9"/> בָּה אַחֵר בַּמַּיִם אוֹ שֶלָקָה בַֿחֲרָסֶיהָ <lb n="10"/>
-                            חַיָיבֿ <choice>
+                                n="9"/> בָּה אַחֵר בַּמַּיִם אוֹ שֶלָקָה בַֿחֲרָסֶי<c rend="long"
+                                >ה</c>ָ <lb n="10"/> חַיָיבֿ <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יְהוּדָהֿ <choice>
-                                <abbr>אוֹ<c rend="altform">מֵ</c><am rend="׳">׳</am></abbr>
+                                <abbr>אוֹ<c rend="altform">מֵ</c><am rend="geresh">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> בְּמִתְֿכָּוֵון חַיָיבֿ <lb n="11"/> וּבְֿשֶׁאֵינוּ
-                            מִתְֿכַּוֵּון פָּטוּר <pc rend=":">׃</pc>
+                            מִתְֿכַּוֵּון פָּטוּר<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.2">‏ <milestone unit="MSMishnah" n="3"/>
                             <label>ג<am rend="overmark">׳</am></label> הַשׁוֹפֵךְֿ <lb n="12"/>
@@ -363,82 +381,83 @@
                             הַזְּכֿוֹכִֿיתֿ <del hand="h2" rend="strikethrough">וא</del><del
                                 hand="h2" rend="rubout">ת</del> הַגודֵר גְּדֵֿירוֹ בַֿקּוֹצׅים <lb
                                 n="15"/> וְגׇֿדֵר שֶׁנָּפַֿל בִּרְשׁוּתֿ הָרַבִּים וְהוּזַק בָּהֶן
-                                <lb n="16"/> אַחֵר חַיָּיב בְּנִיזְקוֹ<pc rend=":">׃</pc>
+                                <lb n="16"/> אַחֵר חַיָּיב בְּנִיזְקוֹ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.3">‏ <milestone unit="MSMishnah" n="4"/>
                             <label>ד<am rend="overmark">׳</am></label> הַמּוֹצׅיא אֶתֿ <lb n="17"/>
-                            תִּבְנוֹ וְאֶתֿ <damage><unclear extent="2" unit="chars"
-                                >קַש</unclear></damage>ו <add hand="h2" place="margin-right">ואת
-                                גפהו</add>לִרְשׁוּתֿ הָרַבִּים לׅזְבָֿלִים <lb n="18"/> וְהוּזַק
-                            בָּהֶן אַחֵר חַיָּיבֿ בְּנּׅׅיזְקוֹ וְכֿל <surplus reason="fill">ה <am
-                                    rend="overmark">׳</am>ק<am rend="overmark">׳</am>ו<am
+                            תִּבְנוֹ וְאֶתֿ <seg><del rend="rubbed overwritten"
+                                        >שק</del><damage><unclear>קַש</unclear></damage>ו</seg><note>Possibly
+                                the correction קשו is deleted as well.</note>
+                            <add hand="h2" place="margin-right">ואת גפתו</add>לִרְשׁוּתֿ הָרַבִּים
+                            לׅזְבָֿלִים <lb n="18"/> וְהוּזַק בָּהֶן אַחֵר חַיָּיבֿ בְּנּׅׅיזְקוֹ
+                            וְכֿל <surplus reason="fill">ה<seg><del rend="overwritten">ו</del><am
+                                        rend="overmark">׳</am>ק</seg><am rend="overmark">׳</am>ו<am
                                     rend="overmark">׳</am></surplus><lb n="19"/> הַקוֹדֿם בָּהֶן
-                            זָכָֿה הַהוֹפֵךְֿ אֶתֿ הַגָּלָל <surplus reason="fill">לכ<am
+                            זָכָֿה הַהוֹפֵךְֿ אֶתֿ הַגָּלָל <surplus reason="fill">לר<am
                                     rend="overmark">׳</am></surplus><lb n="20"/> לִרְשוּת הָרַבִּים
-                            וְהוּזַּק בָּהֵן אַחֵר חַיָּיבֿ <lb n="21"/> בְּנִיזְקוֹ <pc rend=":"
+                            וְהוּזַּק בָּהֵן אַחֵר חַיָּיבֿ <lb n="21"/> בְּנִיזְקוֹ<pc rend="colon"
                                 >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.4">
                             <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(rl)">ה<am rend="overmark">׳</am></label>
                             ‏ שְׁנֵי קַדָּרִים שֶׁהָיוּ מְהַלְּכִֿין<lb n="22"/> זֶה אַחַר זֶה
-                            נִיתְֿקָל הָֿרִאֿשׁוֹן <add hand="h2" n="singleBracket"
-                                place="margin-right">ונפל</add> ונִיתְֿקַל<lb n="23"/> הַשֵּנִי
-                            בָֿרִאֿשׁוֹן הָרִאֿשׁוֹן חַיָיבֿ בְּנִיזִקוֹ <lb n="24"/> שׁלּ שׁנִי </ab>
+                            נִיתְֿקָל הָֿרִאֿשׁוֹן <add hand="h2" place="margin-right">ונפל</add>
+                                ונִיתְֿקַל<lb n="23"/> הַשֵּנִי בָֿרִאֿשׁוֹן הָרִאֿשׁוֹן חַיָיבֿ
+                            בְּנִיזִקוֹ <lb n="24"/> שׁלּשׁנִי </ab>
                         <ab xml:id="S07362.4.1.3.5">
-                            <del hand="h2" rend="strike">ו</del> זֶה בָֿא בחֲבִֿיתּוֹ וְזֶה בָֿא
-                            בְֿקוֹרָתֿוֹ <lb n="25"/>
-                            <add hand="h2" n="singleBracket" place="margin-right">נִשְבְּרָה כַֿדּוֹ
-                                שֶׁלָּזֶה בְקוֹרָתֿוֹ</add> שֶׁלָזֶה פָּטוּר שֶׁלָּזֶה רְשׁותֿ
-                            לְהַלֵך וְלָזֶה <lb n="26"/> רְשׁותֿ לְהַּלֵּך<pc rend=":">׃</pc>
+                            <del hand="h2" rend="strikethrough">ו</del> זֶה בָֿא בחֲבִֿיתּוֹ וְזֶה
+                            בָֿא בְֿקוֹרָתֿוֹ <lb n="25"/>
+                            <add hand="h2" place="margin-right">נִשְבְּרָה כַֿדּוֹ<lb/> שֶׁלָּזֶה
+                                בְקוֹרָתֿוֹ</add> שֶׁלָזֶה פָּטוּר שֶׁלָּזֶה רְשׁותֿ לְהַלֵך וְלָזֶה
+                                <lb n="26"/> רְשׁותֿ לְהַּלֵּך<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="6"/>
                             <label>ו<am rend="overmark">׳</am></label> הָיָהֿ בַֿעַל <add hand="h2"
-                                place="above">הַ</add> קּוֹרָה רִאֿשׁוֹן <lb n="27"/> וּבַֿעל
+                                place="above">הַ</add>קּוֹרָה רִאֿשׁוֹן <lb n="27"/> וּבַֿעל
                             הֶחָבִֿיתֿ אַחֲרוֹן נִשְׁבְּרָה חָבִֿיתֿ <lb n="28"/>
                             <del hand="h2" rend="strikethrough">אחרן נשברה חבית</del> בַּקוֹרָה
                             פָּטוּר <lb n="29"/>
                             <pb xml:id="S07362.129r" n="129r"/>
                             <cb xml:id="S07362.129rA" n="129rA"/> וְאִם עָמַד בַּעַל הַקּּוֹרָה
-                            חַיָּיבֿ וְאִם אָמַר <lb n="1"/> לוֹלְבַֿעַל הֶחָבִֿיתֿ עֲמוֹדֿ פָּטוּר
+                            חַיָּיבֿ וְאִם אָמַר <lb n="1"/> לוֹ לְבַֿעַל הֶחָבִֿיתֿ עֲמוֹדֿ פָּטוּר
                             הָיָה בַֿעַל <lb n="2"/> הֲחָבִֿיתֿ רִאֿשׁוֹן וּבַֿעַל הַקּוֹרָה
-                            אַחֲרוֹן <surplus reason="fill">נ?<am rend="׳">׳</am></surplus><lb n="3"
-                            /> נִשְׁבְּרָה חָבִֿיתֿ בַקּוֹרָה חַיָּיבֿ וְאִם עָמַדֿ בַּעַל <lb n="4"
-                            /> הֶחָבִֿיתֿ פַּטוּר וְאִם אָמַר לוֹ לְבַעַל הַקּוֹרָה <lb n="5"/>
-                            עֲמוֹדֿ חַיָּיב וְכֵן זֶהֿ בָֿא בְֿנֵירוֹ וְזֶה <am rend="״">״</am> בָֿא
-                                <lb n="6"/> בְפִֿישְׁתָּנוֹ<pc rend=":">׃</pc>
+                            אַחֲרוֹן <surplus reason="fill">נ?<am rend="geresh">׳</am></surplus><lb
+                                n="3"/> נִשְׁבְּרָה חָבִֿיתֿ בַקּוֹרָה חַיָּיבֿ וְאִם עָמַדֿ בַּעַל
+                                <lb n="4"/> הֶחָבִֿיתֿ פַּטוּר וְאִם אָמַר לוֹ לְבַעַל הַקּוֹרָה <lb
+                                n="5"/> עֲמוֹדֿ חַיָּיב וְכֵן זֶהֿ בָֿא בְֿנֵירוֹ וְזֶה <surplus
+                                reason="fill">׳ ׳</surplus> בָֿא <lb n="6"/> בְפִֿישְׁתָּנוֹ<pc
+                                rend="colon">׃</pc>
                         </ab>
-                        <ab xml:id="S07362.4.1.3.6">‏ <milestone unit="MSMishnah" n="8"/><!-- The scribe skipped label #7, but didn't omit 
-                                any text-->
+                        <ab xml:id="S07362.4.1.3.6">‏ <milestone unit="MSMishnah" n="8"/>
                             <label rend="align(center) pad(r)">ח<am rend="overmark">׳</am></label>
                             שְׁנַיִם שֶׁהָיוּ מְהַלְּכִֿין <lb n="7"/> בִּרְשׁוּתֿ הָרַבִּים אֶחָדֿ
                             רָץ וְאֶחָדֿ מְהַלֵּךֿ <lb n="8"/> אוֹ שֶׁהָיוּ שְׁנֵיהֶם רָצִים
-                            והִיזִּיקוּ זֶה <lb n="9"/> אֶת זֶה שִׁנֵיהֶם פְּטוּרִים<pc rend=":"
+                            והִיזִּיקוּ זֶה <lb n="9"/> אֶת זֶה שִׁנֵיהֶם פְּטוּרִים<pc rend="colon"
                                 >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.7">‏ <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(r)">ט<am rend="overmark">׳</am></label>
-                            הַמְבַקֵּיַע <lb n="10"/> בִּרְשׁוּת <damage><gap extent="6"
-                                    unit="chars"/></damage>
-                            <!-- Not sure if this is the correct tag. looks like 2nd scribe
-                            might have rubbed it out and written over it, but it is totally unreadable-->
+                            הַמְבַקֵּיַע <lb n="10"/> בִּרְשׁוּת <del hand="h2" extent="6"
+                                unit="chars"/>
                             <add hand="h2" place="inline">היחיד</add>
                             <add hand="h2" place="margin-right">וְהזִּיק</add> בִרְשׁוּת הָרַבִּים
                                 <add hand="h2" place="above">ברשות הרבים</add> וְהִיזִּיק <lb n="11"
                             /> בִּרְשׁוּת הַיָּחִיד בּרְשׁוּת הַיָּחִיד וְהִיזִּיק <lb n="12"/>
-                            הַיָּחִיד אַחֵר חַיָּיב<pc rend="׳">׃</pc>
+                            הַיָּחִיד אַחֵר חַיָּיב<pc rend="geresh">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.8">‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(center) pad(l)">י<am rend="overmark">׳</am></label>
-                            שְׁנֵי <lb n="13"/> שְׁוָורִים תַּמִּים שֶׁחָבְלוּ זֶה <damage><gap
-                                    extent="2" unit="chars"/></damage>
+                            שְׁנֵי <lb n="13"/> שְׁוָורִים תַּמִּים שֶׁחָבְלוּ זֶה <del hand="h2"
+                                >א?</del>
                             <add hand="h2" place="inline">בָֿ</add>זֶה מְשַׁלְּמִים <lb n="14"/>
                             בַּמּוֹתָֿר חֲצִי נֶזֶק שְׁנֵיהֶם מוּעָדִֿים מְשַׁלְּמִים <lb n="15"/>
                             בַּמּוֹתָֿר נֶזֶק שָׁלֵם אֶחָדֿ תָּם וְאֶחָדֿ מוּעָדֿֿ <lb n="16"/>
                             <add hand="h2" n="singleBracket" place="margin-right">
-                                <damage><unclear extent="1" unit="chars">מ</unclear></damage>וּעָ
-                                    <damage>דֿ</damage></add> בָּתָּם מְשַׁלֵּם בַּמּוֹתָֿֿר נֶזֶק
-                            שָׁלֵם וְתָּֿם <lb n="17"/> בַּמּוּעָדֿ מְשַׁלֵּם בַּמּוֹתָֿר חֲצִי
-                            נֶזֶק <pc rend=":">׃</pc>
+                                <damage><unclear extent="1" unit="chars"
+                                    >מ</unclear></damage>וּעָ<damage>דֿ</damage></add> בָּתָּם
+                            מְשַׁלֵּם בַּמּוֹתָֿֿר נֶזֶק שָׁלֵם וְתָּֿ<c rend="long">ם</c>
+                            <lb n="17"/> בַּמּוּעָדֿ מְשַׁלֵּם בַּמּוֹתָֿר חֲצִי נֶזֶק<pc
+                                rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="11"/>
                             <label rend="align(left) pad(r)">י<am rend="overmark">׳</am>א<am
                                     rend="overmark">׳</am></label><lb n="18"/> וְכֵֿן שְׁנֵי
@@ -450,7 +469,7 @@
                                 <abbr>ור<am rend="overdot">׳</am></abbr>
                                 <expan>ורבי</expan>
                             </choice> עֲקִיבָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מ</c>
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מ</c>
                                     <am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> אַף תָּם <lb n="24"/> שֶׁחָבַֿל בָּאָדָֿם מְשַׁלֵּם
@@ -460,11 +479,11 @@
                             <label rend="align(right) pad(rl)">י<am rend="overmark">׳</am>ב<am
                                     rend="overmark">׳</am></label> שׁוֹר שׁוֹוֶה מָנֶה שֶׁנָּגַֿח
                                 לְשׁוֹ<c rend="long">ר</c>
-                            <lb n="26"/> שׁוֹוֶה מָאתַֿיִם וְאֵין הַנְּ <del hand="h2" rend="strike"
-                                >י</del>בֵֿלָה יָפָֿה<damage>כְֿ<del hand="h2" rend="strike">ו
-                                </del></damage>לֻם <lb n="27"/> נוֹטֵל אֶתֿ הַשּׁוֹר שׁוֹר שׁוֹוֶה
-                            מָאתַֿיִם <lb n="28"/> שֶׁנָּגָח לְשׁוֹר שׁוֹוֶה מָאתַֿיִם וְאֵין
-                            הַנְּבֵֿלָה <lb n="29"/> יָפָֿה כְֿלוּם <choice>
+                            <lb n="26"/> שׁוֹוֶה מָאתַֿיִם וְאֵין הַנְּ<del hand="h2" rend="strike"
+                                >י</del>בֵֿלָה יָפָֿה<damage> כְֿ<del hand="h2" rend="strike"
+                                    >ו</del></damage>לֻם <lb n="27"/> נוֹטֵל אֶתֿ הַשּׁוֹר שׁוֹר
+                            שׁוֹוֶה מָאתַֿיִם <lb n="28"/> שֶׁנָּגָח לְשׁוֹר שׁוֹוֶה מָאתַֿיִם
+                            וְאֵין הַנְּבֵֿלָה <lb n="29"/> יָפָֿה כְֿלוּם <choice>
                                 <abbr>אָ<c rend="altform">מַ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice>
@@ -483,12 +502,12 @@
                             </choice> יְהוּדָֿה וְכֵֿן הֲלָכָֿה קִיַּימְתָּה וּמָכְֿרוּ אֶתֿ <lb
                                 n="2"/> הַשּׁוֹר הַחַיִ וְחָצוּ אֶתֿ כַּסְפּוֹ וְלֹא קִיַּימְתָּה
                                 <lb n="3"/> וְגַם אֶתֿ הַמֵּת יֶחֱצוּן וְאֵי זֶה זֶה <add hand="h2"
-                                n="singleBracket" place="margin-right">זֶה</add> שׁוֹ <c rend="long"
+                                n="singleBracket" place="margin-right">זֶה</add> שׁוֹ<c rend="long"
                                 >ר</c><lb n="4"/> שׁוֹוֶה מָאתַֿיִם שֶׁנָּגַֿח לְשׁוֹר שׁוֹוֶה
                             מָאתַֿיִם <lb n="5"/> וְהַנְיבֵלָה יָפָֿה חֲמִשִּׁים זוּז זֶה נוֹטֵל
                             חֲצִי <lb n="6"/> החַיִ וַחֲצִי הַמֵּתֿ וְזֶה נוֹטֵל חֲצִי <del
                                 hand="h1">ח<am rend="overmark">׳</am></del> הַחַיִ <lb n="7"/>
-                            וַחֲצִי הַמֵּתֿ<pc rend=":">׃</pc>
+                            וַחֲצִי הַמֵּתֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.10">‏ <milestone unit="MSMishnah" n="13"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am>ג<am
@@ -497,13 +516,13 @@
                                 n="9"/> מַעֲשֵׂה עַצְמוֹ וּפָֿטוּר עַל מַעֲשֵה שׁוֹרוֹ <lb n="10"/>
                             שׁוֹרוֹ שֶׁבִּייֵּשֿׁ פָּטוּר וְהוּא שֶׁבִּייֵּשׁ חַיָּיב <lb n="11"/>
                             שׁוֹרוֹ שֶׁסִּמָּא אֶתֿ עֵין עַבְדּוֹ וְהִפִּיל אֶתֿ <lb n="12"/>
-                            שִׁנּוֹ פָּטוּר וְהוּא שֶׁסִּמָא אֶתֿ עֵין עַבֶֿדּוֹ <lb n="13"/>
+                            שִׁנּוֹ פָּטוּר וְהוּא שֶׁסִּמָא אֶתֿ עֵין עַבְֿדּוֹ <lb n="13"/>
                             וְהִפִּיל אֶתֿ שִׁינּוֹ חַיָּיבֿ שׁוֹרוֹ שֶׁחָבַֿל בְּאָבִֿיו <lb n="14"
                             /> וּבְֿאִמּוֹ חַיָּיבֿ וְהוּא שֶׁחָבַֿל בְּאָבִֿיו וּבִֿאמּוֹ <lb
                                 n="15"/> פָטוּר שׁוֹרוֹ שֶׁהִדְֿלִיק אֶתֿ הַגָּדִֿישׁ בַּשַּׁבָּתֿ
                                 <lb n="16"/> חַיָּיב וְהוּא שֶׁהִדְֿלִיק אֶתֿ הַגָּֿדִישׁ
                             בַּשַּׁבָּתֿ <lb n="17"/> פָּטוּר מִפְנֵי שֶׁהוּא נִידּוֹן בְּנַפְֿשׁוֹ
-                                <pc rend=":">׃</pc>
+                                <pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.3.11">‏ <label rend="align(left) pad(rl)">י<am
                                     rend="overmark">׳</am>ד<am rend="overmark">׳</am></label><lb
@@ -512,17 +531,17 @@
                             אַחֵר וְהוּזַּק <lb n="19"/> זֶה <choice>
                                 <abbr>אוֹ<c rend="altform">מֵ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> שׁוֹרָךְֿ הִזִּיק <damage><gap extent="3" unit="chars"
-                                > </gap></damage><add hand="h2" place="inline">וְהַלָּה</add>
+                            </choice> שׁוֹרָךְֿ הִזִּיק <del extent="3" unit="chars"/><add hand="h2"
+                                place="inline">וְהַלָּה</add>
                             <choice>
                                 <abbr>אוֹ<c rend="altform">מֵ</c><am rend="overdmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> לֹא כִֿי אֶלָּא <lb n="20"/> בַסֶּלַע לָקָה הַמּוֹצִיא
-                            מֵחֲבֵֿירוֹ עָלָי<del hand="h2" rend="rubout">ה</del>
-                            <add hand="h2" place="overwrit">ו</add>
-                            <surplus reason="fill">ה<am rend="overmark">׳</am> ר<am rend="overmark"
+                            מֵחֲבֵֿירוֹ עָלָי<del hand="h2" rend="rubout">ה</del><add hand="h2"
+                                place="overwrit">ו</add>
+                            <surplus reason="fill">ה<am rend="overmark">׳</am>ר<am rend="overmark"
                                     >׳</am>
-                            </surplus><lb n="21"/> הָרְאָיָה<pc rend=":">׃</pc>
+                            </surplus><lb n="21"/> הָרְאָיָה<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="15"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am>ה<am
                                     rend="overmark">׳</am></label> הָיוּ שְׁנַיִם רוֹדְֿפִים אַחַר
@@ -530,69 +549,70 @@
                                 <abbr>אוֹ<c rend="altform">מֵ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> שׁוֹרָךְֿ הִזִיק וְזֶה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overdot">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> שׁוֹרָךֿ <lb n="23"/> הִזִיק שְׁנֵיהֶם פְּטוּרִים וְאִם הָיוּ
-                                שְׁנֵיהֶם<lb n="24"/> שֶׁלְאִישׁ אֶחָדֿ שְׁנֵיהֶם חַיָּיבִֿים <pc
-                                rend=":">׃</pc>
+                                שְׁנֵיהֶם<lb n="24"/> שֶׁלְאִישׁ אֶחָדֿ שְׁנֵיהֶם חַיָּיבִֿים<pc
+                                rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="16"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am>ו<am
                                     rend="overmark">׳</am></label><lb n="25"/> הָיָה אֶחָדֿ גָּדֿוֹל
                             וְאֶחָדֿ קָטוֹן הַנִּיזַּק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overmark">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice><lb n="26"/>
                             <del hand="h2" rend="strike">ו</del>הַגָּדֿוֹל הִזִּיק וְהַמַּזִּיק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overmark">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> לֹא כִֿי אֶלָּא <lb n="27"/> הַקָּטֹן הִזִּיק אֶחָדֿ תָּם
                             וְאֶחָדֿ מוּעָ<c rend="long">דֿ</c>
                             <lb n="28"/> הַנִּיזַּק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> הַמוּעָדֿ הִזִּיק וְהַמַּזִּיק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c>מֵ</c><am rend="overdot"
-                                    >׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><c>מֵ</c><am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice>
                             <lb n="29"/> לֹא כִֿי אֶלָּא תָּם הִזִּיק הַמּוֹצִיא מֵחֲבֵֿירוֹ<lb
                                 n="30"/>
                             <pb xml:id="S07362.129v" n="129v"/>
-                            <cb xml:id="S07362.129vA" n="129vA"/> עָלָיו הָרְאָיָה <pc rend=":"
+                            <cb xml:id="S07362.129vA" n="129vA"/> עָלָיו הָרְאָיָה<pc rend="colon"
                                 >׃</pc>
                             <milestone unit="MSMishnah" n="17"/>
                             <label rend="align(center)">י<am rend="overmark">׳</am>ז<am
-                                    rend="overmark">׳</am></label> הָיוּ נִיזּוֹקִים שְׁנַיִ <c
+                                    rend="overmark">׳</am></label> הָיוּ נִיזּוֹקִים שְׁנַיִ<c
                                 rend="long">ם</c>
                             <lb n="1"/> אֶחָדֿ גָּדֿוֹל וְאֶחָדֿ קָטֹן וְהַמַּזִּיקִים שְׁנַיִם <lb
                                 n="2"/> אֶחָדֿ גָּדֿוֹל וְאֶחָדֿ קָטֹן הַנִּזַּק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overmark">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> הַגָּדֿוֹל <lb n="3"/> הִזִּיק אֶתֿ הַגָּדֿוֹל וְקָטָן אֶתֿ
-                            הַקָּטָן <surplus reason="fill">והמ<am rend="overmark"
-                                >׳</am></surplus><lb n="4"/> וְהַמַּזִּיק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                            הַקָּטָן <surplus reason="fill">וה<c rend="altform">מ</c><am
+                                    rend="overmark">׳</am></surplus><lb n="4"/> וְהַמַּזִּיק <choice>
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> לֹא כִֿי אֶלָּא קָטָן אֶתֿ הַגָּדֿוֹל <lb n="5"/> וְגָדֿוֹל
                             אֶתֿ הַקָּטָן אֶחָדֿ תָּם וְאֶחָדֿ מוּעָדֿ <lb n="6"/> הַנִּיזַּק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overdot">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> מוּעָדֿ הִיזִּיק אֶתֿ הַגָּדוֹל<lb n="7"/> וְתָֿם אֶתֿ
                             הַקָּטָן וְהַמַּזִּיק <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> לֹא כִֿי <lb n="8"/> אֶלָּא תָֿם אֶתֿ הַגָּדֿוֹל וּמוּעָדֿ
-                            אֶתֿ הַקָּטָן <lb n="9"/> הַמּוֹצִיא מֵחֲבֵֿירוֹ עָלָיו הָרְאָיָה <space
-                                extent="3" unit="chars"/><pc rend=":">׃</pc><lb n="10"/>
+                            </choice> לֹא <surplus reason="fill">׳ ׳</surplus> כִֿי <lb n="8"/>
+                            אֶלָּא תָֿם אֶתֿ הַגָּדֿוֹל וּמוּעָדֿ אֶתֿ הַקָּטָן <lb n="9"/>
+                            הַמּוֹצִיא מֵחֲבֵֿירוֹ עָלָיו הָרְאָיָה<pc rend="colon">׃</pc><lb n="10"
+                            />
                         </ab>
                         <trailer rend="align(center) pad (rl)">פר<am rend="overmark">׳</am> ג <am
                                 rend="overmark">׳</am> הל<am rend="overmark">׳</am> י<am
                                 rend="overmark">׳</am>ח<am rend="overmark">׳</am></trailer>
                         <lb n="11"/>
                         <!-- unclear-the scribe only listed 17 -->
+                        <!-- This is not your problem. Just write what the scribe wrote. -->
                     </div3>
                     <div3 xml:id="S07362.4.1.4">
                         <ab xml:id="S07362.4.1.4.1">‏ <milestone unit="MSMishnah" n="1"/> שׁוֹר
@@ -608,7 +628,7 @@
                                 <expan>רבי</expan>
                             </choice> שִׁמְעוֹן <lb n="16"/>
                             <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> שׁוֹר שׁוֹוֶה מָאתַֿיִם שֶׁנָּגַֿח לִשׁוֹר <lb n="17"/>
@@ -620,7 +640,7 @@
                             חָזַר וְנָגַֿח לְשׁוֹר אַחֵר <lb n="22"/> שׁוֹוֶה מָאתַֿיִם הָאַחֲרוֹן
                             נוֹטֵל מָנֶ<c rend="long">ה</c>
                             <lb n="23"/> וְשֶׁלִּפָֿנָיו חֲמִשּׁים זוּז וּשְׁנַים הָרִאֿשׁׁנים <lb
-                                n="24"/> דִּינְרֵי זָהָבֿ<pc rend=":">׃</pc>
+                                n="24"/> דִּינְרֵי זָהָבֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.2">‏ <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(center) pad(r)">ב<am rend="overmark">׳</am></label>
@@ -637,11 +657,10 @@
                             בַּשַּׁבָּתֿוֹת וְאֵינוּ מוּעָדֿ <lb n="1"/> בִּימוֹתֿ הַחוֹל <choice>
                                 <abbr><c rend="altform">אָ</c><c rend="altform">מַ</c>
                                     <am rend="overmark">׳</am></abbr>
-                                <expan>אמר</expan>
-                            </choice> לָהֶם בַּשַּׁבָּתֿוֹתֿ מְשַׁלֵּם <lb n="2"/> נֶזֶק שָׁלֵם
-                            וּבִֿימוֹתֿ הַחוֹל מְשַׁלֵּם חֲצִי <lb n="3"/> נֶזֶק מֵּאֵמָתַֿי הוּא
-                            תָֿם מִשֶּׁיַּיחְזוֹר בּוֹ <lb n="4"/> שְׁלשֶׁת יְמֵי שַׁבָּתֿוֹתֿ <pc
-                                rend=":">׃</pc>
+                                <expan>אמר</expan></choice>לָהֶם בַּשַּׁבָּתֿוֹתֿ מְשַׁלֵּם <lb
+                                n="2"/> נֶזֶק שָׁלֵם וּבִֿימוֹתֿ הַחוֹל מְשַׁלֵּם חֲצִי <lb n="3"/>
+                            נֶזֶק מֵּאֵמָתַֿי הוּא תָֿם מִשֶּׁיַּיחְזוֹר בּוֹ <lb n="4"/> שְׁלשֶׁת
+                            יְמֵי שַׁבָּתֿוֹתֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.3">‏ <milestone unit="MSMishnah" n="3"/>
                             <label>ג<am rend="overmark">׳</am></label> שׁוֹר שֶׁלְּיִשְׂרָ<c
@@ -653,8 +672,8 @@
                             </choice> פָּטוּר <choice>
                                 <abbr>שנ<am rend="overmark">׳</am></abbr>
                                 <expan>שנאמר</expan>
-                            </choice> שׁוֹר <lb n="7"/> רֵעֵהוּ וְלֹא שׁוֹר הֶקְדֵּשׁ <pc rend=":"
-                                >׃</pc>
+                            </choice> שׁוֹר <lb n="7"/> רֵעֵהוּ וְלֹא שׁוֹר הֶקְדֵּשׁ<pc
+                                rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="4"/>
                             <label>ד<am rend="overmark">׳</am></label> שׁוֹר שֶׁלְּ <lb n="8"/>
                             <choice>
@@ -667,11 +686,11 @@
                                     <expan>עובד עבודה זרה</expan>
                                 </choice>
                             </add> פָּֿטוּר וְשֶׁלָּנָּכְֿרִי <lb n="9"/> שֶׁנָּגַֿח לְשׁוֹר שֶׁלְּ<choice>
-                                <abbr>יִשְׂרָ<c rend="altform">אֵֿ</c><am rend="overdot"
+                                <abbr>יִשְׂרָ<c rend="altform">אֵ</c><am rend="overdot"
                                     >׳</am></abbr>
                                 <expan>ישראל</expan>
-                            </choice> בֵּין תָּם בֵּין מוּעָדֿ <lb n="10"/> מְשַׁלֵּם נֶזֶק שָׁלֵם
-                                <pc rend=":">׃</pc>
+                            </choice> בֵּין תָּם בֵּין מוּעָדֿ <lb n="10"/> מְשַׁלֵּם נֶזֶק
+                                שָׁלֵם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.4">‏ <milestone unit="MSMishnah" n="5"/>
                             <label>ה<am rend="overmark">׳</am></label> שׁוֹר שֶׁלַּפִּיקֵּחַ <lb
@@ -682,17 +701,17 @@
                             <lb n="14"/> וְקָטָן שֶׁנָּגְֿחוּ מַעֲמִידִֿים לָהֶם אַפִּיטְרוֹפִּים
                                 <lb n="15"/> וּמְעִ<del hand="h2" rend="strikes">מ</del>ידִֿים
                             בָּהֶם בִּפְֿנֵי אַפִּיטְרוֹפִּים <lb n="16"/>
-                            נִי<damage>תְ</damage>פַּקַּח <del hand="h2" rend="rubout"> </del><add
-                                hand="h2" place="inline">הַ</add>חֵרֵשׁ
-                            שַׁפָּֿ<damage>פָּֿ</damage>א הַשּׁוֹטֶה הִיגְֿדִּיל <lb n="17"/>
-                            הַקָּטָן חָזַר לְתַֿמּוּתֿוֹ דִּבְֿרֵי <choice>
+                            נִי<damage>תְ</damage>פַּקַּח <del hand="h2" rend="rubout" extent="1"
+                                unit="chars"/><add hand="h2" place="inline">הַ</add>חֵרֵשׁ
+                                שַׁפָּֿא<note>פ possibly written over eraure.</note> הַשּׁוֹטֶה
+                                הִיגְֿדִּיל<lb n="17"/> הַקָּטָן חָזַר לְתַֿמּוּתֿוֹ דִּבְֿרֵי <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan> רבי</expan>
                             </choice> מֵאִיר <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice><lb n="18"/> יוֹסֵה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c>
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c>
                                     <am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> הֲרֵי הוּא כְֿחֶזְקָתֿוֹ שׁוֹר <surplus reason="fill">ה<am
@@ -701,8 +720,9 @@
                                 n="19"/> הָאַסְטְדִֿין אֵינוּ חַיָּיבֿ מִיתָהֿ <choice>
                                 <abbr>שנ<am rend="overmark">׳</am></abbr>
                                 <expan>שנאמר</expan>
-                            </choice> כִּי <lb n="20"/> יִגַּח לֹא שֶׁיַּגִּיחוּהוּ<pc rend=":"
-                                >׃</pc>
+                            </choice>
+                            <surplus>׳</surplus> כִּי<lb n="20"/> יִגַּח לֹא שֶׁיַּגִּיחוּהוּ<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.5">‏ <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(center) pad(rl)">ו<am rend="overmark">׳</am></label>
@@ -712,12 +732,15 @@
                             עֶבֶדֿ אוֹ אָמָה <lb n="24"/> נוֹתֵֿן שְלוֹשִׁים סֶלַע בֵּין שֶׁהוּא
                             יָפֶֿה <surplus reason="fill">ב<c rend="altform">מ</c><am
                                     rend="overmark">׳</am></surplus><lb n="25"/> בְֿמֵאָה מָנֶה
-                            וּבֵֿין שֶׁאֵינוּ יָפֶֿה אֶלָּא דִּֿינָר <lb n="26"/> זָהָבֿ<pc rend=":"
-                                >׃</pc>
+                            וּבֵֿין שֶׁאֵינוּ יָפֶֿה אֶלָּא דִּֿינָר <lb n="26"/> זָהָבֿ<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.6">‏ <milestone unit="MSMishnah" n="7"/>
                             <label rend="align(center) pad(l)">ז<am rend="overmark">׳</am></label>
-                            שׁוֹר שֶׁהָיָה מִתְֿחַ<damage>ת</damage>ךְֿ בַּכּוֹתֶֿל <lb n="27"/>
+                            שׁוֹר שֶׁהָיָה מִתְֿחַ<del hand="h2" rend="rubbing">ת</del><add
+                                rend="inline" hand="h2"><unclear reason="writing"
+                                >ר</unclear></add>ךְֿ<note>Text of the Academy of the Hebrew
+                                Language reads כ for the correction</note> בַּכּוֹתֶֿל <lb n="27"/>
                             וְנָפַֿל עַל הָאַדָֿם נִיתְֿכַּוַּון לַהֲרוֹגֿ אֶתֿ הַבְּהֵמָה <lb
                                 n="28"/> וְהָרַגֿ אֶתֿ הָאָדָֿם לַנָּכְרִי <add hand="h2"
                                 place="margin-left">
@@ -729,7 +752,7 @@
                                 <abbr>יִ<c rend="altform">שְׂ</c><am rend="overmark">׳</am></abbr>
                                 <expan>ישראל</expan>
                             </choice>
-                            <lb n="29"/> לִנְפָֿלִים וְהָרַגֿ בֶּן קַיָּימָה פָּטוּר<pc rend=":"
+                            <lb n="29"/> לִנְפָֿלִים וְהָרַגֿ בֶּן קַיָּימָה פָּטוּר<pc rend="colon"
                                 >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.7">
@@ -746,13 +769,13 @@
                                 <expan>רבי</expan>
                             </choice> יְוּדָֿה <choice>
                                 <abbr>
-                                    <c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
-                                        rend="overmark">׳</am>
+                                    <c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am rend="overmark"
+                                        >׳</am>
                                 </abbr>
                                 <expan>אומר</expan>
                             </choice> שׁוֹר הַמִּדְֿבָּר <lb n="4"/> שׁוֹר הַהֶקְדֵּשׁ שׁוֹר גֵּר
                             שֶׁמֵּתֿ וְאֵין לוֹ <lb n="5"/> יוֹרְשִׁים פְּטוּרִין מִן הַמִּיתָֿה
-                            מִפְּנֵי שֶׁאֵין <lb n="6"/> לָהֶם בְּעָלִים <pc rend=":">׃</pc>
+                            מִפְּנֵי שֶׁאֵין <lb n="6"/> לָהֶם בְּעָלִים<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.8">‏ <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(rl)">ט<am rend="overmark">׳</am></label>
@@ -760,7 +783,7 @@
                             אֵינוּ מְקוּדָּשׁ <lb n="8"/> וְאִם שְׁחָטוֹ בְּשָׂרוֹ אָסוּר אִם עַדֿ
                             שְׁלֹא <lb n="9"/> נִיגְֿמַר דִּינוֹ <del hand="h2" rend="strike"
                                 >ו</del>הִקְדִּישׁוֹ בְֿעָלָיו מְקוּדָּשׁ <lb n="10"/> וְאִם
-                            שְׁחָטוֹ בְשָׂרוֹ מוּתָּר <pc rend=":">׃</pc>
+                            שְׁחָטוֹ בְשָׂרוֹ מוּתָּר<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.4.9">‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(center) pad(l)">י<am rend="overmark">׳</am></label>
@@ -772,8 +795,8 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יְהוּדָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מ</c><am
-                                        rend="overdot">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> תָּם חַיָּיב <lb n="16"/> וּמוּעַדֿ פָּטוּר <choice>
                                 <abbr>שנ<am rend="overmark">׳</am></abbr>
@@ -782,10 +805,10 @@
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> אֱלִיעֶזֶר <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> אֵין לוֹ שְׁמִירָה <lb n="18"/> אֶלָּא סְכִֿין<pc rend=":"
+                            </choice> אֵין לוֹ שְׁמִירָה <lb n="18"/> אֶלָּא סְכִֿין<pc rend="colon"
                                 >׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
@@ -801,7 +824,7 @@
                             שֶׁנָּגַֿח אֶתֿ הַפָּרָה וְנִמְצָא יַלְדָֿהּ בְּצִידָּהּ <lb n="20"/>
                             אֵין יָדֿוּע אִם עַדֿ שֶׁלֹּא נְ<del hand="h2" rend="strike"
                             >י</del>גָֿחָהּ יָלָדָֿה וְאִם <lb n="21"/> מִשֶׁנְּגָֿחָה יָלָדָֿה
-                            מְּשַׁלֵּם חֲצִי נֶזֶק וּרְבִֿיע <lb n="22"/> לַוֶּולֶדֿ <pc rend=":"
+                            מְּשַׁלֵּם חֲצִי נֶזֶק וּרְבִֿיע <lb n="22"/> לַוֶּולֶדֿ<pc rend="colon"
                                 >׃</pc>
                             <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(center) pad(rl)">ב<am rend="overmark">׳</am></label>
@@ -817,15 +840,15 @@
                             בִֿרְשׁוּתֿ שִׁבְּרַתָּן בְּהֶמְתּוֹ שֶׁלְּבַעַל <lb n="28"/> הַבַּיִתֿ
                             פָּטוּר וְאִם הוּזָּקָה בָֿהֶן בַּעַל הַקְּדֵּירוֹתֿ <lb n="29"/>
                             חַיָּיבֿ וְאִם הִיכְֿנִיס בִּרְשׁוּתֿ בַּעַל הֶחָצֵר חַיָּיבֿ <lb n="30"/>
-                            <pc rend=":">׃</pc>
+                            <pc rend="colon">׃</pc>
                             <cb xml:id="S07362.130rB" n="130rB"/>
                             <milestone unit="MSMishnah" n="4"/>
                             <label rend="align(right) pad(rl)">ד<am rend="overmark">׳</am></label>
                             הִיכְֿנִיס פֵּירוֹתָֿיו לַחֲצַר בַּעַל הַבַּיִתֿ <lb n="1"/> שֶׁלֹֺּא
                             בִֿרְשׁוּתֿ אֲכַֿלַתָּן בְּהֶמְתּוֹ שֶׁלְּבַֿעַל <lb n="2"/> הַבַּיִתֿ
                             פָּטוּר וְאִם הוּזָּקָה בָֿהֵן בַּעַל הַפֵּירוֹתֿ <lb n="3"/> חַיָּיב
-                            וְאִם הִכְֿנִיס בִּרְשׁוּתֿ בַּעַל הֶחָצֵר <lb n="4"/> חַיָּיב <pc
-                                rend=":">׃</pc>
+                            וְאִם הִכְֿנִיס בִּרְשׁוּתֿ בַּעַל הֶחָצֵר <lb n="4"/> חַיָּיב<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.5.3">‏ <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(l)">ה<am rend="overmark">׳</am></label>
@@ -840,26 +863,26 @@
                                 <expan>רבי</expan>
                             </choice>
                             <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overmark">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> בְּכֿוּלָּם עַדֿ <lb n="11"/> שֶׁיְּקַבֵּל עָלַיו בַּעַל
-                            הַבַּיִתֿ לִשְׁמוֹר <pc rend=":">׃</pc>
+                            הַבַּיִתֿ לִשְׁמוֹר<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.5.4"> ‏ <milestone unit="MSMishnah" n="6"/>
                             <label>ו<am rend="overmark">׳</am></label> שׁוֹר <lb n="12"/> שֶׁהָיָה
                             מִיתְֿכַּוֵּון לַחֲבֵֿיִרוֹ וְהִכָּה אֶתֿ הָאִשָּׁה <lb n="13"/>
                             וְיָצְאוּ יְ<damage>לָ</damage>דֶֿיהָ פָּטוּר מִידְּמֵי וְלָדֿוֹתֿ
-                                <damage>אָדָֿ</damage>ם<lb n="14"/> שֶׁ<damage>הָּ</damage>יָה
-                            מִיתְכַּֿוֵון לַחֲבֵֿירוֹ וְהִכָּה <am rend="״">״</am> אֶתֿ <lb n="15"/>
-                            הָאִשָּׁה וְיָצְאוּ יְלָ<damage>דֶי</damage>הָ מְשַׁלֵּם דְּמֵי
-                            וְלָדֿוֹתֿ <lb n="16"/> כֵּיצַדֿ מְשַׁלֵּם <add hand="h2"
-                                n="singleBracket" place="margin-right">דְּמֵי</add> וְלָדֿוֹתֿ
-                            שָׁמִין אֶתֿ הָאִּשּׁה <lb n="17"/> כַּמָּה הָיְתָֿה יָפָֿה עַדֿ שֶׁלֹּא
-                            יָלָדָֿה וְכַֿמָּה <lb n="18"/> הִיא יָפָֿה מִשֶּׁיָּלָדָֿה <choice>
+                                אָדָֿם<lb n="14"/> שֶׁ<damage>הָּ</damage>יָה מִיתְכַּֿוֵון
+                            לַחֲבֵֿירוֹ וְהִכָּה <surplus reason="fill">׳ ׳</surplus> אֶתֿ <lb
+                                n="15"/> הָאִשָּׁה וְיָצְאוּ יְלָ<damage>דֶי</damage>הָ מְשַׁלֵּם
+                            דְּמֵי וְלָדֿוֹתֿ <lb n="16"/> כֵּיצַדֿ מְשַׁלֵּם <add hand="h2"
+                                place="margin-right">דְּמֵי</add> וְלָדֿוֹתֿ שָׁמִין אֶתֿ הָאִּשּׁה
+                                <lb n="17"/> כַּמָּה הָיְתָֿה יָפָֿה עַדֿ שֶׁלֹּא יָלָדָֿה וְכַֿמָּה
+                                <lb n="18"/> הִיא יָפָֿה מִשֶּׁיָּלָדָֿה <choice>
                                 <abbr><c rend="altform">אָמַ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice> רַבַּן שִׁמְעוֹן בֶּן <surplus reason="fill">ג<c
-                                    rend="altform">מ</c><am rend="׳">׳</am></surplus><lb n="19"/>
+                                    rend="altform">מ</c><am rend="geresh">׳</am></surplus><lb n="19"/>
                             <choice>
                                 <abbr>גַּמְלִי<c rend="altform">אֵ</c><am rend="overdot"
                                     >׳</am></abbr>
@@ -868,7 +891,7 @@
                             מַשְׁבַּחַתֿ אֶלָּא שָׁמִין אֶתֿ הַוְּולָדֿוֹתֿ כַּמָּה <lb n="21"/> הֵן
                             יָפִֿים וְנוֹתְֿנִין לַבַּעַל וְאִם אֵין לָהּ בַּעַל <lb n="22"/>
                             נוֹתְֿנִין לְיוֹרְשָׁיו הָיְתָֿה שִׁפְחָֿה וְנִישְׁתַּחְרָרָה <lb n="23"
-                            /> אוֹ גִיּוֹרֶתֿ פָּטוּר <pc rend=":">׃</pc>
+                            /> אוֹ גִיּוֹרֶתֿ פָּטוּר<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.5.5"> ‏ <milestone unit="MSMishnah" n="7"/>
                             <label rend="align(center) pad(rl)">ז<am rend="overmark">׳</am></label>
@@ -888,18 +911,19 @@
                             <pb xml:id="S07362.130v" n="130v"/>
                             <cb xml:id="S07362.130vA" n="130vA"/> מֵעֲשָׂרָה טְפָֿחִים וְנָפַֿל
                             לְתֿוֹכֿוֹ שׁוֹר אוֹ <lb n="1"/> חֲמוֹר וּמֵתֿ פָּטוּר וְאִם הוּזַּק
-                            בּוֹ חַיָּיבֿ <pc rend=":">׃</pc><lb n="2"/>
+                            בּוֹ חַיָּיבֿ<pc rend="colon">׃</pc><lb n="2"/>
                             <milestone unit="MSMishnah" n="8"/>
                             <label rend="align(right) pad(rl)">ח<am rend="overmark">׳</am></label>
-                            הַחוֹפֵֿר בּוֹר בִּרְשׁוּתֿ הָיָּחִידֿ וּפְֿתָחוֹ <lb n="3"/> לִרְשׁוּתֿ
-                            הָרַבִּים בִּרְשׁוּתֿ הָרַבִּים וּפְתָחוֹ <lb n="4"/>
+                            הַחוֹפֵֿר בּוֹר בִּרְשׁוּתֿ הָיָּחִידֿ וּפְֿתָחוֹ<!-- Looks like here and similar cases there is a rafeh between the letters serving both?? -->
+                            <lb n="3"/> לִרְשׁוּתֿ הָרַבִּים בִּרְשׁוּתֿ הָרַבִּים וּפְתָחוֹ <lb
+                                n="4"/>
                             <add hand="h2" n="singleBracket" place="margin-right"> לִרְשׁוּת</add>
-                            הָרַבִּים אַחֵר חַיָּיבֿ <pc rend=":">׃</pc>
+                            הָרַבִּים אַחֵר חַיָּיבֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.5.6">‏ <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(r)">ט<am rend="overdot">׳</am></label>
                             בּוֹר שֶׁל שְׁנֵי <lb n="5"/> שׁוּתָֿפִין עָבַֿר עָלָיו הָרִאֿשׁוֹן
-                            וְלֹא <add hand="h2" place="margin-left">כִֿיסָּהוּ הַשֵׁינׅי</add>
+                            וְלֹא <add hand="h2" place="inline">כִֿיסָּהוּ<lb/>הַשֵׁינׅי</add>
                             <lb n="6"/>
                             <add hand="h2" n="singleBracket" place="margin-right">וְלֹא</add>
                             כִֿיסָּהוּ הַשֵּׁינִי חַיָּיבֿ כִּיסָּהוּ הָרִאֿשׁוֹן <lb n="7"/> וּבַֿא
@@ -909,29 +933,30 @@
                             לְתֿוֹכֿוֹ שׁוֹר אוֹ חֲמוֹר וּמֵתֿ <lb n="11"/> חַיָּיבֿ נָפַֿל
                             לְפָֿנָיו מִקּוֹל הַכִּרְיָיא חַיָּיבֿ <lb n="12"/> לְאַחֲרָיו מִקּוֹל
                             הַכִּרְיָּיא פָּטוּר נָפַֿל <lb n="13"/> לְתֿוֹכֿוֹ שׁוֹר וְכֵֿלָיִו
-                                <add hand="h2" place="above">וְ</add> נִשְׁתַּבָּרוּ חֲמוֹר
-                            וְכֵֿלָיו <lb n="14"/> וְנִתְֿקָרָעוּ חַיָּיבֿ עַל הַבְּהֵמָה וּפָֿטוּר
-                                <lb n="15"/> עַל הַכֵּלִים נָפַֿל לְתֿוֹכֿוֹ <damage>שׁוֹר
+                                <add hand="h2" place="above">וְ</add>נִשְׁתַּבָּרוּ חֲמוֹר וְכֵֿלָיו
+                                <lb n="14"/> וְנִתְֿקָרָעוּ חַיָּיבֿ עַל הַבְּהֵמָה וּפָֿטוּר <lb
+                                n="15"/> עַל הַכֵּלִים נָפַֿל לְתֿוֹכֿוֹ <damage>שׁוֹר
                                 חֵרֵשׁ</damage> שׁוֹטֶה <lb n="16"/>
                             <damage>וְקָטָן</damage> חַיָּיבֿ בֵּן אוֹ <damage>בָתֿ עֶבֶד אוֹ
                                 אָמָּה</damage>
                             <lb n="17"/>
                             <damage>פָּטוּר</damage>
-                            <pc rend=":">׃</pc>
+                            <pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.5.7">‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am></label>
-                            אֶחָדֿ הַשּׁוֹר וְאֶחָדֿ <am rend="״">״</am> כָּל <lb n="18"/>
+                            אֶחָדֿ הַשּׁוֹר וְאֶחָדֿ <surplus>׳ ׳</surplus> כָּל <lb n="18"/>
                             <damage>הַבְּהֵמָה לִנְפִֿילַתֿ הַבּוֹר</damage> וּלְהַפְֿרָשַׁתֿ הַר
                                 <lb n="19"/>
                             <damage>סִינַי לְתַֿשְׁלוּמֵי</damage> כָֿפֵל וּלְהָשִׁיבֿ אֲבֵֿדָה <lb
                                 n="20"/>
                             <damage>לִפְּרִיקָה לַחֲסִימָה</damage> לַכִּלְאַיִם וְלַשַׁבָּתֿ <lb
                                 n="21"/> וְכֵֿן חַיָּיה וָעוֹף כַּיּוֹצֵא בָֿהֶן אִם כֵּן לַמָּה <lb
-                                n="22"/> נֶאֱמַר שׁוֹר אוֹ <del hand="h2" rend="rubout"/>
+                                n="22"/> נֶאֱמַר שׁוֹר אוֹ <del hand="h2" rend="rubout" extent="4"
+                                unit="chars"/>
                             <add hand="h2" place="inline">חֲמוֹר</add> אֶלָּא שֶׁדִּיבֶּ<c
                                 rend="long">ר</c>
-                            <lb n="23"/> הַכָּתֿוּבֿ בָּהוֶֹוה <pc rend=":">׃</pc>
+                            <lb n="23"/> הַכָּתֿוּבֿ בָּהוֶֹוה<pc rend="colon">׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
@@ -947,12 +972,12 @@
                             בְּפָֿנֶיהָ <lb n="25"/> כָֿרָאוּיִ וְיָצְתָֿה וְהִזִּיקָּה פָּטוּר לֹא
                             נָעַל <lb n="26"/> בְּפָֿנֶיהָ כָֿרָאוּיִ וְיָצְתָֿה וְהִיזִּיקָה
                             חַיָּיבֿ <lb n="27"/> נִיפְֿרָצָה בַלַּיְלָ<del hand="h2" rend="strike"
-                                >י</del> ה אוֹ שֶׁפְּרָצוּהָ לֶיסְטִים <lb n="28"/> וְיָצְתָֿה
-                            וְהִיזִּיקָה פָּטוּר הוֹצִיאוּהָ <del hand="h2" rend="strike">ו</del>
-                            <lb n="29"/> לֶיסְטִים הַלֶּיסְטִים חַיָּיבִֿין <pc rend=":">׃</pc>
+                                >י</del>ה אוֹ שֶׁפְּרָצוּהָ לֶיסְטִים <lb n="28"/> וְיָצְתָֿה
+                            וְהִיזִּיקָה פָּטוּר הוֹצִיאוּהָ<del hand="h2" rend="strike">ו</del>
+                            <lb n="29"/> לֶיסְטִים הַלֶּיסְטִים חַיָּיבִֿין<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.6.2">‏ <milestone unit="MSMishnah" n="2"/>
-                            <label>ב<am rend="overmark">׳</am></label> הִינִּיחָהּ <lb n="30"/>
+                            <label>ב<am rend="overmark">׳</am></label> הִינִּיחָהִ <lb n="30"/>
                             <cb xml:id="S07362.130vB" n="130vB"/> בַּחַמָּה אוֹ שֶׁמְּסָרָהּ
                             לְחֵרֵשׁ שׁוֹ<damage>טֶ</damage>ה וְקָטָן <lb n="1"/> וְיָצְתָֿה
                             וְהִיזִּיקָה חַיָּיבֿ מְסָרָהּ לָרוֹעֶ<c rend="long">ה</c>
@@ -966,34 +991,37 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> שִׁמְעוֹן <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> אִם אָכְֿלָה פֵֿירוֹתֿ <lb n="8"/> גְּמוּרִים מְשַׁלֵּם
-                            פֵּרוֹתֿ גְּמוּרִים <del hand="h2" rend="strikes">ו</del>אִם סְאָה <lb
-                                n="9"/> סְאָה וְאִם סָאֿתָים סָאֿתַיִם <pc rend=":">׃</pc>
+                            פֵּרוֹתֿ גְּמוּרִים <del hand="h2" rend="strikes">ְו</del>אִם סְאָה <lb
+                                n="9"/> סְאָה וְאִם סָאֿתָים סָאֿתַיִם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.6.3">‏ <milestone unit="MSMishnah" n="3"/>
                             <label>ג<am rend="overmark">׳</am></label> הַמַּגְֿדִישׁ <lb n="10"/>
                             לְתֿוֹךְֿ שְׂדֵֿה חֲבֵֿירוֹ שֶׁלֹֹֹּא בִֿרְשׁוּתֿ אֲכָֿלַתָּן <lb n="11"
                             /> בְּהֶמְתּוֹ שֶׁלְּבַֿעַל הַשָּׂדֶֿה פַּטוּר וְאִם הוּזָּקָה <lb
                                 n="12"/> בָֿהֶן בַּעַל הַגַּדִֿישׁ חַיָּיבֿ וְאִם הִיגְֿדִּישׁ
-                            בִּרְשׁוּתֿ <lb n="13"/> בַּעַל הַשָּׂדֶֿה חַיָּיבֿ <pc rend=":">׃</pc>
+                            בִּרְשׁוּתֿ <lb n="13"/> בַּעַל הַשָּׂדֶֿה חַיָּיבֿ<pc rend="colon"
+                                >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.6.4"> ‏ <milestone unit="MSMishnah" n="4"/>
                             <label rend="align(center) pad(rl)">ד<am rend="overmark">׳</am></label>
-                            הַשׁוֹלֵחַ <am rend="״">״</am> אֶתֿ <lb n="14"/> הַבְּעֵירָה בְֿיַדֿ
-                            חֵרֵשׁ שׁוֹטֶה וְקָטָן פָּטוּר <lb n="15"/> מִידִּינֵי אָדָֿם וְחַיָּיבֿ
-                            בְּדִֿינֵי שָׁמַיִם שִׁילַּח <lb n="16"/> בְּיַדֿ פִּקֵּחַ הַפִּיקֵּחַ
-                            חַיָּיבֿ <del hand="h2" rend="strikethrough">אֶחָד הֵבִיא </del> אֶתֿ
-                                <lb n="17"/>
-                            <del hand="h2" rend="strikethrough"> הָאוּר וְאֶחָדֿ הֵבִֿיא אֶת
-                                הָעֵצִים הַמֵּבִיא</del><lb n="18"/>
-                            <del hand="h2" rend="strkethrough">אֶתֿ</del> הָעֵצִים <del hand="h2"
-                                rend="strikethrough">חַיָּיבֿ</del> אֶחָדֿ הֵבִֿיא אֶתֿ הָעֵצִים <lb
-                                n="19"/> וְאֶחָדֿ הֵבִֿיא אֶתֿ הָאוּר הַמֵּבִֿיא אֶתֿ הָאוּר <lb
-                                n="20"/> חַיָּיבֿ בָּא אַחֵר וְלִיבָּא הַמְלַבֶּא חָיָּיב לִיבַּתּוּ
-                                <lb n="21"/> הָרוּחַ הֲרֵי כֿוּלָּם פְּטוּרִין <pc rend=":">׃</pc>
+                            הַשׁוֹלֵחַ <surplus reason="fill">׳ ׳</surplus> אֶתֿ <lb n="14"/>
+                            הַבְּעֵירָה בְֿיַדֿ חֵרֵשׁ שׁוֹטֶה וְקָטָן פָּטוּר <lb n="15"/>
+                            מִידִּינֵי אָדָֿם וְחַיָּיבֿ בְּדִֿינֵי שָׁמַיִם שִׁילַּח <lb n="16"/>
+                            בְּיַדֿ פִּקֵּחַ הַפִּיקֵּחַ חַיָּיבֿ <del hand="h2"
+                                rend="strikethrough overline">אֶחָד הֵבִיא
+                                אֶתֿ</del><note>Strikethrough on את is faint.</note><lb n="17"/>
+                            <del hand="h2" rend="strikethrough overline"> הָאוּר וְאֶחָדֿ הֵבִֿיא
+                                אֶת הָעֵצִים הַמֵּבִיא</del><lb n="18"/>
+                            <del hand="h2" rend="overline">אֶתֿ הָעֵצִים
+                                חַיָּיבֿ</del><note>Overline on העצים is faint.</note> אֶחָדֿ
+                            הֵבִֿיא אֶתֿ הָעֵצִים <lb n="19"/> וְאֶחָדֿ הֵבִֿיא אֶתֿ הָאוּר
+                            הַמֵּבִֿיא אֶתֿ הָאוּר <lb n="20"/> חַיָּיבֿ בָּא אַחֵר וְלִיבָּא
+                            הַמְלַבֶּא חָיָּיב לִיבַּתּוּ <lb n="21"/> הָרוּחַ הֲרֵי כֿוּלָּם
+                                פְּטוּרִין<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(rl)">ה<am rend="overmark">׳</am></label>
                             הַשּׁוֹלֵחַ <lb n="22"/> אֶתֿ הַבְּעֵירָה וְאָכְֿלָה עֵצִים אוֹ
@@ -1004,8 +1032,8 @@
                                 <abbr>וג<am rend="overmark">׳</am></abbr>
                                 <expan>וגומר</expan>
                             </choice> עִיבְּרָה גָדֵֿר שֶׁהוּא גָבֿוַֹהּ <lb n="25"/> אַרְבַּע
-                            אַמּוֹתֿ אוֹ דֶּֿרֶךְֿ הָרַבִּים אוֹ נָהָר <lb n="26"/> פָּטוּר <pc
-                                rend=":">׃</pc>
+                            אַמּוֹתֿ אוֹ דֶּֿרֶךְֿ הָרַבִּים אוֹ נָהָר <lb n="26"/> פָּטוּר<pc
+                                rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(center) pad(rl)">ו<am rend="overmark">׳</am></label>
                             הַמַּדְֿלִיק בְּתֿוֹךְֿ שֶׁלּוֹ עַדֿ כַּמָּה <lb n="27"/> תְֿעַבֵּר
@@ -1023,7 +1051,7 @@
                                 <expan>רבי</expan>
                             </choice>
                             <c rend="lig">אֱלִ</c>יעֶזֶר <choice>
-                                <abbr><c rend="altform"/>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> שֵׁשׁ עֶשְׂרֵה אַמָּה <lb n="30"/>
@@ -1032,18 +1060,18 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> עֲקִיבָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<am rend="overdot">׳</am></abbr>
+                                <abbr><c rend="lig">אוֹ</c><am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> חֲמִשִּׁים אַמָּה <lb n="1"/>
                             <choice>
                                 <abbr>ור<am rend="overmark">׳</am></abbr>
                                 <expan>ורבי</expan>
                             </choice> שִׁמְעוֹן <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> שַׁלֵּם יְשַׁלֵּם הַמַּבְֿעִיר <lb n="2"/> אֶתֿ הַבְּעֵירָה
-                            הַכֹּל לְפִי הַדְּלִיקָה <pc rend=":">׃</pc>
+                            הַכֹּל לְפִי הַדְּלִיקָה<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.6.5">‏ <milestone unit="MSMishnah" n="7"/>
                             <label rend="align(left) pad(rl)">ז<am rend="overmark">׳</am></label><lb
@@ -1052,27 +1080,27 @@
                                 <expan>רבי</expan>
                             </choice>
                             <lb n="4"/> יְהוּדָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> יְשַׁלֵּם כָּל מַה שֶּׁהָיָה <del hand="h2"
-                                rend="strikethrough">ש</del> בְתֿוֹכֿוֹ <lb n="5"/>
+                                rend="strikethrough">ש</del>בְתֿוֹכֿוֹ <lb n="5"/>
                             <choice>
                                 <abbr>וַחֲכָֿ<c rend="altform">מׅ</c><am rend="overmark"
                                     >׳</am></abbr>
                                 <expan>וחכמים</expan>
                             </choice>
                             <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מְ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מְ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומרים</expan>
                             </choice> אֵינוּ מְשַׁלֵּם אֶלָּא גָֿדִישׁ שֶׁלַּ <lb n="6"/> חִטִּים
                             אוֹ גָֿדִישׁ שֶׁלִּ שְׂעוֹרִים הָיָה גְֿדִי <lb n="7"/> כָֿפוּתֿ בּוֹ
-                            וְעֶבֶֿדֿ סָמוּךְֿ לוֹ <del hand="h2" rend="rubout"/><!-- is this an appropriate way to code the space in the MS here? -->
-                            <add hand="h2" place="inline">וְ</add>נִישְׂרַף עִמּוֹ <lb n="8"/>
+                            וְעֶבֶֿדֿ סָמוּךְֿ לוֹ <del hand="h2" rend="rubout">ה</del><add
+                                hand="h2" place="inline">וְ</add>נִישְׂרַף עִמּוֹ <lb n="8"/>
                             חַיָּיבֿ עֶבֶֿד כָּֿפוּתֿ לוֹ וּגְֿדִי סָמוּךְֿֿ לוֹ <del hand="h2"
-                                rend="rubout"/><add hand="h2" place="inline">וְ</add>נִישְׂרַף <lb
-                                n="9"/> עִמּוֹ פָּטוּר וּמוֹדִֿים <choice>
+                                rend="rubout">ה</del><add hand="h2" place="inline">וְ</add>נִישְׂרַף
+                                <lb n="9"/> עִמּוֹ פָּטוּר וּמוֹדִֿים <choice>
                                 <abbr>חֲכָֿ<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
                                 <expan>חכמים</expan>
                             </choice>
@@ -1080,14 +1108,14 @@
                                 <abbr>לִרְ<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יְהוּדָֿה <surplus reason="fill"> ב<am rend="overmark"
-                                    >׳</am>מ<am rend="overmark">׳</am></surplus><lb n="10"/>
-                            בְּמַדְֿלִיק אֶתֿ הַבִּירָה שֶׁהוּא מְשַׁלֵּם כָּל <lb n="11"/> מַה
-                                שֶּׁבְּתֿוֹ<del hand="h2" rend="overmark">ב</del><del hand="h2"
-                                rend="overwrite">ב</del><add hand="h2" place="overwrite">כ</add>הּ
-                            <!-- Is this what is going on here? Should there even 
-                                be and addition here?-->
-                            שֶׁכֵּן דֶּרֶךְ בְּנֵי אָדָֿם <lb n="12"/> לְהַנִּיַח בַּבָּתִים <pc
-                                rend=":">׃</pc>
+                                    >׳</am><c rend="altform">מ</c><am rend="overmark"
+                                >׳</am></surplus><lb n="10"/> בְּמַדְֿלִיק אֶתֿ הַבִּירָה שֶׁהוּא
+                            מְשַׁלֵּם כָּל <lb n="11"/> מַה <seg>שֶּׁ<del hand="h2"
+                                    rend="overwritten">כ</del><add rend="inline" hand="h2"
+                                    >בְּ</add>תֿוֹ<del hand="h2" rend="overmark">ב </del><del
+                                    hand="h2" rend="overwrite">ב</del><add hand="h2"
+                                    place="overwrite">כ</add>הּ</seg> שֶׁכֵּן דֶּרֶךְ בְּנֵי אָדָֿם
+                                <lb n="12"/> לְהַנִּיַח בַּבָּתִים<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.6.6">‏ <milestone unit="MSMishnah" n="8"/>
                             <label rend="align(center) pad(rl)">ח<am rend="overmark">׳</am></label>
@@ -1100,11 +1128,11 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יְהוּדָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice>
-                            <lb n="19"/> בְּנֵר חֲנוּכָּה פָֿטוּר<pc rend=":">׃</pc>
+                            <lb n="19"/> בְּנֵר חֲנוּכָּה פָֿטוּר<pc rend="colon">׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
@@ -1117,96 +1145,96 @@
                     <div3 xml:id="S07362.4.1.7">
                         <ab xml:id="S07362.4.1.7.1">‏ <milestone unit="MSMishnah" n="1"/> מְרוּבָּה
                             מִידַּתֿ תַּשְׁלוּמֵי <lb n="21"/> כֶֿפֵל מִמִידַּתֿ תַּשְׁלוּמֵי
-                            אַרְבָּעָה ַחֲמִשָּׁה <lb n="22"/>
-                            <!-- the scribe does leave a petach here without a letter to claim it. It loooks weird though.
-                            Should we leave it?-->
-                            שְׁמִידַּתֿ תַּשְׁלוּמֵי כֶֿפֶל נוֹהֶגֶֿת בְּדָֿבָֿר שֶׁיֶּשׁ <lb n="23"
-                            /> בּוֹ רוּחַ חַיִּים וּבְֿדָֿבָֿר שֶׁאֵין בּוֹ רוּחַ חַיִּים <lb n="24"
-                            /> וּמִידַּתֿ תַּשְׁלוּמֵי אַרְבָּעָה <add hand="h2" place="above"
-                                >וַ</add>חֲמִשָּׁה אֵינָה <lb n="25"/> נוֹהֶגֶֿת אֶלָּא בְֿשׁוֹר
+                            אַרְבָּעָה ַחֲמִשָּׁה <lb n="22"/><note>Scribe who added vocalization
+                                inserted patah for missing waw. Cf. l. 25.</note> שְׁמִידַּתֿ
+                            תַּשְׁלוּמֵי כֶֿפֶל נוֹהֶגֶֿת בְּדָֿבָֿר שֶׁיֶּשׁ <lb n="23"/> בּוֹ
+                            רוּחַ חַיִּים וּבְֿדָֿבָֿר שֶׁאֵין בּוֹ רוּחַ חַיִּים <lb n="24"/>
+                            וּמִידַּתֿ תַּשְׁלוּמֵי אַרְבָּעָה <add hand="h2" place="above"
+                            >וַ</add>חֲמִשָּׁה אֵינָה <lb n="25"/> נוֹהֶגֶֿת אֶלָּא בְֿשׁוֹר
                             וּבְֿשֶׂה בִֿלְבַֿד <choice>
                                 <abbr>שנ<am rend="overmark">׳</am></abbr>
                                 <expan>שנאמר</expan>
-                            </choice> כִּי <lb n="26"/> יִגְֿנוֹב אִישׁ שׁוֹר אוֹ שֶׂה <pc rend=":"
-                                >:</pc><!-- not sure why the scribe put this mark in -->
+                            </choice> כִּי <lb n="26"/> יִגְֿנוֹב אִישׁ שׁוֹר אוֹ שֶׂה<pc
+                                rend="colon">:</pc>
                             <choice>
                                 <abbr>וגו<am rend="overmark">׳</am>
                                     <expan>וגומר</expan>
                                 </abbr>
                             </choice> אֵין הַגּוֹנֵבֿ <lb n="27"/>
-                            <damage><unclear extent="1" unit="chars">מ</unclear></damage>אַחַר
-                            הַגַּנָּבֿ מְשַׁלֵּם תַּשְׁלוּמֵי כֶֿפֶל <add hand="h2" place="above"
-                                >וְ</add>לֹא <lb n="28"/>
-                            <add hand="h2" place="margin-right">הַ</add>טוֹבֵֿיח וְלֹא <add
-                                hand="h2" place="above">ה</add>מּוֹכֵֿר מֵאַחַר הַגַּנָּבֿ מְשַׁלֵּם
-                                <lb n="29"/> תַּשְׁלוּמֵי אַרְבָּעָה <add hand="h2" place="above"
-                                >וַ</add>חֲמִשָּׁה <pc rend=":">׃</pc>
+                            <damage><del hand="h2" rend="rubbing">מ</del></damage>אַחַר הַגַּנָּבֿ
+                            מְשַׁלֵּם תַּשְׁלוּמֵי כֶֿפֶל <add hand="h2" place="above">וְ</add>לֹא
+                                <lb n="28"/>
+                            <add hand="h2" place="inline">ה</add>טוֹבֵֿיח וְלֹא <add hand="h2"
+                                place="above">ה</add>מּוֹכֵֿר מֵאַחַר הַגַּנָּבֿ מְשַׁלֵּם <lb
+                                n="29"/> תַּשְׁלוּמֵי אַרְבָּעָה <add hand="h2" place="above"
+                                >וַ</add>חֲמִשָּׁה<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.7.2"> ‏ <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(center) pad(rl)">ב<am rend="overmark"
                                 >׳</am></label><lb n="30"/>
                             <cb xml:id="S07362.131rB" n="131rB"/> גָּנַב עַל פִּי שְׁנַיִם וְטָבַֿח
                             וּמָכַֿר עַל פִּיהֶם <lb n="1"/> אוֹ עַל פִּי שְׁנַיִם אֲחֵרִים
-                            מְשַׁלֵּם תַּשְׁלוּמֵי <lb n="2"/> אַרְבָּעָה ַחֲמִשָּׁה גָנַבֿ וּמָכַֿר
-                            בַּשַּׁבָּתֿ גָּנַבֿ <lb n="3"/> וּמָכַֿר לַעֲבֹֿדָֿה זָרָה גָּנַבֿ
-                            וְטָבַֿח וּמָכַֿר <lb n="4"/> בְּיוֹם הַכִּיפּוּרִים גָּנַבֿ
-                            מִשֶּׁלְאָבִֿיו וְטָבַֿח <lb n="5"/> וּמָכַֿר וְאַחַר כָּךְֿ <add
-                                hand="h2" place="margin-right">מֶתֿ אַבִיו גָּנַב וְטָבַח וּמַכַר
+                            מְשַׁלֵּם תַּשְׁלוּמֵי <lb n="2"/> אַרְבָּעָה ַחֲמִשָּׁה<note>Vocalizer
+                                adds patah for absent waw.</note> גָנַבֿ וּמָכַֿר בַּשַּׁבָּתֿ
+                            גָּנַבֿ <lb n="3"/> וּמָכַֿר לַעֲבֹֿדָֿה זָרָה גָּנַבֿ וְטָבַֿח וּמָכַֿר
+                                <lb n="4"/> בְּיוֹם הַכִּיפּוּרִים גָּנַבֿ מִשֶּׁלְאָבִֿיו וְטָבַֿח
+                                <lb n="5"/> וּמָכַֿר וְאַחַר כָּךְֿ <add hand="h2"
+                                place="margin-right">מֶתֿ אַבִיו<lb/> גָּנַב וְטָבַח<lb/> וּמַכַר
                                     <surplus reason="fill">ו<am rend="overdot">׳</am>אח<am
-                                        rend="overdot">׳</am></surplus> וְאַחַר כָּךְ</add>
-                            הִיקְדִּיש מְשַׁלֵם תַּשְׁלוּמֵי <lb n="6"/> אַרְבָּעָה ַחֲמִשָּׁה
-                            גָּנַבֿ וְטָבַֿח וּמָכַֿר לִרְפֿוּאָה <lb n="7"/> וְלַכְּלָבִֿים
-                            הַשּׁוֹחֵט וְנִימְצָא טְרֵפָֿה הַשּׁוחֵט <lb n="8"/> חוּלִּים בַּעֲזָרָה
-                            מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה <lb n="9"/>
+                                        rend="overdot">׳</am></surplus><lb/> וְאַחַר כָּךְ</add>
+                            הִיקְדִּיש מְשַׁלֵם תַּשְׁלוּמֵי <lb n="6"/> אַרְבָּעָה
+                                ַחֲמִשָּׁה<note>Vocalizer adds patah for absent waw.</note> גָּנַבֿ
+                            וְטָבַֿח וּמָכַֿר לִרְפֿוּאָה <lb n="7"/> וְלַכְּלָבִֿים הַשּׁוֹחֵט
+                            וְנִימְצָא טְרֵפָֿה הַשּׁוחֵט <lb n="8"/> חוּלִּים בַּעֲזָרָה מְשַׁלֵּם
+                            תַּשְׁלוּמֵי אַרְבָּעָה <lb n="9"/>
                             <add hand="h2" place="inline">וַ</add>חֲמִשָּׁה <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice> שִׁמְעוֹן פּוֹטֵר בִּשְׁנֵי אֵלּוּ<pc rend=":">׃</pc>
+                            </choice> שִׁמְעוֹן פּוֹטֵר בִּשְׁנֵי אֵלּוּ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.7.3">‏ <milestone unit="MSMishnah" n="3"/>
                             <label rend="align(left) pad(rl)">ג<am rend="overmark">׳</am></label><lb
                                 n="10"/>
-                            <add hand="h2" place="margin-right">גָּנַבֿ</add>
-                            <!-- is this really h2, or h1? --> עַל פִּי שִׁנַיִם וְטָבַֿח וּמָכַֿר
-                            עַל פִּיהֶם נִימְצְאוּ <lb n="11"/> זוֹמְמִים מְשַׁלְּמִים לוֹ אֶתֿ
-                            הַכֹּל גָּנַבֿ <am rend="״">״</am>עַל<lb n="12"/>
-                            <!-- should I code this <am> or is it another mistake?--> פִּי שְׁנַיִם
-                            וְטָבַֿח וּמָכַֿר עַל פִּי שְׁנַיִם אֲחֵרִים <lb n="13"/> אֵלּוּ
-                            וָאֵלּוּ נִימְצְאוּ זוֹמְמִים הָרִאֿשׁוֹנִים <lb n="14"/> מְשַׁלְּמִים
-                            תַּשְׁלוּמֵי כֶֿפֶל וְהָאַחֲרֹנִים מְשַׁלְּמִים <lb n="15"/>
-                            תַּשְׁלוּמֵי שְׁלֹשָׁה נִימְצְאוּ הָאַחֲרוֹנִי<c rend="long">ם</c>
-                            <lb n="16"/> זוֹמְמִים <del hand="h2" rend="strike">ו</del> הוּא
+                            <add hand="h2" place="margin-right">גָּנַבֿ</add> עַל פִּי שִׁנַיִם
+                            וְטָבַֿח וּמָכַֿר עַל פִּיהֶם נִימְצְאוּ <lb n="11"/> זוֹמְמִים
+                            מְשַׁלְּמִים לוֹ אֶתֿ הַכֹּל גָּנַבֿ <surplus reason="fill">׳
+                                ׳</surplus>עַל<lb n="12"/> פִּי שְׁנַיִם וְטָבַֿח וּמָכַֿר עַל פִּי
+                            שְׁנַיִם אֲחֵרִים <lb n="13"/> אֵלּוּ וָאֵלּוּ נִימְצְאוּ זוֹמְמִים
+                            הָרִאֿשׁוֹנִים <lb n="14"/> מְשַׁלְּמִים תַּשְׁלוּמֵי כֶֿפֶל
+                            וְהָאַחֲרֹנִים מְשַׁלְּמִים <lb n="15"/> תַּשְׁלוּמֵי שְׁלֹשָׁה
+                            נִימְצְאוּ הָאַחֲרוֹנִי<c rend="long">ם</c>
+                            <lb n="16"/> זוֹמְמִים <del hand="h2" rend="strike">ו</del>הוּא
                             מְשַׁלֵּם תַּשְׁלוּמֵי כֶֿפֶל וְהֵן <lb n="17"/> מְשַׁלְּמִים
                             תַּשְׁלוּמֵי שְׁלֹשָׁה אֶחָדֿ מִן <surplus reason="fill">ה<am
-                                    rend="overdot">׳</am></surplus><c rend="altform">א</c>
-                            <am rend="overdot">׳</am>
+                                    rend="overdot">׳</am><c rend="altform">א</c><am rend="overdot"
+                                    >׳</am></surplus>
                             <lb n="18"/> הָאַחֲרוֹנִים זוֹמֵם בָּטְלָה עֵֿדוּתֿ שְׁנִייָּ<c
                                 rend="long">ה</c>
-                            <lb n="19"/> אֶחָדֿ מִן הָרִאֿשׁוֹנִים זוֹמֵם בָּטְלָה <am rend="״"
-                                >״</am> כָֿל <lb n="20"/> הָעֵדֿוּתֿ שֶׁאִם אֵין גְּנֵיבָֿה אֵין
-                            טְבִֿיחָה <lb n="21"/> וְאֵין מְכִֿירָה <pc rend=":">׃</pc>
+                            <lb n="19"/> אֶחָדֿ מִן הָרִאֿשׁוֹנִים זוֹמֵם בָּטְלָה <surplus
+                                reason="fill">׳ ׳</surplus> כָֿל <lb n="20"/> הָעֵדֿוּתֿ שֶׁאִם אֵין
+                            גְּנֵיבָֿה אֵין טְבִֿיחָה <lb n="21"/> וְאֵין מְכִֿירָה<pc rend="colon"
+                                >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.7.4">‏ <milestone unit="MSMishnah" n="4"/>
                             <label rend="align(center) pad(rl)">ד<am rend="overmark">׳</am></label>
                             גָּנַבֿ עַל פִּי שְׁנַיִם וְטָבַֿח <lb n="22"/> וּמָכַֿר עַל פִּי עֵדֿ
                             אֶחָדֿ אוֹ עַל פִּי עַצְמוֹ <lb n="23"/> מְשַׁלֵּם תַּשְׁלוּמֵי כֶֿפֶל
                             ְאֵינוֹ מְשַׁלֵּם תַשְׁלוּמֵי <lb n="24"/> אַרְבָּעָה <add hand="h2"
-                                place="above">וַ</add>חֲמִשָּׁה <pc rend=":">׃</pc>
+                                place="above">וַ</add>חֲמִשָּׁה<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(rl)">ה<am rend="overmark">׳</am></label>
                             גָּנַבֿ וְטָבַֿח בַּשַּׁבָּתֿ <lb n="25"/> גָּנַבֿ <add hand="h2"
-                                n="singleBracket" place="margin-right">וּמָכַֿר</add> וְטָבַֿח
-                            לַעֲבוֹדָֿה זָרָה גָּנַבֿ מֶשֶּׁלאָבִֿיו <lb n="26"/> מֵתֿ אָבִיו
-                            וְאַחַר כָּךְֿ טָבַֿח וּמָכַֿר גָּנַבֿ <surplus reason="fill"> ו<am
-                                    rend="overmark">׳</am></surplus>ה<am rend="overmark">׳</am><lb
-                                n="27"/> וְהִיקְדִּישׁ וְאַחַר כָּךְֿ טָבַֿח וּמָכַֿר מְשַׁלֵּם <lb
-                                n="28"/> תַּשְׁלוּמֵי כֶֿפֶל וְאֵינוּ מְשַׁלֵּם תַּשְׁלוּמֵי
-                            אַרְבָּעָה <lb n="29"/>
+                                place="margin-right">וּמָכַֿר</add> וְטָבַֿח לַעֲבוֹדָֿה זָרָה
+                            גָּנַבֿ מֶשֶּׁלאָבִֿיו <lb n="26"/> מֵתֿ אָבִיו וְאַחַר כָּךְֿ טָבַֿח
+                            וּמָכַֿר גָּנַבֿ <surplus reason="fill"> ו<am rend="overmark">׳</am>ה<am
+                                    rend="overmark">׳</am></surplus><lb n="27"/> וְהִיקְדִּישׁ
+                            וְאַחַר כָּךְֿ טָבַֿח וּמָכַֿר מְשַׁלֵּם <lb n="28"/> תַּשְׁלוּמֵי
+                            כֶֿפֶל וְאֵינוּ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה <lb n="29"/>
                             <add hand="h2" place="inline">וַ</add>חֲמִשָּׁה <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> שִׁמְעוֹן <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> קָדָֿשִׁים שֶׁהוּא <lb n="30"/>
@@ -1219,16 +1247,16 @@
                         <ab xml:id="S07362.4.1.7.5">‏ <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(right)">ו<am rend="overmark">׳</am></label> מְכָֿֿרוֹ
                             חוּץ מֵאֶחָדֿ <add hand="h2" place="inline">מִ</add>מֵּאָהֿ בֿוֹ אוֹ
-                            שֶׁהָיְתָֿה <lb n="3"/> לּוֹ בֿ<del hand="h2" rend="rubout"/><add
+                            שֶׁהָיְתָֿה <lb n="3"/> לּוֹ בֿ<del hand="h2" rend="rubbed" unit="chars" extent="1"/><add
                                 hand="h2" place="inline">ו</add> שׁוּתָפוּת הַשּׁוֹחֵט
                             וְנִיתְֿנַבְּלָה בְֿיָדֿוֹ <lb n="4"/> הַנּוֹחֵר וְהַמְעַקֵּר מְשַׁלֵּם
                             תַּשְׁלוּמֵי כֶֿפֶל <lb n="5"/> וְאֵינוּ מְשַׁלֵּם תַּשְׁלוּמֵי
                             אַרְבָּעָה ַחֲמִשָּׁה <lb n="6"/>
                             <milestone unit="MSMishnah" n="7"/>
                             <label rend="align(right)">ז<am rend="overmark">׳</am></label> גָּנַבֿ
-                            בִּרְשׁוּתֿ הַבְּעָלִים וְטָבַֿח וּמָכַֿר <lb n="7"/> חוּץ מֵרְשׁוּתָֿן
-                                <add hand="h2" n="singleBracket" place="margin-right">או שגנב חוץ
-                                מרשותן וטבח ומכר</add> וְטָבַֿח וּמָכַֿר בִּרְשׁוּתָֿן <lb n="8"/>
+                            בִּרְשׁוּתֿ הַבְּעָלִים וְטָבַֿח וּמָכַֿר<del hand="h2" rend="rubbed"><add place="margin-left" hand="h2">?</add></del><lb n="7"/> חוּץ מֵרְשׁוּתָֿן
+                                <add hand="h2" place="margin-right">או שגנב חוץ<lb/>
+                                מרשותן<lb/> וטבח ומכר</add> וְטָבַֿח וּמָכַֿר בִּרְשׁוּתָֿן <lb n="8"/>
                             אוֹ שֶׁגָּנַבֿ וְטָבַֿח וּמָכַֿר חוּץ מֵרְשׁוּתָֿן <lb n="9"/> מְשַׁלֵּם
                             תַּשְׁלוּמֵי אַרְבָּעָה <add hand="h2" place="above">וַ</add>חֲמִשָּׁה
                             אֲבַל <lb n="10"/> אִם גָּנַבֿ וְטָבַֿח וּמָכַֿר בִּרְשׁוּתָֿן פָּטוּר
@@ -1238,17 +1266,15 @@
                             <label rend="align(right) pad(r)">ח<am rend="overmark">׳</am></label>
                             הָיָה מוֹשְׁכֿוֹ וְיוֹצֵא וּמֵתֿ בִּרְשׁוּתֿ <lb n="12"/> הַבְּעָלִים
                             פָּטוּר הִיגְֿבִּיהוֹ אוֹ שֶׁהוֹצִיאוֹ <lb n="13"/> חוּץ מֵרְשׁוּתֿ
-                            הַבְּעָלִים וּמֵת חַיָּיבֿ <pc rend=":">׃</pc>
+                            הַבְּעָלִים וּמֵת חַיָּיבֿ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(left)">ט<am rend="overmark">׳</am></label><lb n="14"
                             /> נְתָֿנוֹ לִבְֿכוֹרַ<del hand="h2" rend="strike">ו</del>תֿ בְּנוֹ
                             לְבַֿעַל חוֹבֿוֹ לְשׁוֹמֵר <lb n="15"/> חִנָּם וְלַשּׁוֹאֵל לְנוֹשֵׂא
                             שָׂכָֿר וְלַשּׂוֹכֵֿר <lb n="16"/> הָיָה מוֹשְׁכֿוֹ וְיוֹצֵא וּמֵתֿ
                             בִּרְשׁוּתֿ הַבְּעָלִים <lb n="17"/> פָּטוּר הִיגְֿבִּיהוֹ אוֹ
-                            שֶׁהוֹצִיאוֹ <am rend="overmark">׳</am><space extent="1" unit="chars"/>
-                            <am rend="overmark">׳</am>חוּץ <lb n="18"
-                            /><!-- is it worth it to code this mark? --> מֵרְשׁוּתֿ הַבְּעָלִים
-                            וּמֵתֿ חַיָּיבֿ <pc rend=":">׃</pc>
+                            שֶׁהוֹצִיאוֹ <surplus reason="fill">׳ ׳</surplus>חוּץ<lb n="18"/>
+                            מֵרְשׁוּתֿ הַבְּעָלִים וּמֵתֿ חַיָּיבֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.7.7">‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(left) pad(rl)">י<am rend="overmark">׳</am></label>
@@ -1275,8 +1301,8 @@
                             בַּשַּׁלְשֶׁלֶתֿ אֵין פּוֹרְסִין נִשְּׁבִּים <lb n="26"/> לַיּוֹנִים
                             אֶלָּא אִם כֵּן הָיָה רָחוֹק מִן הַיִּושֻּׁבֿ <lb n="27"/> שְׁלוֹשִׁים
                                 ר<del hand="h2" rend="overwrite">י</del><add hand="h2"
-                                place="overwrite">וּ</add>ם <!-- is this a mem sofit or a samekh? -->
-                            <pc rend=":">׃</pc>
+                                place="overwrite">וּ</add>ס
+                            <pc rend="colon">׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
@@ -1293,26 +1319,25 @@
                                 <lb n="30"/>
                             <cb xml:id="S07362.131vB" n="131vB"/> בְּשֶׁיבֶֿתֿ וּבְֿבֿוֹשֶׁתֿ
                             בְּנֶיזֶק כְּיצַדֿ סִמָּה אֶתֿ <lb n="1"/> עֵינוֹ קִ<del hand="h2"
-                                rend="rubout"/><add hand="h2" place="inline">טַּ</add>ע
-                            <!-- How should I code that Scribe2 erased someting from Scribe1 and wrote in a "tet"? -->
+                                rend="rubout" extent="1" unit="chars"/><add hand="h2" place="inline">טַּ</add>ע
                             אֶתֿ יָדֿוֹ שִׁבֵּר אֶתֿ רַגְֿלוֹ רוֹאִין <lb n="2"/> אוֹתֿוֹ כְּיִלּוּ
                             עֶבֶֿד נִימְכָּר כַּמָּה הָיָה יָפֶֿה <lb n="3"/> וְכַֿמָּה הוּא יָפֶֿה
-                            בְּצַעַר כְּ<damage>וָ</damage>יוֹ בִֿשְׁפֿוּדֿ אוֹ <lb n="4"/>
+                            בְּצַעַר כְּ<del rend="overwritten" hand="h2"></del><add hand="h2" place="inline">וָ</add>יוֹ בִֿשְׁפֿוּדֿ אוֹ <lb n="4"/>
                             בְֿמַסְמֵר אֲפִֿילּוּ עַל צִפּוֹרְנוֹ מְקוֹם שֶׁאֵינוּ <lb n="5"/>
                             עוֹשֶׂה חַבּוּרָה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מְ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מְ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> כַּמָּה אָדָֿם כַּיּוֹצֵא <lb n="6"/> בָֿזֶה <add hand="h2"
                                 n="singleBracket" place="margin-right">רוֹצֶה</add> לִיטּוֹל
-                            לִהְיוֹתֿ מִיצְטַעֵר כָּךְֿ <pc rend=":">׃</pc>
+                            לִהְיוֹתֿ מִיצְטַעֵר כָּךְֿ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(left)">ב<am rend="overmark">׳</am></label> רִיפּוּי
                                 <lb n="7"/> הִיכָּהוּ חַיָּיבֿ לְרַפּוֹתֿוֹ עָלוּ בוֹ צְמָחִים אִם
                                 <lb n="8"/> מֵחֲמַתֿ הַמַּכָּה חַיָּיבֿ וְשֶׁלֹּא מֵחֲמַתֿ הַמַּכָּה
                                 <lb n="9"/> פָּטוּר חָיָיתָֿהֿ וְנִיסְתָּרָה חָיָתָֿהֿ וְנִיסְתָּרָה
                                 <lb n="10"/> חַיָּיבֿ לְרַפּוֹתֿוֹ חָיָתָֿהֿ כָֿל צָרְכָֿהּ אֵינוּ
-                            חַיָּיבֿֿ <lb n="11"/> לְרַפּוֹתֿוֹ <pc rend=":">׃</pc>
+                            חַיָּיבֿֿ <lb n="11"/> לְרַפּוֹתֿוֹ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="3"/>
                             <label rend="align(center) pad(rl)">ג<am rend="overmark">׳</am></label>
                             שֶׁיבֶֿתֿ רוֹאִין אוֹתֿוֹ כְיִלּוּ <lb n="12"/> הוּא שׁוֹמֵר
@@ -1327,8 +1352,8 @@
                                 <abbr>שנ<am rend="overmark">׳</am></abbr>
                                 <expan>שנאמר</expan>
                             </choice> וְשָׁלְחָה יַדָֿהּ וְהֶחֱזִיקָה בִּמְבֿוּשָׁיו <lb n="19"/>
-                            אֵינוּ חַיָּיבֿ עַל הַבּוֹשֶׁת עַדֿ שֶׁיְּהֵא מִתְֿכַּוֵּון <pc rend=":"
-                                >׃</pc><lb n="20"/>
+                            אֵינוּ חַיָּיבֿ עַל הַבּוֹשֶׁת עַדֿ שֶׁיְּהֵא מִתְֿכַּוֵּון<pc
+                                rend="colon">׃</pc><lb n="20"/>
                         </ab>
                         <ab xml:id="S07362.4.1.8.2"> ‏ <milestone unit="MSMishnah" n="4"/>
                             <label rend="align(right) pad(l)">ד<am rend="overmark">׳</am></label>
@@ -1355,10 +1380,10 @@
                                 <expan>רבי</expan>
                             </choice> יְהוּדָֿהֿ <lb n="29"/>
                             <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> אֵין לַעֲבָֿדִֿים בּוֹשֶׁתֿ<pc rend=":">׃</pc>
+                            </choice> אֵין לַעֲבָֿדִֿים בּוֹשֶׁתֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.8.4"> ‏ <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(center) pad(rl)">ו<am rend="overmark">׳</am></label>
@@ -1369,10 +1394,10 @@
                             פְּטוּרִין הָעֶבֶֿ<c rend="long">דֿ</c>
                             <lb n="2"/> וְהָאִשָּׁה פְּגִֿיעָתָֿם רָעָה הַחוֹבֵֿל בָּהֶן חַיָּיבֿ
                                 <lb n="3"/> וְהֵם שֶׁחָבְֿלוּ בַֿאֲחֵרִים פְּטוּרִין אֲבַֿל <lb
-                                n="4"/> מְשַׁלְּמִים לְאַחַר <damage>זְמָ</damage>ן נִתְֿגָּרְשָׁה
+                                n="4"/> מְשַׁלְּמִים לְאַחַר <del hand="h2" rend="rubbed" extent="2" unit="chars"></del><add hand="h2" place="inline">זְמָ</add>ן נִתְֿגָּרְשָׁה
                                 הָאִשָּׁ<c rend="long">ה</c>
-                            <lb n="5"/> וְנִישְׁתַּחְרַר הָעֶבֶֿדֿ חַיָּיבִֿים לְשַׁלֵּם <pc
-                                rend=":">׃</pc>
+                            <lb n="5"/> וְנִישְׁתַּחְרַר הָעֶבֶֿדֿ חַיָּיבִֿים לְשַׁלֵּם<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.8.5">‏ <milestone unit="MSMishnah" n="7"/>
                             <label rend="align(left) pad(rl)">ז<am rend="overmark">׳</am></label><lb
@@ -1380,7 +1405,7 @@
                                 <surplus reason="fill">ה<am rend="overmark">׳</am></surplus>
                             <lb n="7"/> הַחוֹבֵֿל בַּחֲבֵֿירוֹ בַֿשַּׁבָּתֿ פָּטוּר מִכּוּלָּם
                             מִפְּני <lb n="8"/> שֶׁהוּא נִידּוֹן בְּנַפְֿשׁוֹ וְהַחוֹבֵֿל בְּעֶבֶֿדֿ
-                            כְּנַעֲנִי <lb n="9"/> שֶׁלּוֹ פָּטוּר מִכוּלָּם <pc rend=":">׃</pc>
+                            כְּנַעֲנִי <lb n="9"/> שֶׁלּוֹ פָּטוּר מִכוּלָּם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.8.6">‏ <milestone unit="MSMishnah" n="8"/>
                             <label>ח<am rend="overmark">׳</am></label> הַתּוֹקֵיַע לַחֲבֵֿירוֹ <lb
@@ -1388,7 +1413,7 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יְהוּדָֿה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> מִשֵּׁם <choice>
@@ -1402,7 +1427,7 @@
                                 reason="fill">ר<c rend="altform">א</c><am rend="overmark"
                                 >׳</am></surplus>
                             <lb n="15"/> רֹאֿשָׁהּ שְׁלָּאִשָּׁה נוֹתֵֿן לוֹ אַרְבַּע מֵאוֹתֿ <lb
-                                n="16"/> זוּז וְהַכֹּל לְפִֿי כְֿבֿוֹדֿוֹ <pc rend=":">׃</pc>
+                                n="16"/> זוּז וְהַכֹּל לְפִֿי כְֿבֿוֹדֿוֹ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(rl)">ט<am rend="overmark">׳</am></label>
                             <choice>
@@ -1432,10 +1457,10 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> תּן לִי זְמָן וְנָתַֿן לוֹ <lb n="23"/> שׁימְּרָה עוֹמֶדֶת
-                                    <damage><gap extent="5" unit="chars"/></damage>
+                                    <del hand="h2" rend="rubbed" extent="5" unit="chars"/>
                             <add hand="h2" place="inline">על פתח</add> חצירה ושָׁבַּֿר <lb n="24"/>
-                            את הַפַּךְֿ בְּפָֿנֶיהָ וּבו באִסַּ <del hand="h2" rend="rubout"/><add
-                                hand="h2" place="inline">ר</add> שׁמֶן וְגִֿילַּת <lb n="25"/> אתֿ
+                            את הַפַּךְֿ בְּפָֿנֶיהָ וּבו באִסַּ<del hand="h2" rend="rubbed" extent="1" unit="chars"/><add
+                                hand="h2" place="inline"><c rend="long">ר</c></add> שׁמֶן וְגִֿילַּת <lb n="25"/> אתֿ
                             רֹאֿשָׁה והִיְתָהֿ מְטַפַּחַתֿ וּמָנַּחַת עַל <lb n="26"/> ראֿשַׁהּ
                             וְהֶעְמִידֿ עָלֶיהָ עֵדִֿים וּבָּֿא לִפְֿנֵי <lb n="27"/>
                             <choice>
@@ -1455,13 +1480,13 @@
                             </choice> לוֹ <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice> עֲקִיבָֿהֿ <damage><unclear extent="2" unit="chars"
-                                    >לא</unclear></damage> אָמַרְתָּה <lb n="29"/> כְלוּם
+                            </choice> עֲקִיבָֿהֿ <del rend="rubbed" extent="2" unit="chars" hand="h2"
+                                ></del><add place="inline" hand="h2">לא</add> אָמַרְתָּה <lb n="29"/> כְלוּם
                             שֶׁהֵחוֹבֵֿל בְּעַצְמוֹ אַף עַל פִּי שֶׁאֵינוּ <lb n="30"/>
                             <cb xml:id="S07362.132rB" n="132rB"/> רַשַּׁיִי פָּטוּר וְאֲחֵרִים
                             שֶׁחָבְֿלוּ בֿוֹ חַיָּיבִֿים <lb n="1"/> וְהַקּוֹצֵץ אֶתֿ נְטִיעוֹתָֿיו
                             אַף עַל פִּי <lb n="2"/> שֶׁאֵינוּ רַשַּׁיִי פָּטוּר וַאֲחֵרִים
-                            שֶׁקָּצְצוּ <lb n="3"/> אֶתֿ נְטִיעוֹתָֿיו חַיָּיבִֿים <pc rend=":"
+                            שֶׁקָּצְצוּ <lb n="3"/> אֶתֿ נְטִיעוֹתָֿיו חַיָּיבִֿים<pc rend="colon"
                                 >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.8.7">‏ <milestone unit="MSMishnah" n="10"/>
@@ -1484,20 +1509,20 @@
                                 <abbr>וגו<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
                                 <expan>וגומר</expan>
                             </choice>
-                            <pc rend=":">׃</pc>
+                            <pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="11"/>
                             <label rend="align(left) pad(r)">י<am rend="overmark">׳</am>א<am
                                     rend="overmark">׳</am></label><lb n="8"/> הָאוֹמֵר סַמֵּה אֶתֿ
-                            עֵינִי קַ <del hand="h2" rend="rubout"/><add hand="h2" place="inline"
+                            עֵינִי קַ <del hand="h2" rend="rubbed" extent="1" unit="chars"/><add hand="h2" place="inline"
                                 >טַ</add>ע אֶתֿ יָדִֿי <lb n="9"/> שַׁבֵּר אֶתֿ רַגְֿלִי חַיָּיבֿ
                             עַל מְנַתֿ פָּטוּר חַיָּיבֿ <lb n="10"/> קְרַע אֶתֿ כְּסוּתִֿי שַׁבֵּר
-                            אֶתֿ כַּדִּי חַיָּיב עַל <lb n="11"/> מְנַתֿ פָּטוּר פָּטוּר עֲשֵׂה כֵֿן
+                            אֶתֿ כַּדִּי<del unit="chars" extent="1" rend="rubbed">י</del> חַיָּיב עַל <lb n="11"/> מְנַתֿ פָּטוּר פָּטוּר עֲשֵׂה כֵֿן
                             לְאִישׁ <choice>
                                 <abbr>פְּל<am rend="overdot">׳</am></abbr>
                                 <expan>פלוני</expan>
                             </choice>
                             <lb n="12"/> עַל מְנַתֿ פָּטוּר חַיָּיבֿ בֵּין בְּגֿוּפֿוֹ בֵּין
-                            בְּמָמֹנוֹ <pc rend=":">׃</pc><lb n="13"/>
+                                בְּמָמֹנוֹ<pc rend="colon">׃</pc><lb n="13"/>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
@@ -1510,13 +1535,12 @@
                     </div3>
                     <div3 xml:id="S07362.4.1.9">
                         <ab xml:id="S07362.4.1.9.1">‏ <milestone unit="MSMishnah" n="1"/> הַגּוֹזֵל
-                            עֵצִים וַעֲשָׂאָן כֵּלִים צֶמֶר וַעֲשָׂאָוֹ <lb n="15"/> בְֿגֿדִ
-                                    <damage><gap extent="2" unit="chars"/></damage> מְשַׁלֵּם
+                            עֵצִים וַעֲשָׂאָן כֵּלִים צֶמֶר וַעֲשָׂאָוֹ <lb n="15"/> בְֿגֿדִ<del extent="2" unit="chars" hand="h2"/><note>Appears to have been vocalized בְגָדִים. After removal of ים, vocalization partially erased.</note> מְשַׁלֵּם
                             כְּשָׁעַתֿ הַגְּזֵילָה גָּזַל פָּרָה <lb n="16"/> מְעוּבְּרֶתֿ
                             וְיָלָדָֿהֿ וְרָחֵל טְעוּנָה וּגְֿזָזָהּ <lb n="17"/> מְשַׁלֵּם דְּמֵי
-                            פָֿרָּה <add hand="h2" place="above">מ</add>עוּבֶּרֶתֿ לֵילֵדֿ וּדְֿמֵי
-                                <lb n="18"/> רָחֵל טְעוּנָה לְהִיגָּזֵז גָּזַל פָּרָה וְעִיבְּרָה
-                                <lb n="19"/> אֶצְלוֹ <add hand="h2" place="margin-left">וילדה ורחל
+                            פָֿרָּה <del hand="h2" rend="rubbed" extent="1" unit="chars"></del><add hand="h2" place="above">מ</add>עוּבֶּרֶתֿ לֵילֵדֿ וּדְֿמֵי
+                            <lb n="18"/> רָחֵל טְעוּנָה לְהִיגָּזֵז <del hand="h2" rend="rubbed" extent="1" unit="chars"></del>גָּזַל פָּרָה <note>Deletion appears to be lamed.</note>וְעִיבְּרָה
+                                <lb n="19"/> אֶצְלוֹ <add hand="h2" place="margin-left">וילדה ורחל<lb/>
                                 ונטענה אצלו</add> וּגְֿזָזָהּ מְשַׁלֵּם כְּשַׁעַת הַגְּזֵילָה <lb
                                 n="20"/> זֶה הַכְּלָל כָּל הַגּוֹזְלָנִים מְּשַׁלְּמִים <add
                                 hand="h2" place="margin-right">כִּשָׁעַתֿ</add> הַגְּזֵילָה <lb
@@ -1524,13 +1548,13 @@
                         </ab>
                         <ab xml:id="S07362.4.1.9.2">‏ <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(right) pad(l)">ב<am rend="overmark">׳</am></label>
-                            גָּזַל בְּהֵמָה וְהִיּזְיקִינָה עֲבָֿדִֿים <lb n="22"/> וְהִיזְקִינוּ
+                            גָּזַל בְּ<del hand="h2" rend="overwritten">ד</del><add hand="h2" place="inline">הֵ</add>מָה וְהִיּזְיקִינָה עֲבָֿדִֿים <lb n="22"/> וְהִיזְקִינוּ
                             מְשַׁלֵּם כְּשָׁעַתֿ הַגְּזלָה <choice>
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> מֵאִיר <lb n="23"/>
                             <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice>
@@ -1539,28 +1563,26 @@
                                 <expan>יאמר</expan>
                             </choice> לוֹ בַֿעֲבָֿדִֿֿֿֿֿֿֿים הֲרֵי עַבְֿדָּךְֿ לְפָֿנֶיךָֿ <lb
                                 n="24"/>
-                            <pc rend=":">׃</pc>
+                            <pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="3"/>
                             <label rend="align(right) pad(l)">ג<am rend="overmark">׳</am></label>
                             גָּזַל מַטְבֵּיַע וְנִסְדַּק פֵּירוֹת וְהִירְקִיבֿוּ <lb n="25"/> יַיִן
                             וְהֶחְמִיץ מְשַׁלֵּם כְּשַׁעַתֿ הַגְּזֵילָ<c rend="long">ה</c>
                             <lb n="26"/>
-                            <damage> מַטְיבֵע</damage> וְנִ<add hand="h2" place="overwrit"
+                            <damage> מַטְיבֵע</damage> וְנִ<del hand="h2" rend="rubbed"></del><add hand="h2" place="overwrit"
                                 >פְֿסַל</add> תְּרוּמָה וְנִיטַּמַּאֿתֿ חָמֵץ <lb n="27"/>
-                            <damage>וְעָבַֿר</damage> עָלָיו הַפֶּסַח בְּהֵמָה וְנֶעֲבְּרָ<c
+                            <damage>וְעָבַֿר</damage> עָלָיו הַפֶּסַח בְּהֵמָה וְנֶעֲבְּדָ<c
                                 rend="long">ה</c>
                             <lb n="28"/>
-                            <!--Is the resh in "Ve'nebra" really a daled?
-                            That would make more sense, although it looks like other times he writes a resh.-->
                             בָֿהּ עֲבֵֿרָה אוֹ שֶׁנִּיפְֿֿסָלָה מֵעַל גַּבּׅי <lb n="29"/>
                             הַמִזְבֵּחַ אוֹ שֶׁהָיְתָֿהֿ יוֹצְאָה לִיסָקֵל <lb n="30"/>
-                            <pb xml:id="S07362.132v" n="132v"/>
+                            <pb xml:id="S07362.132v" n="132v"/><!-- *** -->
                             <cb xml:id="S07362.132vA" n="132vA"/>
                             <choice>
                                 <abbr><c rend="altform">אֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> לוֹ הֲרֵי שֶׁלָּךְֿ לְפָֿנֶיךָֿ<pc rend=":">׃</pc>
+                            </choice> לוֹ הֲרֵי שֶׁלָּךְֿ לְפָֿנֶיךָֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.3">‏ <milestone unit="MSMishnah" n="4"/>
                             <label>ד<am rend="overdot">׳</am></label> נָתַֿן לָאוּמָּנִים <lb n="1"
@@ -1573,18 +1595,18 @@
                             וְנָפַֿל <lb n="6"/>
                             <damage>לְצַדֿ אַ</damage>חֵר פָּטוּר וְאִם מֵחֲמַתֿ הַמַּכָּ<c
                                 rend="long">ה</c>
-                            <lb n="7"/> חַיָּיבֿ <pc rend=":">׃</pc>
+                            <lb n="7"/> חַיָּיבֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.4"> ‏ <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(rl)">ה<am rend="overmark">׳</am></label>
                             נָתַֿן צֶמֶר לַצַבָּע וְהִיקְדִּיחָה <lb n="8"/>
                             <add hand="h2" place="above">הַ</add>יּוֹרָה נוֹתֵֿן לוֹ דְֿמֵי צִימְרוֹ
                             צְבָֿעו כָֿאוּר <lb n="9"/> אִם הַשֶּׁבַֿח יוֹתַֿר עַל הַיְצָּאָה נוֹתֵן
-                                <am rend="״">״</am>
-                            <!-- is this worth tagging? -->לוֹ <lb n="10"/> אֶתֿ הַיְצָאָה וְאִם
-                            הַיְצָאָה יְ<add hand="h2" place="overwrit"><c rend="long"
-                            >תֵ</c></add>ירָה עַל <lb n="11"/> הַשֶּׁבַֿח נוֹתֵן לוֹ אֶתֿ
-                            הַשֶּׁיבַֿח <pc rend=":">׃</pc>
+                                <am rend="gershayyim">״</am>
+                            <!-- is this worth tagging? --><!-- HL: suurplus, line fill -->לוֹ <lb
+                                n="10"/> אֶתֿ הַיְצָאָה וְאִם הַיְצָאָה יְ<add hand="h2"
+                                place="overwrit"><c rend="long">תֵ</c></add>ירָה עַל <lb n="11"/>
+                            הַשֶּׁבַֿח נוֹתֵן לוֹ אֶתֿ הַשֶּׁיבַֿח<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(center) pad(l)">ו<am rend="overdot">׳</am></label>
                             לִצְבּוֹעַ <lb n="12"/> לו אָדֹם וצְבָֿעוֹ שָׁחוֹר <add hand="h2"
@@ -1595,7 +1617,7 @@
                                 <abbr>ר<am rend="overmark">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> מֵאִיר <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> נוֹתֵֿן לוֹ דְמֵי צִימְרוֹ <choice>
@@ -1607,15 +1629,15 @@
                                 <expan>אומר</expan>
                             </choice> אִם הַשֶּׁבֿח יָתֵֿר עַל הַיְצָאָה נוֹתֵֿן <lb n="15"/> לוֹ
                             אֶתֿ הַיְצָאָה וְאִם הַיְצָאָה יְתֵירָה עַל <lb n="16"/> הַשֶּׁבֿח
-                            נוֹתֵּן לוֹ אֶתֿ הַשֶּׁבַֿח <pc rend=":">׃</pc>
+                            נוֹתֵּן לוֹ אֶתֿ הַשֶּׁבַֿח<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.5"> ‏ <milestone unit="MSMishnah" n="7"/>
                             <label>ז<am rend="overdot">׳</am></label> הַגּוֹזֵל <lb n="17"/> אֶתֿ
-                            חֲבֵֿירוֹ שְׁוֹוֶה פְֿרוּטָּה וְנִֿשְׁבַּע <am rend="״">״</am>לוֹ <lb
-                                n="18"/> יוֹלִיכֶֿנּוּ אַחֲרָיו אֲפִֿלּוּ למָדַֿיי לֹא יִתֵּן לֹא
-                                <lb n="19"/> לִבְֿנוֹ וְלֹא לִשְׁלוּחוֹ אֲבָֿל נוֹתֵֿן הוּא
-                            לִשְׁלוחַ <lb n="20"/> בֵּיתֿ דִּין וְאִם מֵתֿ יַחְזִיר לְיוֹרְשָׁיו <pc
-                                rend=":">׃</pc>
+                            חֲבֵֿירוֹ שְׁוֹוֶה פְֿרוּטָּה וְנִֿשְׁבַּע <surplus reason="fill">׳
+                                ׳</surplus>לוֹ <lb n="18"/> יוֹלִיכֶֿנּוּ אַחֲרָיו אֲפִֿלּוּ
+                            למָדַֿיי לֹא יִתֵּן לֹא <lb n="19"/> לִבְֿנוֹ וְלֹא לִשְׁלוּחוֹ אֲבָֿל
+                            נוֹתֵֿן הוּא לִשְׁלוחַ <lb n="20"/> בֵּיתֿ דִּין וְאִם מֵתֿ יַחְזִיר
+                                לְיוֹרְשָׁיו<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.6"> ‏ <milestone unit="MSMishnah" n="8"/>
                             <label rend="align(left) pad(rl)">ח</label><lb n="21"/> נָתַֿן לוֹ אֶתֿ
@@ -1623,14 +1645,14 @@
                             וְלֹא מָּחַל לוֹ עַל הַחוֹמֶשׁ <lb n="23"/> מָחַל לו עַל זֶה וְעַל זֶה
                             חוּץ מִפָּחוּ<c rend="long">ת</c>
                             <lb n="24"/> שׁוֹוֶה פְֿרוטָה בַֿקֶּרֶן <del hand="h2" rend="strike"
-                                >וְ</del>אׅינוּ צָרִיך לֵילֵךְ <lb n="25"/> אַחֲרָיו <pc rend=":"
+                                >וְ</del>אׅינוּ צָרִיך לֵילֵךְ <lb n="25"/> אַחֲרָיו<pc rend="colon"
                                 >׃</pc>
                             <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(rl)">ט<am rend="overdot">׳</am></label>
                             נָתַֿן לוֹ אֶת הַחוֹמֶשׁ וְלֹא <lb n="26"/> נָתַֿן לוֹ אֶתֿ הַקֶּרֶן
                             מָחַל לוֹ עַל הַחוֹמֶשׁ וְלא <lb n="27"/> מָחַל לוֹ עַל הַקֶּרֶן מָחַל
                             לוֹ עַל זֶה וְעַל זֶה <lb n="28"/> חוּץ מִשׁוֹוֶה פְֿרוּטָה בַֿקֶּרֶן
-                            הֲרֵי זֶה צָרִיךְֿ <lb n="29"/> לֵילֵךְֿ אַחֲרָיו <pc rend=":">׃</pc>
+                            הֲרֵי זֶה צָרִיךְֿ <lb n="29"/> לֵילֵךְֿ אַחֲרָיו<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.7"> ‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(center) pad(rl)">י<am rend="overdot">׳</am></label>
@@ -1642,7 +1664,7 @@
                             <lb n="2"/> פְֿרוּטָה וְכֵֿן בַּפִּיקָּדֿוֹן אוֹ בִֿתְשׂוּמֶתֿ יָדֿ <lb
                                 n="3"/> אוֹ בְֿגָזֶל אוֹ עָשַׁק אֶתֿ עֲמִיתֿוֹ אוֹ מָצָא <lb n="4"/>
                             אֲבֵֿדָֿה וְכִֿחֵשׁ בָּהּ וְנִשְׁבַּע עַל שָׁקֶר הֲרֵי זֶה <lb n="5"/>
-                            מְשַׁלֵּם קֶרֶן וְחוֹמֶשׁ וְאָשָׁם <pc rend=":">׃</pc>
+                            מְשַׁלֵּם קֶרֶן וְחוֹמֶשׁ וְאָשָׁם<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="11"/>
                             <label>י<am rend="overmark">׳</am>א<am rend="overmark"
                             >׳</am></label>אֵיכָֿן <lb n="6"/> פִּיקְ<del hand="h2" rend="strike"
@@ -1657,7 +1679,7 @@
                             מֵעִידִֿים אֹתֿוֹ שֶׁאָכָֿלוֹ מְשַׁלֵּם <lb n="8"/> אֶתֿ הַקֶּרֶן
                             הוֹדָֿהֿ מֵעַצְמוֹ מְשַׁלֵּם קֶרֶן <surplus reason="fill">ו<am
                                     rend="overmark">׳</am>ח<am rend="overmark">׳</am></surplus>
-                            <lb n="9"/> וְחוֹמֶשׁ וְאָשָׁם <pc rend=":">׃</pc>
+                            <lb n="9"/> וְחוֹמֶשׁ וְאָשָׁם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.8">‏ <milestone unit="MSMishnah" n="12"/>
                             <label rend="align(center) pad(r)">י<am rend="overmark">׳</am>ב<am
@@ -1674,15 +1696,15 @@
                                 <expan>אמן</expan>
                             </choice> וְהָעֵדִֿים <lb n="11"/> מְעִידִֿים אוֹתֿוֹ שֶׁגְּנָבֿוֹ
                             מְשַׁלֵם תַּשְׁלוּמֵי <lb n="12"/> כֶֿפֶֿל הוֹדָֿהֿ מֵעַצְמוֹ מְשַׁלֵּם
-                            קֶרֶן וְחוֹמֶשׁ <lb n="13"/> וְאָשָׁם <pc rend=":">׃</pc>
+                            קֶרֶן וְחוֹמֶשׁ <lb n="13"/> וְאָשָׁם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.9"> ‏ <milestone unit="MSMishnah" n="13"/>
                             <label rend="align(center) pad(r)">י<am rend="overmark">׳</am>ג<am
                                     rend="overmark">׳</am></label> הַגּוֹזֵל אֶתֿ אָבִֿיו
                             וְנִישְׁבַּע לוֹ <lb n="14"/> וּמֵתֿ הֲרֵי זֶה מְשַׁלֵּם קֶרֶן וְחוֹמֶשׁ
                             לְבָֿנָיו <lb n="15"/> וּלְאֶחָיו וְאִם אֵינוּ רוֹצֶה אוֹ שֶׁאֵין לוֹ
-                            לוֹוֶה <lb n="16"/> וּבַעֲלֵי הַחוֹבֿ בָּאִין וְנִיפְֿרָעִין <pc
-                                rend=":">׃</pc>
+                            לוֹוֶה <lb n="16"/> וּבַעֲלֵי הַחוֹבֿ בָּאִין וְנִיפְֿרָעִין<pc
+                                rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.10"> ‏ <milestone unit="MSMishnah" n="14"/>
                             <label>י<am rend="overmark">׳</am>ד<am rend="overmark"
@@ -1690,7 +1712,7 @@
                             לִי אִם מֵתֿ יִרָשֶׁנּוּ <lb n="18"/> בְּחַיָּיִ וּבְֿמוֹתִֿי אִם מֵתֿ
                             לֹא יִרָשֶׁינּוּ <add hand="h2" place="above">וְ</add>יִתֵּן <lb n="19"
                             /> לְבָֿנָיו ולְאֶחָיו אִם אֵין לוֹ לווֶה וּבַֿעֲלֵי <lb n="20"/>
-                            הַחוֹבֿ בָּאִין וְנִיפְֿרָעִין <pc rend=":">׃</pc>
+                            הַחוֹבֿ בָּאִין וְנִיפְֿרָעִין<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.9.11">
                             <milestone unit="MSMishnah" n="15"/>
@@ -1710,10 +1732,10 @@
                         <ab xml:id="S07362.4.1.9.12">‏ נָתַֿן<lb n="26"/> אֶתֿ הַכֶּסֶף לְאַנְשֵׁי
                             מִשְׁמַר ומֵת אֵין <lb n="27"/> הַיּוֹרְשִׁין יְכוּלִין לְהוֹצִיא
                             מִיָּדָֿן <choice>
-                                <abbr>שנ<am rend="׳">׳</am></abbr>
+                                <abbr>שנ<am rend="geresh">׳</am></abbr>
                                 <expan>שנאמר</expan>
                             </choice><del hand="h2" rend="strikes">ו</del>אִישׁ <lb n="28"/> אֲשֶׁר
-                            יִתֵּן לַכֹּהֵן לוֹ יִהְיֶה <pc rend=":">׃</pc>
+                            יִתֵּן לַכֹּהֵן לוֹ יִהְיֶה<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="16"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark"
                             >׳</am>ו</label>נָתַֿן <lb n="29"/> אֶתֿ הַכֶּסֶף לִיהוֹיָרִיבֿ וָאָשָׁם
@@ -1725,7 +1747,7 @@
                                 n="3"/> שֶׁהַמֵּבִיא גְזֵלוֹ עַד שֶׁלֹּא הֵבִיא אֲשָׁמוֹ <lb n="4"/>
                             יָצָא אֲשַׁמוֹ עַד שֶׁלֹּא הֵבִיא גְזֵלוֹ לֹא <lb n="5"/> יָצָא נָתַן
                             אֶת הַקֶרֶן וְלֹא נָתַן הַחוֹמֶשׁ <lb n="6"/> אֵין הַחוֹמֶשׁ מְעַכֵּב
-                                <pc rend=":">׃</pc>
+                                <pc rend="colon">׃</pc>
                         </ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
@@ -1743,7 +1765,7 @@
                                 place="overwrit">טי</add>ן לֹא מִיתֵּבָֿתֿ הַמּוּכְֿסִים <lb n="11"
                             /> וְלֹא מִכִּיס שֶׁלַּגַּבַּיִים וְאֵין נוֹטְלִין מֵהֶן <lb n="12"/>
                             צְדָֿקָה אֲבָֿל נוֹטֵל הוּא מִתּוֹךְֿ בֵּיתֿוֹ אוֹ <lb n="13"/> מִן
-                            הַשּׁוּק <pc rend=":">׃</pc>
+                                הַשּׁוּק<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.2">‏ <milestone unit="MSMishnah" n="2"/>
                             <label rend="align(center) pad(rl)">ב<am rend="overmark">׳</am></label>
@@ -1782,10 +1804,10 @@
                                 <expan>רבי</expan>
                             </choice>
                             <lb n="26"/> יוֹחָנָן בֶּן בְּרוֹקָה <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> קוֹצֵץ וְנוֹתֵן דָמִים <pc rend=":">׃</pc><lb n="27"/>
+                            </choice> קוֹצֵץ וְנוֹתֵן דָמִים<pc rend="colon">׃</pc><lb n="27"/>
                         </ab>
                         <ab xml:id="S07362.4.1.10.3">‏ <milestone unit="MSMishnah" n="3"/>
                             <label rend="align(right) pad(rl)">ג</label> הַמַּכִּיר אֶתֿ כֵּלָיו אוֹ
@@ -1798,8 +1820,8 @@
                                 <expan>אומר</expan>
                             </choice> מְכָֿרָן לְאַחֵר וּלְקָחָן זֶה מ<del hand="h1" rend="dots"
                                 >זה</del>
-                            <lb n="1"/><!--Is this a deletion? A surplus?--> מִמֶּנּוּ <pc rend=":"
-                                >׃</pc>
+                            <lb n="1"/><!--Is this a deletion? A surplus?--><!-- HL: Deletion -->
+                                מִמֶּנּוּ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.4">‏ <milestone unit="MSMishnah" n="4"/>
                             <label rend="align(center) pad(rl)">ד<am rend="overmark">׳</am></label>
@@ -1810,7 +1832,7 @@
                                 <abbr>אָ<c rend="altform">מַ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice> לוֹ אַצִּיל <lb n="5"/> אֶתֿ שֶׁלָּךְֿ וְאַתָּה נוֹתֵֿן לִי
-                            דְֿמֵי שֶׁלִּי חַיָּיבֿ <lb n="6"/> לִיתֵּן לוֹ <pc rend=":">׃</pc>
+                            דְֿמֵי שֶׁלִּי חַיָּיבֿ <lb n="6"/> לִיתֵּן לוֹ<pc rend="colon">׃</pc>
                             <milestone unit="MSMishnah" n="5"/>
                             <label rend="align(center) pad(rl)">ה<am rend="overmark">׳</am></label>
                             שָׁטַף הַנָּהַר חֲמוֹרוֹ וַחֲמוֹר <lb n="7"/> חֲבֵֿירוֹ שֶׁלּוֹ יָפֶֿהֿ
@@ -1820,7 +1842,7 @@
                                 <abbr>אָ<c rend="altform">מַ</c><am rend="overmark">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice> לוֹ אַצִּיל אֶתֿ שֶׁלָּךְֿ <lb n="10"/> וְאַתָּהֿ נוֹתֵֿן לִי
-                            דְמֵי שֶׁלִּי חַיָּיבֿ לִיתֵּן לוֹ <pc rend=":">׃</pc>
+                            דְמֵי שֶׁלִּי חַיָּיבֿ לִיתֵּן לוֹ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.5">‏ <milestone unit="MSMishnah" n="6"/>
                             <label rend="align(left) pad(rl)">ו<am rend="overmark">׳</am></label><lb
@@ -1833,10 +1855,10 @@
                             </choice> לוֹ הֲרֵי שֶׁלָּךְֿ לְפָֿנֶיךָֿ <lb n="13"/> וְאִם מֵחֲמַתֿ
                             הַגּוֹזְלָן חַיָּיבֿ לְהַעֲמִידֿ לוֹ שָׂדֶֿהֿ <lb n="14"/> שְׁטָפָֿהּ
                             נָהָר <choice>
-                                <abbr><c rend="altform">א</c>וֹ<c rend="altform">מֵ</c><am
+                                <abbr><c rend="lig">אוֹ</c><c rend="altform">מֵ</c><am
                                         rend="overmark">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice> לוֹ הֲרֵי שֶׁלָּךְֿ לְפָֿנֶיךָֿ <pc rend=":">׃</pc>
+                            </choice> לוֹ הֲרֵי שֶׁלָּךְֿ לְפָֿנֶיךָֿ<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.6">
                             <milestone unit="MSMishnah" n="7"/>
@@ -1857,7 +1879,7 @@
                             לְשַׁלֵּם אֲבָֿל אֵינִי <lb n="21"/> יוֹדֵֿיַע אִם גְּזַלְתִּיךָֿ וְאִם
                             הִלְוִיתַֿנִי <space extent="2" unit="chars"/> אִם <lb n="22"/>
                             הִיפְֿקַדְֿתָּה אֶצְלִי וְאִם לֹא הִיפְֿקַדְֿתָּ<c rend="long">ה</c><lb
-                                n="23"/> פָּטוּר מִלְּשַׁלֵּם <pc rend=":">׃</pc>
+                                n="23"/> פָּטוּר מִלְּשַׁלֵּם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.8">‏ <milestone unit="MSMishnah" n="9"/>
                             <label rend="align(center) pad(rl)">ט<am rend="overmark">׳</am></label>
@@ -1866,19 +1888,20 @@
                                     >׳</am>ח<am rend="overmark">׳</am></surplus>
                             <lb n="25"/> בְּאַחְרָיוּתֿוֹ וְאִם לֹא יָדְֿעוּ הַבְּעָלִים
                             בִּגְֿנֵיבָֿתֿוֹ <lb n="26"/> וּבַֿחֲזִירָתֿוֹ וּמָנוּ מֶן הַצֹּאן
-                            וְהִוא שְׁלֵימָה <lb n="27"/> פָּטוּר מִלְּשַׂלֵּם <pc rend=":">׃</pc>
+                            וְהִוא שְׁלֵימָה <lb n="27"/> פָּטוּר מִלְּשַׂלֵּם<pc rend="colon"
+                                >׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.9">‏ <milestone unit="MSMishnah" n="10"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am></label>
-                            אֵין לוֹקְחִין <am rend="״">״</am> מִן <lb n="28"/> הָרוֹעִים צֶמֶר
-                            וְחָלָבֿ וּגְ<del hand="h2" rend="strike">י</del>דָֿיִם וְלֹא
-                            מִשּׁוֹמְרֵי <lb n="29"/> פֵֿרוֹתֿ עֵצִים וּפֵֿרוֹתֿ אֲבָֿל לוֹקְחִין
-                            מִן הַנָּשִׁים <lb n="30"/>
+                            אֵין לוֹקְחִין <surplus reason="fill">׳ ׳</surplus> מִן <lb n="28"/>
+                            הָרוֹעִים צֶמֶר וְחָלָבֿ וּגְ<del hand="h2" rend="strike">י</del>דָֿיִם
+                            וְלֹא מִשּׁוֹמְרֵי <lb n="29"/> פֵֿרוֹתֿ עֵצִים וּפֵֿרוֹתֿ אֲבָֿל
+                            לוֹקְחִין מִן הַנָּשִׁים <lb n="30"/>
                             <pb xml:id="S07362.133v" n="133v"/>
                             <cb xml:id="S07362.133vA" n="133vA"/> כְּלֵי פִֿשְׁתָּן בַּגָּלִיל
                             וַעֲגָֿלִים בַּשָּׁרוֹן וְכֿוּלָּם <lb n="1"/> שֶׁאָמְרוּ הַטְמֵן אָסוּר
                             לוֹקְחִים בֵּיצִים <lb n="2"/> וְתַֿ<del hand="h2" rend="strike"
-                            >ו</del>רְנָגְֿלִים מִכָּל מָקוֹם <pc rend=":">׃</pc>
+                            >ו</del>רְנָגְֿלִים מִכָּל מָקוֹם<pc rend="colon">׃</pc>
                         </ab>
                         <ab xml:id="S07362.4.1.10.10">‏ <milestone unit="MSMishnah" n="11"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am>א<am
@@ -1887,7 +1910,8 @@
                             מוֹצִיא הֲרֵי הֵן שֶׁלְבַֿעַל הַבַּיִתֿ הַכּוֹבֵֿ<c rend="long">ס</c>
                             <lb n="5"/> נוֹטֵל שְׁלשָׁה חוּטִין וְהֵן שֶׁלּוֹ יָתֵֿר מִיכֵּן <lb
                                 n="6"/> שֶׁלְּבַֿעַל הַבַּיִתֿ וְאִם הָיָה שָׁחוֹר עַל גַּבֵּי <lb
-                                n="7"/> לָבָֿן נוֹטֵל אֶתֿ הַכֹּל וְהֵן שֶׁלּוֹ <pc rend=":">׃</pc>
+                                n="7"/> לָבָֿן נוֹטֵל אֶתֿ הַכֹּל וְהֵן שֶׁלּוֹ<pc rend="colon"
+                                >׃</pc>
                             <milestone unit="MSMishnah" n="12"/>
                             <label rend="align(center) pad(rl)">י<am rend="overmark">׳</am>ב<am
                                     rend="overmark">׳</am></label> הַחַיָּיט <lb n="8"/>
@@ -1898,7 +1922,7 @@
                             אֵלּוּ שֶׁלְּבַֿעַל <lb n="12"/> הַבַּיִתֿ אִם הָיָה עוֹשֶׂה אֵצֶל
                             בַּעַל הַבַּיִתֿ <lb n="13"/> אַף הַנְּסוֹרֶתֿ שֶׁלְּבַֿעַל הַבַּיִתֿ
                                 <space extent="5" unit="chars"/><lb n="14"/>
-                            <pc rend=":">׃</pc></ab>
+                            <pc rend="colon">׃</pc></ab>
                         <trailer rend="align(center) pad(rl)">
                             <choice><abbr>פר<am rend="overmark">׳</am>
                                 </abbr><expan>פרק</expan></choice> י<am rend="overmark">׳</am>
