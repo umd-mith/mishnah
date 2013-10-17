@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-<!--<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<?xml-stylesheet type="text/css" href="http://rawgithub.com/umd-mith/mishnah/gh-pages/css/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>An Electronic Edition of the Maimonides Autograph MS of the Commentary to the
-                    Mishnah, Tractate Neziqin</title>
+                <title>An Electronic Edition of the Mishnah from Maimonides Autograph MS of the
+                    Commentary to the Mishnah</title>
                 <editor>
                     <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                 </editor>
                 <respStmt>
                     <resp>transcriber</resp>
-                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                    <persName corresp="ref.xml#SS">Shlomo Strauss</persName>
+                    <persName corresp="ref.xml#NE">Nurit Ezer</persName>
                 </respStmt>
                 <respStmt>
                     <resp>markup</resp>
@@ -27,7 +29,7 @@
                 <publisher>Digital Mishnah Project</publisher>
                 <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
                 <address>
-                    <addrLine>B0131 McKeldin Library</addrLine>
+                    <addrLine>0301 Hornbake Library</addrLine>
                     <addrLine>University of Maryland</addrLine>
                     <addrLine>College Park, MD</addrLine>
                 </address>
@@ -45,9 +47,9 @@
                 <note>
                     <p>Published as a sample text for a digital edition of the Mishnah, using
                         Oxygen</p>
-                    <p>Bava Qamma, Metsi'a, Batra. From "Maimonides Autograph" (Bodleian, Pococke
-                        295). Images from Sassoon facsimile edition</p>
-                    <p>Transcribed by Shlomo Straus</p>
+                    <p>From autograph copy of the Commentary of the Mishnah (Bodleian, Pococke
+                        295). Images from <ref corresp="ref.xml#sassoon">Sassoon, <hi>Maimonidis Commentarius in Mischnam</hi>, 1956-1961</ref>.</p>
+                    <p>Transcribed by Shlomo Strauss, w</p>
                     <p>Edited by Hayim Lapin</p>
                 </note>
             </notesStmt>
@@ -103,20 +105,7 @@
                         </handDesc>
                     </physDesc>
                 </msDesc>
-                <biblStruct>
-                    <monogr>
-                        <editor>Sassoon, Solomon D.</editor>
-                        <editor>Edelmann, Rafael</editor>
-                        <title>Maimonidis Commentarius in Mischnam e codicibus Hunt, 117 et Pococke
-                            295 in Bibliotheca Bodleiana Oxoniensi servatis et 72-73 Bibliothecae
-                            Sassooniensis Letchworth</title>
-                        <imprint>
-                            <publisher>Ejnar Munksgaard</publisher>
-                            <pubPlace>Copenhagen</pubPlace>
-                            <biblScope>2, 183-256</biblScope>
-                        </imprint>
-                    </monogr>
-                </biblStruct>
+               
             </sourceDesc>
         </fileDesc>
         <encodingDesc>
@@ -146,16 +135,19 @@
                             ובבושת בנזק כיצד סימא את ענו קטע את ידו<lb n="3"/> שבר את רגלו רואין
                             אותו כאלו הוא עבד נ<seg><del>ן</del><add>מ</add></seg>כר
                                 כמ<damage>ה</damage> היה יפה וכמה הוא יפ<damage>ה</damage><lb n="4"
-                            />בצער <choice><orig>כוָויו</orig><reg>כוויו</reg></choice> בשפוד או
-                            במסמר אפילו על צפרנו מקום שאינו עושה חבור<damage>ה</damage><lb n="5"/>
-                            אומרים כ<damage>מ</damage>ה אדם כיוצא בזה רוצה ליטול להיות מצטער כך
-                            ריפוי הכהו<lb n="6"/> חייב לרפותו עלו בו צמחין אם מחמת המכה חייב ושלא
-                            מחמת המכה פטור<lb n="7"/> חיתה ונסתרה חיתה ונסתרה חייב לרפותו חייתה כל
-                            צרכה אינו חייב <surplus>לר<am rend="overmark">׳</am></surplus><lb n="8"
-                            /> לרפותו שבת רואין אותו כאלו הוא שומר קשואי<damage>ן</damage> שכבר נתנו
-                            לו דמי ידו ודמי<lb n="9"/> רגלו בושת הכל לפי המביש והמתביש המביש את
-                                ה<damage>ע</damage>רום המביש את הסומא<lb n="10"/> והמביש את הישן
-                            חייב וישן שבויש פטור נפל מן הגג והזיק וביי<damage>ש</damage> חייב על<lb
+                            />בצער <choice>
+                                <orig>כוָויו</orig>
+                                <reg>כוויו</reg>
+                            </choice> בשפוד או במסמר אפילו על צפרנו מקום שאינו עושה
+                                חבור<damage>ה</damage><lb n="5"/> אומרים כ<damage>מ</damage>ה אדם
+                            כיוצא בזה רוצה ליטול להיות מצטער כך ריפוי הכהו<lb n="6"/> חייב לרפותו
+                            עלו בו צמחין אם מחמת המכה חייב ושלא מחמת המכה פטור<lb n="7"/> חיתה
+                            ונסתרה חיתה ונסתרה חייב לרפותו חייתה כל צרכה אינו חייב <surplus>לר<am
+                                    rend="overmark">׳</am></surplus><lb n="8"/> לרפותו שבת רואין
+                            אותו כאלו הוא שומר קשואי<damage>ן</damage> שכבר נתנו לו דמי ידו ודמי<lb
+                                n="9"/> רגלו בושת הכל לפי המביש והמתביש המביש את
+                            ה<damage>ע</damage>רום המביש את הסומא<lb n="10"/> והמביש את הישן חייב
+                            וישן שבויש פטור נפל מן הגג והזיק וביי<damage>ש</damage> חייב על<lb
                                 n="11"/> הנזק ופטור על הבושת <choice>
                                 <abbr>שנ<am rend="overdot">׳</am></abbr>
                                 <expan>שנאמר</expan>
@@ -208,10 +200,15 @@
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יוסי הגלילי <lb n="30"/>
-                            <choice><orig>מָנֵה</orig><reg>מנה</reg></choice>
-                            <choice><orig>סטָרו</orig><reg>סטרו</reg></choice> נותן לו מאתים זוז
-                            לאחר ידו נותן לו ארבע מאו<damage>ת ז</damage>וז צרם באז<c rend="long"
-                                >נ</c>ו<lb n="31"/>
+                            <choice>
+                                <orig>מָנֵה</orig>
+                                <reg>מנה</reg>
+                            </choice>
+                            <choice>
+                                <orig>סטָרו</orig>
+                                <reg>סטרו</reg>
+                            </choice> נותן לו מאתים זוז לאחר ידו נותן לו ארבע מאו<damage>ת
+                                ז</damage>וז צרם באז<c rend="long">נ</c>ו<lb n="31"/>
                             <pb xml:id="S00651.2_185" n="2_185"/> תלש בשערו רקק והגיע בו הרוק העביר
                             טלתו ממנו ופרע ראשה שלאשה<lb n="1"/> נותן ארבע מאות זוז הכל לפי כבודו <choice>
                                 <abbr>אמ<am rend="overdot">׳</am></abbr>
@@ -269,7 +266,9 @@
                                 extent="22"/> צמר ועש<damage><unclear extent="2" unit="chars"
                                         /><surplus><unclear>ב</unclear><am rend="overmark"
                                     >׳</am></surplus></damage><lb n="25"/>בגדים משלם כשעת הגזלה גזל
-                            פרה מעוברת וילדה ורחל טעונה <choice><orig>וגזָזָה</orig><reg>וגזזה</reg>
+                            פרה מעוברת וילדה ורחל טעונה <choice>
+                                <orig>וגזָזָה</orig>
+                                <reg>וגזזה</reg>
                             </choice><lb n="26"/> משלם דמי פרה העומדת לילד ודמי רחל טעונה להגזז פרה
                             ועברה אצלו<lb n="27"/> וילדה רחל ונטענה אצלו וגזזה משלם כשעת הגזלה זה
                             הכלל כל הגזלנין <surplus>מש<am rend="overmark">׳</am></surplus><lb
@@ -295,12 +294,15 @@
                             <gap extent="20" reason="Maimonides" unit="chars"/>
                             <lb n="5"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/></ab>
-                        <ab xml:id="S00651.4.1.9.3">נתן לאומנין לתקן וקלקלו חייבין לשלם נתן
-                                    <choice><orig>לֶחָרָש</orig><reg>לחרש</reg></choice> שדה תבה
-                                    <choice><orig>ומִגְדַל</orig><reg>ומגדל</reg></choice> לתקן
-                                וקלקל<lb n="8"/> חייב לשלם הבנאי שקבל עליו את הכותל לסותרו ושבר את
-                            האבנים או שהזיק <lb n="9"/> חייב לשלם היה סותר מצד זה ונפל מצד זה פטור
-                            ואם מחמת המכה חייב<pc type="unitEnd" rend=":">:</pc>
+                        <ab xml:id="S00651.4.1.9.3">נתן לאומנין לתקן וקלקלו חייבין לשלם נתן <choice>
+                                <orig>לֶחָרָש</orig>
+                                <reg>לחרש</reg>
+                            </choice> שדה תבה <choice>
+                                <orig>ומִגְדַל</orig>
+                                <reg>ומגדל</reg>
+                            </choice> לתקן וקלקל<lb n="8"/> חייב לשלם הבנאי שקבל עליו את הכותל
+                            לסותרו ושבר את האבנים או שהזיק <lb n="9"/> חייב לשלם היה סותר מצד זה
+                            ונפל מצד זה פטור ואם מחמת המכה חייב<pc type="unitEnd" rend=":">:</pc>
                             <lb n="10"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                             <gap unit="chars" extent="36" reason="Maimonides"/></ab>
@@ -372,11 +374,12 @@
                             <gap reason="Maimonides" extent="7" unit="lines"/>
                             <pb xml:id="S00651.2_188" n="2_188"/>
                             <gap reason="Maimonides" extent="3" unit="chars"/></ab>
-                        <ab xml:id="S00651.4.1.9.10">האומר לבנו קונם שאי אתה
-                                    <choice><orig>נהנֵה</orig><reg>נהנה</reg></choice> לי אם מת
-                            יירשנו בחייו ובמותו אם מת<lb n="1"/> לא ירשנו ויתן לבניו ולאחיו ואם אינו
-                            רוצה או שאין לו לוה ובעלי החוב באים<lb n="2"/> ונפרעים<pc type="unitEnd"
-                                rend=":">:</pc>
+                        <ab xml:id="S00651.4.1.9.10">האומר לבנו קונם שאי אתה <choice>
+                                <orig>נהנֵה</orig>
+                                <reg>נהנה</reg>
+                            </choice> לי אם מת יירשנו בחייו ובמותו אם מת<lb n="1"/> לא ירשנו ויתן
+                            לבניו ולאחיו ואם אינו רוצה או שאין לו לוה ובעלי החוב באים<lb n="2"/>
+                                ונפרעים<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="42" unit="chars"/>
                             <lb n="3"/>
                             <gap reason="Maimonides" extent="3" unit="lines"/>
@@ -393,21 +396,26 @@
                                 <abbr>וכו<am rend="overdot">׳</am></abbr>
                                 <expan>וכוליה</expan>
                             </choice> היה מעלה את הכסף ואת האשם ומת הכסף ינתן לבניו והאשם ירעה עד<lb
-                                n="9"/> שיסתאב וימכר ויפלו דמיו לנדבה נתן את הכסף לאנשי משמר ומת אין
-                                היורשים<lb n="10"/> יכולין להוציא מידם <choice>
+                                n="9"/>שיסתאב וימכר ויפלו דמיו לנדבה </ab>
+                        <ab xml:id="S00651.4.1.9.12">נתן את הכסף לאנשי משמר ומת אין היורשים<lb
+                                n="10"/> יכולין להוציא מידם <choice>
                                 <abbr>שנ<am rend="overdot">׳</am></abbr>
                                 <expan>שנאמר</expan>
                             </choice> איש אשר יתן לכהן לו יהיה<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="14" unit="chars"/><lb n="11"/>
                             <gap reason="Maimonides" extent="6" unit="lines"/>
-                            <gap reason="Maimonides" extent="13" unit="chars"/>
-                        </ab>
-                        <ab xml:id="S00651.4.1.9.12">נתן את הכסף ליהויריב ואשם לידעיה
-                                    <choice><orig>יָצָא</orig><reg>יצא</reg></choice> אשם
-                                ליהויריב<lb n="18"/> וכסף לידעיה אם קיים האשם יקריבוהו בני ידעיה ואם
-                            לאו יחזור ויביא אשם <lb n="19"/>אחר שהמביא גזלו עד שלא יביא אשמו
-                                    <choice><orig>יָצָא</orig><reg>יצא</reg></choice> אשמו עד שלא
-                            יביא גזלו לא <choice><orig>יָצָא</orig><reg>יצא</reg>
+                            <gap reason="Maimonides" extent="13" unit="chars"/> נתן את הכסף ליהויריב
+                            ואשם לידעיה <choice>
+                                <orig>יָצָא</orig>
+                                <reg>יצא</reg>
+                            </choice> אשם ליהויריב<lb n="18"/> וכסף לידעיה אם קיים האשם יקריבוהו בני
+                            ידעיה ואם לאו יחזור ויביא אשם <lb n="19"/>אחר שהמביא גזלו עד שלא יביא
+                            אשמו <choice>
+                                <orig>יָצָא</orig>
+                                <reg>יצא</reg>
+                            </choice> אשמו עד שלא יביא גזלו לא <choice>
+                                <orig>יָצָא</orig>
+                                <reg>יצא</reg>
                             </choice><lb n="20"/> נתן את הקרן ולא נתן את החומש אין החומש מעכב<pc
                                 type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="11" unit="chars"/>
@@ -474,12 +482,16 @@
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                             <pb xml:id="S00651.2_191" n="2_191"/>
                             <gap reason="Maimonides" extent="4" unit="lines"/></ab>
-                        <ab xml:id="S00651.4.1.10.5">הגוזל שדה מחברו ונטלוה
-                                    <choice><orig>מצִיקין</orig><reg>מציקין</reg></choice> אם מכת
-                            מדינה היא אומר לו הרי שלך<lb n="5"/>לפניך ואם מחמת הגזלן חייב להעמיד לו
-                                    <choice><orig>שדֵה</orig><reg>שדה</reg></choice> שטפה נהר אומר
-                            לו הרי<lb n="6"/> שלך לפ<damage>ני<unclear>ך</unclear></damage><pc
-                                type="unitEnd" rend=":">:</pc>
+                        <ab xml:id="S00651.4.1.10.5">הגוזל שדה מחברו ונטלוה <choice>
+                                <orig>מצִיקין</orig>
+                                <reg>מציקין</reg>
+                            </choice> אם מכת מדינה היא אומר לו הרי שלך<lb n="5"/>לפניך ואם מחמת
+                            הגזלן חייב להעמיד לו <choice>
+                                <orig>שדֵה</orig>
+                                <reg>שדה</reg>
+                            </choice> שטפה נהר אומר לו הרי<lb n="6"/> שלך
+                                    לפ<damage>ני<unclear>ך</unclear></damage><pc type="unitEnd"
+                                rend=":">:</pc>
                             <gap reason="Maimonides" extent="38" unit="chars"/>
                             <lb n="7"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
@@ -508,10 +520,14 @@
                             <gap reason="Maimonides" extent="4" unit="lines"/></ab>
                         <ab xml:id="S00651.4.1.10.9"> אין לוקחין מן הרועים צמר וחלב וגדיים ולא
                             משומרי פירות עצים ופירות<lb n="28"/>אבל לוקחין מן הנשים כלי פשתן בגליל
-                            ועגלים <choice><orig>בשַרון</orig><reg>בשרון</reg></choice> וכולם שאמרו
-                                    <choice><orig>הַטְמֵן</orig><reg>הטמן</reg></choice> אסור<lb
-                                n="29"/> ולוקחין בצים ותרנגלין מכל מקום<pc type="unitEnd" rend=":"
-                                >:</pc>
+                            ועגלים <choice>
+                                <orig>בשַרון</orig>
+                                <reg>בשרון</reg>
+                            </choice> וכולם שאמרו <choice>
+                                <orig>הַטְמֵן</orig>
+                                <reg>הטמן</reg>
+                            </choice> אסור<lb n="29"/> ולוקחין בצים ותרנגלין מכל מקום<pc
+                                type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="29" unit="chars"/>
                             <lb n="30"/>
                             <gap reason="Maimonides" extent="9" unit="chars"/></ab>
@@ -519,12 +535,16 @@
                             הרי של<lb n="31"/>
                             <pb xml:id="S00651.2_192" n="2_192"/> בעל הבית הכובס נוטל שלשה חוטין והן
                             שלו יתר מיכן שלבעל הבית אם היה<lb n="1"/>שחור על גבי לבן נוטל את הכל והן
-                            שלו <choice><orig>החיָט</orig><reg>החיט</reg></choice> ששיר מן החוט כדי
-                                לתפור<c rend="long">ב</c>ו<lb n="2"/>ומטלת שהיא שלש על שלש חייב
-                            להחזיר לבעלים מה <choice><orig>שֶהֵחָרָש</orig><reg>שהחרש</reg></choice>
-                            מוציא במעצד<lb n="3"/> הרי הוא שלו בכשיל הרי שלבעל הבית אם היה עושה אצל
-                            בעל הבית אף<lb n="4"/> הנסורת שלבעל הבית<pc type="unitEnd" rend=":"
-                                >:</pc>
+                            שלו <choice>
+                                <orig>החיָט</orig>
+                                <reg>החיט</reg>
+                            </choice> ששיר מן החוט כדי לתפור<c rend="long">ב</c>ו<lb n="2"/>ומטלת
+                            שהיא שלש על שלש חייב להחזיר לבעלים מה <choice>
+                                <orig>שֶהֵחָרָש</orig>
+                                <reg>שהחרש</reg>
+                            </choice> מוציא במעצד<lb n="3"/> הרי הוא שלו בכשיל הרי שלבעל הבית אם היה
+                            עושה אצל בעל הבית אף<lb n="4"/> הנסורת שלבעל הבית<pc type="unitEnd"
+                                rend=":">:</pc>
                             <gap reason="Maimonides" extent="33" unit="chars"/>
                             <lb n="5"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
@@ -570,10 +590,12 @@
                             <gap reason="Maimonides" extent="39" unit="chars"/></ab>
                         <ab xml:id="S00651.4.2.1.4"> ראה את המציאה<lb n="9"/> ונפל לו עליה ובא אחר
                             והחזיק בה זה שהחזיק בה זכה בה ראה אותם רצים אחר<lb n="10"/>המציאה אחר
-                            צבי שבור ואחר גוזלות שלא
-                                <choice><orig>פִרֵחו</orig><reg>פרחו</reg></choice> ואמר זכת לי שדי
-                            זכת לו<lb n="11"/> היה צבי רץ כדרכו או שהיו הגוזלות מפרחין ואמר זכת לי
-                            שדי לא אמר כלום<pc type="unitEnd" rend=":">:</pc>
+                            צבי שבור ואחר גוזלות שלא <choice>
+                                <orig>פִרֵחו</orig>
+                                <reg>פרחו</reg>
+                            </choice> ואמר זכת לי שדי זכת לו<lb n="11"/> היה צבי רץ כדרכו או שהיו
+                            הגוזלות מפרחין ואמר זכת לי שדי לא אמר כלום<pc type="unitEnd" rend=":"
+                                >:</pc>
                             <gap reason="Maimonides" extent="7" unit="lines"/>
                             <gap reason="Maimonides" extent="11" unit="chars"/>
                         </ab>
@@ -600,27 +622,36 @@
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                         </ab>
                         <ab xml:id="S00651.4.2.1.7"> מצא גטי נשים ושחרורי עבדי<damage>ם <unclear
-                                    extent="1" unit="chars"
-                                    /></damage><choice><orig>יָאתיקֵי</orig><reg>יאתיקי</reg></choice>
-                            מתנה <choice><orig>ושובָרִין</orig><reg>ושוברין</reg></choice> הרי זה לא
-                            יחזיר שא<c rend="long">נ</c>י<lb n="3"/> אומר כתובין היו ונמלך שלא
-                                ליתנן<pc type="unitEnd" rend=":">:</pc>
+                                    extent="1" unit="chars"/></damage><choice>
+                                <orig>יָאתיקֵי</orig>
+                                <reg>יאתיקי</reg>
+                            </choice> מתנה <choice>
+                                <orig>ושובָרִין</orig>
+                                <reg>ושוברין</reg>
+                            </choice> הרי זה לא יחזיר שא<c rend="long">נ</c>י<lb n="3"/> אומר כתובין
+                            היו ונמלך שלא ליתנן<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="28" unit="chars"/>
                             <lb n="4"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                             <gap reason="Maimonides" extent="44" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.1.8"> מצא<lb n="7"/>איגרות שום ואגרות מזון שטרי חליצה
-                            ומיאונין ושטרי <choice><orig>בירוּרִין</orig><reg>בירורין</reg></choice>
-                            וכל מעשה בית דין<lb n="8"/>הרי זה יחזיר מצא
-                                    <choice><orig>בחפִיסָה</orig><reg>בחפיסה</reg></choice> או
-                                    <choice><orig>בגְלוּסְקְמָא</orig><reg>בגלוסקמא</reg></choice>
-                            תכריך שלשטרות ואגודה שלשטרות<lb n="9"/> הרי זה יחזיר כמה היא אגודה
-                            שלשטרות שלשה קשורים זה בזה רבן שמעון בן<lb n="10"/> גמלי<c rend="lig"
-                                >אל</c> אומר אחד לוה משלשה יחזיר ללוה שלשה לוין מאחד יחזיר למלוה
-                                מצא<lb n="11"/> שטר בין שטרותיו ואינו ידוע מה טיבו יהא מונח עד שיבוא
-                            אליהו אם יש עמהם<lb n="12"/>סימפון יעשה מה
-                                    <choice><orig>שֶבַסִימְפּוֹן</orig><reg>שבסימפון</reg>
+                            ומיאונין ושטרי <choice>
+                                <orig>בירוּרִין</orig>
+                                <reg>בירורין</reg>
+                            </choice> וכל מעשה בית דין<lb n="8"/>הרי זה יחזיר מצא <choice>
+                                <orig>בחפִיסָה</orig>
+                                <reg>בחפיסה</reg>
+                            </choice> או <choice>
+                                <orig>בגְלוּסְקְמָא</orig>
+                                <reg>בגלוסקמא</reg>
+                            </choice> תכריך שלשטרות ואגודה שלשטרות<lb n="9"/> הרי זה יחזיר כמה היא
+                            אגודה שלשטרות שלשה קשורים זה בזה רבן שמעון בן<lb n="10"/> גמלי<c
+                                rend="lig">אל</c> אומר אחד לוה משלשה יחזיר ללוה שלשה לוין מאחד יחזיר
+                            למלוה מצא<lb n="11"/> שטר בין שטרותיו ואינו ידוע מה טיבו יהא מונח עד
+                            שיבוא אליהו אם יש עמהם<lb n="12"/>סימפון יעשה מה <choice>
+                                <orig>שֶבַסִימְפּוֹן</orig>
+                                <reg>שבסימפון</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="32" unit="chars"/>
                             <lb n="13"/>
@@ -648,7 +679,9 @@
                             </choice> שמעון בן <c rend="lig">אל</c>עזר <choice>
                                 <abbr>אומ<am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
-                            </choice>כל כלי <choice><orig>אַנְפֻורְיָה</orig><reg>אנפוריה</reg>
+                            </choice>כל כלי <choice>
+                                <orig>אַנְפֻורְיָה</orig>
+                                <reg>אנפוריה</reg>
                             </choice><lb n="5"/> אינו חייב להכריז<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="8" unit="lines"/>
                         </ab>
@@ -660,13 +693,14 @@
                             <gap reason="Maimonides" extent="3" unit="lines"/>
                             <gap reason="Maimonides" extent="21" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.2.3">מצא לאחר
-                                    <choice><orig>הנָפָה</orig><reg>הנפה</reg></choice> או לאחר הגדר
-                                גוזלות<lb n="20"/> מקושרים או בשבילין שבשדות הרי זה לא יגע בהן מצא
-                            כלי באשפה אם<lb n="21"/> מכוסה לא יגע בו ואם מגולה נוטל ומכריז מצא בגל
-                            או בכותל ישן הרי אלו<lb n="22"/> שלו מצא בכותל חדש מחציו ולחוץ שלו מחציו
-                            ולפנים שלבעל הבית אם היה<lb n="23"/> משכירו לאחרים אפילו מצא בתוך הבית
-                            הרי אלו שלו<pc type="unitEnd" rend=":">:</pc>
+                        <ab xml:id="S00651.4.2.2.3">מצא לאחר <choice>
+                                <orig>הנָפָה</orig>
+                                <reg>הנפה</reg>
+                            </choice> או לאחר הגדר גוזלות<lb n="20"/> מקושרים או בשבילין שבשדות הרי
+                            זה לא יגע בהן מצא כלי באשפה אם<lb n="21"/> מכוסה לא יגע בו ואם מגולה
+                            נוטל ומכריז מצא בגל או בכותל ישן הרי אלו<lb n="22"/> שלו מצא בכותל חדש
+                            מחציו ולחוץ שלו מחציו ולפנים שלבעל הבית אם היה<lb n="23"/> משכירו לאחרים
+                            אפילו מצא בתוך הבית הרי אלו שלו<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="14" unit="chars"/>
                             <lb n="24"/>
                             <gap reason="Maimonides" extent="7" unit="lines"/>
@@ -732,11 +766,12 @@
                             <pb xml:id="S00651.2_197" n="2_197"/> קורא בהן אחת לשלשים יום ואם אינו
                             יודע לקרות גוללן אבל לא ילמד ב<c rend="long">ה</c>ן<lb n="1"/> כתחלה ולא
                             יקרא אחר עמו מצא כסות מנערה אחת לשלשים יום שוטחה לצרכה<lb n="2"/>אבל לא
-                            לכבודו כלי כסף וכלי נחשת ישתמש בהן צרכן אבל לא
-                                    <choice><orig>לשַחֲקָן</orig><reg>לשחקן</reg></choice> כלי
-                                זהב<lb n="3"/> וכלי זכוכית לא יגע בהן עד שיבוא אליהו מצא שק או קופה
-                            אם אין דרכו ליטול<lb n="4"/> הרי זה לא יטול<pc type="unitEnd" rend=":"
-                                >:</pc>
+                            לכבודו כלי כסף וכלי נחשת ישתמש בהן צרכן אבל לא <choice>
+                                <orig>לשַחֲקָן</orig>
+                                <reg>לשחקן</reg>
+                            </choice> כלי זהב<lb n="3"/> וכלי זכוכית לא יגע בהן עד שיבוא אליהו מצא
+                            שק או קופה אם אין דרכו ליטול<lb n="4"/> הרי זה לא יטול<pc type="unitEnd"
+                                rend=":">:</pc>
                             <gap reason="Maimonides" extent="37" unit="chars"/>
                             <lb n="5"/>
                             <gap reason="Maimonides" extent="4" unit="lines"/>
@@ -804,13 +839,14 @@
                             rendition="ref.xml#ornamented">פרק שלישי</head>
                         <lb n="16"/>
                         <ab xml:id="S00651.4.2.3.1"> המפקיד אצל חברו <space extent="22" unit="chars"
-                            /> בהמה או כלים ונגנבו או<lb n="17"/>שאבדו
-                                    <choice><orig>שִלֵם</orig><reg>שלם</reg></choice> ולא רצה להשבע
-                            שהרי אמרו שומר חנם נשבע ויוצא נמצא הגנב<lb n="18"/> משלם תשלומי כפל טבח
-                            ומכר משלם תשלומי ארבעה וחמשה למיהוא משלם<lb n="19"/> למי שהוא פקדון אצלו
-                            נשבע ולא רצה לשלם נמצא הגנב משלם תשלומי כפל<lb n="20"/> טבח ומכר משלם
-                            תשלומי ארבעה וחמשה למיהוא משלם לבעל הפקדון<pc type="unitEnd" rend=":"
-                                >:</pc><lb n="21"/>
+                            /> בהמה או כלים ונגנבו או<lb n="17"/>שאבדו <choice>
+                                <orig>שִלֵם</orig>
+                                <reg>שלם</reg>
+                            </choice> ולא רצה להשבע שהרי אמרו שומר חנם נשבע ויוצא נמצא הגנב<lb
+                                n="18"/> משלם תשלומי כפל טבח ומכר משלם תשלומי ארבעה וחמשה למיהוא
+                                משלם<lb n="19"/> למי שהוא פקדון אצלו נשבע ולא רצה לשלם נמצא הגנב
+                            משלם תשלומי כפל<lb n="20"/> טבח ומכר משלם תשלומי ארבעה וחמשה למיהוא משלם
+                            לבעל הפקדון<pc type="unitEnd" rend=":">:</pc><lb n="21"/>
                             <gap reason="Maimonides" extent="3" unit="lines"/>
                             <gap reason="Maimonides" extent="4" unit="chars"/>
                         </ab>
@@ -895,8 +931,10 @@
                                 <expan>רבי</expan>
                             </choice> יוחנן בן נורי וכי מה אכפת להם והעכברים אוכלין בין מהרבה<lb
                                 n="2"/> בין <damage>מ</damage>
-                            <choice><orig>קִמְעָה</orig><reg>קמעה</reg></choice> אינו יוציא לו
-                            חסרונות אלא לכור אחד בלבד<choice>
+                            <choice>
+                                <orig>קִמְעָה</orig>
+                                <reg>קמעה</reg>
+                            </choice> אינו יוציא לו חסרונות אלא לכור אחד בלבד<choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה <choice>
@@ -936,11 +974,12 @@
                             <pb xml:id="S00651.2_201" n="2_201"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.3.10">המפקיד מעות אצל חברו
-                                    <choice><orig>צרָרַן</orig><reg>צררן</reg></choice> והפשילן
-                            לאחריו מסרן לבנו ולבתו הקטנים<lb n="2"/> ונעל בפניהם שלא כראוי חייב שלא
-                            שמר כדרך השומרים ואם שמר כדרך השומרים<lb n="3"/> פטור<pc type="unitEnd"
-                                rend=":">:</pc>
+                        <ab xml:id="S00651.4.2.3.10">המפקיד מעות אצל חברו <choice>
+                                <orig>צרָרַן</orig>
+                                <reg>צררן</reg>
+                            </choice> והפשילן לאחריו מסרן לבנו ולבתו הקטנים<lb n="2"/> ונעל בפניהם
+                            שלא כראוי חייב שלא שמר כדרך השומרים ואם שמר כדרך השומרים<lb n="3"/>
+                                פטור<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="43" unit="chars"/>
                             <lb n="4"/>
                             <gap reason="Maimonides" extent="11" unit="lines"/>
@@ -1053,21 +1092,25 @@
                                 <abbr>אומ<am rend="overdot">׳</am></abbr>
                                 <expan>אומר</expan>
                             </choice> אין לתגר הוניה מי שהוטל עליו ידו על העליונה שהוא<lb n="1"
-                            />אומר לו תן לי את מעותי או תן לי מה
-                                    <choice><orig>שהונֵתָנִי</orig><reg>שהונתני</reg>
+                            />אומר לו תן לי את מעותי או תן לי מה <choice>
+                                <orig>שהונֵתָנִי</orig>
+                                <reg>שהונתני</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="17" unit="chars"/>
                             <lb n="2"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                             <gap reason="Maimonides" extent="8" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.4.5">כמה תהא סלע חסרה ולא יהא בה
-                                    <choice><orig>אוניָיה</orig><reg>אונייה</reg>
+                        <ab xml:id="S00651.4.2.4.5">כמה תהא סלע חסרה ולא יהא בה <choice>
+                                <orig>אוניָיה</orig>
+                                <reg>אונייה</reg>
                             </choice><choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice> מאיר אומ<c rend="long">ר</c><lb n="5"/>ארבעה אסרות
-                                    <choice><orig>מאִסָר</orig><reg>מאסר</reg></choice> לדינר<choice>
+                            </choice> מאיר אומ<c rend="long">ר</c><lb n="5"/>ארבעה אסרות <choice>
+                                <orig>מאִסָר</orig>
+                                <reg>מאסר</reg>
+                            </choice> לדינר<choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה <choice>
@@ -1099,15 +1142,18 @@
                         </ab>
                         <ab xml:id="S00651.4.2.4.7"> האונאה ארבעה כסף והטענה שתי כסף וההודייה שוה
                                 פרוטה<lb n="21"/> חמש פרוטות הן ההודייה בשוה פרוטה והאשה מתקדשת בשוה
-                                פרוט<c rend="long">ה</c><lb n="22"/>והנהנה בשוה פרוטה מן ההקדש מעל
-                                    <choice><orig>והמוצֵא</orig><reg>והמוצא</reg></choice> שוה פרוטה
-                            חייב להכריז<lb n="23"/> והגוזל את חברו שוה פרוטה ונשבע לו יוליכנו אחריו
-                            אפילו למדי<pc type="unitEnd" rend=":">:</pc><lb n="24"/>
+                                פרוט<c rend="long">ה</c><lb n="22"/>והנהנה בשוה פרוטה מן ההקדש מעל <choice>
+                                <orig>והמוצֵא</orig>
+                                <reg>והמוצא</reg>
+                            </choice> שוה פרוטה חייב להכריז<lb n="23"/> והגוזל את חברו שוה פרוטה
+                            ונשבע לו יוליכנו אחריו אפילו למדי<pc type="unitEnd" rend=":">:</pc><lb
+                                n="24"/>
                             <gap reason="Maimonides" extent="4" unit="lines"/>
                             <gap reason="Maimonides" extent="32" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.4.8">חמשה
-                                    <choice><orig>חַמַשין</orig><reg>חמשין</reg>
+                        <ab xml:id="S00651.4.2.4.8">חמשה <choice>
+                                <orig>חַמַשין</orig>
+                                <reg>חמשין</reg>
                             </choice><note>So pointed by transcriber. But based on the image used
                                 for transcription, perhaps חָמֳשין</note> הן הא<damage><unclear
                                     extent="3" unit="chars"/></damage><lb n="29"/> תרומה ותרומת מעשר
@@ -1157,12 +1203,16 @@
                             <gap reason="Maimonides" extent="9" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.4.11"> אין מערבין פירות בפירות אפילו חדשים בחדשים
-                            ואין צריך<lb n="28"/>לומר חדשים בישנים באמת ביין התירו לערב קשה
-                                    <choice><orig>בַרַךְ</orig><reg>ברך</reg></choice> מפני שהוא
-                                משביחו<lb n="29"/>אין מערבין
-                                    <choice><orig>שמָרֵי</orig><reg>שמרי</reg></choice> יין ביין אבל
-                            נותן לו את <choice><orig>שמָרָיו</orig><reg>שמריו</reg></choice>
-                                    מי<damage><unclear extent="2" unit="chars"/></damage>תערב מים
+                            ואין צריך<lb n="28"/>לומר חדשים בישנים באמת ביין התירו לערב קשה <choice>
+                                <orig>בַרַךְ</orig>
+                                <reg>ברך</reg>
+                            </choice> מפני שהוא משביחו<lb n="29"/>אין מערבין <choice>
+                                <orig>שמָרֵי</orig>
+                                <reg>שמרי</reg>
+                            </choice> יין ביין אבל נותן לו את <choice>
+                                <orig>שמָרָיו</orig>
+                                <reg>שמריו</reg>
+                            </choice> מי<damage><unclear extent="2" unit="chars"/></damage>תערב מים
                                 ביינו<lb n="30"/> לא ימכרנו בחנות אלא אם כן הודיע ולא לתגר אף על
                                 פ<damage>י ש</damage>הוא מודיעו שאינו<lb n="31"/>
                             <pb xml:id="S00651.2_206" n="2_206"/> אלא לרמות בו את
@@ -1173,9 +1223,10 @@
                             <gap reason="Maimonides" extent="44" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.4.12"> התגר<lb n="2"/>נוטל מחמשה גרנות ונותן לתוך
-                            מגורה אחת מחמש גתות ונותן לתוך
-                                            <choice><orig>פִטַ<damage><unclear>ס</unclear></damage></orig><reg>פטס</reg></choice><lb
-                                n="3"/> אחד ובלבד שלא יתכוון לערב <choice>
+                            מגורה אחת מחמש גתות ונותן לתוך <choice>
+                                <orig>פִטַ<damage><unclear>ס</unclear></damage></orig>
+                                <reg>פטס</reg>
+                            </choice><lb n="3"/> אחד ובלבד שלא יתכוון לערב <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה אומר לא יחלק החנוני קליות ואגוזים<lb n="4"/> לתינוקות
@@ -1212,11 +1263,12 @@
                             <gap reason="Maimonides" extent="31" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.5.2"> המלוה את חברו לא ידו<c rend="long">ר</c><lb
-                                n="29"/>בחצרו חנם ולא ישכור הימנו בפחות מפני שהיא רבית
-                                    <choice><orig>מַרְבִין</orig><reg>מרבין</reg></choice> על השכר
-                                    וא<damage>י<unclear>ן</unclear></damage><lb n="30"/> מרבין על
-                            המכר כיצד השכיר לו את החצר ואמר לו אם מעכשיו אתה נו<c rend="long"
-                                >ת</c>ן<lb n="31"/>
+                                n="29"/>בחצרו חנם ולא ישכור הימנו בפחות מפני שהיא רבית <choice>
+                                <orig>מַרְבִין</orig>
+                                <reg>מרבין</reg>
+                            </choice> על השכר וא<damage>י<unclear>ן</unclear></damage><lb n="30"/>
+                            מרבין על המכר כיצד השכיר לו את החצר ואמר לו אם מעכשיו אתה נו<c
+                                rend="long">ת</c>ן<lb n="31"/>
                             <pb xml:id="S00651.2_207" n="2_207"/> לי הרי היא לך בעשר סלעים לשנה ואם
                             משל ח<damage>ד</damage>ש בח<damage>דש מ</damage>סלע בחודש מותר<lb n="1"
                             /> מכר לו את השדה ואמר לו אם מעכשיו אתה נותן לי הרי היא לך באלף זוז<lb
@@ -1230,8 +1282,10 @@
                         <ab xml:id="S00651.4.2.5.3"> מכר לו את השדה ונתן<lb n="6"/> לו מקצת דמים
                             ואמר לו אמתי שתרצה הבא מעות וטול את שלך אסור<lb n="7"/> הלוהו על שדהו
                             ואמר לו אם אין אתה נותן לי מיכאן ועד שלש שנים הרי היא<lb n="8"/>שלי הרי
-                            היא שלו כך היה <choice><orig>בֵיתוֹס</orig><reg>ביתוס</reg></choice> בן
-                            זונין עושה על פי חכמים<pc type="unitEnd" rend=":">:</pc>
+                            היא שלו כך היה <choice>
+                                <orig>בֵיתוֹס</orig>
+                                <reg>ביתוס</reg>
+                            </choice> בן זונין עושה על פי חכמים<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="7" unit="chars"/>
                             <lb n="9"/>
                             <gap reason="Maimonides" extent="4" unit="lines"/>
@@ -1240,14 +1294,19 @@
                         <ab xml:id="S00651.4.2.5.4"> אין מושיבין את החנוני למחצית<lb n="14"/> שכר לא
                             יתן לו מעות ליקח בהן פירות למחצית שכר אלא אם כן נתן שכ<c rend="long"
                                 >ר</c>ו<lb n="15"/>
-                            <choice><orig>כַפּוֹעֵל</orig><reg>כפועל</reg></choice>
-                            <seg><del>בטל</del></seg> אין מושיבין תרנגלין למחצה ואין שמין עגלים
-                                    <choice><orig>וסיָיחִים</orig><reg>וסייחים</reg></choice> למחצ<c
-                                rend="long">ה</c><lb n="16"/> אלא אם כן נתן לו שכר עמלו ומזונו אבל
-                            מקבלים עגלים וסייחים למחצה<lb n="17"/>ומגדלין אותן עד שיהוא
-                                    <choice><orig>שְלַשִים</orig><reg>שלשים</reg></choice> וחמור עד
-                            שתהא טו<seg><del>?</del><add>ע</add></seg>נת<pc type="unitEnd" rend=":"
-                                >:</pc>
+                            <choice>
+                                <orig>כַפּוֹעֵל</orig>
+                                <reg>כפועל</reg>
+                            </choice>
+                            <seg><del>בטל</del></seg> אין מושיבין תרנגלין למחצה ואין שמין עגלים <choice>
+                                <orig>וסיָיחִים</orig>
+                                <reg>וסייחים</reg>
+                            </choice> למחצ<c rend="long">ה</c><lb n="16"/> אלא אם כן נתן לו שכר עמלו
+                            ומזונו אבל מקבלים עגלים וסייחים למחצה<lb n="17"/>ומגדלין אותן עד שיהוא <choice>
+                                <orig>שְלַשִים</orig>
+                                <reg>שלשים</reg>
+                            </choice> וחמור עד שתהא טו<seg><del>?</del><add>ע</add></seg>נת<pc
+                                type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="9" unit="chars"/>
                             <lb n="18"/>
                             <gap reason="Maimonides" extent="12" unit="lines"/>
@@ -1298,27 +1357,29 @@
                             <choice>
                                 <abbr>א<am rend="overdot">׳</am>ע<am rend="overdot">׳</am>פ<am
                                         rend="overdot">׳</am></abbr>
-                            </choice> שלא פסק עמו יכול הוא לומר<lb n="19"/> לו תן לי כזה או תן לי את
-                                מעותי<pc type="unitEnd" rend=":">:</pc>
+                            </choice> שלא פסק עמו יכול הוא לומר <lb n="19"/> לו תן לי כזה או תן לי
+                            את מעותי<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="23" unit="chars"/>
                             <lb n="20"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                         </ab>
                         <ab xml:id="S00651.4.2.5.8"> מלוה אדם את אריסיו חטים בחטים לזרע אבל לא לאכל
-                            שהיה רבן גמליאל<lb n="22"/>מלוה את
-                                    <choice><orig>ארִיסָיו</orig><reg>אריסיו</reg></choice> חטים
-                            ביוקר והוזלו או בזול והוקרו ונוטל מהן כשע<c rend="long">ר</c><lb n="23"
-                            /> הזול לא שהלכה כן אלא שרצה להחמיר על עצמו<pc type="unitEnd" rend=":"
-                                >:</pc>
+                            שהיה רבן גמליאל<lb n="22"/>מלוה את <choice>
+                                <orig>ארִיסָיו</orig>
+                                <reg>אריסיו</reg>
+                            </choice> חטים ביוקר והוזלו או בזול והוקרו ונוטל מהן כשע<c rend="long"
+                                >ר</c><lb n="23"/> הזול לא שהלכה כן אלא שרצה להחמיר על עצמו<pc
+                                type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="16" unit="chars"/>
                             <lb n="24"/>
                             <gap reason="Maimonides" extent="5" unit="lines"/>
                             <gap reason="Maimonides" extent="41" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.5.9"> ל<damage>א</damage><lb n="30"/>יאמר אדם לחברו
-                                    <choice><orig>הלוֵנִי</orig><reg>הלוני</reg></choice> כור חטים
-                            ואני נותן לך לגורן אלא אומר לו עד שיב<damage><unclear extent="1"
-                                    unit="chars"/></damage>
+                        <ab xml:id="S00651.4.2.5.9"> ל<damage>א</damage><lb n="30"/>יאמר אדם לחברו <choice>
+                                <orig>הלוֵנִי</orig>
+                                <reg>הלוני</reg>
+                            </choice> כור חטים ואני נותן לך לגורן אלא אומר לו עד שיב<damage><unclear
+                                    extent="1" unit="chars"/></damage>
                             <lb n="31"/>
                             <pb xml:id="S00651.2_209" n="2_209"/> בני או עד שאמצא את המפתח והלל אוסר
                                 <damage>וכן היה הלל</damage> אומר לא תלוה אשה<lb n="1"/> ככר לחברתה
@@ -1364,12 +1425,18 @@
                         <lb n="21"/>
                         <ab xml:id="S00651.4.2.6.1"> השוכר את האומנין <space extent="20"
                                 unit="chars"/> והטעו זה את זה אין<lb n="22"/>להם זה על זה אלא תרעומת
-                            שכר את
-                                    <choice><orig>החמָ</orig><seg><del>ור</del><add>ר</add></seg><reg>החמר</reg></choice>
-                            ואת הקדר <choice><orig>פִרְיָאפְרִין</orig><reg>פריאפרין</reg></choice>
-                                חלילין<lb n="23"/> לכלה או למת פועלין לעלות פשתנו מן המשרה וכל דבר
-                            שהוא אבד וחז<c rend="long">ר</c>ו<lb n="24"/>בהן מקום שאין אדם שוכר
-                            עליהן או <choice><orig>מַטְעַן</orig><reg>מטען</reg>
+                            שכר את <choice>
+                                <orig>החמָ</orig>
+                                <seg><del>ור</del><add>ר</add></seg>
+                                <reg>החמר</reg>
+                            </choice> ואת הקדר <choice>
+                                <orig>פִרְיָאפְרִין</orig>
+                                <reg>פריאפרין</reg>
+                            </choice> חלילין<lb n="23"/> לכלה או למת פועלין לעלות פשתנו מן המשרה וכל
+                            דבר שהוא אבד וחז<c rend="long">ר</c>ו<lb n="24"/>בהן מקום שאין אדם שוכר
+                            עליהן או <choice>
+                                <orig>מַטְעַן</orig>
+                                <reg>מטען</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="22" unit="chars"/>
                             <lb n="25"/>
@@ -1409,7 +1476,7 @@
                                 left margin, with an insertion mark here.</note>
                         </ab>
                         <ab xml:id="S00651.4.2.6.5"> השוכר את החמור להביא חטים<lb n="4"/> והביא
-                            שעורים תבואה והביא <seg><del>קטנית</del><add>תבן ח</add></seg>ייב שהנפח
+                            שעורים תבואה והביא <seg><del>קטנית</del><add>תבן ח</add></seg> ייב שהנפח
                             קשה כמשאוי להביא לתך חטים<lb n="5"/> והביא לתך שעורים פטור ואם הוסיף על
                             משאו חייב וכמה יוסיף על משאו ויהא<lb n="6"/> חייב סמכוס אומר משום <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
@@ -1449,8 +1516,10 @@
                             <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice>אליעזר <choice><orig>תמֵיהָ</orig><reg>תמיה</reg></choice> אני
-                            אם יכולין זה וזה להשבע<pc type="unitEnd" rend=":">:</pc>
+                            </choice>אליעזר <choice>
+                                <orig>תמֵיהָ</orig>
+                                <reg>תמיה</reg>
+                            </choice> אני אם יכולין זה וזה להשבע<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="13" unit="chars"/>
                             <lb n="30"/>
                             <gap reason="Maimonides" extent="3" unit="lines"/>
@@ -1465,10 +1534,14 @@
                         <ab xml:id="S00651.4.2.7.1"> השוכר א<c rend="long">ת</c>
                             <space extent="25" unit="chars"/> הפועלים ואמר להם להשכים<lb n="7"/>
                             ולהעריב מקום שנהגו שלא להשכים ושלא להעריב אינו יכול לכופן מקו<c
-                                rend="long">ם</c><lb n="8"/>שנהגו לזון יזון
-                                    <choice><orig>לְסַפֵק</orig><reg>לספק</reg></choice>
-                            <choice><orig>במתִיקה</orig><reg>במתיקה</reg></choice> יספק הכל כמנהג
-                            המדינה מעשה<choice>
+                                rend="long">ם</c><lb n="8"/>שנהגו לזון יזון <choice>
+                                <orig>לְסַפֵק</orig>
+                                <reg>לספק</reg>
+                            </choice>
+                            <choice>
+                                <orig>במתִיקה</orig>
+                                <reg>במתיקה</reg>
+                            </choice> יספק הכל כמנהג המדינה מעשה<choice>
                                 <abbr>בר<am rend="overdot">׳</am></abbr>
                                 <expan>ברבי</expan>
                             </choice> יוחנן<lb n="9"/> בן מתיה שאמר לבנו צא ושכור לנו פועלים ופסק
@@ -1568,35 +1641,43 @@
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> מאי<damage>ר מרוח אחת אינן אונס משתי רוחות אונס</damage>
-                            הלסטין ה<c rend="long">ר</c>י<lb n="1"/>זה אונס הזאב והארי והדוב והנמר
-                                    <choice><orig>והברדלֵס</orig><reg>והברדלס</reg></choice>
-                                והנ<damage>חש הרי אלו א</damage>נסים אמתי<lb n="2"/> בזמן שבאו
+                            הלסטין ה<c rend="long">ר</c>י<lb n="1"/>זה אונס הזאב והארי והדוב והנמר <choice>
+                                <orig>והברדלֵס</orig>
+                                <reg>והברדלס</reg>
+                            </choice> והנ<damage>חש הרי אלו א</damage>נסים אמתי<lb n="2"/> בזמן שבאו
                             מאליהן אבל אם הוליכה למקום גדודי חייה ולסטים אין א<c rend="long"
                                 >ל</c>ו<lb n="3"/> אנסין<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="43" unit="chars"/>
                             <lb n="4"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.7.10">מתה כדרכה הרי זה
-                                    <choice><orig>אונֵס</orig><reg>אונס</reg></choice>
-                            <choice><orig>סִגְפָה</orig><reg>סגפה</reg></choice> ומתה אינו אונס עלה
-                            לראשי צו<c rend="long">ק</c>ין<lb n="7"/>ונפלה הרי זה אונס העלה לראשי
-                            צוקין ונפלה אינו אונס
-                                <choice><orig>מַתְנֵה</orig><reg>מתנה</reg></choice> שומר חנם<lb
-                                n="8"/> להיות פטור משבועה והשואל להיות פטור מלשלם ונושא שכר והשוכ<c
-                                rend="long">ר</c><lb n="9"/> להיות פטורים משבועה ומלשלם<pc
-                                type="unitEnd" rend=":">:</pc>
+                        <ab xml:id="S00651.4.2.7.10">מתה כדרכה הרי זה <choice>
+                                <orig>אונֵס</orig>
+                                <reg>אונס</reg>
+                            </choice>
+                            <choice>
+                                <orig>סִגְפָה</orig>
+                                <reg>סגפה</reg>
+                            </choice> ומתה אינו אונס עלה לראשי צו<c rend="long">ק</c>ין<lb n="7"
+                            />ונפלה הרי זה אונס העלה לראשי צוקין ונפלה אינו אונס <choice>
+                                <orig>מַתְנֵה</orig>
+                                <reg>מתנה</reg>
+                            </choice> שומר חנם<lb n="8"/> להיות פטור משבועה והשואל להיות פטור מלשלם
+                            ונושא שכר והשוכ<c rend="long">ר</c><lb n="9"/> להיות פטורים משבועה
+                                ומלשלם<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="33" unit="chars"/>
                             <lb n="10"/>
                             <gap reason="Maimonides" extent="5" unit="lines"/>
                             <gap reason="Maimonides" extent="21" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.7.11">כל
-                                    <choice><orig>המַתְנֵה</orig><reg>המתנה</reg>
+                        <ab xml:id="S00651.4.2.7.11">כל <choice>
+                                <orig>המַתְנֵה</orig>
+                                <reg>המתנה</reg>
                             </choice><lb n="16"/> על הכתוב בתורה תנאו בטל וכל תנאי שהוא מעשה מתחלתו
-                            תנאו בטל וכל<lb n="17"/>שאפשר לו לקיימו בסופו
-                                    <choice><orig>והתְנַה</orig><reg>והתנה</reg></choice> עליו
-                            מתחלתו תנאו קיים<pc type="unitEnd" rend=":">:</pc>
+                            תנאו בטל וכל<lb n="17"/>שאפשר לו לקיימו בסופו <choice>
+                                <orig>והתְנַה</orig>
+                                <reg>והתנה</reg>
+                            </choice> עליו מתחלתו תנאו קיים<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="9" unit="chars"/>
                             <lb n="18"/>
                             <gap reason="Maimonides" extent="8" unit="lines"/></ab>
@@ -1729,65 +1810,85 @@
                                 extent="24" unit="chars"/> מקום שנהגו לקצור<lb n="24"/> יקצור לעקור
                             יעקור לחרוש אחריו יחרוש אחריו הכל כמנהג המדינה כש<c rend="long">ם</c><lb
                                 n="25"/> שחולקין בתבואה כך חולקין בתבן ובקש כשם שחולקין ביין כך
-                            חולקין בזמורו<c rend="long">ת</c><lb n="26"/>ובקנים ושניהם
-                                    <choice><orig>מספְקִין</orig><reg>מספקין</reg></choice> את
-                                הקנים<pc type="unitEnd" rend=":">:</pc>
+                            חולקין בזמורו<c rend="long">ת</c><lb n="26"/>ובקנים ושניהם <choice>
+                                <orig>מספְקִין</orig>
+                                <reg>מספקין</reg>
+                            </choice> את הקנים<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="29" unit="chars"/>
                             <lb n="27"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                             <gap reason="Maimonides" extent="23" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.9.2"> המקבל שדה מחברו והיא בית השלחים או <lb n="29"
-                            />בית האילן יבש המעין ונקצץ האילן אינו
-                                    <choice><orig>מנַכֵּה</orig><reg>מנכה</reg></choice> לו
-                                    <choice><orig>מֵחֲכּוֹרוֹ</orig><reg>מחכורו</reg></choice> אם
-                            אמר לו השכיר לי<lb n="30"/> שדה בית השלהים זה או שדה בית האילן זו יבש
-                            המעין ונקצץ האילן <damage>מְנַכֵּה לו
-                                מֵחַכ<unclear>ו</unclear>ר</damage>ו<pc type="unitEnd" rend=":"
+                            />בית האילן יבש המעין ונקצץ האילן אינו <choice>
+                                <orig>מנַכֵּה</orig>
+                                <reg>מנכה</reg>
+                            </choice> לו <choice>
+                                <orig>מֵחֲכּוֹרוֹ</orig>
+                                <reg>מחכורו</reg>
+                            </choice> אם אמר לו השכיר לי<lb n="30"/> שדה בית השלהים זה או שדה בית
+                            האילן זו יבש המעין ונקצץ האילן <damage>מְנַכֵּה לו
+                                    מֵחַכ<unclear>ו</unclear>ר</damage>ו<pc type="unitEnd" rend=":"
                                 >:</pc>
                             <lb n="31"/>
                             <pb xml:id="S00651.2_218" n="2_218"/>
                             <gap reason="Maimonides" extent="11" unit="lines"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.9.3">המקבל שדה מחבירו משזכה בה
-                                    <choice><orig>הבִירָה</orig><reg>הבירה</reg></choice> שמין אותה
-                            כמה היא ראויה לעשות<lb n="12"/>ונותן לו שכך כותב לו אם
-                                    <choice><orig>אָבִיר</orig><reg>אביר</reg></choice> ולא אעבוד
-                            אשלם <choice><orig>כמיטָבָה</orig><reg>כמיטבה</reg>
+                        <ab xml:id="S00651.4.2.9.3">המקבל שדה מחבירו משזכה בה <choice>
+                                <orig>הבִירָה</orig>
+                                <reg>הבירה</reg>
+                            </choice> שמין אותה כמה היא ראויה לעשות<lb n="12"/>ונותן לו שכך כותב לו
+                            אם <choice>
+                                <orig>אָבִיר</orig>
+                                <reg>אביר</reg>
+                            </choice> ולא אעבוד אשלם <choice>
+                                <orig>כמיטָבָה</orig>
+                                <reg>כמיטבה</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="12" unit="chars"/>
                             <lb n="13"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                             <gap reason="Maimonides" extent="37" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.9.4"> המקבל שדה מחבירו<lb n="15"/>ולא רצה
-                                    <choice><orig>לנַכֵּשׁ</orig><reg>לנכש</reg>
+                        <ab xml:id="S00651.4.2.9.4"> המקבל שדה מחבירו<lb n="15"/>ולא רצה <choice>
+                                <orig>לנַכֵּשׁ</orig>
+                                <reg>לנכש</reg>
                             </choice><choice>
                                 <abbr>אמ<am rend="overdot">׳</am></abbr>
                                 <expan>אמר</expan>
-                            </choice>לו מה <choice><orig>אִיכְּפַֿתֿ</orig><reg>איכפת</reg></choice>
-                            לך הואיל ואני נותן לך את
-                                <choice><orig>חכֿוֹרַךְֿ</orig><reg>חכורך</reg></choice> אין שומעין
-                                לו<lb n="16"/> שהוא אומר לו למחר את יוצא ממנה והיא מעלה לפני
-                                עשבים<pc type="unitEnd" rend=":">:</pc>
+                            </choice>לו מה <choice>
+                                <orig>אִיכְּפַֿתֿ</orig>
+                                <reg>איכפת</reg>
+                            </choice> לך הואיל ואני נותן לך את <choice>
+                                <orig>חכֿוֹרַךְֿ</orig>
+                                <reg>חכורך</reg>
+                            </choice> אין שומעין לו<lb n="16"/> שהוא אומר לו למחר את יוצא ממנה והיא
+                            מעלה לפני עשבים<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="14" unit="chars"/>
                             <lb n="17"/>
                             <gap reason="Maimonides" extent="4" unit="lines"/>
                             <gap reason="Maimonides" extent="8" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.9.5">המקבל שדה מחברו ולא עשת אם יש בה כדי להעמיד
-                                        <choice><orig>כֵּ<c rend="long"
-                                >רִ</c>י</orig><reg>כרי</reg></choice><lb n="22"/> חייב ליטפל בה <choice>
+                        <ab xml:id="S00651.4.2.9.5">המקבל שדה מחברו ולא עשת אם יש בה כדי להעמיד <choice>
+                                <orig>כֵּ<c rend="long">רִ</c>י</orig>
+                                <reg>כרי</reg>
+                            </choice><lb n="22"/> חייב ליטפל בה <choice>
                                 <abbr>אמ<am rend="overdot">׳</am></abbr>
                                 <expan>אמר</expan>
                             </choice>
                             <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice>יהודה מה
-                                    <choice><orig>קִצְ<damage>בָה</damage></orig><reg>קצבה</reg></choice>
-                            <choice><orig>כֵרִי</orig><reg>כרי</reg></choice> אלא אם יש בה כדי
-                                    <choice><orig>נִפְלָה</orig><reg>נפלה</reg>
+                            </choice>יהודה מה <choice>
+                                <orig>קִצְ<damage>בָה</damage></orig>
+                                <reg>קצבה</reg>
+                            </choice>
+                            <choice>
+                                <orig>כֵרִי</orig>
+                                <reg>כרי</reg>
+                            </choice> אלא אם יש בה כדי <choice>
+                                <orig>נִפְלָה</orig>
+                                <reg>נפלה</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="3" unit="chars"/>
                             <lb n="23"/>
@@ -1795,9 +1896,11 @@
                             <gap reason="Maimonides" extent="12" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.2.9.6"> המקבל שדה מחברו ואכלה חגב או נשתדפה אם מכת
-                                מדינה<lb n="27"/>היא
-                                <choice><orig>מנכֵה</orig><reg>מנכה</reg></choice> לו מחכורו ואם
-                            אינה מכת מדינה אינו מנכה לו מח<damage>כ</damage>ורו <choice>
+                                מדינה<lb n="27"/>היא <choice>
+                                <orig>מנכֵה</orig>
+                                <reg>מנכה</reg>
+                            </choice> לו מחכורו ואם אינה מכת מדינה אינו מנכה לו
+                            מח<damage>כ</damage>ורו <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה אומ<c rend="long">ר</c><lb n="28"/> אם קבלה המנו במעות
@@ -1848,21 +1951,23 @@
                         </ab>
                         <ab xml:id="S00651.4.2.9.12"> אחד שכר האדם ואחד שכר הבהמה ואחד שכר הכלים יש
                             בו משום ביומו תתן שכרו<lb n="20"/> ויש בו משום לא תלין פעלת שכיר אתך עד
-                            בוקר אמתי בזמן שתבעו אבל לא תבעו<lb n="21"/>אינו עובר עליו
-                                    <choice><orig>הִמְחָהוּ</orig><reg>המחהו</reg></choice> אצל
-                            החנוני ואצל השלחני אינו עוב<damage>ר ע<unclear>ל</unclear></damage>יו
-                                השכי<c rend="long">ר</c><lb n="22"/> נשבע בזמנו ונוטל עבר זמנו אינו
-                            נשבע ונוטל ואם י<damage><unclear>ש</unclear></damage> עדים שתבעו בזמנו
-                                הרי<lb n="23"/> זה נשבע ונוטל גר תושב יש בו משום ביומו תתן שכרו ואין
-                            בו משום לא תלין פעלת שכיר<lb n="24"/> אתך עד בוקר<pc type="unitEnd"
+                            בוקר אמתי בזמן שתבעו אבל לא תבעו<lb n="21"/>אינו עובר עליו <choice>
+                                <orig>הִמְחָהוּ</orig>
+                                <reg>המחהו</reg>
+                            </choice> אצל החנוני ואצל השלחני אינו עוב<damage>ר
+                                ע<unclear>ל</unclear></damage>יו השכי<c rend="long">ר</c><lb n="22"
+                            /> נשבע בזמנו ונוטל עבר זמנו אינו נשבע ונוטל ואם
+                                    י<damage><unclear>ש</unclear></damage> עדים שתבעו בזמנו הרי<lb
+                                n="23"/> זה נשבע ונוטל גר תושב יש בו משום ביומו תתן שכרו ואין בו
+                            משום לא תלין פעלת שכיר<lb n="24"/> אתך עד בוקר<pc type="unitEnd"
                                 rend=":">:</pc>
                             <gap reason="Maimonides" extent="40" unit="chars"/>
                             <lb n="25"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                             <gap reason="Maimonides" extent="6" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.9.13"> המלוה את חברו לא ימשכננו אלא בבית דין<lb
-                                n="28"/> ולא יכנס לביתו ליטול את משכונו <choice>
+                        <ab xml:id="S00651.4.2.9.13">המלוה את חברו לא ימשכננו אלא בבית דין<lb n="28"
+                            /> ולא יכנס לביתו ליטול את משכונו <choice>
                                 <abbr>שנ<am rend="overdot">׳</am></abbr>
                                 <expan>שנאמר</expan>
                             </choice> בחוץ תעמוד והאיש אשר <choice>
@@ -1871,10 +1976,12 @@
                             </choice> נושה בו <choice>
                                 <abbr>וכו<am rend="overdot">׳</am></abbr>
                                 <expan>וכוליה</expan>
-                            </choice><lb n="29"/>היו לו שני כלים נוטל אחד ומחזיר אחד מחזיר את
-                                    <choice><orig>הכָּר</orig><reg>הכר</reg></choice> בלילה ואת
-                            המחרשה ביו<c rend="long">ם</c><lb n="30"/> ואם מת אינו מחזיר ליורשיו רבן
-                            שמעון בן גמלי<c rend="lig">אל</c> אומר אף לעצמו אינו מחזיר אלא<lb n="31"/>
+                            </choice><lb n="29"/>היו לו שני כלים נוטל אחד ומחזיר אחד מחזיר את <choice>
+                                <orig>הכָּר</orig>
+                                <reg>הכר</reg>
+                            </choice> בלילה ואת המחרשה ביו<c rend="long">ם</c><lb n="30"/> ואם מת
+                            אינו מחזיר ליורשיו רבן שמעון בן גמלי<c rend="lig">אל</c> אומר אף לעצמו
+                            אינו מחזיר אלא<lb n="31"/>
                             <pb xml:id="S00651.2_220" n="2_220"/> עד שלשים יום משלש<damage>ים ולהלן
                                 מו</damage>כרו בבית דין אלמנה בין שהיא עניה בין שהיא<lb n="1"/>
                             עשירה אין ממשכנין אותה <choice>
@@ -1946,10 +2053,11 @@
                         </ab>
                         <ab xml:id="S00651.4.2.10.5"> מי שהיה כתלו סמו<c rend="long">ך</c><lb n="5"
                             /> לגינת חברו ונפל ואמר לו פנה את אבניך אמר לו הגיעוך אין שומעין לו
-                                אם<lb n="6"/>משקבל עליו אמר לו הא לך את
-                                    <choice><orig>יְצָאוֹתֵֿיךָֿ</orig><reg>יצאותיך</reg></choice>
-                            ואני נוטל את שלי אין שומעין<c rend="long">ל</c>ו<pc type="unitEnd"
-                                rend=":">:</pc>
+                                אם<lb n="6"/>משקבל עליו אמר לו הא לך את <choice>
+                                <orig>יְצָאוֹתֵֿיךָֿ</orig>
+                                <reg>יצאותיך</reg>
+                            </choice> ואני נוטל את שלי אין שומעין<c rend="long">ל</c>ו<pc
+                                type="unitEnd" rend=":">:</pc>
                             <lb n="7"/> השוכר את הפועל לעשות עמו בתבן או בקש ואמר לו תן לי את שכרי
                                 אמר<lb n="8"/> לו טול מה שעשית בשכרך אין שומעין לו אם משקבל עליו אמר
                             לו הא לך את<lb n="9"/> שכרך ואני נוטל את שלי אין שומעין לו<pc
@@ -1969,8 +2077,9 @@
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                             <gap reason="Maimonides" extent="44" unit="chars"/>
                         </ab>
-                        <ab xml:id="S00651.4.2.10.6"> שתי<lb n="16"/>גנות זו על גבי זו והירק
-                                    <choice><orig>בִנְתָיִם</orig><reg>בנתים</reg>
+                        <ab xml:id="S00651.4.2.10.6"> שתי<lb n="16"/>גנות זו על גבי זו והירק <choice>
+                                <orig>בִנְתָיִם</orig>
+                                <reg>בנתים</reg>
                             </choice><choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -2000,7 +2109,9 @@
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> מאיר וכי מאחר<lb n="19"/>ששניהם יכולין למחות זה על זה מנין ירק
-                            זה <choice><orig>חיֵיה</orig><reg>חייה</reg>
+                            זה <choice>
+                                <orig>חיֵיה</orig>
+                                <reg>חייה</reg>
                             </choice><choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -2022,21 +2133,37 @@
                     <div3 xml:id="S00651.4.3.1">
                         <ab xml:id="S00651.4.3.1.1">השותפין שרצו לעשות <space extent="22"
                                 unit="chars"/> מחיצה בחצ<c rend="long">ר</c><lb n="25"/>בונין את
-                            הכותל באמצע מקום שנהגו לבנות
-                                <choice><orig>גָבִיל</orig><reg>גביל</reg></choice>
-                            <choice><orig>גַזִית</orig><reg>גזית</reg></choice>
-                            <choice><orig>כְּפָֿסִין</orig><reg>כפסין</reg></choice>
-                            <choice><orig>לבָנִי</orig><reg>לבני</reg></choice>
+                            הכותל באמצע מקום שנהגו לבנות <choice>
+                                <orig>גָבִיל</orig>
+                                <reg>גביל</reg>
+                            </choice>
+                            <choice>
+                                <orig>גַזִית</orig>
+                                <reg>גזית</reg>
+                            </choice>
+                            <choice>
+                                <orig>כְּפָֿסִין</orig>
+                                <reg>כפסין</reg>
+                            </choice>
+                            <choice>
+                                <orig>לבָנִי</orig>
+                                <reg>לבני</reg>
+                            </choice>
                             <c rend="long">ם</c><lb n="26"/> בונים הכל כמנהג המדינה בגביל זה נותן
-                            שלשה טפחים וזה נותן שלשה טפחים<lb n="27"/>בגזית זה נותן
-                                    <choice><orig>טִפְחָיִם</orig><reg>טפחים</reg></choice> ומחצה
-                            וזה נותן טפחים ומחצה
-                                <choice><orig>בִכְפֿוּסִין</orig><reg>בכפוסין</reg></choice> זה נותן
-                                    <choice><orig>טִפְחָיִם</orig><reg>טפחים</reg>
+                            שלשה טפחים וזה נותן שלשה טפחים<lb n="27"/>בגזית זה נותן <choice>
+                                <orig>טִפְחָיִם</orig>
+                                <reg>טפחים</reg>
+                            </choice> ומחצה וזה נותן טפחים ומחצה <choice>
+                                <orig>בִכְפֿוּסִין</orig>
+                                <reg>בכפוסין</reg>
+                            </choice> זה נותן <choice>
+                                <orig>טִפְחָיִם</orig>
+                                <reg>טפחים</reg>
                             </choice><lb n="28"/>
-                            <damage>ו</damage>זה נותן
-                                <choice><orig>טִפְחָיִם</orig><reg>טפחים</reg></choice> בלבנים זה
-                            נותן טפח ומחצה וזה נותן טפח ומחצה לפי כך<lb n="29"/>
+                            <damage>ו</damage>זה נותן <choice>
+                                <orig>טִפְחָיִם</orig>
+                                <reg>טפחים</reg>
+                            </choice> בלבנים זה נותן טפח ומחצה וזה נותן טפח ומחצה לפי כך<lb n="29"/>
                             <damage>א</damage>ם נפל הכותל המקום והאבנים שלשניהן<pc type="unitEnd"
                                 rend=":">:</pc>
                             <gap reason="Maimonides" extent="16" unit="chars"/>
@@ -2050,9 +2177,12 @@
                             /> לגדור אבל בבקעה מקום שנהגו שלא לגדור אין מחייבין אותו אלא אם רצה<lb
                                 n="14"/> כונס לתוך שלו ועושה חזית מבחוץ לפי כך אם נפל הכותל המקום
                                 והאבנים<lb n="15"/>שלו ואם עשו מדעת שניהם בונים את הכותל באמצע
-                            ועושין <choice><orig>חַזִית</orig><reg>חזית</reg></choice> מיכאן
-                                    ומיכ<damage><unclear>א</unclear></damage>ן<lb n="16"/> לפי כך אם
-                            נפל הכותל המקום והאבנים שלשניהם<pc type="unitEnd" rend=":">:</pc>
+                            ועושין <choice>
+                                <orig>חַזִית</orig>
+                                <reg>חזית</reg>
+                            </choice> מיכאן ומיכ<damage><unclear>א</unclear></damage>ן<lb n="16"/>
+                            לפי כך אם נפל הכותל המקום והאבנים שלשניהם<pc type="unitEnd" rend=":"
+                                >:</pc>
                             <gap reason="Maimonides" extent="16" unit="chars"/>
                             <lb n="17"/>
                             <gap reason="Maimonides" extent="11" unit="lines"/>
@@ -2070,10 +2200,12 @@
                         <ab xml:id="S00651.4.3.1.4"> כותל חצר שנפל מחייבין אותו לבנותו עד ארבע אמות
                             בחזקת שנת<damage>ן</damage> עד שיביא<lb n="6"/> ראיה שלא נתן מארבע אמות
                             ולמעלן אין מחייבין אותו סמך לו כותל א<damage>חר</damage> אף<lb n="7"/>על
-                            פי שלא נתן עליו את
-                                <choice><orig>התִקְרָה</orig><reg>התקרה</reg></choice> מגלגלין עליו
-                            את הכל בחזקת<damage>ש</damage>לא נתן ע<c rend="long">ד</c><lb n="8"/>
-                            שיביא ראיה שנתן<pc type="unitEnd" rend=":">:</pc>
+                            פי שלא נתן עליו את <choice>
+                                <orig>התִקְרָה</orig>
+                                <reg>התקרה</reg>
+                            </choice> מגלגלין עליו את הכל בחזקת<damage>ש</damage>לא נתן ע<c
+                                rend="long">ד</c><lb n="8"/> שיביא ראיה שנתן<pc type="unitEnd"
+                                rend=":">:</pc>
                             <gap reason="Maimonides" extent="37" unit="chars"/>
                             <lb n="9"/>
                             <gap reason="Maimonides" extent="10" unit="lines"/>
@@ -2106,11 +2238,13 @@
                             </choice> עקיבה אומר בית רובע ולא את הטרקלין ולא א<c rend="long"
                                 >ת</c><lb n="31"/>
                             <pb xml:id="S00651.2_224" n="2_224"/>
-                            <choice><orig>המורָן</orig><reg>המורן</reg></choice> ולא את השובך ולא את
-                                ה<damage>טלי</damage>ת ולא את המרחץ ולא את בית הבד עד שיבא<lb n="1"
-                            /> בהן כדי לזה וכדי לזה אמתי בזמן שאין שניהם רוצים אבל בזמן ששניהם
-                                רוצים<lb n="2"/> אפילו בפחות מיכן יחלוקו ובכתבי הקודש אף על פי
-                            ששניהם רוצים לא יחלוקו<pc type="unitEnd" rend=":">:</pc>
+                            <choice>
+                                <orig>המורָן</orig>
+                                <reg>המורן</reg>
+                            </choice> ולא את השובך ולא את ה<damage>טלי</damage>ת ולא את המרחץ ולא את
+                            בית הבד עד שיבא<lb n="1"/> בהן כדי לזה וכדי לזה אמתי בזמן שאין שניהם
+                            רוצים אבל בזמן ששניהם רוצים<lb n="2"/> אפילו בפחות מיכן יחלוקו ובכתבי
+                            הקודש אף על פי ששניהם רוצים לא יחלוקו<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="25" unit="lines"/>
                             <gap reason="Maimonides" extent="12" unit="chars"/></ab>
                         <trailer xml:id="S00651.4.3.1.T"/>
@@ -2129,20 +2263,27 @@
                                 <damage>בסיד <unclear>מ</unclear>רח</damage>יקין את הזרעים ואת<lb
                                 n="1"/> המחרשה ואת מי רגלים מן הכותל שלשה טפחים מרחיקין את הרחים
                             שלשה מן<lb n="2"/>
-                            <choice><orig>הַשַׁכָּב</orig><reg>השכב</reg></choice> שהן ארבעה מן
-                                    <choice><orig>הרַכַּב</orig><reg>הרכב</reg></choice> ואת התנור
-                            שלשה מן <choice><orig>הכִלְיָה</orig><reg>הכליה</reg></choice> שהן
-                                ארבעה<surplus>/</surplus> מן<lb n="3"/> השפה<pc type="unitEnd"
-                                rend=":">:</pc>
+                            <choice>
+                                <orig>הַשַׁכָּב</orig>
+                                <reg>השכב</reg>
+                            </choice> שהן ארבעה מן <choice>
+                                <orig>הרַכַּב</orig>
+                                <reg>הרכב</reg>
+                            </choice> ואת התנור שלשה מן <choice>
+                                <orig>הכִלְיָה</orig>
+                                <reg>הכליה</reg>
+                            </choice> שהן ארבעה<surplus>/</surplus> מן<lb n="3"/> השפה<pc
+                                type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="42" unit="chars"/>
                             <lb n="4"/>
                             <gap reason="Maimonides" extent="20" unit="lines"/>
                             <gap reason="Maimonides" extent="12" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.3.2.2"> לא יעמיד אדם תנור תנור בתוך הבית אלא אם כן יש
-                            לו על גביו גובה<lb n="25"/>ארבע אמות היה מעמידו
-                                    <choice><orig>בעלִיָה</orig><reg>בעליה</reg></choice> עד
-                                    שי<damage><unclear extent="2" unit="chars"/></damage> תחתיו
+                            לו על גביו גובה<lb n="25"/>ארבע אמות היה מעמידו <choice>
+                                <orig>בעלִיָה</orig>
+                                <reg>בעליה</reg>
+                            </choice> עד שי<damage><unclear extent="2" unit="chars"/></damage> תחתיו
                             מעזיבה שלשה טפחים ובכירה<lb n="26"/> טפח ואם הזיק משלם מה שהזיק <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -2179,11 +2320,15 @@
                         <ab xml:id="S00651.4.3.2.5"> מרחיקין את הסולם מן השובך ארבע אמות כ<c
                                 rend="long">ד</c>י <seg><del extent="8" unit="chars"/></seg><space
                                 extent="14" unit="chars"/><note>Space for drawing in Maimonides's
-                                commentary.</note><lb n="7"/>שלא תקפוץ
-                                    <choice><orig>הנִמְיָה</orig><reg>הנמיה</reg></choice> ואת הכותל
-                            מן <choice><orig>המזחֵילה</orig><reg>המזחילה</reg></choice> ארבע אמות
-                            כדי שיהא זוקף את<lb n="8"/> הסולם מרחיקין את השובך מן העיר חמשים אמה לא
-                            יעשה אדם שובך בתוך<lb n="9"/> שלו אלא אם כן יש לו חמשים אמה לכל רוח <choice>
+                                commentary.</note><lb n="7"/>שלא תקפוץ <choice>
+                                <orig>הנִמְיָה</orig>
+                                <reg>הנמיה</reg>
+                            </choice> ואת הכותל מן <choice>
+                                <orig>המזחֵילה</orig>
+                                <reg>המזחילה</reg>
+                            </choice> ארבע אמות כדי שיהא זוקף את<lb n="8"/> הסולם מרחיקין את השובך
+                            מן העיר חמשים אמה לא יעשה אדם שובך בתוך<lb n="9"/> שלו אלא אם כן יש לו
+                            חמשים אמה לכל רוח <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה אומר בית ארבע<c rend="long">ת</c><lb n="10"/> כורין מלא
@@ -2233,9 +2378,11 @@
                                 <expan>רבי</expan>
                             </choice> עקיבה או<damage><unclear extent="2" unit="chars"/></damage><lb
                                 n="7"/> לכל <damage><unclear>ה</unclear>רוח
-                                הו<unclear>א</unclear></damage>עושה חוץ מן
-                                    <choice><orig>מַעַרָבָה</orig><reg>מערבה</reg></choice>
-                                ומ<damage>ר</damage>חיק חמשים אמה<pc type="unitEnd" rend=":">:</pc>
+                                הו<unclear>א</unclear></damage>עושה חוץ מן <choice>
+                                <orig>מַעַרָבָה</orig>
+                                <reg>מערבה</reg>
+                            </choice> ומ<damage>ר</damage>חיק חמשים אמה<pc type="unitEnd" rend=":"
+                                >:</pc>
                             <gap reason="Maimonides" extent="12" unit="chars"/>
                             <lb n="8"/>
                             <gap reason="Maimonides" extent="6" unit="lines"/>
@@ -2349,10 +2496,12 @@
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהודה לא אמרו של<c rend="long">ש</c><lb n="6"/>
-                            <damage>ש</damage>נים אלא כדי שיהא
-                                    <choice><orig>בַאסְפַמְיָא</orig><reg>באספמיא</reg></choice>
-                            יחזיק שנה וילכו ויו<damage>ד</damage>יעוהו שנ<damage>ה</damage> ויבוא
-                            לשנה אחרת<pc type="unitEnd" rend=":">:</pc>
+                            <damage>ש</damage>נים אלא כדי שיהא <choice>
+                                <orig>בַאסְפַמְיָא</orig>
+                                <reg>באספמיא</reg>
+                            </choice> יחזיק שנה וילכו ויו<damage>ד</damage>יעוהו
+                                שנ<damage>ה</damage> ויבוא לשנה אחרת<pc type="unitEnd" rend=":"
+                                >:</pc>
                             <lb n="7"/><gap reason="Maimonides" extent="8" unit="lines"/>
                             <gap reason="Maimonides" extent="23" unit="chars"/>
                         </ab>
@@ -2378,23 +2527,25 @@
                         </ab>
                         <ab xml:id="S00651.4.3.3.4"> שני<c rend="long">ם</c><lb n="17"/> מעידים אותו
                             שאכלה שלש שנים ונמצאו זוממין משלמין לו את הכל שנים בראשונה<lb n="18"
-                            />ושנים בשניה ושנים בשלישית משלשין
-                                    <choice><orig>בֵינֵיהֵן</orig><reg>ביניהן</reg></choice> שלשה
-                            אחים ואחד מצורף עמ<c rend="long">ה</c>ן<lb n="19"/> הרי אלו שלש עדיות
-                            והן עדות אחת<pc type="unitEnd" rend=":">:</pc>
+                            />ושנים בשניה ושנים בשלישית משלשין <choice>
+                                <orig>בֵינֵיהֵן</orig>
+                                <reg>ביניהן</reg>
+                            </choice> שלשה אחים ואחד מצורף עמ<c rend="long">ה</c>ן<lb n="19"/> הרי
+                            אלו שלש עדיות והן עדות אחת<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="26" unit="chars"/>
                             <lb n="20"/>
                             <gap reason="Maimonides" extent="3" unit="lines"/>
                             <gap reason="Maimonides" extent="9" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.3.3.5"> אלו דברים שיש להם חזקה ואלו שאין להם חזקה היה
-                                מעמיד<lb n="24"/>בהמה בחצר מעמיד תנור וכירים ורחים
-                                    <choice><orig>ומְגָדּל</orig><reg>ומגדל</reg></choice> תרנגלין
-                            ונותן זבלו בחצר אינה<lb n="25"/> חזקה אבל עשה מחיצה לבהמתו גבוהה עשרה
-                            טפחים וכן לתנור וכן לכי<damage>ר</damage>י<c rend="long">ם</c><lb n="26"
-                            /> וכן לרחים והכניס תרנגלין לתוך הבית ועשה מקום לזבלו עמוק שלשה
-                                        וגבו<damage><unclear><c rend="long"
-                                >ה</c></unclear></damage><lb n="27"/> שלשה הרי זו חזקה<pc
+                                מעמיד<lb n="24"/>בהמה בחצר מעמיד תנור וכירים ורחים <choice>
+                                <orig>ומְגָדּל</orig>
+                                <reg>ומגדל</reg>
+                            </choice> תרנגלין ונותן זבלו בחצר אינה<lb n="25"/> חזקה אבל עשה מחיצה
+                            לבהמתו גבוהה עשרה טפחים וכן לתנור וכן לכי<damage>ר</damage>י<c
+                                rend="long">ם</c><lb n="26"/> וכן לרחים והכניס תרנגלין לתוך הבית
+                            ועשה מקום לזבלו עמוק שלשה וגבו<damage><unclear><c rend="long"
+                                    >ה</c></unclear></damage><lb n="27"/> שלשה הרי זו חזקה<pc
                                 type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="37" unit="chars"/><lb n="28"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
@@ -2508,11 +2659,15 @@
                             <gap reason="Maimonides" extent="15" unit="chars"/><lb n="23"/>
                         </ab>
                         <ab xml:id="S00651.4.3.4.5"> המוכר את בית הבד מכר את ה<damage>י</damage>ם
-                            ואת <choice><orig>המַמֵל</orig><reg>הממל</reg></choice> ואת הבתולות אבל
-                            לא מכר<lb n="24"/>לא את
-                                <choice><orig>הכִּדִֿין</orig><reg>הכדין</reg></choice> ולא את הגלגל
-                                ולא<damage>את <unclear>ה</unclear>קורה וב</damage>זמן שאמר לו הוא
-                            וכל מה שבתוכ<damage><unclear>ו</unclear></damage><lb n="25"/> הרי כולם
+                            ואת <choice>
+                                <orig>המַמֵל</orig>
+                                <reg>הממל</reg>
+                            </choice> ואת הבתולות אבל לא מכר<lb n="24"/>לא את <choice>
+                                <orig>הכִּדִֿין</orig>
+                                <reg>הכדין</reg>
+                            </choice> ולא את הגלגל ולא<damage>את <unclear>ה</unclear>קורה
+                                וב</damage>זמן שאמר לו הוא וכל מה
+                                שבתוכ<damage><unclear>ו</unclear></damage><lb n="25"/> הרי כולם
                             מכורים <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
@@ -2524,9 +2679,10 @@
                             <gap reason="Maimonides" extent="31" unit="chars"/>
                         </ab>
                         <ab xml:id="S00651.4.3.4.6"> המוכר את המרחץ לא מכ<c rend="long">ר</c><lb
-                                n="30"/>את הנסרים ולא את הספסלים ולא את
-                                    <choice><orig>הוֵילָאוֹתֿ</orig><reg>הוילאות</reg></choice>
-                            ובזמן שאמר לו הוא וכל מה שבתוכו<lb n="31"/>
+                                n="30"/>את הנסרים ולא את הספסלים ולא את <choice>
+                                <orig>הוֵילָאוֹתֿ</orig>
+                                <reg>הוילאות</reg>
+                            </choice> ובזמן שאמר לו הוא וכל מה שבתוכו<lb n="31"/>
                             <pb xml:id="S00651.2_237" n="2_237"/> הרי כולם מכורים בין כך ובין כך לא
                                 <damage>מכר את ה<unclear>מג</unclear>ורות של</damage>מים ולא את
                                 האוצרות<lb n="1"/> שלעצים<pc type="unitEnd" rend=":">:</pc>
@@ -2538,8 +2694,9 @@
                                 >ח</unclear><note>Possibly overwritten over ה.</note>ים אבל<lb n="4"
                             /> לא את המטלטלין ובזמן שאמר לו היא וכל מה שבתוכה אפילו היו בה בהמה
                                 ועבדים<lb n="5"/> הרי כולם מכורים רבן שמעון בן גמלי<c rend="lig"
-                                >אל</c>אומר המוכר את העיר מכר את
-                                    <choice><orig>הַסַנְטֵר</orig><reg>הסנטר</reg>
+                                >אל</c>אומר המוכר את העיר מכר את <choice>
+                                <orig>הַסַנְטֵר</orig>
+                                <reg>הסנטר</reg>
                             </choice><pc type="unitEnd" rend=":">:</pc><lb n="6"/>
                             <gap reason="Maimonides" extent="1" unit="lines"/>
                             <gap reason="Maimonides" extent="37" unit="chars"/>
@@ -2548,8 +2705,11 @@
                             את האבנים שהן לצרכה ואת הקנים שבכרם שהן לצרכו ואת התבוא<c rend="long"
                                 >ה</c><lb n="9"/> שהיא מחוברת לקרקע ואת מחיצת הקנים שהיא פחותה מבית
                             רובע וא<c rend="long">ת</c><lb n="10"/>
-                            <choice><orig>השומֵירָה</orig><reg>השומירה</reg></choice> שאינה עשויה
-                            בטיט ואת החרוב שאינו מורכב ואת בתולת שקמ<c rend="long">ה</c><lb n="11"/>
+                            <choice>
+                                <orig>השומֵירָה</orig>
+                                <reg>השומירה</reg>
+                            </choice> שאינה עשויה בטיט ואת החרוב שאינו מורכב ואת בתולת שקמ<c
+                                rend="long">ה</c><lb n="11"/>
                         </ab>
 
                         <ab xml:id="S00651.4.3.4.9">אבל לא מכר לא את האבנים שאינן לצרכה ולא את הקנים
@@ -2600,12 +2760,14 @@
                         <ab xml:id="S00651.4.3.5.1"> המוכר את הספינה מכ<c rend="long">ר</c>
                             <space extent="21" unit="chars"/> את התורן וא<c rend="long">ת</c><lb
                                 n="5"/>
-                            <choice><orig>הנֵס</orig><reg>הנס</reg></choice> ואת העוגין ואת כל
-                            המנהיגין אותה אבל לא מכר לא את העבדים ולא את<lb n="6"/> המרצפין ולא את
-                            האנתקי ובזמן שאמר לו היא וכל מה שבתוכה הרי כול<damage><c rend="long"
-                                    >ם</c></damage><lb n="7"/> מכורין מכר את הקרון לא מכר את הפרדות
-                            מכר את הפרדות לא מכר את הקרון<lb n="8"/> מכר את הצמד לא מכר את הבקר מכר
-                            את הבקר מכר את הצמד <choice>
+                            <choice>
+                                <orig>הנֵס</orig>
+                                <reg>הנס</reg>
+                            </choice> ואת העוגין ואת כל המנהיגין אותה אבל לא מכר לא את העבדים ולא
+                                את<lb n="6"/> המרצפין ולא את האנתקי ובזמן שאמר לו היא וכל מה שבתוכה
+                            הרי כול<damage><c rend="long">ם</c></damage><lb n="7"/> מכורין מכר את
+                            הקרון לא מכר את הפרדות מכר את הפרדות לא מכר את הקרון<lb n="8"/> מכר את
+                            הצמד לא מכר את הבקר מכר את הבקר מכר את הצמד <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> יהוד<c rend="long">ה</c><lb n="9"/> אומר הדמים מודיעים כיצד
@@ -2632,10 +2794,11 @@
                         </ab>
                         <ab xml:id="S00651.4.3.5.3"> המוכר את החמור <seg><del>לא</del></seg> מכר את
                             השיח מכר את הפרה<lb n="26"/>
-                            <damage><unclear>לא מ</unclear></damage>כר את בנה מכר אשפה מכר את
-                                    <choice><orig>זִבְלָה</orig><reg>זבלה</reg></choice> מכר בור מכר
-                            מימיו מכר שוב<c rend="long">ך</c><lb n="27"/> מכר יונים מכר כוורת מכר
-                            דבורים הלוקח פירות שובך מפריח בורך הראשונה<lb n="28"/>
+                            <damage><unclear>לא מ</unclear></damage>כר את בנה מכר אשפה מכר את <choice>
+                                <orig>זִבְלָה</orig>
+                                <reg>זבלה</reg>
+                            </choice> מכר בור מכר מימיו מכר שוב<c rend="long">ך</c><lb n="27"/> מכר
+                            יונים מכר כוורת מכר דבורים הלוקח פירות שובך מפריח בורך הראשונה<lb n="28"/>
                             <damage>פירות כוו<unclear>ר</unclear>ת נוטל שלשה</damage> נחילין ומסרס
                             חלות דבש מניח שתי חלות זתים ל<c rend="long">ק</c>וץ<lb n="29"/> מניח שתי
                                 גרופיות<pc type="unitEnd" rend=":">:</pc>
@@ -2650,11 +2813,15 @@
                                 <expan>רבי</expan>
                             </choice> מאיר אומר<lb n="7"/> קנה קרקע הגדילו <seg><add place="above"
                                     hand="2h">לא</add></seg>
-                            <choice><orig>יְשַפֵּה</orig><reg>ישפה</reg></choice> העולה מן הגזע שלו
-                            ומן השרשים שלבעל הבית ואם<lb n="8"/>מתו אין לו קרקע קנה שלשה קנה קרקע
-                            הגדילו <choice><orig>ישפֵּה</orig><reg>ישפה</reg></choice> העולה מן
-                            השרשים ש<c rend="long">ל</c>ו<lb n="9"/> ואם מתו יש לו קרקע<pc
-                                type="unitEnd" rend=":">:</pc>
+                            <choice>
+                                <orig>יְשַפֵּה</orig>
+                                <reg>ישפה</reg>
+                            </choice> העולה מן הגזע שלו ומן השרשים שלבעל הבית ואם<lb n="8"/>מתו אין
+                            לו קרקע קנה שלשה קנה קרקע הגדילו <choice>
+                                <orig>ישפֵּה</orig>
+                                <reg>ישפה</reg>
+                            </choice> העולה מן השרשים ש<c rend="long">ל</c>ו<lb n="9"/> ואם מתו יש
+                            לו קרקע<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="37" unit="chars"/><lb n="10"/>
                             <gap reason="Maimonides" extent="10" unit="lines"/>
                             <gap reason="Maimonides" extent="10" unit="chars"/>
@@ -2701,9 +2868,10 @@
                             <damage><unclear extent="2" unit="chars"
                             /></damage><unclear>נ</unclear>תמלאת המדה ללוקח היה סרסור ביניהם ונשברה
                             החבית נשברה לסרסור<lb n="4"/> וחייב להטי<damage>ף <unclear extent="1"
-                                    unit="chars"/><unclear>ל</unclear>ש טפין הר</damage>כינה
-                                    <choice><orig>ומִיצַת</orig><reg>ומיצת</reg></choice> הרי
-                                    של<seg><del>לוקח</del><add rend="underline" place="above"
+                                    unit="chars"/><unclear>ל</unclear>ש טפין הר</damage>כינה <choice>
+                                <orig>ומִיצַת</orig>
+                                <reg>ומיצת</reg>
+                            </choice> הרי של<seg><del>לוקח</del><add rend="underline" place="above"
                                     >מוכר</add></seg> החנוני חייב להטיף <c rend="long">ל</c>ו<lb
                                 n="5"/> שלש <damage>ט</damage>פין <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
@@ -2748,11 +2916,12 @@
                                 <expan>אמר</expan>
                             </choice> רבן שמעון בן גמליא<c rend="long">ל</c><lb n="25"/> במה דברים
                             אמורים בלח אבל ביבש אינו צריך וחייב להכריע לו טפח הי<c rend="long"
-                                >ה</c><lb n="26"/>שוקל לו עין בעין נותן לו
-                                    <choice><orig>גֵרוּמִין</orig><reg>גרומין</reg></choice> אחד
-                            לעשרה בלח ואחד לעשרים ביבש מקו<damage><unclear><c rend="long"
-                                    >ם</c></unclear></damage><lb n="27"/> שנהגו למוד בדקה לא ימוד
-                            בגסה בגסה לא ימוד בדקה למחוק לא יגדוש לגדוש לא<lb n="28"/>
+                                >ה</c><lb n="26"/>שוקל לו עין בעין נותן לו <choice>
+                                <orig>גֵרוּמִין</orig>
+                                <reg>גרומין</reg>
+                            </choice> אחד לעשרה בלח ואחד לעשרים ביבש מקו<damage><unclear><c
+                                        rend="long">ם</c></unclear></damage><lb n="27"/> שנהגו למוד
+                            בדקה לא ימוד בגסה בגסה לא ימוד בדקה למחוק לא יגדוש לגדוש לא<lb n="28"/>
                             <damage>י</damage>מחוק<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="41" unit="chars"/><lb n="29"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
@@ -2850,10 +3019,11 @@
                         <ab xml:id="S00651.4.3.6.8"> המוכר מקום לחברו לעשות לו
                                 <del>כ</del><add>ק</add>בר וכן המקבל מקום מחברו<lb n="24"/> לעשות לו
                                 <damage>קבר</damage> עושה תוכה של מערה ארבע אמות על שש ופותח לתוכה
-                                שמונה<lb n="25"/>כוכין שלשה מיכן ושלשה מיכן ושנים מכנגדן
-                                    <choice><orig>והכּוּכִּין</orig><reg>והכוכין</reg></choice> ארכן
-                            ארבע אמות ורומן<surplus>ש<am rend="overmark">׳</am></surplus><lb n="26"
-                            /> שבעה ורחבן ששה <choice>
+                                שמונה<lb n="25"/>כוכין שלשה מיכן ושלשה מיכן ושנים מכנגדן <choice>
+                                <orig>והכּוּכִּין</orig>
+                                <reg>והכוכין</reg>
+                            </choice> ארכן ארבע אמות ורומן<surplus>ש<am rend="overmark"
+                                >׳</am></surplus><lb n="26"/> שבעה ורחבן ששה <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
                             </choice> שמעון אומר עושה תוכה שלמערה שמונה על <seg><del
@@ -2918,10 +3088,11 @@
                             <gap reason="Maimonides" extent="45" unit="chars"/><lb n="12"/>
                             <gap reason="Maimonides" extent="2" unit="lines"/>
                         </ab>
-                        <ab xml:id="S00651.4.3.7.4">האומר לחברו חצי שדי אני מוכר לך
-                                    <choice><orig>מְשַמִין</orig><reg>משמין</reg></choice> ביניהם
-                            ונוטל חצי שדהו חציה<lb n="15"/> בדרום אני מוכר לך משמין ביניהם ונוטל
-                            חציה בדרום ומקבל עליו מקו<c rend="long">ם</c><lb n="16"/>
+                        <ab xml:id="S00651.4.3.7.4">האומר לחברו חצי שדי אני מוכר לך <choice>
+                                <orig>מְשַמִין</orig>
+                                <reg>משמין</reg>
+                            </choice> ביניהם ונוטל חצי שדהו חציה<lb n="15"/> בדרום אני מוכר לך משמין
+                            ביניהם ונוטל חציה בדרום ומקבל עליו מקו<c rend="long">ם</c><lb n="16"/>
                             <damage><unclear>ג</unclear></damage>דר וחרי<c rend="long">ץ</c> ובן
                             חריץ כמה הוא חריץ ששה טפחים ובן חריץ שלשה<pc type="unitEnd" rend=":"
                                 >:</pc>
@@ -3000,11 +3171,12 @@
                         </ab>
                         <ab xml:id="S00651.4.3.8.6"> האומר<lb n="3"/> זה בני נאמן וזה אחי אינו נאמן
                             יטול עמו בחלקו מת יחזרו נכסים למקומן נפ<c rend="long">ל</c>ו<lb n="4"
-                            />לו נכסים ממקום אחר יירשו אחיו עמו מי שמת ונמצאת
-                                    <choice><orig>דיאָתִיקֵי</orig><reg>דיאתיקי</reg></choice> קשורה
-                                על<lb n="5"/> ירכו הרי זו אינה כלום זכה בה לאחד <seg><add
-                                    place="above">בין</add></seg> מן היורשים ובין שאינו מן היורשים
-                                דב<c rend="long">ר</c>יו<lb n="6"/> קיימין<pc type="unitEnd"
+                            />לו נכסים ממקום אחר יירשו אחיו עמו מי שמת ונמצאת <choice>
+                                <orig>דיאָתִיקֵי</orig>
+                                <reg>דיאתיקי</reg>
+                            </choice> קשורה על<lb n="5"/> ירכו הרי זו אינה כלום זכה בה לאחד
+                                    <seg><add place="above">בין</add></seg> מן היורשים ובין שאינו מן
+                            היורשים דב<c rend="long">ר</c>יו<lb n="6"/> קיימין<pc type="unitEnd"
                                 rend=":">:</pc><gap reason="Maimonides" extent="8" unit="chars"/><lb
                                 n="7"/>
                             <gap reason="Maimonides" extent="14" unit="lines"/>
@@ -3136,8 +3308,9 @@
                             <c rend="lig">אל</c>יעזר אומר אחד בריא ואחד מסו<c rend="long">כ</c>ן<lb
                                 n="29"/> נכסים שיש להן אחריות נקנין בכסף ובשטר ובחזקה ושאין להן
                             אחריות אינן נק<c rend="long">נ</c>ין<lb n="30"/>אלא במשיכה אמרו לו מעשה
-                            באימן שלבני רוכל שהיתה חולה ואמרה תנתן
-                                    <choice><orig>כְבִינָתִֿי</orig><reg>כבינתי</reg>
+                            באימן שלבני רוכל שהיתה חולה ואמרה תנתן <choice>
+                                <orig>כְבִינָתִֿי</orig>
+                                <reg>כבינתי</reg>
                             </choice><lb n="31"/>
                             <pb xml:id="S00651.2_252" n="2_252"/> לבתי והיא בשנים <damage>עשר
                                     <unclear extent="1" unit="chars">מ</unclear>נה ומתה</damage>
@@ -3174,10 +3347,11 @@
                             <damage><unclear>י</unclear>ור</damage>שי הבעל
                                     או<damage>מר<unclear>י</unclear>ן האש</damage>ה מתה ראשון ואחר
                             כך מת הבעל יורשי האשה אומר<damage>ין</damage><lb n="22"/> הבעל מת ראשון
-                            ואחר כך מתה היא בית שמאי אומרין יחל<unclear>ו</unclear>קו ובית הלל אומ<c
-                                rend="long">ר</c>ין<lb n="23"/> הנכסים בחזקתן וכתובה בחזקת יורשי
-                            הבעל ונכסים הנכנסים והיוצאים עמה<lb n="24"/> בחזקת יורשי האב<pc
-                                type="unitEnd" rend=":">:</pc>
+                            ואחר כך מתה היא בית שמאי אומרין
+                            יחל<damage><unclear>ו</unclear></damage>קו ובית הלל אומ<c rend="long"
+                                >ר</c>ין<lb n="23"/> הנכסים בחזקתן וכתובה בחזקת יורשי הבעל ונכסים
+                            הנכנסים והיוצאים עמה<lb n="24"/> בחזקת יורשי האב<pc type="unitEnd"
+                                rend=":">:</pc>
                             <gap reason="Maimonides" extent="39" unit="chars"/><lb n="25"/>
                             <gap reason="Maimonides" extent="5" unit="lines"/>
                             <gap reason="Maimonides" extent="34" unit="chars"/>
@@ -3216,10 +3390,11 @@
                         </ab>
                         <ab xml:id="S00651.4.3.10.2"> גט פשוט עדיו שנים ומקושר שלשה פשוט שכתוב בו עד
                                 אח<c rend="long">ד</c><lb n="19"/> ומ<damage>קו</damage>שר שכתבו בו
-                            שנים שניהם פסולים כתוב בו זוזין מאה
-                                    <choice><orig>דּהׅימּוֺ</orig><reg>דהימו</reg></choice> סלעי<c
-                                rend="long">ם</c><lb n="20"/> עשרים אין לו אלא עשרים זוזין
-                                מא<damage>ה</damage> דהימו סלעים תלתין אין <damage>לו</damage>
+                            שנים שניהם פסולים כתוב בו זוזין מאה <choice>
+                                <orig>דּהׅימּוֺ</orig>
+                                <reg>דהימו</reg>
+                            </choice> סלעי<c rend="long">ם</c><lb n="20"/> עשרים אין לו אלא עשרים
+                            זוזין מא<damage>ה</damage> דהימו סלעים תלתין אין <damage>לו</damage>
                                 אל<damage>א</damage> מנה כסף<lb n="21"/> זוזים דאינון ונמחקו אין
                             פחות משנים כסף סלעים דאינון ו<damage>נ<unclear>מח</unclear></damage>קו
                             אין פחות משנ<damage><unclear extent="2" unit="chars"/></damage><lb
@@ -3310,9 +3485,9 @@
                                 >ל</c>א<lb n="6"/> אחר יכול להוציא עליהן שטר חוב נמצא לאחד בין
                             שטרותיו שטרו של יוסף בן שמעון<lb n="7"/> פרוע שטרות שניהם פרועים כיצד
                             יעשו ישלשו אם היו משולשין יכתוב סימן א<c rend="long">ם</c><lb n="8"/>
-                            היו מסומנין יכתוב כהן . ואם היו שניהם כוהנים יכתוב דורות . האומר לבנו
+                            היו מסומנין יכתוב כהן<pc>.</pc> ואם היו שניהם כוהנים יכתוב דורות<pc type="stop">.</pc> האומר לבנו
                             שטר <c rend="long">ב</c>ין<lb n="9"/> שטרותי פרוע ואיני יודע אי זה הוא
-                            שטרות כולם פרועים נמצא לאחד ש<c rend="long">ם</c><lb n="10"/> שנים הגדול
+                            שטרות כולם פרועים נמצא לאחד שs<c rend="long">ם</c><lb n="10"/> שנים הגדול
                             פרוע והקטן אינו פרוע<pc type="unitEnd" rend=":">:</pc>
                             <gap reason="Maimonides" extent="26" unit="char"/><lb n="11"/>
                             <gap reason="Maimonides" extent="13" unit="chars"/>
@@ -3332,12 +3507,15 @@
                         <ab xml:id="S00651.4.3.10.8"> המלוה את חברו בשטר גובה מנכסי<c rend="long"
                                 >ם</c><lb n="26"/> משועבדין על ידי עדים גובה מנכסים בני חורין הוציא
                             עליו כתב ידו שהוא חייב<lb n="27"/>לו גובה מנכסים בני חורין הערב שהוא
-                            יוצא אחר <choice><orig>חִתוּם</orig><reg>חתום</reg></choice> שטרות גובה
-                                מנכסים<lb n="28"/> בני חורין מעשה בא לפני <choice>
+                            יוצא אחר <choice>
+                                <orig>חִתוּם</orig>
+                                <reg>חתום</reg>
+                            </choice> שטרות גובה מנכסים<lb n="28"/> בני חורין מעשה בא לפני <choice>
                                 <abbr>ר<am rend="overdot">׳</am></abbr>
                                 <expan>רבי</expan>
-                            </choice> ישמע<c rend="lig">אל</c>ואמר גובה מנכסים בני חורין אמר לו בן
-                                    <choice><orig>נָנַס</orig><reg>ננס</reg>
+                            </choice> ישמע<c rend="lig">אל</c> ואמר גובה מנכסים בני חורין אמר לו בן <choice>
+                                <orig>נָנַס</orig>
+                                <reg>ננס</reg>
                             </choice><lb n="29"/> אינו גו<damage>ב</damage>ה לא מנכסים משועבדין ולא
                             מנכסים בני חורין אמר לו למה אמר לו ה<c rend="long">ר</c>י<lb n="30"/>
                             החונק את אחד בשוק אמר לו הנח ואני נותן לך פטור שלא על אמנתו הלווהו אי
