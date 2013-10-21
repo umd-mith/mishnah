@@ -2,6 +2,8 @@
 <?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
 <!--<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
 <?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
+<?xml-stylesheet type="text/css"
+    href="http://rawgithub.com/umd-mith/mishnah/gh-pages/css/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -13,15 +15,17 @@
                 <respStmt>
                     <resp>transcription</resp>
                     <persName corresp="ref.xml#AS">Atara Siegal</persName>
-                     </respStmt> 
-                <respStmt><resp>markup</resp>
-                    <persName corresp="ref.xml#AS">Atara Siegal</persName></respStmt>
-                  
-                    <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
-                        Studies</sponsor>
-                    <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
-                        Literature</sponsor>
-                
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegal</persName>
+                </respStmt>
+
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+
             </titleStmt>
             <publicationStmt>
                 <publisher>Digital Mishnah Project</publisher>
@@ -33,10 +37,10 @@
                 </address>
                 <idno type="local">S01721</idno>
                 <availability status="restricted">
-                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff Center for
-                        Jewish Studies and licensed under a <ref
-                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative Commons Attribution
-                            3.0 Unported License</ref>.</p>
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licenses/by-nc/3.0//">Creative
+                            Commons Attribution 3.0 Unported License</ref>.</p>
                 </availability>
                 <pubPlace>College Park, MD USA</pubPlace>
                 <date>2013-02-07</date>
@@ -45,7 +49,8 @@
                 <note>
                     <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
                         Covers Bava Batra 6:8 - 8:4.</p>
-                    <p>Transcription from online images of the manuscript, available at                         https://fgp.genizah.org. FGP nos. C165810-C165811</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        https://fgp.genizah.org. FGP nos. C165810-C165811</p>
                     <p>TRANSCRIPTION and MARKUP: Atara Siegel</p>
                     <p>EDITED BY: Hayim Lapin</p>
                 </note>
@@ -55,15 +60,14 @@
                     <msIdentifier>
                         <settlement>Cambridge</settlement>
                         <repository>CUL</repository>
-                        <idno type="genizah-CUL"
-                            >TS E1.105</idno>
+                        <idno type="genizah-CUL">TS E1.105</idno>
                     </msIdentifier>
                     <msContents>
                         <msItem>
                             <locusGrp>
                                 <locus/>
-                                 <!-- This is still not resolved -->
-                                
+                                <!-- This is still not resolved -->
+
                                 <locus n="1r" facs="www.genizah.org">C164810</locus>
                                 <locus n="1v" facs="www.genizah.org">C165811</locus>
                             </locusGrp>
@@ -119,7 +123,7 @@
     </teiHeader>
     <text>
         <body>
-            
+
             <div1 xml:id="S01721.4" n="Neziqin" type="Order">
                 <div2 xml:id="S01721.4.3" n="Bava Batra">
                     <div3 xml:id="S01721.4.3.6">
@@ -164,8 +168,8 @@
                             </choice></trailer>
                     </div3>
                     <div3 xml:id="S01721.4.3.7">
-                        <head xml:id="S01721.4.3.7.H" rend="align(left) pad(r)">פרקא כז<am rend="FIXME"
-                            /></head>
+                        <head xml:id="S01721.4.3.7.H" rend="align(left) pad(r)">פרקא כז<am
+                                rend="FIXME"/></head>
                         <lb n="10"/>
                         <ab xml:id="S01721.4.3.7.1"> האומר לחבירו בית כור עפר אני מוכר לך היו שם
                                     <choice><orig>נְקָעִים</orig><reg>נקעים</reg></choice> עמוקים
@@ -197,7 +201,7 @@
                                 n="16"/>
                             <damage><gap extent="9" unit="chars"/></damage>
                             <damage><unclear extent="2" unit="chars">הו</unclear></damage>תיר רובע
-                            לסאה היגיעויתר <choice><orig>מיכֵן</orig><reg>מיכן</reg></choice>
+                            לסאה היגיעו יתר <choice><orig>מיכֵן</orig><reg>מיכן</reg></choice>
                             <choice><orig>יַעשֶה</orig><reg>יעשה</reg></choice> חשבון </ab>
                         <ab xml:id="S01721.4.3.7.3">
                             <label>ג<am rend="overline">'</am></label> מה הוא <lb n="17"/>
@@ -252,8 +256,8 @@
                                     <choice><orig>טפָחים</orig><reg>טפחים</reg></choice> ובין חריץ
                             שלושה <pc rend=":" type="unitEnd">:</pc>
                         </ab>
-                        <trailer xml:id="S01721.4.3.7.T">פרק<damage><unclear extent="5" unit="chars">א
-                                    כז <choice>
+                        <trailer xml:id="S01721.4.3.7.T">פרק<damage><unclear extent="5" unit="chars"
+                                    >א כז <choice>
                                         <abbr> הל </abbr>
                                         <expan> הלכות </expan>
                                     </choice></unclear>
