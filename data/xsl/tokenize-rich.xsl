@@ -12,9 +12,9 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
-    <xsl:param name="rqs"
+    <xsl:param name="rqs" select="'S00651=1&amp;S08174=2&amp;P00001=&amp;S07319=&amp;P00002'"
         />
-    <xsl:param name="mcite" select="'4.2.2.10'"/>
+    <xsl:param name="mcite" select="'4.1.7.1'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="witlist">
         <xsl:variable name="params">
@@ -60,7 +60,17 @@
                                 <!-- Extract text -->
                                 <xsl:variable name="mExtract">
                                     <extract>
-                                        <xsl:copy-of select="document(.)/node()|@*"/>
+                                        <!-- Choose mechanism a workaround to Collatex's refusal of
+                                            empty witnesses -->
+                                        <xsl:choose>
+                                            <xsl:when test="document(.)/node()">
+                                                <xsl:copy-of select="document(.)/node()|@*"/>
+                                            </xsl:when>
+                                            <xsl:otherwise><xsl:text>&#160;</xsl:text></xsl:otherwise>
+                                        </xsl:choose>
+                                        
+                                        <!-- Previous version -->
+                                        <!--<xsl:copy-of select="document(.)/node()|@*"/>-->
                                     </extract>
                                 </xsl:variable>
                                 <xsl:variable name="mPreproc-1">
