@@ -65,12 +65,12 @@
 
     <xsl:template match="my:chapter">
         <xsl:if test=" $unit = 'ch' and @xml:id=$ref.cit">
-                        <xsl:for-each select="my:mishnah">
+                <xsl:for-each select="my:mishnah">
                 <!-- Only way I could get cinclude with parameters to work was with a full URL -->
-                <!-- After testing need to replace http://localhost:8888/text to  http://dev.digitalmishnah.org/viewer/text-->
+                <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->            
                 <cinclude:include>
                     <xsl:attribute name="src"
-                        select="concat('http&#58;&#47;&#47;localhost:8888&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
+                        select="concat('http&#58;&#47;&#47;dev.digitalmishnah.org&#47;viewer&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
                     <xsl:attribute name="element" select="'test'"/>
                 </cinclude:include>
                 
@@ -82,8 +82,10 @@
     <xsl:template match="my:mishnah">
         <xsl:if test="$unit = 'm' and @xml:id = $ref.cit"> 
             <cinclude:include>
+                <!-- Only way I could get cinclude with parameters to work was with a full URL -->
+                <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->
             <xsl:attribute name="src"
-                select="concat('http&#58;&#47;&#47;localhost:8888&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
+                select="concat('http&#58;&#47;&#47;dev.digitalmishnah.org&#47;viewer&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
             <xsl:attribute name="element" select="'test'"/>
             </cinclude:include>
         </xsl:if>
