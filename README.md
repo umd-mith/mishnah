@@ -58,8 +58,6 @@ The following commands will build the web application and run it in Jetty:
     mvn validate
     mvn install
     cd viewer
-    mvn validate
-    mvn install
     mvn jetty:run
 
 The application will be available at `http://localhost:8888/text/`. You can
