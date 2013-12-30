@@ -3,7 +3,7 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns="http://www.tei-c.org/ns/1.0" xmlns:its="http://www.w3.org/2005/11/its"
     xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xd xs its tei" version="2.0">
-   
+
     <xsl:output encoding="UTF-8" indent="no"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -12,8 +12,8 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
-    
-    
+
+
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
@@ -44,97 +44,136 @@
                 </xsl:attribute>
             </cb>
         </xsl:if>
-        <milestone unit="Order">
-            <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-        </milestone>
-        <xsl:text>1&#160;&#160;&#160;&#160;&#160;</xsl:text>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
-    <xsl:template match="tei:pb[not(preceding::tei:pb)]">
-    </xsl:template>
-    <xsl:template match="tei:cb[not(preceding::tei:cb)]">
-     </xsl:template>
-    <xsl:template match="tei:pb[preceding::tei:pb]">
-        <xsl:if test="not(following::tei:cb)">
-            <xsl:copy-of select="."></xsl:copy-of>
-            <xsl:text>1&#160;&#160;&#160;&#160;&#160;</xsl:text>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:cb[preceding::tei:cb]">
-        <xsl:copy-of select="."></xsl:copy-of>
-        <xsl:text>1&#160;&#160;&#160;&#160;&#160;</xsl:text>
-    </xsl:template>    
+    <xsl:template match="tei:pb[not(preceding::tei:pb)]"> </xsl:template>
+    <xsl:template match="tei:cb[not(preceding::tei:cb)]"> </xsl:template>
+
     <xsl:template match="tei:div1[not(position()=1)]">
-        <milestone unit="Order">
-            <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-        </milestone>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
     <xsl:template match="tei:div2">
-        <milestone unit="Tractate">
-            <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-        </milestone>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
     <xsl:template match="tei:div3">
-        <milestone unit="Chapter">
-            <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-        </milestone>
         <xsl:apply-templates select="node()"/>
     </xsl:template>
     <xsl:template match="tei:ab">
-        <xsl:text>[</xsl:text><xsl:value-of select="@xml:id"></xsl:value-of><xsl:text>]</xsl:text>
-        <milestone unit="ab">
-            <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-        </milestone>
-        <xsl:apply-templates></xsl:apply-templates>
+        <abnum>
+            <xsl:value-of
+                select="substring-after(substring-after(substring-after(@xml:id,'.'),'.'),'.')"/>
+        </abnum>
+        <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:head">
         <label>
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-            <xsl:copy-of select="node()"/>
+
+            <xsl:apply-templates/>
         </label>
     </xsl:template>
     <xsl:template match="tei:trailer">
         <label>
             <xsl:attribute name="xml:id">P_<xsl:value-of select="@xml:id"/></xsl:attribute>
-            <xsl:copy-of select="node()"/>
+            <xsl:apply-templates/>
         </label>
     </xsl:template>
+    <xsl:template match="tei:seg[@function='CHECK-ME']
+        ">
+        <errprompt>*</errprompt>
+        <errtext>
+            <xsl:apply-templates/>
+        </errtext>
+    </xsl:template>
+    <xsl:template match="comment()">
+        <xsl:if test="ancestor::tei:seg[@function='CHECK-ME']">
+            <xsl:value-of select="."/>
+        </xsl:if>
+    </xsl:template>
     <xsl:template match="tei:add">
-        <xsl:variable name="count"><xsl:number/></xsl:variable>
+        <xsl:variable name="count">
+            <xsl:number/>
+        </xsl:variable>
         <xsl:choose>
-            
+
             <xsl:when test="@place='margin-right'">
-                <above><xsl:value-of select="$count"/></above><right><above><xsl:value-of select="$count"/></above><xsl:apply-templates/></right>
+                <above>
+                    <xsl:value-of select="$count"/>
+                </above>
+                <right>
+                    <above>
+                        <xsl:value-of select="$count"/>
+                    </above>
+                    <xsl:apply-templates/>
+                </right>
             </xsl:when>
             <xsl:when test="@place='margin-left'">
-                <above><xsl:value-of select="$count"/></above><left><above><xsl:value-of select="$count"/></above><xsl:apply-templates/></left>
+                <above>
+                    <xsl:value-of select="$count"/>
+                </above>
+                <left>
+                    <above>
+                        <xsl:value-of select="$count"/>
+                    </above>
+                    <xsl:apply-templates/>
+                </left>
             </xsl:when>
             <xsl:when test="@place='above'">
-                <above><xsl:apply-templates/></above>
+                <above>
+                    <xsl:apply-templates/>
+                </above>
             </xsl:when>
-            <xsl:otherwise><add><xsl:apply-templates/></add></xsl:otherwise>
+            <xsl:otherwise>
+                <add>
+                    <xsl:apply-templates/>
+                </add>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:gap[@reason='Maimonides']">
-        <xsl:if test="@unit='chars'"><span dir="lro">[char <xsl:value-of select="@extent"/>]</span></xsl:if>
-        <xsl:if test="@unit='lines'"><span dir="lro">[<xsl:value-of select="@extent"/> ln]</span><lb/></xsl:if>
-        
+        <xsl:if test="@unit='chars'">
+            <span dir="lro">[char <xsl:value-of select="@extent"/>]</span>
+        </xsl:if>
+        <xsl:if test="@unit='lines'">
+            <span dir="lro">[<xsl:value-of select="@extent"/> ln]</span>
+            <lb/>
+        </xsl:if>
+
     </xsl:template>
-<xsl:template match="tei:lb">
-    <xsl:if test="@break">-</xsl:if>
-    <xsl:choose><xsl:when test="@n"><xsl:copy-of select="."></xsl:copy-of>
-    <xsl:variable name="n" as="xs:integer" select="@n"></xsl:variable>
-    <xsl:if test="following::tei:lb[@n][1]/@n != 1"><xsl:value-of select="$n + 1"/><xsl:text>&#160;&#160;&#160;&#160;&#160;</xsl:text></xsl:if></xsl:when><xsl:otherwise><lb/></xsl:otherwise></xsl:choose>
-</xsl:template>
+    <xsl:template match="tei:lb">
+        <xsl:if test="@break">-</xsl:if>
+        <xsl:choose>
+            <xsl:when test="@n">
+                <xsl:copy-of select="."/>
+                <xsl:value-of select="@n"/>
+                <xsl:text>&#160;&#160;&#160;&#160;&#160;</xsl:text>
+
+            </xsl:when>
+            <xsl:otherwise>
+                <lb/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <xsl:template match="tei:milestone">*</xsl:template>
-    <xsl:template match="tei:space">&#160;[vac <xsl:value-of select="@extent"></xsl:value-of>]&#160;</xsl:template>
-<xsl:template match="tei:listTranspose"/>
-<xsl:template match="tei:metamark[following-sibling::tei:listTranspose]">
-    <above><xsl:choose><xsl:when test="text()">(<xsl:value-of select="."/>)</xsl:when>
-    <xsl:otherwise>(<xsl:number/>)</xsl:otherwise></xsl:choose></above>
-</xsl:template>    
+
+    <xsl:template match="tei:space">
+        <vac>&#x202d;&#160;[vac <xsl:value-of select="@extent"/>]&#160;&#x202c;</vac>
+    </xsl:template>
+
+    <xsl:template match="tei:listTranspose"/>
+    <xsl:template match="tei:metamark[following-sibling::tei:listTranspose]">
+        <above>
+            <xsl:choose>
+                <xsl:when test="text()">(<xsl:value-of select="."/>)</xsl:when>
+                <xsl:otherwise>(<xsl:number/>)</xsl:otherwise>
+            </xsl:choose>
+        </above>
+    </xsl:template>
+    <xsl:template match="tei:note">
+        <noteref>*</noteref>
+        <note>
+            <em><xsl:value-of select="@type"/></em><lb/><xsl:value-of select="."/>
+        </note>
+    </xsl:template>
 
 </xsl:stylesheet>
-
