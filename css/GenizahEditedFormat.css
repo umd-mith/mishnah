@@ -2,6 +2,24 @@ html{
     direction:rtl;
     text-align:right;
 }
+errprompt{
+	color:#F00;
+	font-size:75%;
+    vertical-align:baseline;
+    position:relative;
+    top:-10px;}
+
+errtext{
+	font-size:75%;
+	display:block;
+    float:right;
+    clear:right;
+    width:150px;
+    margin-right:-200px;
+	border:solid;
+	border-color:#F00;
+	border-width:thin;
+	}
 ab{
     direction:rtl;
     display:block;
@@ -9,6 +27,16 @@ ab{
     margin-right:10px;
     direction:rtl;
 }
+abnum{
+	font-size:75%;
+	font-weight:bold;
+	display:block;
+    float:right;
+    width:30px;
+    margin-right:-35px;
+
+	}
+
 c{
     background-color:#F0F;
 }
@@ -77,17 +105,19 @@ emph{
 expan{
     vertical-align:super;
     font-size:70%;
+	background-color:#FFFF80
 }
 gap:after{
-    content:"⸣";
+    content:"  ";
     vertical-align:super;
     font-size:70%;
 }
 gap:before{
-    content:"⸢" attr(extent);
+    content:" ח'" attr(extent);
     vertical-align:super;
     font-size:70%;
 }
+
 head{
     display:block;
     direction:rtl;
@@ -115,9 +145,7 @@ link:before{
     vertical-align:super;
     font-size:xx-small
 }
-note{
-    display:none
-}
+
 orig:after{
     content:"*";
     font-size:10px
@@ -127,6 +155,7 @@ p{
     display:block;
     line-height:normal;
     margin-left:200px;
+    position:absolute;
 }
 left{
     display:block;
@@ -141,7 +170,7 @@ right{
     float:right;
     clear:right;
     width:150px;
-    margin-right:-155px;
+    margin-right:-175px;
     background-color:#CCC;
 }
 above{
@@ -214,3 +243,24 @@ unclear:before{
     vertical-align:super;
     font-size:70%
 }
+vac{
+	direction:ltr;}
+
+note{
+	font-size:75%;
+	display:block;
+    float:right;
+    clear:right;
+    width:150px;
+    margin-right:-200px;
+	border:solid;
+	border-color:#0000FF;
+	border-width:thin;
+	
+}
+noteref{
+	color:#00000FF;
+	}
+em{
+	font-weight:bold;
+	}
