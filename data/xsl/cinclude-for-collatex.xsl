@@ -70,7 +70,7 @@
                 <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->            
                 <cinclude:include>
                     <xsl:attribute name="src"
-                        select="concat('http&#58;&#47;&#47;dev.digitalmishnah.org&#47;viewer&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
+                        select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
                     <xsl:attribute name="element" select="'test'"/>
                 </cinclude:include>
                 
@@ -85,7 +85,7 @@
                 <!-- Only way I could get cinclude with parameters to work was with a full URL -->
                 <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->
             <xsl:attribute name="src"
-                select="concat('http&#58;&#47;&#47;dev.digitalmishnah.org&#47;viewer&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
+                select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
             <xsl:attribute name="element" select="'test'"/>
             </cinclude:include>
         </xsl:if>
