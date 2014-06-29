@@ -7,7 +7,8 @@
             <titleStmt>
                 <title>Mishnah Project Reference File</title>
                 <respStmt>
-                    <resp>Editor</resp>
+                    <resp xml:id="eds">Editor</resp>
+                    <!-- a reference to ref.xml#eds refers in general to editorial interventions, even should the composition of the editorial staff change. -->
                     <name xml:id="HL">Hayim Lapin</name>
                 </respStmt>
                 <respStmt>
@@ -48,11 +49,15 @@
                 </respStmt>
                 <respStmt>
                     <resp>Other Assistance</resp>
+                    <name xml:id="MA">Martin Abegg</name>
                     <name xml:id="LJ">Leor Jacobi</name>
                     <name xml:id="GR">Gottfried Reeg</name>
                     <name xml:id="PS">Peter Schäfer</name>
+                    <name xml:id="Acc">Accordance: OakTree Software</name>
+                    <name xml:id="LI">Lieberman Institute for Talmudic Research</name>
                     <!-- Include? -->
                     <name xml:id="HB">Hans-Jürgen Becker</name>
+
                 </respStmt>
             </titleStmt>
             <publicationStmt>
@@ -73,13 +78,12 @@
                 <listWit>
                     <!-- Mishnah Texts -->
                     <listWit n="Mishnah Texts">
-                        <witness xml:id="Kauf" n="M" corresp="Kauf.xml">Library of the Hungarian
+                        <witness xml:id="S07326" n="M" corresp="S07326.xml">Library of the Hungarian
                             Academy of Sciences, Kaufmann A50</witness>
-                        <witness xml:id="ParmA" n="M" corresp="ParmA.xml">De Rossi 138-139</witness>
-                        <witness xml:id="Camb" n="M" corresp="Camb.xml">Cambridge Add.
-                                470.1<desc>Based on Lowe edition; for Ch. 2, checked against photos
-                                of the original ref.</desc>
-                        </witness>
+                        <witness xml:id="S00483" n="M" corresp="S00483.xml">De Rossi
+                            138-139</witness>
+                        <witness xml:id="S01520" n="M" corresp="S01520.xml">Cambridge Add.
+                            470.1</witness>
                         <witness xml:id="S00651" n="M" corresp="S00651.xml">Maimonides Autograph
                             MS</witness>
                         <witness xml:id="ParmB" n="M"> </witness>
@@ -92,9 +96,9 @@
                     </listWit>
                     <!-- Babylonian Talmud Texts -->
                     <listWit n="Babylonian Talmud Texts">
-                        <witness xml:id="Mun" n="B" corresp="Mun.xml">Bayerische Staatsbibliothek
-                            Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript of the Babylonian
-                                Talmud</desc>
+                        <witness xml:id="S07204" n="B" corresp="S07204.xml">Bayerische
+                            Staatsbibliothek Handschrift Cod.Hebr.95 (1342)<desc>Munich Manuscript
+                                of the Babylonian Talmud</desc>
                         </witness>
                         <witness xml:id="S07106" n="B" corresp="S07106.xml">Staats und
                             Universitätsbibliothek Carl von Ossietsky, Hamburg, Germany 165
@@ -112,15 +116,13 @@
                     </listWit>
                     <!-- Palestinian Talmud Texts -->
                     <listWit n="Palestinian Talmud Texts">
-                        <!--<witness xml:id="Leid" n="Y" corresp="Leid.xml">Leiden Scaliger Or. 4720,
-                            1289
-                                <!-\- Ch. 2 begins at II 191r see: http://www.yerushalmionline.org/leiden_manuscript.html
-                        -\-><desc>Manuscript
-                                of the Palestinian Talmud</desc>
-                        </witness>-->
-                        <witness xml:id="S07319" n="Y" corresp="S07319.xml">Leiden Scaliger Or.
+                        <witness xml:id="S07319" n="Y" corresp="S07319.xml">Leiden, Scaliger Or.
                             4720, 1289 CE<desc>Manuscript of the Palestinian Talmud</desc>
                         </witness>
+                        <witness xml:id="S08010" n="Y" corresp="S08010.xml">Seo de Urgel, San
+                            Lorenzo de el Escorial GI.3, 15th Century.<desc>Babylonian Talmud, Bava
+                                Qama, Bava Metsi'a, Bava Batra, with Palestinian Talmud and Code of
+                                Alfasi</desc></witness>
                         <witness xml:id="P00002" n="Y" corresp="P00002.xml">Venice Editio Princeps,
                                 1532<desc>Printed edition of the Palestinian Talmud</desc></witness>
                     </listWit>
@@ -16398,6 +16400,19 @@
                             <biblScope type="vol">11</biblScope>
                         </series>
                     </biblStruct>
+                    <biblStruct>
+                        <monogr>
+                            <author>Lowe, William H.</author>
+                            <title level="m">The Mishnah on which the Palestinian Talmud
+                                Rests</title>
+                            <title level="m" type="short">Mishnah</title>
+                            <imprint>
+                                <pubPlace>Cambridge</pubPlace>
+                                <publisher>University Press</publisher>
+                                <date>1883</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
                     <biblStruct xml:id="NT">
                         <monogr>
                             <author>Nestle, Eberhardt</author>
@@ -16438,6 +16453,20 @@
                                 <pubPlace>Wiesbaden</pubPlace>
                                 <publisher>Ludwig Reichert</publisher>
                                 <date>1989</date>
+                            </imprint>
+                        </monogr>
+                    </biblStruct>
+                    <biblStruct type="book" xml:id="reif">
+                        <monogr>
+                            <author>Reif, Stephan C.</author>
+                            <title level="m">Hebrew Manuscripts at Cambridge University Library: A
+                                Description and Introduction</title>
+                            <title level="m" type="short">Hebrew MSS</title>
+                            <textLang>English</textLang>
+                            <imprint>
+                                <pubPlace>Cambridge</pubPlace>
+                                <publisher>University Press</publisher>
+                                <date>1997</date>
                             </imprint>
                         </monogr>
                     </biblStruct>

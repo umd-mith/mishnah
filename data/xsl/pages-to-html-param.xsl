@@ -94,6 +94,8 @@
         tei:milestone[@unit='MSMishnah'] | tei:milestone[@unit='fragment']"> </xsl:template>
     <!-- for now ignoring fw for running heads etc. -->
     <xsl:template match="//tei:fw"/>
+    <!-- for now, removing num markup. May need to be restored. -->
+    <xsl:template match="//tei:num"><xsl:apply-templates/></xsl:template>
     <xsl:template match="tei:w">
         <xsl:apply-templates select="node()"/>
     </xsl:template>

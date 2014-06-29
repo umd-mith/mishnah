@@ -28,13 +28,13 @@
                 <div class="about">
                 <h2>About this demo</h2>
                 <p>
-                  The <a class="highlighted" href="http://www.digitalmishnah.org/">Digital Mishnah Project</a> will provide users with a database of digitized manuscripts of the Mishnah from around the world, along with tools for collation, comparison, and analysis. This demo provides fully marked up transcriptions of twenty-two witnesses to a sample chapter, <cite>Bava Metsia</cite> ch 2, and illustrates basic functionalities.
+                    The <a class="highlighted" href="http://blog.umd.edu/digitalmishnah/">Digital Mishnah Project</a> will provide users with a database of digitized manuscripts of the Mishnah from around the world, along with tools for collation, comparison, and analysis. This demo provides fully marked up transcriptions of twenty-two witnesses to a sample chapter, <cite>Bava Metsia</cite> ch 2, and illustrates basic functionalities.
                 </p>
                 <p>
                   The <a class="highlighted" href="browse">browse</a> function presents metadata and a rendering of the transcription that which can be viewed with their metadata and approximately as laid out in the original text.
                 </p>
                 <p>
-                  The <a class="highlighted" href="collate-hl">collate</a> function allows for the detailed comparison of witnesses. At its core it runs a set of texts through <a href="http://collatex.sourceforge.net/">CollateX</a>, which aligns matching words ("tokens"). The Digital Mishnah site remerges this output with the original textual data and represents the results both as an alignment table, and as a text with critical apparatus. The user can determine the passage, the witnesses, and the order. Because we anticipate that a number of users will prefer a parallel-column ("synoptic") presentation, the collate page shows an arrangement of the selected passage arranged in parallel columns by witness in the user-specified order.
+                  The <a class="highlighted" href="collate-hl">collate</a> function allows for the detailed comparison of witnesses. At its core it runs a set of texts through <a href="http://www.collatex.net/">CollateX</a>, which aligns matching words ("tokens"). The Digital Mishnah site remerges this output with the original textual data and represents the results both as an alignment table, and as a text with critical apparatus. The user can determine the passage, the witnesses, and the order. Because we anticipate that a number of users will prefer a parallel-column ("synoptic") presentation, the collate page shows an arrangement of the selected passage arranged in parallel columns by witness in the user-specified order.
                 </p>
                 </div>
                 <!--<xsl:for-each select="tei:TEI/tei:text/tei:body/tei:p"><p><xsl:value-of

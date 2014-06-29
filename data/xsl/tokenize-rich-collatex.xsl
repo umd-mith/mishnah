@@ -15,6 +15,7 @@
     </xd:doc>
     <xsl:param name="algorithm">dekker</xsl:param>
     <xsl:param name="mcite" select="'4.2.2.10'"/>
+    <xsl:param name="output" select="'table'"></xsl:param>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:template match="//tei:div">
         <cx:collation xmlns:cx="http://interedition.eu/collatex/ns/1.0" joined="false" algorithm="{$algorithm}">

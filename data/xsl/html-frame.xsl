@@ -68,7 +68,7 @@
             <body>
                 <header id="header">
 
-                    <a href="http://www.digitalmishnah.org">
+                    <a href="http://dev.digitalmishnah.umd.edu">
                         <img src="./images/mishnah-logo.png" width="413"
                             height="61" alt="Digital Mishnah"/>
                     </a>
@@ -83,8 +83,8 @@
                             <h2>
                                 <a href="demo">Demo Home</a>
                                 <a href="compare">Compare Witnesses</a>
-                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
-                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
+                                <a href="http://blog.umd.edu/digitalmishnah" target="_blank">Project Blog</a>
+                                <a href=" http://blog.umd.edu/digitalmishnah/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -92,10 +92,9 @@
                         <div class="contents">
                             <h2>
                                 <a href="demo">Demo Home</a>
-                                <a href="browse">Compare Witnesses</a>
                                 <a href="compare">Go to collate page</a>
-                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
-                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
+                                <a href="http://blog.umd.edu/digitalmishnah" target="_blank">Project Blog</a>
+                                <a href=" http://blog.umd.edu/digitalmishnah/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -108,8 +107,8 @@
                                 <a href="#align">Alignment table format</a>
                                 <a href="#text-appar">Text with apparatus</a>
                                 <a href="#synopsis">Parallel column synopsis</a>
-                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
-                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
+                                <a href="http://blog.umd.edu/digitalmishnah" target="_blank">Project Blog</a>
+                                <a href=" http://blog.umd.edu/digitalmishnah/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -119,8 +118,8 @@
                                 <a href="demo">Back to demo home</a>
                                 <a href="browse">Go to browse page</a>
                                 <a href="#output">Output</a>
-                                <a href="http://www.digitalmishnah.org" target="_blank">Project Blog</a>
-                                <a href=" http://www.digitalmishnah.org/demo/feedback" target="blank">Feedback</a>
+                                <a href="http://blog.umd.edu/digitalmishnah" target="_blank">Project Blog</a>
+                                <a href=" http://blog.umd.edu/digitalmishnah/feedback" target="blank">Feedback</a>
                             </h2>
                         </div>
                     </xsl:when>
@@ -145,8 +144,8 @@
                                 target="_blank">Amazon Web Services</a>.<br/>
                             Except where otherwise noted, content on this site
                             is licensed under a <a rel="license"
-                                href="http://creativecommons.org/licenses/by-nc/3.0/"
-                                >Creative Commons Attribution-Non-Commerical 3.0
+                                href="http://creativecommons.org/licenses/by/4.0/"
+                                >Creative Commons Attribution International 4.0
                                 License</a>. </div>
                     </div>
                 </footer>
