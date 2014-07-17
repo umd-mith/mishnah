@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:its="http://www.w3.org/2005/11/its"
     xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xd xs its local" version="2.0" xmlns:local="local-functions.uri">
-    <xsl:strip-space elements="tei:ab tei:w tei:reg tei:c tei:expan tei:g tei:lb tei:note tei:label tei:space tei:gap" />
-    <xsl:output indent="no" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
+    <xsl:strip-space elements="tei:w tei:reg tei:c tei:expan tei:g tei:note tei:label tei:gap tei:add tei:del tei:damage tei:unclear tei:gap" />
+    <xsl:preserve-space elements="tei:space tei:seg tei:lb"/>
+    <xsl:output indent="yes" method="xml" omit-xml-declaration="no" encoding="UTF-8"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 25, 2011</xd:p>
@@ -12,9 +13,9 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
-    <xsl:param name="rqs" select="'S00651=1&amp;S08174=2&amp;P00001=&amp;S07319=&amp;P00002'"
+    <xsl:param name="rqs" select="'S07326=1&amp;S00483=2&amp;S01520=3'"
         />
-    <xsl:param name="mcite" select="'4.1.7.1'"/>
+    <xsl:param name="mcite" select="'4.3.9.8'"/>
     <xsl:variable name="cite" select="if (string-length($mcite) = 0) then '4.2.2.1' else $mcite"/>
     <xsl:variable name="witlist">
         <xsl:variable name="params">
@@ -63,7 +64,9 @@
                                         <!-- Choose mechanism a workaround to Collatex's refusal of
                                             empty witnesses -->
                                         <xsl:choose>
-                                            <xsl:when test="document(.)/node()">
+                                            <!-- This one entirely a temporary kludge: if all of M is an addition -->
+                                            <xsl:when test="document(.)/element()[self::tei:add and (not(following-sibling::element()[not(tei:add)]))]"><xsl:text>&#160;</xsl:text></xsl:when>
+                                            <xsl:when test="document(.)/element()">
                                                 <xsl:copy-of select="document(.)/node()|@*"/>
                                             </xsl:when>
                                             <xsl:otherwise><xsl:text>&#160;</xsl:text></xsl:otherwise>
@@ -152,6 +155,8 @@
                 </xsl:element>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
+            <xsl:when test="self::tei:add"><xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/></xsl:when>
+            <xsl:when test="self::tei:del"><xsl:value-of select="."/><xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/></xsl:when>
             <xsl:when test="self::tei:seg">
                 <!-- Currently selects only "original" text. Can be altered to include to include
                     added corrected text as well. 
@@ -162,12 +167,10 @@
                         <xsl:when test="self::text()">
                             <xsl:copy-of select="."/>
                         </xsl:when>
-                        <xsl:when test="self::tei:del | self::tei:sic">
-                            <xsl:value-of select="."/>
-                        </xsl:when>
+                        <xsl:when test="self::tei:del | self::tei:sic"><xsl:value-of select="normalize-space(.)"/></xsl:when>
                         <xsl:when test="self::tei:add | self::tei:corr"/>
                         <xsl:otherwise>
-                            <xsl:copy-of select="."/>
+                            <xsl:apply-templates select="./node()" mode="preproc-within" xml:space="default"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
@@ -198,10 +201,11 @@
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:choice[child::tei:orig and child::tei:reg]">
-                <xsl:variable name="reg" select="normalize-space(./tei:reg)"> </xsl:variable>
-                <w><xsl:value-of select="./tei:orig"></xsl:value-of><reg>
-                    <xsl:value-of select="translate($reg,'?סןוי','*שם')"/>
-                </reg></w>
+                <xsl:variable name="reg"><xsl:for-each select="tokenize(normalize-space(./tei:reg),' ')"><regToken><xsl:value-of select="."/></regToken></xsl:for-each></xsl:variable>
+                <xsl:variable name="orig"><xsl:for-each select="tokenize(normalize-space(./tei:orig),' ')"><origToken><xsl:value-of select="."/></origToken></xsl:for-each></xsl:variable>
+                <xsl:for-each select="$orig/tei:origToken">
+                    <xsl:variable name="i" select="1+ count(preceding-sibling::*)"/>
+                    <w><xsl:value-of select="."/><reg><xsl:value-of select="translate($reg/tei:regToken[$i],'?סןוי','*שם')"></xsl:value-of></reg></w></xsl:for-each>
                 <xsl:apply-templates select="following-sibling::node()[1]" mode="preproc-1"/>
             </xsl:when>
             <xsl:when test="self::tei:damage">
@@ -252,10 +256,11 @@
     <xsl:template match="//tei:ref" mode="preproc-within"/>
     <!-- This looks like a duplication -->
     <xsl:template match="tei:c[@type='nonlettermark']" mode="preproc-within"/>
-    <xsl:template match="tei:g[@type='wordbreak'] | tei:c[@type='wordbreak']" mode="preproc-within"/>
+    <xsl:template match="tei:g[@type='wordbreak'] | tei:c[@type='wordbreak'] | tei:metamark" mode="preproc-within"/>
     <xsl:template match="tei:g[@type!='wordbreak']" mode="preproc-within">
         <xsl:value-of select="."/>
     </xsl:template>
+    
     
     <xsl:template match="tei:lb[not(parent::tei:w)] | tei:pb | tei:cb" mode="preproc-within">
         <xsl:element name="{name()}">
@@ -265,7 +270,7 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:lb[parent::tei:w]" mode="preproc-within" xml:space="default"></xsl:template>
-    <xsl:template match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw | //tei:surplus"
+    <xsl:template match="//tei:supplied | //tei:damageSpan | //tei:anchor | //tei:space | //tei:note | //tei:fw | //tei:surplus | //tei:metamark"
         mode="preproc-within"/>
     <xsl:template match="//tei:unclear | //tei:gap" mode="preproc-within">
         <xsl:text>[ ]</xsl:text>
