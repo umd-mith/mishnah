@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:my="local-functions.uri"
     version="2.0" xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0">
@@ -69,6 +69,9 @@
                 <!-- Only way I could get cinclude with parameters to work was with a full URL -->
                 <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->            
                 <cinclude:include>
+                    <!--<xsl:attribute name="src"
+                        select="concat('http&#58;&#47;&#47;dev.digitalmishnah.umd.edu&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
+                    <xsl:attribute name="element" select="'test'"/>-->
                     <xsl:attribute name="src"
                         select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
                     <xsl:attribute name="element" select="'test'"/>
@@ -84,8 +87,11 @@
             <cinclude:include>
                 <!-- Only way I could get cinclude with parameters to work was with a full URL -->
                 <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->
-            <xsl:attribute name="src"
-                select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
+                <!--<xsl:attribute name="src"
+                select="concat('http&#58;&#47;&#47;dev.digitalmishnah.umd.edu&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>-->
+                <xsl:attribute name="src"
+                    select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
+                <xsl:attribute name="element" select="'test'"/>
             <xsl:attribute name="element" select="'test'"/>
             </cinclude:include>
         </xsl:if>
