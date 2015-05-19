@@ -1,0 +1,1128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css"
+    href="../../css/newTestCSS.css" title="Mishnah Style Sheet" alternate="no"?>
+<!--<?xml-model href=http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rnc" type="application/relax-ng-compact-syntax"?>-->
+<?xml-model href="../../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!--<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>An electronic transcription of Kaufmann MS A50 of the Mishnah</title>
+            <editor> <persName corresp="ref.xml#HL">Hayim Lapin</persName> </editor>
+            <respStmt>
+               <resp>transcriber</resp>
+               <persName corresp="ref.xml#MA">Martin Abegg</persName>
+               <name corresp="ref.xml#Acc">Accordance: OakTree Software</name>
+               <name corresp="ref.xml#LI">Lieberman Institute for Talmudic Research</name>
+               <!-- Should be orgName, but schema is not allowing. Need to fix. -->
+            </respStmt>
+            <respStmt>
+               <resp>markup</resp>
+               <persName corresp="ref.xml#AS">Atara Siegel</persName>
+            </respStmt>
+            <respStmt>
+               <resp>editing</resp>
+               <persName corresp="ref.xml#NE">Nurit Ezer</persName>
+               <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+            </respStmt>
+            <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish Studies</sponsor>
+            <sponsor n="secondary"
+               >Lieberman Institute; Primary Witnesses to Tannaitic
+               Literature</sponsor>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>Digital Mishnah Project</publisher>
+            <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+            <address>
+                    <addrLine>0301 Hornbake Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+            <idno type="local">S07326</idno>
+            <availability status="restricted">
+               <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff Center for
+                  Jewish Studies and licensed under a <ref
+                  target=" http://creativecommons.org/licenses/by/4.0//"
+                  >Creative Commons
+                     Attribution International 4.0 License</ref>.</p>
+            </availability>
+            <pubPlace>College Park, MD USA</pubPlace>
+            <date>2013-08-25</date>
+
+         </publicationStmt>
+         <notesStmt>
+            <note>
+               <p>The Kaufmann Manuscript of the Mishnah(MS A 50, Oriental Collection of the Library
+                  of the Hungarian Academy of Sciences)</p>
+               <p>Transcriptions based on images available at
+                  http://kaufmann.mtak.hu/en/ms50/ms50-coll1.htm</p>
+               <p>Premilinary transcription provided by the Lieberman Institute, and corrected and
+                  marked up by <persName
+               corresp="ref.xml#AS"
+               >Atara Siegel</persName>. Supercedes
+                  Kauf.xml, transcribed by <persName
+               corresp="ref.xml#JDO"
+               >Justin Orr</persName> and
+                  marked up by Hayim Lapin</p> </note>
+         </notesStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Budapest</settlement>
+                  <repository>Library of the Hungarian Academy of Sciences</repository>
+                  <idno>A50</idno>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Mishnah</title>
+                     <note type="nli-ref"
+                        >http://primo.nli.org.il/primo_library/libweb/action/dlDisplay.do?vid=NLI&amp;docId=NNL_ALEPH000191047</note>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="parchment">
+                        <extent>286</extent>
+                     </supportDesc>
+                     <layoutDesc>
+
+                        <layout columns="2"> <dimensions scope="sheet">
+                           <height unit="cm">33</height>
+                           <width unit="cm">28</width>
+                           </dimensions> <dimensions scope="col-cm">
+                           <height unit="cm">25</height>
+                           <width unit="cm">9.5</width>
+                           </dimensions> <dimensions scope="col-writ">
+                           <height unit="lines">30</height>
+                           <width unit="chars">24</width>
+                           <dim type="char-p-cm">2.63</dim>
+                           </dimensions>
+                           <note>Dimensions based on Gergely catalog and personal communication by
+                              Balazs Tamasi, of the Library of the Hungarian Academy of
+                              Sciences</note>
+                        </layout>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scribe="first" script="Italian Square">
+                        <!-- or ancient oriental? Needs work--> <date notBefore="1000"
+                        notAfter="1300">11th-13th Century</date>
+                        <region><!-- placeholder --></region> </handNote>
+                     <handNote scribe="second">
+                        <!-- Following is a temporary solution -->
+                        <desc>pointed<desc>Babylonian</desc> </desc>
+                        <note>Second hand points the text using the Babylonian vocalization than
+                           first scribe.</note>
+                     </handNote>
+                  </handDesc>
+               </physDesc>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <tagsDecl><!-- placeholder --></tagsDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change/>
+         <change/>
+         <change/>
+         <change/>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div1 xml:id="S07326.2" style="dir:rtl">
+            <div2 xml:id="S07326.2.4">
+               <pb xml:id="S07326.65v" n="65v"/>
+               <cb xml:id="S07326.65vB" n="65vB"/>
+               <div3 xml:id="S07326.2.4.1">
+                  <ab xml:id="S07326.2.4.1.1"> <lb n="25"/>*שקלים <lb n="26"
+                     />באחד באדר משמיעים על השקלים <lb n="27"/>ועל הכלאים <add hand="#h2"
+                     rend="FIXME" place="FIXME">ו</add>בחמשה עשר בו קורין <lb n="28"
+                     />את המגילה בכרכים ומתקנים את <lb n="29"/>הדרכים ואת הרחובות ואת מקוות <pb
+                     xml:id="S07326.66r" n="66r"/> <cb xml:id="S07326.66rA" n="66rA"/> <lb n="1"
+                     />המים ועושין כל צורכי הרבים <lb n="2"/>ומציינים על הקברות ויוצאין אף על <lb
+                     n="3"/>הכילאים:</ab>
+                  <ab xml:id="S07326.2.4.1.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהודה בראשונה <lb n="4"/>היו עוקרים ומשליכים לפניהם <lb n="xx"
+                     />משרבו עוברי עבירה היו משליכים <lb n="xx"/>על הדרכים התיקנו שיהו מבקירים <lb
+                     n="xx"/>את כל השדה:</ab>
+                  <ab xml:id="S07326.2.4.1.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> בחמשה עשר <lb n="xx"
+                     />בו שולחנות ישבו במדינה בעשרים <lb n="xx"/>וחמשה ישבו במקדש מישישבו <lb n="xx"
+                     />במקדש התחילו למשכן ואת מי <lb n="xx"/>ממשכנים לווים וישראל גרים ועבדים <lb
+                     n="xx"/>משוחררים אבל לא [ל]נשים ולא [ל]עבדים <lb n="xx"
+                     />ולא [ל]קטנים וכל קטן שהתחיל אביו <lb n="xx"/>לשקול על ידו אינו פוסק ואין <lb
+                     n="xx"/>ממשכנין את הכהנים מפני דרכי <lb n="xx"/>שלום:</ab>
+                  <ab xml:id="S07326.2.4.1.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהודה העיד בן כוברי <lb n="xx"/>ביבנה שכל כהן שהוא שוקל אינו <lb
+                     n="xx"/>חוטא <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice>לו רבן יוחנן בן זכיי לא כי <lb n="xx"/>אלא שכל כהן שאינו שוקל חוטא <lb
+                     n="xx"/>אלא שהכהנים דורשים מקרא זה <lb n="xx"
+                     />לעצמן וכל מינחת כהן כליל תהיה <lb n="xx"/>לא תאכל הואיל והעומר ושתי הלחם <lb
+                     n="xx"/>ולחם הפנים שלנו היאך הן נאכלים</ab>
+                  <ab xml:id="S07326.2.4.1.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> אף על פי שאמרו אין ממשכנים <lb
+                     n="xx"/>נשים ועבדים וקטנים אבל אם שקלו <lb n="xx"
+                     />מקבלים מידם נכרי וכותי ששקלו <lb n="xx"/>אין מקבלים מידם אין מקבלים מידם <lb
+                     n="xx"/>קיני זבים וקיני זבות וקיני יולדות <lb n="xx"/>חטאות ואשמות <add
+                     hand="#h2" rend="FIXME" place="FIXME">אין</add> מקבלים מידם <lb n="xx"
+                     />זה הכלל כל שהוא נידר ונידב מקבלים <cb xml:id="S07326.66rB" n="66rB"/> <lb
+                     n="xx"/>מידם וכל שאינו לא נידר ולא נידב <lb n="xx"
+                     />אין מקבלים מידם וכן הוא מפרש <lb n="xx"
+                     />על ידי עזרה לא לכם ולנו לבנות בית <lb n="xx"/>לאלינו</ab>
+                  <ab xml:id="S07326.2.4.1.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label>ואילו חייבים בקלבון <lb n="xx"
+                     />לווים וישראל גרים ועבדים משוחררים <lb n="xx"
+                     />אבל לא [ל]נשים ולא עבדים ולא קטנים <lb n="xx"
+                     />השוקל על יד עבד ועל יד אשה ועל <lb n="xx"/>יד כהן ועל יד הקטן פטור על ידו <lb
+                     n="xx"/>ועל יד חבירו חייב קולבון אחד <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>מאיר <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>שני קולבנות נתן בסלע <lb n="xx"/>ליטול שקל חייב שני קלבנות:</ab>
+                  <ab xml:id="S07326.2.4.1.7"><label rend="pad(XX) size() ornament()"
+                     ><num>ז</num><am rend="FIXME">׳</am></label> <lb n="xx"
+                     />השוקל על יד עני ועל יד שכינו ועל <lb n="xx"
+                     />יד בן עירו פטור ואם הלוון חייב <lb n="xx"
+                     />האחים [ו]השותפים שחייבים בקלבון <lb n="xx"/>פטורים ממעשר בהמה ושחייבים <lb
+                     n="xx"/>במעשר בהמה [ו]פטורים מן הקולבן <lb n="xx"/>וכמה הוא קולבון מעה כסף <choice>
+                     <abbr>דבר' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>מאיר <choice>
+                     <abbr>וחכמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>חצי: </ab>
+                  <trailer>*פר' *ב' *הל' *ז'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.2">
+                  <ab xml:id="S07326.2.4.2.1">מצרפין שקלים דרכונות מפני מסויי <lb n="xx"
+                     />הדרך כשם שהיו שופרות במקדש <lb n="xx"/>כך היו במדינה בני העיר ששילחו <lb
+                     n="xx"/>את שקליהם ונגנבו או שאבדו [ו]אם <lb n="xx"
+                     />נתרמה התרומה נישבעים לגיזברים <lb n="xx"/>ואם לאו נשבעים לבני העיר ובני <lb
+                     n="xx"/>העיר שוקלים תחתיהם נמצאו או <lb n="xx"/>שהחזירום הגנבים אלו ואילו <lb
+                     n="xx"/>שקלים ואין עולים <del hand="#h2" rend="FIXME">???</del><add hand="#h2"
+                     place="overwritten" rend="FIXME">ל</add>הם לשנה הבאה:</ab>
+                  <ab xml:id="S07326.2.4.2.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> הנותן שיקלו לחבירו לשקול על <lb
+                     n="xx"/>ידו ושקלו על ידי עצמו ואם נתרמה <pb xml:id="S07326.66v" n="66v"/> <cb
+                     xml:id="S07326.66vA" n="66vA"/> <lb n="xx"/>התרומה מעל השוקל שיקלו מן <lb
+                     n="xx"/>ההקדש אם נתרמה התרומה ואם <lb n="xx"/>קרבה הבהמה מעל ממעשר שיני <lb
+                     n="xx"/>ומדמי שביעית יאכל כנגדו:</ab>
+                  <ab xml:id="S07326.2.4.2.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> <lb n="xx"
+                     />המכנס מעות ואמר הרי אלו שיקלי <lb n="xx"/>בית שמי <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>מת[י]ר[י]ן נדבה ובית <lb n="xx"/>הילל <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>מת[י]ר[י]ן חולים שאביא <add hand="#h2" rend="FIXME" place="FIXME"
+                     >מהן</add> <lb n="xx"/>שיקלי שווים שהמותר חולין אלו <lb n="xx"
+                     />לחטאתי שווים שהמותר נדבה <lb n="xx"/>שאביא מהן חטאתי שווים שהמותר <lb n="xx"
+                     />חולים:</ab>
+                  <ab xml:id="S07326.2.4.2.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>שמעון מה בין <lb n="xx"/>שקלים לחטאת אלא שהשקלים <lb n="xx"
+                     />יש להן קצבה ולחטאת אין לה[ם] <lb n="xx"/>קיצבה <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהודה <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>אף לשקלים<lb n="xx"/>[יש]<del hand="#h2" rend="FIXME">???</del><add
+                     hand="#h2" place="overwritten" rend="FIXME">אין</add> להם קיצבה <label
+                     rend="pad(XX) size() ornament()"><num>ה</num><am rend="FIXME">׳</am></label> שכשעלו <choice>
+                     <abbr>ישר' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>מן הגולה היו שקלים דרכונות חזרו <lb n="xx"
+                     />לשקול סלעים חזרו לשקול טבעים <lb n="xx"/>ביקשו לשקול דינרים <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>שמעון <lb n="xx"/>אף על פי כן יד כולם שווה אבל <lb n="xx"
+                     />חטאת זה מביא בסלע וזה מביא <lb n="xx"/>בשתים וזה <add hand="#h2" rend="FIXME"
+                     place="FIXME">מביא</add> בשלוש:</ab>
+                  <ab xml:id="S07326.2.4.2.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> מותר <lb n="xx"
+                     />שקלים חולים מותר עשירית האיפה <lb n="xx"/>מותר קיני זבים קיני זבות קיני <lb
+                     n="xx"/>יולדות חטאות ואשמות מותרן <lb n="xx"
+                     />נדבה זה הכלל כל שהוא בא משום [משום] חטא ומשום אשמה מותרן <lb n="xx"
+                     />נדבה: <label rend="pad(XX) size() ornament()"><num>ז</num><am rend="FIXME"
+                     >׳</am></label> מותר עולה לעולה מותר <lb n="xx"
+                     />מנחה למנחה מותר שלמים לשלמים <lb n="xx"/>מותר הפסח לשלמים מותר נזירים <lb
+                     n="xx"/>לינזיר<add hand="#h2" rend="FIXME" place="FIXME"
+                     >י</add>ם מותר נזיר לנדבה מותר <cb xml:id="S07326.66vB" n="66vB"/> <lb n="xx"
+                     />שבויים לשבויים מותר <add hand="#h2" rend="FIXME" place="FIXME"
+                     >שבוי</add> לאותו שבוי <lb n="xx"/>מותר [ל]עניים לעניים מותר עני לאותו <lb
+                     n="xx"/>עני מותר המתים למתים מותר המת <lb n="xx"/>ליורשיו <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>מאיר <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>מותר המת <lb n="xx"/>יהי מונח עד שיבוא אליהו <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>נתן <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>מותר המת בונים לו נפש על גבי קברו: </ab>
+                  <trailer>*פר' *[ב](ג)' *הל' *ז'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.3">
+                  <ab xml:id="S07326.2.4.3.1">בשלושה פרקים בשנה תורמים את
+<lb n="xx"
+                     />הלשכה ביפרס הפסח ביפרס העצרת
+<lb n="xx"/>בפרס החג והן גורנות של מעשר בהמה
+<lb
+                     n="xx"/>דברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה בן עזי <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>בעשרים ותשעה
+<lb n="xx"/>באדר באחד בסיון בעשרים ותשעה
+<lb n="xx"/>באלול <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>לעזר <choice>
+                     <abbr>ור' </abbr>
+                     <expan>???</expan>
+                     </choice>שמעון <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>באחד
+<lb n="xx"/>בניסן באחד בסיון באחד בתשרי
+<lb n="xx"
+                     />ולמה אמרו בעשרים ותשעה באלול
+<lb n="xx"/>ולא אמרו באחד בתשרי מפני שהוא
+<lb
+                     n="xx"/>יום טוב <add hand="#h2" rend="FIXME" place="FIXME"
+                     >ואי</add> אפשר לעשר ביום טוב לפיכך
+<lb n="xx"
+                     />הקדימוהו בעשרים ותשעה באלול</ab>
+                  <ab xml:id="S07326.2.4.3.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> בשלוש קופות של שלש שלוש
+<lb n="xx"
+                     />סאים תורמים את הלשכה וכתוב
+<lb n="xx"/>עליהם אלף בית גימל <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ישמעא' </abbr>
+                     <expan>???</expan>
+                     </choice>אומ'
+<lb n="xx"/>יוונית כתוב עליהם אלפא ביטא גמא
+<lb n="xx"
+                     />אין התורם נכנס לא בפרגוד חפות
+<lb n="xx"/>ולא במנעל ולא בסנדל ולא בתפילה
+<lb
+                     n="xx"/>ולא בקמיע שמא יעני ויאמרו מעון
+<lb n="xx"
+                     />הלשכה העני או שמא יעשיר ויאמרו
+<lb n="xx"/>מתרומת הלשכה העשיר שאדם צריך
+<add
+                     hand="#h2" rend="FIXME" place="FIXME"
+                     >לצאת</add> ידי הבריות כדרך שהוא צריך לצאת
+<lb n="xx"/>ידי המקום <choice>
+                     <abbr>שנ' </abbr>
+                     <expan>???</expan>
+                     </choice>והיתם נקיים <choice>
+                     <abbr>מי'י</abbr>
+                     <expan>???</expan>
+                     </choice> <lb n="xx"/><choice>
+                     <abbr>ומיש' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ואו' </abbr>
+                     <expan>???</expan>
+                     </choice>ומצא חן ושכל טוב בעיני
+<pb xml:id="S07326.67r" n="67r"/> <cb
+                     xml:id="S07326.67rA" n="67rA"/>
+   אהים ואדם:</ab>
+                  <ab xml:id="S07326.2.4.3.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> שלבית רבן גמליא'
+<lb n="xx"
+                     />היה נכנס ושיקלו בין אצבעותיו
+<lb n="xx"/>וזורקו לפני התורם והתורם מתכוין
+<lb
+                     n="xx"/>ודוחפו לקופה אין התורם תורם עד
+<lb n="xx"
+                     />שיאמר להם אתרום והן אומרים
+<lb n="xx"/>לו תרום תרום תרום שלשה פעמים</ab>
+                  <ab xml:id="S07326.2.4.3.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> תרם את הראשונה וחיפה
+<lb n="xx"
+                     />בקטבליות שנייה וחיפה בקטבליות
+<lb n="xx"/>שלישית [ו]לא היה מחפה ולמה לא
+<lb
+                     n="xx"/>היה מחפה שמא ישכח ויתרום מן
+<lb n="xx"/>הדבר התרום תרם את הראשונה
+<lb
+                     n="xx"/>לשם ארץ <choice>
+                     <abbr>ישרא' </abbr>
+                     <expan>???</expan>
+                     </choice>שנייה לשם הכרכים
+<add hand="#h2" rend="FIXME" place="FIXME"
+                     >ה</add>מוקפים לה שלישית לשם בבל ולשם
+<lb n="xx"/>מדי ולשם מדינות הרחוקות:</ab>
+                  <trailer>*פר *[ג](ד)' *הל *ד'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.4">
+                  <ab xml:id="S07326.2.4.4.1"> <lb n="xx"/>התרומה מה היו עושין בה לוקחין
+<lb n="xx"
+                     />בה תמידים ומוספים ונסכיהם 
+<lb n="xx"/>והעומר ושתי הלחם ולחם הפנים
+<lb n="xx"
+                     />וכל קרבנות הציבור שומרי ספחים
+<lb n="xx"/>בשביעית נוטלים שכרן מתרומת
+<lb
+                     n="xx"/>הלשכה <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יוסה <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>אף הרוצה 
+<lb n="xx"/>מתנדב שומר[י] חינם אמרו לו אף
+<lb n="xx"/>אתה <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>שאינן באים אלא 
+<lb n="xx"/>משלציבור:</ab>
+                  <ab xml:id="S07326.2.4.4.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> פרה ושעיר 
+<lb n="xx"
+                     />המשתלח ולשון שלזהורית באים
+<lb n="xx"/>מתרומת הלשכה כבש פרה וכבש
+<lb n="xx"
+                     />שעיר המשתלח ולשון שלבין קרניו
+<lb n="xx"/>ואמת המים וחומת העיר ומגדלותיה
+<lb
+                     n="xx"/>וכל צורכי העיר באים משירי הלשכה
+<cb xml:id="S07326.67rB" n="67rB"/> <lb
+                     n="xx"/>אבא שאול <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>כבש פרה כהנים גדולים
+<lb n="xx"/>עושין אותו משלעצמן</ab>
+                  <ab xml:id="S07326.2.4.4.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> מותר
+<lb n="xx"
+                     />שירי לשכה מה היו עושין בהן
+<lb n="xx"/>לוקחין בהן יינות ושמנים וסלתות
+<lb
+                     n="xx"/>והשכר להקדש דברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>ישמעאל
+<lb n="xx"/><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>אין משתכרין ב<del hand="#h2" rend="FIXME">???</del><add hand="#h2"
+                     place="overwritten" rend="FIXME">ש</add>ל
+<lb n="xx"/>הקדש אף לא משלעניים:</ab>
+                  <ab xml:id="S07326.2.4.4.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> מותר
+<lb n="xx"
+                     />התרומה מה היו עושין בה רקועי זהב
+<lb n="xx"/>ציפוי לבית קודש הקדשים <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>ישמעא'
+<lb n="xx"/><choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>מותר הפרות לקיץ המזבח ומותר
+<lb n="xx"/>תרומה לכלי שרת <choice>
+                     <abbr>ור' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>מותר
+<lb n="xx"/>תרומה לקיץ המזבח ומותר נסכים
+<lb n="xx"/>לכלי שרת <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>חנניה סגן הכהנים
+<lb n="xx"/><choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>מותר נסכים לקיץ [ל]המזבח ומותר
+<lb n="xx"
+                     />תרומה לכלי שרת וזה וזה לא היו
+<lb n="xx"/>מודים בפירות:</ab>
+                  <ab xml:id="S07326.2.4.4.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> מותר הקטורת
+<lb n="xx"
+                     />מה היו עושין בה מפרישין ממנה
+<lb n="xx"/>שכר האומנים ומחללים אותה
+<lb n="xx"
+                     />על מעות האומנים ונותנים אותה
+<lb n="xx"/>לאומנים בשכרן וחוזרים ולוקחין
+<lb
+                     n="xx"/>אותה מתרומה חדשה ואם בא ח[ו]דש
+<lb n="xx"/>בזמנו לוקחין אותה מתרומה
+<lb
+                     n="xx"/>חדשה ואם לאו מן הישנה:</ab>
+                  <ab xml:id="S07326.2.4.4.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> <lb n="xx"
+                     />המקדיש נכסיו והיו בהן דברים
+<lb n="xx"
+                     />ראוים לקרבנות הציבור ינתנו לאומנים
+<lb n="xx"/>בשכרן דברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice>לו בן עזיי
+<add hand="#h2" rend="FIXME" place="FIXME"
+                     >אינה</add> היא המידה אלא מפרישין מהן
+<lb n="xx"
+                     />שכר האומנים ומחללין אותן על
+<lb n="xx"/>מעות האומנים ונותנין אותם לאומנין
+<pb
+                     xml:id="S07326.67v" n="67v"/> <cb xml:id="S07326.67vA" n="67vA"/> <lb n="xx"
+                     />בשכרן וחוזרים ולוקחים אותם
+<lb n="xx"/>מתרומה חדשה:</ab>
+                  <ab xml:id="S07326.2.4.4.7"><label rend="pad(XX) size() ornament()"
+                     ><num>ז</num><am rend="FIXME">׳</am></label> המקדיש
+<lb n="xx"
+                     />נכסיו והיתה בהן בהמה ראויה
+<lb n="xx"/>על גבי המזבח זכרים ונקיבות
+<lb n="xx"/><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>אליעזר <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>זכרים ימכרו לצריכי
+<lb n="xx"/>עולות <add hand="#h2" rend="FIXME"
+                     place="FIXME">ו</add>נקיבות ימכרו לצריכי 
+<add hand="#h2" rend="FIXME"
+                     place="FIXME">זבחי</add> שלמים [ויביא בדמיהם עולות]
+<lb n="xx"
+                     />ודמיהם יפלו עם שאר נכסים לבדק
+<lb n="xx"/>הבית: <label
+                     rend="pad(XX) size() ornament()"><num>ח</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהושע <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>זכרים
+<lb n="xx"/>עצמן יקרבו עולות ונקיבות ימכרו
+<lb n="xx"
+                     />לצריכי זבחי שלמים ויביא בדמיהם
+<lb n="xx"/>עולות ושאר נכסים יפלו לבדק
+<lb
+                     n="xx"/>הבית: <label rend="pad(XX) size() ornament()"><num>ט</num><am
+                     rend="FIXME">׳</am></label> <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה רואה אני
+<lb n="xx"/>את דברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>אליעזר מדברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהושע
+<lb n="xx"/><choice>
+                     <abbr>שר' </abbr>
+                     <expan>???</expan>
+                     </choice>אליעזר הישווה <add hand="#h2" rend="FIXME" place="FIXME"
+                     >את</add> מידתו ור'
+<lb n="xx"/>יהושע חלק <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>פפייס שמעתי
+<lb n="xx"/>דברי שניהם המקדיש בפירוש
+<lb n="xx"/>כדברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>אליעזר והמקדיש סתם
+<lb n="xx"/>כדברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהושע:</ab>
+                  <ab xml:id="S07326.2.4.4.8"><label rend="pad(XX) size() ornament()"
+                     ><num>י</num><am rend="FIXME">׳</am></label> המקדיש
+<lb n="xx"
+                     />נכסיו והיו בהם דברים ר[ו]אים על
+<lb n="xx"/>גבי המזבח יינות ושמנים ועופות
+<lb
+                     n="xx"/><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>אלעזר <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>ימכרו לצריכי אותו
+<lb n="xx"/>המין ויביא בדמיהם עולות ושאר
+<lb n="xx"
+                     />נכסים יפלו לבדק הבית:</ab>
+                  <ab xml:id="S07326.2.4.4.9"><label rend="pad(XX) size() ornament()"><num>י<am
+                     rend="FIXME">׳</am>א<am rend="FIXME">׳</am></num></label> אחת
+<lb n="xx"
+                     />לשלושים <add hand="#h2" rend="FIXME" place="FIXME"
+                     >יום</add> משערים את הלשכה כל
+<lb n="xx"/>המקבל עליו לספק סלתות מארבע
+<lb
+                     n="xx"/>עמדו משלוש <add hand="#h2" rend="FIXME" place="FIXME"
+                     >יספק</add> מארבע משלוש עמדו
+<lb n="xx"/>מארבע יספק מארבע שהיד הקדש
+<lb n="xx"
+                     />לעליונה אם התליעה סלת התליעה
+<cb xml:id="S07326.67vB" n="67vB"/> <lb n="xx"
+                     />לו ואם החמיץ יין החמיץ לו אינו 
+<lb n="xx"/>מקבל <add hand="#h2" rend="FIXME"
+                     place="FIXME">את</add> מעותיו עד שיהא המזבח מרצה
+</ab>
+                  <trailer>*פר' *ה' *הל' *י'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.5">
+                  <ab xml:id="S07326.2.4.5.1">ואילו הן הממונים שהיו במקדש
+<lb n="xx"
+                     />יוחנן בן פינחס על החותמות אחייה
+<lb n="xx"/>על [הסלתות]_<add hand="#h2"
+                     rend="FIXME" place="FIXME">הנסכים</add> מתיה בן שמואל על הפייסות
+<lb n="xx"
+                     />פתחיה על הקינים <add hand="#h2" rend="FIXME" place="FIXME"
+                     >פתחיה זהוא מרדכי</add> ולמה נקרא שמו
+<lb n="xx"
+                     />פתחיה שהוא פותיח דברים ודורשן
+<lb n="xx"/>ויודיע בשבעים לשון: <label
+                     rend="pad(XX) size() ornament()"><num>ב</num><am rend="FIXME"
+                     >׳</am></label> בן אחייה
+<lb n="xx"/>על חלי מעים נחוניה חופר שיחים
+<lb n="xx"
+                     />גביני כרון בן גבר על נעילת שערים
+<lb n="xx"
+                     />בן בבי על הפקיע בן ארזה על הצלצל
+<lb n="xx"
+                     />הוגדס בן לוי על השיר בית גרמו על
+<lb n="xx"/>מעשה לחם הפנים בית אבטינס על
+<lb
+                     n="xx"/>מעשה <add hand="#h2" rend="FIXME" place="FIXME"
+                     >הקטרת</add> ואלעזר על הפרכת ופינחס על
+<lb n="xx"/>המלביש:</ab>
+                  <ab xml:id="S07326.2.4.5.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> אין פוחתים משלשה
+<lb n="xx"
+                     />גיזברים ומשבעה מרכולים ואין 
+<lb n="xx"/>עושין סררה על הציבור בממון פחות
+<lb
+                     n="xx"/>משנים חוץ מבן אחיה שעל חלי מעים
+<lb n="xx"
+                     />ואלעזר שעל הפרכות שאותם קיבלו
+<lb n="xx"/>ציבור עליהם:</ab>
+                  <ab xml:id="S07326.2.4.5.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> ארבעה חותמות
+<lb n="xx"
+                     />היו במקדש וכתוב עליהם עגל זכר
+<lb n="xx"/>גדי וחוטא בן עזי <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice><add hand="#h2" rend="FIXME" place="FIXME"
+                     >חמשה היו</add> וארמית כתוב
+<lb n="xx"/>עליהם עגל דכרי גדי חוטא דל וחוטא
+<lb
+                     n="xx"/>עשיר עגל משמש עם נ[כס]<add hand="#h2" rend="FIXME" place="FIXME"
+                     >סכ</add>י בקר
+<lb n="xx"/>גדולים וקטנים זכרים ונקיב<del hand="#h2"
+                     rend="FIXME">???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >ות גדי</add>
+(משמש עם ++נסכי הצ'{ צאן גדולים וקטנים זכרים ונקיבות חוץ משל אילי^^%
+<lb
+                     n="xx"/>מ איל משמש עם)
+<lb n="xx"/>עם נ[כס]<del hand="#h2" rend="FIXME"
+                     >???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >סכ</add>י אלים בלבד חוטא משמש
+<lb n="xx"/>עם נ[כס]<del hand="#h2" rend="FIXME"
+                     >???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >סכ</add>י שלוש בהמות של מצורע</ab>
+                  <ab xml:id="S07326.2.4.5.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> מי שה<del hand="#h2" rend="FIXME"
+                     >???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >וא</add> מבקש נ[כס]<del hand="#h2" rend="FIXME">???</del><add hand="#h2"
+                     place="overwritten" rend="FIXME">סכ</add>ים הולך
+<pb xml:id="S07326.68r"
+                     n="68r"/> <cb xml:id="S07326.68rA" n="68rA"/> <lb n="xx"
+                     />לו אצל יוחנן שהוא ממונה על החותמות
+<lb n="xx"
+                     />ונותן לו מעות ומקבל ממנו חותם בא לו
+<lb n="xx"
+                     />אצל אחייה שהוא ממונה על הנ[כס]<add hand="#h2" rend="FIXME" place="FIXME"
+                     >סכ</add>ים
+<lb n="xx"/>ונותן לו חותם ומקבל ממנו נ[כס]<del hand="#h2"
+                     rend="FIXME">???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >סכ</add>ים 
+<lb n="xx"/>ולערב באין זה אצל זה ואחייה מוציא
+<lb n="xx"
+                     />את החותמות ומקבל כנגדן מעות
+<lb n="xx"/>אם הותירו הותירו להקדש ואם פחתו
+<lb
+                     n="xx"/>ישלם יוחנן מביתו שהייד הקדש
+<lb n="xx"/>לעליונה:</ab>
+                  <ab xml:id="S07326.2.4.5.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> מי שאבד חותמו 
+<lb n="xx"
+                     />ממתינים לו עד הערב אם מצאו לו
+<lb n="xx"/>כד[ו]<add hand="#h2" rend="FIXME"
+                     place="FIXME">י</add> חותמו נותנין לו ואם לאו לא הי[ו]<del hand="#h2"
+                     rend="FIXME">???</del><add hand="#h2" place="overwritten" rend="FIXME">ה</add>
+                     <lb n="xx"/>לו ושם כל היום כתוב עלהם מפני הרמאים</ab>
+                  <ab xml:id="S07326.2.4.5.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ז</num><am rend="FIXME">׳</am></label> שתי לשכות היו במקדש אחת
+<lb n="xx"
+                     />לשכת חשים ואחת לשכת הכלים 
+<lb n="xx"/>לשכת חשיים יראי חט נותנין לתוכה
+<lb
+                     n="xx"/>בחשיי ועניים בני טובים מתפרנסין
+<lb n="xx"
+                     />מתוכה בחשיי לשכת הכלים כל מי
+<lb n="xx"/>שהוא מתנדב כלי זורקו לתוכה ואחת
+<lb
+                     n="xx"/>לשלושים יום הגיזברים פו[חת]<del hand="#h2" rend="FIXME">???</del><add
+                     hand="#h2" place="overwritten" rend="FIXME">תח</add>ין 
+<lb n="xx"
+                     />אותה כלי שמצאו בו צורך לבדק
+<lb n="xx"/>הבית מניחים אותו והשאר נמכרים
+<lb
+                     n="xx"/>ודמיהם נופלים ללשכת בדק הבית
+</ab>
+                  <trailer>*פר' *ו' *הל' *ז'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.6">
+                  <ab xml:id="S07326.2.4.6.1">שלשה עשר שופרות שלושה עשר
+<lb n="xx"
+                     />שולחנות ושלוש עשרה השתחויות
+<lb n="xx"/>היו במקדש שלבית רבן <choice>
+                     <abbr>גמליא' </abbr>
+                     <expan>???</expan>
+                     </choice>ושל
+<lb n="xx"/>בית <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>חנניה סגן הכהנים היו משתחוים
+<lb n="xx"
+                     />בארבע עשרה ואיכן היתה יתירה
+<cb xml:id="S07326.68rB" n="68rB"/> <lb n="xx"
+                     />כנגד דיר העצים שכן מסורת בידם
+<lb n="xx"/>מאבותיהם ששם הארון גנוז</ab>
+                  <ab xml:id="S07326.2.4.6.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> <lb n="xx"
+                     />מעשה בכהן אחד שהיה מתעסק
+<lb n="xx"/>וראה את הריצפה שהיא משונה
+<lb n="xx"
+                     />מחברותיה בא ואמר לחבירו ולא
+<lb n="xx"
+                     />הספיק לגמור את הדבר עד שיצאתה
+[בצפון] נשמתו וידעו בייחוד ששם
+<lb n="xx"
+                     />הארון גנוז:</ab>
+                  <ab xml:id="S07326.2.4.6.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> ואיכן היו השתחויות
+<lb n="xx"
+                     />האילו ארבע בצפון וארבע בדרום
+<lb n="xx"/>שלוש במזרח ושתים במערב כנגד
+<lb
+                     n="xx"/>השערים שערים דרומים סמוכים
+<lb n="xx"/>למערב שער העליון שער הדלק
+<lb
+                     n="xx"/>שער הבכורות שער המים ולמה
+<lb n="xx"/>נקרא שמו שער המים שבו מכניסים
+<lb
+                     n="xx"/>צלוחית שלמים שלניסוך בחג ר'
+<lb n="xx"/><choice>
+                     <abbr>ליעז' </abbr>
+                     <expan>???</expan>
+                     </choice>בן יעקוב <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>בו המים מפכים
+<lb n="xx"/>ועתידים להיות יוצאין מתחת מפתן
+<lb n="xx"
+                     />הבית: <label rend="pad(XX) size() ornament()"><num>ד</num><am rend="FIXME"
+                     >׳</am></label> לעומתן בצפון סמוכים
+<lb n="xx"
+                     />למערב שער יכניה שער הקרבן שער
+<lb n="xx"/>הנשים שער השיר ולמה נקרא שמו
+<lb
+                     n="xx"/>שער יכניה שבו יצא יכניה וגלותו
+<lb n="xx"
+                     />ושבמזרח שער ניקנור ושני פשפשים
+<lb n="xx"/>היו לו אחד מימינו ואחד משמאלו
+<lb
+                     n="xx"/>ושנים במערב ולא היה להם שם:</ab>
+                  <ab xml:id="S07326.2.4.6.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> שלושה עשר שולחנות היו
+<lb n="xx"
+                     />במקדש שמונה שלשייש (בבית המטבחים שעליהן מדיחין את הקרבים ושנים במערב %
+<lb
+                     n="xx"/>הכבש ++אחד שלשיש{) ואחד
+<lb n="xx"/>שלכסף על של שייש נותנים את
+<lb
+                     n="xx"/>האברים ועל של כסף נותנים כלי
+<pb xml:id="S07326.68v" n="68v"/> <cb
+                     xml:id="S07326.68vA" n="68vA"/> <lb n="xx"/>שרת ושנים באולם מבפנים על פתח
+<lb
+                     n="xx"/>הבית אחד שלשייש ואחד שלזהב
+<lb n="xx"
+                     />על שלשייש נותנים את לחם הפנים
+<lb n="xx"
+                     />בכניסתו ועל שלזהב ביציאתו שמעלים
+<lb n="xx"/>בקודש ולא מורידים ואחד שלזהב
+<lb
+                     n="xx"/>מבפנים שעליו לחם הפנים תמיד:</ab>
+                  <ab xml:id="S07326.2.4.6.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> שלושה עשר שופרות היו
+<lb n="xx"
+                     />במקדש וכתוב עליהם תקלין חדתין
+<lb n="xx"
+                     />ותיקלין [ו]עתיקין קינים וגוזלי עולה
+<lb n="xx"/>עצים <del hand="#h2"
+                     rend="FIXME">???</del><add hand="#h2" place="overwritten" rend="FIXME"
+                     >ל</add>לבונה זהב לכפורת ששה
+<lb n="xx"/>לנדבה תקלין חדתין שבכל שנה
+<lb n="xx"
+                     />ושנה ועתיקין מי שלא שקל 
+<lb n="xx"/>אישתקד שוקל לשנה הבאה: <label
+                     rend="pad(XX) size() ornament()"><num>ז</num><am rend="FIXME">׳</am></label>
+                     <lb n="xx"/>קינים הן תרין וגוזלי עולה הן בני
+<lb n="xx"/>יונה כולם עולות דברי <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהודה וחכ'
+<lb n="xx"/><choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>קינים אחד חטאת ואחד
+<lb n="xx"/>עולה וגוזלי עלה כולם עולות:</ab>
+                  <ab xml:id="S07326.2.4.6.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ח</num><am rend="FIXME">׳</am></label> <lb n="xx"
+                     />האומר הרי עלי עצים לא יפחות
+<lb n="xx"/>משני גיזרים לבונה לא יפחות
+<lb n="xx"
+                     />מן הקומץ זהב לא יפחות מדינר
+<lb n="xx"/>זהב ששה לנדבה נדבה מה היו
+<lb n="xx"
+                     />עושין בה לוקחין בה עולות
+<lb n="xx"/>הבשר לשם והעורות לכהנים
+<lb n="xx"
+                     />זה מדרש דרש יהוידע כהן גדול
+<lb n="xx"/>אשם הוא אשום אשם <choice>
+                     <abbr>לי'י</abbr>
+                     <expan>???</expan>
+                     </choice> זה
+<lb n="xx"/>הכלל כל שהוא בא משום חט
+<lb n="xx"/>ומשום אשמה <add
+                     hand="#h2" rend="FIXME" place="FIXME">י</add>לקחו בו עולות
+<lb n="xx"
+                     />הבשר לשם והעורות לכהנים
+<cb xml:id="S07326.68vB" n="68vB"/> <lb n="xx"
+                     />נמצאו שני כתובים קיי[ו]מים אשם
+<lb n="xx"/><choice>
+                     <abbr>לי'י</abbr>
+                     <expan>???</expan>
+                     </choice> ואשם לכהן <choice>
+                     <abbr>ואו' </abbr>
+                     <expan>???</expan>
+                     </choice>כסף אשם וכסף
+<lb n="xx"/>חטאות לא יובא בית <choice>
+                     <abbr>י'י</abbr>
+                     <expan>???</expan>
+                     </choice> לכהנים יהיו:
+</ab>
+                  <trailer>*פר' *ז' *הל' *ט'</trailer>
+               </div3>
+               <div3 xml:id="S07326.2.4.7">
+                  <ab xml:id="S07326.2.4.7.1">מעות שנמצאו ב<add hand="#h2" rend="FIXME"
+                     place="FIXME">י</add>ן שקלים לנדבה
+<lb n="xx"
+                     />קרוב לשקלים יפלו לשקלים לנדבה
+<lb n="xx"
+                     />יפלו לנדבה מחצה למחצה יפלו לנדבה
+<lb n="xx"
+                     />בין עצים ללבונה קרוב לעצים יפלו
+<lb n="xx"/>לעצים ללבונה יפלו ללבונה מחצה
+<lb
+                     n="xx"/>למחצה יפלו ללבונה בין קינים לגוזלי
+<lb n="xx"
+                     />עולה קרוב לקינים יפלו לקנים לגוזלי
+<lb n="xx"
+                     />עולה יפלו לנדבה יפלו לגוזלי עולה
+<lb n="xx"
+                     />מחצה למחצה יפלו לגוזלי עלה בין
+<lb n="xx"/>חולין למעשר שיני קרוב לחולין
+<lb
+                     n="xx"/>יפלו לחולין <add hand="#h2" rend="FIXME" place="FIXME"
+                     >ל</add>מעשר שיני יפלו למעשר
+<lb n="xx"/>שיני מחצה למחצה יפלו למעשר
+<lb n="xx"
+                     />שיני זה הכלל הולכים אחר הקרוב
+<lb n="xx"/>מחצה למחצה להחמיר:</ab>
+                  <ab xml:id="S07326.2.4.7.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> מעות
+<lb n="xx"
+                     />שנימצאו לפני סוחרי בהמה לעולם
+<lb n="xx"/>מעשר ובהר הבית חולין ובירושלם
+<lb
+                     n="xx"/>בשאר כל ימות השנה חולין ובשעת
+<lb n="xx"/>הרגל <add hand="#h2"
+                     rend="FIXME" place="FIXME">ה</add>כל מעשר:</ab>
+                  <ab xml:id="S07326.2.4.7.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> בשר שנימצא
+<lb n="xx"
+                     />בעזרה איברים עולות וחתיכות
+<lb n="xx"/>חטאות ובירושלם זבחי שלמים זה
+<del
+                     hand="#h2" rend="FIXME">???</del><add hand="#h2" place="overwritten"
+                     rend="FIXME">ו</add>זה תעבר צורתו ויצא לבית השריפה
+<label
+                     rend="pad(XX) size() ornament()"><num>ד</num><am rend="FIXME"
+                     >׳</am></label> נמצא בגבולים איברים נבילות
+<lb n="xx"
+                     />וחתיכות מותרות ובשעת הרגל
+<add hand="#h2" rend="FIXME" place="FIXME"
+                     >ש</add>הבשר מרובה אף איברים מותרים:</ab>
+                  <pb xml:id="S07326.69r" n="69r"/>
+                  <cb xml:id="S07326.69rA" n="69rA"/>
+                  <ab xml:id="S07326.2.4.7.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> בהמה שנמצאת מירושלם ועד
+<lb n="xx"
+                     />מגדל עדר כמידתה לכל רוח זכרים
+<lb n="xx"/>עולות ונקיבות זבחי שלמים <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יודה
+<lb n="xx"/><choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>אף הראוי לפסחים פסחים קודם
+<lb n="xx"/>לרגל שלושים יום:</ab>
+                  <ab xml:id="S07326.2.4.7.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> בראשונה
+<lb n="xx"
+                     />היו ממשכנים את מוצאיה עד
+<lb n="xx"/>שהוא מביא עמה נסכיה חזרו
+<lb n="xx"
+                     />להיות מניחים אותה ובורחים
+<lb n="xx"/>התקינו בי[ן]<add hand="#h2"
+                     rend="FIXME" place="FIXME">ת</add> דין שיהו נסכיה באים
+<lb n="xx"
+                     />משלציבור:</ab>
+                  <ab xml:id="S07326.2.4.7.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ז</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>אמ' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>שמעון
+<lb n="xx"/>שבעה דברים היתקינו בית דין ש'
+<add hand="#h2"
+                     rend="FIXME" place="FIXME">ו</add>זה אחד מהן גוי ששילח עולתו
+<lb n="xx"
+                     />ממדינת הים אם שילח עמה נסכיה
+<lb n="xx"/>קריבים משלו ואם לאו קריבים
+<lb
+                     n="xx"/>משלציבור וכן גר שמת והניח
+<lb n="xx"/>זבחים אם יש לו נסכים קריבים
+<lb
+                     n="xx"/>משלו <add hand="#h2" rend="FIXME" place="FIXME"
+                     >ו</add>אם לאו קריבים משלציבור
+<lb n="xx"/>תניי בית דין הוא על כהן גדול 
+<lb
+                     n="xx"/>שמת שתהא מנחתו קריבה [
+<lb n="xx"/>משלציבור <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יהודה <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>משליורשים
+<lb n="xx"/>ושלימה היתה קריבה</ab>
+                  <ab xml:id="S07326.2.4.7.7"><label rend="pad(XX) size() ornament()"
+                     ><num>ח</num><am rend="FIXME">׳</am></label> על
+<lb n="xx"
+                     />המלח ועל העצים שיהו <add hand="#h2" rend="FIXME" place="FIXME"
+                     >ה</add>כהנים
+<lb n="xx"/>ניאותים בהם על הפרה של<del hand="#h2" rend="FIXME"
+                     >???</del><add hand="#h2" place="overwritten" rend="FIXME">א יהו</add> <lb
+                     n="xx"/>מועילים באפרה ע[ד]<add hand="#h2" rend="FIXME" place="FIXME"
+                     >ל</add> הקנים 
+<lb n="xx"/>הפסולות שיהו באות משלציבור
+<lb n="xx"/><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יוסי <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>המספק את הקינים <add hand="#h2" rend="FIXME" place="FIXME">הוא</add>
+                     <lb n="xx"/>כמספק את הפסולות:
+</ab>
+                  <trailer>*פר' *ח' *הל' *ח'</trailer>
+               </div3>
+               <cb xml:id="S07326.69rB" n="69rB"/>
+               <div3 xml:id="S07326.2.4.8">
+                  <ab xml:id="S07326.2.4.8.1">כל הרוקים הנימצאים בירושלם <lb n="xx"/>טהורים חוץ משוק העליון <choice>
+                     <abbr>דב' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>מאיר <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יוסה <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>בשאר כל ימות <lb n="xx"/>השנה שבאמצע טמאים ושבצדדים <lb n="xx"
+                     />טהורים ובשעת הרגל שבאמצע <lb n="xx"/>טהורים ושבצדדים טמאים <lb n="xx"
+                     />מפני שהמעוטים <add hand="#h2" rend="FIXME" place="FIXME">נ'<choice>
+                     <abbr>א' </abbr>
+                     <expan>???</expan>
+                     </choice>שהטמאים</add> מסתלקים <lb n="xx"/>לצדדים:</ab>
+                  <ab xml:id="S07326.2.4.8.2"><label rend="pad(XX) size() ornament()"
+                     ><num>ב</num><am rend="FIXME">׳</am></label> כל הכלים הנמצאים <lb n="xx"
+                     />בירושלם דרך ירידה לבית הטבילה <lb n="xx"/>טמאים ודרך עליה טהורים שלא <lb
+                     n="xx"/>כירי<del hand="#h2" rend="FIXME">ת</del><add hand="#h2"
+                     place="overwritten" rend="FIXME">ד</add>תן עלייתן <choice>
+                     <abbr>דב' </abbr>
+                     <expan>???</expan>
+                     </choice><choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>מאיר <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>יוסי <lb n="xx"/><choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>כולם טהורים חוץ מן הסל <add hand="#h2" rend="FIXME" place="FIXME"
+                     >ו</add>המגריפה והמריצה המיוחדים <lb n="xx"/>לקברות:</ab>
+                  <ab xml:id="S07326.2.4.8.3"><label rend="pad(XX) size() ornament()"
+                     ><num>ג</num><am rend="FIXME">׳</am></label> סכין שנמצאת <lb n="xx"
+                     />בארבעה עשר שוחט בה מיד <lb n="xx"/>בשלושה עשר שונה ומטביל <lb n="xx"
+                     />קופיס בזה ובזה שונה ומטביל חל <lb n="xx"/>ארבעה עשר להיות בשבת שוחט <lb
+                     n="xx"/>בה מיד בחמשה עשר שוחט בה <lb n="xx"/>מיד נימצאת קשורה לסכין הרי <lb
+                     n="xx"/>זו [ל]<del hand="#h2" rend="FIXME">???</del><add hand="#h2"
+                     place="overwritten" rend="FIXME">כ</add>סכין:</ab>
+                  <ab xml:id="S07326.2.4.8.4"><label rend="pad(XX) size() ornament()"
+                     ><num>ד</num><am rend="FIXME">׳</am></label> פרוכת שניטמאת <lb n="xx"
+                     />בוולד הטומאה מטבילים אותה <lb n="xx"/>בפנים ומכניסים אותה מיד <lb n="xx"
+                     />שניטמאת באב הטומאה <lb n="xx"/>מטבילין אותה בחוץ ושוטחים <lb n="xx"
+                     />אותה בחיל מפני שהיא צריכה <lb n="xx"/>הערב שמש אם היתה חדשה <lb n="xx"
+                     />שוטחין אותה על גג האיסטוו[ה]<del hand="#h2" rend="FIXME">???</del><add
+                     hand="#h2" place="overwritten" rend="FIXME">ר</add> <pb xml:id="S07326.69v"
+                     n="69v"/> <cb xml:id="S07326.69vA" n="69vA"/> <lb n="xx"
+                     />כדי שיראו העם את מלאכתה שהיא <lb n="xx"/>נאה:</ab>
+                  <ab xml:id="S07326.2.4.8.5"><label rend="pad(XX) size() ornament()"
+                     ><num>ה</num><am rend="FIXME">׳</am></label> רבן שמעון בן גמליאל <lb n="xx"/><choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>משום שמעון בן הסגן פרכת <lb n="xx"/>עביה טפח על שבעים ושנים <lb n="xx"
+                     />נירים נארגת על כל נימה ונימה <lb n="xx"/>עשרים וארבעה חוטים ארכה <lb n="xx"
+                     />ארבעים אמה ורחבה עשרים <lb n="xx"/>אמה ובשמונים ושתים ריבו <lb n="xx"
+                     />היתה נעשת ושתים עושין בכל <lb n="xx"/>שנה ושלוש מאות כהנים מטבילים <lb n="xx"
+                     />אותה:</ab>
+                  <ab xml:id="S07326.2.4.8.6"><label rend="pad(XX) size() ornament()"
+                     ><num>ו</num><am rend="FIXME">׳</am></label> בשר קדשי קדשים <lb n="xx"
+                     />שניטמא בין באב הטומאה בין <lb n="xx"/>בוולד הטומאה בין מבפנים בין <lb n="xx"/>מבחוץ בית שמי <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice>הכל יישרף <add hand="#h2" rend="FIXME" place="FIXME">בפנים חוץ משנטמא באב <choice>
+                     <abbr>הטומא' </abbr>
+                     <expan>???</expan>
+                     </choice>בחוץ ובית הלל <choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>הכל ישרף</add> <lb n="xx"/>בחוץ חוץ משניטמא בוולד <lb n="xx"
+                     />הטומאה בפנים:</ab>
+                  <ab xml:id="S07326.2.4.8.7"><label rend="pad(XX) size() ornament()"
+                     ><num>ז</num><am rend="FIXME">׳</am></label> <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>אליעזר <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>את שניטמא באב הטומאה בין <lb n="xx"
+                     />בפנים בין בחוץ ישרף בחוץ ואת <lb n="xx"/>שניטמא בוולד הטומאה בין בחוץ <lb
+                     n="xx"/>בין בפנים ישרף בפנים <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>עקיבה <lb n="xx"/><choice>
+                     <abbr>אומ' </abbr>
+                     <expan>???</expan>
+                     </choice>מקום טומאתו שם תהא <lb n="xx"/>שריפתו:</ab>
+                  <ab xml:id="S07326.2.4.8."><label rend="pad(XX) size() ornament()"><num>ח</num><am
+                     rend="FIXME">׳</am></label> איברי התמיד ניתנים <lb n="xx"/>מחצי כבש <add
+                     hand="#h2" rend="FIXME" place="FIXME">ו</add>למטה <add hand="#h2" rend="FIXME"
+                     place="FIXME">במערב ושלמוספין ניתנין מחצי כבש למטה</add> במזרח ושלרא <lb n="xx"
+                     />ראשי חדשים ניתנים על כרכוב <lb n="xx"/>המזבח מלמעלה <add hand="#h2"
+                     rend="FIXME" place="FIXME">ה</add>שקלים <lb n="xx"
+                     />והביכורים אינן נוהגין אלא <lb n="xx"/>בפני הבית אבל מעשר דגן ומעשר <lb n="xx"
+                     />בהמה ובכורות נוהגין בפני הבית <cb xml:id="S07326.69vB" n="69vB"/> <lb n="xx"
+                     />ושלא בפני הבית המקדיש שקלים <lb n="xx"/>וביכורים הרי זה קודש <choice>
+                     <abbr>ר' </abbr>
+                     <expan>???</expan>
+                     </choice>שמעון <choice>
+                     <abbr>או' </abbr>
+                     <expan>???</expan>
+                     </choice><lb n="xx"/>האומר ביכורים קודש אינן קודש </ab>
+               </div3>
+               <trailer xml:id="S07326.2.4.T" rend="pad(XX) size() ornament()"><choice>
+                  <abbr>חסל<am rend="FIXME">׳</am></abbr>
+                  <expan>חסלת</expan>
+                  </choice> שקלים</trailer>
+            </div2>
+         </div1>
+      </body>
+   </text>
+</TEI>

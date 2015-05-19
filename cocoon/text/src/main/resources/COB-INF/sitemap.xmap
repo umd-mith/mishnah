@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -89,12 +89,12 @@
         </map:pipeline>
         <map:pipeline id="text-viewer">
             <!-- Pipelines to create demo structure -->
-            <map:match pattern="">
+            <!--<map:match pattern="">
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon"/>
                 <map:serialize type="html"/>
-            </map:match>
+            </map:match>-->
             <map:match pattern="demo">
                 <map:generate src="resource://html/demo.html"/>
                 <map:transform src="resource://xsl/html-frame.xsl"
