@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -122,6 +122,21 @@
             </map:match>
             <!-- End pipelines to construct demo pages -->
 
+            <!-- Pipelines to test (static) angular demo -->
+            <map:match pattern="angular-test">
+                <map:generate src="resource://angular-test/testEditableAng.html"/>
+                <map:serialize type="html"/>
+            </map:match>
+            <map:match pattern="mishnaControllers.js">
+                <map:read src="resource://angular-test/mishnaControllers.js"
+                    mime-type="application/javascript"/>
+            </map:match>
+            <map:match pattern="*.json">
+                <map:read src="resource://angular-test/{1}.json"
+                    mime-type="application/json"/>
+            </map:match>
+            <!-- End pipelines to create angular demo -->
+
             <!-- Early, simple pipelines for generating whole files and 
                 for shifting from Mishnah structure to page structure. -->
             <!-- Only *.xml called as such? -->
@@ -165,6 +180,8 @@
                 <map:serialize type="tei-no-indent"/>
             </map:match>
             <!-- End simple transformation pipelines -->
+
+
 
             <!-- Pipelines to build collation output -->
             <!-- Initial pipeline, without "rich tokenization" -->
