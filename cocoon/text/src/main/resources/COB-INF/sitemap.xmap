@@ -485,7 +485,8 @@
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
                 </map:transform>
-                <map:transform src="resource://xsl/tokenize-rich-collatex-parallel-seg.xsl"
+                <map:transform
+                    src="resource://xsl/tokenize-rich-collatex-parallel-seg.xsl"
                     type="xslt-saxon">
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
                     <map:parameter name="algorithm"
