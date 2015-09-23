@@ -14,6 +14,10 @@
     <xsl:param name="mcite" select="'4.2.2.3'"/>
     <xsl:param name="unit" select="'m'"/>
     <xsl:param name="tractName" select="'Bava_Metsia'"/>
+    <xsl:param name="serverName" select="'localhost'"/>
+    <xsl:param name="serverPort" select="'8888'"/>
+    
+    <xsl:variable name="contextPath" select="concat('http://', $serverName, ':', $serverPort)"/>
 
     <!-- requires some finagling to extract the named parameters from $rqs, which is the complete parameter string -->
     <!-- Should have been able to use a recursive template to successively remove strings,
@@ -65,15 +69,10 @@
 
     <xsl:template match="my:chapter">
         <xsl:if test=" $unit = 'ch' and @xml:id=$ref.cit">
-                <xsl:for-each select="my:mishnah">
-                <!-- Only way I could get cinclude with parameters to work was with a full URL -->
-                <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->            
+                <xsl:for-each select="my:mishnah">           
                 <cinclude:include>
-                    <!--<xsl:attribute name="src"
-                        select="concat('http&#58;&#47;&#47;dev.digitalmishnah.umd.edu&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
-                    <xsl:attribute name="element" select="'test'"/>-->
                     <xsl:attribute name="src"
-                        select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',substring-after(@xml:id,'ref.'),'&#38;',$urlString)"/>
+                        select="concat($contextPath, '/text/merge','?mcite=',substring-after(@xml:id,'ref.'),'&amp;',$urlString)"/>
                     <xsl:attribute name="element" select="'test'"/>
                 </cinclude:include>
                 
@@ -85,13 +84,8 @@
     <xsl:template match="my:mishnah">
         <xsl:if test="$unit = 'm' and @xml:id = $ref.cit"> 
             <cinclude:include>
-                <!-- Only way I could get cinclude with parameters to work was with a full URL -->
-                <!-- For local testing replace http://dev.digitalmishnah.org/viewer/text with http://localhost:8888/text -->
-                <!--<xsl:attribute name="src"
-                select="concat('http&#58;&#47;&#47;dev.digitalmishnah.umd.edu&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
-                <xsl:attribute name="element" select="'test'"/>-->
                 <xsl:attribute name="src"
-                    select="concat('http&#58;&#47;&#47;localhost&#58;8888&#47;text&#47;merge','?mcite=',$mcite,'&#38;',$urlString)"/>
+                    select="concat($contextPath, '/text/merge','?mcite=',$mcite,'&amp;',$urlString)"/>
             <xsl:attribute name="element" select="'test'"/>
             </cinclude:include>
         </xsl:if>

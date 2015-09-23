@@ -465,6 +465,8 @@
                     <map:parameter name="alignType"
                         value="{request-param:alignType}"/>
                     <map:parameter name="rqs" value="{request:queryString}"/>
+                    <map:parameter name="serverName" value="{request:serverName}"/>
+                    <map:parameter name="serverPort" value="{request:serverPort}"/>
                 </map:transform>
                 <map:transform type="cinclude"/>
                 <map:transform
