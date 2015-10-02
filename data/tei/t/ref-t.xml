@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0"
-   xmlns:xi="http://www.w3.org/2001/XInclude">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -10,21 +9,23 @@
             <p>Prepared for the NEH/DFG Mishnah-Tosefta Synopsis</p>
          </publicationStmt>
          <sourceDesc>
-            <p>Initial Transcriptions drawn from the Primary Witnesses to
-               Tannaitic Literature</p>
-            <p>Reference text selects from witnesses to create a complete text.
-               It presents Vienna if that exists, Ehrfurt if not. Where neither
-               exists, this reference text takes the editio princeps</p>
-            <p>NOTE:Cases of where text is drawn from editio princeps may be due
-               to inconsistent chapter divisions in the source documents.</p>
+            <p>Initial Transcriptions drawn from the Primary
+                            Witnesses to Tannaitic Literature</p>
+            <p>Reference text selects from witnesses to create a
+                            complete text. It presents Vienna if that exists,
+                            Ehrfurt if not. Where neither exists, this reference
+                            text takes the editio princeps</p>
+            <p>NOTE:Cases of where text is drawn from editio
+                            princeps may be due to inconsistent chapter
+                            divisions in the source documents.</p>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <listPrefixDef>
-            <!--NB: This will require refactoring when the file architecture is
+         <listPrefixDef><!--NB: This will require refactoring when the file architecture is
               changed and m/ and t/ are sibling directories-->
-            <prefixDef ident="m" matchPattern="([a-z]+)"
-               replacementPattern="../ref.xml#$1">
+            <prefixDef ident="m"
+                       matchPattern="([a-z]+)"
+                       replacementPattern="../ref.xml#$1">
                <p>Path to the Mishnah files for this project.</p>
             </prefixDef>
          </listPrefixDef>
