@@ -6,7 +6,7 @@
     <xsl:output encoding="UTF-8" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="path2T" select="'tei/t/'"/>
-    <xsl:param name="wit" select="'S00040'"/>
+    <xsl:param name="wit" select="'P00005'"/>
     <xsl:variable name="root" select="/"/>
     <xsl:variable name="path2Div2"
         select="concat('../', $path2T, $wit, '/?select=', $wit, '*.xml;on-error=warning')"/>
