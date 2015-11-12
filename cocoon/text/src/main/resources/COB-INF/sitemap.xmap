@@ -548,6 +548,28 @@
                 <map:serialize type="xml"/>
             </map:match>
             <!-- End xinclude to cinclude experiment. -->
+            
+            <!-- Private editorial area -->
+            <map:match pattern="edit">
+                <map:aggregate element="tempDiv">
+                    <map:part src="cocoon:/compare-dropdown"/>
+                    <map:part src="cocoon:/compare-select-form"/>
+                    <map:part src="cocoon:/multi-merge"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/assemble-compare.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="tractName"
+                        value="{request-param:tractName}"/>
+                </map:transform>
+                <map:transform src="resource://xsl/html-frame.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="menu-mode" value="compare"/>
+                </map:transform>
+                <map:serialize type="html"/>
+            </map:match>
+            
         </map:pipeline>
     </map:pipelines>
 </map:sitemap>
