@@ -40,6 +40,10 @@
                     <link href="./css/compare-home.css" rel="stylesheet"
                         type="text/css"/>
                 </xsl:if>
+                <xsl:if test="$menu-mode = 'edit'">
+                    <link href="./css/edit-home.css" rel="stylesheet"
+                        type="text/css"/>
+                </xsl:if>
 
 
                 <link href="./images/favicon.ico" rel="icon" type="image/ico"/>

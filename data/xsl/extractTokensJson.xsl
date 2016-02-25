@@ -8,13 +8,31 @@
     <xsl:strip-space elements="*"/>
 
     <xsl:param name="mcite" select="'4.2.2.7'"/>
+<!--    <xsl:param name="mcite" select="''"/>-->
     <xsl:template match="/">
-        <xsl:text>{&#10;"witnesses" : [</xsl:text>
-        <xsl:variable name="tokenizedM">
-            <xsl:apply-templates/>
-        </xsl:variable>
-        <xsl:apply-templates select="$tokenizedM" mode="toJSON"/>
-        <xsl:text>&#10;]&#10;}</xsl:text>
+        <xsl:choose>
+            <xsl:when test="$mcite != ''">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="js_app-container">
+                    <xsl:text>{&#10;"witnesses" : [</xsl:text>
+                    <xsl:variable name="tokenizedM">
+                        <xsl:apply-templates/>
+                    </xsl:variable>
+                    <xsl:apply-templates select="$tokenizedM" mode="toJSON"/>
+                    <xsl:text>&#10;]&#10;}</xsl:text>
+                </div>
+            </xsl:when>
+            <xsl:otherwise>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="output-container">
+                    <a name="output">&#160;</a>
+                    <div class="hr">
+                        <hr> </hr>
+                    </div>
+                    <h3 xmlns="http://www.w3.org/1999/xhtml"><a name="alignment">&#160;</a>Editing App Will Display Here&#xA0;<span
+                        class="link"><a href="#top">[top]</a></span></h3>
+                </div>
+            </xsl:otherwise>
+        </xsl:choose>
+       
     </xsl:template>
     <xsl:template match="tei:witness[@corresp]">
         <xsl:variable name="uri"
