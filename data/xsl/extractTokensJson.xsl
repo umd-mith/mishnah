@@ -7,8 +7,8 @@
 
     <xsl:strip-space elements="*"/>
 
-    <xsl:param name="mcite" select="'4.2.2.7'"/>
-<!--    <xsl:param name="mcite" select="''"/>-->
+    <!--<xsl:param name="mcite" select="'4.2.2.7'"/>-->
+    <xsl:param name="mcite" select="''"/>
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="$mcite != ''">
