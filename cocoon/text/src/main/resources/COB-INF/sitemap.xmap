@@ -431,6 +431,20 @@
                     type="xslt-saxon"/>
                 <map:serialize type="xml"/>
             </map:match>
+            
+            <!-- Dropdown menu for editing -->
+            <map:match pattern="edit-dropdown">
+                <map:parameter name="unit" value="all"/>
+                <map:parameter name="mcite" value=""/>
+                <map:aggregate element="div">
+                    <map:part src="resource://static/index.xml"/>
+                    <map:part src="cocoon:/group-list-all"/>
+                </map:aggregate>
+                <map:transform src="resource://xsl/dropdownTractsChs-edit.xsl"
+                    type="xslt-saxon"/>
+                <map:serialize type="xml"/>
+            </map:match>
+            
 
             <!-- Selection list (form) (replaces form in collate-hl) -->
             <map:match pattern="compare-select-form">
@@ -552,11 +566,10 @@
             <!-- Private editorial area -->
             <map:match pattern="edit">
                 <map:aggregate element="tempDiv">
-                    <map:part src="cocoon:/compare-dropdown"/>
-                    <map:part src="cocoon:/compare-select-form"/>
-                    <map:part src="cocoon:/multi-merge"/>
+                    <map:part src="cocoon:/edit-dropdown"/>
+                    <map:part src="cocoon:/edit-js_app"/>
                 </map:aggregate>
-                <map:transform src="resource://xsl/assemble-compare.xsl"
+                <map:transform src="resource://xsl/assemble-edit.xsl"
                     type="xslt-saxon">
                     <map:parameter name="unit" value="{request-param:unit}"/>
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
@@ -565,9 +578,29 @@
                 </map:transform>
                 <map:transform src="resource://xsl/html-frame.xsl"
                     type="xslt-saxon">
-                    <map:parameter name="menu-mode" value="compare"/>
+                    <map:parameter name="menu-mode" value="edit"/>
                 </map:transform>
                 <map:serialize type="html"/>
+            </map:match>
+            
+            <!-- Assemble the js app for editing -->
+            <map:match pattern="edit-js_app">
+                <map:generate src="resource://static/index.xml"/>
+                <map:transform src="resource://xsl/extractTokensJson.xsl"
+                    type="xslt-saxon">
+                    <!--<map:parameter name="unit" value="{request-param:unit}"/>-->
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <!--<map:parameter name="tractName"
+                        value="{request-param:tractName}"/>-->
+                </map:transform>
+                <!--<map:transform src="resource://xsl/edit-js_app.xsl"
+                    type="xslt-saxon">
+                    <map:parameter name="unit" value="{request-param:unit}"/>
+                    <map:parameter name="mcite" value="{request-param:mcite}"/>
+                    <map:parameter name="tractName"
+                        value="{request-param:tractName}"/>
+                </map:transform>-->
+                <map:serialize type="xml"/>
             </map:match>
             
         </map:pipeline>
