@@ -25,6 +25,10 @@
                 mime-type="text/xml">
                 <encoding>UTF-8</encoding>
             </map:serializer>
+            <map:serializer mime-type="application/json" name="json" 
+                src="org.apache.cocoon.serialization.TextSerializer">
+                <encoding>UTF-8</encoding>
+            </map:serializer>
             <map:serializer name="html"
                 src="org.apache.cocoon.serialization.HTMLSerializer"
                 mime-type="text/html; charset=UTF-8">
@@ -105,6 +109,12 @@
             <map:match pattern="css/*.css">
                 <map:read src="resource://css/{1}.css" mime-type="text/css"/>
             </map:match>
+            <map:match pattern="edit_app/*.css">
+                <map:read src="resource://edit_app/{1}.css" mime-type="text/css"/>
+            </map:match>
+            <map:match pattern="edit_app/*.js">
+                <map:read src="resource://edit_app/{1}.js" mime-type="text/javascript"/>
+            </map:match>
             <map:match pattern="static-index-ref">
                 <map:read src="resource://static/index.xml"/>
             </map:match>
@@ -123,7 +133,7 @@
             <!-- End pipelines to construct demo pages -->
 
             <!-- Pipelines to test (static) angular demo -->
-            <map:match pattern="angular-test">
+           <!-- <map:match pattern="angular-test">
                 <map:generate src="resource://angular-test/testEditableAng.html"/>
                 <map:serialize type="html"/>
             </map:match>
@@ -134,7 +144,7 @@
             <map:match pattern="*.json">
                 <map:read src="resource://angular-test/{1}.json"
                     mime-type="application/json"/>
-            </map:match>
+            </map:match>-->
             <!-- End pipelines to create angular demo -->
 
             <!-- Early, simple pipelines for generating whole files and 
@@ -567,7 +577,6 @@
             <map:match pattern="edit">
                 <map:aggregate element="tempDiv">
                     <map:part src="cocoon:/edit-dropdown"/>
-                    <map:part src="cocoon:/edit-js_app"/>
                 </map:aggregate>
                 <map:transform src="resource://xsl/assemble-edit.xsl"
                     type="xslt-saxon">
@@ -583,24 +592,13 @@
                 <map:serialize type="html"/>
             </map:match>
             
-            <!-- Assemble the js app for editing -->
-            <map:match pattern="edit-js_app">
+            <map:match pattern="edit/getJSON">
                 <map:generate src="resource://tei/ref.xml"/>
                 <map:transform src="resource://xsl/extractTokensJson.xsl"
                     type="xslt-saxon">
-                    <!--<map:parameter name="unit" value="{request-param:unit}"/>-->
                     <map:parameter name="mcite" value="{request-param:mcite}"/>
-                    <!--<map:parameter name="tractName"
-                        value="{request-param:tractName}"/>-->
                 </map:transform>
-                <!--<map:transform src="resource://xsl/edit-js_app.xsl"
-                    type="xslt-saxon">
-                    <map:parameter name="unit" value="{request-param:unit}"/>
-                    <map:parameter name="mcite" value="{request-param:mcite}"/>
-                    <map:parameter name="tractName"
-                        value="{request-param:tractName}"/>
-                </map:transform>-->
-                <map:serialize type="xml"/>
+                <map:serialize type="json"/>
             </map:match>
             
         </map:pipeline>
