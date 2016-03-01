@@ -76,9 +76,12 @@
                 
             </xsl:variable>
             
-            <script>
-                var showThis = document.getElementById(<xsl:value-of select="$scrollTo"/>);
-                showThis.scrollIntoView(true);</script>
+            <xsl:if test="normalize-space($scrollTo) != ''">
+                <script>
+                    var showThis = document.getElementById(<xsl:value-of select="$scrollTo"/>);
+                    showThis.scrollIntoView(true);</script>
+            </xsl:if>
+            
             
         </div>
     </xsl:template>

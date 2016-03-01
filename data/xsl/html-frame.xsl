@@ -43,6 +43,21 @@
                 <xsl:if test="$menu-mode = 'edit'">
                     <link href="./css/edit-home.css" rel="stylesheet"
                         type="text/css"/>
+                    <link href="./edit_app/angMishnah.css" rel="stylesheet"
+                        type="text/css"/>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">&#160;</script>
+                    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js">&#160;</script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">&#160;</script>
+                    <script src="./edit_app/draganddrop.js">&#160;</script>                    
+                    
+                    <link  href="./edit_app/ngDialog.css" rel="Stylesheet" type="text/css"/>
+                    <link  href="./edit_app/ngDialog-theme-default.css" rel="Stylesheet" type="text/css"/>
+                    <script  src="./edit_app/ngDialog.js">&#160;</script>
+                    
+                    <script src="./edit_app/mishnaControllers.js">&#160;</script>                    
+                    
+                    <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js">&#160;</script>
+                    
                 </xsl:if>
 
 
