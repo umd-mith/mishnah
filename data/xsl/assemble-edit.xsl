@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd xs its my tei" version="2.0"
-    xmlns:my="local-functions.uri">
+    xmlns="http://www.w3.org/1999/xhtml" xmlns:html="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xd xs its my tei" version="2.0"
+    xmlns:my="local-functions.uri" >
     <xsl:output method="html" encoding="UTF-8"/>
     <xsl:param name="mcite"/>
     <xsl:param name="tractName"/>
@@ -53,6 +53,17 @@
                 </div>
             </xsl:when>
             <xsl:otherwise>
+                <div class="m-nav">                                        
+                    <xsl:variable name="next" select="//html:ul[@class='mish']//html:li[html:a[contains(@href, concat('=',$mcite,'&amp;'))]]/following-sibling::html:li[1]/html:a/@href"/>
+                    <xsl:variable name="prev" select="//html:ul[@class='mish']//html:li[html:a[contains(@href, concat('=',$mcite,'&amp;'))]]/preceding-sibling::html:li[1]/html:a/@href"/>
+                    
+                    <xsl:if test="$prev">
+                        <a href="{$prev}">Prev</a>
+                    </xsl:if>                    
+                    <xsl:if test="$next">
+                        <a href="{$next}">Next</a>
+                    </xsl:if>
+                </div>
                 <div ng-app="mishnaApp" ng-controller="MishnaCtrl" class="output-container" data-mcite="{$mcite}">
                     
                     <script type="text/ng-template" id="editTemplate">
