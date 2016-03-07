@@ -10,7 +10,11 @@
     <xsl:param name="mcite" select="'4.1.1.1'"/>
 <!--    <xsl:param name="mcite" select="''"/>-->
     <xsl:template match="/">
-        <xsl:text>{&#10;"witnesses" : [</xsl:text>
+        <xsl:text>{&#10;</xsl:text>
+        <!-- Add options here -->
+        <xsl:text>"joined":false,</xsl:text>
+        <!-- Witnesses -->
+        <xsl:text>"witnesses" : [</xsl:text>
         <xsl:variable name="tokenizedM">
             <xsl:apply-templates/>
         </xsl:variable>
