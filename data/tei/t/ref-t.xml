@@ -1,111 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
-   <teiHeader>
-      <fileDesc>
-         <titleStmt>
-            <title>Reference Text of Tosefta</title>
-         </titleStmt>
-         <publicationStmt>
-            <p>Prepared for the NEH/DFG Mishnah-Tosefta Synopsis</p>
-         </publicationStmt>
-         <sourceDesc>
-            <p>Initial Transcriptions drawn from the Primary
-                            Witnesses to Tannaitic Literature</p>
-            <p>Reference text selects from witnesses to create a
-                            complete text. It presents Vienna if that exists,
-                            Ehrfurt if not. Where neither exists, this reference
-                            text takes the editio princeps</p>
-            <p>NOTE:Cases of where text is drawn from editio
-                            princeps may be due to inconsistent chapter
-                            divisions in the source documents.</p>
-         </sourceDesc>
-      </fileDesc>
-      <encodingDesc>
-         <listPrefixDef><!--NB: This will require refactoring when the file architecture is
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Reference Text of Tosefta</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Prepared for the NEH/DFG Mishnah-Tosefta Synopsis</p>
+      </publicationStmt>
+      <notesStmt>
+        <note>
+          <p>Initial Transcriptions drawn from the Primary Witnesses to Tannaitic Literature</p>
+          <p>This reference text selects from witnesses to create a complete text. It presents
+            Vienna if that exists, Erfurt if not. Where neither exists, this document presents the
+            editio princeps</p>
+          <p>NOTE:Cases of where text is drawn from editio princeps duplicated or lacking due to
+            inconsistent chapter divisions in the source documents.</p>
+        </note>
+      </notesStmt>
+      <sourceDesc>
+        <listWit>
+          <listWit n="Tosefta Texts">
+            <witness xml:id="P00005" n="T" corresp="P00005.xml">Venice ed. pr.</witness>
+            <witness xml:id="S00040" n="T" corresp="S00040.xml">Vienna MS</witness>
+            <witness xml:id="S01068" n="T" corresp="S01068.xml">London MS</witness>
+            <witness xml:id="S07055" n="T" corresp="S07055.xml">Erfurt MS</witness>
+          </listWit>
+        </listWit>
+
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <listPrefixDef>
+        <!--NB: This will require refactoring when the file architecture is
               changed and m/ and t/ are sibling directories-->
-            <prefixDef ident="m"
-                       matchPattern="([a-z]+)"
-                       replacementPattern="../ref.xml#$1">
-               <p>Path to the Mishnah files for this project.</p>
-            </prefixDef>
-         </listPrefixDef>
-      </encodingDesc>
-   </teiHeader>
-   <text>
-      <body>
-         <div1 xml:id="ref-t.1" n="Zeraim" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0101.xml"/>
-            <xi:include href="ref-t/ref-t-0102.xml"/>
-            <xi:include href="ref-t/ref-t-0103.xml"/>
-            <xi:include href="ref-t/ref-t-0104.xml"/>
-            <xi:include href="ref-t/ref-t-0105.xml"/>
-            <xi:include href="ref-t/ref-t-0106.xml"/>
-            <xi:include href="ref-t/ref-t-0107.xml"/>
-            <xi:include href="ref-t/ref-t-0108.xml"/>
-            <xi:include href="ref-t/ref-t-0109.xml"/>
-            <xi:include href="ref-t/ref-t-0110.xml"/>
-            <xi:include href="ref-t/ref-t-0111.xml"/>
-         </div1>
-         <div1 xml:id="ref-t.2" n="Moed" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0201.xml"/>
-            <xi:include href="ref-t/ref-t-0202.xml"/>
-            <xi:include href="ref-t/ref-t-0203.xml"/>
-            <xi:include href="ref-t/ref-t-0204.xml"/>
-            <xi:include href="ref-t/ref-t-0205.xml"/>
-            <xi:include href="ref-t/ref-t-0206.xml"/>
-            <xi:include href="ref-t/ref-t-0207.xml"/>
-            <xi:include href="ref-t/ref-t-0208.xml"/>
-            <xi:include href="ref-t/ref-t-0209.xml"/>
-            <xi:include href="ref-t/ref-t-0210.xml"/>
-            <xi:include href="ref-t/ref-t-0211.xml"/>
-            <xi:include href="ref-t/ref-t-0212.xml"/>
-         </div1>
-         <div1 xml:id="ref-t.3" n="Nashim" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0301.xml"/>
-            <xi:include href="ref-t/ref-t-0302.xml"/>
-            <xi:include href="ref-t/ref-t-0303.xml"/>
-            <xi:include href="ref-t/ref-t-0304.xml"/>
-            <xi:include href="ref-t/ref-t-0305.xml"/>
-            <xi:include href="ref-t/ref-t-0306.xml"/>
-            <xi:include href="ref-t/ref-t-0307.xml"/>
-         </div1>
-         <div1 xml:id="ref-t.4" n="Neziqin" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0401.xml"/>
-            <xi:include href="ref-t/ref-t-0402.xml"/>
-            <xi:include href="ref-t/ref-t-0403.xml"/>
-            <xi:include href="ref-t/ref-t-0404.xml"/>
-            <xi:include href="ref-t/ref-t-0405.xml"/>
-            <xi:include href="ref-t/ref-t-0406.xml"/>
-            <xi:include href="ref-t/ref-t-0407.xml"/>
-            <xi:include href="ref-t/ref-t-0408.xml"/>
-            <xi:include href="ref-t/ref-t-0409.xml"/>
-         </div1>
-         <div1 xml:id="ref-t.5" n="Qodashim" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0501.xml"/>
-            <xi:include href="ref-t/ref-t-0502.xml"/>
-            <xi:include href="ref-t/ref-t-0503.xml"/>
-            <xi:include href="ref-t/ref-t-0504.xml"/>
-            <xi:include href="ref-t/ref-t-0505.xml"/>
-            <xi:include href="ref-t/ref-t-0506.xml"/>
-            <xi:include href="ref-t/ref-t-0507.xml"/>
-            <xi:include href="ref-t/ref-t-0508.xml"/>
-         </div1>
-         <div1 xml:id="ref-t.6" n="Toharot" corresp="m:ref.xml">
-            <xi:include href="ref-t/ref-t-0601.xml"/>
-            <xi:include href="ref-t/ref-t-0602.xml"/>
-            <xi:include href="ref-t/ref-t-0603.xml"/>
-            <xi:include href="ref-t/ref-t-0604.xml"/>
-            <xi:include href="ref-t/ref-t-0605.xml"/>
-            <xi:include href="ref-t/ref-t-0606.xml"/>
-            <xi:include href="ref-t/ref-t-0607.xml"/>
-            <xi:include href="ref-t/ref-t-0608.xml"/>
-            <xi:include href="ref-t/ref-t-0609.xml"/>
-            <xi:include href="ref-t/ref-t-0610.xml"/>
-            <xi:include href="ref-t/ref-t-0611.xml"/>
-            <xi:include href="ref-t/ref-t-0612.xml"/>
-            <xi:include href="ref-t/ref-t-0613.xml"/>
-            <xi:include href="ref-t/ref-t-0614.xml"/>
-         </div1>
-      </body>
-   </text>
+        <prefixDef ident="m" matchPattern="([a-z]+)" replacementPattern="../ref.xml#$1">
+          <p>Path to the Mishnah files for this project.</p>
+        </prefixDef>
+      </listPrefixDef>
+    </encodingDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div1 xml:id="ref-t.1" n="Zeraim" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0101.xml"/>
+        <xi:include href="ref-t/ref-t-0102.xml"/>
+        <xi:include href="ref-t/ref-t-0103.xml"/>
+        <xi:include href="ref-t/ref-t-0104.xml"/>
+        <xi:include href="ref-t/ref-t-0105.xml"/>
+        <xi:include href="ref-t/ref-t-0106.xml"/>
+        <xi:include href="ref-t/ref-t-0107.xml"/>
+        <xi:include href="ref-t/ref-t-0108.xml"/>
+        <xi:include href="ref-t/ref-t-0109.xml"/>
+        <xi:include href="ref-t/ref-t-0110.xml"/>
+        <xi:include href="ref-t/ref-t-0111.xml"/>
+      </div1>
+      <div1 xml:id="ref-t.2" n="Moed" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0201.xml"/>
+        <xi:include href="ref-t/ref-t-0202.xml"/>
+        <xi:include href="ref-t/ref-t-0203.xml"/>
+        <xi:include href="ref-t/ref-t-0204.xml"/>
+        <xi:include href="ref-t/ref-t-0205.xml"/>
+        <xi:include href="ref-t/ref-t-0206.xml"/>
+        <xi:include href="ref-t/ref-t-0207.xml"/>
+        <xi:include href="ref-t/ref-t-0208.xml"/>
+        <xi:include href="ref-t/ref-t-0209.xml"/>
+        <xi:include href="ref-t/ref-t-0210.xml"/>
+        <xi:include href="ref-t/ref-t-0211.xml"/>
+        <xi:include href="ref-t/ref-t-0212.xml"/>
+      </div1>
+      <div1 xml:id="ref-t.3" n="Nashim" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0301.xml"/>
+        <xi:include href="ref-t/ref-t-0302.xml"/>
+        <xi:include href="ref-t/ref-t-0303.xml"/>
+        <xi:include href="ref-t/ref-t-0304.xml"/>
+        <xi:include href="ref-t/ref-t-0305.xml"/>
+        <xi:include href="ref-t/ref-t-0306.xml"/>
+        <xi:include href="ref-t/ref-t-0307.xml"/>
+      </div1>
+      <div1 xml:id="ref-t.4" n="Neziqin" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0401.xml"/>
+        <xi:include href="ref-t/ref-t-0402.xml"/>
+        <xi:include href="ref-t/ref-t-0403.xml"/>
+        <xi:include href="ref-t/ref-t-0404.xml"/>
+        <xi:include href="ref-t/ref-t-0405.xml"/>
+        <xi:include href="ref-t/ref-t-0406.xml"/>
+        <xi:include href="ref-t/ref-t-0407.xml"/>
+        <xi:include href="ref-t/ref-t-0408.xml"/>
+        <xi:include href="ref-t/ref-t-0409.xml"/>
+      </div1>
+      <div1 xml:id="ref-t.5" n="Qodashim" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0501.xml"/>
+        <xi:include href="ref-t/ref-t-0502.xml"/>
+        <xi:include href="ref-t/ref-t-0503.xml"/>
+        <xi:include href="ref-t/ref-t-0504.xml"/>
+        <xi:include href="ref-t/ref-t-0505.xml"/>
+        <xi:include href="ref-t/ref-t-0506.xml"/>
+        <xi:include href="ref-t/ref-t-0507.xml"/>
+        <xi:include href="ref-t/ref-t-0508.xml"/>
+      </div1>
+      <div1 xml:id="ref-t.6" n="Toharot" corresp="m:ref.xml">
+        <xi:include href="ref-t/ref-t-0601.xml"/>
+        <xi:include href="ref-t/ref-t-0602.xml"/>
+        <xi:include href="ref-t/ref-t-0603.xml"/>
+        <xi:include href="ref-t/ref-t-0604.xml"/>
+        <xi:include href="ref-t/ref-t-0605.xml"/>
+        <xi:include href="ref-t/ref-t-0606.xml"/>
+        <xi:include href="ref-t/ref-t-0607.xml"/>
+        <xi:include href="ref-t/ref-t-0608.xml"/>
+        <xi:include href="ref-t/ref-t-0609.xml"/>
+        <xi:include href="ref-t/ref-t-0610.xml"/>
+        <xi:include href="ref-t/ref-t-0611.xml"/>
+        <xi:include href="ref-t/ref-t-0612.xml"/>
+        <xi:include href="ref-t/ref-t-0613.xml"/>
+        <xi:include href="ref-t/ref-t-0614.xml"/>
+      </div1>
+    </body>
+  </text>
 </TEI>
