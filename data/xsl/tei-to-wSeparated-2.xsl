@@ -127,16 +127,16 @@
             <xsl:variable name="sep" as="node()*">
                 <xsl:apply-templates mode="add-sep"/>
             </xsl:variable>
-            <xsl:for-each-group select="$sep"
+            <xsl:for-each-group select="current-group()"
                 group-adjacent="not(self::tei:milestone[@unit = 'sep'])">
                 <xsl:if test="current-grouping-key()">
-                   <w> <xsl:sequence select="current-group()"/></w>
-                    <!--<xsl:choose>
+
+                    <xsl:choose>
                         <xsl:when test="current-group()/self::tei:surplus or current-group()/self::tei:label or current-group()/self::tei:w">
                             <xsl:apply-templates select="current-group()"></xsl:apply-templates>
                         </xsl:when>
                         <xsl:otherwise><w><xsl:apply-templates select="current-group()"/></w></xsl:otherwise>
-                    </xsl:choose>-->
+                    </xsl:choose>
                 </xsl:if>
             </xsl:for-each-group>
         </xsl:copy>

@@ -1,389 +1,567 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-model type="application/xml" href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model type="application/xml" href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
-    <teiHeader>
-        <fileDesc>
-            <titleStmt>
-                <title>An Electronic Edition of Genizah Fragment Cambridge University TS AS
+<TEI xmlns="http://www.tei-c.org/ns/1.0"><?xml-model type="application/xml" href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model type="application/xml" href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"schematypens="http://purl.oclc.org/dsdl/schematron"?>
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>An Electronic Edition of Genizah Fragment Cambridge University TS AS
                     78.69</title>
-                <editor>Hayim Lapin</editor>
-            </titleStmt>
-            <publicationStmt>
-                <publisher>Digital Mishnah Project</publisher>
-                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
-                <address>
-                    <addrLine>0301 Hornbake Library</addrLine>
-                    <addrLine>University of Maryland</addrLine>
-                    <addrLine>College Park, MD</addrLine>
-                </address>
-                <idno type="local">S04533</idno>
-                <availability status="restricted">
-                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+            <editor>Hayim Lapin</editor>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>Digital Mishnah Project</publisher>
+            <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+            <address>
+               <addrLine>0301 Hornbake Library</addrLine>
+               <addrLine>University of Maryland</addrLine>
+               <addrLine>College Park, MD</addrLine>
+            </address>
+            <idno type="local">S04533</idno>
+            <availability status="restricted">
+               <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
                         Center for Jewish Studies and licensed under a <ref target=" http://creativecommons.org/licensesby/4.0//">Creative
                             Commons Attribution-NonCommercial 3.0  License</ref>.</p>
-                </availability>
-                <pubPlace>College Park, MD USA</pubPlace>
-                <date>2012-06-15</date>
-                
-            </publicationStmt>
-            <notesStmt>
-                <note>
-                    <p>Published as a sample text for a digital edition of the Mishnah, using
+            </availability>
+            <pubPlace>College Park, MD USA</pubPlace>
+            <date>2012-06-15</date>
+            <!-- A publication date is required for TEI conformance -->
+         </publicationStmt>
+         <notesStmt>
+            <note>
+               <p>Published as a sample text for a digital edition of the Mishnah, using
                         oXygen</p>
-                    <p>TRANSCRIPTION: Nurit Ezer</p>
-                    <p>EDITED: Hayim Lapin</p>
-                    <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
+               <p>TRANSCRIPTION: Nurit Ezer</p>
+               <p>EDITED: Hayim Lapin</p>
+               <p>Fragment in the Cambridge University Libraries, Taylor-Schechter Collection.
                         Covers Bava Metsi'a 2:11 - 3:7.</p>
-                    <p>Transcription from online images of the manuscript, available at
+               <p>Transcription from online images of the manuscript, available at
                         https://fgp.genizah.org. FGP nos. C96701-C96702.</p>
-                    <p>Joins G2=TS NS 329.286 </p>
-                    <p/>
-                </note>
-            </notesStmt>
-            <sourceDesc>
-                <msDesc>
-                    <msIdentifier>
-                        <settlement>Cambridge</settlement>
-                        <repository>Univerity Library</repository>
-                        <idno type="genizah-CUL">TS AS 78.69</idno>
-                    </msIdentifier>
-                    <msContents>
-                        <msItem>
-                            <locusGrp>
-                                <locus n="1r" facs="www.genizah.org">C96702</locus>
-                                <locus n="1v" facs="www.genizah.org">C96701</locus>
-                            </locusGrp>
-                            <join target="g2.xml"/>
-                            <join target="g6.xml"/>
-                            <join target="g7.xml"/>
-                            <title>Mishnah</title>
-                            <note type="nli-ref"/>
-                        </msItem>
-                    </msContents>
-                    <physDesc>
-                        <objectDesc form="codex">
-                            <supportDesc>
-                                <support>vellum</support>
-                                <extent>1</extent>
-                            </supportDesc>
-                            <layoutDesc>
-                                <layout columns="1">
-                                    <dimensions scope="frag-sheet">
-                                        
-                                        <width unit="cm">10.7</width>
-                                        <height unit="cm">7.9</height>
-                                    </dimensions>
-                                    <dimensions scope="frag-col">
-                                        <width unit="cm">10.6</width>
-                                        <height unit="cm">6.6</height>
-                                    </dimensions>
-                                    <dimensions scope="frag-writ">
-                                        <height unit="lines">10</height>
-                                        <dim type="char-p-cm">2.7</dim>
-                                    </dimensions>
-                                    
-                                    <dimensions scope="sheet">
-                                        
-                                        <width unit="cm">24.4</width>
-                                        <height unit="cm">28.4</height>
-                                    </dimensions>
-                                    <dimensions scope="col-cm">
-                                        <width unit="cm">18.4</width>
-                                        <height unit="cm">23.8</height>
-                                    </dimensions>
-                                    <dimensions scope="col-writ">
-                                        <width unit="chars">50</width>
-                                        <height unit="lines">37</height>
-                                        <dim type="char-p-cm">2.7</dim>
-                                    </dimensions>
-                                </layout>
-                            </layoutDesc>
-                        </objectDesc>
-                        <handDesc>
-                            <handNote>
-                                <date>Oriental Square</date>
-                                <region/>
-                            </handNote>
-                        </handDesc>
-                    </physDesc>
-                </msDesc>
-            </sourceDesc>
-        </fileDesc>
-        <encodingDesc>
-            <tagsDecl/>
-        </encodingDesc>
-        <revisionDesc>
-            <change when="2011-11-29" who="Nurit Ezer"> Transcription</change>
-            <change when="2011-12-14" who="Hayim Lapin"> Begun XML tagging</change>
-        </revisionDesc>
-    </teiHeader>
-    <text>
-        <body>
-            <div1 xml:id="S04533.4">
-                <div2 xml:id="S04533.4.1">
-                    <div3 xml:id="S04533.4.1.10">
-                         <pb n="1r" xml:id="S04533.1r" next="#S04533.1r.pageEnd"/> 
-                        <ab xml:id="S04533.4.1.10.8">
-                     <damageSpan type="damage" spanTo="#d17e262"/>
-                     <anchor xml:id="d17e262" type="damage"/>
-                     <w xml:id="S04533.4.1.10.8.1">ומנו</w>
-                     <w xml:id="S04533.4.1.10.8.2">את</w>
-                     <w xml:id="S04533.4.1.10.8.3">
-                        <damageSpan type="damage" spanTo="#d17e267"/>הצ<damageSpan type="unclear" spanTo="#d17e270" extent="6" unit="chars"/>אן</w>
-                     <w xml:id="S04533.4.1.10.8.4">והיא<anchor xml:id="d17e270" type="unclear"/>
+               <p>Joins G2=TS NS 329.286 <ptr target="g2.xml ref.xml"/>
+               </p>
+               <p/>
+            </note>
+         </notesStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Cambridge</settlement>
+                  <repository>Univerity Library</repository>
+                  <idno type="genizah-CUL">TS AS 78.69</idno>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <locusGrp>
+                        <locus n="1r" facs="www.genizah.org">C96702</locus>
+                        <locus n="1v" facs="www.genizah.org">C96701</locus>
+                     </locusGrp>
+                     <join target="g2.xml"/>
+                     <join target="g6.xml"/>
+                     <join target="g7.xml"/>
+                     <title>Mishnah</title>
+                     <note type="nli-ref"><!-- Not in Cat --></note>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc>
+                        <support>vellum</support>
+                        <extent>1</extent>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout columns="1">
+                           <dimensions scope="frag-sheet"><!-- at widest/longest -->
+                              <width unit="cm">10.7</width>
+                              <height unit="cm">7.9</height>
+                           </dimensions>
+                           <dimensions scope="frag-col">
+                              <width unit="cm">10.6</width>
+                              <height unit="cm">6.6</height>
+                           </dimensions>
+                           <dimensions scope="frag-writ">
+                              <height unit="lines">10</height>
+                              <dim type="char-p-cm">2.7</dim>
+                           </dimensions>
+                           <!-- Following assume join with G2 -->
+                           <dimensions scope="sheet"><!-- assumes margins of 2.5 cm on outside and and 3.5 cm on
+                                            inside-->
+                              <width unit="cm">24.4</width>
+                              <height unit="cm">28.4</height>
+                           </dimensions>
+                           <dimensions scope="col-cm">
+                              <width unit="cm">18.4</width>
+                              <height unit="cm">23.8</height>
+                           </dimensions>
+                           <dimensions scope="col-writ">
+                              <width unit="chars">50</width>
+                              <height unit="lines">37</height>
+                              <dim type="char-p-cm">2.7</dim>
+                           </dimensions>
+                        </layout>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote>
+                        <date>Oriental Square</date>
+                        <region><!-- placeholder --></region>
+                     </handNote>
+                  </handDesc>
+               </physDesc>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <tagsDecl><!-- Placeholder --></tagsDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change when="2011-11-29" who="Nurit Ezer"> Transcription</change>
+         <change when="2011-12-14" who="Hayim Lapin"> Begun XML tagging</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div1 xml:id="S04533.4">
+            <div2 xml:id="S04533.4.1">
+               <div3 xml:id="S04533.4.1.10">
+                  <ab xml:id="S04533.4.1.10.8">
+                     <w xml:id="S04533.4.1.10.8.1">
+                        <damageSpan type="damage" spanTo="#d17e141"/>
                      </w>
-                     <w xml:id="S04533.4.1.10.8.5">ש<anchor xml:id="d17e267" type="damage"/>לי<damageSpan type="damage" spanTo="#d17e275"/>מ<anchor xml:id="d17e275" type="damage"/>
+                     <gap extent="13" unit="chars"/>
+                     <w xml:id="S04533.4.1.10.8.2">
+                        <anchor xml:id="d17e141" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.1.10.8.3">ומנו</w>
+                     <w xml:id="S04533.4.1.10.8.4">את</w>
+                     <w xml:id="S04533.4.1.10.8.5">
+                        <damageSpan type="damage" spanTo="#d17e146"/>הצ<damageSpan type="unclear" spanTo="#d17e149" extent="6" unit="chars"/>אן</w>
+                     <w xml:id="S04533.4.1.10.8.6">והיא<anchor xml:id="d17e149" type="unclear"/>
+                     </w>
+                     <w xml:id="S04533.4.1.10.8.7">ש<anchor xml:id="d17e146" type="damage"/>לי<damageSpan type="damage" spanTo="#d17e154"/>מ</w>
+                     <gap extent="7"/>
+                     <w xml:id="S04533.4.1.10.8.8">
+                        <anchor xml:id="d17e154" type="damage"/>
+                        <note/>
                      </w>
                   </ab>
-                        <ab xml:id="S04533.4.1.10.9">
-                     <damageSpan type="damage" spanTo="#d17e283"/>
-                     <anchor xml:id="d17e283" type="damage"/>
+                  <ab xml:id="S04533.4.1.10.9">
+                     <w xml:id="S04533.4.1.10.9.1">
+                        <damageSpan type="damage" spanTo="#d17e161"/>
+                     </w>
+                     <gap extent="11"/>
+                     <w xml:id="S04533.4.1.10.9.2">
+                        <anchor xml:id="d17e161" type="damage"/>
+                     </w>
                      <lb n="1"/>
-                     <damageSpan type="damage" spanTo="#d17e287"/>
-                     <w xml:id="S04533.4.1.10.9.1">צ<anchor xml:id="d17e287" type="damage"/>מ<damageSpan type="damage" spanTo="#d17e292"/>ר</w>
-                     <w xml:id="S04533.4.1.10.9.2">וחלב</w>
-                     <w xml:id="S04533.4.1.10.9.3">ו<anchor xml:id="d17e292" type="damage"/>גדיין</w>
-                     <w xml:id="S04533.4.1.10.9.4">ו<damageSpan type="damage" spanTo="#d17e295" extent="2"/>לא<damageSpan type="unclear" spanTo="#d17e299" extent="1" unit="chars"/>?<anchor xml:id="d17e299" type="unclear"/>
-                        <anchor xml:id="d17e295" type="damage"/>פ<damageSpan type="damage" spanTo="#d17e303"/>
-                        <damageSpan type="unclear" spanTo="#d17e305" extent="1" unit="chars"/>י<anchor xml:id="d17e305" type="unclear"/>
-                        <anchor xml:id="d17e303" type="damage"/>
+                     <w xml:id="S04533.4.1.10.9.3">
+                        <damageSpan type="damage" spanTo="#d17e164"/>
                      </w>
-                     <lb n="2"/>
-                     <w xml:id="S04533.4.1.10.9.5">
-                        <damageSpan type="damage" spanTo="#d17e311"/>
-                        <damageSpan type="unclear" spanTo="#d17e313" extent="1" unit="chars"/>?<anchor xml:id="d17e313" type="unclear"/>
-                        <anchor xml:id="d17e311" type="damage"/>ים</w>
-                     <w xml:id="S04533.4.1.10.9.6">כ<damageSpan type="damage" spanTo="#d17e317"/>
-                        <damageSpan type="unclear" spanTo="#d17e319" extent="1" unit="chars"/>ל<anchor xml:id="d17e319" type="unclear"/>
-                        <anchor xml:id="d17e317" type="damage"/>
-                     </w>
-                     <w xml:id="S04533.4.1.10.9.7">פישתן</w>
+                     <gap extent="8"/>
+                     <w xml:id="S04533.4.1.10.9.4">צ<anchor xml:id="d17e164" type="damage"/>מ<damageSpan type="damage" spanTo="#d17e169"/>ר</w>
+                     <w xml:id="S04533.4.1.10.9.5">וחלב</w>
+                     <w xml:id="S04533.4.1.10.9.6">ו<anchor xml:id="d17e169" type="damage"/>גדיין</w>
+                     <w xml:id="S04533.4.1.10.9.7">ו<damageSpan type="damage" spanTo="#d17e172" extent="2"/>לא</w>
+                     <gap extent="5"/>
                      <w xml:id="S04533.4.1.10.9.8">
-                        <damageSpan type="damage" spanTo="#d17e324"/>
-                        <damageSpan type="unclear" spanTo="#d17e326" extent="1" unit="chars"/>ב<anchor xml:id="d17e326" type="unclear"/>
-                        <anchor xml:id="d17e324" type="damage"/>גל<damageSpan type="damage" spanTo="#d17e330"/>
-                        <damageSpan type="unclear" spanTo="#d17e332" extent="5"/>יל</w>
-                     <w xml:id="S04533.4.1.10.9.9">ועג<anchor xml:id="d17e332" type="unclear"/>רו<damageSpan type="unclear" spanTo="#d17e338" extent="1" unit="chars"/>ן<anchor xml:id="d17e338" type="unclear"/>
-                        <anchor xml:id="d17e330" type="damage"/>
+                        <damageSpan type="unclear" spanTo="#d17e176" extent="1" unit="chars"/>?<anchor xml:id="d17e176" type="unclear"/>
+                        <anchor xml:id="d17e172" type="damage"/>פ<damageSpan type="damage" spanTo="#d17e180"/>
+                        <damageSpan type="unclear" spanTo="#d17e182" extent="1" unit="chars"/>י<anchor xml:id="d17e182" type="unclear"/>
                      </w>
-                     <lb n="3"/>
-                     <w xml:id="S04533.4.1.10.9.10">וקחין</w>
-                     <w xml:id="S04533.4.1.10.9.11">בצים</w>
-                     <w xml:id="S04533.4.1.10.9.12">ותרנוגלין</w>
-                     <w xml:id="S04533.4.1.10.9.13">
-                        <damageSpan type="damage" spanTo="#d17e347"/>מכל</w>
-                     <w xml:id="S04533.4.1.10.9.14">מקום<anchor xml:id="d17e347" type="damage"/>
-                     </w>
-                  </ab>
-                        <ab xml:id="S04533.4.1.10.10">
-                     <w xml:id="S04533.4.1.10.10.1">
-                        <damageSpan type="damage" spanTo="#d17e355"/>מ<anchor xml:id="d17e355" type="damage"/>ו<damageSpan type="damage" spanTo="#d17e358"/>כי<anchor xml:id="d17e358" type="damage"/>
-                     </w>
-                     <lb n="4"/>
-                     <w xml:id="S04533.4.1.10.10.2">ש<damageSpan type="damage" spanTo="#d17e366"/>
-                        <damageSpan type="unclear" spanTo="#d17e368" extent="1" unit="chars"/>ה<anchor xml:id="d17e368" type="unclear"/>
-                        <anchor xml:id="d17e366" type="damage"/>סרוק</w>
-                     <w xml:id="S04533.4.1.10.10.3">מוציא</w>
-                     <w xml:id="S04533.4.1.10.10.4">הרי</w>
-                     <w xml:id="S04533.4.1.10.10.5">
-                        <damageSpan type="damage" spanTo="#d17e372"/>ש<anchor xml:id="d17e372" type="damage"/>לב<damageSpan type="damage" spanTo="#d17e376"/>
-                        <damageSpan type="unclear" spanTo="#d17e378" extent="8" unit="chars"/>על</w>
-                     <w xml:id="S04533.4.1.10.10.6">???<anchor xml:id="d17e378" type="unclear"/>
-                        <anchor xml:id="d17e376" type="damage"/>
-                     </w>
-                     <lb n="5"/>
-                     <w xml:id="S04533.4.1.10.10.7">מיכן</w>
-                     <w xml:id="S04533.4.1.10.10.8">
-                        <damageSpan type="damage" spanTo="#d17e385"/>ש<anchor xml:id="d17e385" type="damage"/>לבעל</w>
-                     <w xml:id="S04533.4.1.10.10.9">הבית</w>
-                     <w xml:id="S04533.4.1.10.10.10">אם</w>
-                     <w xml:id="S04533.4.1.10.10.11">
-                        <damageSpan type="damage" spanTo="#d17e388"/>ה<anchor xml:id="d17e388" type="damage"/>יה<damageSpan type="damage" spanTo="#d17e391"/>
-                     </w>
-                     <anchor xml:id="d17e391" type="damage"/>
-                     <lb n="6"/>
-                     <w xml:id="S04533.4.1.10.10.12">ששייר</w>
-                     <w xml:id="S04533.4.1.10.10.13">
-                        <damageSpan type="damage" spanTo="#d17e400"/>מן</w>
-                     <w xml:id="S04533.4.1.10.10.14">החוט<anchor xml:id="d17e400" type="damage"/>
-                     </w>
-                     <w xml:id="S04533.4.1.10.10.15">כדי</w>
-                     <w xml:id="S04533.4.1.10.10.16">לתפו<damageSpan type="unclear" spanTo="#d17e404" extent="1" unit="chars"/>ר<anchor xml:id="d17e404" type="unclear"/>
-                     </w>
-                     <lb n="7"/>
-                     <w xml:id="S04533.4.1.10.10.17">
-                        <damageSpan type="damage" spanTo="#d17e409"/>
-                        <damageSpan type="unclear" spanTo="#d17e410" extent="4" unit="chars"/>ל??ל<anchor xml:id="d17e410" type="unclear"/>
-                        <anchor xml:id="d17e409" type="damage"/>שהחרש</w>
-                     <w xml:id="S04533.4.1.10.10.18">מוצי<damageSpan type="damage" spanTo="#d17e415"/>א</w>
-                     <anchor xml:id="d17e415" type="damage"/>
-                     <lb n="8"/>
-                     <w xml:id="S04533.4.1.10.10.19">
-                        <damageSpan type="damage" spanTo="#d17e421"/>צ<anchor xml:id="d17e421" type="damage"/>ל</w>
-                     <w xml:id="S04533.4.1.10.10.20">בעל</w>
-                     <w xml:id="S04533.4.1.10.10.21">הבי<damageSpan type="damage" spanTo="#d17e426"/>ת</w>
-                     <anchor xml:id="d17e426" type="damage"/>
-                     <lb n="9"/>
-                  </ab>
-                    </div3>
-                </div2>
-                <div2 xml:id="S04533.4.2">
-                    
-                    <div3 xml:id="S04533.4.2.1">
-                        <ab xml:id="S04533.4.2.1.1">
-                     <w xml:id="S04533.4.2.1.1.1">
-                        <damageSpan type="damage" spanTo="#d17e446"/>ה</w>
-                     <w xml:id="S04533.4.2.1.1.2">
-                        <abbr>אומ<am rend="overdot">׳</am>
-                        </abbr>
-                        <expan>אומר</expan>
-                        <anchor xml:id="d17e446" type="damage"/>
-                     </w>
-                     <lb n="10"/>
-                     <damageSpan type="damage" spanTo="#d17e465"/>
-                     <damageSpan type="unclear" spanTo="#d17e469" extent="2" unit="chars"/>
-                     <anchor xml:id="d17e469" type="unclear"/>
-                     <anchor xml:id="d17e465" type="damage"/>
-                     <lb n="11"/>
-                  </ab>
-                    </div3>
-                     <pb n="1v" xml:id="S04533.1v" next="#S04533.1v.pageEnd"/> 
-                    <div3 xml:id="S04533.4.2.2">
-                        <ab xml:id="S04533.4.2.2.1">
-                     <w xml:id="S04533.4.2.2.1.1">
-                        <damageSpan type="damage" spanTo="#d17e490"/>
-                        <anchor xml:id="d17e490" type="damage"/>יכרות</w>
-                     <w xml:id="S04533.4.2.2.1.2">שלנחתום</w>
-                     <w xml:id="S04533.4.2.2.1.3">מחרוזות</w>
-                     <damageSpan type="damage" spanTo="#d17e495"/>
-                     <anchor xml:id="d17e495" type="damage"/>
-                     <lb n="1"/>
-                     <w xml:id="S04533.4.2.2.1.4">
-                        <damageSpan type="damage" spanTo="#d17e500"/>ד<anchor xml:id="d17e500" type="damage"/>י<damageSpan type="damage" spanTo="#d17e505"/>נ<anchor xml:id="d17e505" type="damage"/>צי</w>
-                     <w xml:id="S04533.4.2.2.1.5">פישתן</w>
-                     <w xml:id="S04533.4.2.2.1.6">ולשונות</w>
-                     <w xml:id="S04533.4.2.2.1.7">ש<damageSpan type="damage" spanTo="#d17e511"/>
-                        <damageSpan type="unclear" spanTo="#d17e513" extent="2" unit="chars"/>לא<anchor xml:id="d17e513" type="unclear"/>
-                        <anchor xml:id="d17e511" type="damage"/>
+                     <gap extent="19"/>
+                     <w xml:id="S04533.4.1.10.9.9">
+                        <anchor xml:id="d17e180" type="damage"/>
                      </w>
                      <lb n="2"/>
-                     <w xml:id="S04533.4.2.2.1.8">
-                        <damageSpan type="damage" spanTo="#d17e519"/>
-                        <damageSpan type="unclear" spanTo="#d17e521" extent="1" unit="chars"/>?<anchor xml:id="d17e521" type="unclear"/>
-                        <anchor xml:id="d17e519" type="damage"/>ר</w>
-                     <w xml:id="S04533.4.2.2.1.9">
-                        <damageSpan type="damage" spanTo="#d17e525"/>
-                        <damageSpan type="unclear" spanTo="#d17e527" extent="1" unit="chars"/>?<anchor xml:id="d17e527" type="unclear"/>
-                        <anchor xml:id="d17e525" type="damage"/>
+                     <w xml:id="S04533.4.1.10.9.10">
+                        <damageSpan type="damage" spanTo="#d17e186"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.1.10">שינוי</w>
-                     <w xml:id="S04533.4.2.2.1.11">חייב</w>
-                     <w xml:id="S04533.4.2.2.1.12">להכר<damageSpan type="damage" spanTo="#d17e532"/>
-                        <damageSpan type="unclear" spanTo="#d17e535" extent="1" unit="chars"/>ז<anchor xml:id="d17e535" type="unclear"/>
-                        <anchor xml:id="d17e532" type="damage"/>
+                     <gap extent="5"/>
+                     <w xml:id="S04533.4.1.10.9.11">
+                        <damageSpan type="unclear" spanTo="#d17e188" extent="1" unit="chars"/>?<anchor xml:id="d17e188" type="unclear"/>
+                        <anchor xml:id="d17e186" type="damage"/>ים</w>
+                     <w xml:id="S04533.4.1.10.9.12">כ<damageSpan type="damage" spanTo="#d17e193"/>
+                        <damageSpan type="unclear" spanTo="#d17e195" extent="1" unit="chars"/>ל<anchor xml:id="d17e195" type="unclear"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.1.13">כאיזה</w>
-                     <w xml:id="S04533.4.2.2.1.14">
-                        <damageSpan type="damage" spanTo="#d17e539"/>
-                        <damageSpan type="unclear" spanTo="#d17e541" extent="1" unit="chars"/>צ<anchor xml:id="d17e541" type="unclear"/>
-                        <anchor xml:id="d17e539" type="damage"/>
+                     <gap extent="1"/>
+                     <w xml:id="S04533.4.1.10.9.13">
+                        <anchor xml:id="d17e193" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.1.10.9.14">פישתן</w>
+                     <w xml:id="S04533.4.1.10.9.15">
+                        <damageSpan type="damage" spanTo="#d17e200"/>
+                        <damageSpan type="unclear" spanTo="#d17e202" extent="1" unit="chars"/>ב<anchor xml:id="d17e202" type="unclear"/>
+                        <anchor xml:id="d17e200" type="damage"/>גל<damageSpan type="damage" spanTo="#d17e206"/>
+                        <damageSpan type="unclear" spanTo="#d17e208" extent="5"/>יל</w>
+                     <w xml:id="S04533.4.1.10.9.16">ועג<anchor xml:id="d17e208" type="unclear"/>
+                     </w>
+                     <gap extent="5" unit="chars"/>
+                     <w xml:id="S04533.4.1.10.9.17">רו<damageSpan type="unclear" spanTo="#d17e214" extent="1" unit="chars"/>ן<anchor xml:id="d17e214" type="unclear"/>
+                     </w>
+                     <gap extent="19"/>
+                     <w xml:id="S04533.4.1.10.9.18">
+                        <anchor xml:id="d17e206" type="damage"/>
                      </w>
                      <lb n="3"/>
+                     <gap extent="1"/>
+                     <w xml:id="S04533.4.1.10.9.19">וקחין</w>
+                     <w xml:id="S04533.4.1.10.9.20">בצים</w>
+                     <w xml:id="S04533.4.1.10.9.21">ותרנוגלין</w>
+                     <w xml:id="S04533.4.1.10.9.22">
+                        <damageSpan type="damage" spanTo="#d17e221"/>מכל</w>
+                     <w xml:id="S04533.4.1.10.9.23">מקום<anchor xml:id="d17e221" type="damage"/>
+                     </w>
+                     <pc type="unitEnd" rend="˙">:</pc>
+                  </ab>
+                  <ab xml:id="S04533.4.1.10.10">
+                     <w xml:id="S04533.4.1.10.10.1">
+                        <space/>
+                        <damageSpan type="damage" spanTo="#d17e227"/>מ<anchor xml:id="d17e227" type="damage"/>ו<damageSpan type="damage" spanTo="#d17e230"/>כי</w>
+                     <gap extent="20"/>
+                     <w xml:id="S04533.4.1.10.10.2">
+                        <anchor xml:id="d17e230" type="damage"/>
+                     </w>
+                     <lb n="4"/>
+                     <w xml:id="S04533.4.1.10.10.3">ש<damageSpan type="damage" spanTo="#d17e237"/>
+                        <damageSpan type="unclear" spanTo="#d17e239" extent="1" unit="chars"/>ה<anchor xml:id="d17e239" type="unclear"/>
+                        <anchor xml:id="d17e237" type="damage"/>סרוק</w>
+                     <w xml:id="S04533.4.1.10.10.4">מוציא</w>
+                     <w xml:id="S04533.4.1.10.10.5">הרי</w>
+                     <w xml:id="S04533.4.1.10.10.6">
+                        <damageSpan type="damage" spanTo="#d17e243"/>ש<anchor xml:id="d17e243" type="damage"/>לב<damageSpan type="damage" spanTo="#d17e246"/>
+                        <damageSpan type="unclear" spanTo="#d17e248" extent="8" unit="chars"/>על</w>
+                     <w xml:id="S04533.4.1.10.10.7">???<anchor xml:id="d17e248" type="unclear"/>
+                     </w>
+                     <gap extent="24"/>
+                     <w xml:id="S04533.4.1.10.10.8">
+                        <anchor xml:id="d17e246" type="damage"/>
+                     </w>
+                     <lb n="5"/>
+                     <w xml:id="S04533.4.1.10.10.9">מיכן</w>
+                     <w xml:id="S04533.4.1.10.10.10">
+                        <damageSpan type="damage" spanTo="#d17e255"/>ש<anchor xml:id="d17e255" type="damage"/>לבעל</w>
+                     <w xml:id="S04533.4.1.10.10.11">הבית</w>
+                     <w xml:id="S04533.4.1.10.10.12">אם</w>
+                     <w xml:id="S04533.4.1.10.10.13">
+                        <damageSpan type="damage" spanTo="#d17e258"/>ה<anchor xml:id="d17e258" type="damage"/>יה<damageSpan type="damage" spanTo="#d17e261"/>
+                     </w>
+                     <gap extent="33"/>
+                     <w xml:id="S04533.4.1.10.10.14">
+                        <anchor xml:id="d17e261" type="damage"/>
+                     </w>
+                     <lb n="6"/>
+                     <w xml:id="S04533.4.1.10.10.15">ששייר</w>
+                     <w xml:id="S04533.4.1.10.10.16">
+                        <damageSpan type="damage" spanTo="#d17e267"/>מן</w>
+                     <w xml:id="S04533.4.1.10.10.17">החוט<anchor xml:id="d17e267" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.1.10.10.18">כדי</w>
+                     <w xml:id="S04533.4.1.10.10.19">לתפו<damageSpan type="unclear" spanTo="#d17e272" extent="1" unit="chars"/>ר<anchor xml:id="d17e272" type="unclear"/>
+                     </w>
+                     <gap extent="32"/>
+                     <lb n="7"/>
+                     <w xml:id="S04533.4.1.10.10.20">
+                        <damageSpan type="damage" spanTo="#d17e276"/>
+                        <damageSpan type="unclear" spanTo="#d17e277" extent="4" unit="chars"/>ל??ל<anchor xml:id="d17e277" type="unclear"/>
+                     </w>
+                     <gap extent="4"/>
+                     <w xml:id="S04533.4.1.10.10.21">
+                        <anchor xml:id="d17e276" type="damage"/>שהחרש</w>
+                     <w xml:id="S04533.4.1.10.10.22">מוצי<damageSpan type="damage" spanTo="#d17e282"/>א</w>
+                     <gap extent="31"/>
+                     <w xml:id="S04533.4.1.10.10.23">
+                        <anchor xml:id="d17e282" type="damage"/>
+                     </w>
+                     <lb n="8"/>
+                     <w xml:id="S04533.4.1.10.10.24">
+                        <damageSpan type="damage" spanTo="#d17e287"/>
+                     </w>
+                     <gap extent="11"/>
+                     <w xml:id="S04533.4.1.10.10.25">צ<anchor xml:id="d17e287" type="damage"/>ל</w>
+                     <w xml:id="S04533.4.1.10.10.26">בעל</w>
+                     <w xml:id="S04533.4.1.10.10.27">הבי<damageSpan type="damage" spanTo="#d17e292"/>ת</w>
+                     <gap extent="32"/>
+                     <w xml:id="S04533.4.1.10.10.28">
+                        <anchor xml:id="d17e292" type="damage"/>
+                        <note/>
+                     </w>
+                     <lb n="9"/>
+                  </ab>
+               </div3>
+            </div2>
+            <div2 xml:id="S04533.4.2">
+               <note>Location of chapter (and tractate) break not clear in witness.</note>
+               <div3 xml:id="S04533.4.2.1">
+                  <ab xml:id="S04533.4.2.1.1">
+                     <w xml:id="S04533.4.2.1.1.1">
+                        <damageSpan type="damage" spanTo="#d17e305"/>
+                     </w>
+                     <gap extent="11"/>
+                     <w xml:id="S04533.4.2.1.1.2">ה</w>
+                     <w xml:id="S04533.4.2.1.1.3">
+                        <choice>
+                           <abbr>אומ<am rend="overdot">׳</am>
+                           </abbr>
+                           <expan>אומר</expan>
+                        </choice>
+                     </w>
+                     <gap extent="35" unit="chars"/>
+                     <w xml:id="S04533.4.2.1.1.4">
+                        <anchor xml:id="d17e305" type="damage"/>
+                     </w>
+                     <lb n="10"/>
+                     <w xml:id="S04533.4.2.1.1.5">
+                        <damageSpan type="damage" spanTo="#d17e319"/>
+                     </w>
+                     <gap extent="13"/>
+                     <w xml:id="S04533.4.2.1.1.6">
+                        <damageSpan type="unclear" spanTo="#d17e321" extent="2" unit="chars"/>
+                        <anchor xml:id="d17e321" type="unclear"/>
+                     </w>
+                     <gap extent="29" unit="chars"/>
+                     <w xml:id="S04533.4.2.1.1.7">
+                        <anchor xml:id="d17e319" type="damage"/>
+                     </w>
+                     <lb n="11"/>
+                     <milestone unit="page" xml:id="S04533.1r.pageEnd" next="#S04533.1v"/>
+                     <gap extent="25" unit="lines"/>
+                  </ab>
+               </div3>
+               <div3 xml:id="S04533.4.2.2">
+                  <ab xml:id="S04533.4.2.2.1">
+                     <w xml:id="S04533.4.2.2.1.1">
+                        <damageSpan type="damage" spanTo="#d17e330"/>
+                     </w>
+                     <gap extent="15"/>
+                     <w xml:id="S04533.4.2.2.1.2">
+                        <anchor xml:id="d17e330" type="damage"/>יכרות</w>
+                     <w xml:id="S04533.4.2.2.1.3">שלנחתום</w>
+                     <w xml:id="S04533.4.2.2.1.4">מחרוזות</w>
+                     <w xml:id="S04533.4.2.2.1.5">
+                        <damageSpan type="damage" spanTo="#d17e335"/>
+                     </w>
+                     <gap extent="14"/>
+                     <w xml:id="S04533.4.2.2.1.6">
+                        <anchor xml:id="d17e335" type="damage"/>
+                     </w>
+                     <lb n="1"/>
+                     <w xml:id="S04533.4.2.2.1.7">
+                        <damageSpan type="damage" spanTo="#d17e339"/>
+                     </w>
+                     <gap extent="15"/>
+                     <w xml:id="S04533.4.2.2.1.8">ד<anchor xml:id="d17e339" type="damage"/>י<damageSpan type="damage" spanTo="#d17e344"/>נ</w>
+                     <gap extent="6"/>
+                     <w xml:id="S04533.4.2.2.1.9">
+                        <anchor xml:id="d17e344" type="damage"/>צי</w>
+                     <w xml:id="S04533.4.2.2.1.10">פישתן</w>
+                     <w xml:id="S04533.4.2.2.1.11">ולשונות</w>
+                     <w xml:id="S04533.4.2.2.1.12">ש<damageSpan type="damage" spanTo="#d17e350"/>
+                        <damageSpan type="unclear" spanTo="#d17e352" extent="2" unit="chars"/>לא<anchor xml:id="d17e352" type="unclear"/>
+                     </w>
+                     <gap extent="9"/>
+                     <w xml:id="S04533.4.2.2.1.13">
+                        <anchor xml:id="d17e350" type="damage"/>
+                     </w>
+                     <lb n="2"/>
+                     <w xml:id="S04533.4.2.2.1.14">
+                        <damageSpan type="damage" spanTo="#d17e356"/>
+                     </w>
+                     <gap extent="16"/>
                      <w xml:id="S04533.4.2.2.1.15">
-                        <damageSpan type="damage" spanTo="#d17e546"/>ו<anchor xml:id="d17e546" type="damage"/>
+                        <damageSpan type="unclear" spanTo="#d17e358" extent="1" unit="chars"/>?<anchor xml:id="d17e358" type="unclear"/>
+                        <anchor xml:id="d17e356" type="damage"/>ר</w>
+                     <w xml:id="S04533.4.2.2.1.16">
+                        <damageSpan type="damage" spanTo="#d17e363"/>
+                        <damageSpan type="unclear" spanTo="#d17e365" extent="1" unit="chars"/>?<anchor xml:id="d17e365" type="unclear"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.1.16">מעת</w>
+                     <gap extent="5"/>
                      <w xml:id="S04533.4.2.2.1.17">
-                        <abbr>ר<am rend="overdot">׳</am>
-                        </abbr>
-                        <expan>רבי</expan>
+                        <anchor xml:id="d17e363" type="damage"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.1.18">שמעון</w>
-                     <w xml:id="S04533.4.2.2.1.19">בן</w>
-                     <w xml:id="S04533.4.2.2.1.20">אלעזר</w>
+                     <w xml:id="S04533.4.2.2.1.18">שינוי</w>
+                     <w xml:id="S04533.4.2.2.1.19">חייב</w>
+                     <w xml:id="S04533.4.2.2.1.20">להכר<damageSpan type="damage" spanTo="#d17e370"/>
+                     </w>
+                     <gap extent="1"/>
                      <w xml:id="S04533.4.2.2.1.21">
-                        <abbr>אומ<am rend="overdot">׳</am>
-                        </abbr>
-                        <expan>אומר</expan>
+                        <damageSpan type="unclear" spanTo="#d17e373" extent="1" unit="chars"/>ז<anchor xml:id="d17e373" type="unclear"/>
+                        <anchor xml:id="d17e370" type="damage"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.1.22">כל</w>
-                     <w xml:id="S04533.4.2.2.1.23">כלי</w>
-                     <w xml:id="S04533.4.2.2.1.24">אנפ<damageSpan type="damage" spanTo="#d17e576"/>
-                        <anchor xml:id="d17e576" type="damage"/>
+                     <w xml:id="S04533.4.2.2.1.22">כאיזה</w>
+                     <w xml:id="S04533.4.2.2.1.23">
+                        <damageSpan type="damage" spanTo="#d17e377"/>
+                        <damageSpan type="unclear" spanTo="#d17e379" extent="1" unit="chars"/>צ<anchor xml:id="d17e379" type="unclear"/>
+                     </w>
+                     <gap extent="5"/>
+                     <w xml:id="S04533.4.2.2.1.24">
+                        <anchor xml:id="d17e377" type="damage"/>
+                     </w>
+                     <lb n="3"/>
+                     <w xml:id="S04533.4.2.2.1.25">
+                        <damageSpan type="damage" spanTo="#d17e383"/>
+                     </w>
+                     <gap extent="17"/>
+                     <w xml:id="S04533.4.2.2.1.26">ו<anchor xml:id="d17e383" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.1.27">מעת</w>
+                     <w xml:id="S04533.4.2.2.1.28">
+                        <persName>
+                           <sep>
+                              <w xml:id=".1">
+                                 <choice>
+                                    <abbr>ר<am rend="overdot">׳</am>
+                                    </abbr>
+                                    <expan>רבי</expan>
+                                 </choice>
+                              </w>
+                           </sep>
+                           <sep/>שמעון<sep/>בן<sep/>אלעזר</persName>
+                     </w>
+                     <w xml:id="S04533.4.2.2.1.29">
+                        <choice>
+                           <abbr>אומ<am rend="overdot">׳</am>
+                           </abbr>
+                           <expan>אומר</expan>
+                        </choice>
+                     </w>
+                     <w xml:id="S04533.4.2.2.1.30">כל</w>
+                     <w xml:id="S04533.4.2.2.1.31">כלי</w>
+                     <w xml:id="S04533.4.2.2.1.32">אנפ<damageSpan type="damage" spanTo="#d17e406"/>
+                     </w>
+                     <gap extent="4"/>
+                     <w xml:id="S04533.4.2.2.1.33">
+                        <anchor xml:id="d17e406" type="damage"/>
                      </w>
                      <lb n="4"/>
                   </ab>
-                        <ab xml:id="S04533.4.2.2.2">
+                  <ab xml:id="S04533.4.2.2.2">
                      <w xml:id="S04533.4.2.2.2.1">
-                        <damageSpan type="damage" spanTo="#d17e583"/>
-                        <anchor xml:id="d17e583" type="damage"/>א</w>
-                     <w xml:id="S04533.4.2.2.2.2">פירות</w>
-                     <w xml:id="S04533.4.2.2.2.3">בכלי</w>
-                     <w xml:id="S04533.4.2.2.2.4">או</w>
-                     <w xml:id="S04533.4.2.2.2.5">כלי</w>
-                     <w xml:id="S04533.4.2.2.2.6">כמו<damageSpan type="damage" spanTo="#d17e587"/>ת<anchor xml:id="d17e587" type="damage"/>
+                        <damageSpan type="damage" spanTo="#d17e411"/>
                      </w>
-                     <w xml:id="S04533.4.2.2.2.7">שה<damageSpan type="damage" spanTo="#d17e590"/>
-                        <anchor xml:id="d17e590" type="damage"/>
+                     <gap extent="27"/>
+                     <w xml:id="S04533.4.2.2.2.2">
+                        <anchor xml:id="d17e411" type="damage"/>א</w>
+                     <w xml:id="S04533.4.2.2.2.3">פירות</w>
+                     <w xml:id="S04533.4.2.2.2.4">בכלי</w>
+                     <w xml:id="S04533.4.2.2.2.5">או</w>
+                     <w xml:id="S04533.4.2.2.2.6">כלי</w>
+                     <w xml:id="S04533.4.2.2.2.7">כמו<damageSpan type="damage" spanTo="#d17e415"/>ת<anchor xml:id="d17e415" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.2.8">שה<damageSpan type="damage" spanTo="#d17e418"/>
+                     </w>
+                     <gap extent="2"/>
+                     <w xml:id="S04533.4.2.2.2.9">
+                        <anchor xml:id="d17e418" type="damage"/>
                      </w>
                      <lb n="5"/>
-                     <damageSpan type="damage" spanTo="#d17e595"/>
-                     <anchor xml:id="d17e595" type="damage"/>
-                     <w xml:id="S04533.4.2.2.2.8">ציבורי</w>
-                     <w xml:id="S04533.4.2.2.2.9">מעות</w>
-                     <w xml:id="S04533.4.2.2.2.10">שלשה</w>
-                     <w xml:id="S04533.4.2.2.2.11">מטבע<damageSpan type="damage" spanTo="#d17e599"/>
-                        <anchor xml:id="d17e599" type="damage"/>
+                     <w xml:id="S04533.4.2.2.2.10">
+                        <damageSpan type="damage" spanTo="#d17e422"/>
+                     </w>
+                     <gap extent="28"/>
+                     <w xml:id="S04533.4.2.2.2.11">
+                        <anchor xml:id="d17e422" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.2.12">ציבורי</w>
+                     <w xml:id="S04533.4.2.2.2.13">מעות</w>
+                     <w xml:id="S04533.4.2.2.2.14">שלשה</w>
+                     <w xml:id="S04533.4.2.2.2.15">מטבע<damageSpan type="damage" spanTo="#d17e426"/>
+                     </w>
+                     <gap extent="2"/>
+                     <w xml:id="S04533.4.2.2.2.16">
+                        <anchor xml:id="d17e426" type="damage"/>
                      </w>
                      <lb n="6"/>
-                     <damageSpan type="damage" spanTo="#d17e605"/>
-                     <anchor xml:id="d17e605" type="damage"/>
-                     <w xml:id="S04533.4.2.2.2.12">שלבעל</w>
-                     <w xml:id="S04533.4.2.2.2.13">הבית</w>
-                     <w xml:id="S04533.4.2.2.2.14">וגיזי</w>
-                     <w xml:id="S04533.4.2.2.2.15">צמר</w>
-                     <damageSpan type="damage" spanTo="#d17e611"/>
-                     <anchor xml:id="d17e611" type="damage"/>
-                     <lb n="7"/>
-                     <w xml:id="S04533.4.2.2.2.16">
-                        <damageSpan type="damage" spanTo="#d17e616"/>
-                        <damageSpan type="unclear" spanTo="#d17e618" extent="1" unit="chars"/>י<anchor xml:id="d17e618" type="unclear"/>
-                        <anchor xml:id="d17e616" type="damage"/>ב</w>
-                     <w xml:id="S04533.4.2.2.2.17">להכריז</w>
+                     <w xml:id="S04533.4.2.2.2.17">
+                        <damageSpan type="damage" spanTo="#d17e430"/>
+                     </w>
+                     <gap extent="28"/>
                      <w xml:id="S04533.4.2.2.2.18">
-                        <damageSpan type="damage" spanTo="#d17e627"/>
-                        <damageSpan type="unclear" spanTo="#d17e629" extent="1" unit="chars"/>?<anchor xml:id="d17e629" type="unclear"/>
-                        <anchor xml:id="d17e627" type="damage"/>
+                        <anchor xml:id="d17e430" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.2.19">שלבעל</w>
+                     <w xml:id="S04533.4.2.2.2.20">הבית</w>
+                     <w xml:id="S04533.4.2.2.2.21">וגיזי</w>
+                     <w xml:id="S04533.4.2.2.2.22">צמר</w>
+                     <surplus>??</surplus>
+                     <w xml:id="S04533.4.2.2.2.23">
+                        <damageSpan type="damage" spanTo="#d17e437"/>
+                     </w>
+                     <gap extent="2"/>
+                     <w xml:id="S04533.4.2.2.2.24">
+                        <anchor xml:id="d17e437" type="damage"/>
+                     </w>
+                     <lb n="7"/>
+                     <w xml:id="S04533.4.2.2.2.25">
+                        <damageSpan type="damage" spanTo="#d17e441"/>
+                     </w>
+                     <gap extent="26"/>
+                     <w xml:id="S04533.4.2.2.2.26">
+                        <damageSpan type="unclear" spanTo="#d17e443" extent="1" unit="chars"/>י<anchor xml:id="d17e443" type="unclear"/>
+                        <anchor xml:id="d17e441" type="damage"/>ב</w>
+                     <w xml:id="S04533.4.2.2.2.27">להכריז</w>
+                     <pc type="unitEnd" rend="˙">:</pc>
+                     <w xml:id="S04533.4.2.2.2.28">
+                        <space/>
+                        <damageSpan type="damage" spanTo="#d17e450"/>
+                        <damageSpan type="unclear" spanTo="#d17e452" extent="1" unit="chars"/>?<anchor xml:id="d17e452" type="unclear"/>
+                     </w>
+                     <gap extent="12"/>
+                     <w xml:id="S04533.4.2.2.2.29">
+                        <anchor xml:id="d17e450" type="damage"/>
                      </w>
                      <lb n="8"/>
-                     <damageSpan type="damage" spanTo="#d17e634"/>
-                     <anchor xml:id="d17e634" type="damage"/>
-                     <w xml:id="S04533.4.2.2.2.19">שבשדות</w>
-                     <w xml:id="S04533.4.2.2.2.20">ה<damageSpan type="damage" spanTo="#d17e638"/>
-                        <damageSpan type="unclear" spanTo="#d17e640" extent="1" unit="chars"/>ר<anchor xml:id="d17e640" type="unclear"/>
-                        <anchor xml:id="d17e638" type="damage"/>
+                     <w xml:id="S04533.4.2.2.2.30">
+                        <damageSpan type="damage" spanTo="#d17e456"/>
+                     </w>
+                     <gap extent="26"/>
+                     <w xml:id="S04533.4.2.2.2.31">
+                        <anchor xml:id="d17e456" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.2.32">שבשדות</w>
+                     <w xml:id="S04533.4.2.2.2.33">ה<damageSpan type="damage" spanTo="#d17e461"/>
+                        <damageSpan type="unclear" spanTo="#d17e463" extent="1" unit="chars"/>ר<anchor xml:id="d17e463" type="unclear"/>
+                     </w>
+                     <gap extent="14"/>
+                     <w xml:id="S04533.4.2.2.2.34">
+                        <anchor xml:id="d17e461" type="damage"/>
                      </w>
                      <lb n="9"/>
-                     <damageSpan type="damage" spanTo="#d17e645"/>
-                     <damageSpan type="unclear" spanTo="#d17e647" extent="3" unit="chars"/>
-                     <anchor xml:id="d17e647" type="unclear"/>
-                     <anchor xml:id="d17e645" type="damage"/>
-                     <w xml:id="S04533.4.2.2.2.21">נוטל</w>
-                     <damageSpan type="damage" spanTo="#d17e650"/>
-                     <damageSpan type="unclear" spanTo="#d17e652" extent="1" unit="chars"/>
-                     <anchor xml:id="d17e652" type="unclear"/>
-                     <anchor xml:id="d17e650" type="damage"/>
+                     <w xml:id="S04533.4.2.2.2.35">
+                        <damageSpan type="damage" spanTo="#d17e467"/>
+                     </w>
+                     <gap extent="27"/>
+                     <w xml:id="S04533.4.2.2.2.36">
+                        <damageSpan type="unclear" spanTo="#d17e469" extent="3" unit="chars"/>
+                        <anchor xml:id="d17e469" type="unclear"/>
+                        <anchor xml:id="d17e467" type="damage"/>
+                     </w>
+                     <w xml:id="S04533.4.2.2.2.37">נוטל</w>
+                     <w xml:id="S04533.4.2.2.2.38">
+                        <damageSpan type="damage" spanTo="#d17e472"/>
+                        <damageSpan type="unclear" spanTo="#d17e474" extent="1" unit="chars"/>
+                        <anchor xml:id="d17e474" type="unclear"/>
+                     </w>
+                     <gap extent="14"/>
+                     <w xml:id="S04533.4.2.2.2.39">
+                        <anchor xml:id="d17e472" type="damage"/>
+                     </w>
                      <lb n="10"/>
-                     <damageSpan type="damage" spanTo="#d17e656"/>
-                     <damageSpan type="unclear" spanTo="#d17e658" extent="2"/>
-                     <anchor xml:id="d17e658" type="unclear"/>
-                     <anchor xml:id="d17e656" type="damage"/>
+                     <w xml:id="S04533.4.2.2.2.40">
+                        <damageSpan type="damage" spanTo="#d17e477"/>
+                     </w>
+                     <gap extent="35"/>
+                     <w xml:id="S04533.4.2.2.2.41">
+                        <damageSpan type="unclear" spanTo="#d17e479" extent="2"/>
+                        <anchor xml:id="d17e479" type="unclear"/>
+                     </w>
+                     <gap extent="16"/>
+                     <w xml:id="S04533.4.2.2.2.42">
+                        <anchor xml:id="d17e477" type="damage"/>
+                     </w>
                      <lb n="11"/>
+                     <milestone xml:id="S04533.1v.pageEnd" unit="page"/>
+                     <gap unit="lines" extent="26"/>
                   </ab>
-                    </div3>
-                </div2>
-            </div1>
-        </body>
-    </text>
+               </div3>
+            </div2>
+         </div1>
+      </body>
+   </text>
 </TEI>

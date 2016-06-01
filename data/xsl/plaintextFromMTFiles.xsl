@@ -104,7 +104,7 @@
             </xsl:choose>
             <xsl:value-of select="tei:div2/@n"/>
         </xsl:variable>
-            <xsl:result-document href="file:/C:/users/hlapin/desktop/out/{$fname}.xml" method="text" indent="no" encoding="utf-8"
+            <xsl:result-document href="file:/C:/users/hlapin/desktop/out/{$fname}.txt" method="text" indent="no" encoding="utf-8"
                 omit-xml-declaration="yes" byte-order-mark="yes">
                 <xsl:apply-templates select="*"/>
             </xsl:result-document>
