@@ -6,34 +6,21 @@
     <!--<xsl:strip-space elements="tei:damage tei:unclear tei:gap"/>-->
 
     <xsl:output indent="yes"/>
-    <xsl:param name="iterate" select="'no'"/>
+    <xsl:param name="iterate" select="'yes'"/>
     <xsl:param name="csv">no</xsl:param>
     <xsl:param name="path" select="'../tei'"/>
 
     <xsl:variable name="files"
         select="collection(iri-to-uri(concat($path, '?select=[PS][0-9]{5}.xml;recurse=no')))"/>
 
-    <xsl:template match="@* | text() | element() | comment()" mode="#all">
+    <xsl:template match="* | text() | @* | comment() | processing-instruction()" mode="#all">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:apply-templates select="* | text() | @* | comment() | processing-instruction()" mode="#current"/>
         </xsl:copy>
     </xsl:template>
-
+    
     <xsl:template match="/">
         <xsl:choose>
-            <xsl:when test="$iterate = 'no'">
-                <xsl:processing-instruction name="xml-model">
-                <xsl:text>type="application/xml" </xsl:text>
-  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" </xsl:text>
-                <xsl:text>schematypens="http://relaxng.org/ns/structure/1.0"</xsl:text>
-            </xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">
-                <xsl:text>type="application/xml" </xsl:text>
-  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"</xsl:text>
-                 <xsl:text>schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:text>
-            </xsl:processing-instruction>
-                <xsl:call-template name="doText"/>
-            </xsl:when>
             <xsl:when test="$iterate = 'yes'">
                 <xsl:for-each select="$files/*">
                     <xsl:result-document
@@ -55,18 +42,54 @@
                     </xsl:result-document>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$iterate='no'">
+                        <xsl:processing-instruction name="xml-model">
+                <xsl:text>type="application/xml" </xsl:text>
+  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" </xsl:text>
+                <xsl:text>schematypens="http://relaxng.org/ns/structure/1.0"</xsl:text>
+            </xsl:processing-instruction>
+                        <xsl:processing-instruction name="xml-model">
+                <xsl:text>type="application/xml" </xsl:text>
+  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"</xsl:text>
+                 <xsl:text>schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:text>
+            </xsl:processing-instruction>
+                        <xsl:call-template name="doText"/>
+                    </xsl:when>
+                    <xsl:when test="$iterate = 'yes'">
+                        <xsl:for-each select="$files/*">
+                            <xsl:result-document
+                                href="{concat('../tei/w-sep/',/*/*/*/*/tei:idno[@type='local'],'-w-sep.xml')}"
+                                method="xml" indent="yes" encoding="utf-8">
+                                <TEI>
+                                    <xsl:processing-instruction name="xml-model">
+                <xsl:text>type="application/xml" </xsl:text>
+  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"</xsl:text>
+                <xsl:text>schematypens="http://relaxng.org/ns/structure/1.0"</xsl:text>
+            </xsl:processing-instruction>
+                                    <xsl:processing-instruction name="xml-model">
+                <xsl:text>type="application/xml" </xsl:text>
+  <xsl:text>href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng"</xsl:text>
+                 <xsl:text>schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:text>
+            </xsl:processing-instruction>
+                                    <xsl:call-template name="doText"/>
+                                </TEI>
+                            </xsl:result-document>
+                        </xsl:for-each>
+                    </xsl:when>
         </xsl:choose>
     </xsl:template>
+
     <xsl:template name="doText">
-        <!-- pass 1 do the segmenation -->
-        <!--<xsl:variable name="segmented">-->
+        <xsl:variable name="segment">
             <xsl:apply-templates/>
-        <!--</xsl:variable>-->
-        <!--<xsl:copy-of select="$segmented"/>-->
-        <!--<xsl:apply-templates mode="cleanup" select="$segmented"/>-->
+        </xsl:variable>
+
+ <xsl:variable name="cleanup"><xsl:apply-templates mode="group" select="$segment"/></xsl:variable>
+        <xsl:apply-templates select="$cleanup" mode="cleanup"></xsl:apply-templates>
     </xsl:template>
 
-
+    <!-- Flatten every relevant descendant of head, trailer, ab -->
+    <!-- damage and unclear to spans -->
     <xsl:template match="tei:damage | tei:unclear | tei:gap[@reason = 'damage']">
         <!-- NB on revision, gap should just be passed through -->
         <damageSpan type="{name()}" spanTo="#{generate-id()}">
@@ -89,131 +112,76 @@
             <xsl:attribute name="type" select="name()"/>
         </xsl:element>
     </xsl:template>
+    <!-- segments to spans -->
     <xsl:template match="tei:seg">
-        <span>
-            <xsl:attribute name="to" select="concat('#', generate-id())"/>
-            <xsl:attribute name="type" select="'seg'"></xsl:attribute>
+        <sep xmlns="http://www.tei-c.org/ns/1.0"/>
+        <span type="seg">
             <xsl:copy-of select="@*"/>
+            <xsl:attribute name="to" select="concat('#', generate-id())"/>
         </span>
         <xsl:apply-templates/>
         <xsl:element name="anchor">
             <xsl:attribute name="xml:id" select="generate-id()"/>
-            <xsl:attribute name="type" select="name()"/>
+            <xsl:attribute name="type" select="'seg'"/>
         </xsl:element>
     </xsl:template>
-
-    <xsl:template match="tei:note" mode="add-sep">
-        <xsl:copy-of select="."/>
+    <!-- special handling of elements we don't want subordinated to <w>s -->
+    <!-- special case of existing w and choice elements, needs returning to. -->
+    <xsl:template match="tei:w|tei:surplus|tei:gap|tei:fw|tei:lb[not(@break = 'no')] | tei:pb | tei:cb |tei:label|tei:pc|tei:milestone">
+        <xsl:choose>
+            <!-- ignore pbs etc in divs -->
+            <xsl:when test="parent::tei:div1|parent::tei:div2|parent::tei:div3"/>
+            <xsl:otherwise><sep xmlns="http://www.tei-c.org/ns/1.0">
+                <xsl:copy-of select="."></xsl:copy-of>
+            </sep></xsl:otherwise></xsl:choose>
+    </xsl:template>
+    <xsl:template match="tei:choice[tei:abbr|tei:expan]|tei:choice[not(ancestor::tei:w)][tei:orig|tei:reg]">
+        <sep xmlns="http://www.tei-c.org/ns/1.0">
+            <w><xsl:copy-of select="."></xsl:copy-of></w>
+        </sep>
     </xsl:template>
     
-    <!-- Elements to remove as no longer supported in main transcription -->
-    <xsl:template match="tei:supplied | tei:damageSpan | tei:anchor"/>
-    <!-- elements to preserve contents but are no longer supported in main transcription-->
-    <xsl:template match="tei:num | tei:persName[ancestor::tei:body]">
+    <!-- removing elements not used currently -->
+    <xsl:template match="tei:supplied | tei:damageSpan | tei:anchor"> </xsl:template>
+    <xsl:template match="tei:num">
         <xsl:apply-templates/>
     </xsl:template>
-    <!-- some error cleanup -->
-    <xsl:template match="tei:expan/text()">
-        <xsl:value-of select="normalize-space(.)"/>
-    </xsl:template>
- 
-    
 
-    <!-- grouping words on separators -->
-    <!-- also uses http://www.biglist.com/lists/lists.mulberrytech.com/xsl-list/archives/201009/msg00089.html -->
-    <xsl:template match="tei:ab | tei:head | tei:trailer">
-        <xsl:copy>
-            <xsl:copy-of select="@*"/>
-            <xsl:variable name="sep" as="node()*">
-                <xsl:apply-templates mode="add-sep"/>
-            </xsl:variable>
-            <xsl:for-each-group select="$sep"
-                group-adjacent="not(self::tei:milestone[@unit = 'sep'])">
-                <xsl:if test="current-grouping-key()">
-                   <w> <xsl:sequence select="current-group()"/></w>
-                    <!--<xsl:choose>
-                        <xsl:when test="current-group()/self::tei:surplus or current-group()/self::tei:label or current-group()/self::tei:w">
-                            <xsl:apply-templates select="current-group()"></xsl:apply-templates>
-                        </xsl:when>
-                        <xsl:otherwise><w><xsl:apply-templates select="current-group()"/></w></xsl:otherwise>
-                    </xsl:choose>-->
-                </xsl:if>
-            </xsl:for-each-group>
-        </xsl:copy>
 
-    </xsl:template>
-    <!-- process nodes to separate with temporary milestone element -->
-    <!-- See http://www.biglist.com/lists/lists.mulberrytech.com/xsl-list/archives/201009/msg00089.html -->
     <xsl:template
-        match="text()[not(ancestor::tei:c) and not(ancestor::tei:label) and not(ancestor::tei:expan) and not(preceding-sibling::node()[1][@break='no'])]"
-        mode="add-sep">
-        <xsl:analyze-string select="." regex="\s+">
+        match="text()[ancestor::tei:ab  
+or ancestor::tei:head 
+or ancestor::tei:trailer]">
+        <xsl:variable name="curr" select="parent::*/name()"></xsl:variable>
+        <xsl:if test="not(ancestor::tei:surplus|ancestor::tei:fw|ancestor::tei:note |ancestor::tei:surplus |ancestor::tei:w |ancestor::tei:label|ancestor::tei:pc)"><xsl:analyze-string select="." regex="\s+">
             <xsl:matching-substring>
-                <milestone unit="sep"/>
+                <xsl:if test="not($curr='expan')"><sep xmlns="http://www.tei-c.org/ns/1.0"/></xsl:if>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:value-of select="."/>
             </xsl:non-matching-substring>
-        </xsl:analyze-string>
+        </xsl:analyze-string></xsl:if>
     </xsl:template>
 
-    <!-- elements that effect word segmentation [in part getting around encoding errors that need to be fixed -->
-    <xsl:template match="tei:milestone[@unit = 'MSMishnah']" mode="add-sep">
-        <milestone unit="sep"/>        
-        <xsl:copy-of select="."/>
-    </xsl:template>
-    <xsl:template match="tei:lb | tei:cb | tei:pb" mode="add-sep">
-        <xsl:copy-of select="."/>
-        <xsl:if test="not(@break = 'no')">
-            <milestone unit="sep"/>
-        </xsl:if>
-    </xsl:template>
-    <xsl:template match="tei:choice[tei:abbr]" mode="add-sep">
-        <milestone unit="sep"/>
-        <choice>
-            <xsl:apply-templates/>
-        </choice>
+    <!-- grouping -->
+    <xsl:template match="tei:ab | tei:head | tei:trailer" mode="group">
+        <xsl:element name="{name()}"><xsl:copy-of select="@*"/>
+            <!-- namespace problem I can't sort out -->
+        <xsl:for-each-group select="node()" group-adjacent="not(self::*[name()='sep'])">
+            <xsl:choose>
+                <xsl:when test="current-grouping-key()">
+                    <w><xsl:copy-of select="current-group()"></xsl:copy-of></w>
+                </xsl:when>
+                <xsl:otherwise><xsl:copy-of select="current-group()/self::*[name()='sep']/node()"></xsl:copy-of></xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each-group></xsl:element>
     </xsl:template>
 
-    <!-- clean up operations -->
-    <xsl:template match="tei:w" mode="cleanup">
-        <xsl:choose>
-            <xsl:when test="tei:w">
-                <xsl:sequence select="*"></xsl:sequence>
-            </xsl:when>
-            <xsl:when test="not(string(.))">
-                <xsl:apply-templates mode="cleanup"/>
-            </xsl:when>
-            <xsl:when test="//*[normalize-space()]">
-                <xsl:copy-of
-                    select="*[self::tei:lb[not(@break='no')] | self::tei:cb | self::tei:pb | tei:milestone][preceding-sibling::node()[not(string(.)) or not(preceding-sibling::node())]]"/>
-                <w>
-                    <xsl:copy-of select="@* except @xml:id"/>
-                    <xsl:attribute name="xml:id"
-                        select="normalize-space(concat(parent::*/@xml:id, '.', count(preceding-sibling::tei:w[//text()]) + 1))"/>
-                    <xsl:apply-templates mode="cleanup"/>
-                </w>
-                <xsl:copy-of
-                    select="*[self::tei:pc | self::tei:lb[not(@break='no')] | self::tei:cb | self::tei:pb|self::tei:milestone][following-sibling::node()[not(string(.)) or not(following-sibling::node())]]"
-                />
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-    
-    <!-- get rid of lbs etc that are within words and should not be because of coding errors -->
-    <xsl:template match="tei:w/tei:lb[not(@break='no')] | tei:w/tei:cb | tei:w/tei:pb| tei:w/tei:pc |tei:milestone" mode="cleanup">
-        <!-- omit -->
-    </xsl:template>
-
-    <!-- is this necessary? -->
-    <xsl:template match="tei:c">
-        <xsl:element name="{name()}">
-            <xsl:copy-of select="@*"/>
-            <xsl:if test="parent::tei:seg[@type = 'altChar']">
-                <xsl:attribute name="type" select="'altChar'"/>
-            </xsl:if>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
+<xsl:template match="tei:w" mode="cleanup">
+    <w><!-- need to deal with <w>s that already have IDs from transcription (e.g., transposition) -->
+        <xsl:copy-of select="@*"></xsl:copy-of>
+        <xsl:attribute name="xml:id" select="concat(parent::*/@xml:id,'.',count(preceding-sibling::tei:w)+1)"></xsl:attribute>
+        <xsl:apply-templates mode="cleanup"></xsl:apply-templates>
+    </w>
+</xsl:template>
 </xsl:stylesheet>
