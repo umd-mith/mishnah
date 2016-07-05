@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Editors' Area: please sign in</h2>
+            <label for="inputUserName" class="sr-only">User Name</label>
+            <input type="text" id="inputUserName" class="form-control" placeholder="User name" required="required" autofocus="autofocus"/>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me" id="rememberUser"/> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <div class="status"/>
+        </form>
+    </div>
+    <script>
+$(".form-signin").submit(function(e){
+    e.preventDefault();
+    
+    var user = $("#inputUserName").val();
+    var pwd = $("#inputPassword").val();    
+    var params = {
+        user: user, password: pwd
+    }
+    
+    if ($("#rememberUser").is(":checked")) {
+        params.duration = "P14D";
+    }
+    
+    $.ajax({
+        url: "dologin",
+        data: params,
+        dataType: "json",
+        success: function (data) {
+            if (!data.user) {
+                $(".status").text("Login failed.");
+            } else {
+                window.location = "edit";   
+            }
+        },
+        error: function (xhr, status, data) {
+            console.log(xhr);
+            $(".status").text("Login failed.");
+        }
+    });
+});
+</script>
+</div>

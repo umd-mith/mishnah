@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="about" title="Digital Mishnah Project: Demo Home">
+        <h2>About This Demo</h2>
+        <p> The <a class="highlighted" href="http://www.digitalmishnah.umd.edu/">Digital Mishnah
+                Project</a> will provide users with a database of digitized manuscripts of the Mishnah
+            from around the world, along with tools for collation, comparison, and analysis. This demo
+            provides fully marked up transcriptions of several major witnesses of tractate
+                <i>Neziqin</i> (<i>Bava Qamma</i>, <i>Bava Metsi'a</i>, and <i>Bava Batra</i>), and
+            illustrates basic functionalities. In addition the transcribed witnesses include several
+            Genizah fragments, with an emphasis on those fragments that join other fragments to make up
+            larger manuscripts</p>
+        <p>Manuscript witnesses are referred to by the catalog number in the Sussmann <i>Thesaurus</i>
+            (S+0+Sussmann no.). Printed editions are provisionally given serial numbers.</p>
+        <p>
+            <table>
+                <tr>
+                    <td style="vertical-align:top;padding:10px;">
+                        <form action="browse" class="buttons">
+                            <input type="submit" value="Browse Transcriptions"/>
+                        </form>
+                    </td>
+                    <td>The <a class="highlighted" href="browse">browse</a> function presents metadata
+                        and a rendering of the transcription that which can be viewed with their
+                        metadata and approximately as laid out in the original text. </td>
+                </tr>
+                <tr/>
+                <tr>
+                    <td style="vertical-align:top;padding:10px;">
+                        <form action="compare" class="buttons">
+                            <input type="submit" value="Compare Witnesses"/>
+                        </form>
+                    </td>
+                    <td>The <a class="highlighted" href="compare">compare</a> function allows for the
+                        detailed comparison of witnesses. At its core it runs a set of texts through <a href="http://www.collatex.net/">CollateX</a>, which aligns matching words
+                        ("tokens"). The Digital Mishnah site remerges this output with the original
+                        textual data and represents the results both as an alignment table, and as a
+                        text with critical apparatus. The user can determine the passage, the witnesses,
+                        and the order. Because we anticipate that a number of users will prefer a
+                        parallel-column ("synoptic") presentation, the collate page shows an arrangement
+                        of the selected passage arranged in parallel columns by witness in the
+                        user-specified order. Note: The previous version of this set of functions is at
+                            <a class="highlighted" href="collate-hl">collate</a>.</td>
+                </tr>
+                <p>Last update: 7/17/2014.</p>
+            </table>
+        </p>
+    </div>
+</div>
