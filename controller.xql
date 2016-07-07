@@ -108,6 +108,14 @@ else if ($exist:path eq "/edit") then (
             </dispatch>
 )
 
+else if ($exist:path eq "/align") then
+      <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+          <forward url="{$exist:controller}/templates/align.html"/>
+          <view>
+              <forward url="{$exist:controller}/modules/view.xql"/>
+          </view>
+      </dispatch>
+
 (:
  : Login a user via AJAX. Just returns a 401 if login fails.
  :)
