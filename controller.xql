@@ -2,8 +2,6 @@ xquery version "3.0";
 
 declare namespace json="http://www.json.org";
 
-import module namespace console="http://exist-db.org/xquery/console";
-
 declare variable $exist:path external;
 declare variable $exist:resource external;
 declare variable $exist:controller external;
