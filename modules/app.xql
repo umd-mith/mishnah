@@ -5,7 +5,10 @@ module namespace app="http://www.digitalmishnah.org/templates";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://www.digitalmishnah.org/config" at "config.xqm";
 
+(:import module namespace console="http://exist-db.org/xquery/console";:)
+
 declare namespace my="local-functions.uri";
+declare namespace tei="http://www.tei-c.org/ns/1.0"; 
 
 (:~
  : This is a sample templating function. It will be called by the templating module if
@@ -29,16 +32,16 @@ declare function app:test($node as node(), $model as map(*)) {
  :)
 declare function app:toc($node as node(), $model as map(*)) {
     (: TODO adjust this to send out a model to subtemplates :)
-    let $input := doc(concat($config:data-root, "/ref.xml"))
-    let $step1 := transform:transform($input, doc(concat($config:app-root, "/xsl/index-wit-compos.xsl")), 
+    let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
+    let $step1 := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/index-wit-compos.xsl"), 
                     <parameters>
-                       <param name="tei-loc" value="{$config:data-root}"/>
+                       <param name="tei-loc" value="{$config:http-data-root}/mishnah/"/>
                     </parameters>)
-    let $tract-compos := transform:transform($step1, doc(concat($config:app-root, "/xsl/groupFromIndex.xsl")), 
+    let $tract-compos := transform:transform($step1, doc("//exist/apps/digitalmishnah//xsl/groupFromIndex.xsl"), 
             <parameters>
                <param name="unit" value="all"/>
             </parameters>)
-    let $index := doc(concat($config:data-root, "/index.xml"))
+    let $index := doc(concat($config:data-root, "/mishnah/index.xml"))
     return
       for $order in $index//my:order
       return (
@@ -57,10 +60,10 @@ declare function app:toc($node as node(), $model as map(*)) {
                     <div class="list-group collapse" id="{$tract/@n}">{
                        for $chap in $tract/my:chapter
                        return
-                           if (substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n)
+                           (:if (substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n)
                            then
-                               (: This chapter has mishnah children :)
-                               <a href="#{$chap/@n}" class="list-group-item" data-toggle="collapse">                                             
+                               (\: This chapter has mishnah children :\)
+                               <a href="#{substring-after($chap/@xml:id,'ref.')}" class="list-group-item" data-toggle="collapse">                                             
                                    Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))}
                                    {
                                    if (substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n)
@@ -70,7 +73,7 @@ declare function app:toc($node as node(), $model as map(*)) {
                                            return
                                                if (substring-after($mish/@xml:id,'ref.') = $tract-compos//my:m-compos/@n)
                                                then
-                                                   (: This Mishnah has text :)
+                                                   (\: This Mishnah has text :\)
                                                    <a class="list-group-item" href="align?unit=m&amp;mcite={substring-after($mish/@xml:id,'ref.')}&amp;tractName={$mish/ancestor::my:tract/@n}">
                                                        {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
                                                    </a>
@@ -80,8 +83,8 @@ declare function app:toc($node as node(), $model as map(*)) {
                                    else ()
                                    }
                                </a>
-                           else
-                               <a class="list-group-item">
+                           else:)
+                               <a href="#{substring-after($chap/@xml:id,'ref.')}" class="list-group-item" id="ch_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
                                    Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))}
                                </a >
                     }</div>)
