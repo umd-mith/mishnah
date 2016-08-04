@@ -23,6 +23,12 @@ let $config := map {
     $templates:CONFIG_APP_ROOT := $config:app-root,
     $templates:CONFIG_STOP_ON_ERROR := true()
 }
+
+let $model := 
+    map {
+        'resource' := request:get-attribute('resource')
+    }
+
 (:
  : We have to provide a lookup function to templates:apply to help it
  : find functions in the imported application modules. The templates
@@ -42,4 +48,4 @@ let $lookup := function($functionName as xs:string, $arity as xs:int) {
  :)
 let $content := request:get-data()
 return
-    templates:apply($content, $lookup, (), $config)
+    templates:apply($content, $lookup, $model, $config)

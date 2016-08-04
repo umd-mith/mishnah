@@ -29,6 +29,9 @@ $(".form-signin").submit(function(e){
     if ($("#rememberUser").is(":checked")) {
         params.duration = "P14D";
     }
+    else {
+        params.duration = "P1D";
+    }
     
     $.ajax({
         url: "dologin",
@@ -38,6 +41,7 @@ $(".form-signin").submit(function(e){
             if (!data.user) {
                 $(".status").text("Login failed.");
             } else {
+                console.log('changed loc');
                 window.location = "edit";   
             }
         },

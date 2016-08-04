@@ -2,6 +2,8 @@ xquery version "3.0";
 
 declare namespace json="http://www.json.org";
 
+(:import module namespace console="http://exist-db.org/xquery/console";:)
+
 declare variable $exist:path external;
 declare variable $exist:resource external;
 declare variable $exist:controller external;
@@ -97,7 +99,9 @@ else if ($exist:path eq "/edit") then (
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
                 <forward url="{$exist:controller}/templates/edit.html"/>
                 <view>
-                    <forward url="{$exist:controller}/modules/view.xql"/>
+                <forward url="{$exist:controller}/modules/view.xql"> 
+                    <set-attribute name="resource" value="edit"/>
+                </forward>
                 </view>
             </dispatch>
         else
@@ -110,7 +114,9 @@ else if ($exist:path eq "/align") then
       <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
           <forward url="{$exist:controller}/templates/align.html"/>
           <view>
-              <forward url="{$exist:controller}/modules/view.xql"/>
+              <forward url="{$exist:controller}/modules/view.xql">
+                <set-attribute name="resource" value="align"/>
+              </forward>
           </view>
       </dispatch>
 
