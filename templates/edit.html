@@ -8,115 +8,127 @@
     <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"/>
     <h2>Edit Mishnah Variants</h2>
     <p id="instructions">Choose a Mishnah to edit.</p>
-    <div id="editapp" class="container" ng-app="mishnaApp">
-        <div id="passages" class="col-xs-2">
-            <div class="just-padding">
-                <div class="list-group list-group-root well">
-                    <span data-template="app:toc" data-template-level="mishnah"/>
-                </div>
+    <div class="container">
+        <div class="row" id="dm-edit-nav" style="display:none;">
+            <div class="btn-group pull-right" role="group">
+                <a href="#" class="btn btn-default" role="button">
+                    <i class="glyphicon glyphicon-chevron-left"/>
+                </a>
+                <a href="#" class="btn btn-default" role="button">
+                    <i class="glyphicon glyphicon-chevron-right"/>
+                </a>
             </div>
         </div>
-        <!-- This is an Angular app developed by Alan Gersh for digitalmishnah -->
-        <div ng-controller="MishnaCtrl" class="col-xs-10">
-            <script type="text/ng-template" id="editTemplate">
-                <div class="ngdialog-message">
-                    <p ng-show="!ngDialogData.orig">Enter new/additional token.</p>
-                    <p>To edit enter correction and click 'Edit'.</p>
-                    <p ng-show="ngDialogData.orig">Click 'Delete' to delete token.</p>
-                    <p>Click 'Cancel' to do nothing.</p>
-                    <input type="text" name="token" ng-model="ngDialogData.editToken"/>
-                    <p ng-show="ngDialogData.corrected">Original text: {{ngDialogData.orig}} </p>
-                    <div class="ngdialog-buttons">
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( ngDialogData.editToken )">Edit</button>
-                        <button ng-show="ngDialogData.corrected" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('undoEdit')">Undo Edits</button>
-                        <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('delete')">Delete</button>
-                        <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideRight')">Slide to Right</button>
-                        <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideLeft')">Slide to Left</button>
-                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('cancel')">Cancel</button>
+        <div id="editapp" class="row" ng-app="mishnaApp">
+            <div id="passages" class="col-xs-2">
+                <div class="just-padding">
+                    <div class="list-group list-group-root well">
+                        <span data-template="app:toc" data-template-level="mishnah"/>
                     </div>
                 </div>
-            </script>
-            <script type="text/ng-template" id="slideTemplate">
-                <div class="ngdialog-message">
-                    <p>Slide selected cells left or right.</p>
-                    <p>Click 'Cancel' to do nothing.</p>
-                    <div class="ngdialog-buttons">
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideRight')">Slide to Right</button>
-                        <br/>
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideLeft')">Slide to Left</button>
-                        <br/>
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( ngDialogData.editToken )">Slide to col.</button>
+            </div>
+            <!-- This is an Angular app developed by Alan Gersh for digitalmishnah -->
+            <div ng-controller="MishnaCtrl" class="col-xs-10">
+                <script type="text/ng-template" id="editTemplate">
+                    <div class="ngdialog-message">
+                        <p ng-show="!ngDialogData.orig">Enter new/additional token.</p>
+                        <p>To edit enter correction and click 'Edit'.</p>
+                        <p ng-show="ngDialogData.orig">Click 'Delete' to delete token.</p>
+                        <p>Click 'Cancel' to do nothing.</p>
                         <input type="text" name="token" ng-model="ngDialogData.editToken"/>
-                        <br/>
+                        <p ng-show="ngDialogData.corrected">Original text: {{ngDialogData.orig}} </p>
+                        <div class="ngdialog-buttons">
+                            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( ngDialogData.editToken )">Edit</button>
+                            <button ng-show="ngDialogData.corrected" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('undoEdit')">Undo Edits</button>
+                            <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('delete')">Delete</button>
+                            <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideRight')">Slide to Right</button>
+                            <button ng-show="ngDialogData.orig" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideLeft')">Slide to Left</button>
+                            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('cancel')">Cancel</button>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="slideTemplate">
+                    <div class="ngdialog-message">
+                        <p>Slide selected cells left or right.</p>
+                        <p>Click 'Cancel' to do nothing.</p>
+                        <div class="ngdialog-buttons">
+                            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideRight')">Slide to Right</button>
+                            <br/>
+                            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('slideLeft')">Slide to Left</button>
+                            <br/>
+                            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( ngDialogData.editToken )">Slide to col.</button>
+                            <input type="text" name="token" ng-model="ngDialogData.editToken"/>
+                            <br/>
+                            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('cancel')">Cancel</button>
+                            <br/>
+                        </div>
+                    </div>
+                </script>
+                <script type="text/ng-template" id="regroupingTemplate">
+                    <div class="ngdialog-message">
+                        <p>Drag tokens from one row to another to change groupings.</p>
+                        <p>Click 'Add New Group' button to create another/new grouping.</p>
+                        <div class="regrouping-table" dir="rtl">
+                            <table id="regroupingTable">
+                                <tbody>
+                                    <tr ng-repeat="group in columnData" ui-on-Drop="onDrop($event,$data,group)" ng-model="columnData">
+                                        <td ng-style="{background: colorByGroup($index, token)}" ui-draggable="true" drag="token" on-drop-success="dropSuccessHandler($event,$index,group)" ng-repeat="token in group track by $index" id="{{token[0].id}}" ng-click="">
+                                            <div ng-repeat="subtoken in token | filter : {$:hideShowDeleted}" class="rdg" id="{{subtoken.id + '.d'}}">
+                                                <span class="{{subtoken.c || subtoken.id.match('deleted') ? 'corr-show' : 'orig-show'}}" id="{{subtoken.id + '.s'}}" ng-click="spanclick(subtoken);$event.stopPropagation()">{{subtoken.c ? subtoken.c : subtoken.t}}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button id="addGroup" ng-click="addGroup()">Add New Group</button>
+                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( changedGroups )">Put in Main Table</button>
                         <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('cancel')">Cancel</button>
-                        <br/>
                     </div>
+                </script>
+                <div class="descr">
+                    <p>Click <b>token</b> to edit</p>
+                    <p>Click, hold and drag <b>token</b> to drag/drop</p>
+                    <p>Click <b>column head</b> to select column for column functions</p>
+                    <p>When column is highlighted, <b>click adjacent column head</b> for column merge function</p>
+                    <p>When column is highlighted, <b>click column head</b> to clear highlights</p>
+                    <p>
+                        <b>Shift-Click</b> to select begin/end of sequence of adjacent tokens in a row to shift them left or right.</p>
+                    <p>To reorder rows, <b>drag row head (witness label)</b> up or down the column of witness labels.</p>
                 </div>
-            </script>
-            <script type="text/ng-template" id="regroupingTemplate">
-                <div class="ngdialog-message">
-                    <p>Drag tokens from one row to another to change groupings.</p>
-                    <p>Click 'Add New Group' button to create another/new grouping.</p>
-                    <div class="regrouping-table" dir="rtl">
-                        <table id="regroupingTable">
-                            <tbody>
-                                <tr ng-repeat="group in columnData" ui-on-Drop="onDrop($event,$data,group)" ng-model="columnData">
-                                    <td ng-style="{background: colorByGroup($index, token)}" ui-draggable="true" drag="token" on-drop-success="dropSuccessHandler($event,$index,group)" ng-repeat="token in group track by $index" id="{{token[0].id}}" ng-click="">
-                                        <div ng-repeat="subtoken in token | filter : {$:hideShowDeleted}" class="rdg" id="{{subtoken.id + '.d'}}">
-                                            <span class="{{subtoken.c || subtoken.id.match('deleted') ? 'corr-show' : 'orig-show'}}" id="{{subtoken.id + '.s'}}" ng-click="spanclick(subtoken);$event.stopPropagation()">{{subtoken.c ? subtoken.c : subtoken.t}}</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button id="addGroup" ng-click="addGroup()">Add New Group</button>
-                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog( changedGroups )">Put in Main Table</button>
-                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('cancel')">Cancel</button>
+                <div id="ctrls" class="controls">
+                    <button id="addCol" ng-click="addCol()">Add Column</button>
+                    <button id="delCol" ng-click="deleteColumn()">Delete Column</button>
+                    <button id="group" ng-click="mergeColumns()">Merge Columns</button>
+                    <button id="classify" ng-click="regroupifyColumn()">Group Readings (Selected Column)</button>
+                    <button id="classify" ng-click="regroupifyDialog()">Re-Group Readings (Selected Column)</button>
                 </div>
-            </script>
-            <div class="descr">
-                <p>Click <b>token</b> to edit</p>
-                <p>Click, hold and drag <b>token</b> to drag/drop</p>
-                <p>Click <b>column head</b> to select column for column functions</p>
-                <p>When column is highlighted, <b>click adjacent column head</b> for column merge function</p>
-                <p>When column is highlighted, <b>click column head</b> to clear highlights</p>
-                <p>
-                    <b>Shift-Click</b> to select begin/end of sequence of adjacent tokens in a row to shift them left or right.</p>
-                <p>To reorder rows, <b>drag row head (witness label)</b> up or down the column of witness labels.</p>
-            </div>
-            <div id="ctrls" class="controls">
-                <button id="addCol" ng-click="addCol()">Add Column</button>
-                <button id="delCol" ng-click="deleteColumn()">Delete Column</button>
-                <button id="group" ng-click="mergeColumns()">Merge Columns</button>
-                <button id="classify" ng-click="regroupifyColumn()">Group Readings (Selected Column)</button>
-                <button id="classify" ng-click="regroupifyDialog()">Re-Group Readings (Selected Column)</button>
-            </div>
-            <div class="descr">
-                <button id="addCol" ng-click="saveAs()">Save (to file)</button>
-                <button id="addCol" ng-click="groupifyAllCols()">Group Readings (All columns)</button>
-                <button id="addCol" ng-click="undo()">Undo</button>
-                <button id="addCol" ng-click="showDeletes()">{{showHide}} Deletes</button>
-            </div>
-            <div class="alignment-table" dir="rtl">
-                <table id="witnessesTable">
-                    <thead>
-                        <tr>
-                            <th id="align-pos-0">0</th>
-                            <th ng-repeat="column in pivotedTable[witnesses[0]]" ng-init="elemId='align-pos-'+ ($index+1)" ng-click="colClick( elemId, ($index ) )" id="{{elemId}}" ng-class="{selected: selectedCols[($index)]}">{{$index+1}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="witness in witnesses" ui-on-Drop="onDrop($event,$data,pivotedTable[witness])" drop-channel="{{witness}}" ng-model="pivotedTable[witness]">
-                            <td id="{{witness}}" class="wit" ui-on-Drop="rowOnDrop($event,$data,witnesses)" on-drop-success="rowDropSuccessHandler($event,$index,witnesses)" drag-channel="{{witnessOrder}}" drop-channel="{{witnessOrder}}" ui-draggable="true" drag="witness" ng-model="witnesses">{{witness}}</td>
-                            <td ng-class="{selected: (selectedCols[($index)] || shiftSelected[witness][$index])}" ng-style="(selectedCols[($index)] || shiftSelected[witness][$index]) ?{}: {background: colorByGroup($index, token)}" ng-repeat="token in pivotedTable[witness] track by $index" id="{{token[0].id}}" ng-click="divclick(witness, $index)">
-                                <div ng-repeat="subtoken in token | filter : {$:hideShowDeleted} track by $index" class="rdg" id="{{subtoken.id + '.d'}}" ui-draggable="true" drag="subtoken" drag-channel="{{witness}}" on-drop-success="dropSuccessHandler($event,$index,pivotedTable[witness])">
-                                    <span class="{{subtoken.c || subtoken.id.match('deleted') ? 'corr-show' : 'orig-show'}}" id="{{subtoken.id + '.s'}}" ng-click="spanclick(subtoken, witness, $event);$event.stopPropagation()">{{subtoken.c ? subtoken.c : subtoken.t}}</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="descr">
+                    <button id="addCol" ng-click="saveAs()">Save (to file)</button>
+                    <button id="addCol" ng-click="groupifyAllCols()">Group Readings (All columns)</button>
+                    <button id="addCol" ng-click="undo()">Undo</button>
+                    <button id="addCol" ng-click="showDeletes()">{{showHide}} Deletes</button>
+                </div>
+                <div class="alignment-table" dir="rtl">
+                    <table id="witnessesTable">
+                        <thead>
+                            <tr>
+                                <th id="align-pos-0">0</th>
+                                <th ng-repeat="column in pivotedTable[witnesses[0]]" ng-init="elemId='align-pos-'+ ($index+1)" ng-click="colClick( elemId, ($index ) )" id="{{elemId}}" ng-class="{selected: selectedCols[($index)]}">{{$index+1}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="witness in witnesses" ui-on-Drop="onDrop($event,$data,pivotedTable[witness])" drop-channel="{{witness}}" ng-model="pivotedTable[witness]">
+                                <td id="{{witness}}" class="wit" ui-on-Drop="rowOnDrop($event,$data,witnesses)" on-drop-success="rowDropSuccessHandler($event,$index,witnesses)" drag-channel="{{witnessOrder}}" drop-channel="{{witnessOrder}}" ui-draggable="true" drag="witness" ng-model="witnesses">{{witness}}</td>
+                                <td ng-class="{selected: (selectedCols[($index)] || shiftSelected[witness][$index])}" ng-style="(selectedCols[($index)] || shiftSelected[witness][$index]) ?{}: {background: colorByGroup($index, token)}" ng-repeat="token in pivotedTable[witness] track by $index" id="{{token[0].id}}" ng-click="divclick(witness, $index)">
+                                    <div ng-repeat="subtoken in token | filter : {$:hideShowDeleted} track by $index" class="rdg" id="{{subtoken.id + '.d'}}" ui-draggable="true" drag="subtoken" drag-channel="{{witness}}" on-drop-success="dropSuccessHandler($event,$index,pivotedTable[witness])">
+                                        <span class="{{subtoken.c || subtoken.id.match('deleted') ? 'corr-show' : 'orig-show'}}" id="{{subtoken.id + '.s'}}" ng-click="spanclick(subtoken, witness, $event);$event.stopPropagation()">{{subtoken.c ? subtoken.c : subtoken.t}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
