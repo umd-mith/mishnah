@@ -118,49 +118,11 @@
                 <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" exclude-result-prefixes="#all"/>
             </xsl:attribute>-->
             <div class="nav">
-
-                <!-- variables for building urls for paramaterized links -->
-                <xsl:variable name="goNext">
-                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:next,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='page'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;col=<xsl:if test="$mode='column'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;ch=<xsl:if test="$mode='chapter'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:variable name="goFirst">
-                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:first,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='page'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;col=<xsl:if test="$mode='column'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;ch=<xsl:if test="$mode='chapter'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:variable name="goPrev">
-                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:prev,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='page'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;col=<xsl:if test="$mode='column'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;ch=<xsl:if test="$mode='chapter'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:variable name="goLast">
-                    <xsl:variable name="ref" select="substring-after($thisPgColCh/tei:last,concat($wit,'.'))"/> mode=<xsl:value-of select="$mode"/>&amp;pg=<xsl:if test="$mode='page'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;col=<xsl:if test="$mode='column'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>&amp;ch=<xsl:if test="$mode='chapter'">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:if>
-                </xsl:variable>
                 <span class="last">
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:last='null'">|&lt; Last</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goLast)}">|&lt; Last</a>
+                            <a href="{substring-after($thisPgColCh/tei:last,concat($wit,'.'))}">|&lt; Last</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -168,7 +130,7 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:next='null'">&lt;&lt; Next</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goNext)}">&lt;&lt; Next</a>
+                            <a href="{substring-after($thisPgColCh/tei:next,concat($wit,'.'))}">&lt;&lt; Next</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -176,7 +138,7 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:first='null'">First &gt;|</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goFirst)}">First &gt;|</a>
+                            <a href="{substring-after($thisPgColCh/tei:first,concat($wit,'.'))}">First &gt;|</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
@@ -184,20 +146,20 @@
                     <xsl:choose>
                         <xsl:when test="$thisPgColCh/tei:prev='null'">Previous &gt;&gt;</xsl:when>
                         <xsl:otherwise>
-                            <a href="{$wit}.browse-param.html?{normalize-space($goPrev)}">Previous &gt;&gt;</a>
+                            <a href="{substring-after($thisPgColCh/tei:prev,concat($wit,'.'))}">Previous &gt;&gt;</a>
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
                 <div class="current-block">
                     <span>Browse by:</span>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-{if ($mode='page') then 'alert' else 'default'} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Page <span class="caret"/>
                         </button>
-                        <ul class="dropdown-menu">
-                            <xsl:for-each select="$sourceDoc//tei:pb[1]">
+                        <ul class="dropdown-menu scrollable-menu">
+                            <xsl:for-each select="$sourceDoc//tei:pb">
                                 <li>
-                                    <xsl:if test="$mode='page' and $thisPgColCh/tei:this = @xml:id">
+                                    <xsl:if test="$thisPgColCh/tei:this = @xml:id                                         or not($mode = 'page') and                                          @xml:id = $sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:pb[1]/@xml:id">
                                         <xsl:attribute name="class" select="'active'"/>
                                     </xsl:if>
                                     <a href="../page/{substring-after(@xml:id,concat($wit,'.'))}">
@@ -208,13 +170,14 @@
                         </ul>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-{if ($mode='column') then 'alert' else 'default'} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Column <span class="caret"/>
                         </button>
-                        <ul class="dropdown-menu">
-                            <xsl:for-each select="$sourceDoc//tei:cb[1]">
+                        <ul class="dropdown-menu scrollable-menu">
+                            <xsl:for-each select="$sourceDoc//tei:cb">
                                 <li>
-                                    <xsl:if test="$mode='column' and $thisPgColCh/tei:this = @xml:id">
+                                    <xsl:variable name="isFirst" as="xs:boolean" select="not(preceding::tei:cb)"/>
+                                    <xsl:if test="$thisPgColCh/tei:this = @xml:id                                         or not($mode = 'column') and (                                         @xml:id = $sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb[1]/@xml:id                                         or ($isFirst                                              and not($sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:cb)))">
                                         <xsl:attribute name="class" select="'active'"/>
                                     </xsl:if>
                                     <a href="../column/{substring-after(@xml:id,concat($wit,'.'))}">
@@ -225,13 +188,14 @@
                         </ul>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-{if ($mode='chapter') then 'alert' else 'default'} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Chapter <span class="caret"/>
                         </button>
-                        <ul class="dropdown-menu">
-                            <xsl:for-each select="$sourceDoc//tei:div3[1]">
+                        <ul class="dropdown-menu scrollable-menu">
+                            <xsl:for-each select="$sourceDoc//tei:div3">
                                 <li>
-                                    <xsl:if test="$mode='chapter' and $thisPgColCh/tei:this = @xml:id">
+                                    <xsl:variable name="isFirst" as="xs:boolean" select="not(preceding::tei:div3)"/>
+                                    <xsl:if test="$thisPgColCh/tei:this = @xml:id                                         or not($mode = 'chapter') and (                                         @xml:id = $sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3/@xml:id                                         or (not($sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3) and                                             @xml:id = $sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/following::tei:div3[1]/@xml:id)                                         or ($isFirst                                              and not($sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/ancestor::tei:div3)                                             and not($sourceDoc//element()[@xml:id=$thisPgColCh/tei:this]/preceding::tei:div3))                                         )">
                                         <xsl:attribute name="class" select="'active'"/>
                                     </xsl:if>
                                     <a href="../chapter/{substring-after(@xml:id,concat($wit,'.'))}">
@@ -244,7 +208,7 @@
                 </div>
             </div>
             <div class="meta" dir="ltr">
-                <xsl:variable name="nli" select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type                         = 'nli-ref']"/>
+                <xsl:variable name="nli" select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc//tei:note[@type= 'nli-ref']"/>
                 <table class="meta">
                     <tr>
                         <td class="data">Repository</td>

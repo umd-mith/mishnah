@@ -26,7 +26,8 @@ let $config := map {
 
 let $model := 
     map {
-        'resource' := request:get-attribute('resource')
+        'resource' := request:get-attribute('resource'),
+        'reading_path' := request:get-attribute('reading_path')
     }
 
 (:

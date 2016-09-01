@@ -79,6 +79,18 @@ else if ($exist:path eq "/" or $exist:path eq "/index.html") then
 		</error-handler>
     </dispatch>
     
+else if ($exist:resource = '$app-root') then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{concat(request:get-context-path(), '/', request:get-attribute("$exist:prefix"), '/', request:get-attribute('$exist:controller'))}"/>
+    </dispatch>
+
+
+else if (contains($exist:path, '$app-root')) then 
+    (: redirect to resources actual location :)
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+         <forward url="{concat($exist:controller, '/', substring-after($exist:path, '/$app-root/'))}"/>
+    </dispatch>
+
 else if ($exist:path eq "/login") then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/templates/login.html"/>
@@ -90,7 +102,7 @@ else if ($exist:path eq "/login") then
 			<forward url="{$exist:controller}/modules/view.xql"/>
 		</error-handler>
     </dispatch>
-    
+
 else if ($exist:path eq "/edit") then (
     let $loggedIn := $login("org.exist.login", (), false())
     let $user := request:get-attribute("org.exist.login.user")
@@ -121,6 +133,31 @@ else if ($exist:path eq "/align") then
       </dispatch>
 
 (:
+ : List browsable witnesses
+ :)
+else if ($exist:path eq "/browse") then
+      <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+          <forward url="{$exist:controller}/templates/browse.html"/>
+          <view>
+              <forward url="{$exist:controller}/modules/view.xql"/>
+          </view>
+      </dispatch>
+      
+(:
+ : Display witness
+ :)
+else if (matches($exist:path, "/browse/[^/]+/[^/]+/[^/]+")) then
+      <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+          <forward url="{$exist:controller}/templates/read.html"/>
+          <view>
+              <forward url="{$exist:controller}/modules/view.xql">
+                <set-attribute name="resource" value="read"/>
+                <set-attribute name="reading_path" value="{$exist:path}"/>
+              </forward>
+          </view>
+      </dispatch>
+
+(:
  : Login a user via AJAX. Just returns a 401 if login fails.
  :)
 else if ($exist:resource = 'dologin') then
@@ -144,18 +181,6 @@ else if ($exist:resource = 'dologin') then
             response:set-status-code(401),
             <status>{$err:description}</status>
         }
-
-else if ($exist:resource = '$app-root') then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat(request:get-context-path(), '/', request:get-attribute("$exist:prefix"), '/', request:get-attribute('$exist:controller'))}"/>
-    </dispatch>
-
-
-else if (starts-with($exist:path, '/$app-root/')) then 
-    (: redirect to resources actual location :)
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-         <forward url="{concat($exist:controller, '/', substring-after($exist:path, '/$app-root/'))}"/>
-    </dispatch>
 
 (:else if (ends-with($exist:resource, ".html")) then
     (\: the html page is run through view.xql to expand templates :\)

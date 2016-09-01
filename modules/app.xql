@@ -37,8 +37,108 @@ declare function app:test($node as node(), $model as map(*)) {
         (<link xmlns="http://www.w3.org/1999/xhtml" href="$app-root/resources/editapp/ngDialog.css" rel="Stylesheet" type="text/css"/>,
 		<link xmlns="http://www.w3.org/1999/xhtml" href="$app-root/resources/editapp/ngDialog-theme-default.css" rel="Stylesheet" type="text/css"/>,
 		<link xmlns="http://www.w3.org/1999/xhtml" href="$app-root/resources/editapp/angMishnah.css" rel="Stylesheet" type="text/css" />)  
+    else if ($model("resource") = "read") then
+        (<link xmlns="http://www.w3.org/1999/xhtml" href="$app-root/resources/css/FormattingforHTML.css" rel="Stylesheet" type="text/css"/>,
+		<link xmlns="http://www.w3.org/1999/xhtml" href="$app-root/resources/css/demo-styles.css" rel="Stylesheet" type="text/css"/>)
     else ()
  };
+ 
+ (:~
+ : This templating function generates a table of witnesses
+ :
+ : @param $node the HTML node with the attribute which triggered this call
+ : @param $model a map containing arbitrary data - used to pass information between template calls
+ :)
+declare function app:list_wits($node as node(), $model as map(*)){
+    let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
+    return
+    element table {
+    ($node/@*[not(starts-with(name(), 'data-'))],
+    for $lw in $input//tei:listWit[tei:witness]
+    return (       
+        <tr><th></th><th>{if ($lw/@n) then data($lw/@n) else data($lw/@xml:id)}</th></tr>,
+            
+        for $w in $lw/tei:witness[@corresp]
+        let $source := doc(concat($config:data-root, "/mishnah/", $w/@corresp))
+        return
+            <tr style="vertical-align:top">
+               <td style="font-weight:bold; padding-right:5;">
+                   <!-- ADJUST TO NEW NAVIGATION SYSTEM
+                     <xsl:variable name="linkToFirst">
+                       <xsl:value-of select="@xml:id"/>
+                       <xsl:text>.browse-param.html?mode=pg</xsl:text>
+                       <xsl:text>&amp;pg=</xsl:text>
+                       <xsl:value-of
+                           select="substring-after(($source/tei:TEI/tei:text/tei:body//tei:pb)[1]/@xml:id,concat(@xml:id,'.'))"/>
+                       <xsl:text>&amp;col=</xsl:text>
+                       <xsl:value-of
+                           select="substring-after(($source/tei:TEI/tei:text/tei:body//tei:cb)[1]/@xml:id,concat(@xml:id,'.'))"/>
+                       <xsl:text>&amp;ch=</xsl:text>
+                       <xsl:value-of
+                           select="substring-after(($source/tei:TEI/tei:text/tei:body//tei:div3)[1]/@xml:id,concat(@xml:id,'.'))"
+                       />
+                   </xsl:variable>
+                   <a href="{$linkToFirst}">-->
+                   <a href="browse/{data($w/@xml:id)}/page/{
+                     substring-after(($source//tei:body//tei:pb)[1]/@xml:id,concat($w/@xml:id,'.'))}">{data($w/@xml:id)}</a></td>
+               <td>{
+                 $w/text()
+               }
+               (<span style="font-size:75%;">
+                   <a href="{concat($config:http-data-root, "/mishnah/", substring-before($w/@corresp, '.xml'))}.xml">TEI/XML</a>
+               </span>)
+               </td>
+           </tr>
+        )
+    )}
+ };
+
+ (:~
+ : This templating function generates a reading view for part of a witness
+ :
+ : @param $node the HTML node with the attribute which triggered this call
+ : @param $model a map containing arbitrary data - used to pass information between template calls
+ :)
+declare function app:read($node as node(), $model as map(*)){
+    element div {
+        $node/@*[not(starts-with(name(), 'data-'))],
+        let $reading_path_parts := tokenize($model("reading_path"), "/")
+        let $witness := $reading_path_parts[last() -2]
+        let $mode := $reading_path_parts[last() -1]
+        let $num := $reading_path_parts[last()]
+        let $input := doc(concat($config:data-root, "/mishnah/", $witness, ".xml"))
+        let $step1 := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/extractFromSource.xsl"),
+                        <parameters>
+                           <param name="mode" value="{$mode}"/>
+                           <param name="num" value="{$num}"/>
+                        </parameters>)
+        let $step2 :=
+          if ($mode = 'chapter')
+          then transform:transform($step1, doc("//exist/apps/digitalmishnah/xsl/flat-to-pages.xsl"),())
+          else $step1
+        let $step3 := transform:transform($step2, doc("//exist/apps/digitalmishnah/xsl/pages-to-html.xsl"),
+                        <parameters>
+                           <param name="mode" value="{$mode}"/>
+                           <param name="num" value="{$num}"/>
+                           <param name="tei-loc" value="{$config:http-data-root}/mishnah/"/>
+                        </parameters>)
+        return
+            $step3
+    }
+};
+
+ (:~
+ : This templating function generates a reading view for part of a witness
+ :
+ : @param $node the HTML node with the attribute which triggered this call
+ : @param $model a map containing arbitrary data - used to pass information between template calls
+ :)
+declare function app:read-title($node as node(), $model as map(*)){
+    let $witness := tokenize($model("reading_path"), "/")[last() -2]
+    let $input := doc(concat($config:data-root, "/mishnah/", $witness, ".xml"))
+    return
+        <h2>{$input//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title/text()}</h2>
+};
 
 (:~
  : This templating function generates a TOC panel
