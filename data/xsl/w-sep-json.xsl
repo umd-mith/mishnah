@@ -210,9 +210,10 @@
 
             </xsl:when>
             <xsl:otherwise>
-                <needsCheck>
+                <xsl:message>
+                    Nodes in source doc not processed properly
                     <xsl:copy-of select="."/>
-                </needsCheck>
+                </xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
