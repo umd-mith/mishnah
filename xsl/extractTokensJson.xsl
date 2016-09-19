@@ -5,13 +5,11 @@
     <xsl:strip-space elements="*"/>
     <xsl:param name="tei-loc"/>
     <xsl:param name="mcite" select="'4.1.1.1'"/>
-<!--    <xsl:param name="mcite" select="''"/>-->
+    <xsl:param name="wits" select="'all'"/>
     <xsl:template match="/">
         <xsl:text>{
-</xsl:text>
-        <!-- Add options here -->
-        <xsl:text>"joined":false,</xsl:text>
-        <!-- Witnesses -->
+</xsl:text><!-- Add options here -->
+        <xsl:text>"joined":false,</xsl:text><!-- Witnesses -->
         <xsl:text>"witnesses" : [</xsl:text>
         <xsl:variable name="tokenizedM">
             <xsl:apply-templates/>
@@ -22,25 +20,27 @@
 }</xsl:text>
     </xsl:template>
     <xsl:template match="tei:witness[@corresp]">
-        <xsl:variable name="uri" select="concat($tei-loc,@corresp)"/>
-        <xsl:if test="doc-available($uri)">
-            <xsl:variable name="ab" select="concat(substring-before(@corresp,'.'),'.',$mcite)"/>
-            <xsl:variable name="doc" select="document($uri)"/>
-            <xsl:variable name="extracts" select="$doc//tei:ab[@xml:id=$ab]"/>
-            <xsl:if test="not(empty($extracts))">
-                <xsl:if test="preceding::tei:witness[@corresp]">
-                    <xsl:text>,</xsl:text>
-                </xsl:if>
-                <xsl:text>
+        <xsl:if test="$wits = 'all' or contains($wits, substring-before(@corresp,'.xml'))">
+            <xsl:variable name="uri" select="concat($tei-loc,@corresp)"/>
+            <xsl:if test="doc-available($uri)">
+                <xsl:variable name="ab" select="concat(substring-before(@corresp,'.'),'.',$mcite)"/>
+                <xsl:variable name="doc" select="document($uri)"/>
+                <xsl:variable name="extracts" select="$doc//tei:ab[@xml:id=$ab]"/>
+                <xsl:if test="not(empty($extracts))">
+                    <xsl:if test="preceding::tei:witness[@corresp] and                         (some $c in preceding::tei:witness/@corresp satisfies contains($wits, substring-before($c,'.xml')) or                         $wits = 'all')">
+                        <xsl:text>,</xsl:text>
+                    </xsl:if>
+                    <xsl:text>
                 {
                 "id" : "</xsl:text>
-                <xsl:value-of select="@corresp"/>
-                <xsl:text>",
+                    <xsl:value-of select="@corresp"/>
+                    <xsl:text>",
                 "tokens" : [</xsl:text>
-                <xsl:apply-templates select="$extracts"/>
-                <xsl:text>
+                    <xsl:apply-templates select="$extracts"/>
+                    <xsl:text>
                 ]
                 }</xsl:text>
+                </xsl:if>
             </xsl:if>
         </xsl:if>
     </xsl:template>
@@ -48,25 +48,19 @@
         <xsl:apply-templates/>
     </xsl:template>
     <xsl:template match="tei:encodingDesc|tei:revisionDesc|tei:titleStmt|tei:notesStmt|tei:publicationStmt|tei:witness[not(@corresp)]"/>
-    <xsl:template match="tei:text"/>
-    <!-- provisional process for now: pass text as written by first scribe -->
-    <!-- override imported templates to remove deletion indicators or added text -->
+    <xsl:template match="tei:text"/><!-- provisional process for now: pass text as written by first scribe --><!-- override imported templates to remove deletion indicators or added text -->
     <xsl:template match="tei:del">
         <xsl:apply-templates/>
     </xsl:template>
-    <xsl:template match="tei:add"/>
-    <!-- remove annotation of format etc -->
+    <xsl:template match="tei:add"/><!-- remove annotation of format etc -->
     <xsl:template match="tei:c">
         <xsl:apply-templates/>
-    </xsl:template>
-    <!-- create JSON -->
+    </xsl:template><!-- create JSON -->
     <xsl:template match="tei:w" mode="toJSON">
         <xsl:choose>
             <xsl:when test="tei:abbr">
                 <xsl:variable name="id" select="@xml:id"/>
-                <xsl:variable name="abbrStr">
-                    <!-- just in case there are residual apostrophes/quotes in abbreviations -->
-                    <!-- NB, should at this point be geresh or double geresh -->
+                <xsl:variable name="abbrStr"><!-- just in case there are residual apostrophes/quotes in abbreviations --><!-- NB, should at this point be geresh or double geresh -->
                     <xsl:variable name="targetStr">
                         <xsl:text>'"</xsl:text>
                     </xsl:variable>

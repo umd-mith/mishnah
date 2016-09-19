@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:my="local-functions.uri" version="2.0">
-    <xsl:output indent="yes" encoding="UTF-8"/>
-    <!-- Possible values for unit: all, tract, ch, m -->
+    <xsl:output indent="yes" encoding="UTF-8"/><!-- Possible values for unit: all, tract, ch, m -->
     <xsl:param name="unit"/>
-    <xsl:param name="mcite" select="'4.2.2'"/>
+    <xsl:param name="mcite" select="''"/>
     <xsl:variable name="use-param">
         <xsl:choose>
             <xsl:when test="$unit = ''">

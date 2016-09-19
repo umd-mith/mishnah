@@ -13,6 +13,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
  :)
 import module namespace config="http://www.digitalmishnah.org/config" at "config.xqm";
 import module namespace app="http://www.digitalmishnah.org/templates" at "app.xql";
+import module namespace cmp="http://www.digitalmishnah.org/templates/compare" at "compare.xql";
 
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 
@@ -27,7 +28,7 @@ let $config := map {
 let $model := 
     map {
         'resource' := request:get-attribute('resource'),
-        'reading_path' := request:get-attribute('reading_path')
+        'path' := request:get-attribute('path')
     }
 
 (:
