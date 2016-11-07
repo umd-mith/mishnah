@@ -11,7 +11,6 @@ var activate = function($el) {
 
 // Show and activate right place in navigation on hash change
 var updateNav = function(unit) {
-    console.log('h');
     var item = $("*[href='#"+unit+"']");
     activate(item);
     item.parents('div.list-group').collapse('show');

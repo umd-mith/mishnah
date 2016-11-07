@@ -25,33 +25,73 @@ declare function cmp:compare-view($node as node(), $model as map(*)){
     let $mcite := $compare_path_parts[last()-2]
     let $wits := tokenize($compare_path_parts[last()-1], ',')
     let $mode := $compare_path_parts[last()]
-    let $tokens := dm:getMishnahTksJSON($mcite, $wits)
-    let $headers := <headers>
-        <header name="Accept" value="application/json"/> 
-        <header name="Content-type" value="application/json"/>
-    </headers>
-    let $results := parse-json(
-        content:get-metadata-and-content(
-        httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
-      ))
+    
+    (: Determine whether there is a curated collation for this mcite :)
+    let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")
+    let $coll_available := doc-available($collation)
+    
     return 
-        element div {(
-            $node/@*[not(starts-with(name(), 'data-'))],
-            if ($mode = 'apparatus')
-            then () (:cmp:compare-app($results):)
-            else if ($mode = 'synopsis')
-                 then () (:cmp:compare-syn($results):)
-                 else cmp:compare-align($results)
-        )}
+        if ($coll_available)
+        then cmp:compare-align($collation, $mcite, $wits) 
+        else 
+            (: Use Collatex :)
+            let $tokens := dm:getMishnahTksJSON($mcite, $wits)
+            let $headers := <headers>
+                <header name="Accept" value="application/json"/> 
+                <header name="Content-type" value="application/json"/>
+            </headers>
+            let $results := parse-json(
+                content:get-metadata-and-content(
+                httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
+              ))
+            return 
+                element div {(
+                    $node/@*[not(starts-with(name(), 'data-'))],
+                    if ($mode = 'apparatus')
+                    then () (:cmp:compare-app($results):)
+                    else if ($mode = 'synopsis')
+                         then () (:cmp:compare-syn($results):)
+                         else cmp:compare-align-collatex($results)
+                )}
 };
 
 (:~
- : This templating function generates a table of variants
+ : This templating function generates a table of variants from a TEI stand-off collation
  :
  : @param $node the HTML node with the attribute which triggered this call
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
-declare function cmp:compare-align($results as item()){
+declare function cmp:compare-align($collation as xs:string, $mcite as xs:string, $wits as item()+){
+    let $coll := doc($collation)
+    return <div class="alignment-table"><table class="alignment-table" dir="rtl">{
+        for $wit in $wits
+        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
+        return
+            <tr>
+            <td class="wit">{$wit}</td>
+            {
+                for $rdg in $coll//tei:rdg[@wit=concat("#", $wit)]
+                return
+                    <td>{(
+                        attribute class {
+                            if (count($rdg//ancestor::tei:app/tei:rdgGrp[not(@n='empty')]) = 1) 
+                            then 'invariant' 
+                            else 'variant' 
+                          },
+                        $src//tei:w[@xml:id=substring-after($rdg/tei:ptr/@target, "#")]
+                    )}</td>
+            }</tr>
+    }</table></div>
+};
+
+
+(:~
+ : This templating function generates a table of variants from a CollateX JSON collation
+ :
+ : @param $node the HTML node with the attribute which triggered this call
+ : @param $model a map containing arbitrary data - used to pass information between template calls
+ :)
+declare function cmp:compare-align-collatex($results as item()){
     let $wits := $results("witnesses")
     let $table := $results("table")
     return <table class="alignment-table" dir="rtl">{
@@ -60,17 +100,6 @@ declare function cmp:compare-align($results as item()){
             <tr>
                 <td class="wit">{$wits($i)}</td>
                 {
-                    (:let $row :=
-                        for $j in 1 to array:size($table)
-                        return 
-                            let $data := $table($j)($i)
-                            return
-                                if (array:size($data) > 0)
-                                then $data(1)("n")
-                                 else ()
-                     return
-                       concat(count(distinct-values($row)), ","):)
-                       
                     for $j in 1 to array:size($table)
                     return 
                         let $col := $table($j)

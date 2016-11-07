@@ -7,31 +7,19 @@
     overflow-x: hidden;
 }
 
-#select-wits {
-    cursor: move;
-}
-
-.wit-info {
-    font-size: xx-small;
-    position: absolute;
-    right: 1em;
-}
-
 p#instructions {
     text-align: center;
 }
 
 #header{
     text-align:center;
-    margin:0px;
-    padding:0px;
     border-bottom:1px solid #DDD;
-    background:url(../images/bg-page.jpg) no-repeat scroll center top rgb(197, 164, 113)
+    background: rgb(197, 164, 113) url('../images/bg-page.jpg') no-repeat scroll center top;
 }
 #header img{
     padding:20px 0;
-    margin:0px 450px 0px 0px;
     border:0;
+	float:left;
 }
 
 a:link,
@@ -42,6 +30,20 @@ a{
 a:hover{
     text-decoration:underline;
     color:#722C25;
+}
+
+#MTV-spinner{
+    display: none;
+    text-align: center;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #b77033;
+    border-color: #b77033;
+}
+
+#dm-align-nav {
+    margin-bottom: 10px;
 }
 
 a.toggle{
@@ -68,14 +70,24 @@ div.hrlineB{
     background:url(../images/bg-line1.png) repeat;
 }
 
+.page-header { padding-bottom:19px !important; }
+
+.page-header h2 { 
+	color: #722C25;
+	display: inline;
+}
+
+.btn-about { display: inline-block; margin-top: 20; float:right; }
+
+#content .navbar-right { padding-top: 8px; }
+
 .contents{
     text-transform:uppercase;
     font-family:Helvetica, Arial, sans-serif
 }
 .contents h2{
     font-size:80%;
-    text-align:center;
-    color:#722C25;
+	color: #722C25
 }
 .contents a{
     text-decoration:none;
@@ -83,18 +95,16 @@ div.hrlineB{
     padding:0px 10px;
 }
 
-h2{
-    text-align:center;
-    color:#722C25;
-}
+table.table>tbody>tr>td,
+table.table>tfoot>tr>td,
+table.table>tfoot>tr>th,
+table.table>thead>tr>td,
+table.table>thead>tr>th {  padding: 5px 8px; }
+table.table>tbody>tr:last-child { border-bottom: 1px solid #ddd; }
 
-div.about,
-div.browse,
-div.notes{
-    margin:0px auto;
-    width:60%;
-}
-div.about a.highlighted{
+.notes { border-top: 5px #722C25 solid; margin-top: 50px; }
+
+v.about a.highlighted{
     font-weight:bold;
 }
 
@@ -127,28 +137,15 @@ hr{
     color:#ddd;
 }
 
-div.hr{
-    clear:both;
-    width:75%;
-    margin:20px auto;
-    height:5px;
-    color:#722C25;
-    border:#722C25;
-    background-color:#722C25;
-}
-
 #footer{
     margin-top:50px;
     padding-top:20px;
+	margin-bottom: 20px; 
     color:#999;
     font-size:9pt;
     font-family:Helvetica, Arial, sans-serif
 }
-#footer .footer{
-    margin:0px auto;
-    padding:12px 0px 25px 0px;
-    width:900px;
-}
+
 #footer .info{
     clear:both;
 }
@@ -206,6 +203,30 @@ form.buttons input{
     margin-top: 30px;
 }
 
+/* Alignment */
+
+.list-group.list-group-root > .list-group-item:first-child {
+	border-top-width: 1px !important;
+}
+
+a[aria-expanded=false] .caret { 
+  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.5);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.list-group-item .list-group { margin-bottom: 0; } 
+.list-group-item .list-group-item { padding: 8px 16px }
+
+.list-group-item .panel-heading {
+	padding: 0px 0px 8px 8px;
+}
+.list-group-item .panel-title { 
+	font-size: 14px;
+}
 /* Bad Bootstrap additions */
 .just-padding {
     padding: 15px;
@@ -234,7 +255,7 @@ form.buttons input{
 }
 
 .list-group.list-group-root > .list-group > .list-group > .list-group-item {
-    padding-left: 45px;
+    padding-left: 270px;
 }
 
 .list-group-item .glyphicon {

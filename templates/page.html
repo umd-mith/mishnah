@@ -4,32 +4,33 @@
         <title>Digital Mishnah</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta data-template="config:app-meta"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
         <link rel="stylesheet" href="$app-root/resources/css/style.css"/>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"/>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"/><!-- page-specific assets -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"/>
         <link data-template="app:page_assets"/>
     </head>
     <body>
         <header id="header">
-            <a href="$app-root">
-                <img src="$app-root/resources/images/mishnah-logo.png" alt="Digital Mishnah"/>
-            </a>
+            <div class="container">
+                <div class="row">
+                    <a href="$app-root">
+                        <img src="$app-root/resources/images/mishnah-logo.png" alt="Digital Mishnah"/>
+                    </a>
+                </div>
+            </div>
         </header>
         <div class="hrlineB"/>
         <div id="content"/>
-        <footer id="footer" class="footer-wrap">
+        <footer id="footer" class="footer-wrap container">
             <div class="hrlineB"/>
             <div class="footer">
                 <div class="info">
-                    <div class="fl">© 2012–2013 Digital
-                        Mishnah
-                    </div>
+                    <div class="fl">© 2012–2013 Digital Mishnah</div>
                     <div class="fr">Developed by Hayim Lapin with
                         support from the <a href="http://mith.umd.edu/" title="MITH" target="_blank">Maryland
                             Institute of Technology in the Humanities
-                            (MITH)</a>.
-                    </div>
+                            (MITH)</a>. </div>
                 </div>
                 <div class="credit">The technological infrastructure for
                     this project has been supported in part by a
@@ -39,7 +40,6 @@
                         License</a>. 
                 </div>
             </div>
-        </footer>
-        <script src="$app-root/resources/js/navigation.js"/>
+        </footer><!--<script src="$app-root/resources/js/navigation.js"/>-->
     </body>
 </html>

@@ -101,8 +101,8 @@ declare function app:list_wits($node as node(), $model as map(*)){
         for $w in $lw/tei:witness[@corresp]
         let $source := doc(concat($config:data-root, "/mishnah/", $w/@corresp))
         return
-            <tr style="vertical-align:top">
-               <td style="font-weight:bold; padding-right:5;">
+            <tr>
+               <td aling="left" valign="middle" style="font-weight:bold; padding-right:5;">
                    <a href="browse/{data($w/@xml:id)}/page/{
                      substring-after(($source//tei:body//tei:pb)[1]/@xml:id,concat($w/@xml:id,'.'))}">{data($w/@xml:id)}</a></td>
                <td>{
@@ -161,7 +161,7 @@ declare function app:read-title($node as node(), $model as map(*)){
     let $witness := tokenize($model("path"), "/")[last() -2]
     let $input := doc(concat($config:data-root, "/mishnah/", $witness, ".xml"))
     return
-        <h2>{$input//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title/text()}</h2>
+        <h1>{$input//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title/text()}</h1>
 };
 
 (:~
@@ -200,53 +200,104 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
     let $tract-compos := app:index-compos("all", "")
     let $index := doc(concat($config:data-root, "/mishnah/index.xml"))
     return
-      for $order in $index//my:order
-      return (
-        <a href="#{$order/@n}" class="list-group-item" data-toggle="collapse">
-           <i class="glyphicon glyphicon-chevron-right"></i> {string($order/@n)} 
-        </a>,
-        <div class="list-group collapse" id="{$order/@n}">{
-            for $tract in $order/my:tract
-            return
-                if (substring-after($tract/@xml:id,'ref.') = $tract-compos//my:tract-compos/@n)
-                then (
-                    (: This tractate has chapter children :)
-                    <a href="#{$tract/@n}" class="list-group-item" data-toggle="collapse">
-                        <i class="glyphicon glyphicon-chevron-right"></i> {replace($tract/@n,'_',' ')}
-                    </a>,
-                    <div class="list-group collapse" id="{$tract/@n}">{
-                       for $chap in $tract/my:chapter
-                       return
-                           if ($level = "mishnah" and substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n)
-                           then 
-                               (: This chapter has mishnah children :)
-                               let $htmlid := replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")
-                               return (
-                               <a href="#{$htmlid}" class="list-group-item" data-toggle="collapse">                                             
-                                   <i class="glyphicon glyphicon-chevron-right"></i> Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))} </a>,
-                                   <div class="list-group collapse" id="{$htmlid}">{
-                                       if ($wholechap)
-                                       then 
-                                         <a class="list-group-item nav-link-item" href="#{substring-after($chap/@xml:id,'ref.')}">Whole Chapter</a>
-                                       else (),
-                                       for $mish in $chap/my:mishnah
-                                       return
-                                           if (substring-after($mish/@xml:id,'ref.') = $tract-compos//my:m-compos/@n)
-                                           then
-                                               (: This Mishnah has text :)
-                                               <a class="list-group-item nav-link-item" href="#{substring-after($mish/@xml:id,'ref.')}">
-                                                   {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
-                                               </a>
-                                           else
-                                            <a class="list-group-item nav-link-item">{concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}</a>
-                                   }</div>
-                              )
-                           else
-                               <a href="#{substring-after($chap/@xml:id,'ref.')}" class="list-group-item nav-link-item" id="ch_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
-                                   Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))}
-                               </a >
-                    }</div>)
-                 else 
-                    <a class="list-group-item">{replace($tract/@n,'_',' ')}</a>
-        }</div>)
+      <div class="panel-group" role="tablist">
+       <div class="panel">{
+        for $order in $index//my:order
+        return (
+          <div class="panel-heading" role="tab" id="Neziqin_Heading">
+            <div class="panel-title">
+              <a href="#{$order/@n}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{string($order/@n)}">{string($order/@n)}  <span class="caret"></span></a>
+            </div>
+          </div>,
+          <div class="panel-collapse collapse" role="tabpanel" id="{$order/@n}" aria-labelledby="{$order/@n}_Heading" aria-expanded="false" style="height: 0px;">
+            <ul class="list-group">{
+              for $tract in $order/my:tract
+              return
+                  if (substring-after($tract/@xml:id,'ref.') = $tract-compos//my:tract-compos/@n)
+                  then (
+                      (: This tractate has chapter children :)
+                      <li class="list-group-item">
+                        <div class="panel-heading" role="tab" id="BavaQamma_Heading">
+                          <div class="panel-title">
+                            <a href="#{$tract/@n}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{$tract/@n}">{replace($tract/@n,'_',' ')} <span class="caret"></span></a>
+                          </div>
+                        </div>
+                        <div class="panel-collapse collapse" role="tabpanel" id="{$tract/@n}" aria-labelledby="{$tract/@n}_Heading" aria-expanded="false" style="height: 0px;">
+                          <ul class="list-group">{
+                           for $chap in $tract/my:chapter
+                           return
+                             if ($level = "mishnah" and substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n)
+                             then 
+                                 (: This chapter has mishnah children :)
+                                 let $htmlid := replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")
+                                 return (
+                                 <li class="list-group-item">
+                                    <div class="panel-heading" role="tab" id="BavaQamma_Heading">
+                                       <div class="panel-title">
+                                         <a href="#{$htmlid}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{$htmlid}">
+                                            Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))} <span class="caret"></span>
+                                          </a>
+                                       </div>
+                                     </div>    
+                                     <div class="panel-collapse collapse" role="tabpanel" id="{$htmlid}" aria-labelledby="{$htmlid}_Heading" aria-expanded="false" style="height: 0px;">
+                                        <ul class="list-group">{
+                                        if ($wholechap)
+                                         then 
+                                           <a class="list-group-item nav-link-item" href="#{substring-after($chap/@xml:id,'ref.')}">Whole Chapter</a>
+                                         else (),
+                                         for $mish in $chap/my:mishnah
+                                         return
+                                             if (substring-after($mish/@xml:id,'ref.') = $tract-compos//my:m-compos/@n)
+                                             then
+                                                 (: This Mishnah has text :)
+                                                 <a class="list-group-item nav-link-item" href="#{substring-after($mish/@xml:id,'ref.')}">
+                                                     {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
+                                                 </a>
+                                             else
+                                              <a class="list-group-item nav-link-item">{concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}</a>
+                                        }</ul>
+                                     </div>
+                                 </li>,
+                                     <div class="list-group collapse" id="{$htmlid}">{
+                                         if ($wholechap)
+                                         then 
+                                            <li class="list-group-item nav-link-item" id="m_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
+                                              <a href="#{substring-after($chap/@xml:id,'ref.')}">
+                                                 Whole Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))}
+                                              </a>
+                                            </li>
+                                         else (),
+                                         for $mish in $chap/my:mishnah
+                                         return
+                                             if (substring-after($mish/@xml:id,'ref.') = $tract-compos//my:m-compos/@n)
+                                             then
+                                                 (: This Mishnah has text :)
+                                                 <li class="list-group-item nav-link-item" id="m_{substring-after($mish/@xml:id,'ref.')}">
+                                                    <a href="#{substring-after($mish/@xml:id,'ref.')}">
+                                                       {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
+                                                    </a>
+                                                  </li>
+                                             else
+                                                <li class="list-group-item nav-link-item" id="m_{substring-after($mish/@xml:id,'ref.')}">
+                                                    <a href="#{substring-after($mish/@xml:id,'ref.')}">
+                                                       {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
+                                                    </a>
+                                                  </li>
+                                     }</div>
+                                )
+                             else
+                                <li class="list-group-item nav-link-item" id="ch_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
+                                  <a href="#{substring-after($chap/@xml:id,'ref.')}">
+                                     Chapter {substring-after($chap/@xml:id, concat($chap/parent::my:tract/@xml:id, '.'))}
+                                  </a>
+                                </li>
+                      }</ul>
+                     </div>
+                    </li>)                      
+                   else 
+                      <a class="list-group-item">{replace($tract/@n,'_',' ')}</a>
+          }</ul>
+         </div>)
+       }</div>
+      </div>
 };

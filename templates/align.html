@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
     <script src="$app-root/resources/js/mtjsviewer.js"/>
-    <h2>Mishnah - Tosefta Alignment</h2>
-    <p id="instructions">Choose a book and a chapter to see the alignment.</p>
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h2>Mishnah - Tosefta Alignment</h2>
+            </div>
+            <p id="instructions">Choose a book and a chapter to see the alignment.</p>
+        </div>
+    </div>
     <div id="MTV" class="container">
         <div class="row" id="dm-align-nav" style="display:none;">
             <div class="btn-group pull-right" role="group">
@@ -16,11 +22,10 @@
         </div>
         <div class="row">
             <div id="passages" class="col-xs-2">
-                <div class="just-padding">
-                    <div class="list-group list-group-root well">
-                        <span data-template="app:toc" data-template-level="chap" data-template-wholechap="false"/>
-                    </div>
-                </div>
+                <div data-template="app:toc" data-template-level="chap" data-template-wholechap="false"/>
+            </div>
+            <div id="MTV-spinner">
+                <img src="$app-root/resources/images/spinner.gif"/>
             </div>
             <div id="MTV-align" class="col-xs-5"/>
             <div id="MTV-base" class="col-xs-5"/>

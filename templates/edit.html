@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"/>
+    <script src="$app-root/resources/editapp/toTEIXML.js"/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"/>
     <script src="$app-root/resources/editapp/draganddrop.js"/>
     <script src="$app-root/resources/editapp/ngDialog.js"/>
     <script src="$app-root/resources/editapp/mishnaControllers.js"/>
     <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"/>
-    <h2>Edit Mishnah Variants</h2>
-    <p id="instructions">Choose a Mishnah to edit.</p>
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h2>Edit Mishnah Variants</h2>
+            </div>
+            <p id="instructions">Choose a Mishnah to edit.</p>
+        </div>
+    </div>
     <div class="container">
         <div class="row" id="dm-edit-nav" style="display:none;">
             <div class="btn-group pull-right" role="group">
