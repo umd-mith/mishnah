@@ -56,9 +56,12 @@ declare function app:index-compos($unit as xs:string, $mcite as xs:string) {
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
  declare function app:expand-mcite-from-URL($node as node(), $model as map(*)){
-    let $path_parts := tokenize($model("path"), "/")
-    let $mcite := $path_parts[index-of($path_parts, $model("resource")) + 1]
-    return app:expand-mcite($mcite)
+    if (not($model("path") = "/compare"))
+    then 
+        let $path_parts := tokenize($model("path"), "/")
+        let $mcite := $path_parts[index-of($path_parts, $model("resource")) + 1]
+        return app:expand-mcite($mcite)
+    else ()
  };
 
 (:~
@@ -181,10 +184,10 @@ declare function app:drag_list_wits($node as node(), $model as map(*)) {
         for $w in $lw/tei:witness[@corresp]
         let $source := doc(concat($config:data-root, "/mishnah/", $w/@corresp))
         return
-            <li class="list-group-item" id="wit-item-{data($w/@xml:id)}" draggable="false">
+            <li class="list-group-item wit-item" id="wit-item-{data($w/@xml:id)}" draggable="false">
                <input type="checkbox" class="wit-remove"/>&#160;<strong>{data($w/@xml:id)}</strong>
-               <span>&#160;{$w/text()}</span>               
-               <span class="wit-info">({if ($lw/@n) then data($lw/@n) else data($lw/@xml:id)})</span>
+               <!--<span>&#160;{$w/text()}</span>               
+               <span class="wit-info">&#160;({if ($lw/@n) then data($lw/@n) else data($lw/@xml:id)})</span>-->
            </li>
         )
     )}

@@ -166,6 +166,7 @@ else if ($exist:path eq "/compare") then
           <view>
               <forward url="{$exist:controller}/modules/view.xql"> 
                   <set-attribute name="resource" value="compare"/>
+                  <set-attribute name="path" value="{$exist:path}"/>
                </forward>
           </view>
       </dispatch>
@@ -175,7 +176,7 @@ else if ($exist:path eq "/compare") then
  :)
 else if (matches($exist:path, "/compare/\d+\.\d+\.\d+(\.\d+)?/(\w+,?)+/(align|apparatus|synopsis)")) then
       <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-          <forward url="{$exist:controller}/templates/compareView.html"/>
+          <forward url="{$exist:controller}/templates/compare.html"/>
           <view>
               <forward url="{$exist:controller}/modules/view.xql"> 
                   <set-attribute name="resource" value="compare"/>

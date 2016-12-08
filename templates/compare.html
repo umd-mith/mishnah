@@ -56,32 +56,41 @@
                 </div>
             </div>
             <div class="col-md-8 col-xs-12">
-                <h4>Select and Order Witnesses</h4>
-                <ul id="select-wits" class="list-group" data-template="app:drag_list_wits"/>
-            </div>
-            <div id="options" class="col-md-2 col-xs-12">
-                <h4>Compare</h4>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="comp-align" value="alignment" checked="checked"/>
-                            Alignment
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="comp-app" value="apparatus" disabled="disabled"/>
-                            Text/Apparatus
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="comp-syn" value="synopsis" disabled="disabled"/>
-                            Synopsis
-                    </label>
-                </div>
                 <div>
-                    <button type="button" class="btn btn-default disabled" id="compareBtn">Compare</button>
+                    <h4>Choose mode</h4>
+                    <div class="row" id="options">
+                        <div class="btn-group col-xs-10" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="options" value="align" autocomplete="off" checked="checked"/> Alignment
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" value="apparatus" autocomplete="off"/> Text/Apparatus
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" value="synopsis" autocomplete="off"/> Synopsis
+                            </label>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary disabled" id="compareBtn">
+                                <i class="glyphicon glyphicon-refresh"/> Compare</button>
+                        </div>
+                    </div>
                 </div>
+                <div id="compareView">
+                    <h2>
+                        <em>
+                            <span data-template="app:expand-mcite-from-URL"/>
+                        </em>
+                    </h2>
+                    <div class="alignment-table" dir="rtl" data-template="cmp:compare-view"/>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-12">
+                <h4>Select and Order Witnesses</h4>
+                <div id="wits-loading">
+                    <img src="$app-root/resources/images/spinner.gif" width="150" height="150"/>
+                </div>
+                <ul id="select-wits" class="list-group" data-template="app:drag_list_wits"/>
             </div>
         </div>
     </div>

@@ -9,14 +9,29 @@ Sortable.create(list, {
 
 // Filter list based on selection
 var updateList = function (unit) {
-    $.get("$app-root/modules/filterWitsJSON.xql?mcite="+unit, function(wits){
+    $('#wits-loading').show();
+    $("#select-wits li").hide();
+    $.get("$app-root/modules/filterWitsJSON.xql?mcite="+unit, function(wits){        
         $("#select-wits li").each(function(i, el){
             var $el = $(el);
             if ($.inArray($el.attr("id").split("-").pop(), wits) == -1) {
-                $el.remove();
+                $el.hide();
+            }
+            else {
+                $el.css('display', "block");
             }
         });
+        $('#wits-loading').hide();
     }, "json");
+}
+
+// Update sidebar
+var updateSideBar = function (unit) {
+    var unit_nav = $(".nav-link-item[href='#"+unit+"']")
+    unit_nav.addClass("active")
+    unit_nav.closest('.collapse').collapse()
+    .parent().closest('.collapse').collapse()
+    .parent().closest('.collapse').collapse();
 }
 
 // Hash events
@@ -24,6 +39,7 @@ $(window).on('hashchange',function(){
     var unit = location.hash.slice(1);
     if (unit) {    
         updateList(unit);
+        updateSideBar(unit);
     }
 });
 
@@ -31,6 +47,7 @@ $(window).on('load',function(){
     var unit = location.hash.slice(1)
     if (unit) {
         updateList(unit);
+        updateSideBar(unit);
     }
 });
 
@@ -50,5 +67,6 @@ $("#compareBtn").click(function(){
        sources.push($(w).parent().attr("id").split("-").pop()); 
     });
     var mode = $("#options input:checked").val()
-    location.href= "compare/" + mcite + "/" + sources.join(",") + "/" + mode;
+    var base_url = location.href.substr(0, location.href.indexOf('compare/')); 
+    location.href= base_url + "compare/" + mcite + "/" + sources.join(",") + "/" + mode + "#" + mcite;
 });

@@ -21,38 +21,41 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
 declare function cmp:compare-view($node as node(), $model as map(*)){
-    let $compare_path_parts := tokenize($model("path"), "/")
-    let $mcite := $compare_path_parts[last()-2]
-    let $wits := tokenize($compare_path_parts[last()-1], ',')
-    let $mode := $compare_path_parts[last()]
-    
-    (: Determine whether there is a curated collation for this mcite :)
-    let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")
-    let $coll_available := doc-available($collation)
-    
-    return 
-        if ($coll_available)
-        then cmp:compare-align($collation, $mcite, $wits) 
-        else 
-            (: Use Collatex :)
-            let $tokens := dm:getMishnahTksJSON($mcite, $wits)
-            let $headers := <headers>
-                <header name="Accept" value="application/json"/> 
-                <header name="Content-type" value="application/json"/>
-            </headers>
-            let $results := parse-json(
-                content:get-metadata-and-content(
-                httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
-              ))
-            return 
-                element div {(
-                    $node/@*[not(starts-with(name(), 'data-'))],
-                    if ($mode = 'apparatus')
-                    then () (:cmp:compare-app($results):)
-                    else if ($mode = 'synopsis')
-                         then () (:cmp:compare-syn($results):)
-                         else cmp:compare-align-collatex($results)
-                )}
+    if (not($model("path") = "/compare"))
+    then 
+        let $compare_path_parts := tokenize($model("path"), "/")
+        let $mcite := $compare_path_parts[last()-2]
+        let $wits := tokenize($compare_path_parts[last()-1], ',')
+        let $mode := $compare_path_parts[last()]
+        
+        (: Determine whether there is a curated collation for this mcite :)
+        let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")
+        let $coll_available := doc-available($collation)
+        
+        return 
+            if ($coll_available)
+            then cmp:compare-align($collation, $mcite, $wits) 
+            else 
+                (: Use Collatex :)
+                let $tokens := dm:getMishnahTksJSON($mcite, $wits)
+                let $headers := <headers>
+                    <header name="Accept" value="application/json"/> 
+                    <header name="Content-type" value="application/json"/>
+                </headers>
+                let $results := parse-json(
+                    content:get-metadata-and-content(
+                    httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
+                  ))
+                return 
+                    element div {(
+                        $node/@*[not(starts-with(name(), 'data-'))],
+                        if ($mode = 'apparatus')
+                        then () (:cmp:compare-app($results):)
+                        else if ($mode = 'synopsis')
+                             then () (:cmp:compare-syn($results):)
+                             else cmp:compare-align-collatex($results)
+                    )}
+    else <div class="text-center">choose passage and sources and click compare...</div>
 };
 
 (:~
@@ -74,7 +77,7 @@ declare function cmp:compare-align($collation as xs:string, $mcite as xs:string,
                 return
                     <td>{(
                         attribute class {
-                            if (count($rdg//ancestor::tei:app/tei:rdgGrp[not(@n='empty')]) = 1) 
+                            if (count($rdg/ancestor::tei:app/tei:rdgGrp[not(@n='empty')]) = 1) 
                             then 'invariant' 
                             else 'variant' 
                           },
