@@ -77,20 +77,28 @@
                     </div>
                 </div>
                 <div id="compareView">
-                    <h2>
-                        <em>
-                            <span data-template="app:expand-mcite-from-URL"/>
-                        </em>
-                    </h2>
+                    <div class="row" id="dm-compare-nav" style="display:none;">
+                        <div class="btn-group pull-right" role="group">
+                            <a href="#" class="btn btn-default" role="button">
+                                <i class="glyphicon glyphicon-chevron-left"/> Next
+                            </a>
+                            <a href="#" class="btn btn-default" role="button">
+                                <i class="glyphicon glyphicon-chevron-right"/> Prev
+                            </a>
+                        </div>
+                    </div>
                     <div class="alignment-table" dir="rtl" data-template="cmp:compare-view"/>
                 </div>
             </div>
             <div class="col-md-2 col-xs-12">
                 <h4>Select and Order Witnesses</h4>
+                <button type="button" class="btn btn-default" id="toggle_boxes">
+                    Toggle checkboxes
+                </button>
+                <ul id="select-wits" class="list-group" data-template="app:drag_list_wits"/>
                 <div id="wits-loading">
                     <img src="$app-root/resources/images/spinner.gif" width="150" height="150"/>
                 </div>
-                <ul id="select-wits" class="list-group" data-template="app:drag_list_wits"/>
             </div>
         </div>
     </div>
