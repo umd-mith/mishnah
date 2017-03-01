@@ -3,7 +3,7 @@
 
 // Make list sortable
 var list = document.getElementById("select-wits");
-Sortable.create(list, {
+var sortable = Sortable.create(list, {
    animation: 150
 }); 
 
@@ -23,10 +23,17 @@ var updateList = function (unit, sources) {
         });
         $('#wits-loading').hide();
         
-        // If sources are indicated, check them.
+        // If sources are indicated, re-oreder and check them.
         if (sources) {
-            sources.forEach(function(s){
-                $("#wit-item-" + s + " input").prop('checked', true);
+            sources.forEach(function(s, i){
+                var $item = $("#wit-item-" + s);
+                $item.find("input").prop('checked', true);
+                if (i-1 == -1) {
+                    $item.parent().prepend($item)
+                }
+                else {
+                 $item.insertAfter($item.siblings(':eq('+(i-1)+')'));   
+                }                
             })
             if (sources.length > 1) {
                 $("#compareBtn").removeClass("disabled");    
