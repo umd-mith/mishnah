@@ -62,8 +62,12 @@ $(window).on('load',function(){
     // check for info from url structure
     var parts = location.pathname.split("/");
     if (parts[parts.length -4] == "compare") {
-        unit = parts[parts.length -3]
+        var unit = parts[parts.length -3]
         var sources = parts[parts.length -2].split(",")
+        var mode = parts[parts.length -1]
+        // Update mode
+        $("#opt_"+mode).click()
+        // Updated other components
         updateNav(unit);
         updateList(unit, sources);
         updateSideBar(unit);    

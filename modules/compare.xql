@@ -46,43 +46,39 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
 
 };
 
-declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits as xs:string*, $mode as xs:string){
-    (: Determine whether there is a curated collation for this mcite :)
-    let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")
-    
-    let $coll_available := doc-available($collation)
-    
-    return 
-        if ($coll_available)
-        then cmp:compare-align($collation, $mcite, $wits) 
+declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits as xs:string*, $mode as xs:string){    
+    if ($mode = 'apparatus')
+    then ()
+    else if ($mode = 'synopsis')
+        then cmp:compare-syn($mcite, $wits)
         else 
-            (: Use Collatex :)
-            let $tokens := dm:getMishnahTksJSON($mcite, $wits)
-            let $headers := <headers>
-                <header name="Accept" value="application/json"/> 
-                <header name="Content-type" value="application/json"/>
-            </headers>
-            let $results := parse-json(
-                content:get-metadata-and-content(
-                httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
-              ))
-            return 
-                (<h2>{app:expand-mcite($mcite)}</h2>,
-                element div {(
-                    $node/@*[not(starts-with(name(), 'data-'))],                    
-                    if ($mode = 'apparatus')
-                    then () (:cmp:compare-app($results):)
-                    else if ($mode = 'synopsis')
-                         then () (:cmp:compare-syn($results):)
-                         else cmp:compare-align-collatex($results, $wits)
-                )})
+            (: Determine whether there is a curated collation for this mcite :)
+            let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")            
+            let $coll_available := doc-available($collation)
+            return
+              if ($coll_available)
+              then cmp:compare-align($collation, $mcite, $wits) 
+              else 
+                  (: Use Collatex :)
+                  let $tokens := dm:getMishnahTksJSON($mcite, $wits)
+                  let $headers := <headers>
+                      <header name="Accept" value="application/json"/> 
+                      <header name="Content-type" value="application/json"/>
+                  </headers>
+                  let $results := parse-json(
+                      content:get-metadata-and-content(
+                      httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
+                    ))
+                  return 
+                      (<h2>{app:expand-mcite($mcite)}</h2>,
+                      element div {(
+                          $node/@*[not(starts-with(name(), 'data-'))],
+                          cmp:compare-align-collatex($results, $wits)
+                      )})
 };
 
 (:~
  : This templating function generates a table of variants from a TEI stand-off collation
- :
- : @param $node the HTML node with the attribute which triggered this call
- : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
 declare function cmp:compare-align($collation as xs:string, $mcite as xs:string, $wits as item()+){
     let $coll := doc($collation)
@@ -112,9 +108,6 @@ declare function cmp:compare-align($collation as xs:string, $mcite as xs:string,
 
 (:~
  : This templating function generates a table of variants from a CollateX JSON collation
- :
- : @param $node the HTML node with the attribute which triggered this call
- : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
 declare function cmp:compare-align-collatex($results as item(), $orderedWits as xs:string*){
     let $wits := $results("witnesses")
@@ -149,3 +142,24 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
     }</table>
 };
 
+(:~
+ : This templating function generates a synoptic table of a given mishnah or chapter
+ :)
+declare function cmp:compare-syn($mcite as xs:string, $wits as item()+){
+     (<h2>{app:expand-mcite($mcite)}</h2>,
+     <div class="synopsis" dir="rtl"><table class="synopsis-table" dir="rtl">{
+        <tr>{
+            for $wit in $wits
+            return                
+                <th class="text-column-head">{$wit}</th>
+        }</tr>,
+        <tr class="synopsis">{
+            for $wit in $wits
+            let $src := doc(concat($config:data-root, "mishnah/", $wit, ".xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
+            return                
+                <td class="text-col">{
+                    transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
+                }</td>
+        }</tr>
+    }</table></div>)
+};
