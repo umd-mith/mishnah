@@ -81,4 +81,5 @@
         </span>
     </xsl:template>
     <xsl:template match="//tei:note"/>
+    <xsl:template match="tei:teiHeader | tei:alignType | tei:unit | tei:mcite | tei:tractName | tei:rqs"/>
 </xsl:stylesheet>

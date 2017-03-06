@@ -47,15 +47,19 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
 };
 
 declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits as xs:string*, $mode as xs:string){    
-    if ($mode = 'apparatus')
-    then ()
-    else if ($mode = 'synopsis')
-        then cmp:compare-syn($mcite, $wits)
-        else 
-            (: Determine whether there is a curated collation for this mcite :)
-            let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")            
-            let $coll_available := doc-available($collation)
-            return
+    if ($mode = 'synopsis')
+    then cmp:compare-syn($mcite, $wits)
+    else 
+        (: Determine whether there is a curated collation for this mcite :)
+        let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")            
+        let $coll_available := doc-available($collation)
+        return
+            if ($mode = 'apparatus')
+            then  
+                if ($coll_available)
+                then cmp:compare-app($collation, $mcite, $wits) 
+                else (: Use Collatex :) ()
+            else
               if ($coll_available)
               then cmp:compare-align($collation, $mcite, $wits) 
               else 
@@ -162,4 +166,71 @@ declare function cmp:compare-syn($mcite as xs:string, $wits as item()+){
                 }</td>
         }</tr>
     }</table></div>)
+};
+
+(:~
+ : This templating function generates apparatus for a given mishnah of chapter. Needs a TEI collation.
+ :)
+declare function cmp:compare-app($collation as xs:string, $mcite as xs:string, $wits as item()+){
+    let $coll := doc($collation)
+    let $src := 
+        <div xmlns="http://www.tei-c.org/ns/1.0">{
+            for $wit in $wits
+            return doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
+        }</div>        
+    return 
+     (<h2>{app:expand-mcite($mcite)}</h2>,
+     transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/apparatus.xsl"), ()),
+     <div class="apparatus" dir="rtl">{
+        for $appEntry in $coll//tei:app            
+        return 
+            (: It needs to go ahead only if there are multiple readings involving the REQUESTED WITS :)
+            (: For example <rdgGrp n="1"><rdg wit="#A"/><rdg wit="#B"/></rdgGrp><rdgGrp><rdg wit="#C"/></rdgGrp>
+               should not count if the wits required are just A and B (they agree!) :)
+            if (count($appEntry//tei:rdgGrp[tei:rdg[contains($wits, substring-after(@wit, '#'))]]) > 1)                   
+            then
+            <span class="reading-group">{
+                let $baseRdgGrp := data($appEntry/tei:rdgGrp[tei:rdg[@wit=concat("#", $wits[1])]]/@n)
+                return (
+                <span class="lemma">{
+                    let $target := substring-after($appEntry//tei:rdg[@wit=concat("#", $wits[1])]/tei:ptr/data(@target), '#')
+                    return $src//tei:w[@xml:id=$target]/text()
+                }</span>,
+                <span class="matches">{
+                    for $matchingRdg in $appEntry/tei:rdgGrp[@n=$baseRdgGrp]/tei:rdg
+                    return $matchingRdg[not(@wit=concat("#", $wits[1])) and 
+                                        contains($wits, substring-after(@wit, '#'))]/substring-after(@wit, '#')
+                }</span>,
+                for $rdg in $appEntry/tei:rdgGrp[not(@n=$baseRdgGrp)]/tei:rdg[contains($wits, substring-after(@wit, '#'))]
+                return
+                    (<span class="readings">{
+                        $src//tei:w[@xml:id=substring-after($rdg/tei:ptr/data(@target), '#')]/text()
+                    }</span>,
+                    <span class="witnesses">{data(substring-after($rdg/@wit, '#'))}</span>)
+            )}</span>
+            else ()
+     }</div>
+     )
+    
+    (:return
+      (<h2>{app:expand-mcite($mcite)}</h2>,
+      <div class="alignment-table" dir="rtl"><table class="alignment-table" dir="rtl">{
+        for $wit in $wits
+        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
+        return
+            <tr>
+            <td class="wit">{$wit}</td>
+            {
+                for $rdg in $coll//tei:rdg[@wit=concat("#", $wit)]
+                return
+                    <td>{(
+                        attribute class {
+                            if (count($rdg/ancestor::tei:app/tei:rdgGrp[not(@n='empty')]) = 1) 
+                            then 'invariant' 
+                            else 'variant' 
+                          },
+                        $src//tei:w[@xml:id=substring-after($rdg/tei:ptr/@target, "#")]
+                    )}</td>
+            }</tr>
+    }</table></div>):)
 };
