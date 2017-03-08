@@ -42,7 +42,7 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
     (: Determine the number of mishnahs contained :)
     for $ab in doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:div3[@xml:id=concat("ref.", $mcite)]/tei:ab
     let $mishnah := substring-after($ab/@xml:id, 'ref.')
-    return cmp:compare-mishnah($node, $mishnah, $wits, $mode)
+    return <div class="row">{cmp:compare-mishnah($node, $mishnah, $wits, $mode)}</div>
 
 };
 
