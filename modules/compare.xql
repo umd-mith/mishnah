@@ -54,31 +54,31 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         let $collation := concat($config:data-root, "/mishnah/collations/", $mcite, ".xml")            
         let $coll_available := doc-available($collation)
         return
-            if ($mode = 'apparatus')
+            if ($coll_available)            
             then  
-                if ($coll_available)
+                if ($mode = 'apparatus')
                 then cmp:compare-app($collation, $mcite, $wits) 
-                else (: Use Collatex :) ()
-            else
-              if ($coll_available)
-              then cmp:compare-align($collation, $mcite, $wits) 
-              else 
-                  (: Use Collatex :)
-                  let $tokens := dm:getMishnahTksJSON($mcite, $wits)
-                  let $headers := <headers>
-                      <header name="Accept" value="application/json"/> 
-                      <header name="Content-type" value="application/json"/>
-                  </headers>
-                  let $results := parse-json(
-                      content:get-metadata-and-content(
-                      httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
-                    ))
-                  return 
-                      (<h2>{app:expand-mcite($mcite)}</h2>,
-                      element div {(
-                          $node/@*[not(starts-with(name(), 'data-'))],
-                          cmp:compare-align-collatex($results, $wits)
-                      )})
+                else cmp:compare-align($collation, $mcite, $wits)
+            else 
+              (: Use Collatex :)
+              let $tokens := dm:getMishnahTksJSON($mcite, $wits)
+              let $headers := <headers>
+                  <header name="Accept" value="application/json"/> 
+                  <header name="Content-type" value="application/json"/>
+              </headers>
+              let $results := parse-json(
+                  content:get-metadata-and-content(
+                  httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers) 
+                ))
+              return 
+                if ($mode = 'apparatus')
+                then cmp:compare-app-collatex($mcite, $results, $wits)
+                else
+                  (<h2>{app:expand-mcite($mcite)}</h2>,
+                  element div {(
+                      $node/@*[not(starts-with(name(), 'data-'))],
+                      cmp:compare-align-collatex($results, $wits)
+                  )})
 };
 
 (:~
@@ -211,26 +211,57 @@ declare function cmp:compare-app($collation as xs:string, $mcite as xs:string, $
             else ()
      }</div>
      )
-    
-    (:return
-      (<h2>{app:expand-mcite($mcite)}</h2>,
-      <div class="alignment-table" dir="rtl"><table class="alignment-table" dir="rtl">{
-        for $wit in $wits
-        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
-        return
-            <tr>
-            <td class="wit">{$wit}</td>
-            {
-                for $rdg in $coll//tei:rdg[@wit=concat("#", $wit)]
+};
+
+(:~
+ : This templating function generates apparatus for a given mishnah of chapter using data computed by Collatex
+ :)
+declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(), $orderedWits as xs:string*){
+    let $wits := $results("witnesses")
+    let $table := $results("table")
+    let $src := 
+        <div xmlns="http://www.tei-c.org/ns/1.0">{
+            for $wit in $orderedWits
+            return doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id=concat($wit,'.',$mcite)]
+        }</div>    
+    return 
+        (<h2>{app:expand-mcite($mcite)}</h2>,
+        transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/apparatus.xsl"), ()),
+        <div class="apparatus" dir="rtl">{
+            for $token in $table?*
+                let $relevantTokens := 
+                    <map>{
+                        for $orderedWit in $orderedWits
+                        let $wit := array:filter($wits, function($w) {upper-case(substring-before($w, '.xml')) = $orderedWit})
+                        let $i := index-of($wits, $wit)
+                        return
+                            if (array:size($token($i)) > 0)
+                            then <pair><key>{$token($i)(1)("t")}</key> <value>{$i}</value></pair>
+                            else ()
+                    }</map>
+                    
                 return
-                    <td>{(
-                        attribute class {
-                            if (count($rdg/ancestor::tei:app/tei:rdgGrp[not(@n='empty')]) = 1) 
-                            then 'invariant' 
-                            else 'variant' 
-                          },
-                        $src//tei:w[@xml:id=substring-after($rdg/tei:ptr/@target, "#")]
-                    )}</td>
-            }</tr>
-    }</table></div>):)
+                    if (count(distinct-values($relevantTokens//key)) > 1)
+                    then
+                        <span class="reading-group">{(
+                            <span class="lemma">{$relevantTokens/pair[1]/key/text()}</span>,
+                            <span class="matches">{
+                                for $rt in $relevantTokens/pair[position()>1]
+                                return
+                                    if ($rt/key = $relevantTokens/pair[1]/key)
+                                    then ($orderedWits[position() = $rt/value])
+                                    else()
+                            }</span>,
+                            for $rt in $relevantTokens/pair[position()>1]
+                            return
+                                if ($rt/key != $relevantTokens/pair[1]/key)
+                                then
+                                    (<span class="readings">{
+                                        $rt/key/text()
+                                    }</span>,
+                                    <span class="witnesses">{$orderedWits[position() = $rt/value]}</span>)
+                                else ()
+                        )}</span>
+                    else ()
+        }</div>)
 };
