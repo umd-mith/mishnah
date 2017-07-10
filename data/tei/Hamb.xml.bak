@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!--<?xml-stylesheet type="text/css"
+href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>-->
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An Electronic Edition of Mishnah Bava Metsia Ch. 2, according to the Hamburg
+                    MS of the Babylonian Talmud, Neziqin</title>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#MP">Michael Pollack</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>original markup</resp>
+                    <persName corresp="ref.xml#MP">Michael Pollack</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>0301 Hornbake Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">Hamb</idno>
+               <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licensesby/4.0//">Creative
+                            Commons Attribution International 4.0 License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2013-05-27</date>
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>Chapter 2 of Mishnah tractate Bava Metsia from the Hamburg Manuscript (Staats
+                        und Universitätsbibliothek Carl von Ossietsky, Hamburg, Germany, Manuscript
+                        165)</p>
+                    <p>Based on graphic facsimile from Lazarus Goldschmidt, <hi>Der Traktat Neziqin,
+                            d.h. die zivilrechtswissenschaftliche Sektion, aus dem babylonischen
+                            Talmud</hi> (Berlin: Rokotnitz, 1914), as reprinted with photo facsimile
+                        in A. F. Sheri, <hi>The Babylonian Talmud Seder nezikin, Codex Hambourg 165
+                            (19)</hi> (Jerusalem: Makor, 1972).</p>
+                    <p>Transcription and markup by Michael Pollack, revised and edited by Hayim
+                        Lapin</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Hamburg</settlement>
+                        <repository>Stats und Universitätsbibilothek Carl von Ossietsky</repository>
+                        <idno>165 (19)</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <title>Babylonian Talmud</title>
+                            <note type="nli-ref"
+                                >http://aleph.nli.org.il:80/F/?func=direct&amp;doc_number=000167538&amp;local_base=NNLMSS</note>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc material="parchment">
+                                <extent>223</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <!-- based on catalog description of width of page -->
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">30.5</width>
+                                        <height unit="cm">39.3</height>
+                                    </dimensions>
+                                    <dimensions scope="col-cm">
+                                        <width unit="cm">21.7</width>
+                                        <height unit="cm">27.7</height>
+                                    </dimensions>
+                                    <dimensions scope="col-writ">
+                                        <height unit="lines">35</height>
+                                        <width unit="chars">62</width>
+                                        <dim type="char-p-cm">2.2</dim>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <handNote xml:id="Hamb.IbH" scribe="first" script="Sephardic square">
+                                <!-- Check? Needs work-->
+                                <date notBefore="1184" notAfter="1184">1184</date>
+                                <region>Spain</region>
+                                <note>Colophon, folio<!-- verify number -->: Written Gerona, AM 4944
+                                    = 1184 CE.</note>
+                                <placeName xml:id="en">Gerona</placeName>
+                                <placeName xml:id="he">גירונא</placeName>
+                                <persName xml:lang="he">יצחק בר חנינא</persName>
+                                <persName xml:lang="en">Isaac b. Hanina</persName>
+                            </handNote>
+                            <handNote xml:id="Hamb.h2" scribe="second">
+                                <desc/>
+                                <note>The manuscript has corrections in at least two handwriting
+                                    styles: superlinear or marginal corrections in a small hand,
+                                    generlly semi-cursive, and complete erasure with inserted
+                                    letters formed to match those of the original scribe. These are
+                                    all generally all marked "h2" in the markup. The semi-cursive
+                                    corrections appear to be in a hand similar to the subscription
+                                    by <persName xml:id="Hamb.JbSdM">Judah b. Shemariah del
+                                        Medigo</persName> (f. 223v), and to that of the note of
+                                    Elijah del Medigo on the cover sheet (f. 1r). Certainty will
+                                    require further investigation.</note>
+                            </handNote>
+                        </handDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl> </tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2011-12" who="ref.xml#MP"> Original transcription and tagging done during
+                Spring Semester 2012</change>
+            <change when="2012-05-01" who="ref.xml#HL">Revision, completion</change>
+            <change when="2012-06-15" who="ref.xml#HL">Updating for live demo</change>
+        </revisionDesc>
+    </teiHeader>
+    <text xmlns:its="http://www.w3.org/2005/11/its" xml:lang="he">
+        <body>
+            <div1 xml:id="Hamb.4">
+                <div2 xml:id="Hamb.4.2">
+                    <pb n="85v" xml:id="Hamb.85v"/>
+                    <div3 xml:id="Hamb.4.2.2">
+                        <head xml:id="Hamb.4.2.2.H."/>
+                        <ab xml:id="Hamb.4.2.2.1"> ואלו מציאות שלו ו<c rend="lig">אל</c>ו שחייב
+                            להכריז <c rend="lig">אל</c>ו מציאות שלו מצא פירות מפוזרין ומעות מפוזרות <choice>
+                                <abbr>כריכו<am rend="overmark">׳</am></abbr>
+                                <expan>כריכות</expan>
+                            </choice>
+                            <lb n="21"/> ברשות הרבים ועיגולי דבילה וככרות של נחתום וחרוזין של דגים
+                            וחתיכות של בשר וגיזי צמר <lb n="22"/> הלקוחין ממדינתן ועניצי פשתן
+                            ולשונות של ארגמן הרי <c rend="lig">אל</c>ו שלו דברי <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr>אומ<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כל <lb n="23"/> דבר שיש בו שנוי חייב להכריז כיצד מצא עיגול
+                            ובתוכו חרש ככר ובתוכו מעות <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמע בן <choice>
+                                <abbr>אלעז<am rend="overmark">׳</am></abbr>
+                                <expan>אלעזר</expan>
+                            </choice>
+                            <lb n="24"/>
+                            <choice>
+                                <abbr>או<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כל כלי אנפוריא אינו חייב להכריז<pc type="unitEnd" rend="˙"
+                                >:</pc><space extent="4" unit="chars"/></ab>
+                        <ab xml:id="Hamb.4.2.2.2"> ו<c rend="lig">אל</c>ו שחייב להכריז מצא פירות
+                            בכלי או כלי כמות <lb n="25"/> שהוא מעות בכיס או כיס כמות שהוא ציבורי
+                            פירות ציבורי מעות שלשה מטבעות זה על גב <lb n="26"/> זו כריכות ברשות
+                            היחיד וככרות של בעל הבית וגיזי צמר הלקוחין מבית האומן וכדי יין וכדי <lb
+                                n="27"/> שמן חייב להכריז<pc type="unitEnd" rend="˙">:</pc>
+                        </ab>
+                        <ab xml:id="Hamb.4.2.2.3">מצא אחר הגפה או אחר הגדר גוזלות מקושרין או בשבילין
+                                שבשדו<lb n="28"/>הרי זה לא יגע בהן מצא כלי באשפה אם מכוסה לא יגע בו
+                            ואם מגולה נוטל ומכריז מצא בגל <lb n="29"/> או בכותל ישן הרי <c
+                                rend="lig">אל</c>ו שלו מצא בכותל חדש מחציו ולחוץ שלו מחציו ולפנים של
+                            בעל הבית <lb n="30"/> ואם היה משכירו לאחרים אפלו מצא בתוך הבית הרי <c
+                                rend="lig">אל</c>ו שלו<pc type="unitEnd" rend="˙">:</pc><space
+                                extent="4" unit="chars"/></ab>
+                        <ab xml:id="Hamb.4.2.2.4"> מצא בחנות הרי <c rend="lig">אל</c>ו שלו <lb
+                                n="31"/> בין התיבה [ו]לחנוני של חנוני לפני השלחני הרי <c rend="lig"
+                                >אל</c>ו <seg><add>שלו</add></seg> בין כסא ולשולחני הרי <c
+                                rend="lig">אל</c>ו של שלחני<pc type="unitEnd" rend="˙">:</pc><space
+                                extent="4" unit="chars"/><lb n="32"/><space extent="4" unit="chars"
+                            /> הלוקח פירות מחברו או ששגר לו חברו פירות ומצא בתוכן מעות מפוזרות הרי
+                                <c rend="lig">אל</c>ו שלו <lb n="33"/> צרורין נוטל ומכריז<pc
+                                type="unitEnd" rend="abs"/>
+                        </ab>
+                        <ab xml:id="Hamb.4.2.2.5"><space extent="6" unit="chars"/> אף השמלה היתה
+                            בכלל <c rend="lig">אל</c>ו ולמה יצאתה להקיש אליה ולומר לך מה <lb n="34"/>
+                            <pb xml:id="Hamb.86r" n="86r"/> שמלה מיוחדת שיש לה סימנין ויש לה תובעין
+                            אף כל דבר שיש בו סימנין ויש לו תובעין חייב <lb n="1"/> להכריז<pc
+                                rend="abs">:</pc></ab>
+                        <ab xml:id="Hamb.4.2.2.6"> ועד מתי חייב להכריז עד כדי שידעו בו שכניו דברי <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr>או<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שלשה רגלים <surplus>ו<c rend="altform">א</c><am
+                                    rend="overmark">׳</am></surplus><lb n="2"/> ואחר רגל האחרון שבעת
+                            ימים כדי שילך לביתו שלשה ויחזור שלשה ויכריז יום אחד<pc type="unitEnd"
+                                rend="˙">:</pc><space extent="3" unit="chars"/></ab>
+                        <ab xml:id="Hamb.4.2.2.7">
+                            <choice>
+                                <abbr>אמ<am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <lb n="3"/> את האבדה ולא <choice>
+                                <abbr>אמ<am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> את סימניה הרי זה לא יתן לו והרמאי אע"פ <choice>
+                                <abbr>שאמ<am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> את סימניה לא יתן לו <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice>
+                            <lb n="4"/> עד דרוש אחיך אותו עד שתדרש אחיך אם רמאי הוא אם אינו רמאי כל
+                            דבר שעושה ואוכל <lb n="5"/> יעשה ויאכל ודבר שאינו עושה ואוכל ימכר <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> והשבותו לו ראה היאך תשיבנו לו מה יהא <lb n="6"/> בדמים <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> טרפון <choice>
+                                <abbr>אומ<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> ישתמש בהן לפיכך אם אבדו חייב באחריותן <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <choice>
+                                <abbr>או<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא ישתמש בהן <lb n="7"/>לפיכך אם אבדו אינו חייב באחריותן<pc
+                                type="unitEnd" rend="˙">:</pc><space extent="4" unit="chars"/></ab>
+                        <ab xml:id="Hamb.4.2.2.8"> מצא ספרים קורא בהן אחד לשלשים יום ואם אין <lb
+                                n="8"/> יודע לקרות גוללן אבל לא ילמד בהן כתחלה ולא יקרא אחר עמו מצא
+                            כסות מנערה אחד <surplus rend="nonlettermark">?</surplus><lb n="9"/>
+                            לשלשים ושוטחה לצרכה אבל לא לכבודו כלי כסף וכלי נחשת משתמש בהן לצרכן אבל
+                            לא <lb n="10"/> לשוחקן כלי זהב וכלי זכוכית לא יגע בהן עד שיבא אליהו מצא
+                            שק או קופה ואין דרכו ליטול <lb n="11"/> הרי זה לא יטול<pc rend="abs"
+                                >:</pc></ab>
+                        <ab xml:id="Hamb.4.2.2.9"> אי זו היא אבדה מצא חמור או פרה רועים בדרך אין זו
+                            אבדה חמור וכליו הפוכין <lb n="12"/> ופרה רצה בין הכרמים הרי זו אבדה
+                            החזירה וברחה החזירה וברחה אפלו ארבעה וחמשה <lb n="13"/> פעמים חייב
+                            להחזיר <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> השב תשיבנו לו היה בטל מן הסלע לא יאמר לו תן לי סלע אלא נותן
+                                <lb n="14"/> לו שכרו כפועל ואם יש שם בית דין מתנה בפניהם ואם אין שם
+                            בפני מי יתנה שלו קודם<pc rend="abs">:</pc></ab>
+                        <ab xml:id="Hamb.4.2.2.10">מצאה <lb n="15"/> ברפת אינו חייב בה ברשות הרבים
+                            חייב בה ואם היה בבית הקברות לא יטמא לה ואם <choice>
+                                <abbr>אמ<am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו <lb n="16"/> אביו הטמא או <choice>
+                                <abbr>שאמ<am rend="overmark">׳</am></abbr>
+                                <expan>שאמר</expan>
+                            </choice> לו אביו אל תחזיר אל ישמע לו פירק וטען פירק וטען אפלו ארבעה
+                            וחמש <lb n="17"/> פעמים חייב <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> עזב תעזב עמו הלך וישב לו <choice>
+                                <abbr>ואמ<am rend="overmark">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice> לו הואיל ועליך מצוה אם רצית לפרוק פרוק <surplus
+                                rend="nonlettermark">?</surplus><lb n="18"/> פטור <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> עמו ואם היה זקן חייב מצוה מן התורה לפרוק אבל לא לטעון <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון <choice>
+                                <abbr>או<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אף לטעון <lb n="19"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יוסי <choice>
+                                <abbr>אומ<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אם היה עליו יתר על משאו אינו זקוק לו <choice>
+                                <abbr>שנ<am>׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> משאו משאוי שיכול לעמוד בו<pc type="unitEnd" rend="˙"
+                                >:</pc><space extent="4" unit="chars"/><lb n="20"/></ab>
+                        <ab xml:id="Hamb.4.2.2.11"><space extent="3" unit="chars"/>אבדתו ואבדת אביו
+                            שלו קודמת אבדת<seg><add>ו</add></seg> ואבדת רבו שלו קודמת אבדת <seg><del
+                                    extent="5"/><add>אביו וא</add></seg>בדת רבו <lb n="21"/> אבדת
+                            רבו קודמת לשל אביו שאביו הביאו לחיי העולם הזה ורבו שלימדו חכמה הביאו
+                            לחיי <lb n="22"/> העולם הבא ואם היה אביו שקול כנגד רבו אבדת אביו
+                                קודמת<pc type="unitEnd" rend="˙">:</pc><space extent="4"
+                                unit="chars"/><lb n="23"/>
+                            <seg type="scribCorr"><add place="margin-right" rend="caret"><note>An a
+                                        caret marks the insertion point.</note>היה אביו או רבו בבית
+                                    האסורין או בבית השבי פודה את רבו ואחר פודה אביו ואם היה אביו תל
+                                    חכם פודה את אביו ואחר כך פודה את רבו</add></seg>
+                        </ab>
+                    </div3>
+                    <trailer xml:id="Hamb.4.2.2.T"><!-- Deal with rend, rendering -->סליק
+                        פירקא</trailer>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>

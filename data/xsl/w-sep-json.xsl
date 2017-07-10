@@ -57,12 +57,10 @@
     <xsl:template match="tei:w">
         <xsl:text>&#xa;</xsl:text>
         <milestone type="w" xml:id="{@xml:id}">
-
             <xsl:choose>
                 <xsl:when test="tei:choice/tei:abbr">
                     <xsl:attribute name="abbr" select="'yes'"/>
                 </xsl:when>
-
             </xsl:choose>
         </milestone>
         <xsl:apply-templates select="node()"/>

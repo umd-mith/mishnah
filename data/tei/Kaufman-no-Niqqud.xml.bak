@@ -1,0 +1,1777 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/css"
+    href="http://rawgithub.com/umd-mith/mishnah/gh-pages/css/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?xml-model href=http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rnc" type="application/relax-ng-compact-syntax"?>
+<!--<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+<?xml-stylesheet type="text/xsl" href="http://rawgithub.com/umd-mith/mishnah/gh-pages/data/tei/for-transcribers.xsl"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of Kaufmann MS A50, Mishnah</title>
+                <editor>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#LI">Lieberman Institute for Talmudic
+                        Research</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#AS">Atara Siegel</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>0301 Hornbake Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">S07326</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licensesby/4.0//">Creative
+                            Commons Attribution International 4.0 License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2013-08-25</date>
+
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p>The Kaufmann Manuscript of the Mishnah(MS A 50, Oriental Collection of the
+                        Library of the Hungarian Academy of Sciences)</p>
+                    <p>Transcriptions based on images available at
+                        http://kaufmann.mtak.hu/en/ms50/ms50-coll1.htm</p>
+                    <p>Premilinary transcription provided by the Lieberman Institute, and corrected
+                        and marked up by <persName corresp="ref.xml#AS">Atara Siegel</persName>.
+                        Supercedes Kauf.xml, transcribed by <persName corresp="ref.xml#JDO">Justin
+                            Orr</persName> and marked up by Hayim Lapin</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+
+                    <msIdentifier>
+                        <settlement>Budapest</settlement>
+                        <repository>Library of the Hungarian Academy of Sciences</repository>
+                        <idno>A50</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <title>Mishnah</title>
+
+                            <note type="nli-ref"
+                                >http://primo.nli.org.il/primo_library/libweb/action/dlDisplay.do?vid=NLI&amp;docId=NNL_ALEPH000191047</note>
+                        </msItem>
+
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc material="parchment">
+                                <extent>286</extent>
+                            </supportDesc>
+                            <layoutDesc>
+
+                                <layout columns="2">
+                                    <dimensions scope="sheet">
+                                        <height unit="cm">33</height>
+                                        <width unit="cm">28</width>
+                                    </dimensions>
+                                    <dimensions scope="col-cm">
+                                        <height unit="cm">25</height>
+                                        <width unit="cm">9.5</width>
+                                    </dimensions>
+                                    <dimensions scope="col-writ">
+                                        <height unit="lines">30</height>
+                                        <width unit="chars">24</width>
+                                        <dim type="char-p-cm">2.63</dim>
+                                    </dimensions>
+                                    <note>Dimensions based on Gergely catalog and personal
+                                        communication by Balazs Tamasi, of the Library of the
+                                        Hungarian Academy of Sciences</note>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <handNote scribe="first" script="Italian Square">
+                                <!-- or ancient oriental? Needs work-->
+                                <date notBefore="1000" notAfter="1300">11th-13th Century</date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                            <handNote scribe="second">
+                                <!-- Following is a temporary solution -->
+                                <desc>pointed<desc>Babylonian</desc></desc>
+                                <note>Second hand points the text using the Babylonian vocalization
+                                    than first scribe.</note>
+                            </handNote>
+                        </handDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change/>
+            <change/>
+            <change/>
+            <change/>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="S07326.4">
+                <pb xml:id="S07326.128r" n="128r"/>
+                <cb xml:id="S07326.128rA" n="128rA"/>
+                <head xml:id="S07326.4.H" rend="pad(rl)">בשם <choice>
+                        <abbr><c rend="altform">א</c><am rend="geresh"
+                            >׳</am><expan>אלוהים</expan></abbr>
+                    </choice> מביט עמקים<lb n="1"/> נתחיל סדר נזיקים<surplus reason="fill"
+                        >׳</surplus></head>
+                <lb n="2"/>
+                <div2 xml:id="S07326.4.1">
+                    <div3 xml:id="S07362.4.1.1">
+                        <ab xml:id="S07362.4.1.1.1"> <milestone unit="MSMishnah" n="1"/> ארבעה אבות
+                            נזיקים השור והבור <lb n="3"/> והמבעה וההבער לא השור כהרי <surplus
+                                reason="fill">ה<c rend="altform">מ</c><am rend="geresh"
+                                >׳</am></surplus><lb n="4"/> המבעה ולא המבעה כהרי השור לא<lb n="5"/>
+                            זה וזה שיש בהן רוח חיים <seg><del rend="strikethrough" hand="h2"
+                                    >ו</del><add hand="h2" place="above">כ</add>הרי</seg> האש<lb
+                                n="6"/> שאין בה רוח חיים לא זה וזה <seg>ש<del hand="h2"
+                                    rend="strikethrough">ה</del>דרכן</seg><lb n="7"/> לילך ולהזיק
+                                    <seg>ו<add hand="h2" place="above">כ</add>הרי</seg> הבור שאין
+                            דרכו לילך<lb n="8"/> ולהזיק הצד השווה שבהן שדרכן <surplus reason="fill"
+                                    >ל<am rend="overmark">׳</am></surplus><lb n="9"/> להזיק ושמירתן
+                            עליך וכשהזיק חב<lb n="10"/> המזיק משלם תשלומי נזק במיטב הארץ<lb n="11"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.1.2"> <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(rl)">ב<am rend="geresh">׳</am></label> כל שחבתי בשמירתו
+                            הכשרתי <surplus reason="fill"><c rend="altform">א</c><am rend="geresh"
+                                    >׳</am></surplus><lb n="12"/> את נזקו היכשרתי במקצת נזקו חבתי<lb
+                                n="13"/> בתשלומי נזקו כהכשר כל נזקו נכסים<lb n="14"/> שאין בהן מעילה
+                            ונכסים שהן שלבני<lb n="15"/> ברית נכסים מיוחדים חוץ מרשות<lb n="16"/>
+                            המיוחדת למזיק ורשות הניזק והמזיק <lb n="17"/> וכשהיזיק חב המזיק משלם
+                                תשלומי<lb n="18"/> נזק במיטב הארץ<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.1.3"> <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(r)">ג<am rend="geresh">׳</am></label> שום כסף בשווה <lb
+                                n="19"/> כסף בפני בית דין ועל פי עדים בני חורים <lb n="20"/>
+                            <seg><add hand="h2" place="inline">ו</add>בני</seg> ברית והנשים בכלל
+                            הנזק והניזק <surplus reason="fill">ו<am rend="geresh">׳</am>ה<am
+                                    rend="geresh">׳</am></surplus><lb n="21"/>
+                            <seg>והמז<add hand="h2" place="above">י</add>ק</seg>
+                            <seg>בת<del hand="h2"> </del>ש<del hand="h2" rend="strike"
+                                >י</del></seg>לומים<note>deletion of space between בת and שילומים is
+                                implicit.</note><pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.1.4"> <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="geresh">׳</am></label> חמשה תמים <lb
+                                n="22"/> וחמשה מועדים הבהמה אינה מועדת <lb n="23"/> לא ליגח ולא
+                            ליגוף ולא לישוך ולא לירבוץ <lb n="24"/> ולא לבעוט השן מועדת לאכל <del
+                                hand="h2" rend="strikethrough">כל</del> א<c rend="long">ת</c>
+                            <lb n="25"/> הראוי לה והרגל מועדת <seg>לשב<del hand="h2">ו</del>ר</seg>
+                            כדרך <lb n="26"/> הילוכה ושור המועד ושור המזיק ברשות <lb n="27"/> הניזק
+                                והאדם<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(r)">ה<am rend="geresh">׳</am></label> הזאב והארי והדוב
+                                <lb n="28"/>
+                            <cb xml:id="S07362.128rB" n="128rB"/> והנמר והפרדלס והנחש הרי אילו
+                                <surplus reason="fill"><c rend="altform">מ</c><am rend="geresh"
+                                    >׳</am></surplus><lb n="1"/> מועדים <choice>
+                                <abbr>ר<am rend="geresh">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> אלעזר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="geresh"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> בזמן שהן תרבות<lb n="2"/> אינן מועדים והנחש מועד לעולם מה<lb
+                                n="3"/> ב<add hand="h2" place="above">י</add>ן תם למועד אלא שהתם
+                            משלם חצי <lb n="4"/> נזק ומגופו והמועד משלם נזק שלם מן <lb n="5"/>
+                                העליה<pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">פר<am rend="geresh">׳</am> א<am rend="geresh">׳</am>
+                                הל<am rend="geresh">׳</am> ה<am rend="geresh">׳</am></trailer>
+                        <lb n="6"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.2">
+                        <ab xml:id="S07362.4.1.2.1"> <milestone unit="MSMishnah" n="1"/> כיצד הרגל
+                            מועדת לשבר כדרך הילוכה <lb n="7"/> והבהמה מועדת להלך כדרכה ולשבר <lb
+                                n="8"/> היתה מבעטת או שהיו צרורות מנתזים <lb n="9"/> מתחת רגליה
+                            ושיברה את הכלים משלם <lb n="10"/> חצי נזק דרסה על הכלי ושברתו ונפל <lb
+                                n="11"/> על כלי אחר ושברו על הראשון משלם <lb n="12"/> נזק <add
+                                hand="h2" place="margin-right">שלם</add> ועל האחרון משלם חצי נזק<pc
+                                rend="colon"/>
+                            <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(rl)">ב<am rend="geresh">׳</am></label><lb n="13"/>
+                            התרנגלים מועדים להלך כדרכן ולשבר <lb n="14"/>
+                            <del hand="h2" rend="strikethrough">ולשבר</del> היה <seg>דלי<add
+                                    hand="h2" place="above">ל</add></seg> קשור ברגלו או שהיה <lb
+                                n="15"/>
+                            <seg><del hand="h2" rend="overwrite">מחרס</del><add hand="h2"
+                                    place="overwrit">מהדס</add></seg> ושיבר את הכלים משלם חצי <lb
+                                n="16"/> נזק<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.2.2"> <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(r)">ג<am rend="geresh">׳</am></label> כיצד<surplus
+                                reason="fill">׳</surplus> השן מועדת לאכל את <lb n="17"/> הראוי לה
+                            והבהמה מועדת לאכל פרות <lb n="18"/> וירקות אכלה כסות אוכלים משלם חצי <lb
+                                n="19"/> נזק במי דברים <c rend="altform">א</c>מורים ברשות הניזק <lb
+                                n="20"/> אבל ברשות הרבים פטור ואם נהנת <lb n="21"/> משלם מה שנהנת<pc
+                                rend="colon"/>
+                            <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="geresh">׳</am></label> כיצד משלם <lb
+                                n="22"/> מה שנהנת אכלה מתוך הרחבה משלם <lb n="23"/> מה שנהנת מצדדי
+                            הרחבה משלם מה <lb n="24"/> שהיזיקה מפתח החנות משלם מה <lb n="25"/> שנהנת
+                            מתוך החנות משלם מה <surplus reason="fill">שה<am rend="geresh">׳</am>י<am
+                                    rend="geresh">׳</am></surplus><lb n="26"/> שהיזיקה<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.2.3"> <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(r)">ה<am rend="geresh">׳</am></label> הכלב והגדי שקפצו
+                            מעל <lb n="27"/> הגג ושיברו את הכלים משלם נזק שלם <lb n="28"/> מפני שהן
+                            מועדים כלב שנטל את החררה <lb n="29"/>
+                            <pb xml:id="S07326.128v" n="128v"/>
+                            <cb xml:id="S07326.128vA" n="128vA"/> והלך לו לגדיש אכל את החררה
+                                    <surplus>והד<am rend="overdot">׳</am></surplus><lb n="1"/>
+                            והדליק את הגדיש על החררה משלם <lb n="2"/> נזק שלם ועל הגדיש משלם חצי <lb
+                                n="3"/> נזק<pc rend="gershayyim"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.2.4"> <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(rl)">ו<am rend="geresh">׳</am></label> אי זה הוא תם ואי
+                            זה הוא <lb n="4"/> מועד מועד שהעידו בו שלושה ימים <lb n="5"/> ותם שיחזור
+                            בו שלושה ימים דברי <lb n="6"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="geresh"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> מועד שהעידו <lb n="7"/> בו שלשה פעמים ותם שיהו התינוקות <lb
+                                n="8"/> ממשמשים בו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.2.5">  <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(rl)">ז<am rend="geresh">׳</am></label> ושור המזיק <lb
+                                n="9"/> ברשות הניזק כיצד נ<damage><unclear extent="1" unit="chars"
+                                /></damage>ח נגף נשך <lb n="10"/> רבץ בעט ברשות הרבים משלם חצי <lb
+                                n="11"/> נזק ברשות הנזק <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> טרפון <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="geresh"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> נזק <lb n="12"/> שלם <choice>
+                                <abbr>וחכ<c rend="altform">מ</c><am rend="geresh">׳</am></abbr>
+                                <expan>וחכמים</expan>
+                            </choice>
+                            <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="geresh">׳</am></abbr>
+                                <expan>אומרים</expan>
+                            </choice> חצי נזק<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(r)">ח<am rend="geresh">׳</am></label>
+                            <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> להם <lb n="13"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> טרפון מה אם במקום שהקל על <lb n="14"/> השן ועל הרגל ברשות
+                            הרבים שהוא <lb n="15"/> פטור החמיר עליהם ברשות הנזק <lb n="16"/> לשלם
+                            נזק שלם מקום שהחמיר על <lb n="17"/> הקרן ברשות הרבים לשלם חצי נזק <lb
+                                n="18"/> אינו דין שנחמיר עליה ברשות <surplus reason="fill">ה<am
+                                    rend="overmark">׳</am>נ<am rend="overmark">׳</am>י</surplus><lb
+                                n="19"/> הניזק לשלם נזק שלם אמרו לו דיו <lb n="20"/> לבא מן הדין
+                            להיות כנדון מה ברשות <lb n="21"/> הרבים חצי נזק ואף ברשות הניזק <lb
+                                n="22"/> חצי נזק<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="9"/>
+                            <label>ט<am rend="geresh">׳</am></label>
+                            <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="geresh">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> להם אני לא אדין <lb n="23"/> קרן מקרן ואני אדין קרן מרגל מה
+                                <lb n="24"/> אם במקום שהקל על השן ועל הרגל <lb n="25"/> ברשות הרבים
+                            החמיר בקרן מקום <lb n="26"/> שהחמיר עליהם ברשות הניזק אינו <lb n="27"/>
+                            דין שנחמיר בקרן אמרו לו דיו <seg>לב<del hand="h2" rend="strike"
+                                >ו</del>א</seg>
+                            <lb n="28"/> מן הדין שיהא כנדון מה ברשות הרבים <lb n="29"/>
+                            <cb xml:id="S07326.128vB" n="128vB"/> חצי נזק אף ב<damage>ר</damage>שות
+                            הניזק חצי נזק<pc rend="colon"/><lb n="1"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.2.6"> <milestone unit="MSMishnah" n="10"/>
+                            <label>י<am rend="overmark">׳</am></label> אדם מועד לעולם בין שוגג בין
+                                <lb n="2"/> מזיד בין ער בין ישן <seg>ס<add hand="h2" place="above"
+                                    >י</add>מא</seg> את עין <lb n="3"/> חבירו ושיבר את הכלים משלם
+                            נזק <lb n="4"/> שלם<pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">פר<am rend="overmark">׳</am> ב<am rend="overmark"
+                                >׳</am> הל<am rend="overmark">׳</am> י<am rend="overmark"
+                            >׳</am></trailer>
+                        <lb n="5"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.3">
+                        <ab xml:id="S07362.4.1.3.1"> <milestone unit="MSMishnah" n="1"/>
+                                    המני<damage><unclear reason="damage">ח</unclear></damage> את הכד
+                            ברשות הרבים ובא <lb n="6"/> אחר וניתקל בה ושיברה פטור ואם <lb n="7"/>
+                            הוזק בה בעל החבית חייב בניזקו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="2"/>
+                            <add hand="h2" place="margin-left"><label>ב<am rend="overdot"
+                                    >׳</am></label></add>
+                            <lb n="8"/> נשברה כדו ברשות הרבים והחליק <lb n="9"/> בה אחר במים או שלקה
+                                בחרסי<c rend="long">ה</c>
+                            <lb n="10"/> חייב <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="geresh">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> במתכוון חייב <lb n="11"/> ובשאינו מתכוון פטור<pc rend="colon"
+                            />
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.2"> <milestone unit="MSMishnah" n="3"/>
+                            <label>ג<am rend="overmark">׳</am></label> השופך <lb n="12"/> מים ברשות
+                            הרבים והוזק בהן אחר <lb n="13"/> חייב בניזקו המצניע את הקוץ ואת <lb
+                                n="14"/> הזכוכית <seg><del hand="h2" rend="strikethrough"
+                                    >וא</del><del hand="h2" rend="rubout">ת</del></seg> הגודר גדירו
+                            בקוצים <lb n="15"/> וגדר שנפל ברשות הרבים והוזק בהן <lb n="16"/> אחר
+                            חייב בניזקו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.3"> <milestone unit="MSMishnah" n="4"/>
+                            <label>ד<am rend="overmark">׳</am></label> המוציא את <lb n="17"/> תבנו
+                            ואת <seg><del rend="rubbed overwritten"
+                                        >שק</del><damage><unclear>קש</unclear></damage>ו</seg><note>Possibly
+                                the correction קשו is deleted as well.</note>
+                            <add hand="h2" place="margin-right">ואת גפתו</add>לרשות הרבים לזבלים <lb
+                                n="18"/> והוזק בהן אחר חייב בניזקו וכל <seg><surplus reason="fill"
+                                        >ה<del rend="overwritten">ו</del><am rend="overmark"
+                                        >׳</am>ק<am rend="overmark">׳</am>ו<am rend="overmark"
+                                        >׳</am></surplus></seg><lb n="19"/> הקודם בהן זכה ההופך את
+                            הגלל <surplus reason="fill">לר<am rend="overmark">׳</am></surplus><lb
+                                n="20"/> לרשות הרבים והוזק בהן אחר חייב <lb n="21"/> בניזקו<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.4">
+                            <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(rl)">ה<am rend="overmark">׳</am></label>  שני קדרים
+                            שהיו מהלכין<lb n="22"/> זה אחר זה ניתקל הראשון <add hand="h2"
+                                place="margin-right">ונפל</add> וניתקל<lb n="23"/> השני בראשון
+                            הראשון חייב בניזקו <lb n="24"/> שלשני </ab>
+                        <ab xml:id="S07362.4.1.3.5">
+                            <seg><del hand="h2" rend="strikethrough">ו</del> זה</seg> בא בחביתו וזה
+                            בא בקורתו <lb n="25"/>
+                            <add hand="h2" place="margin-right">נשברה כדו<lb/> שלזה בקורתו</add>
+                            שלזה פטור שלזה רשות להלך ולזה <lb n="26"/> רשות להלך<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="6"/>
+                            <label>ו<am rend="overmark">׳</am></label> היה בעל <seg><add hand="h2"
+                                    place="above">ה</add>קורה</seg> ראשון <lb n="27"/> ובעל החבית
+                            אחרון נשברה חבית <lb n="28"/>
+                            <del hand="h2" rend="strikethrough">אחרן נשברה חבית</del> בקורה פטור <lb
+                                n="29"/>
+                            <pb xml:id="S07362.129r" n="129r"/>
+                            <cb xml:id="S07362.129rA" n="129rA"/> ואם עמד בעל הקורה חייב ואם אמר <lb
+                                n="1"/> לו לבעל החבית עמוד פטור היה בעל <lb n="2"/> החבית ראשון ובעל
+                            הקורה אחרון <surplus reason="fill">נ?<am rend="geresh"
+                                >׳</am></surplus><lb n="3"/> נשברה חבית בקורה חייב ואם עמד בעל <lb
+                                n="4"/> החבית פטור ואם אמר לו לבעל הקורה <lb n="5"/> עמוד חייב וכן
+                            זה בא בנירו וזה <surplus reason="fill">׳ ׳</surplus> בא <lb n="6"/>
+                                בפישתנו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.6"> <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(r)">ח<am rend="overmark">׳</am></label> שנים שהיו
+                            מהלכין <lb n="7"/> ברשות הרבים אחד רץ ואחד מהלך <lb n="8"/> או שהיו
+                            שניהם רצים והיזיקו זה <lb n="9"/> את זה שניהם פטורים<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.7"> <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(r)">ט<am rend="overmark">׳</am></label> המבקיע <lb
+                                n="10"/> ברשות <del hand="h2" extent="6" unit="chars"/>
+                            <add hand="h2" place="inline">היחיד</add>
+                            <add hand="h2" place="margin-right">והזיק</add> ברשות הרבים <add
+                                hand="h2" place="above">ברשות הרבים</add> והיזיק <lb n="11"/> ברשות
+                            היחיד ברשות היחיד והיזיק <lb n="12"/> היחיד אחר חייב<pc rend="geresh"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.8"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(l)">י<am rend="overmark">׳</am></label> שני <lb n="13"
+                            /> שוורים תמים שחבלו זה <seg><del hand="h2">א?</del>
+                                <add hand="h2" place="inline">ב</add>זה</seg> משלמים <lb n="14"/>
+                            במותר חצי נזק שניהם מועדים משלמים <lb n="15"/> במותר נזק שלם אחד תם ואחד
+                            מועד <lb n="16"/>
+                            <add hand="h2" place="margin-right">
+                                <damage><unclear extent="1" unit="chars"
+                                    >מ</unclear></damage>וע<damage>ד</damage></add> בתם משלם במותר
+                            נזק שלם ות<c rend="long">ם</c>
+                            <lb n="17"/> במועד משלם במותר חצי נזק<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="11"/>
+                            <label rend="pad(r)">י<am rend="overmark">׳</am>א<am rend="overmark"
+                                    >׳</am></label><lb n="18"/> וכן שני אנשים שחבלו זה בזה משלמים<lb
+                                n="19"/> במותר נזק שלם אדם במועד ומועד<lb n="20"/> באדם משלמים במותר
+                            נזק שלם אדם <lb n="21"/> בתם ותם באדם אדם בתם משלם <lb n="22"/> במותר
+                            נזק שלם ותם באדם משלם <lb n="23"/> במותר חצי נזק <choice>
+                                <abbr>ור<am rend="overdot">׳</am></abbr>
+                                <expan>ורבי</expan>
+                            </choice> עקיבה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c>
+                                    <am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אף תם <lb n="24"/> שחבל באדם משלם במותר נזק שלם <lb n="25"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.9"> <milestone unit="MSMishnah" n="12"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ב<am rend="overmark"
+                                    >׳</am></label> שור שווה מנה שנגח לשו<c rend="long">ר</c>
+                            <lb n="26"/> שווה מאתים ואין הנ<del hand="h2" rend="strike">י</del>בלה
+                            יפה <seg><damage>כ<del hand="h2" rend="strike">ו</del></damage>לם</seg>
+                            <lb n="27"/> נוטל את השור שור שווה מאתים <lb n="28"/> שנגח לשור שווה
+                            מאתים ואין הנבלה <lb n="29"/> יפה כלום <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר על זה נאמר ומכרו <lb n="30"/>
+                            <cb xml:id="S07362.129rB" n="129rB"/> את השור החי וחצו את כספו <choice>
+                                <abbr>א<c rend="altfotm">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו<lb n="1"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה וכן הלכה קיימתה ומכרו את <lb n="2"/> השור החי וחצו את
+                            כספו ולא קיימתה <lb n="3"/> וגם את המת יחצון ואי זה זה <add hand="h2"
+                                place="margin-right">זה</add> שו<c rend="long">ר</c><lb n="4"/> שווה
+                            מאתים שנגח לשור שווה מאתים <lb n="5"/> והניבלה יפה חמשים זוז זה נוטל חצי
+                                <lb n="6"/> החי וחצי המת וזה נוטל חצי <del hand="h1"
+                                rend="strikethrough overmark">ח</del> החי <lb n="7"/> וחצי המת<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.10"> <milestone unit="MSMishnah" n="13"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ג<am rend="overmark"
+                                    >׳</am></label> יש חייב על מעשה <lb n="8"/> שורו ופטור על מעשה
+                            עצמו חייב על <lb n="9"/> מעשה עצמו ופטור על מעשה שורו <lb n="10"/> שורו
+                            שבייש פטור והוא שבייש חייב <lb n="11"/> שורו שסמא את עין עבדו והפיל את
+                                <lb n="12"/> שנו פטור והוא שסמא את עין עבדו <lb n="13"/> והפיל את
+                            שינו חייב שורו שחבל באביו <lb n="14"/> ובאמו חייב והוא שחבל באביו ובאמו
+                                <lb n="15"/> פטור שורו שהדליק את הגדיש בשבת <lb n="16"/> חייב והוא
+                            שהדליק את הגדיש בשבת <lb n="17"/> פטור מפני שהוא נידון בנפשו <pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.3.11"> <label rend="pad(rl)">י<am rend="overmark"
+                                    >׳</am>ד<am rend="overmark">׳</am></label><lb n="18"/>
+                            <milestone unit="MSMishnah" n="14"/> שור שהיה רודף אחר שור אחר והוזק <lb
+                                n="19"/> זה <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שורך הזיק <seg><del extent="3" unit="chars"/><add hand="h2"
+                                    place="inline">והלה</add></seg>
+                            <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overdmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא <lb n="20"/> בסלע לקה המוציא מחבירו <seg>עלי<del
+                                    hand="h2" rend="rubout">ה</del><add hand="h2" place="overwrit"
+                                    >ו</add></seg>
+                            <surplus reason="fill">ה<am rend="overmark">׳</am>ר<am rend="overmark"
+                                    >׳</am>
+                            </surplus><lb n="21"/> הראיה<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="15"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ה<am rend="overmark"
+                                    >׳</am></label> היו שנים רודפים אחר <lb n="22"/> אחד זה <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שורך הזיק וזה <choice>
+                                <abbr><c rend="lig">או</c><am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שורך <lb n="23"/> הזיק שניהם פטורים ואם היו שניהם<lb n="24"/>
+                            שלאיש אחד שניהם חייבים<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="16"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ו<am rend="overmark"
+                                    >׳</am></label><lb n="25"/> היה אחד גדול ואחד קטון הניזק <choice>
+                                <abbr><c rend="lig">או</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice><lb n="26"/>
+                            <seg><del hand="h2" rend="strike">ו</del>הגדול</seg> הזיק והמזיק <choice>
+                                <abbr><c rend="lig">או</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא <lb n="27"/> הקטן הזיק אחד תם ואחד מוע<c rend="long"
+                                >ד</c>
+                            <lb n="28"/> הניזק <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> המועד הזיק והמזיק <choice>
+                                <abbr><c rend="lig">או</c><c>מ</c><am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <lb n="29"/> לא כי אלא תם הזיק המוציא מחבירו<lb n="30"/>
+                            <pb xml:id="S07362.129v" n="129v"/>
+                            <cb xml:id="S07362.129vA" n="129vA"/> עליו הראיה<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="17"/>
+                            <label rend="align(center)">י<am rend="overmark">׳</am>ז<am
+                                    rend="overmark">׳</am></label> היו ניזוקים שני<c rend="long"
+                                >ם</c>
+                            <lb n="1"/> אחד גדול ואחד קטן והמזיקים שנים <lb n="2"/> אחד גדול ואחד
+                            קטן הנזק <choice>
+                                <abbr><c rend="lig">או</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> הגדול <lb n="3"/> הזיק את הגדול וקטן את הקטן <surplus
+                                reason="fill">וה<c rend="altform">מ</c><am rend="overmark"
+                                >׳</am></surplus><lb n="4"/> והמזיק <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא קטן את הגדול <lb n="5"/> וגדול את הקטן אחד תם ואחד
+                            מועד <lb n="6"/> הניזק <choice>
+                                <abbr><c rend="lig">או</c><am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> מועד היזיק את הגדול<lb n="7"/> ותם את הקטן והמזיק <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא <surplus reason="fill">׳ ׳</surplus> כי <lb n="8"/> אלא תם
+                            את הגדול ומועד את הקטן <lb n="9"/> המוציא מחבירו עליו הראיה<pc
+                                rend="colon"/><lb n="10"/>
+                        </ab>
+                        <trailer rend="pad (rl)">פר<am rend="overmark">׳</am> ג <am rend="overmark"
+                                >׳</am> הל<am rend="overmark">׳</am> י<am rend="overmark">׳</am>ח<am
+                                rend="overmark">׳</am></trailer>
+                        <lb n="11"/>
+
+                    </div3>
+                    <div3 xml:id="S07362.4.1.4">
+                        <ab xml:id="S07362.4.1.4.1"> <milestone unit="MSMishnah" n="1"/> שור שנגח
+                            לארבעה חמשה שוורים <lb n="12"/> זה אחר זה ישלם לאחרון שבהם <lb n="13"/>
+                            אם יש בו מותר יחזיר <seg>של<add hand="h2" place="above"
+                                >ש</add>לפניו</seg> ואם <lb n="14"/> יש בו מותר יחזיר לשלפניו
+                            והאחרון <lb n="15"/> אחרון נסכר דברי <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון <lb n="16"/>
+                            <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שור שווה מאתים שנגח לשור <lb n="17"/> שווה מאתים ואין הנבילה
+                            יפה כלום <lb n="18"/> זה נוטל מנה וזה <add hand="h2"
+                                place="margin-right">נוטל</add> מנה חזר ונגח לשור <lb n="19"/> אחר
+                            שווה מאתים האחרון נוטל <lb n="20"/> מנה ושלפניו זה נוטל חמשים זוז וזה
+                                <lb n="21"/> נוטל חמשים זוז חזר ונגח לשור אחר <lb n="22"/> שווה
+                            מאתים האחרון נוטל מנ<c rend="long">ה</c>
+                            <lb n="23"/> ושלפניו חמשים זוז ושנים הראשנים <lb n="24"/> דינרי זהב<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.2"> <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(r)">ב<am rend="overmark">׳</am></label> שור שהוא מועד
+                            למינו <lb n="25"/> ואינו מועד לשאינו מינו מועד לאדם <lb n="26"/> ואינו
+                            מועד לבהמה מועד לקטנים ואינו <lb n="27"/> מועד ל<damage>גד</damage>ולים
+                            למין שהוא מועד לו <lb n="28"/> משלם נזק שלם ולמין שאינו מועד <lb n="29"
+                            /> לו משלם חצי נזק <c rend="altform">א</c>מרו לפני <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <lb n="30"/>
+                            <cb xml:id="S07362.129vB" n="129vB"/> והרי הוא מועד בשבתות ואינו מועד
+                                <lb n="1"/> בימות החול <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c>
+                                    <am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>להם בשבתות משלם <lb n="2"/> נזק שלם ובימות החול משלם חצי <lb
+                                n="3"/> נזק מאמתי הוא תם משייחזור בו <lb n="4"/> שלשת ימי שבתות<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.3"> <milestone unit="MSMishnah" n="3"/>
+                            <label>ג<am rend="overmark">׳</am></label> שור שלישר<c rend="lig"
+                                >אל</c><lb n="5"/> שנגח לשור שלהקדש ושלהקדש <lb n="6"/> שנגח לשור של <choice>
+                                <abbr> ישר<c rend="altform">א</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> פטור <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> שור <lb n="7"/> רעהו ולא שור הקדש<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="4"/>
+                            <label>ד<am rend="overmark">׳</am></label> שור של <lb n="8"/>
+                            <choice>
+                                <abbr>ישר<c rend="altform">א</c><am rend="overdot">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> שנגח שלנכרי <add hand="h2" place="above" type="comm">
+                                <choice>
+                                    <abbr>עע<am rend="dots">׳</am>ז</abbr>
+                                    <expan>עובד עבודה זרה</expan>
+                                </choice>
+                            </add> פטור ושלנכרי <lb n="9"/> שנגח לשור של<choice>
+                                <abbr>ישר<c rend="altform">א</c><am rend="overdot">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> בין תם בין מועד <lb n="10"/> משלם נזק שלם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.4"> <milestone unit="MSMishnah" n="5"/>
+                            <label>ה<am rend="overmark">׳</am></label> שור שלפיקח <lb n="11"/> שנגח
+                            לשור חרש שוטה וקטן חייב <lb n="12"/> ושור חרש שוטה וקטן שנגח לשור <lb
+                                n="13"/> שלפיקח פטור שור חרש שוט<c rend="long">ה</c>
+                            <lb n="14"/> וקטן שנגחו מעמידים להם אפיטרופים <lb n="15"/>
+                            <seg>ומע<del hand="h2" rend="strikes">מ</del>ידים</seg> בהם בפני
+                            אפיטרופים <lb n="16"/> ני<damage>ת</damage>פקח <seg><del hand="h2"
+                                    rend="rubout" extent="1" unit="chars"/><add hand="h2"
+                                    place="inline">ה</add>חרש </seg> שפא<note>פ possibly written
+                                over eraure.</note> השוטה היגדיל<lb n="17"/> הקטן חזר לתמותו דברי <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan> רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice><lb n="18"/> יוסה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c>
+                                    <am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> הרי הוא כחזקתו שור <surplus reason="fill">ה<am rend="overmark"
+                                    >׳</am>
+                                <c rend="altform">א</c><am rend="overmark">׳</am></surplus><lb
+                                n="19"/> האסטדין אינו חייב מיתה <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice>
+                            <surplus>׳</surplus> כי<lb n="20"/> יגח לא שיגיחוהו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.5"> <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(rl)">ו<am rend="overmark">׳</am></label> שור שנגח <lb
+                                n="21"/> את האדם ומת מועד משלם את הכופר <lb n="22"/> ותם פטור מן
+                            הכופר וזה וזה חייבים <lb n="23"/> מיתה וכן בבן או בבת נגח עבד או אמה <lb
+                                n="24"/> נותן שלושים סלע בין שהוא יפה <surplus reason="fill">ב<c
+                                    rend="altform">מ</c><am rend="overmark">׳</am></surplus><lb
+                                n="25"/> במאה מנה ובין שאינו יפה אלא דינר <lb n="26"/> זהב<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.6"> <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(l)">ז<am rend="overmark">׳</am></label> שור שהיה
+                                    <seg>מתח<del hand="h2" rend="rubbing">ת</del><add rend="inline"
+                                    hand="h2"><unclear reason="writing"
+                                >ר</unclear></add>ך</seg><note>Text of the Academy of the Hebrew
+                                Language reads כ for the correction</note> בכותל <lb n="27"/> ונפל
+                            על האדם ניתכוון להרוג את הבהמה <lb n="28"/> והרג את האדם לנכרי <add
+                                hand="h2" place="margin-left" type="comm">
+                                <choice>
+                                    <abbr>עע<am rend="dots">׳</am>ז</abbr>
+                                    <expan>עובד עבודה זרה</expan>
+                                </choice>
+                            </add> והרג את בן <choice>
+                                <abbr>י<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice>
+                            <lb n="29"/> לנפלים והרג בן קיימה פטור<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.7">
+                            <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(r)">ח<am rend="overmark">׳</am></label><lb n="30"/>
+                            <pb xml:id="S07362.130r" n="130r"/>
+                            <cb xml:id="S07362.130rA" n="130rA"/> שור <space extent="2" unit="chars"
+                            /> האשה שור היתומים שו<c rend="long">ר</c>
+                            <lb n="1"/> האפיטרופים שור המדבר שור ההקדש <lb n="2"/> שור הגר שמת ואין
+                            לו יורשים הרי אלו <lb n="3"/> חייבים מיתה <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יודה <choice>
+                                <abbr>
+                                    <c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am>
+                                </abbr>
+                                <expan>אומר</expan>
+                            </choice> שור המדבר <lb n="4"/> שור ההקדש שור גר שמת ואין לו <lb n="5"/>
+                            יורשים פטורין מן המיתה מפני שאין <lb n="6"/> להם בעלים<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.8"> <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(rl)">ט<am rend="overmark">׳</am></label> שור שהוא יוצא
+                                <lb n="7"/> ליסקל והקדישו בעליו אינו מקודש <lb n="8"/> ואם שחטו בשרו
+                            אסור אם עד שלא <lb n="9"/> ניגמר דינו <seg><del hand="h2" rend="strike"
+                                    >ו</del>הקדישו</seg> בעליו מקודש <lb n="10"/> ואם שחטו בשרו
+                                מותר<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.4.9"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(l)">י<am rend="overmark">׳</am></label> מסרו <lb n="11"
+                            /> לשומר חנם ולשואל לנושא שכר ולשוכר <lb n="12"/> ניכנסו תחת הבעלים ויצא
+                            והיזיק מועד <lb n="13"/> משלם נזק שלם ותם משלם חצי נזק <lb n="14"/> קשרו
+                            בעליו במוסירה ונעל בפניו כראוי <lb n="15"/> ויצא והזיק חייב <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> תם חייב <lb n="16"/> ומועד פטור <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> לא ישמרינו בעליו<lb n="17"/> שמור הוא זה <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> אליעזר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אין לו שמירה <lb n="18"/> אלא סכין<pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ד<am rend="overmark">׳</am>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> י<am rend="overmark">׳</am></trailer>
+                        <lb n="19"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.5">
+                        <ab xml:id="S07362.4.1.5.1">  <milestone unit="MSMishnah" n="1"/> שור שנגח
+                            את הפרה ונמצא ילדה בצידה <lb n="20"/> אין ידוע אם עד שלא <seg>נ<del
+                                    hand="h2" rend="strike">י</del>גחה</seg> ילדה ואם <lb n="21"/>
+                            משנגחה ילדה משלם חצי נזק ורביע <lb n="22"/> לוולד<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(rl)">ב<am rend="overmark">׳</am></label> וכן פרה שנגחה
+                            את השור <lb n="23"/> ונימצא עוברה בצידה אין ידוע <damage>אם</damage><lb
+                                n="24"/> עד שלא נגחה ילדה ואם משנגחה ילדה <lb n="25"/> משלם חצי נזק
+                            מן הפרה ורביע מן הוולד <lb n="26"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.2"> <milestone unit="MSMishnah" n="3"/>
+                            <label>ג<am rend="overmark">׳</am></label> הקדר שהכניס קדרותיו לחצר בעל
+                                <lb n="27"/> הבית שלא ברשות שברתן בהמתו שלבעל <lb n="28"/> הבית פטור
+                            ואם הוזקה בהן בעל הקדירות <lb n="29"/> חייב ואם היכניס ברשות בעל החצר
+                            חייב <lb n="30"/>
+                            <pc rend="colon"/>
+                            <cb xml:id="S07362.130rB" n="130rB"/>
+                            <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="overmark">׳</am></label> היכניס פירותיו
+                            לחצר בעל הבית <lb n="1"/> שלא ברשות אכלתן בהמתו שלבעל <lb n="2"/> הבית
+                            פטור ואם הוזקה בהן בעל הפירות <lb n="3"/> חייב ואם הכניס ברשות בעל החצר
+                                <lb n="4"/> חייב<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.3"> <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(l)">ה<am rend="overmark">׳</am></label> הכניס שורו לחצר
+                            בעל הבית <lb n="5"/> שלא ברשות נגחו שורו שלבעל הבית <lb n="6"/> או שנשכו
+                            כלבו שלבעל הבית פטור נגח <lb n="7"/> הוא לשורו שלבעל הבית חייב נפל לבור
+                                <lb n="8"/> והבאיש את מימיו חייב היה אביו או <lb n="9"/> בנו לתוכו
+                            משלם את הכופר ואם הכניס <lb n="10"/> ברשות בעל החצר חייב <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>
+                            <choice>
+                                <abbr><c rend="lig">או</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> בכולם עד <lb n="11"/> שיקבל עליו בעל הבית לשמור<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.4">  <milestone unit="MSMishnah" n="6"/>
+                            <label>ו<am rend="overmark">׳</am></label> שור <lb n="12"/> שהיה מיתכוון
+                            לחבירו והכה את האשה <lb n="13"/> ויצאו י<damage>ל</damage>דיה פטור מידמי
+                            ולדות אדם<lb n="14"/> ש<damage>ה</damage>יה מיתכוון לחבירו והכה <surplus
+                                reason="fill">׳ ׳</surplus> את <lb n="15"/> האשה ויצאו
+                                יל<damage>די</damage>ה משלם דמי ולדות <lb n="16"/> כיצד משלם <add
+                                hand="h2" place="margin-right">דמי</add> ולדות שמין את האשה <lb
+                                n="17"/> כמה היתה יפה עד שלא ילדה וכמה <lb n="18"/> היא יפה משילדה <choice>
+                                <abbr><c rend="altform">אמ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> רבן שמעון בן <surplus reason="fill">ג<c rend="altform"
+                                    >מ</c><am rend="geresh">׳</am></surplus><lb n="19"/>
+                            <choice>
+                                <abbr>גמלי<c rend="altform">א</c><am rend="overdot">׳</am></abbr>
+                                <expan> גמליאל</expan>
+                            </choice> אם כן משהאשה יולדת היא <lb n="20"/> משבחת אלא שמין את הוולדות
+                            כמה <lb n="21"/> הן יפים ונותנין לבעל ואם אין לה בעל <lb n="22"/> נותנין
+                            ליורשיו היתה שפחה ונישתחררה <lb n="23"/> או גיורת פטור<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.5">  <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(rl)">ז<am rend="overmark">׳</am></label> החופר בור
+                            ברשות <lb n="24"/> הרבים ונפל לתוכו שור או חמור ומת <lb n="25"/> חייב
+                            אחד החופר בור ושיח ומער<c rend="long">ה</c>
+                            <lb n="26"/> חריצים ונעצים אם כן למה <choice>
+                                <abbr>נא<c rend="altform">מ</c><am rend="overdot">׳</am></abbr>
+                                <expan>נאמר</expan>
+                            </choice> בו<c rend="long">ר</c>
+                            <lb n="27"/> אלא מה הבור שהוא <seg>כדי<del hand="h2" rend="strike"
+                                    >י</del></seg> להמית ע<c rend="long">ד</c><lb n="28"/> עשרה
+                            טפחים אף כל דבר שהוא <seg>כדי<del hand="h2" rend="strike">י</del></seg>
+                            <lb n="29"/> להמית עד עשרה טפחים היו פחותים <lb n="30"/>
+                            <pb xml:id="S07362.130v" n="130v"/>
+                            <cb xml:id="S07362.130vA" n="130vA"/> מעשרה טפחים ונפל לתוכו שור או <lb
+                                n="1"/> חמור ומת פטור ואם הוזק בו חייב<pc rend="colon"/><lb n="2"/>
+                            <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(rl)">ח<am rend="overmark">׳</am></label> החופר בור
+                            ברשות היחיד ופתחו <lb n="3"/> לרשות הרבים ברשות הרבים ופתחו <lb n="4"/>
+                            <add hand="h2" place="margin-right">לרשות</add> הרבים אחר חייב<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.6"> <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(r)">ט<am rend="overdot">׳</am></label> בור של שני <lb
+                                n="5"/> שותפין עבר עליו הראשון ולא <add hand="h2" place="inline"
+                                >כיסהו<lb/>השיני</add>
+                            <lb n="6"/>
+                            <add hand="h2" place="margin-right">ולא</add> כיסהו השיני חייב כיסהו
+                            הראשון <lb n="7"/> ובא השיני ומצאו מגולה ולא כיסהו <lb n="8"/> השיני
+                            חייב כיסהו כראוי ונפל לתוכו <lb n="9"/> שור או חמור ומת פטור לא כיסהו
+                                <lb n="10"/> כראוי ונפל לתוכו שור או חמור ומת <lb n="11"/> חייב נפל
+                            לפניו מקול הכרייא חייב <lb n="12"/> לאחריו מקול הכרייא פטור נפל <lb
+                                n="13"/> לתוכו שור וכליו <seg><add hand="h2" place="above"
+                                >ו</add>נשתברו</seg> חמור וכליו <lb n="14"/> ונתקרעו חייב על הבהמה
+                            ופטור <lb n="15"/> על הכלים נפל לתוכו <damage>שור חרש</damage> שוטה <lb
+                                n="16"/>
+                            <damage>וקטן</damage> חייב בן או <damage>בת עבד או אמה</damage>
+                            <lb n="17"/>
+                            <damage>פטור</damage>
+                            <pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.5.7"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am></label> אחד השור ואחד
+                                <surplus>׳ ׳</surplus> כל <lb n="18"/>
+                            <damage>הבהמה לנפילת הבור</damage> ולהפרשת הר <lb n="19"/>
+                            <damage>סיני לתשלומי</damage> כפל ולהשיב אבדה <lb n="20"/>
+                            <damage>לפריקה לחסימה</damage> לכלאים ולשבת <lb n="21"/> וכן חייה ועוף
+                            כיוצא בהן אם כן למה <lb n="22"/> נאמר שור או <seg><del hand="h2"
+                                    rend="rubout" extent="4" unit="chars"/>
+                                <add hand="h2" place="inline">חמור</add></seg> אלא שדיב<c
+                                rend="long">ר</c>
+                            <lb n="23"/> הכתוב בהווה<pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ה<am rend="overmark">׳</am>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> י<am rend="overmark">׳</am></trailer>
+                        <lb n="24"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.6">
+                        <ab xml:id="S07362.4.1.6.1"> <milestone unit="MSMishnah" n="1"/>
+                            <space extent="6" unit="chars"/> הכונס צאן לדיר ונעל בפניה <lb n="25"/>
+                            כראוי ויצתה והזיקה פטור לא נעל <lb n="26"/> בפניה כראוי ויצתה והיזיקה
+                            חייב <lb n="27"/> ניפרצה <seg>בליל<del hand="h2" rend="strike"
+                                >י</del>ה</seg> או שפרצוה ליסטים <lb n="28"/> ויצתה והיזיקה פטור
+                                    <seg>הוציאוה<del hand="h2" rend="strike">ו</del></seg>
+                            <lb n="29"/> ליסטים הליסטים חייבין<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.6.2"> <milestone unit="MSMishnah" n="2"/>
+                            <label>ב<am rend="overmark">׳</am></label> היניחה <lb n="30"/>
+                            <cb xml:id="S07362.130vB" n="130vB"/> בחמה או שמסרה לחרש
+                                שו<damage>ט</damage>ה וקטן <lb n="1"/> ויצתה והיזיקה חייב מסרה
+                                לרוע<c rend="long">ה</c>
+                            <lb n="2"/>
+                            <seg>ניכנס<del hand="h2" rend="strike">ה</del></seg> הרועה תחתיו נפלה
+                                לגנ<c rend="long">ה</c>
+                            <lb n="3"/> והיזיקה משלם מה שנהנת ירדה כדרכה <lb n="4"/> והיזיקה משלם מה
+                            שהיזיקה כיצד <lb n="5"/> משלם מה שהיזיקה שמין בית סאה <lb n="6"/> באותה
+                            השדה כמה היתה יפה וכמה <lb n="7"/> היא יפה <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אם אכלה פירות <lb n="8"/> גמורים משלם פרות גמורים <seg><del
+                                    hand="h2" rend="strikes">ו</del>אם</seg> סאה <lb n="9"/> סאה ואם
+                            סאתים סאתים<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.6.3"> <milestone unit="MSMishnah" n="3"/>
+                            <label>ג<am rend="overmark">׳</am></label> המגדיש <lb n="10"/> לתוך שדה
+                            חבירו שלא ברשות אכלתן <lb n="11"/> בהמתו שלבעל השדה פטור ואם הוזקה <lb
+                                n="12"/> בהן בעל הגדיש חייב ואם היגדיש ברשות <lb n="13"/> בעל השדה
+                                חייב<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.6.4">  <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="overmark">׳</am></label> השולח <surplus
+                                reason="fill">׳ ׳</surplus> את <lb n="14"/> הבעירה ביד חרש שוטה וקטן
+                            פטור <lb n="15"/> מידיני אדם וחייב בדיני שמים שילח <lb n="16"/> ביד פקח
+                            הפיקח חייב <del hand="h2" rend="strikethrough overline">אחד הביא
+                                את</del><note>Strikethrough on את is faint.</note><lb n="17"/>
+                            <del hand="h2" rend="strikethrough overline"> האור ואחד הביא את העצים
+                                המביא</del><lb n="18"/>
+                            <del hand="h2" rend="overline">את העצים חייב</del><note>Overline on
+                                העצים is faint.</note> אחד הביא את העצים <lb n="19"/> ואחד הביא את
+                            האור המביא את האור <lb n="20"/> חייב בא אחר וליבא המלבא חייב ליבתו <lb
+                                n="21"/> הרוח הרי כולם פטורין<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(rl)">ה<am rend="overmark">׳</am></label> השולח <lb
+                                n="22"/> את הבעירה ואכלה עצים או אבנים <lb n="23"/> או עפר חייב <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> כי תצא אש ומצאה <lb n="24"/> קוצים <choice>
+                                <abbr>וג<am rend="overmark">׳</am></abbr>
+                                <expan>וגומר</expan>
+                            </choice> עיברה גדר שהוא גבוה <lb n="25"/> ארבע אמות או דרך הרבים או נהר
+                                <lb n="26"/> פטור<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(rl)">ו<am rend="overmark">׳</am></label> המדליק בתוך
+                            שלו עד כמה <lb n="27"/> תעבר הדלקה <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> לעזר בן עזריה<choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <lb n="28"/> רואין <damage>אותה</damage> כילו היא באמצע בי<c rend="long"
+                                >ת</c>
+                            <lb n="29"/> כור <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>
+                            <c rend="lig">אל</c>יעזר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שש עשרה אמה <lb n="30"/>
+                            <pb xml:id="S07362.131r" n="131r"/>
+                            <cb xml:id="S07362.131rA" n="131rA"/> כדרך הרבים <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <choice>
+                                <abbr><c rend="lig">או</c><am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> חמשים אמה <lb n="1"/>
+                            <choice>
+                                <abbr>ור<am rend="overmark">׳</am></abbr>
+                                <expan>ורבי</expan>
+                            </choice> שמעון <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overdot"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> שלם ישלם המבעיר <lb n="2"/> את הבעירה הכל לפי הדליקה<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.6.5"> <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(rl)">ז<am rend="overmark">׳</am></label><lb n="3"/>
+                            המדליק את הגדיש והיו בו כלים <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>
+                            <lb n="4"/> יהודה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> ישלם כל מה שהיה <seg><del hand="h2" rend="strikethrough"
+                                    >ש</del>בתוכו</seg>
+                            <lb n="5"/>
+                            <choice>
+                                <abbr>וחכ<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>וחכמים</expan>
+                            </choice>
+                            <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומרים</expan>
+                            </choice> אינו משלם אלא גדיש של <lb n="6"/> חטים או גדיש של שעורים היה
+                            גדי <lb n="7"/> כפות בו ועבד סמוך לו <seg><del hand="h2" rend="rubout"
+                                    >ה</del><add hand="h2" place="inline">ו</add>נישרף</seg> עמו <lb
+                                n="8"/> חייב עבד כפות לו וגדי סמוך לו<seg>
+                                <del hand="h2" rend="rubout">ה</del><add hand="h2" place="inline"
+                                    >ו</add>נישרף</seg>
+                            <lb n="9"/> עמו פטור ומודים <choice>
+                                <abbr>חכ<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>חכמים</expan>
+                            </choice>
+                            <choice>
+                                <abbr>לר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <surplus reason="fill"> ב<am rend="overmark">׳</am><c
+                                    rend="altform">מ</c><am rend="overmark">׳</am></surplus><lb
+                                n="10"/> במדליק את הבירה שהוא משלם כל <lb n="11"/> מה <seg>ש<del
+                                    hand="h2" rend="overwritten">כ</del><add rend="inline" hand="h2"
+                                    >ב</add>תו<del hand="h2" rend="overmark">ב </del><del hand="h2"
+                                    rend="overwrite">ב</del><add hand="h2" place="overwrite"
+                                >כ</add>ה</seg> שכן דרך בני אדם <lb n="12"/> להניח בבתים<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.6.6"> <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(rl)">ח<am rend="overmark">׳</am></label> גץ שיצא מתחת
+                                <lb n="13"/> הפטיש ויצא והיזיק חייב גמל שהוא <lb n="14"/> טעון פישתן
+                            ועובר ברשות הרבים <lb n="15"/> ניכנסה פישתנו לתוך החנות ודלקה <lb n="16"
+                            /> בנירו שלחנווני והדליק את הבירה <lb n="17"/> בעל הגמל חייב הניח
+                            החנווני את נירו <lb n="18"/> מבחוץ החנווני חייב <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <lb n="19"/> בנר חנוכה פטור<pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ו<am rend="overmark">׳</am>
+                            <lb n="20"/>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> ח<am rend="overmark">׳</am></trailer>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.7">
+                        <ab xml:id="S07362.4.1.7.1"> <milestone unit="MSMishnah" n="1"/> מרובה מידת
+                            תשלומי <lb n="21"/> כפל ממידת תשלומי ארבעה חמשה <lb n="22"/><note>Scribe
+                                who added vocalization inserted patah for missing waw. Cf. l.
+                                25.</note> שמידת תשלומי כפל נוהגת בדבר שיש <lb n="23"/> בו רוח חיים
+                            ובדבר שאין בו רוח חיים <lb n="24"/> ומידת תשלומי ארבעה <seg><add
+                                    hand="h2" place="above">ו</add>חמשה</seg> אינה <lb n="25"/>
+                            נוהגת אלא בשור ובשה בלבד <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> כי <lb n="26"/> יגנוב איש שור או שה<pc rend="colon">:</pc>
+                            <choice>
+                                <abbr>וגו<am rend="overmark">׳</am>
+                                    <expan>וגומר</expan>
+                                </abbr>
+                            </choice> אין הגונב <lb n="27"/>
+                            <seg><damage><del hand="h2" rend="rubbing">מ</del></damage>אחר</seg>
+                            הגנב משלם תשלומי כפל <seg><add hand="h2" place="above">ו</add>לא</seg>
+                            <lb n="28"/>
+                            <seg><add hand="h2" place="inline">ה</add>טוביח</seg> ולא <seg><add
+                                    hand="h2" place="above">ה</add>מוכר</seg> מאחר הגנב משלם <lb
+                                n="29"/> תשלומי ארבעה <seg><add hand="h2" place="above"
+                                >ו</add>חמשה</seg><pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.2">  <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(rl)">ב<am rend="overmark">׳</am></label><lb n="30"/>
+                            <cb xml:id="S07362.131rB" n="131rB"/> גנב על פי שנים וטבח ומכר על פיהם
+                                <lb n="1"/> או על פי שנים אחרים משלם תשלומי <lb n="2"/> ארבעה
+                                חמשה<note>Vocalizer adds patah for absent waw.</note> גנב ומכר בשבת
+                            גנב <lb n="3"/> ומכר לעבדה זרה גנב וטבח ומכר <lb n="4"/> ביום הכיפורים
+                            גנב משלאביו וטבח <lb n="5"/> ומכר ואחר כך <add hand="h2"
+                                place="margin-right">מת אביו<lb/> גנב וטבח<lb/> ומכר <surplus
+                                    reason="fill">ו<am rend="overdot">׳</am>אח<am rend="overdot"
+                                        >׳</am></surplus><lb/> ואחר כך</add> היקדיש משלם תשלומי <lb
+                                n="6"/> ארבעה חמשה<note>Vocalizer adds patah for absent waw.</note>
+                            גנב וטבח ומכר לרפואה <lb n="7"/> ולכלבים השוחט ונימצא טרפה השוחט <lb
+                                n="8"/> חולים בעזרה משלם תשלומי ארבעה <lb n="9"/>
+                            <seg><add hand="h2" place="inline">ו</add>חמשה</seg>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון פוטר בשני אלו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.3"> <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(rl)">ג<am rend="overmark">׳</am></label><lb n="10"/>
+                            <add hand="h2" place="margin-right">גנב</add> על פי שנים וטבח ומכר על
+                            פיהם נימצאו <lb n="11"/> זוממים משלמים לו את הכל גנב <surplus
+                                reason="fill">׳ ׳</surplus>על<lb n="12"/> פי שנים וטבח ומכר על פי
+                            שנים אחרים <lb n="13"/> אלו ואלו נימצאו זוממים הראשונים <lb n="14"/>
+                            משלמים תשלומי כפל והאחרנים משלמים <lb n="15"/> תשלומי שלשה נימצאו
+                                האחרוני<c rend="long">ם</c>
+                            <lb n="16"/> זוממים <seg><del hand="h2" rend="strike">ו</del>הוא</seg>
+                            משלם תשלומי כפל והן <lb n="17"/> משלמים תשלומי שלשה אחד מן <surplus
+                                reason="fill">ה<am rend="overdot">׳</am><c rend="altform">א</c><am
+                                    rend="overdot">׳</am></surplus>
+                            <lb n="18"/> האחרונים זומם בטלה עדות שניי<c rend="long">ה</c>
+                            <lb n="19"/> אחד מן הראשונים זומם בטלה <surplus reason="fill">׳
+                                ׳</surplus> כל <lb n="20"/> העדות שאם אין גניבה אין טביחה <lb n="21"
+                            /> ואין מכירה<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.4"> <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="overmark">׳</am></label> גנב על פי שנים
+                            וטבח <lb n="22"/> ומכר על פי עד אחד או על פי עצמו <lb n="23"/> משלם
+                            תשלומי כפל אינו משלם תשלומי <lb n="24"/> ארבעה <seg><add hand="h2"
+                                    place="above">ו</add>חמשה</seg><pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(rl)">ה<am rend="overmark">׳</am></label> גנב וטבח בשבת
+                                <lb n="25"/> גנב <add hand="h2" place="margin-right">ומכר</add> וטבח
+                            לעבודה זרה גנב משלאביו <lb n="26"/> מת אביו ואחר כך טבח ומכר גנב
+                                <surplus reason="fill"> ו<am rend="overmark">׳</am>ה<am
+                                    rend="overmark">׳</am></surplus><lb n="27"/> והיקדיש ואחר כך טבח
+                            ומכר משלם <lb n="28"/> תשלומי כפל ואינו משלם תשלומי ארבעה <lb n="29"/>
+                            <seg><add hand="h2" place="inline">ו</add>חמשה</seg>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> שמעון <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> קדשים שהוא <lb n="30"/>
+                            <pb xml:id="S07362.131v" n="131v"/>
+                            <cb xml:id="S07362.131vA" n="131vA"/> חייב באחריותן משלם תשלומי ארבעה
+                                <lb n="1"/>
+                            <seg><add hand="h2" place="inline">ו</add>חמשה</seg> ושאינו חייב
+                            באחריותן פטור <lb n="2"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.5"> <milestone unit="MSMishnah" n="6"/>
+                            <label rend="align(right)">ו<am rend="overmark">׳</am></label> מכרו חוץ
+                            מאחד <seg><add hand="h2" place="inline">מ</add>מאה</seg> בו או שהיתה <lb
+                                n="3"/> לו <seg>ב<del hand="h2" rend="rubbed" unit="chars"
+                                    extent="1"/><add hand="h2" place="inline">ו</add></seg> שותפות
+                            השוחט וניתנבלה בידו <lb n="4"/> הנוחר והמעקר משלם תשלומי כפל <lb n="5"/>
+                            ואינו משלם תשלומי ארבעה חמשה <lb n="6"/>
+                            <milestone unit="MSMishnah" n="7"/>
+                            <label rend="align(right)">ז<am rend="overmark">׳</am></label> גנב ברשות
+                            הבעלים וטבח ומכר<del hand="h2" rend="rubbed"><add place="margin-left"
+                                    hand="h2">?</add></del><lb n="7"/> חוץ מרשותן <add hand="h2"
+                                place="margin-right">או שגנב חוץ<lb/> מרשותן<lb/> וטבח ומכר</add>
+                            וטבח ומכר ברשותן <lb n="8"/> או שגנב וטבח ומכר חוץ מרשותן <lb n="9"/>
+                            משלם תשלומי ארבעה <seg><add hand="h2" place="above">ו</add>חמשה</seg>
+                            אבל <lb n="10"/> אם גנב וטבח ומכר ברשותן פטור <lb n="11"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.6"> <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(r)">ח<am rend="overmark">׳</am></label> היה מושכו ויוצא
+                            ומת ברשות <lb n="12"/> הבעלים פטור היגביהו או שהוציאו <lb n="13"/> חוץ
+                            מרשות הבעלים ומת חייב<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="9"/>
+                            <label rend="align(left)">ט<am rend="overmark">׳</am></label><lb n="14"
+                            /> נתנו <seg>לבכור<del hand="h2" rend="strike">ו</del>ת</seg> בנו לבעל
+                            חובו לשומר <lb n="15"/> חנם ולשואל לנושא שכר ולשוכר <lb n="16"/> היה
+                            מושכו ויוצא ומת ברשות הבעלים <lb n="17"/> פטור היגביהו או שהוציאו
+                                <surplus reason="fill">׳ ׳</surplus>חוץ<lb n="18"/> מרשות הבעלים ומת
+                                חייב<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.7.7"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am></label> אין <lb n="19"
+                            /> מגדלים בהמה דקה בארץ <choice>
+                                <abbr>י<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> אבל <surplus reason="fill">
+                                <c rend="altform">מ</c><am rend="overmark">׳</am>
+                            </surplus>
+                            <lb n="20"/> מגדלים בסוריה ובמדברות שבארץ <lb n="21"/>
+                            <choice>
+                                <abbr>י<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> אין מגדלים תרנגלים בירושלם מפני <lb n="22"/> הקדשים ולא כהנים
+                            בארץ <choice>
+                                <abbr>י<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> מפני <lb n="23"/> הטהרות לא יגדל <choice>
+                                <abbr>י<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>ישראל</expan>
+                            </choice> חזירים בכל מקום <lb n="24"/> ולא יגדל אדם את הכלב אלא אם כן
+                                <lb n="25"/> היה קשור בשלשלת אין פורסין נשבים <lb n="26"/> ליונים
+                            אלא אם כן היה רחוק מן היושב <lb n="27"/> שלושים <seg>ר<del hand="h2"
+                                    rend="overwrite">י</del><add hand="h2" place="overwrite"
+                                >ו</add>ס</seg>
+                            <pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ז<am rend="overmark">׳</am>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> י<am rend="overmark">׳</am></trailer>
+                        <lb n="28"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.8">
+                        <ab xml:id="S07362.4.1.8.1"> <milestone unit="MSMishnah" n="1"/>
+                            <space extent="5" unit="chars"/> החובל בחבירו חייב עליו משם <lb n="29"/>
+                            חמשה דברים בנזק בצער בריפוי <lb n="30"/>
+                            <cb xml:id="S07362.131vB" n="131vB"/> בשיבת ובבושת בניזק כיצד סמה את <lb
+                                n="1"/> עינו <seg>ק<del hand="h2" rend="rubout" extent="1"
+                                    unit="chars"/><add hand="h2" place="inline">ט</add>ע</seg> את
+                            ידו שבר את רגלו רואין <lb n="2"/> אותו כילו עבד נימכר כמה היה יפה <lb
+                                n="3"/> וכמה הוא יפה בצער <seg>כ<del rend="overwritten" hand="h2"
+                                    extent="1" unit="chars"/><add hand="h2" place="inline"
+                                >ו</add>יו</seg> בשפוד או <lb n="4"/> במסמר אפילו על צפורנו מקום
+                            שאינו <lb n="5"/> עושה חבורה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> כמה אדם כיוצא <lb n="6"/> בזה <add hand="h2"
+                                place="margin-right">רוצה</add> ליטול להיות מיצטער כך<pc
+                                rend="colon"/>
+                            <milestone unit="MSMishnah" n="2"/>
+                            <label rend="align(left)">ב<am rend="overmark">׳</am></label> ריפוי <lb
+                                n="7"/> היכהו חייב לרפותו עלו בו צמחים אם <lb n="8"/> מחמת המכה חייב
+                            ושלא מחמת המכה <lb n="9"/> פטור חייתה וניסתרה חיתה וניסתרה <lb n="10"/>
+                            חייב לרפותו חיתה כל צרכה אינו חייב <lb n="11"/> לרפותו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(rl)">ג<am rend="overmark">׳</am></label> שיבת רואין
+                            אותו כילו <lb n="12"/> הוא שומר קישואים שכבר נתן לו דמי <lb n="13"/> ידו
+                            ודמי רגלו בושת הכל לפי המבייש <lb n="14"/> והמתביש <seg>ה<add hand="h2"
+                                    place="above">מ</add>בייש</seg> את הערום המבייש <lb n="15"/> את
+                            הסומה המבייש את היישן חיב <lb n="16"/> והיישן שביש פטור נפל מן הגג והזיק
+                                <lb n="17"/> ובייש חייב על הנזק ופטור על הבושת <lb n="18"/>
+                            <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> ושלחה ידה והחזיקה במבושיו <lb n="19"/> אינו חייב על הבושת עד
+                            שיהא מתכוון<pc rend="colon"/><lb n="20"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.2">  <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(l)">ד<am rend="overmark">׳</am></label> זה חומר באדם
+                            מבשור וחומ<c rend="long">ר</c>
+                            <lb n="21"/> שוב באדם מבשור שהאדם משל<c rend="long">ם</c>
+                            <lb n="22"/> את הנזק ומשלם דמי וולדות ושור אינו <lb n="23"/> משלם אלא
+                            נזק ופטור מדמי וולדות <lb n="24"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.3">  <milestone unit="MSMishnah" n="5"/>
+                            <label>ה<am rend="overmark">׳</am></label> המכה אביו ואמו ולא עשה בהם
+                                <surplus reason="fill">ה<am rend="overmark">׳</am></surplus><lb
+                                n="25"/> חבורה החובל בחבירו ביום הכיפורים חייב <lb n="26"/> בכולם
+                            החובל בעבד עברי חייב בכולם חוץ <lb n="27"/> מן השבת בזמן שהוא שלו החובל
+                            בעבד <lb n="28"/> עברי <add hand="h2" place="margin-right" type="comm">
+                                <choice>
+                                    <abbr>נ<am rend="overdot">׳</am>א<am rend="overdot">׳</am>
+                                        <expan>נוסח אחר</expan></abbr>
+                                </choice>כנעני </add> שלאחרים חייב בכולם <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <lb n="29"/>
+                            <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אין לעבדים בושת<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.4">  <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(rl)">ו<am rend="overmark">׳</am></label> חרש שוטה <lb
+                                n="30"/>
+                            <pb xml:id="S07362.132r" n="132r"/>
+                            <cb xml:id="S07362.132rA" n="132rA"/> וקטן פגיעתם רעה החובל בהם חייב <lb
+                                n="1"/> והם שחבלו באחרים פטורין העב<c rend="long">ד</c>
+                            <lb n="2"/> והאשה פגיעתם רעה החובל בהן חייב <lb n="3"/> והם שחבלו באחרים
+                            פטורין אבל <lb n="4"/> משלמים לאחר <seg><del hand="h2" rend="rubbed"
+                                    extent="2" unit="chars"/><add hand="h2" place="inline"
+                                >זמ</add>ן</seg> נתגרשה האש<c rend="long">ה</c>
+                            <lb n="5"/> ונישתחרר העבד חייבים לשלם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.5"> <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(rl)">ז<am rend="overmark">׳</am></label><lb n="6"/>
+                            המכה אביו ואמו ועשה בהן חבורה <surplus reason="fill">ה<am
+                                    rend="overmark">׳</am></surplus>
+                            <lb n="7"/> החובל בחבירו בשבת פטור מכולם מפני <lb n="8"/> שהוא נידון
+                            בנפשו והחובל בעבד כנעני <lb n="9"/> שלו פטור מכולם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.6"> <milestone unit="MSMishnah" n="8"/>
+                            <label>ח<am rend="overmark">׳</am></label> התוקיע לחבירו <lb n="10"/>
+                            נותן לו סלע <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> משם <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יוסה <lb n="11"/> הגלילי מנה סטרו נותן לו מאתים זוז <lb n="12"
+                            /> לאחר ידו נותן לו ארבע מאות זוז <surplus reason="fill">צ<am
+                                    rend="overmark">׳</am></surplus><lb n="13"/> צרם באזנו תלש בסערו
+                            רקק היגיע <lb n="14"/> בו הרוק העביר טליתו ממנו פרע <surplus
+                                reason="fill">ר<c rend="altform">א</c><am rend="overmark"
+                                >׳</am></surplus>
+                            <lb n="15"/> ראשה שלאשה נותן לו ארבע מאות <lb n="16"/> זוז והכל לפי
+                                כבודו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(rl)">ט<am rend="overmark">׳</am></label>
+                            <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <lb n="17"/> אפילו עניים <choice>
+                                <abbr>שבי<c rend="altform">ש</c><am rend="overmark">׳</am></abbr>
+                                <expan>שבישראל</expan>
+                            </choice> רואין אותן כילו <lb n="18"/> הן בני חורין שירדו מנכסיהם שהם
+                                <lb n="19"/> בני אברהם יצחק ויעקב מעש<c rend="long">ה</c>
+                            <lb n="20"/> באחד שפרע ראשה שלאשה ובאת <lb n="21"/> לפני <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה וחייבו ליתן לה ארבע <lb n="22"/> מאות זוז <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> תן לי זמן ונתן לו <lb n="23"/> שימרה עומדת <seg><del hand="h2"
+                                    rend="rubbed" extent="5" unit="chars"/>
+                                <add hand="h2" place="inline">על פתח</add></seg> חצירה ושבר <lb
+                                n="24"/> את הפך בפניה ובו <seg>באס<del hand="h2" rend="rubbed"
+                                    extent="1" unit="chars"/><add hand="h2" place="inline"><c
+                                        rend="long">ר</c></add></seg> שמן וגילת <lb n="25"/> את ראשה
+                            והיתה מטפחת ומנחת על <lb n="26"/> ראשה והעמיד עליה עדים ובא לפני <lb
+                                n="27"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <choice>
+                                <abbr>ו<c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="overmark">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice> לו <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> לזו אני נותן ארבע <lb n="28"/> מאות זוז <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <seg><del rend="rubbed" extent="2" unit="chars"
+                                    hand="h2"/><add place="inline" hand="h2">לא</add></seg> אמרתה
+                                <lb n="29"/> כלום שהחובל בעצמו אף על פי שאינו <lb n="30"/>
+                            <cb xml:id="S07362.132rB" n="132rB"/> רשיי פטור ואחרים שחבלו בו חייבים
+                                <lb n="1"/> והקוצץ את נטיעותיו אף על פי <lb n="2"/> שאינו רשיי פטור
+                            ואחרים שקצצו <lb n="3"/> את נטיעותיו חייבים<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.8.7"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(r)">י<am rend="overmark">׳</am></label> אף על פי <lb
+                                n="4"/> שהוא נותן לו אינו נימחל לו עד שיבקש <lb n="5"/> ממנו <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> ועתה השב אשת האיש <choice>
+                                <abbr>וגו<am rend="overmark">׳</am></abbr>
+                                <expan>וגומר</expan>
+                            </choice><lb n="6"/> ומניין שלא יהא המוחל אכזרי <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice><lb n="7"/> ויתפלל אברהם אל <choice>
+                                <abbr>ה<c rend="altform">א</c><c rend="altform">ה</c>ים
+                                        <expan>האלוהים</expan></abbr>
+                            </choice>
+                            <choice>
+                                <abbr>וגו<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>וגומר</expan>
+                            </choice>
+                            <pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="11"/>
+                            <label rend="pad(r)">י<am rend="overmark">׳</am>א<am rend="overmark"
+                                    >׳</am></label><lb n="8"/> האומר סמה את עיני <seg>ק<del
+                                    hand="h2" rend="rubbed" extent="1" unit="chars"/><add hand="h2"
+                                    place="inline">ט</add>ע</seg> את ידי <lb n="9"/> שבר את רגלי
+                            חייב על מנת פטור חייב <lb n="10"/> קרע את כסותי שבר את <seg>כדי<del
+                                    unit="chars" extent="1" rend="rubbed">י</del></seg> חייב על <lb
+                                n="11"/> מנת פטור פטור עשה כן לאיש <choice>
+                                <abbr>פל<am rend="overdot">׳</am></abbr>
+                                <expan>פלוני</expan>
+                            </choice>
+                            <lb n="12"/> על מנת פטור חייב בין בגופו בין בממנו<pc rend="colon"/><lb
+                                n="13"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ח<am rend="overmark">׳</am>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> י<am rend="overmark">׳</am>א<am rend="overmark">׳</am>
+                        </trailer>
+                        <lb n="14"/>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.9">
+                        <ab xml:id="S07362.4.1.9.1"> <milestone unit="MSMishnah" n="1"/> הגוזל עצים
+                            ועשאן כלים צמר ועשאו <lb n="15"/>
+                            <seg>בגד<del extent="2" unit="chars" hand="h2"/></seg><note>Appears to
+                                have been vocalized בגדים. After removal of ים, vocalization
+                                partially erased.</note> משלם כשעת הגזילה גזל פרה <lb n="16"/>
+                            מעוברת וילדה ורחל טעונה וגזזה <lb n="17"/> משלם דמי פרה <seg><del
+                                    hand="h2" rend="rubbed" extent="1" unit="chars"/><add hand="h2"
+                                    place="above">מ</add>עוברת</seg> לילד ודמי <lb n="18"/> רחל
+                            טעונה להיגזז <seg><del hand="h2" rend="rubbed" extent="1" unit="chars"
+                                />גזל</seg><note>Deletion appears to be lamed.</note> פרה ועיברה <lb
+                                n="19"/> אצלו <add hand="h2" place="margin-left">וילדה ורחל<lb/>
+                                ונטענה אצלו</add> וגזזה משלם כשעת הגזילה <lb n="20"/> זה הכלל כל
+                            הגוזלנים משלמים <add hand="h2" place="margin-right">כשעת</add> הגזילה
+                                <lb n="21"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.2"> <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(l)">ב<am rend="overmark">׳</am></label> גזל <seg>ב<del
+                                    hand="h2" rend="overwritten">ד</del><add hand="h2"
+                                    place="inline">ה</add>מה</seg> והיזיקינה עבדים <lb n="22"/>
+                            והיזקינו משלם כשעת הגזלה <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <lb n="23"/>
+                            <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>יא<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>יאמר</expan>
+                            </choice> לו בעבדים הרי עבדך לפניך <lb n="24"/>
+                            <pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(l)">ג<am rend="overmark">׳</am></label> גזל מטביע ונסדק
+                            פירות והירקיבו <lb n="25"/> יין והחמיץ משלם כשעת הגזיל<c rend="long"
+                                >ה</c>
+                            <lb n="26"/>
+                            <damage> מטיבע</damage>
+                            <seg>ונ<del hand="h2" rend="rubbed"/><add hand="h2" place="overwrit"
+                                    >פסל</add></seg> תרומה וניטמאת חמץ <lb n="27"/>
+                            <damage>ועבר</damage> עליו הפסח בהמה ונעבד<c rend="long">ה</c>
+                            <lb n="28"/> בה עברה או שניפסלה מעל גבי <lb n="29"/> המזבח או שהיתה
+                            יוצאה ליסקל <lb n="30"/>
+                            <pb xml:id="S07362.132v" n="132v"/>
+                            <cb xml:id="S07362.132vA" n="132vA"/>
+                            <choice>
+                                <abbr><c rend="altform">א</c><c rend="altform">מ</c><am
+                                        rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לו הרי שלך לפניך<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.3"> <milestone unit="MSMishnah" n="4"/>
+                            <label>ד<am rend="overdot">׳</am></label> נתן לאומנים <lb n="1"/> לתקן
+                            וקלקלו חייבים לשלם נתן <surplus reason="fill">ל<am rend="overmark"
+                                    >׳</am></surplus>
+                            <lb n="2"/> לחרש שידה ותיבה ומגדל לתקן וקלקל <lb n="3"/> חייב לשלם הבניי
+                            שקיבל עליו את הכותל <lb n="4"/> לסותרו ושיבר את האבנים או שהיזיק <lb
+                                n="5"/> חייב לשלם היה סותר מצד זה ונפ<c rend="long">ל</c>
+                            <lb n="6"/>
+                            <damage>לצד א</damage>חר פטור ואם מחמת המכ<c rend="long">ה</c>
+                            <lb n="7"/> חייב<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.4">  <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(rl)">ה<am rend="overmark">׳</am></label> נתן צמר לצבע
+                            והיקדיחה <lb n="8"/>
+                            <seg><add hand="h2" place="above">ה</add>יורה</seg> נותן לו דמי צימרו
+                            צבעו כאור <lb n="9"/> אם השבח יותר על היצאה נותן <surplus reason="full"
+                                >׳ ׳</surplus> לו <lb n="10"/> את היצאה ואם היצאה <seg>י<del
+                                    hand="h2" rend="overwritten" extent="1" unit="chars"/><add
+                                    hand="h2" place="inline"><c rend="long">ת</c></add>ירה</seg> על
+                                <lb n="11"/> השבח נותן לו את השיבח<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(l)">ו<am rend="overdot">׳</am></label> לצבוע <lb n="12"
+                            /> לו אדם וצבעו שחור <add hand="h2" place="margin-right">שחור</add>
+                            וצבעו אדו<c rend="long">ם</c>
+                            <lb n="13"/>
+                            <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> נותן לו דמי צימרו <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יודה <lb n="14"/>
+                            <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אם השבח יתר על היצאה נותן <lb n="15"/> לו את היצאה ואם היצאה
+                            יתירה על <lb n="16"/> השבח נותן לו את השבח<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.5">  <milestone unit="MSMishnah" n="7"/>
+                            <label>ז<am rend="overdot">׳</am></label> הגוזל <lb n="17"/> את חבירו
+                            שווה פרוטה ונשבע <surplus reason="fill">׳ ׳</surplus> לו <lb n="18"/>
+                            יוליכנו אחריו אפלו למדיי לא יתן לא <lb n="19"/> לבנו ולא לשלוחו אבל נותן
+                            הוא לשלוח <lb n="20"/> בית דין ואם מת יחזיר ליורשיו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.6">  <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(rl)">ח</label><lb n="21"/> נתן לו את הקרן ולא נתן לו את
+                            החומש <lb n="22"/> מחל לו על הקרן ולא מחל לו על החומש <lb n="23"/> מחל
+                            לו על זה ועל זה חוץ מפחו<c rend="long">ת</c>
+                            <lb n="24"/> שווה פרוטה בקרן <seg><del hand="h2" rend="strike"
+                                >ו</del>אינו</seg> צריך לילך <lb n="25"/> אחריו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(rl)">ט<am rend="overdot">׳</am></label> נתן לו את החומש
+                            ולא <lb n="26"/> נתן לו את הקרן מחל לו על החומש ולא <lb n="27"/> מחל לו
+                            על הקרן מחל לו על זה ועל זה <lb n="28"/> חוץ משווה פרוטה בקרן הרי זה
+                            צריך <lb n="29"/> לילך אחריו<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.7">  <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(rl)">י<am rend="overdot">׳</am></label> נתן לו את הקרן
+                            ונישבע <lb n="30"/>
+                            <cb xml:id="S07362.132vB" n="132vB"/> לו על החומש הרי זה משלם חומש על
+                                <lb n="1"/> חומש עד <seg>ש<del hand="h2" rend="strikethrough"
+                                    >ת</del>יתמעט</seg> הקרן <seg><del hand="h2" rend="rubout"
+                                    >ו</del>שוו<c rend="long">ה</c></seg>
+                            <lb n="2"/> פרוטה וכן בפיקדון או בתשומת יד <lb n="3"/> או בגזל או עשק את
+                            עמיתו או מצא <lb n="4"/> אבדה וכחש בה ונשבע על שקר הרי זה <lb n="5"/>
+                            משלם קרן וחומש ואשם<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="11"/>
+                            <label>י<am rend="overmark">׳</am>א<am rend="overmark"
+                            >׳</am></label>איכן <lb n="6"/>
+                            <seg>פיק<del hand="h2" rend="strike">ו</del>דני</seg>
+                            <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו אבד משביעך אני <choice>
+                                <abbr>וא<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice>
+                            <lb n="7"/> אמן <seg><add hand="h2" place="above">ו</add>העדים</seg>
+                            מעידים אתו שאכלו משלם <lb n="8"/> את הקרן הודה מעצמו משלם קרן <surplus
+                                reason="fill">ו<am rend="overmark">׳</am>ח<am rend="overmark"
+                                >׳</am></surplus>
+                            <lb n="9"/> וחומש ואשם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.8"> <milestone unit="MSMishnah" n="12"/>
+                            <label rend="pad(r)">י<am rend="overmark">׳</am>ב<am rend="overmark"
+                                    >׳</am></label> איכן פיקדני <choice>
+                                <abbr>וא<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice>
+                            <lb n="10"/> לו ניגנב משביעך אני <choice>
+                                <abbr>וא<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overdot">׳</am></abbr>
+                                <expan>אמן</expan>
+                            </choice> והעדים <lb n="11"/> מעידים אותו שגנבו משלם תשלומי <lb n="12"/>
+                            כפל הודה מעצמו משלם קרן וחומש <lb n="13"/> ואשם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.9">  <milestone unit="MSMishnah" n="13"/>
+                            <label rend="pad(r)">י<am rend="overmark">׳</am>ג<am rend="overmark"
+                                    >׳</am></label> הגוזל את אביו ונישבע לו <lb n="14"/> ומת הרי זה
+                            משלם קרן וחומש לבניו <lb n="15"/> ולאחיו ואם אינו רוצה או שאין לו לווה
+                                <lb n="16"/> ובעלי החוב באין וניפרעין<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.10">  <milestone unit="MSMishnah" n="14"/>
+                            <label>י<am rend="overmark">׳</am>ד<am rend="overmark"
+                            >׳</am></label>האומר <lb n="17"/> לבנו קונס שאת נהנה לי אם מת ירשנו <lb
+                                n="18"/> בחיי ובמותי אם מת לא ירשינו <seg><add hand="h2"
+                                    place="above">ו</add>יתן</seg>
+                            <lb n="19"/> לבניו ולאחיו אם אין לו לווה ובעלי <lb n="20"/> החוב באין
+                                וניפרעין<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.9.11">
+                            <milestone unit="MSMishnah" n="15"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ה<am rend="overmark"
+                                    >׳</am></label> הגוזל את <lb n="21"/> הגר ונשבע לו ומת הרי זה
+                            משלם קרן <lb n="22"/> וחומש לכהנים ואשם למזבח <choice>
+                                <abbr>שנ<am rend="overmark">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> ואם <lb n="23"/> אין לאיש גואל <choice>
+                                <abbr>וגו<am rend="overmark">׳</am></abbr>
+                                <expan>וגומר</expan>
+                            </choice> היה מעלה א<c rend="long">ת</c>
+                            <lb n="24"/> הכסף <add hand="h2" place="margin-right">ואת האשם<lb/> ומת
+                                הכסף</add> ינתן לבניו והאשם יירעה עד <lb n="25"/> שייסתאב וימכר
+                            ויפלו דמיו לנדבה </ab>
+                        <ab xml:id="S07362.4.1.9.12"> נתן<lb n="26"/> את הכסף לאנשי משמר ומת אין
+                                <lb n="27"/> היורשין יכולין להוציא מידן <choice>
+                                <abbr>שנ<am rend="geresh">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice>
+                            <seg><del hand="h2" rend="strikes">ו</del>איש</seg>
+                            <lb n="28"/> אשר יתן לכהן לו יהיה<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="16"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ו</label>נתן <lb n="29"
+                            /> את הכסף ליהויריב ואשם לידעיה <lb n="30"/>
+                            <pb xml:id="S07362.133r" n="133r"/>
+                            <cb xml:id="S07362.133rA" n="133rA"/> יצא אשם ליהויריב וכסף לידעיה <lb
+                                n="1"/> אם קיים האשם יקריבוהו בני ידעיה <lb n="2"/> ואם לאיו יחזור
+                            ויביא אשם <seg>אח<del rend="overwritten" hand="h2"><c rend="long"
+                                    >ד</c></del><add place="inline" hand="h2">ר</add></seg>
+                            <lb n="3"/> שהמביא גזלו עד <seg>של<del hand="h2" rend="overwritten"
+                                    >ו</del><add hand="h2" place="inline">א</add></seg> הביא אשמו
+                                <lb n="4"/> יצא אשמו עד שלא הביא גזלו לא <lb n="5"/> יצא נתן את הקרן
+                            ולא נתן החומש <lb n="6"/> אין החומש מעכב <pc rend="colon"/>
+                        </ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> ט<am rend="overmark">׳</am>
+                            <lb n="7"/>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> יו<am rend="overmark">׳</am>
+                        </trailer>
+                    </div3>
+                    <div3 xml:id="S07362.4.1.10">
+                        <ab xml:id="S07362.4.1.10.1"> <milestone unit="MSMishnah" n="1"/> הגוזל
+                            ומאכיל את <lb n="8"/> בניו ומניח לפניהם פטורים מלשלם <lb n="9"/> אם היה
+                            דבר שיש לו אחריות חייבים <lb n="10"/> לשלם אין <seg>פור<del hand="h2"
+                                    rend="rubbed" extent="1" unit="chars"/><add hand="h2"
+                                    place="overwrit">טי</add>ן</seg> לא מיתבת המוכסים <lb n="11"/>
+                            ולא מכיס שלגביים ואין נוטלין מהן <lb n="12"/> צדקה אבל נוטל הוא מתוך
+                                    <seg>בית<del hand="h2" rend="overwritten">י</del><add hand="h2"
+                                    place="inline">ו</add></seg> או <lb n="13"/> מן השוק<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.2"> <milestone unit="MSMishnah" n="2"/>
+                            <label rend="pad(rl)">ב<am rend="overmark">׳</am></label> נטלו מוכסים
+                            חמורו <lb n="14"/> ונתנו לו חמור אחר הליסטים <surplus reason="fill">כ<am
+                                    rend="overdot">׳</am>ס<am rend="overdot">׳</am></surplus>
+                            <lb n="15"/> כסותו ונתנו לו כסות אחרת הרי <surplus reason="fill">א<am
+                                    rend="overdot">׳</am></surplus><lb n="16"/> אילו שלו מפני
+                            שהבעלים <seg>מיתי<del hand="h2" rend="strikethrough rubbed"
+                                >ו</del>אשים</seg>
+                            <lb n="17"/> מהן המציל מיד הנהר מיד הליסטים <lb n="18"/> אם
+                                    <seg>ניתי<del hand="h2" rend="strikethrough rubbed"
+                                >ו</del>אשו</seg> הבעלים הרי אלו שלו <lb n="19"/> וכן נחיל שלידבורים
+                            אם <seg>ניתי<del hand="h2" rend="strikethrough">ו</del>אשו</seg>
+                            <lb n="20"/> הבעלים הרי אלו שלו <choice>
+                                <abbr><c rend="altform">א</c>מ<am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יוחנן בן <lb n="21"/> ברוקה נאמנת אשה או קטן לומר <lb n="22"/>
+                            מיכן יצא נחיל זה ומהלך בתוך שדיהו <lb n="23"/> ונוטיל את נחילו ואם היזיק
+                            משלם <lb n="24"/> מה שהזיק אבל לא יקוץ את הסוכה <lb n="25"/> על מנת ליתן
+                            דמים <choice>
+                                <abbr>ר<am rend="overmark">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ישמע<c rend="altform">א</c><am rend="overdot">׳</am></abbr>
+                                <expan>ישמאעל</expan>
+                            </choice> בנו של <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice>
+                            <lb n="26"/> יוחנן בן ברוקה <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> קוצץ ונותן דמים<pc rend="colon"/><lb n="27"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.3"> <milestone unit="MSMishnah" n="3"/>
+                            <label rend="pad(rl)">ג</label> המכיר את כליו או ספריו ביד <lb n="28"/>
+                            אחר אם יצא לו שם גניבה בעיר יישבע <lb n="29"/> כמה הוציא ויטול ואם
+                                לא<damage>ו</damage>
+                            <damage>ל</damage>א<note>The edition of the Academy for the Hebrew
+                                Language marks this as deletion, rather than damage.</note> הכל <lb
+                                n="30"/>
+                            <cb xml:id="S07362.133rB" n="133rB"/> ממנו שני <choice>
+                                <abbr>או<am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> מכרן לאחר ולקחן זה <seg>מ<del hand="h1" rend="strikethrough"
+                                    >זה</del></seg>
+                            <lb n="1"/>
+                            <seg>מ<del hand="h1" rend="overwritten">נ</del><add hand="h1"
+                                    place="inline">מ</add>נו</seg><pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.4"> <milestone unit="MSMishnah" n="4"/>
+                            <label rend="pad(rl)">ד<am rend="overmark">׳</am></label> זה בא בחביתו
+                            של יין וזה <lb n="2"/> בא בכדו של דבש ניסדקה חבית של <lb n="3"/> דבש
+                            ושפך זה את יינו והציל את הדבש <lb n="4"/> לתוכה אין לו אלא שכרו אם <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו אציל <lb n="5"/> את שלך ואתה נותן לי דמי שלי חייב <lb n="6"
+                            /> ליתן לו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="5"/>
+                            <label rend="pad(rl)">ה<am rend="overmark">׳</am></label> שטף הנהר חמורו
+                            וחמור <lb n="7"/> חבירו שלו יפה מנה ושלחבירו מאתים <lb n="8"/> היניח את
+                            שלו והיציל את שלחבירו <lb n="9"/> אין לו אלא שכרו אם <choice>
+                                <abbr>א<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו אציל את שלך <lb n="10"/> ואתה נותן לי דמי שלי חייב ליתן
+                                    <seg>ל<del rend="overwritten" hand="h1">י</del><add hand="h1"
+                                    place="inline">ו</add></seg><pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.5"> <milestone unit="MSMishnah" n="6"/>
+                            <label rend="pad(rl)">ו<am rend="overmark">׳</am></label><lb n="11"/>
+                            הגוזל <seg>שדה<del hand="h2" rend="strike">ו</del></seg>
+                            <seg>ונטלוה<del hand="h2" rend="strike">ו</del></seg> המסיקים א<c
+                                rend="long">ם</c>
+                            <lb n="12"/> מכת מדינה הוא <choice>
+                                <abbr>או<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לו הרי שלך לפניך <lb n="13"/> ואם מחמת <seg>הגוז<del hand="h2"
+                                    unit="chars" extent="1" rend="overwritten"/><add>ל</add>ן</seg>
+                            חייב להעמיד לו שדה <lb n="14"/> שטפה נהר <choice>
+                                <abbr><c rend="lig">או</c><c rend="altform">מ</c><am rend="overmark"
+                                        >׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לו הרי שלך לפניך<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.6">
+                            <milestone unit="MSMishnah" n="7"/>
+                            <label rend="pad(rl)">ז<am rend="overmark">׳</am></label><lb n="15"/>
+                            הגוזל את חבירו או שלווה המינו או <lb n="16"/> שהפקיד לו ביושב לא יחזיר
+                            לו במדבר <lb n="17"/> על מנת לצאת למדבר יחזיר לו במדבר <lb n="18"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.7">  <milestone unit="MSMishnah" n="8"/>
+                            <label rend="pad(rl)">ח<am rend="overmark">׳</am></label>
+                            <choice>
+                                <abbr>האו<c rend="altform">מ</c><am rend="overmark">׳</am></abbr>
+                                <expan>האומר</expan>
+                            </choice> לחבירו גזלתיך והילויתני <lb n="19"/> הפקדתה אצלי ואיני יודע אם
+                            החזרתי <lb n="20"/> לך אם לא <seg><add hand="h2" place="above"
+                                >ה</add>חזרתי</seg> חייב לשלם אבל איני <lb n="21"/> יודיע אם גזלתיך
+                            ואם הלויתני <space extent="2" unit="chars"/> אם <lb n="22"/> היפקדתה
+                            אצלי ואם לא היפקדת<c rend="long">ה</c><lb n="23"/> פטור מלשלם<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.8"> <milestone unit="MSMishnah" n="9"/>
+                            <label rend="pad(rl)">ט<am rend="overmark">׳</am></label> הגונב טלה מן
+                                <lb n="24"/> העדר והחזירו מת או ניגנב חייב <surplus reason="fill"
+                                    >בא<am rend="overmark">׳</am>ח<am rend="overmark"
+                                >׳</am></surplus>
+                            <lb n="25"/> באחריותו ואם לא ידעו הבעלים בגניבתו <lb n="26"/> ובחזירתו
+                            ומנו מן הצאן והוא שלימה <lb n="27"/> פטור מלשלם<pc rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.9"> <milestone unit="MSMishnah" n="10"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am></label> אין לוקחין
+                                <surplus reason="fill">׳ ׳</surplus> מן <lb n="28"/> הרועים צמר וחלב
+                                    <seg>וג<del hand="h2" rend="strike">י</del>דים</seg> ולא משומרי
+                                <lb n="29"/> פרות עצים ופרות אבל לוקחין מן הנשים <lb n="30"/>
+                            <pb xml:id="S07362.133v" n="133v"/>
+                            <cb xml:id="S07362.133vA" n="133vA"/> כלי פשתן בגליל ועגלים בשרון וכולם
+                                <lb n="1"/> שאמרו הטמן אסור לוקחים ביצים <lb n="2"/>
+                            <seg>ות<del hand="h2" rend="strike">ו</del>רנגלים</seg> מכל מקום<pc
+                                rend="colon"/>
+                        </ab>
+                        <ab xml:id="S07362.4.1.10.10"> <milestone unit="MSMishnah" n="11"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>א<am rend="overmark"
+                                    >׳</am></label> מוכים <lb n="3"/> שהכובס מוציא הרי אלו שלו
+                            שהסרוק <lb n="4"/> מוציא הרי הן שלבעל הבית הכוב<c rend="long">ס</c>
+                            <lb n="5"/> נוטל שלשה חוטין והן שלו יתר מיכן <lb n="6"/> שלבעל הבית ואם
+                            היה שחור על גבי <lb n="7"/> לבן נוטל את הכל והן שלו<pc rend="colon"/>
+                            <milestone unit="MSMishnah" n="12"/>
+                            <label rend="pad(rl)">י<am rend="overmark">׳</am>ב<am rend="overmark"
+                                    >׳</am></label> החייט <lb n="8"/> ששייר מן החוט כדי לתפור בו
+                            מטלת <lb n="9"/> שהיא שלוש על שלוש חייב <seg>ל<add hand="h2"
+                                    place="above">ה</add>חזיר</seg>
+                            <lb n="10"/> לבעלים מה שחרש מוציא במעצד <lb n="11"/> הרי אלו שלו ובכשיל
+                            הרי אלו שלבעל <lb n="12"/> הבית אם היה עושה אצל בעל הבית <lb n="13"/> אף
+                            הנסורת שלבעל הבית <space extent="5" unit="chars"/><lb n="14"/>
+                            <pc rend="colon"/></ab>
+                        <trailer rend="pad(rl)">
+                            <choice>
+                                <abbr>פר<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>פרק</expan>
+                            </choice> י<am rend="overmark">׳</am>
+                            <choice>
+                                <abbr>הל<am rend="overmark">׳</am>
+                                </abbr>
+                                <expan>הלכות</expan>
+                            </choice> י<am rend="overmark">׳</am>ב<am rend="overmark">׳</am>
+                        </trailer>
+                        <lb n="15"/>
+                    </div3>
+
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>

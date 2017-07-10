@@ -2,391 +2,399 @@
 <?xml-model href="brown_odds.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="brown_odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
-    xmlns:sch="http://purl.oclc.org/dsdl/schematron">
-    <teiHeader>
-        <fileDesc>
-            <titleStmt>
-                <title>TEI Customization for the MISHNAH witness files</title>
-                <author>Trevor Muñoz</author>
-            </titleStmt>
-            <publicationStmt>
-                <distributor>Maryland Institute for Technology in the Humanities (via
-                    website)</distributor>
-                <address>
-          <addrLine>mith@umd.edu</addrLine>
-        </address>
-                <date when="2011-10-19">December 8, 2011</date>
-                <availability status="restricted">
-                    <p>This work is copyright Trevor Muñoz and Maryland Institute for Technology in
-                        the Humanities and licensed under a <ref
-                            target="http://creativecommons.org/licenses/by/3.0/">Creative Commons
-                            Attribution 3.0 Unported License</ref>.</p>
-                </availability>
-                <pubPlace>College Park, MD USA</pubPlace>
-            </publicationStmt>
-            <sourceDesc>
-                <p>born digital</p>
-            </sourceDesc>
-        </fileDesc>
-        <revisionDesc>
-            <change who="tmunoz" when="2011-12-08">Created ODD for witness-specific markup</change>
-            <change who="hlapin" when="2012-08-02">Attempted changes to allow listTranspose under seg</change>
-        </revisionDesc>
-    </teiHeader>
-    <text>
-        <body>
-            <div>
-                <head>Project Documentation</head>
-                <p>To be added</p>
-            </div>
-            <div>
-                <head>TEI Customizations for the Digital MISHNAH witness files</head>
-                <p>The prefix in this schema stands for <expan>Digital MISHNAH witness</expan>.</p>
-            </div>
-            <div>
-                <schemaSpec ident="digital_mishnah_witness" prefix="mishnahw_" start="TEI">
+   xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>TEI Customization for the MISHNAH witness files</title>
+            <author>Trevor Muñoz</author>
+         </titleStmt>
+         <publicationStmt>
+            <distributor>Maryland Institute for Technology in the Humanities (via
+               website)</distributor>
+            <address>
+               <addrLine>mith@umd.edu</addrLine>
+            </address>
+            <date when="2011-10-19">December 8, 2011</date>
+            <availability status="restricted">
+               <p>This work is copyright Trevor Muñoz and Maryland Institute for Technology in the
+                  Humanities and licensed under a <ref
+                     target="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+                     Attribution 3.0 Unported License</ref>.</p>
+            </availability>
+            <pubPlace>College Park, MD USA</pubPlace>
+         </publicationStmt>
+         <sourceDesc>
+            <p>born digital</p>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change who="tmunoz" when="2011-12-08">Created ODD for witness-specific markup</change>
+         <change who="hlapin" when="2012-08-02">Attempted changes to allow listTranspose under
+            seg</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <head>Project Documentation</head>
+            <p>To be added</p>
+         </div>
+         <div>
+            <head>TEI Customizations for the Digital MISHNAH witness files</head>
+            <p>The prefix in this schema stands for <expan>Digital MISHNAH witness</expan>.</p>
+         </div>
+         <div>
+            <schemaSpec ident="digital_mishnah_witness" prefix="mishnahw_" start="TEI">
 
-                    <!-- Required modules, these need to be restricted further to get rid of unused elements -->
-                    <moduleRef key="tei"/>
-                    <moduleRef key="header" except="authority distributor samplingDecl"/>
-                    <moduleRef key="core"/>
-                    <moduleRef key="textstructure"/>
+               <!-- Required modules, these need to be restricted further to get rid of unused elements -->
+               <moduleRef key="tei"/>
+               <moduleRef key="header" except="authority distributor samplingDecl"/>
+               <moduleRef key="core"/>
+               <moduleRef key="textstructure"/>
 
-                    <!-- Additional modules -->
-                    <moduleRef key="transcr"
-                        except="addSpan delSpan ex facsimile handNotes handShift surface zone"/>
-                    <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
-                    <moduleRef key="linking" include="ab anchor seg join joinGrp"/>
-                    <moduleRef key="msdescription"
-                        include="dim dimensions handDesc height layout layoutDesc locus locusGrp msContents msDesc msIdentifier msItem objectDesc origin physDesc repository source support supportDesc width"/>
-                    <moduleRef key="namesdates" include="placeName settlement region"/>
+               <!-- Additional modules -->
+               <moduleRef key="transcr" except="addSpan delSpan ex facsimile handNotes handShift
+                  surface zone"/>
+               <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
+               <moduleRef key="linking" include="ab anchor seg join joinGrp"/>
+               <moduleRef key="msdescription" include="additional dim dimensions handDesc height
+                  layout                   layoutDesc locus locusGrp msContents msDesc msIdentifier
+                  msItem objectDesc origin                   physDesc repository source support
+                  supportDesc width"/>
+               <moduleRef key="namesdates" include="placeName settlement region"/>
 
-                    <!-- Including a few elements from modules not otherwise required -->
-                    <elementRef key="persName"/>
-                    <elementRef key="pc"/>
-                    <elementRef key="g"/>
-                    <elementRef key="c"/>
-                    <elementRef key="w"/>
+               <!-- Including a few elements from modules not otherwise required -->
+               <elementRef key="persName"/>
+               <elementRef key="pc"/>
+               <elementRef key="g"/>
+               <elementRef key="c"/>
+               <elementRef key="w"/>
+               <!-- not sure why this is not working by including it in moduleRef above -->
+               <elementRef key="additional"/>
 
-                    <!-- Eliminating unwanted elements from included modules -->
-                    <elementSpec module="textstructure" ident="div4" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div5" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div6" mode="delete"/>
-                    <elementSpec module="textstructure" ident="div7" mode="delete"/>
+               <!-- Eliminating unwanted elements from included modules -->
+               <elementSpec module="textstructure" ident="div4" mode="delete"/>
+               <elementSpec module="textstructure" ident="div5" mode="delete"/>
+               <elementSpec module="textstructure" ident="div6" mode="delete"/>
+               <elementSpec module="textstructure" ident="div7" mode="delete"/>
 
-                    <!-- Begin adjusting content models of specific elements -->
+               <!-- Begin adjusting content models of specific elements -->
 
-                    <!-- Modifications to teiHeader components -->
-                    <!-- Make encodingDesc mandatory, profileDesc optional -->
-                    <elementSpec module="header" ident="teiHeader" mode="change">
-                        <content>
-                            <rng:group>
-                                <rng:ref name="fileDesc"/>
-                                <rng:ref name="encodingDesc"/>
-                                <!--<rng:zeroOrMore>
+               <!-- Modifications to teiHeader components -->
+               <!-- Make encodingDesc mandatory, profileDesc optional -->
+               <elementSpec module="header" ident="teiHeader" mode="change">
+                  <content>
+                     <rng:group>
+                        <rng:ref name="fileDesc"/>
+                        <rng:ref name="encodingDesc"/>
+                        <!--<rng:zeroOrMore>
                                     <rng:ref name="profileDesc"/>
                                 </rng:zeroOrMore>-->
-                                <rng:ref name="revisionDesc"/>
-                            </rng:group>
-                        </content>
-                    </elementSpec>
+                        <rng:ref name="revisionDesc"/>
+                     </rng:group>
+                  </content>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="fileDesc" mode="change">
-                        <content>
-                            <rng:group>
-                                <rng:ref name="titleStmt"/>
-                                <rng:optional>
-                                    <rng:ref name="editionStmt"/>
-                                    <!-- Leaving this for future stages of the project -->
-                                </rng:optional>
-                                <rng:ref name="publicationStmt"/>
-                                <!--<rng:optional>
+               <elementSpec module="header" ident="fileDesc" mode="change">
+                  <content>
+                     <rng:group>
+                        <rng:ref name="titleStmt"/>
+                        <rng:optional>
+                           <rng:ref name="editionStmt"/>
+                           <!-- Leaving this for future stages of the project -->
+                        </rng:optional>
+                        <rng:ref name="publicationStmt"/>
+                        <!--<rng:optional>
                                     <rng:ref name="seriesStmt"/>
                                 </rng:optional>-->
-                                <rng:optional>
-                                    <rng:ref name="notesStmt"/>
-                                </rng:optional>
-                            </rng:group>
-                            <rng:oneOrMore>
-                                <rng:ref name="sourceDesc"/>
-                            </rng:oneOrMore>
-                        </content>
-                    </elementSpec>
+                        <rng:optional>
+                           <rng:ref name="notesStmt"/>
+                        </rng:optional>
+                     </rng:group>
+                     <rng:oneOrMore>
+                        <rng:ref name="sourceDesc"/>
+                     </rng:oneOrMore>
+                  </content>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="titleStmt" mode="change">
-                        <content>
-                            <rng:oneOrMore>
-                                <rng:ref name="title"/>
-                            </rng:oneOrMore>
-                            <rng:oneOrMore>
-                                <rng:ref name="model.respLike"/>
-                            </rng:oneOrMore>
-                        </content>
-                    </elementSpec>
+               <elementSpec module="header" ident="titleStmt" mode="change">
+                  <content>
+                     <rng:oneOrMore>
+                        <rng:ref name="title"/>
+                     </rng:oneOrMore>
+                     <rng:oneOrMore>
+                        <rng:ref name="model.respLike"/>
+                     </rng:oneOrMore>
+                  </content>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="publicationStmt" mode="change">
-                        <content>
-                            <rng:oneOrMore>
-                                <rng:ref name="model.publicationStmtPart"/>
-                            </rng:oneOrMore>
-                        </content>
-                        <constraintSpec ident="linter" scheme="isoschematron">
-                            <constraint>
-                                <sch:report
-                                    test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
-                                    a requirement for TEI conformance that information about
-                                    publication place, address, identifier, availability, and date
-                                    be given in that order, following the name of the publisher,
-                                    distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:pubPlace/following-sibling::tei:address)"
-                                    >It is a requirement for TEI conformance that information about
-                                    publication place, address, identifier, availability, and date
-                                    be given in that order, following the name of the publisher,
-                                    distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:address/following-sibling::tei:idno)">It
-                                    is a requirement for TEI conformance that information about
-                                    publication place, address, identifier, availability, and date
-                                    be given in that order, following the name of the publisher,
-                                    distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:idno/following-sibling::tei:availability)"
-                                    >It is a requirement for TEI conformance that information about
-                                    publication place, address, identifier, availability, and date
-                                    be given in that order, following the name of the publisher,
-                                    distributor, or authority concerned</sch:report>
-                                <sch:report test="not(tei:availability/following-sibling::tei:date)"
-                                    >It is a requirement for TEI conformance that information about
-                                    publication place, address, identifier, availability, and date
-                                    be given in that order, following the name of the publisher,
-                                    distributor, or authority concerned</sch:report>
-                            </constraint>
-                        </constraintSpec>
-                    </elementSpec>
+               <elementSpec module="header" ident="publicationStmt" mode="change">
+                  <content>
+                     <rng:oneOrMore>
+                        <rng:ref name="model.publicationStmtPart"/>
+                     </rng:oneOrMore>
+                  </content>
+                  <constraintSpec ident="linter" scheme="isoschematron">
+                     <constraint>
+                        <sch:report test="not(tei:publisher/following-sibling::tei:pubPlace)">It is
+                           a requirement for TEI conformance that information about publication
+                           place, address, identifier, availability, and date be given in that
+                           order, following the name of the publisher, distributor, or authority
+                           concerned</sch:report>
+                        <sch:report test="not(tei:pubPlace/following-sibling::tei:address)">It is a
+                           requirement for TEI conformance that information about publication place,
+                           address, identifier, availability, and date be given in that order,
+                           following the name of the publisher, distributor, or authority
+                           concerned</sch:report>
+                        <sch:report test="not(tei:address/following-sibling::tei:idno)">It is a
+                           requirement for TEI conformance that information about publication place,
+                           address, identifier, availability, and date be given in that order,
+                           following the name of the publisher, distributor, or authority
+                           concerned</sch:report>
+                        <sch:report test="not(tei:idno/following-sibling::tei:availability)">It is a
+                           requirement for TEI conformance that information about publication place,
+                           address, identifier, availability, and date be given in that order,
+                           following the name of the publisher, distributor, or authority
+                           concerned</sch:report>
+                        <sch:report test="not(tei:availability/following-sibling::tei:date)">It is a
+                           requirement for TEI conformance that information about publication place,
+                           address, identifier, availability, and date be given in that order,
+                           following the name of the publisher, distributor, or authority
+                           concerned</sch:report>
+                     </constraint>
+                  </constraintSpec>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="notesStmt" mode="change">
-                        <constraintSpec ident="linter" scheme="isoschematron">
-                            <constraint>
-                                <sch:assert test="tei:note/tei:p">The notesStmt is provided as a
-                                    convenience to permit a prose description of the physical
-                                    manuscript. Please also complete the structured elements for
-                                    manuscript description within sourceDesc </sch:assert>
-                            </constraint>
-                        </constraintSpec>
-                    </elementSpec>
+               <elementSpec module="header" ident="notesStmt" mode="change">
+                  <constraintSpec ident="linter" scheme="isoschematron">
+                     <constraint>
+                        <sch:assert test="tei:note/tei:p">The notesStmt is provided as a convenience
+                           to permit a prose description of the physical manuscript. Please also
+                           complete the structured elements for manuscript description within
+                           sourceDesc </sch:assert>
+                     </constraint>
+                  </constraintSpec>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="sourceDesc" mode="change">
-                        <content>
-                            <rng:oneOrMore>
-                                <rng:choice>
-                                    <rng:ref name="model.biblLike"/>
-                                    <rng:ref name="msDesc"/>
-                                </rng:choice>
-                            </rng:oneOrMore>
-                        </content>
-                    </elementSpec>
+               <elementSpec module="header" ident="sourceDesc" mode="change">
+                  <content>
+                     <rng:oneOrMore>
+                        <rng:choice>
+                           <rng:ref name="model.biblLike"/>
+                           <rng:ref name="msDesc"/>
+                        </rng:choice>
+                     </rng:oneOrMore>
+                  </content>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="encodingDesc" mode="change">
-                        <content>
-                            <rng:optional>
-                                <rng:ref name="editorialDecl"/>
-                            </rng:optional>
-                            <rng:ref name="tagsDecl"/>
-                            <rng:optional>
-                                <rng:choice>
-                                    <rng:group>
-                                        <rng:ref name="refsDecl"/>
-                                        <rng:ref name="appInfo"/>
-                                    </rng:group>
-                                </rng:choice>
-                            </rng:optional>
-                        </content>
-                    </elementSpec>
+               <elementSpec module="header" ident="encodingDesc" mode="change">
+                  <content>
+                     <rng:optional>
+                        <rng:ref name="editorialDecl"/>
+                     </rng:optional>
+                     <rng:ref name="tagsDecl"/>
+                     <rng:optional>
+                        <rng:choice>
+                           <rng:group>
+                              <rng:ref name="refsDecl"/>
+                              <rng:ref name="appInfo"/>
+                           </rng:group>
+                        </rng:choice>
+                     </rng:optional>
+                  </content>
+               </elementSpec>
 
-                    <elementSpec module="header" ident="revisionDesc" mode="change">
-                        <content>
-                            <rng:oneOrMore>
-                                <rng:ref name="change"/>
-                            </rng:oneOrMore>
-                        </content>
-                    </elementSpec>
-                    <!-- end: Modification of teiHeader components -->
+               <elementSpec module="header" ident="revisionDesc" mode="change">
+                  <content>
+                     <rng:oneOrMore>
+                        <rng:ref name="change"/>
+                     </rng:oneOrMore>
+                  </content>
+               </elementSpec>
 
-                    <!-- Make ids required on divs and ab-->
-                    <elementSpec module="textstructure" ident="div1" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="change" usage="req"/>
-                        </attList>
-                    </elementSpec>
+               <!-- end: Modification of teiHeader components -->
 
-                    <elementSpec module="textstructure" ident="div2" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="change" usage="req"/>
-                        </attList>
-                    </elementSpec>
 
-                    <elementSpec module="textstructure" ident="div3" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="change" usage="req"/>
-                        </attList>
-                    </elementSpec>
 
-                    <elementSpec module="linking" ident="ab" mode="change">
-                        <attList>
-                            <attDef ident="xml:id" mode="change" usage="req"/>
-                        </attList>
-                    </elementSpec>
-                    
-                    <!-- modifying damageSpan to occur only within damage -->
-                    <elementSpec module="transcr" ident="damageSpan" mode="change">
-                        <attList>
-                            <attDef ident="spanTo" mode="change" usage="req"/>
-                            <attDef ident="corresp" mode="change" usage="req"/>
-                        </attList>
-                    </elementSpec>
-                    
-                    <!-- modifying gap-->
-                    <elementSpec module="core" ident="gap" mode="change">
-                        <attList>
-                            <attDef ident="extent" mode="change">
-                                <datatype>
-                                    <rng:ref name="data.count"/>
-                                </datatype>
-                            </attDef>
-                        </attList>
-                        
-                    </elementSpec>
 
-                    <!-- Constrain the content model of damage. Covers three cases: 1) damaged but still readable text (unadorned inside <damage>);
+               <!-- Make ids required on divs and ab-->
+               <elementSpec module="textstructure" ident="div1" mode="change">
+                  <attList>
+                     <attDef ident="xml:id" mode="change" usage="req"/>
+                  </attList>
+               </elementSpec>
+
+               <elementSpec module="textstructure" ident="div2" mode="change">
+                  <attList>
+                     <attDef ident="xml:id" mode="change" usage="req"/>
+                  </attList>
+               </elementSpec>
+
+               <elementSpec module="textstructure" ident="div3" mode="change">
+                  <attList>
+                     <attDef ident="xml:id" mode="change" usage="req"/>
+                  </attList>
+               </elementSpec>
+
+               <elementSpec module="linking" ident="ab" mode="change">
+                  <attList>
+                     <attDef ident="xml:id" mode="change" usage="req"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- modifying damageSpan to occur only within damage -->
+               <elementSpec module="transcr" ident="damageSpan" mode="change">
+                  <attList>
+                     <attDef ident="spanTo" mode="change" usage="req"/>
+                     <attDef ident="corresp" mode="change" usage="req"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- modifying gap-->
+               <elementSpec module="core" ident="gap" mode="change">
+                  <attList>
+                     <attDef ident="extent" mode="change">
+                        <datatype>
+                           <rng:ref name="data.count"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+
+               </elementSpec>
+
+               <!-- Constrain the content model of damage. Covers three cases: 1) damaged but still readable text (unadorned inside <damage>);
             2) damaged text that cannot be read (inside <unclear>); and 3) damage that completely removes text, e.g., holes, etc. (indicated with <gap>)-->
-                    <elementSpec module="transcr" ident="damage" mode="change">
-                        <content>
-                            <rng:zeroOrMore>
-                                <rng:choice>
-                                    <rng:text/>
-                                    <rng:ref name="model.pPart.editorial"/>
-                                    <!-- allows choice, abbr, expan, ex, am, subst -->
-                                    <rng:ref name="c"/>
-                                    <rng:ref name="del"/>
-                                    <rng:ref name="gap"/>
-                                    <rng:ref name="lb"/>
-                                    <rng:ref name="note"/>
-                                    <rng:ref name="unclear"/>
-                                    <rng:ref name="seg"/>
-                                    <rng:ref name="surplus"/>
-                                    <rng:ref name="metamark"/>
-                                    <rng:ref name="pc"/>
-                                    <rng:ref name="label"/>
-                                </rng:choice>
-                            </rng:zeroOrMore>
-                        </content>
-                    </elementSpec>
+               <elementSpec module="transcr" ident="damage" mode="change">
+                  <content>
+                     <rng:zeroOrMore>
+                        <rng:choice>
+                           <rng:text/>
+                           <rng:ref name="model.pPart.editorial"/>
+                           <!-- allows choice, abbr, expan, ex, am, subst -->
+                           <rng:ref name="c"/>
+                           <rng:ref name="del"/>
+                           <rng:ref name="gap"/>
+                           <rng:ref name="lb"/>
+                           <rng:ref name="note"/>
+                           <rng:ref name="unclear"/>
+                           <rng:ref name="seg"/>
+                           <rng:ref name="surplus"/>
+                           <rng:ref name="metamark"/>
+                           <rng:ref name="pc"/>
+                           <rng:ref name="label"/>
+                        </rng:choice>
+                     </rng:zeroOrMore>
+                  </content>
+               </elementSpec>
 
-                    <!-- seg will be used to group add, del and other transcriptional, analytic, and milestone elements -->
-                    <elementSpec module="linking" ident="seg" mode="change">
-                        <content>
-                            <rng:zeroOrMore>
-                                <rng:choice>
-                                    <rng:text/>
-                                    <rng:ref name="model.pPart.transcriptional"/>
-                                    <rng:ref name="model.milestoneLike"/>
-                                    <rng:ref name="model.pPart.editorial"/>
-                                    <rng:ref name="model.segLike"/>
-                                    <rng:ref name="listTranspose"/>
-                                    <!-- today -->
-                                    <rng:ref name="metamark"/>
-                                    <!-- today -->
-                                    <!-- Allows notes to be specific to segment -->
-                                    <rng:ref name="note"/>
-                                    
-                                </rng:choice>
-                            </rng:zeroOrMore>
-                          
-                        </content>
-                    </elementSpec>
-                    
-                    <!-- del may include c, choice and other transcriptional, editorial, analytic, and milestone elements  -->
-                    <elementSpec module="core" ident="del" mode="change">
-                        <content>
-                            <rng:zeroOrMore>
-                                <rng:choice>
-                                    <rng:text/>
-                                    <rng:ref name="model.pPart.transcriptional"/>
-                                    <rng:ref name="model.milestoneLike"/>
-                                    <rng:ref name="model.segLike"/>
-                                    <!-- today -->
-                                    <rng:ref name="model.pPart.editorial"/>
-                                </rng:choice>
-                            </rng:zeroOrMore>
-                        </content>
-                    </elementSpec>
-                    <!-- Adding the XInclude elements -->
-                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
-                        ns="http://www.w3.org/2001/XInclude" mode="add">
-                        <desc>The W3C XInclude element</desc>
-                        <classes mode="change">
-                            <memberOf key="model.common"/>
-                            <memberOf key="model.headerPart"/>
-                        </classes>
-                        <content>
-                            <rng:optional>
-                                <rng:ref name="fallback"/>
-                            </rng:optional>
-                        </content>
-                        <attList>
-                            <attDef ident="href">
-                                <desc>pointer to the resource being included</desc>
-                                <datatype>
-                                    <rng:ref name="data.pointer"/>
-                                </datatype>
-                            </attDef>
-                            <attDef ident="parse" usage="opt">
-                                <defaultVal>xml</defaultVal>
-                                <valList type="closed">
-                                    <valItem ident="xml"/>
-                                    <valItem ident="text"/>
-                                </valList>
-                            </attDef>
-                            <attDef ident="xpointer" usage="opt">
-                                <datatype>
-                                    <rng:text/>
-                                </datatype>
-                            </attDef>
-                            <attDef ident="encoding" usage="opt">
-                                <datatype>
-                                    <rng:text/>
-                                </datatype>
-                            </attDef>
-                            <attDef ident="accept" usage="opt">
-                                <datatype>
-                                    <rng:text/>
-                                </datatype>
-                            </attDef>
-                            <attDef ident="accept-charset" usage="opt">
-                                <datatype>
-                                    <rng:text/>
-                                </datatype>
-                            </attDef>
-                            <attDef ident="accept-language" usage="opt">
-                                <datatype>
-                                    <rng:text/>
-                                </datatype>
-                            </attDef>
-                        </attList>
-                    </elementSpec>
-                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="fallback"
-                        ns="http://www.w3.org/2001/XInclude" mode="add">
-                        <desc>Wrapper for fallback elements if an XInclude fails</desc>
-                        <content>
-                            <oneOrMore xmlns="http://relaxng.org/ns/structure/1.0">
-                                <choice>
-                                    <text/>
-                                    <ref name="macro.anyThing"/>
-                                </choice>
-                            </oneOrMore>
-                        </content>
-                    </elementSpec>
-                    
-                </schemaSpec>
-            </div>
-        </body>
-    </text>
+               <!-- seg will be used to group add, del and other transcriptional, analytic, and milestone elements -->
+               <elementSpec module="linking" ident="seg" mode="change">
+                  <content>
+                     <rng:zeroOrMore>
+                        <rng:choice>
+                           <rng:text/>
+                           <rng:ref name="model.pPart.transcriptional"/>
+                           <rng:ref name="model.milestoneLike"/>
+                           <rng:ref name="model.pPart.editorial"/>
+                           <rng:ref name="model.segLike"/>
+                           <rng:ref name="listTranspose"/>
+                           <!-- today -->
+                           <rng:ref name="metamark"/>
+                           <!-- today -->
+                           <!-- Allows notes to be specific to segment -->
+                           <rng:ref name="note"/>
+
+                        </rng:choice>
+                     </rng:zeroOrMore>
+
+                  </content>
+               </elementSpec>
+
+               <!-- del may include c, choice and other transcriptional, editorial, analytic, and milestone elements  -->
+               <elementSpec module="core" ident="del" mode="change">
+                  <content>
+                     <rng:zeroOrMore>
+                        <rng:choice>
+                           <rng:text/>
+                           <rng:ref name="model.pPart.transcriptional"/>
+                           <rng:ref name="model.milestoneLike"/>
+                           <rng:ref name="model.segLike"/>
+                           <!-- today -->
+                           <rng:ref name="model.pPart.editorial"/>
+                        </rng:choice>
+                     </rng:zeroOrMore>
+                  </content>
+               </elementSpec>
+               <!-- Adding the XInclude elements -->
+               <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
+                  ns="http://www.w3.org/2001/XInclude" mode="add">
+                  <desc>The W3C XInclude element</desc>
+                  <classes mode="change">
+                     <memberOf key="model.common"/>
+                     <memberOf key="model.headerPart"/>
+                  </classes>
+                  <content>
+                     <rng:optional>
+                        <rng:ref name="fallback"/>
+                     </rng:optional>
+                  </content>
+                  <attList>
+                     <attDef ident="href">
+                        <desc>pointer to the resource being included</desc>
+                        <datatype>
+                           <rng:ref name="data.pointer"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="parse" usage="opt">
+                        <defaultVal>xml</defaultVal>
+                        <valList type="closed">
+                           <valItem ident="xml"/>
+                           <valItem ident="text"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="xpointer" usage="opt">
+                        <datatype>
+                           <rng:text/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="encoding" usage="opt">
+                        <datatype>
+                           <rng:text/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="accept" usage="opt">
+                        <datatype>
+                           <rng:text/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="accept-charset" usage="opt">
+                        <datatype>
+                           <rng:text/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="accept-language" usage="opt">
+                        <datatype>
+                           <rng:text/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="fallback"
+                  ns="http://www.w3.org/2001/XInclude" mode="add">
+                  <desc>Wrapper for fallback elements if an XInclude fails</desc>
+                  <content>
+                     <oneOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+                        <choice>
+                           <text/>
+                           <ref name="macro.anyThing"/>
+                        </choice>
+                     </oneOrMore>
+                  </content>
+               </elementSpec>
+
+            </schemaSpec>
+         </div>
+      </body>
+   </text>
 </TEI>

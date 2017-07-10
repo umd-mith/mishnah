@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?><!--<?xml-stylesheet type="text/css"
+    href="http://www.jewishstudies.umd.edu/faculty/Lapin/MishnahProject/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
+<?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>-->
+<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>An electronic transcription of Cairo Genizah Fragment Cambridge University TS F6.3</title>
+                <editor>
+                    <persName>Hayim Lapin</persName>
+                </editor>
+                <respStmt>
+                    <resp>transcriber</resp>
+                    <persName corresp="ref.xml#SS">Shlomo Strauss</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>markup</resp>
+                    <persName corresp="ref.xml#HL">Hayim Lapin</persName>
+                </respStmt>
+                <sponsor n="primary">Joseph and Rebecca Meyerhoff Center for Jewish
+                    Studies</sponsor>
+                <sponsor n="secondary">Lieberman Institute; Primary Witnesses to Tannaitic
+                    Literature</sponsor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Digital Mishnah Project</publisher>
+                <pubPlace>The Maryland Institute for Technology in the Humanities</pubPlace>
+                <address>
+                    <addrLine>0301 Hornbake Library</addrLine>
+                    <addrLine>University of Maryland</addrLine>
+                    <addrLine>College Park, MD</addrLine>
+                </address>
+                <idno type="local">S02491</idno>
+                <availability status="restricted">
+                    <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhoff
+                        Center for Jewish Studies and licensed under a <ref
+                            target=" http://creativecommons.org/licensesby/4.0//">Creative
+                            Commons Attribution-NonCommercial 3.0  License</ref>.</p>
+                </availability>
+                <pubPlace>College Park, MD USA</pubPlace>
+                <date>2012-06-18</date>
+                <!-- A publication date is required for TEI conformance -->
+            </publicationStmt>
+            <notesStmt>
+                <note>
+                    <p/> Prose description. Use the following as model <p>Fragment in the Cambridge
+                        University Libraries, Taylor-Schechter Collection. Covers Bava Qamma 3:5 -
+                        11; 9:5 - 10:8.</p>
+                    <p>Transcription from online images of the manuscript, available at
+                        http://jnul.huji.ac.il/dl/talmud/mishna/selmimnu.asp and at
+                        https://fgp.genizah.org. FGP nos. C99171-C99172</p>
+                    <p>The leaf 1vL - 1rR is has fewer lines and shorter text than 1rL -1vR</p>
+                    <p>TRANSCRIBED BY: Shlomo Strauss</p>
+                    <p>EDITED BY: Hayim Lapin</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Cambridge</settlement>
+                        <repository>University Library</repository>
+                        <idno type="genizah-CUL">TS F6.3</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <locusGrp>
+                                <locus/>
+                                <!-- Points to images. Other uses?-->
+                                <!-- Placeholder, needs work -->
+                                <locus n="1v" facs="www.genizah.org">C99171</locus>
+                                <locus n="1r" facs="www.genizah.org">C99172</locus>
+                            </locusGrp>
+                            <join target="g1.xml g11.xml"/>
+                            <title>Mishnah</title>
+                            <note type="nli"><!-- Not in Cat --></note>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc form="codex">
+                            <supportDesc material="parchment">
+                                <extent>2</extent>
+                            </supportDesc>
+                            <layoutDesc>
+                                <layout columns="1">
+                                    <dimensions scope="sheet">
+                                        <width unit="cm">19.3</width>
+                                        <height unit="cm">19</height>
+                                    </dimensions>
+                                    <dimensions scope="col-cm">
+                                        <!-- Averages -->
+                                        <width unit="cm" atLeast="14.6" atMost="15.6">15.1</width>
+                                        <height unit="cm" atMost="16.9" atLeast="15.9"
+                                            >16.45</height>
+                                    </dimensions>
+                                    <dimensions scope="col-writ">
+                                        <!-- Averages -->
+                                        <width unit="chars" atLeast="40" atMost="47">40-47</width>
+                                        <height unit="lines" atMost="26" atLeast="20">20-26</height>
+                                        <dim type="char-p-cm" atLeast="2.7" atMost="3">2.85</dim>
+                                    </dimensions>
+                                </layout>
+                            </layoutDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <handNote scribe="first" script="Oriental Square" scope="major">
+                                <date notAfter="1300" notBefore="1000">11th - 13th C.</date>
+                                <region><!-- placeholder --></region>
+                            </handNote>
+                            <handNote scribe="second" scope="minor">
+                                <date notAfter="1300" notBefore="1000">11th - 13th C.</date>
+                                <region><!-- placeholder --></region>
+                                <desc>pointed<desc>Babyonian</desc></desc>
+                                <desc>cantillation</desc>
+                                <note>Pointing is in a different ink than the main manuscript.
+                                    Possibly a second hand.</note>
+                            </handNote>
+                        </handDesc>
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <tagsDecl><!-- placeholder --></tagsDecl>
+        </encodingDesc>
+        <revisionDesc>
+            <change who="ref.xml#SS" when="2012-03-22">Transcription</change>
+            <change who="ref.xml#SS" when="2012-06-09">Revised Transcription</change>
+            <change who="ref.xml#HL" when="2012-06-18">Conversion to XML, editing</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div1 xml:id="S02491.4">
+                <div2 xml:id="S02491.4.1">
+                    <div3 xml:id="S02491.4.1.10">
+                        <pb xml:id="S02491.1vL" n="1vL"/>
+                        <ab xml:id="S02491.4.1.3.5">פטור אם אמר לו לבעל הקורה עמוד חייב וכן זה
+                                    <damage><unclear extent="4" unit="chars"/><gap extent="6"
+                                    unit="chars"/></damage><lb n="1"/> בא בפישתנו<pc rend=":"
+                            >:</pc></ab>
+                        <ab xml:id="S02491.4.1.3.6"><label>ח<am rend="overdot">׳</am></label>שנים שהיו
+                                    מהלכי<damage><unclear extent="2" unit="chars"/>רשות הר<unclear
+                                    extent="3" unit="chars"/></damage><lb n="2"/> אחד רץ ואחד מהלך
+                            או שהיו שניהם רצים והיזי<damage>קו זה</damage> את זה<lb n="3"/> שניהם
+                                פטורין<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.3.7"><label>ט<am rend="overdot">׳</am></label>המבקע ברשות
+                            הייחיד והיזיק ברשו<damage>ת</damage><lb n="4"/> הרבים ברשות הרבים והיזיק
+                            ברשות היחיד ברשות היחי<c rend="long">ד</c><lb n="5"/> והיזיק ברשות
+                                    <seg><add hand="h2" place="above">היחיד</add></seg> אחר חייב<pc
+                                rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.3.8"><label>י<am rend="overdot">׳</am></label>שני שוורים
+                            תמים שחבלו<lb n="6"/> זה בזה משלמים במותר חצי נזק שניהם מועדים משלמים<lb
+                                n="7"/> במותר נזק שלם אחד תם ואחד מועד מו<damage>עד ב</damage>תם
+                            משלם במותר<lb n="8"/> נזק שלם ותם במועד משלם במותר חצי נזק<pc rend=":"
+                                >:</pc><label>י<am rend="overdot">׳</am>א<am rend="overdot"
+                                >׳</am></label><lb n="9"/> וכן שני אנשים שחבלו זה בזה משלמים במותר
+                            נזק שלם אדם<lb n="10"/> במועד ומועד באדם משלמין במותר נזק שלם אדם
+                                    <seg><del rend="dotted" hand="h2">בתם</del><add hand="h2"
+                                    place="margin-left">בת<damage><gap unit="chars"
+                                /></damage></add></seg><note>Deleted element dotted for
+                                erasure.</note>
+                            <surplus>?</surplus><lb n="11"/> ותם באדם אדם בתם משלם במותר נזק שלם ותם
+                            באדם משלם<lb n="12"/> במותר חצי נזק <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> עקיבה <choice>
+                                <abbr>א<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> אף תם שחבל באדם משלם במותר<lb n="13"/> נזק שלם<pc rend=":"
+                                >:</pc></ab>
+                        <ab xml:id="S02491.4.1.3.9"><label>י<am rend="overdot">׳</am>ב<am rend="overdot"
+                                    >׳</am></label>שור שווה מנא שנגח <seg><add place="inline"
+                                    >ל</add></seg><note>Correction possibly by primary
+                            hand.</note>שור שווה מאתים<lb n="14"/> אין הנבילה יפה כלום נוטל את השור
+                            שור שווה מאתיים שנגח<lb n="15"/> לשור שווה מאתים אין הנבילה יפה
+                                    כל<damage><unclear extent="2" unit="chars"/></damage>
+                            <choice>
+                                <abbr>א<am rend="overdot">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> מאיר על זה נאמר<lb n="16"/> ומ<damage><unclear extent="4"
+                                    unit="chars"/>ת</damage> השור החי וחצו את כספו
+                                        <choice><abbr><damage>א</damage><am rend="overdot"
+                                    >׳</am></abbr><expan>אמר</expan></choice> לו <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יהודה וכן הלכה<lb n="17"/> קיימ<damage><unclear extent="5"
+                                    unit="chars"/></damage>רו את השור החי וחצו את כספו לא קיימתה
+                                גם<lb n="18"/> את ה<damage><unclear extent="6" unit="chars"
+                                /></damage><note>A mark that may represent צ in a second hand is
+                                visible above damaged area. Perhaps correcting the original
+                                scribe.</note>ן ואיזה זה זה <seg><add hand="2h" place="above"
+                                    >שור</add></seg> שווה מאתים שנגח לשור שווה<lb n="19"/> מאתים
+                                <damage>וה</damage>נבילה יפה חמשים זוז <seg><add hand="2h"
+                                    place="above">זה</add></seg> נוטל חצי החי וחצי המת וזה<lb n="20"/>
+                            <pb xml:id="S02491.1rR" n="1rR"/>
+                            <damage><unclear extent="1" unit="chars"/><gap extent="2" unit="chars"
+                                    /><unclear extent="7" unit="chars">ל</unclear></damage> וחצי
+                                המת<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.3.10"><label>י<am rend="overdot">׳</am>ג<am
+                                    rend="overdot">׳</am></label>יש חייב על מעשה שורו ופטור<lb n="1"/>
+                            <damage><unclear extent="2" unit="chars"/> מעשה<unclear extent="4"
+                                    unit="chars"/> ח</damage>ייב על מעשה עצמו ופטור על מעשה שורו <lb
+                                n="2"/> שור<damage>ו ש<unclear extent="3" unit="chars"
+                                >ביי</unclear>ש</damage> פטור והוא שבייש חייב שורו שסמה את עין
+                                עבדו<lb n="3"/> והיפיל את שינו פטור והוא שסמה את עין עבדו והיפיל א<c
+                                rend="long">ת</c><lb n="4"/> שינו חייב שורו שחבל באביו ובאמו פטור
+                            והוא שחבל באביו<lb n="5"/> ובאימו חייב שורו שהידליק את הגדיש בשבת חייב
+                            והוא <surplus rend="overline">שה</surplus><surplus>?</surplus><lb n="6"
+                            /> שהידליק את הגדיש בשבת פטור מפני שהוא נידון בנפשו<pc rend=":"
+                            >:</pc></ab>
+                        <lb n="7"/>
+                        <ab xml:id="S02491.4.1.3.11"><label>י<am rend="overdot">׳</am>ד<am
+                                    rend="overdot">׳</am></label>שור שהיה רודף <seg><add
+                                    place="margin-right" rend="circle"><damage><gap unit="chars"
+                                        /></damage>ר שור</add></seg> אחר והוזק זה אומר שורך היזיק<lb
+                                n="8"/> והלא <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא בסלע לקה המוציא מחבירו עליו הראיה<pc rend=":"
+                                >:</pc><lb n="9"/>
+                            <label><c rend="altform">ו</c><am rend="overdot">׳</am>ט<am
+                                    rend="overdot">׳</am></label> היו שנים רודפים אחר אחד זה אומר
+                                    <seg><add place="above" hand="2h">שורך</add></seg> היזיק וזה <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice><lb n="10"/> שורך היזיק שניהן פטורין אם היו שניהן שלאיש אחד
+                                שניהן<lb n="11"/> חייבין<pc rend=":">:</pc><label>י<am
+                                    rend="overdot">׳</am>ו<am rend="overdot">׳</am></label> היה אחד
+                            גדול ואחד קטן הניזק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <seg><del rend="strikethrough">הניזק</del></seg> הגדול <lb n="12"
+                                /><damage>הזי</damage>ק והמזיק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא הקטן היזיק אחד תם ואחד מועד הניזק<lb n="13"/>
+                            <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> מועד הזיק והמזיק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא תם הזיק המוציא מחבירו<lb n="14"/> עליו
+                                הרא<damage>י</damage>יה<pc rend=":">:</pc><label>י<am rend="overdot"
+                                    >׳</am>ז<am rend="overdot">׳</am></label> היו ניזוקין שנים אחד
+                            גדול ואחד קטן וכן<lb n="15"/> המזיקין שנים <damage>א<unclear extent="2"
+                                    unit="chars">חד??</unclear></damage>ול ואחד קטן הניזק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> הגדול היזיק את<lb n="16"/> הגדול והקטן את
+                            הק<damage>ט</damage>ן המזיק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כי אלא קטן <damage><unclear extent="4" unit="chars"
+                                    >א</unclear></damage>ול<lb n="17"/> וגדול את
+                                הק<damage>ט</damage>ן <damage>אחד ת</damage>ם ואחד מועד הניזק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice>
+                            <damage><unclear extent="5" unit="chars"/></damage>יזיק<lb n="18"/>
+                            <seg><del rend="strikethrough">היזיק</del></seg> את הגדול ותם את הקטן
+                            והמזיק <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> לא כ<damage><unclear extent="2" unit="chars">י א</unclear>לא
+                                ת</damage>ם את<lb n="19"/> הגדול ומועד את הקטן המוציא מחבירו עליו
+                                    ה<damage>רא<gap extent="1" unit="chars"/></damage>יה<pc rend=":"
+                                >:</pc></ab>
+                        <lb n="20"/>
+                        <pb xml:id="S02491.1rL" n="1rL"/>
+                        <ab xml:id="S02491.4.1.9.5">מת יחזיר ליורשיו<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.6"><label><damage>ח</damage><am rend="overdot"
+                                >׳</am></label>נותן לו את הקרן ולא נותן לו את החומש<lb n="1"/> מחל
+                            לו על הקרן ולא מחל לו על החומש מחל לו על זה ועל זה חוץ מפחות<lb n="2"/>
+                            שוה פרוטה בקרן אינו צריך לילך אחריו<pc rend=":">:</pc><label>ט<am
+                                    rend="overdot">׳</am></label> נתן לו את החומש ולא<lb n="3"/> נתן
+                            לו את הקרן מחל לו על החומש ולא מחל לו על הקרן מחל לו על זה ועל<lb n="4"
+                            /> זה חוץ משווה פרוטה בקרן הרי זה צריך לילך אחריו<pc rend=":"
+                            >:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.7"><label>י<am rend="overdot">׳</am></label>נתן לו את
+                                הקרן<lb n="5"/> ונשבע לו על החומש הרי זה משלם חומש על חומש עד
+                            שתיתמעט הקרן<lb n="6"/> משוה פרוטה וכן בפיקדון או בתשומת יד או בגזל או
+                            עשק את עמיתו<lb n="7"/> או מצא אבידה וכיחש בה ונשבע על שקר הרי זה משלם
+                            קרן וחומש <surplus>?</surplus><lb n="8"/> ואשם<pc rend=":"
+                                    >:</pc><label>י<am rend="overdot">׳</am>א<am rend="overdot"
+                                    >׳</am></label> איכן פיקדוני אמר לו אבד משביעך אני <choice>
+                                <abbr>וא<am rend="overdot">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice> אמן <surplus rend="overline">וה</surplus><lb n="9"/> והעדים
+                            מעידין אותו שאכלו משלם את הקרן ואם הודה מעצמו <surplus rend="overline"
+                                    >מ<c rend="nonlettermark">ש</c></surplus><lb n="10"/> משלם קרן
+                            וחומש ואשם<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.8"><label>י<am rend="overdot">׳</am>ב<am rend="overdot"
+                                    >׳</am></label>איכן פיקדוני <choice>
+                                <abbr>א<am rend="overdot">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice> לו ניגנב משביעך<lb n="11"/> אני <choice>
+                                <abbr>וא<am rend="overdot">׳</am></abbr>
+                                <expan>ואמר</expan>
+                            </choice> אמן והעידין מעידין אותו שגנבו משלם תשלומי כפל ואם<lb n="13"/>
+                            הודה מעצמו משלם קרן וחומש ואשם<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.9"><label>י<am rend="overdot">׳</am>ג<am rend="overdot"
+                                    >׳</am></label>הגוזל את אביו ונשבע<lb n="14"/> לו ומת הרי זה
+                            משלם קרן וחומש לבניו או לאחיו אם אין לו ל<damage><unclear extent="2"/>ה
+                                ו</damage>בעלי<lb n="15"/> חוב באין וניפרעין<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.10"><label>י<am rend="overdot">׳</am>ד<am
+                                    rend="overdot">׳</am></label>האומר לבנו קונם שאי את נהנת לי אם
+                                מת<lb n="16"/> יירשנו בחייו ובמותו מת לא ירשנו יתן לבניו או לאחיו אם
+                            אין <seg><add place="above" rend="caret" hand="h2">לו</add></seg> לוה<lb
+                                n="17"/> ובעלי חוב באין וניפרעין<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.9.11"><label>ו<am rend="overdot">׳</am>ט<am
+                                    rend="overdot">׳</am></label>ה<damage>ג</damage> וזל את
+                                    <damage>ה<unclear extent="1" unit="chars">ג</unclear></damage>ר
+                            ונישבע לו ומת <damage><unclear extent="1" unit="chars"
+                                >ה</unclear>רי</damage><lb n="18"/> זה משלם קרן וחומש לכהנים ואשם
+                            למזבח <choice>
+                                <abbr>שנ<am rend="overdot">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> ואם <seg><add place="margin-left" rend="circle" hand="h2"
+                                    >אין</add></seg> לאיש גו<c rend="lig">אל</c>
+                            <choice>
+                                <abbr><damage>וגו</damage><am rend="overdot">׳</am></abbr>
+                                <expan>וגומר</expan>
+                            </choice><lb n="19"/> היה מעלה את הכסף ואת האשם ומת הכסף יינתן לבניו
+                            האשם ירעה<lb n="20"/> עד ש<damage><unclear unit="chars" extent="2"
+                                    >יס</unclear>תא</damage>ב וימכר ויפלו דמיו לנדבה נתן את הכסף
+                                ל<damage>אנש</damage>י <damage><unclear extent="2" unit="chars"
+                                    >מש</unclear></damage>מר ומת <lb n="21"/>
+                            <damage>אי</damage>ן ה<damage><unclear extent="3"
+                                >יו?</unclear>ש</damage>ין יכולין להוציא מיידן <choice>
+                                <abbr>ש<damage>נ</damage><am rend="overdot">׳</am></abbr>
+                                <expan>שנאמר</expan>
+                            </choice> איש <damage><unclear unit="chars" extent="1"
+                                >א</unclear></damage>שר ית<damage><unclear unit="chars" extent="1"
+                                    >ן</unclear> לכ<unclear extent="8" unit="chars">הן לו יהיה<pc
+                                        rend=":">:</pc></unclear></damage></ab>
+                        <lb n="22"/>
+                        <ab xml:id="S02491.4.1.9.12"><label>י<am rend="overdot">׳</am>ז<am
+                                    rend="overdot">׳</am></label><damage><unclear unit="chars"
+                                    extent="3">נתן</unclear> א</damage>ת הכסף ליהויריב ואשם
+                                לידעי<damage>ה <unclear extent="3" unit="chars"/><unclear
+                                    extent="16" unit="chars"/></damage><lb n="23"/> לידעיה
+                                    <damage><gap extent="2" unit="chars"/></damage> קיים האשם
+                            יקריבוהו בני יד<damage><unclear unit="chars" extent="1"/>עי<gap
+                                    extent="19" unit="chars"/></damage>ם <seg><add
+                                    place="margin-left">אחר</add></seg><note>Insertion point is
+                                within the gap.</note><lb n="24"/> שהמבי<damage>א <unclear
+                                    extent="2" unit="chars">א</unclear>לו <unclear unit="chars"
+                                    extent="1">ע</unclear></damage>ד שלא הביא אשמו יצא <damage>א<gap
+                                    extent="18" unit="chars"/></damage><lb n="25"/> יצא נותן את הקרן
+                            ולא נתן את החומש <damage>א<gap extent="15" unit="chars"/></damage><lb
+                                n="26"/></ab>
+                        <pb xml:id="S02491.1vR" n="1vR"/>
+                        <ab xml:id="S02491.4.1.10.1">הגוזל ומאכיל <seg><add hand="h2" place="above"
+                                    >את</add></seg>בניו והמניח לפניהן פטורין מ<damage>ל</damage>שלם
+                            אם היה דבר שיש לו <surplus rend="overline">אח</surplus><lb n="1"/>
+                            אחריות חייבין לשלם אין פורטין לא מתיבת המוכסין ולא מכיס שלגביין<lb n="2"
+                            /> ואין נוטלין מהן צדקה אבל נוטל הוא מתוך ביתו או מן השוק<pc rend=":"
+                                >:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.2"><label>ב<am rend="overdot">׳</am></label><lb n="3"
+                            /> נטלו מוכסין חמורו ונתנו לו חמור אחר והליסטין כסותו ונתנו לו כסות<lb
+                                n="4"/> אחרת הרי אילו שלו מפני שהבעלין מיתיאשין מהן המציל מיד
+                                הגייס<lb n="5"/> מיד הנהר מיד הליסטין אם ניתיואשו הבעלין הרי אילו
+                            שלו וכן נחיל של <lb n="6"/> דבורין אם ניתיואשו הבעלין הרי אילו שלו <choice>
+                                <abbr>א<am rend="overdot">׳</am></abbr>
+                                <expan>אמר</expan>
+                            </choice>
+                            <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice> יוחנן בן ברוקא נאמנת<lb n="7"/> אשה או קטן לומר מיכן יצא נחיל
+                            זה ומהלך בתוך שדהו ונוטל את נחילו<lb n="8"/> ואם היזיק משלם מה שהיזיק לא
+                            יקוץ את הסוכה על מנת ליתן הדמים <choice>
+                                <abbr>ר<am rend="overdot">׳</am></abbr>
+                                <expan>רבי</expan>
+                            </choice><lb n="9"/> ישמע<c rend="lig">אל</c> בנו <choice>
+                                <abbr>שלר<am rend="overdot">׳</am></abbr>
+                                <expan>שלרבי</expan>
+                            </choice>
+                            <damage>י</damage>וחנן בן ברוקא <choice>
+                                <abbr>או<am rend="overdot">׳</am></abbr>
+                                <expan>אומר</expan>
+                            </choice> קוצץ ונותן דמים<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.3"><label>ג<am rend="overdot">׳</am></label>המכיר<lb
+                                n="10"/> את כליו או ספריו ביד אחר אם יצא לו שם גניבה בעיר ישבע כמה
+                                <surplus>?</surplus><lb n="11"/> הוציא ויטול ואם לאו לא הכל ממנו שני
+                            אומר מכרן לאחר ולקחן זה ממנו<pc rend=":">:</pc></ab>
+                        <lb n="12"/>
+                        <ab xml:id="S02491.4.1.10.4"><label>זה</label>בא בחביתו שליין וזה בא בכדו שלדבש
+                            נסדקה כדו שלדבש<lb n="13"/> ושפך <damage><unclear extent="2"
+                                    unit="chars"/></damage> את יינו והציל את הדבש לתוכה אין לו אלא
+                            שכרו אם אמר לו<lb n="14"/> אציל את שלך ואתה נותן לי דמי שלי חייב ליתן
+                                לו<pc rend=":">:</pc><label>ה<am rend="overdot">׳</am></label> שטף
+                                הנהר<lb n="15"/> חמורו וחמור חבירו שלו יפה מנא ושלחבירו מאתים הניח
+                            את שלו והציל<lb n="16"/>
+                            <damage>א</damage>ת שלחבירו אין לו <damage>א</damage>לא שכרו אם אמר לו
+                            אציל את שלך ואתה נותן לי<lb n="17"/>
+                            <damage>ד</damage>מי שלי חייב ליתן לו<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.5"><label>ו<am rend="overdot">׳</am></label>הגוזל שדה
+                            ונטלוהא מסיקין אם מחמת<lb n="18"/> מדינה הי<damage>א</damage> אומר לו
+                            הרי שלך לפניך אם מחמת הגוזלן חייב להעמיד<lb n="19"/> לו שדה<damage/>
+                            <damage> ש<unclear unit="chars" extent="1">ט</unclear></damage>פה נהר
+                            אומר לו הרי שלך לפניך<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.6"><label>ז<am rend="overdot">׳</am></label>הגוזל
+                                א<damage>ת <unclear extent="3" unit="chars">חבי</unclear>ר</damage>ו
+                                או<lb n="20"/>
+                            <damage>שלווה <unclear extent="4" unit="chars"/>ו א</damage>ו
+                                    שהי<damage><unclear unit="chars" extent="2"
+                                >פק</unclear></damage>יד אצלו אצלו ביושב לא יחזיר לו במדב<damage>ר
+                                    <unclear extent="2" unit="chars"/>מנת</damage><lb n="21"/>
+                            <damage><unclear extent="5" unit="chars"/><gap extent="16" unit="chars"
+                                /></damage>במדבר<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.7"><label>ח<am rend="overdot">׳</am></label>האומר
+                                לחבי<damage>ר</damage>ו <damage><unclear extent="4" unit="chars"
+                                />יך</damage>
+                            <surplus>?</surplus><lb n="22"/>
+                            <damage><gap extent="15" unit="chars"/><unclear extent="2" unit="chars"
+                                /> וא</damage>יני יודע אם החזרתי לך אם ל<damage><unclear extent="1"
+                                    unit="chars"/>החז</damage>רתי <lb n="23"/>
+                            <damage><gap extent="19" unit="chars"/>א</damage>ם גזלתיך ואם הילוויתני
+                                    <damage><unclear extent="1" unit="chars"/>ם ה<gap extent="2"
+                                    unit="chars"/>קד</damage>תי אצל<damage>ו</damage><lb n="24"/>
+                            <damage><unclear unit="chars" extent="1"/><gap extent="15" unit="chars"
+                                /></damage>לם<pc rend=":">:</pc></ab>
+                        <ab xml:id="S02491.4.1.10.8"><label>ט<am rend="overdot">׳</am></label>הגונב טלה
+                            מן העדר והחזירו<lb n="25"/></ab>
+                    </div3>
+                </div2>
+            </div1>
+        </body>
+    </text>
+</TEI>
