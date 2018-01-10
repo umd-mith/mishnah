@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xs
    tei" version="2.0">
@@ -123,17 +123,16 @@
          <xsl:apply-templates/>
       </label>
    </xsl:template>-->
-   <xsl:template
-      match="tei:w">
-            <w>
-               <xsl:copy-of select="@*"/>
-               <xsl:if test="@xml:id">
-                  <xsl:attribute name="n" select="@xml:id"/>
-               </xsl:if>
-               <xsl:apply-templates/>
-            </w>
-         
-      
+   <xsl:template match="tei:w">
+      <w>
+         <xsl:copy-of select="@*"/>
+         <xsl:if test="@xml:id">
+            <xsl:attribute name="n" select="@xml:id"/>
+         </xsl:if>
+         <xsl:apply-templates/>
+      </w>
+
+
    </xsl:template>
    <xsl:template
       match="tei:surplus | tei:gap | tei:fw | tei:lb[not(@break = 'no')] | tei:pb | tei:cb | tei:pc | tei:label | tei:milestone | tei:metamark[not(parent::tei:w)] | tei:listTranspose">
@@ -148,12 +147,12 @@
             </xsl:element>
          </xsl:when>
          <xsl:otherwise>
-            
-               <xsl:element name="{name()}">
-                  <xsl:copy-of select="@*"/>
-                  <xsl:apply-templates/>
-               </xsl:element>
-            
+
+            <xsl:element name="{name()}">
+               <xsl:copy-of select="@*"/>
+               <xsl:apply-templates/>
+            </xsl:element>
+
          </xsl:otherwise>
       </xsl:choose>
 
@@ -171,11 +170,11 @@
          </xsl:when>
          <xsl:otherwise>
             <w xmlns="http://www.tei-c.org/ns/1.0">
-               
-                  <choice>
-                     <xsl:apply-templates/>
-                  </choice>
-               
+
+               <choice>
+                  <xsl:apply-templates/>
+               </choice>
+
             </w>
          </xsl:otherwise>
       </xsl:choose>
@@ -183,9 +182,9 @@
    </xsl:template>
    <xsl:template match="tei:choice[tei:sic]">
       <w xmlns="http://www.tei-c.org/ns/1.0">
-        
-            <xsl:apply-templates select="tei:sic"/>
-         
+
+         <xsl:apply-templates select="tei:sic"/>
+
       </w>
    </xsl:template>
    <xsl:template match="tei:abbr | tei:orig">
@@ -234,13 +233,25 @@
       <xsl:element name="{name()}">
          <xsl:copy-of select="@*"/>
          <!-- namespace problem I can't sort out -->
-         <xsl:for-each-group select="node()" group-adjacent="tei:w">
+         <xsl:for-each-group select="node()" group-adjacent="not(tei:sep)">
             <xsl:choose>
                <xsl:when test="current-grouping-key()">
-                     <xsl:copy-of select="current-group()[not(self::tei:w[not(node())])]"/>
+                  <xsl:for-each select="current-group()">
+                     <xsl:choose>
+                        <xsl:when test="self::tei:w[node()]">
+                           <xsl:copy-of select="."></xsl:copy-of>
+                        </xsl:when>
+                        <xsl:when test="self::tei:w[not(node())]">
+                           <!-- do nothing -->
+                        </xsl:when>
+                        <xsl:when test="text()"><xsl:value-of select="."/></xsl:when>
+                        <xsl:otherwise><xsl:copy-of select="."></xsl:copy-of></xsl:otherwise>
+                     </xsl:choose>
+                  </xsl:for-each>
+                  <!--<xsl:copy-of select="current-group()[not(self::tei:w[not(node())])]"/>-->
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:copy-of select="current-group()/self::*[name() = 'sep']/node()"/>
+                  <xsl:copy-of select="current-group()/self::tei:sep/node()"/>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:for-each-group>

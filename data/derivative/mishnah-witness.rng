@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2017-05-26T15:42:59Z. .
+Schema generated from ODD source 2017-08-20T20:32:10Z. .
 TEI Edition: Version 3.0.0. Last updated on
 	29th March 2016, revision 89ba24e
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.0.0/
@@ -1543,22 +1543,28 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
    <define name="mishnahw_model.nameLike.agent">
       <choice>
          <ref name="mishnahw_name"/>
+         <ref name="mishnahw_orgName"/>
          <ref name="mishnahw_persName"/>
       </choice>
    </define>
    <define name="mishnahw_model.nameLike.agent_alternation">
       <choice>
          <ref name="mishnahw_name"/>
+         <ref name="mishnahw_orgName"/>
          <ref name="mishnahw_persName"/>
       </choice>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequence">
       <ref name="mishnahw_name"/>
+      <ref name="mishnahw_orgName"/>
       <ref name="mishnahw_persName"/>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequenceOptional">
       <optional>
          <ref name="mishnahw_name"/>
+      </optional>
+      <optional>
+         <ref name="mishnahw_orgName"/>
       </optional>
       <optional>
          <ref name="mishnahw_persName"/>
@@ -1569,12 +1575,18 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_name"/>
       </zeroOrMore>
       <zeroOrMore>
+         <ref name="mishnahw_orgName"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="mishnahw_persName"/>
       </zeroOrMore>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequenceRepeatable">
       <oneOrMore>
          <ref name="mishnahw_name"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahw_orgName"/>
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahw_persName"/>
@@ -9088,6 +9100,18 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
             </choice>
          </attribute>
       </optional>
+   </define>
+   <define name="mishnahw_orgName">
+      <element name="orgName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(organization name) contains an organizational name. [13.2.2. Organizational Names]</a:documentation>
+         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.datable.attributes"/>
+         <ref name="mishnahw_att.editLike.attributes"/>
+         <ref name="mishnahw_att.personal.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <empty/>
+      </element>
    </define>
    <define name="mishnahw_placeName">
       <element name="placeName">

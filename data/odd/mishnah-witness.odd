@@ -54,7 +54,7 @@
                <moduleRef key="textstructure"/>
 
                <!-- Additional modules -->
-               <moduleRef key="transcr" except="addSpan delSpan ex facsimile handNotes handShift
+               <moduleRef key="transcr" except="addSpan delSpan ex facsimile
                   surface zone"/>
                <!-- Need to import the linking module to get next, prev, etc., attributes even though only two elements from linking are needed -->
                <moduleRef key="linking" include="ab anchor seg join joinGrp"/>
@@ -62,7 +62,7 @@
                   layout                   layoutDesc locus locusGrp msContents msDesc msIdentifier
                   msItem objectDesc origin                   physDesc repository source support
                   supportDesc width"/>
-               <moduleRef key="namesdates" include="placeName settlement region"/>
+               <moduleRef key="namesdates" include="placeName settlement region orgName"/>
 
                <!-- Including a few elements from modules not otherwise required -->
                <elementRef key="persName"/>
@@ -126,14 +126,20 @@
                      <rng:oneOrMore>
                         <rng:ref name="model.respLike"/>
                      </rng:oneOrMore>
+                     <rng:zeroOrMore>
+                        <rng:ref name="orgName"/>
+                     </rng:zeroOrMore>
                   </content>
                </elementSpec>
 
                <elementSpec module="header" ident="publicationStmt" mode="change">
                   <content>
                      <rng:oneOrMore>
-                        <rng:ref name="model.publicationStmtPart"/>
+                        <rng:ref name="model.publicationStmtPart.agency"/>
                      </rng:oneOrMore>
+                     <rng:zeroOrMore>
+                        <rng:ref name="model.publicationStmtPart.detail"/>
+                     </rng:zeroOrMore>
                   </content>
                   <constraintSpec ident="linter" scheme="isoschematron">
                      <constraint>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?>
@@ -9,7 +9,7 @@
    <teiHeader>
       <fileDesc>
          <titleStmt>
-            <title>An Electronic Publication of Bibliotheca Apostolica Ebr116-117 (Vatican) </title>
+            <title>An Electronic Publication of Bibliotheca Apostolica Ebr 116-117 (Vatican) </title>
             <editor>
                <persName corresp="ref.xml#HL">Hayim Lapin</persName>
                <persName corresp="ref.xml#DSBE">Daniel Stoekl Ben Ezra</persName>
@@ -44,7 +44,7 @@
                   <lb n="1"/>
                   <ab xml:id="S07397.4.2.1.1"><damage><seg rend="wide">שנים <unclear reason="damage"
                               unit="chars" extent="1"/>וחזין</seg></damage>
-                     <lb n="2"/>בטלית זה <choice>
+                     <lb n="2"/>בטלית זה <choice>
                         <abbr>אומ<am rend="geresh">׳</am>
                         </abbr>
                         <expan>אומר</expan>
@@ -507,11 +507,8 @@
                   <ab xml:id="S07397.4.2.2.7"><surplus>אמ</surplus>
                      <lb n="26"/> אמר את האבידה ולא אמר את הסימנין
                      <lb n="27"/> אין נותנין לו רמאי <choice>
-
-                        <choice>
-                           <abbr>אע<am rend="overdot">״</am>פ</abbr>
-                           <expan>אף על פי </expan>
-                        </choice>
+                        <abbr>אע<am rend="overdot">״</am>פ</abbr>
+                        <expan>אף על פי </expan>
                      </choice> שיאמ<c rend="long">ר</c>
                      <lb n="28"/> סימניה לא יתן לו <choice>
                         <abbr>שנ<am rend="overdot">׳</am></abbr>
@@ -607,7 +604,8 @@
                   <ab xml:id="S07397.4.2.2.10"> מצאה ברפת אין חייב בה
                      <lb n="15"/> ברשות הרבים חייב בה היתה בבי<c rend="long">ת</c>
                      <lb n="16"/> הקברות לא יטמא אם אמר לו אביו <surplus>ה</surplus>
-                     <lb n="17"/> היטמא <seg><del rend="dotted">א</del></seg> או שאמר לו אביו אל תחזיר
+                     <lb n="17"/> היטמא <seg><del rend="dotted">א</del></seg> או שאמר לו אביו אל
+                     תחזיר
                      <lb n="18"/> אל ישמע לו פרק וטען פרק וטען <choice>
                         <abbr>אפי<am rend="overdot">׳</am></abbr>
                         <expan>אפילו</expan>
@@ -664,14 +662,15 @@
                      <c rend="long">ר</c>בו </ab>
                   <cb xml:id="S07397.15vB" n="15vB"/>
                   <lb n="1"/>
-                  <trailer rend="size(large) align(center) pad()">סליק פירקא</trailer>
+                  <trailer xml:id="S07397.4.2.2.T" rend="size(large) align(center) pad()">סליק
+                     פירקא</trailer>
 
                </div3>
                <div3 xml:id="S07397.4.2.3">
                   <lb n="3"/>
                   <ab xml:id="S07397.4.2.3.1">
                      <w rend="wide">המפקיד</w>
-                     <space extent="2" unit="chars"/> אצ<c rend="wide tall">ל</c> 
+                     <space extent="2" unit="chars"/> אצ<c rend="wide tall">ל</c>
                      <lb n="4"/>
                      <space extent="26" unit="chars"/> חבי<c rend="tall">ר</c>ו
                      <lb n="5"/>
@@ -689,7 +688,8 @@
                      <lb n="11"/>אצלו נשבע ולא רצה לשלם ונמצא <surplus reason="fill">ה</surplus>
                      <lb n="12"/>הגנב משלם תשלמי כפל טבח ומכ<c rend="tall">ר</c>
                      <lb n="13"/>משלם תשלומי ארבעה וחמשה למי
-                     <lb n="14"/>הוא משלם לבעל הפקדון </ab><ab >השוכ<c rend="tall">ר</c>
+                     <lb n="14"/>הוא משלם לבעל הפקדון </ab>
+                  <ab xml:id="S07397.4.2.3.2">השוכ<c rend="tall">ר</c>
                      <choice>
                         <abbr>פר<am rend="overdot">׳</am>
                         </abbr>
@@ -706,7 +706,8 @@
                      <lb n="19"/>תחזור פרה <del hand="h1" rend="rubbing">
                         <damage>ב</damage>
                         <unclear reason="damage" unit="chars" extent="2"/>
-                     </del> לבעלים הראשונים אמר
+                     </del>לבעלים הראשונים</ab>
+                  <ab xml:id="S07397.4.2.3.3"> אמר
                      <lb n="20"/>לשנים<pc type="stop" rend="raisedDot">
                         <damage>.</damage>
                      </pc> גזלתי אחד מ<damage>כם ואיני יודע איזה</damage>
@@ -724,19 +725,15 @@
                      </unclear> עצמו <pc type="unitEnd" rend="gershayyim">:</pc>
                      <lb n="24"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.2">
-                     <trnsp-seg s="7030">
-                        <seg function="CHECK-ME">
-                           <ptr xml:id="s759" type="s" target="#e759"/>
-                           <!--Remnant of overlap and/or nesting problem. Requires editorial review.-->
-                        </seg>שהפקידו</trnsp-seg>
-                     <metamark>ב</metamark>
-                     <trnsp-seg s="7038">שנים</trnsp-seg>
-                     <metamark>א</metamark>
-                     <seg function="CHECK-ME">
-                        <anchor xml:id="e759" type="e"/>
-                        <!--Remnant of overlap or nesting problem. Requires editorial review.-->
-                     </seg> אצל אחד זה מנ<c rend="tall">ה</c>
+                  <ab xml:id="S07397.4.2.3.4">
+                     <w xml:id="S07397.4.2.3.4.1">שהפקידו</w><metamark>ב</metamark>
+                     <w xml:id="S07397.4.2.3.4.2">שנים</w><metamark>א</metamark>
+                     <listTranspose>
+                        <transpose>
+                           <ptr target="S07397.4.2.3.4.2"/>
+                           <ptr target="S07397.4.2.3.4.1"/>
+                        </transpose>
+                     </listTranspose> אצל אחד זה מנ<c rend="tall">ה</c>
                      <lb n="25"/>וזה <del hand="h1" rend="rubbing">מתי</del> מאתים <damage>זה אומר
                         מאתים </damage>שלי וז<c rend="tall">ה</c>
                      <lb n="26"/>או<damage>מר</damage> מאתים שלי נותן ל<damage>זה</damage> מנה ולזה
@@ -758,7 +755,7 @@
                      <lb n="30"/>
                      <space extent="1" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.3">
+                  <ab xml:id="S07397.4.2.3.5">
                      <damage>וכן</damage> שני כלים אחד <damage>
                         <unclear reason="damage" unit="chars" extent="3"/> מנה ו</damage>אחד יפ<c
                         rend="tall">ה</c>
@@ -778,7 +775,8 @@
                         >ל</c>
                      <lb n="36"/>
                      <damage>יהא מונח </damage>עד <del hand="h1" rend="non-vocalization">שיא</del>
-                     שיבא אלי<c rend="tall">ה</c>ו
+                     שיבא אלי<c rend="tall">ה</c>ו</ab>
+                  <ab xml:id="S07397.4.2.4.6">
                      <lb n="37"/>
                      <damage>המפקיד</damage> פירות אצל חבירו אפילו <w rend="wide tall">הן</w>
                      <lb n="38"/>
@@ -788,11 +786,11 @@
                         </abbr>
                         <expan>גמליאל</expan>
                      </choice>
-                     <cb xml:id="S07397.2" n="2"/>
+                     <cb xml:id="S07397.24vB" n="24vB"/>
                      <lb n="1"/>אומר ימכרם בבית דין מפני ש<c rend="wide tall">ה</c>וא
                      <lb n="2"/>כמשיב אבידה לבעלים<pc type="unitEnd" rend="gershayyim">:</pc>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.4"> המפקיד פירו<c rend="wide">ת</c> אצל
+                  <ab xml:id="S07397.4.2.3.7"> המפקיד פירו<c rend="wide">ת</c> אצל
                      <lb n="3"/>
                      <unclear reason="writ">?</unclear>ל חבירו הרי זה יוצא לו חסרונות לחיטין
                         <surplus reason="fill">?</surplus>
@@ -800,9 +798,7 @@
                      <lb n="5"/>ולדוחן תשעה קבין לכור לכוסמין ולזרע
                      <lb n="6"/>פשתן שלש סאין לכור<pc type="stop" rend="gershayyim">.</pc> הכל לפי
                      המידה
-                     <lb n="7"/>והכל לפי הזמן <pc type="unitEnd" rend="gershayyim">:</pc>
-                  </ab>
-                  <ab xml:id="S07397.4.2.3.5"> אמר <choice>
+                     <lb n="7"/>והכל לפי הזמן <pc type="unitEnd" rend="gershayyim">:</pc> אמר <choice>
                         <abbr>ר<am rend="geresh">׳</am>
                         </abbr>
                         <expan>רבי</expan>
@@ -830,7 +826,7 @@
                      <lb n="13"/>
                      <space extent="2" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.6"> יוציא לו שתות יין <del hand="h1" rend="rubbing">
+                  <ab xml:id="S07397.4.2.3.8"> יוציא לו שתות יין <del hand="h1" rend="rubbing">
                         <unclear reason="damage" unit="chars" extent="5"/>
                         <seg function="CHECK-ME">
                            <ptr xml:id="s891" type="s" target="#e891"/>
@@ -862,7 +858,7 @@
                         >:</pc>
                      <lb n="21"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.7"> המפקיד חבית <damage>אצל חבירו</damage> ולא ייח<c
+                  <ab xml:id="S07397.4.2.3.9"> המפקיד חבית <damage>אצל חבירו</damage> ולא ייח<c
                         rend="wide tall">ד</c>ו
                      <lb n="22"/>לה הבעלים מקום וטילטלה ונשבר<c rend="tall">ה</c>
                      <lb n="23"/>אם מתוך ידו נשברה לצרכו חייב לצרכה
@@ -878,7 +874,7 @@
                      <lb n="27"/>
                      <space extent="1" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.8"> המפקיד מעות אצל חב<damage>יר</damage>ו צר<c
+                  <ab xml:id="S07397.4.2.3.10"> המפקיד מעות אצל חב<damage>יר</damage>ו צר<c
                         rend="wide tall">ר</c>ן
                      <lb n="28"/>והפשילן <choice>
                         <abbr>לאחורי<am rend="overmark">׳</am>
@@ -903,7 +899,7 @@
                         </seg>
                      </choice> פטור <pc type="unitEnd" rend="gershayyim">:</pc>
                   </ab>
-                  <ab xml:id="S07397.4.2.3.9"> המפקיד מעות אצ<c rend="wide tall">ל</c>
+                  <ab xml:id="S07397.4.2.3.11"> המפקיד מעות אצ<c rend="wide tall">ל</c>
                      <lb n="33"/>
                      <damage>ש</damage>ולחני אם צרורין לא ישתמש ב<c rend="tall">ה</c>ן
                      <lb n="34"/>לפיכך אם <unclear reason="damage" unit="chars" extent="1"/>
@@ -922,9 +918,7 @@
                      <lb n="38"/>אם אבדו <gap reason="damage" unit="chars" extent="4"/> אינו חייב
                         באחרי<damage>ות</damage>ן <pc type="unitEnd" rend="gershayyim">:</pc>
                      <lb n="39"/>
-                     <space extent="1" unit="chars"/>
-                  </ab>
-                  <ab xml:id="S07397.4.2.3.10"> חנווני כבעל הבית דברי <choice>
+                     <space extent="1" unit="chars"/> חנווני כבעל הבית דברי <choice>
                         <abbr>ר<am rend="overdot">׳</am>
                         </abbr>
                         <expan>רבי</expan>
@@ -938,13 +932,12 @@
                            <!--Preceding non-abbreviation elements and/or comments are from overlapping or nested nodes. Requires editorial review.-->
                         </seg>
                      </choice>
-                     <lb n="40"/>יהודה אומר כשולחני<pc type="stop" rend="gershayyim">.</pc> השולח
-                        י<c rend="wide tall">ד</c>
+                     <lb n="40"/>יהודה אומר כשולחני<pc type="stop" rend="gershayyim">.</pc></ab>
+                  <ab xml:id="S07397.4.2.3.12">השולח י<c rend="wide tall">ד</c>
                      <pb xml:id="S07397.25r" n="25r"/>
-                     <cb xml:id="S07397.1" n="1"/>
-                     <lb n="1"/>בפיקדון בית שמאי אומרים ילק<c rend="wide tall">
-                        <damage>ה</damage>
-                     </c>
+                     <cb xml:id="S07397.25rA" n="25rA"/>
+                     <lb n="1"/>בפיקדון בית שמאי אומרים ילק <damage><c rend="wide tall"
+                        >ה</c></damage>
                      <lb n="2"/>בחסר ויתר ובית הילל אומרים <choice>
                         <abbr>כשע<am rend="overmark">׳</am>
                         </abbr>
@@ -996,10 +989,9 @@
                      <lb n="10"/>משלם את הכל<pc type="unitEnd" rend="gershayyim">:</pc>
                      <lb n="11"/>
                   </ab>
-                  <trailer xml:id="S07397.4.2.3.T" rend="size(large) pad(b) ornamented()">סליק
-                     פרקא </trailer>
-                  <trailer xml:id="S07397.4.2.3.T" rend="size() pad(b) ornamented()">המפקיד
-                     אצל חבירו וכו</trailer>
+                  <trailer xml:id="S07397.4.2.3.T" rend="size(large) pad(b) ornamented()">סליק פרקא </trailer>
+                  <trailer xml:id="S07397.4.2.3.T" rend="size() pad(b) ornamented()">המפקיד אצל
+                     חבירו וכו</trailer>
                   <cb xml:id="S07397.1" n="1"/>
                   <cb xml:id="S07397." n=""/>
                </div3>
@@ -1007,7 +999,7 @@
                   <lb n="28"/>
                   <ab xml:id="S07397.4.2.4.1">
                      <w rend="wide">הזהב</w>
-                     <space extent="3" unit="chars"/> קונה את הכסף <surplus reason="fill"
+                     <space extent="3" unit="chars"/> קונה את הכסף <surplus reason="fill"
                         >וה</surplus>
                      <lb n="29"/>
                      <space extent="16" unit="chars"/> והכסף אינו קנה א<c rend="wide tall">ת</c>
@@ -1339,7 +1331,7 @@
                   <lb n="25"/>
                   <ab xml:id="S07397.4.2.5.1">
                      <seg rend="wide">איזהו נשך</seg>
-                     <space extent="2" unit="chars"/> ואיז<c rend="tall">ה</c>ו 
+                     <space extent="2" unit="chars"/> ואיז<c rend="tall">ה</c>ו
                      <lb n="26"/>
                      <space extent="22" unit="chars"/> תרבי<c rend="wide tall">ת</c>
                      <lb n="27"/>איזהו נשך המלוה סלע בחמש<c rend="tall">ה</c>
@@ -1714,14 +1706,13 @@
                   <trailer xml:id="S07397.4.2.5.T" rend="size(large) pad(b) ornamented()">סליק
                      פירקא</trailer>
                   <lb n="11"/>
-                  <trailer xml:id="S07397.4.2.5.T" rend="size() pad(b) ornamented()">איזהו נשך
-                     כו" </trailer>
+                  <trailer xml:id="S07397.4.2.5.T" rend="size() pad(b) ornamented()">איזהו נשך כו" </trailer>
                   <cb xml:id="S07397.2" n="2"/>
                </div3>
                <div3 xml:id="S07397.4.2.6">
                   <lb n="33"/>
                   <ab xml:id="S07397.4.2.6.1">
-                     <w rend="wide tall">השוכר</w> את האומנין
+                     <w rend="wide tall">השוכר</w> את האומנין
                      <lb n="34"/>
                      <space extent="13" unit="chars"/> והטעו זה את
                      <lb n="35"/>13 זה אין להן זה
@@ -1738,7 +1729,7 @@
                      <lb n="4"/>מטען<pc type="unitEnd" rend="gershayyim">:</pc>
                      <space extent="2" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.6.2"> השוכר את האומנין <space extent="2" unit="chars"/>
+                  <ab xml:id="S07397.4.2.6.2"> השוכר את האומנין <space extent="2" unit="chars"/>
                      <surplus reason="fill">?</surplus>
                      <lb n="5"/>וחזרו בהן ידם על התחתונה<pc type="stop" rend="gershayyim">.</pc>
                      <space extent="1" unit="chars"/> אם
@@ -1758,7 +1749,7 @@
                      <fw type="catchw-corr-start" rend="size(smaller) ornamented(y)
                         place(margin-left)">סיפא</fw>
                   </ab>
-                  <ab xml:id="S07397.4.2.6.4"> השוכר את החמור
+                  <ab xml:id="S07397.4.2.6.4"> השוכר את החמור
                      <lb n="10"/>להוליכה בהר והוליכה בבקע<c rend="tall">ה</c>
                      <lb n="11"/>ואם החליקה פטור ואם הוחמה
                      <lb n="12"/>חייב בבקעה והוליכה בהר ואם
@@ -1784,7 +1775,7 @@
                      <fw type="catchw-gathering-prev" rend="size(smaller) ornamented(y)
                         place(margin-left)">רישא</fw>
                   </ab>
-                  <ab xml:id="S07397.4.2.6.3"> השוכר את החמו<c rend="tall">ר</c>
+                  <ab xml:id="S07397.4.2.6.3"> השוכר את החמו<c rend="tall">ר</c>
                      <lb n="16"/>
                      <del hand="h1" rend="deletion mark">והבריקה</del> להוליכה בהר והוליכ<c
                         rend="tall">ה</c>
@@ -1832,7 +1823,7 @@
                      <space extent="2" unit="chars"/>
                   </ab>
                   <ab xml:id="S07397.4.2.6.6"> השוכר
-                     <lb n="24"/>את הפרה לחרוש בהר וחרש
+                     <lb n="24"/>את הפרה לחרוש בהר וחרש
                      <lb n="25"/>
                      <add place="margin-right" hand="#h1">ב</add>בקעה ונשבר הקינקן פטו<c rend="tall"
                         >ר</c>
@@ -1849,7 +1840,7 @@
                      <space extent="2" unit="chars"/>
                   </ab>
                   <ab xml:id="S07397.4.2.6.7"> השוכר
-                     <lb n="31"/>את החמור להביא חיטין והביא
+                     <lb n="31"/>את החמור להביא חיטין והביא
                      <lb n="32"/>שעורין תבואה והביא תבן חיי<c rend="tall">ב</c>
                      <lb n="33"/>מפני שהנפח קשה במשאוי <pc type="unitEnd" rend="gershayyim">:</pc>
                      <lb n="34"/>
@@ -1967,7 +1958,7 @@
                <div3 xml:id="S07397.4.2.7">
                   <lb n="18"/>
                   <ab xml:id="S07397.4.2.7.1">
-                     <w rend="wide">השוכר</w> את הפועלים 
+                     <w rend="wide">השוכר</w> את הפועלים
                      <lb n="19"/>
                      <space extent="17" unit="chars"/> ואמר לה<c rend="tall">ם</c>
                      <lb n="20"/>
@@ -2113,11 +2104,11 @@
                      <lb n="33"/>על ידי בנו ובתו הקטנים ולא על
                      <lb n="34"/>שפחתו ועבדו הקטנים ולא על
                      <lb n="35"/>ידי בהמתו מפני שאין בהן דעת<pc type="unitEnd" rend="raisedDot"
-                        >:</pc> 
+                        >:</pc>
                      <lb n="36"/>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.7.7"> השוכר את הפועלי<c rend="tall">ם</c> 
+                  <ab xml:id="S07397.4.2.7.7"> השוכר את הפועלי<c rend="tall">ם</c>
                      <lb n="37"/>לעשות עמו בנטע רבעי ה<c rend="wide">ר</c>י
                      <lb n="38"/>אילו לא יאכלו ואם לא <damage>ה</damage>ודיעו
                      <lb n="39"/>פו<damage>דה ומ</damage>אכילן נתפרסו <unclear reason="writ">
@@ -2211,11 +2202,10 @@
                      <space extent="11" unit="chars"/> קיים
                      <lb n="38"/>
                   </ab>
-                  <trailer xml:id="S07397.4.2.7.T" rend="size(large) pad(b) ornamented()">סליק
-                     פירקא </trailer>
+                  <trailer xml:id="S07397.4.2.7.T" rend="size(large) pad(b) ornamented()">סליק פירקא </trailer>
                   <lb n="1"/>
                   <trailer xml:id="S07397.4.2.7.T" rend="size() pad(t) ornamented()">השוכר את
-                     הפועלים ואמר
+                     הפועלים ואמר
                      <lb n="2"/>להם להשכים כו "</trailer>
                   <cb xml:id="S07397.2" n="2"/>
                   <cb xml:id="S07397." n=""/>
@@ -2223,12 +2213,12 @@
                <div3 xml:id="S07397.4.2.8">
                   <lb n="5"/>
                   <ab xml:id="S07397.4.2.8.1">
-                     <w rend="wide">השואל</w> את הפר<c rend="tall">ה</c> 
+                     <w rend="wide">השואל</w> את הפר<c rend="tall">ה</c>
                      <lb n="6"/>
                      <space extent="18" unit="chars"/> ושאל בעל<c rend="tall">ה</c>
                      <lb n="7"/>
-                     <space extent="18" unit="chars"/> עמה השואל
-                     <lb n="8"/>את הפרה ושכר בעלה עמה שא<c rend="wide tall">ל</c>
+                     <space extent="18" unit="chars"/> עמה השואל
+                     <lb n="8"/>את הפרה ושכר בעלה עמה שא<c rend="wide tall">ל</c>
                      <lb n="9"/>בעליה או שכרן ואחרכך שאל את
                      <lb n="10"/>הפרה ומתה פטור<pc type="stop" rend="gershayyim">.</pc>
                      <choice>
@@ -2248,7 +2238,7 @@
                      </pc>
                   </ab>
                   <ab xml:id="S07397.4.2.8.2"> השואל את
-                     <lb n="15"/>הפרה שאלה חצי היום <choice>
+                     <lb n="15"/>הפרה שאלה חצי היום <choice>
                         <abbr>ושכר<am rend="geresh">׳</am>
                         </abbr>
                         <expan>ושכרה</expan>
@@ -2298,7 +2288,7 @@
                      <lb n="28"/>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.8.3"> השואל את הפרה ושלחה לו בי<c rend="wide">ד</c>
+                  <ab xml:id="S07397.4.2.8.3"> השואל את הפרה ושלחה לו בי<c rend="wide">ד</c>
                      <lb n="29"/>בנו או ביד עבדו ביד שלוחו של <unclear reason="writ">
                         <add place="above line" hand="#h1">מ</add>
                         <seg function="CHECK-ME">
@@ -2456,18 +2446,17 @@
                         rend="gershayyim">:</pc>
                      <lb n="35"/>
                   </ab>
-                  <trailer xml:id="S07397.4.2.8.T" rend="size(large) pad(b) ornamented()">סליק
-                     פירקא </trailer>
-                  <trailer xml:id="S07397.4.2.8.T" rend="size() pad(b) ornamented()">השואל את
-                     הפרה ושאל בעלה
-                     <lb n="37"/>עמה עמה כולי </trailer>
+                  <trailer xml:id="S07397.4.2.8.T" rend="size(large) pad(b) ornamented()">סליק פירקא </trailer>
+                  <trailer xml:id="S07397.4.2.8.T" rend="size() pad(b) ornamented()">השואל את הפרה
+                     ושאל בעלה
+                     <lb n="37"/>עמה עמה כולי </trailer>
                   <cb xml:id="S07397.1" n="1"/>
                   <cb xml:id="S07397." n=""/>
                </div3>
                <div3 xml:id="S07397.4.2.9">
                   <lb n="17"/>
                   <ab xml:id="S07397.4.2.9.1">
-                     <w rend="wide">המקבל</w> שדה מחבי<c rend="tall">ר</c>ו 
+                     <w rend="wide">המקבל</w> שדה מחבי<c rend="tall">ר</c>ו
                      <lb n="18"/>
                      <space extent="20" unit="chars"/> מקום ש<del hand="h1" rend="overwritten"
                         >ג</del>
@@ -2493,7 +2482,7 @@
                      <space extent="2" unit="chars"/>
                   </ab>
                   <ab xml:id="S07397.4.2.9.3"> המקבל <surplus reason="fill">?</surplus>
-                     <lb n="25"/>שדה מחבירו והיא בית השלחין או בי<c rend="wide">ת</c>
+                     <lb n="25"/>שדה מחבירו והיא בית השלחין או בי<c rend="wide">ת</c>
                      <lb n="26"/>האילן יבש המעיין ונקצץ האילן אינו <del hand="other"
                         rend="non-vocalization">אינו</del>
                      <note type="EdRevReqd" resp="#NE">comm:מילה זו מיותרת אולם אין כל סימן
@@ -2518,7 +2507,7 @@
                      <lb n="30"/>חכירו<pc type="unitEnd" rend="gershayyim">:</pc>
                      <space extent="4" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.9.5"> המקבל שדה מחבירו 
+                  <ab xml:id="S07397.4.2.9.5"> המקבל שדה מחבירו
                      <add place="above line" hand="#h1">וזכה בה</add> מי <surplus reason="fill"
                         >שזכ</surplus>
                      <lb n="31"/>שזכה בה ה
@@ -2530,11 +2519,11 @@
                            <c>ב</c>
                            <c>כ</c>
                         </seg>
-                     </unclear>מיטבה<pc type="unitEnd" rend="gershayyim">:</pc> 
+                     </unclear>מיטבה<pc type="unitEnd" rend="gershayyim">:</pc>
                      <lb n="34"/>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.9.6"> המקבל שדה מחבירו ולא רצה לנקש <space extent="1"
+                  <ab xml:id="S07397.4.2.9.6"> המקבל שדה מחבירו ולא רצה לנקש <space extent="1"
                         unit="chars"/>
                      <surplus reason="fill">?</surplus>
                      <lb n="35"/>אמר לו מה איכפת לך הואיל ואני נותן ל<c rend="wide tall">ך</c>
@@ -2547,7 +2536,7 @@
                      <lb n="38"/>לפני עשבים<pc type="unitEnd" rend="gershayyim">:</pc>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.9.7"> המקבל שדה מחבירו 
+                  <ab xml:id="S07397.4.2.9.7"> המקבל שדה מחבירו
                      <cb xml:id="S07397.2" n="2"/>
                      <lb n="1"/>ולא עשת אם יש בה כדי להעמיד כ<damage>
                         <c rend="wide">ר</c>
@@ -2561,7 +2550,7 @@
                      <space extent="2" unit="chars"/>
                   </ab>
                   <ab xml:id="S07397.4.2.9.8"> המקב<c rend="wide tall">ל</c>
-                     <lb n="4"/>שדה מחבירו ואכלה חגב או נשרפ<w rend="tall">ה</w>
+                     <lb n="4"/>שדה מחבירו ואכלה חגב או נשרפ<w rend="tall">ה</w>
                      <lb n="5"/>אם מכת מדינה הוא מנכה לו מן חכי<c rend="tall">ר</c>ו
                      <lb n="6"/>ואם אינו מכת מכת מדינה אינו מנכה
                      <lb n="7"/>לו מ<unclear reason="writ">ן</unclear> החכירו <choice>
@@ -2594,7 +2583,7 @@
                      <space extent="4" unit="chars"/>
                   </ab>
                   <ab xml:id="S07397.4.2.9.10"> המקבל שד<c rend="tall">ה</c>
-                     <lb n="13"/>מחבירו לזורעה שעורים חיטין <c rend="wide tall">ל</c>א
+                     <lb n="13"/>מחבירו לזורעה שעורים חיטין <c rend="wide tall">ל</c>א
                      <lb n="14"/>יזרענה<pc type="stop" rend="raisedDot">.</pc> חיטין יזרענה
                         שעורים<pc type="stop" rend="gershayyim">.</pc> רבן <surplus reason="fill"
                         >?</surplus>
@@ -2618,7 +2607,7 @@
                         rend="gershayyim">:</pc>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.9.11"> המקבל שדה מחבירו לשנים
+                  <ab xml:id="S07397.4.2.9.11"> המקבל שדה מחבירו לשנים
                      <lb n="18"/>
                      <damage>מ</damage>
                      <unclear reason="writ">
@@ -2634,7 +2623,7 @@
                         rend="gershayyim">:</pc>
                      <space extent="3" unit="chars"/>
                   </ab>
-                  <ab xml:id="S07397.4.2.9.12"> המקבל שדה מחבירו 
+                  <ab xml:id="S07397.4.2.9.12"> המקבל שדה מחבירו
                      <lb n="22"/>שבע שנים בשבע מאות דינר אין <space extent="1" unit="chars"/>
                      <surplus reason="fill">?</surplus>
                      <lb n="23"/>השביעית
@@ -2766,10 +2755,9 @@
                         rend="gershayyim">:</pc>
                      <lb n="18"/>
                   </ab>
-                  <trailer xml:id="S07397.4.2.9.T" rend="size(large) pad(b) ornamented()">סליק
-                     פירקא </trailer>
+                  <trailer xml:id="S07397.4.2.9.T" rend="size(large) pad(b) ornamented()">סליק פירקא </trailer>
                   <trailer xml:id="S07397.4.2.9.T" rend="size() pad(b) ornamented()">המקבל שדה
-                     מחבירו מקום כו"</trailer>
+                     מחבירו מקום כו"</trailer>
                   <cb xml:id="S07397.1" n="1"/>
                </div3>
                <div3 xml:id="S07397.4.2.10">
@@ -3012,7 +3000,7 @@
                      פירקא</trailer>
                   <lb n="5"/>
                   <trailer xml:id="S07397.4.2.10.T" rend="size() pad(b) ornamented(y)">הבית והעלייה
-                     כוליה </trailer>
+                     כוליה </trailer>
                </div3>
             </div2>
          </div1>

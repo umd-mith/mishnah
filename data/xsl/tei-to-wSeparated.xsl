@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-   xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
-   xmlns="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xs tei" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xs tei"
+   version="2.0">
    <xsl:strip-space elements="*"/>
    <!--<xsl:strip-space elements="tei:damage tei:unclear tei:gap"/>-->
 
@@ -10,8 +10,7 @@
    <xsl:param name="csv">no</xsl:param>
    <xsl:param name="path" select="'../tei'"/>
 
-   <xsl:variable name="files"
-      select="collection(iri-to-uri(concat($path, '?select=[PS][0-9]{5}.xml;recurse=no')))"/>
+   <xsl:variable name="files" select="collection(iri-to-uri(concat($path, '?select=[PS][0-9]*?.xml;recurse=no')))"/>
 
 
    <xsl:template match="* | text() | @* | comment()" mode="#all">
@@ -24,8 +23,7 @@
       <xsl:choose>
          <xsl:when test="$iterate = 'yes'">
             <xsl:for-each select="$files/*">
-               <xsl:result-document
-                  href="{concat('../tei/w-sep/',/*/*/*/*/tei:idno[@type='local'],'-w-sep.xml')}"
+               <xsl:result-document href="{concat('../tei/w-sep/',/*/*/*/*/tei:idno[@type='local'],'-w-sep.xml')}"
                   method="xml" indent="yes" encoding="utf-8">
                   <TEI>
                      <xsl:processing-instruction name="xml-model">
@@ -83,37 +81,41 @@
       <anchor xml:id="{generate-id()}" type="{name()}"/>
    </xsl:template>
    <xsl:template match="tei:add | tei:del">
-      <!-- ifs to force start-of-word spans to be outside ws -->
-      <xsl:if test="not(parent::*[self::tei:pc|self::tei:am]) and (matches(text()[1],'^\s') or matches(preceding::text()[1],'\s$') or
-            preceding-sibling::node()[1][self::tei:lb|self::tei:pb|self::tei:cb|self::tei:label|self::tei:surplus] or
-            not(preceding-sibling::node()))">
+
+      <!-- ifs to force start-of-word spans to be outside w elements -->
+      <xsl:if
+         test="not(parent::*[self::tei:pc | self::tei:am]) and (matches(text()[1], '^\s') or matches(preceding::text()[1], '\s$') or preceding-sibling::node()[1][self::tei:lb | self::tei:pb | self::tei:cb | self::tei:label | self::tei:surplus] or not(preceding-sibling::node()))">
          <sep xmlns="http://www.tei-c.org/ns/1.0"/>
       </xsl:if>
       <xsl:element name="{concat(name(),'Span')}">
          <xsl:attribute name="spanTo" select="concat('#', generate-id())"/>
          <xsl:copy-of select="@*"/>
       </xsl:element>
-      <xsl:if test="not(parent::*[self::tei:pc|self::tei:am]) and (matches(text()[1],'^\s') or matches(preceding::text()[1],'\s$') or
-         preceding-sibling::node()[1][self::tei:lb|self::tei:pb|self::tei:cb|self::tei:label|self::tei:surplus]  or
-         not(preceding-sibling::node()))">
+      <xsl:if
+         test="not(parent::*[self::tei:pc | self::tei:am]) and (matches(text()[1], '^\s') or matches(preceding::text()[1], '\s$') or preceding-sibling::node()[1][self::tei:lb | self::tei:pb | self::tei:cb | self::tei:label | self::tei:surplus] or not(preceding-sibling::node()))">
          <sep xmlns="http://www.tei-c.org/ns/1.0"/>
       </xsl:if>
       <xsl:apply-templates/>
-      <xsl:if test="matches(text()[last()],'\s$') or matches(following::text()[1],'^\s') or
-         following-sibling::node()[1][self::tei:lb|self::tei:pb|self::tei:cb|self::tei:label|self::tei:surplus]  or
-         not(following-sibling::node())">
+      <xsl:if
+         test="matches(text()[last()], '\s$') or matches(following::text()[1], '^\s') or following-sibling::node()[1][self::tei:lb | self::tei:pb | self::tei:cb | self::tei:label | self::tei:surplus] or not(following-sibling::node())">
          <sep xmlns="http://www.tei-c.org/ns/1.0"/>
       </xsl:if>
       <xsl:element name="anchor">
          <xsl:attribute name="xml:id" select="generate-id()"/>
-         <xsl:attribute name="type" select="if (@type) then @type else name()"/>
+         <xsl:attribute name="type"
+            select="
+               if (@type) then
+                  @type
+               else
+                  name()"
+         />
       </xsl:element>
-      <xsl:if test="matches(text()[last()],'\s$') or matches(following::text()[1],'^\s') or
-         following-sibling::node()[1][self::tei:lb|self::tei:pb|self::tei:cb|self::tei:label|tei:surplus]  or
-         not(following-sibling::node())">
+      <xsl:if
+         test="matches(text()[last()], '\s$') or matches(following::text()[1], '^\s') or following-sibling::node()[1][self::tei:lb | self::tei:pb | self::tei:cb | self::tei:label | tei:surplus] or not(following-sibling::node())">
          <sep xmlns="http://www.tei-c.org/ns/1.0"/>
       </xsl:if>
    </xsl:template>
+
    <!-- segments to spans -->
    <xsl:template match="tei:seg">
       <xsl:choose>
@@ -143,11 +145,11 @@
    </xsl:template>-->
 
    <xsl:template
-      match="tei:w | tei:surplus | tei:gap | tei:fw | tei:lb[not(@break = 'no')] | tei:pb | tei:cb | tei:pc | tei:label | tei:milestone | tei:metamark[not(parent::tei:w)] | tei:listTranspose">
+      match="tei:w | tei:surplus | tei:gap | (: tei:fw |:) tei:lb[not(@break = 'no')] | tei:pb | tei:cb | tei:pc | tei:label | tei:milestone | tei:metamark[not(parent::tei:w)] | tei:listTranspose">
 
       <xsl:choose>
          <xsl:when test="self::tei:w">
-            <sep>
+            <sep xmlns="http://www.tei-c.org/ns/1.0">
                <w>
                   <xsl:copy-of select="@*"/>
                   <xsl:if test="@xml:id">
@@ -157,8 +159,7 @@
                </w>
             </sep>
          </xsl:when>
-         <xsl:when
-            test="parent::tei:div1 | parent::tei:div2 | parent::tei:div3 | self::label | self::tei:milestone">
+         <xsl:when test="parent::tei:div1 | parent::tei:div2 | parent::tei:div3 | self::label | self::tei:milestone">
             <xsl:element name="{name()}">
                <xsl:copy-of select="@*"/>
                <xsl:apply-templates/>
@@ -177,25 +178,25 @@
 
    </xsl:template>
 
-   <xsl:template
-      match="tei:choice[tei:abbr | tei:expan] | tei:choice[not(ancestor::tei:w)][tei:orig | tei:reg]">
-      
-         <xsl:choose>
-            <xsl:when
-               test="ancestor::tei:w">
-               <choice>
-                  <xsl:apply-templates/>
-               </choice>
-            </xsl:when>
-            <xsl:otherwise>
-               <sep xmlns="http://www.tei-c.org/ns/1.0"><w>
+   <xsl:template match="tei:choice[tei:abbr | tei:expan] | tei:choice[not(ancestor::tei:w)][tei:orig | tei:reg]">
+
+      <xsl:choose>
+         <xsl:when test="ancestor::tei:w">
+            <choice>
+               <xsl:apply-templates/>
+            </choice>
+         </xsl:when>
+         <xsl:otherwise>
+            <sep xmlns="http://www.tei-c.org/ns/1.0">
+               <w>
                   <choice>
                      <xsl:apply-templates/>
                   </choice>
-               </w></sep>
-            </xsl:otherwise>
-         </xsl:choose>
-      
+               </w>
+            </sep>
+         </xsl:otherwise>
+      </xsl:choose>
+
    </xsl:template>
    <xsl:template match="tei:choice[tei:sic]">
       <sep xmlns="http://www.tei-c.org/ns/1.0">
@@ -227,14 +228,17 @@
       <xsl:variable name="curr" select="parent::*/name()"/>
       <xsl:choose>
          <xsl:when
-            test="not(ancestor::tei:surplus | ancestor::tei:fw | ancestor::tei:note | ancestor::tei:surplus | 
-                  ancestor::tei:w | ancestor::tei:label | ancestor::tei:pc |ancestor::tei:abbr)">
+            test="not(ancestor::tei:surplus | ancestor::tei:fw | ancestor::tei:note | ancestor::tei:surplus | ancestor::tei:w | ancestor::tei:label | ancestor::tei:pc | ancestor::tei:abbr)">
             <xsl:analyze-string select="." regex="\s+">
                <xsl:matching-substring>
-                  <xsl:choose><xsl:when test="not($curr = 'expan')">
-                     <sep xmlns="http://www.tei-c.org/ns/1.0"/>
-                  </xsl:when>
-                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose>
+                  <xsl:choose>
+                     <xsl:when test="not($curr = 'expan')">
+                        <sep xmlns="http://www.tei-c.org/ns/1.0"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:value-of select="."/>
+                     </xsl:otherwise>
+                  </xsl:choose>
                </xsl:matching-substring>
                <xsl:non-matching-substring>
                   <xsl:value-of select="."/>
@@ -252,7 +256,7 @@
       <xsl:element name="{name()}">
          <xsl:copy-of select="@*"/>
          <!-- namespace problem I can't sort out -->
-         <xsl:for-each-group select="node()" group-adjacent="not(self::*[name() = 'sep'])">
+         <xsl:for-each-group select="node()" group-adjacent="not(self::tei:sep)">
             <xsl:choose>
                <xsl:when test="current-grouping-key()">
                   <w>
@@ -260,7 +264,7 @@
                   </w>
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:copy-of select="current-group()/self::*[name() = 'sep']/node()"/>
+                  <xsl:copy-of select="current-group()/self::tei:sep/node()"/>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:for-each-group>
@@ -268,16 +272,24 @@
    </xsl:template>
 
    <xsl:template match="tei:w[normalize-space()]" mode="cleanup">
-      <w>
-         <xsl:copy-of select="@*[not(name() = 'xml:id' or name()='n')]"/>
-         <xsl:attribute name="xml:id"
-            select="concat(ancestor-or-self::*[self::tei:ab | self::tei:head | self::tei:trailer]/@xml:id, '.', count(preceding-sibling::tei:w[normalize-space()]) + 1)"/>
-         <!--<xsl:apply-templates mode="cleanup"/>-->
-         <xsl:apply-templates mode="cleanup"/>
-      </w>
+      <xsl:choose>
+         <!--    Kludge: found ws in output that consisted solely of note.    -->
+         <xsl:when test="not(tei:note[not(following-sibling::node() | preceding-sibling::node())])">
+            <w>
+               <xsl:copy-of select="@*[not(name() = 'xml:id' or name() = 'n')]"/>
+               <xsl:attribute name="xml:id"
+                  select="concat(ancestor-or-self::*[self::tei:ab | self::tei:head | self::tei:trailer]/@xml:id, '.', count(preceding-sibling::tei:w[normalize-space()]) + 1)"/>
+               <!--<xsl:apply-templates mode="cleanup"/>-->
+               <xsl:apply-templates mode="cleanup"/>
+            </w>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:copy-of select="tei:note"/>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
-      <xsl:template match="tei:w[not(normalize-space())]" mode="cleanup">
-         <!-- this may remove w that are place holders for unreadable text. -->
+   <xsl:template match="tei:w[not(normalize-space())]" mode="cleanup">
+      <!-- this may remove w that are place holders for unreadable text. -->
       <xsl:copy-of select="node()"/>
    </xsl:template>
    <xsl:template match="tei:ptr" mode="cleanup">

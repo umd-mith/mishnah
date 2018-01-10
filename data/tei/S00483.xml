@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css"
     href="../css/GenizahEditedFormat.css" title="Mishnah Style Sheet" alternate="no"?>
-<!--<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rnc" type="application/relax-ng-compact-syntax"?>-->
-<?xml-model href="../derivative/digital_mishnah_witness.rnc" type="application/relax-ng-compact-syntax"?>
-    <?xml-model href="../derivative/digital_mishnah_witness.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../derivative/digital_mishnah-witness.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../derivative/digital_mishnah-witness.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <?xml-stylesheet type="text/xsl" href="for-transcribers.xsl"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader>
@@ -38,8 +37,9 @@
             <idno type="local">S00483</idno>
             <availability status="restricted">
                <p>This work is copyright Hayim Lapin and the Joseph and Rebecca Meyerhof Center for
-                  Jewish Studies and licensed under a <ref target="http://creativecommons.org/licenses/by-nc/3.0//">Creative Commons Attribution
-                     International 4.0 License</ref>.</p>
+                  Jewish Studies and licensed under a <ref
+                     target="http://creativecommons.org/licenses/by-nc/3.0//">Creative Commons
+                     Attribution International 4.0 License</ref>.</p>
             </availability>
             <date>2014-06-25</date>
          </publicationStmt>
@@ -98,24 +98,29 @@
                      </layoutDesc>
                   </objectDesc>
                   <handDesc>
-                     <handNote scribe="first" script="Italian Square" scope="major">
+                     <handNote xml:id="h1.0" scribe="first" script="Italian Square" scope="major">
                         <date>11th Century</date>
                         <region>Italy</region>
                         <!-- Following is a temporary solution -->
                         <desc>pointed<desc>Babylonian</desc></desc>
                         <note>"About half of the tractates are supplied with vowel points reflecting
-                           the vocalization accrding to the Babylonian tradition" (Richler)</note>
+                           the vocalization accrding to the Babylonian tradition." <ref target="ref.xml#richler-parm">Richler, no. 710</ref></note>
                      </handNote>
-                     <handNote scribe="second" script="Italian Square" scope="minor">
+                     <handNote xml:id="h1.1" scribe="second" script="Italian Square" scope="minor">
                         <date>11th Century</date>
                         <region>Italy</region>
-                        <note>Sporadic</note>
+                        <note>Sporadic: "f. 142v, col. 2; f. 154r, col. 1; f. 166v, col. 2
+                           from line 4; f. 185v, col. 2." Scribe thought to be identical with scribe of MS Vat.,
+                           Biblioteca Apostolica ebr. 31 (Sifra), dated 1072-1073. <ref target="ref.xml#richler-parm">Richler, no. 710</ref></note>
                      </handNote>
-                     <handNote scribe="third" script="Italian Square" scope="minor">
+                     <handNote xml:id="h1.2"  scribe="third" script="Italian Square" scope="minor">
                         <date>11th Century</date>
                         <region>Italy</region>
-                        <note>Folios 175-195. Scribe thought to be identical with scribe of MS Vat.,
-                           Biblioteca Apostolica ebr. 31 (Sifra), dated 1072-1073</note>
+                        <note>Folios 175-195.</note>
+                     </handNote>
+                     <handNote xml:id="h2" scribe="corrector" script="tiberian">
+                        <note>By default, all additions and deletions are labelled "h2." 
+                           No attempt has been made at this stage to classify the interventions</note>
                      </handNote>
                   </handDesc>
                </physDesc>

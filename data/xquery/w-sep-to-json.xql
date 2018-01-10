@@ -12,7 +12,7 @@ import module namespace config = "http://www.digitalmishnah.org/config" at "conf
 
 
 (:these two variables should be replaced by parameters from app  :)
-declare variable $mCite := '4.1.8.7';
+declare variable $mCite := '4.2.5.1';
 declare variable $nodes :=
 for $witName in doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness/@xml:id/string()
 return
@@ -107,9 +107,9 @@ return
    </filtered>
 ;
 
-declare variable $textForH2 :=
-(: text nodes that fall between add or comm start/end tags:)
-(: For text nodes had to do this by position in document rather than sets:)
+(:declare variable $textForH2 :=
+(\: text nodes that fall between add or comm start/end tags:\)
+(\: For text nodes had to do this by position in document rather than sets:\)
 for $ab in $nodes
 where $ab//*[self::tei:anchor[@type = 'comm' or @type = 'add']]
 return
@@ -120,16 +120,16 @@ return
          distinct-values($delIDs[@xml:id = $ab/@xml:id]/local:val | $commIDs[@xml:id = $ab/@xml:id]/local:val)
          return
             <item>{
-                  (: start position :)
+                  (\: start position :\)
                   <s>{count($ab//*[contains(@spanTo, $i)]/preceding::node())}</s>,
-                  (: end position :)
+                  (\: end position :\)
                   <e>{count($ab//*[@xml:id = $i]/preceding::node())}</e>
                }</item>
       }
    </filtered>
 ;
 
-
+:)
 declare function local:filter-w-set($w-set as node()*, $case as xs:string) as node()* {
    (: Filters w elements, removing those wholly within the bounding add or del span and anchor tags :)
    (: More efficient than for loop evaluating each w? :)
@@ -258,7 +258,7 @@ declare function local:filterTextNodes($t as text(), $id as xs:string, $case as 
 };
 
 declare function local:regHebr($str as xs:string) as xs:string {
-   (: latter borrowed from XSLT version. Better way of doing this :)
+   (: latter borrowed from XSLT version. Better way of doing this? :)
    let $out := translate(translate(replace($str, 'א$', 'ה'), 'ם', 'ן'), '|יו?', '')
    return
       if ($out = '') then
@@ -428,31 +428,8 @@ declare function local:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
 
 };
 
-declare function local:addDelTextEndPts($h1h2 as node()*) as node()* {
-   ()
-};
-
-(:declare function local:witnessTokens($ab as node()+) as node()* {}::)
-
-(: 
-: Main Query
-:)
-
-
-let $noComm := for $ab in $nodes
-      (: get only ws and string that is not between comm span and anchor:)
-      (: instead do this after? or don't use global variable? :)
-      return
-         if (($addIDs[@xml:id = $ab/@xml:id] | $commIDs[@xml:id = $ab/@xml:id])/*) then
-            <ab
-               xmlns="http://www.tei-c.org/ns/1.0"
-               xml:id="{$ab/@xml:id}">{
-                  local:omitComms($ab)
-               }</ab>
-         else
-            $ab
-return
-   map{ "witnesses" : for $ab in $noComm return 
+declare function local:buildJSON($wSequence as element()+) as map(*){
+   map{ "witnesses" : for $ab in $wSequence return 
      map { "id" : substring-before($ab/@xml:id,'.'), 
      "tokens" : array {
      let $witnessTokens := if ($addIDs[@xml:id = $ab/@xml:id][node()] | $delIDs[@xml:id = $ab/@xml:id][node()]) then
@@ -460,6 +437,7 @@ return
                else
                   $ab
                return
+               
                   for $w in $witnessTokens/tei:w[normalize-space(.)]
                   let $tText:= string-join(local:w-children($w/node(), $ab/@xml:id/string()),'')
                   let $rText := array {if ($w/*/tei:expan) then
@@ -479,7 +457,11 @@ return
                   if ($w/self::tei:w/@resp) then
                      map {"resp": $w/@resp/string()}
                   else ()
-                  return map:merge(($tMap, $respMap)),
+                  let $expMap:= 
+                     if ($w/*/tei:expan) then 
+                        map {"expan" : string-join($w/*/tei:expan,' ')} 
+                     else () 
+                  return map:merge(($tMap, $respMap, $expMap)),
                   if (array:size($rText) > 1)
                      then
                            for $i in 2 to array:size($rText)
@@ -489,5 +471,29 @@ return
                               "id" : concat($w/@xml:id, '-', string($i))}
                   else
                         ()
-                  )}}}
-                  
+                  )
+                  }}}
+};
+
+(: 
+: Main Query
+:)
+
+
+let $noComm := for $ab in $nodes
+      (: get only ws and string that is not between comm span and anchor:)
+      (: instead do this after? or don't use global variable? :)
+      return
+         (: Do we need to include $addIDs? :)
+         if (($addIDs[@xml:id = $ab/@xml:id] | $commIDs[@xml:id = $ab/@xml:id])/*) then
+            <ab
+               xmlns="http://www.tei-c.org/ns/1.0"
+               xml:id="{$ab/@xml:id}">{
+                  local:omitComms($ab)
+               }</ab>
+         else
+            $ab
+return
+   (: process as json :)
+   let $array as map(*) := local:buildJSON($noComm)
+   return $array

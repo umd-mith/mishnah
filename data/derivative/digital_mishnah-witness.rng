@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2017-05-24T00:56:58Z. .
+Schema generated from ODD source 2017-08-20T22:53:29Z. .
 TEI Edition: Version 3.0.0. Last updated on
 	29th March 2016, revision 89ba24e
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.0.0/
@@ -1543,31 +1543,31 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
    <define name="mishnahw_model.nameLike.agent">
       <choice>
          <ref name="mishnahw_name"/>
-         <ref name="mishnahw_persName"/>
          <ref name="mishnahw_orgName"/>
+         <ref name="mishnahw_persName"/>
       </choice>
    </define>
    <define name="mishnahw_model.nameLike.agent_alternation">
       <choice>
          <ref name="mishnahw_name"/>
-         <ref name="mishnahw_persName"/>
          <ref name="mishnahw_orgName"/>
+         <ref name="mishnahw_persName"/>
       </choice>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequence">
       <ref name="mishnahw_name"/>
-      <ref name="mishnahw_persName"/>
       <ref name="mishnahw_orgName"/>
+      <ref name="mishnahw_persName"/>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequenceOptional">
       <optional>
          <ref name="mishnahw_name"/>
       </optional>
       <optional>
-         <ref name="mishnahw_persName"/>
+         <ref name="mishnahw_orgName"/>
       </optional>
       <optional>
-         <ref name="mishnahw_orgName"/>
+         <ref name="mishnahw_persName"/>
       </optional>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequenceOptionalRepeatable">
@@ -1575,10 +1575,10 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_name"/>
       </zeroOrMore>
       <zeroOrMore>
-         <ref name="mishnahw_persName"/>
+         <ref name="mishnahw_orgName"/>
       </zeroOrMore>
       <zeroOrMore>
-         <ref name="mishnahw_orgName"/>
+         <ref name="mishnahw_persName"/>
       </zeroOrMore>
    </define>
    <define name="mishnahw_model.nameLike.agent_sequenceRepeatable">
@@ -1586,10 +1586,10 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_name"/>
       </oneOrMore>
       <oneOrMore>
-         <ref name="mishnahw_persName"/>
+         <ref name="mishnahw_orgName"/>
       </oneOrMore>
       <oneOrMore>
-         <ref name="mishnahw_orgName"/>
+         <ref name="mishnahw_persName"/>
       </oneOrMore>
    </define>
    <define name="mishnahw_model.segLike">
@@ -2016,6 +2016,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_del"/>
          <ref name="mishnahw_unclear"/>
          <ref name="mishnahw_damage"/>
+         <ref name="mishnahw_handShift"/>
          <ref name="mishnahw_restore"/>
          <ref name="mishnahw_supplied"/>
          <ref name="mishnahw_surplus"/>
@@ -2036,6 +2037,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_del"/>
          <ref name="mishnahw_unclear"/>
          <ref name="mishnahw_damage"/>
+         <ref name="mishnahw_handShift"/>
          <ref name="mishnahw_restore"/>
          <ref name="mishnahw_supplied"/>
          <ref name="mishnahw_surplus"/>
@@ -2055,6 +2057,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
       <ref name="mishnahw_del"/>
       <ref name="mishnahw_unclear"/>
       <ref name="mishnahw_damage"/>
+      <ref name="mishnahw_handShift"/>
       <ref name="mishnahw_restore"/>
       <ref name="mishnahw_supplied"/>
       <ref name="mishnahw_surplus"/>
@@ -2088,6 +2091,9 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
       </optional>
       <optional>
          <ref name="mishnahw_damage"/>
+      </optional>
+      <optional>
+         <ref name="mishnahw_handShift"/>
       </optional>
       <optional>
          <ref name="mishnahw_restore"/>
@@ -2140,6 +2146,9 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
          <ref name="mishnahw_damage"/>
       </zeroOrMore>
       <zeroOrMore>
+         <ref name="mishnahw_handShift"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="mishnahw_restore"/>
       </zeroOrMore>
       <zeroOrMore>
@@ -2188,6 +2197,9 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahw_damage"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="mishnahw_handShift"/>
       </oneOrMore>
       <oneOrMore>
          <ref name="mishnahw_restore"/>
@@ -2657,6 +2669,20 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
       <oneOrMore>
          <ref name="mishnahw_model.placeNamePart_sequenceRepeatable"/>
       </oneOrMore>
+   </define>
+   <define name="mishnahw_model.publicationStmtPart.agency">
+      <choice>
+         <ref name="mishnahw_publisher"/>
+      </choice>
+   </define>
+   <define name="mishnahw_model.publicationStmtPart.detail">
+      <choice>
+         <ref name="mishnahw_address"/>
+         <ref name="mishnahw_date"/>
+         <ref name="mishnahw_pubPlace"/>
+         <ref name="mishnahw_idno"/>
+         <ref name="mishnahw_availability"/>
+      </choice>
    </define>
    <define name="mishnahw_model.availabilityPart">
       <choice>
@@ -5171,7 +5197,7 @@ Sample values include: 1] text; 2] corpus</a:documentation>
             <ref name="mishnahw_model.respLike"/>
          </oneOrMore>
          <zeroOrMore>
-            <ref name="mishnahw_sponsor"/>
+            <ref name="mishnahw_orgName"/>
          </zeroOrMore>
          <ref name="mishnahw_att.global.attributes"/>
          <empty/>
@@ -5245,6 +5271,12 @@ Sample values include: 1] text; 2] corpus</a:documentation>
    <define name="mishnahw_publicationStmt">
       <element name="publicationStmt">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(publication statement) groups information concerning the publication or distribution of an electronic or other text. [2.2.4. Publication, Distribution, Licensing, etc. 2.2. The File Description]</a:documentation>
+         <oneOrMore>
+            <ref name="mishnahw_model.publicationStmtPart.agency"/>
+         </oneOrMore>
+         <zeroOrMore>
+            <ref name="mishnahw_model.publicationStmtPart.detail"/>
+         </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="digital_mishnah_witness-publicationStmt-linter-constraint-12">
             <rule context="tei:publicationStmt">
@@ -7775,6 +7807,32 @@ Sample values include: 1] header; 2] footer; 3] pageNum(page number) ; 4] lineNu
          <empty/>
       </element>
    </define>
+   <define name="mishnahw_handNotes">
+      <element name="handNotes">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains one or more handNote elements documenting the different hands identified within the source texts. [11.3.2.1. Document Hands]</a:documentation>
+         <oneOrMore>
+            <ref name="mishnahw_handNote"/>
+         </oneOrMore>
+         <ref name="mishnahw_att.global.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_handShift">
+      <element name="handShift">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">marks the beginning of a sequence of text written in a new hand, or the beginning of a scribal stint. [11.3.2.1. Document Hands]</a:documentation>
+         <empty/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.handFeatures.attributes"/>
+         <ref name="mishnahw_att.source.attributes"/>
+         <optional>
+            <attribute name="new">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates a handNote element describing the hand concerned.</a:documentation>
+               <data type="anyURI"/>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahw_am">
       <element name="am">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(abbreviation marker) contains a sequence of letters or signs present in an abbreviation which are omitted or replaced in the expanded form of the abbreviation. [11.3.1.2. Abbreviation and Expansion]</a:documentation>
@@ -8380,7 +8438,9 @@ You must supply at least two values for @target on <name/>
                      <ref name="mishnahw_physDesc"/>
                   </optional>
           
-          
+                  <optional>
+                     <ref name="mishnahw_additional"/>
+                  </optional>
                   <empty/>
                </group>
             </choice>
@@ -9102,6 +9162,18 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
          </attribute>
       </optional>
    </define>
+   <define name="mishnahw_orgName">
+      <element name="orgName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(organization name) contains an organizational name. [13.2.2. Organizational Names]</a:documentation>
+         <ref name="mishnahw_macro.phraseSeq"/>
+         <ref name="mishnahw_att.global.attributes"/>
+         <ref name="mishnahw_att.datable.attributes"/>
+         <ref name="mishnahw_att.editLike.attributes"/>
+         <ref name="mishnahw_att.personal.attributes"/>
+         <ref name="mishnahw_att.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
    <define name="mishnahw_placeName">
       <element name="placeName">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an absolute or relative place name. [13.2.3. Place Names]</a:documentation>
@@ -9139,18 +9211,6 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
    <define name="mishnahw_persName">
       <element name="persName">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. Personal Names]</a:documentation>
-         <ref name="mishnahw_macro.phraseSeq"/>
-         <ref name="mishnahw_att.global.attributes"/>
-         <ref name="mishnahw_att.datable.attributes"/>
-         <ref name="mishnahw_att.editLike.attributes"/>
-         <ref name="mishnahw_att.personal.attributes"/>
-         <ref name="mishnahw_att.typed.attributes"/>
-         <empty/>
-      </element>
-   </define>
-   <define name="mishnahw_orgName">
-      <element name="orgName">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(organization name) contains an organizational name. [13.2.2. Organizational Names]</a:documentation>
          <ref name="mishnahw_macro.phraseSeq"/>
          <ref name="mishnahw_att.global.attributes"/>
          <ref name="mishnahw_att.datable.attributes"/>
@@ -9262,6 +9322,26 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
                <data type="anyURI"/>
             </attribute>
          </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="mishnahw_additional">
+      <element name="additional">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">groups additional information, combining bibliographic information about a manuscript, or surrogate copies of it with curatorial or administrative information. [10.9. Additional Information]</a:documentation>
+         <group>
+      
+        
+      
+      
+        
+      
+      
+            <optional>
+               <ref name="mishnahw_listBibl"/>
+            </optional>
+      
+         </group>
+         <ref name="mishnahw_att.global.attributes"/>
          <empty/>
       </element>
    </define>
