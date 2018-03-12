@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="xar" name="mishnah">
+<project default="deploy" name="mishnah" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="project.version" value="0.1"/>
     <property name="project.app" value="mishnah"/>
     <property name="project.js" value="js"/>
@@ -33,7 +33,13 @@
         <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*, ${project.js}/*"/>
     </target>
 
-    <target name="deploy" depends="xar">
+    <target name="data">
+      <!-- get mishnah data from GitHub repository and load to eXist-->
+      <get src="https://github.com/umd-mith/mishnah-data/archive/master.zip" dest="${build.dir}/mishnah-data.zip"/>
+      <unzip src="${build.dir}/mishnah-data.zip" dest="${build.dir}"/>
+    </target>
+
+    <target name="deploy" depends="xar, data" >
       <path id="classpath.core">
            <fileset dir="${exist.home}/lib/core">
                <include name="*.jar"/>
@@ -44,6 +50,55 @@
        <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
            <classpath refid="classpath.core"/>
       </typedef>
+
+      <condition property="exists">
+          <xdb:exist xmlns:xdb="http://exist-db.org/ant"
+              uri="${exist.db}/digitalmishnah-tei" />
+       </condition>
+       <input
+         if:set="exists"
+         message="
+**********************************
+  Do you want to replace mishnah TEI data already in the DB (y/n)?
+**********************************"
+         validargs="y,n"
+         addproperty="do.delete"/>
+       <condition if:set="exists" property="do.abort">
+          <equals arg1="n" arg2="${do.delete}"/>
+       </condition>
+       <xdb:remove
+         if:set="exists" unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
+          uri="${exist.db}" collection="digitalmishnah-tei"
+          user="${exist.user}"
+          password="${exist.pass}"
+          failonerror="true"/>
+       <xdb:store unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
+           uri="${exist.db}/digitalmishnah-tei/mishnah"
+           createcollection="true"
+           createsubcollections="true"
+           user="${exist.user}"
+           password="${exist.pass}"
+           failonerror="true">
+           <fileset dir="${build.dir}/mishnah-data-master/mishnah"/>
+       </xdb:store>
+       <xdb:store unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
+           uri="${exist.db}/digitalmishnah-tei/standoff"
+           createcollection="true"
+           createsubcollections="true"
+           user="${exist.user}"
+           password="${exist.pass}"
+           failonerror="true">
+           <fileset dir="${build.dir}/mishnah-data-master/standoff"/>
+       </xdb:store>
+       <xdb:store unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
+           uri="${exist.db}/digitalmishnah-tei/tosefta"
+           createcollection="true"
+           createsubcollections="true"
+           user="${exist.user}"
+           password="${exist.pass}"
+           failonerror="true">
+           <fileset dir="${build.dir}/mishnah-data-master/tosefta"/>
+       </xdb:store>
 
        <!-- store xar-file in eXist-db -->
        <xdb:store xmlns:xdb="http://exist-db.org/ant"
