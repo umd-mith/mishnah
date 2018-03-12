@@ -2,9 +2,73 @@
 <project default="xar" name="mishnah">
     <property name="project.version" value="0.1"/>
     <property name="project.app" value="mishnah"/>
+    <property name="project.js" value="js"/>
     <property name="build.dir" value="build"/>
-    <target name="xar">
-        <mkdir dir="${build.dir}"/>
-        <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*"/>
+
+    <property file="local.build.properties"/>
+
+    <!-- Cleanup task -->
+    <target name="clean">
+      <delete dir="build"/>
+      <delete dir="${project.js}/mtjsviewer/dist"/>
+      <delete dir="${project.js}/mtjsviewer/node_modules"/>
     </target>
+
+    <!-- Build Mishnah-Tosefta Viewer JavaScript App -->
+    <target name="mtjsviewer">
+      <!-- Run NPM -->
+      <exec executable="npm" dir="${project.js}/mtjsviewer">
+        <arg value="install"/>
+      </exec>
+      <exec executable="npm" dir="${project.js}/mtjsviewer">
+        <arg value="run"/>
+        <arg value="build"/>
+      </exec>
+      <!-- Move dist files to resources -->
+      <copy file="${project.js}/mtjsviewer/dist/mtjsviewer.js" todir="resources/js"/>
+    </target>
+
+    <target name="xar" depends="mtjsviewer">
+        <mkdir dir="${build.dir}"/>
+        <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*, ${project.js}/*"/>
+    </target>
+
+    <target name="deploy" depends="xar">
+      <path id="classpath.core">
+           <fileset dir="${exist.home}/lib/core">
+               <include name="*.jar"/>
+           </fileset>
+           <pathelement path="${exist.home}/exist.jar"/>
+           <pathelement path="${exist.home}/exist-optional.jar"/>
+       </path>
+       <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+           <classpath refid="classpath.core"/>
+      </typedef>
+
+       <!-- store xar-file in eXist-db -->
+       <xdb:store xmlns:xdb="http://exist-db.org/ant"
+           uri="${exist.db}/tmp"
+           createcollection="true"
+           createsubcollections="true"
+           user="${exist.user}"
+           password="${exist.pass}"
+           failonerror="true">
+           <fileset file="${build.dir}/${project.app}-${project.version}.xar"/>
+       </xdb:store>
+
+       <!-- Deploy the xar -->
+       <xdb:xquery  xmlns:xdb="http://exist-db.org/ant"
+           uri="${exist.db}"
+           user="${exist.user}"
+           password="${exist.pass}">
+           (
+           if("${project.name}" = repo:list()) then (
+               repo:undeploy("${project.name}"),
+               repo:remove("${project.name}")
+           )
+           else (),
+           repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar")
+           )
+       </xdb:xquery>
+     </target>
 </project>
