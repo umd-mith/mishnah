@@ -17,10 +17,10 @@
     <!-- Build Mishnah-Tosefta Viewer JavaScript App -->
     <target name="mtjsviewer">
       <!-- Run NPM -->
-      <exec executable="npm" dir="${project.js}/mtjsviewer">
+      <exec executable="npm.cmd" dir="${project.js}/mtjsviewer">
         <arg value="install"/>
       </exec>
-      <exec executable="npm" dir="${project.js}/mtjsviewer">
+      <exec executable="npm.cmd" dir="${project.js}/mtjsviewer">
         <arg value="run"/>
         <arg value="build"/>
       </exec>
@@ -30,7 +30,7 @@
 
     <target name="xar" depends="mtjsviewer">
         <mkdir dir="${build.dir}"/>
-        <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*, ${project.js}/*"/>
+        <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*, ${project.js}/*, cocoon/*, xsl/*, data/*"/>
     </target>
 
     <target name="data">
@@ -39,7 +39,7 @@
       <unzip src="${build.dir}/mishnah-data.zip" dest="${build.dir}"/>
     </target>
 
-    <target name="deploy" depends="xar, data" >
+    <target name="deploy">
       <path id="classpath.core">
            <fileset dir="${exist.home}/lib/core">
                <include name="*.jar"/>
@@ -51,7 +51,7 @@
            <classpath refid="classpath.core"/>
       </typedef>
 
-      <condition property="exists">
+       <!--<condition property="exists">
           <xdb:exist xmlns:xdb="http://exist-db.org/ant"
               uri="${exist.db}/digitalmishnah-tei" />
        </condition>
@@ -78,7 +78,7 @@
            createsubcollections="true"
            user="${exist.user}"
            password="${exist.pass}"
-           failonerror="true">
+           failonerror="false">
            <fileset dir="${build.dir}/mishnah-data-master/mishnah"/>
        </xdb:store>
        <xdb:store unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
@@ -87,7 +87,7 @@
            createsubcollections="true"
            user="${exist.user}"
            password="${exist.pass}"
-           failonerror="true">
+           failonerror="false">
            <fileset dir="${build.dir}/mishnah-data-master/standoff"/>
        </xdb:store>
        <xdb:store unless:set="do.abort" xmlns:xdb="http://exist-db.org/ant"
@@ -96,9 +96,9 @@
            createsubcollections="true"
            user="${exist.user}"
            password="${exist.pass}"
-           failonerror="true">
+           failonerror="false">
            <fileset dir="${build.dir}/mishnah-data-master/tosefta"/>
-       </xdb:store>
+       </xdb:store>-->
 
        <!-- store xar-file in eXist-db -->
        <xdb:store xmlns:xdb="http://exist-db.org/ant"
