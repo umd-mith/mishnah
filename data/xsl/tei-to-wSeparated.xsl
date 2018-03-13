@@ -10,7 +10,7 @@
    <xsl:param name="csv">no</xsl:param>
    <xsl:param name="path" select="'../tei'"/>
 
-   <xsl:variable name="files" select="collection(iri-to-uri(concat($path, '?select=[PS][0-9]*?.xml;recurse=no')))"/>
+   <xsl:variable name="files" select="collection(iri-to-uri(concat($path, '?select=[PS][0-9]+?.xml;recurse=no')))"/>
 
 
    <xsl:template match="* | text() | @* | comment()" mode="#all">

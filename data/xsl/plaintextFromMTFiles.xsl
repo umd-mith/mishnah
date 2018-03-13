@@ -3,12 +3,14 @@
    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:tei="http://www.tei-c.org/ns/1.0"
    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs tei xi" version="2.0">
    <xsl:strip-space elements="*"/>
+   
    <xsl:output indent="yes"/>
-   <xsl:param name="dir" select="'S00040'"/>
-   <xsl:param name="corpus" select="'t'"/>
-   <xsl:param name="wit" select="'S00040'"/>
-   <xsl:param name="inclID" select="'n'"/>
-   <xsl:param name="chunk" select="'tract'">
+   <xsl:param name="dir" select="'w-sep'"/>
+   <xsl:param name="corpus" select="'m'"/>
+   <xsl:param name="wit" select="'S07326'"/>
+   <xsl:param name="inclID" select="'y'"/>
+   <xsl:param name="separator" select="','"></xsl:param>
+   <xsl:param name="chunk" select="'whole'">
       <!-- values: whole, order, tract, ch  -->
    </xsl:param>
    <xsl:variable name="path">
@@ -52,14 +54,14 @@
    <xsl:template match="tei:w">
       <xsl:apply-templates/>
       <xsl:choose>
-         <xsl:when test="descendant-or-self::*[not(normalize-space())]">
+         <xsl:when test="not(normalize-space())">
             <!-- skip empty -->
          </xsl:when>
          <xsl:when test="$inclID = 'n'">
             <xsl:text> </xsl:text>
          </xsl:when>
          <xsl:when test="$inclID = 'y'">
-            <xsl:text>,</xsl:text>
+            <xsl:value-of select="$separator"/>
             <xsl:value-of select="@xml:id"/>
             <xsl:text>&#xD;&#xA;</xsl:text>
          </xsl:when>
