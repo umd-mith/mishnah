@@ -40,7 +40,7 @@
       <unzip src="${build.dir}/mishnah-data.zip" dest="${build.dir}"/>
     </target>
 
-    <target name="deploy">
+    <target name="deploy" depends="xar, data">
       <path id="classpath.core">
            <fileset dir="${exist.home}/lib/core">
                <include name="*.jar"/>
@@ -121,11 +121,10 @@
            (
            if("${project.name}" = repo:list()) then (
                repo:undeploy("${project.name}"),
-               repo:remove("${project.name}"),
-               console:log('this should appear now')
+               repo:remove("${project.name}")
            )
            else (),
-           console:log(repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar"))
+           repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar")
            )
        </xdb:xquery>
      </target>
