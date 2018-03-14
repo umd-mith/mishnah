@@ -5,6 +5,7 @@
     <property name="project.name" value="digitalmishnah"/>
     <property name="project.js" value="js"/>
     <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
     <property name="npm" value="npm"/>
 
     <property file="local.build.properties"/>
@@ -17,6 +18,7 @@
     <!-- Cleanup task -->
     <target name="clean">
       <delete dir="build"/>
+      <delete dir="dist"/>
       <delete dir="${project.js}/mtjsviewer/dist"/>
       <delete dir="${project.js}/mtjsviewer/node_modules"/>
     </target>
@@ -35,9 +37,30 @@
       <copy file="${project.js}/mtjsviewer/dist/mtjsviewer.js" todir="resources/js"/>
     </target>
 
-    <target name="xar" depends="mtjsviewer">
+    <target name="dist" depends="mtjsviewer">
+      <mkdir dir="${dist.dir}"/>
+      <copy todir="${dist.dir}">
+          <fileset dir=".">
+              <include name="*.*"/>
+              <include name="modules/**"/>
+              <include name="resources/**"/>
+              <include name="templates/**"/>
+              <include name="xsl/**"/>
+              <exclude name="cocoon/**"/>
+              <exclude name="data/**"/>
+              <exclude name="build.xml"/>
+              <exclude name="*build.properties"/>
+              <exclude name=".git*"/>
+              <exclude name="*.tmpl"/>
+              <exclude name="*.txt"/>
+              <exclude name="*.MD"/>
+          </fileset>
+        </copy>
+    </target>
+
+    <target name="xar" depends="dist">
         <mkdir dir="${build.dir}"/>
-        <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar" excludes="${build.dir}/*, ${project.js}/*, cocoon/*, xsl/*, data/*"/>
+        <zip basedir="${dist.dir}" destfile="${build.dir}/${project.app}-${project.version}.xar"/>
     </target>
 
     <target name="data">
