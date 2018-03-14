@@ -2,6 +2,7 @@
 <project default="deploy" name="mishnah" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="project.version" value="0.1"/>
     <property name="project.app" value="mishnah"/>
+    <property name="project.name" value="digitalmishnah"/>
     <property name="project.js" value="js"/>
     <property name="build.dir" value="build"/>
 
@@ -51,7 +52,7 @@
            <classpath refid="classpath.core"/>
       </typedef>
 
-       <!--<condition property="exists">
+       <condition property="exists">
           <xdb:exist xmlns:xdb="http://exist-db.org/ant"
               uri="${exist.db}/digitalmishnah-tei" />
        </condition>
@@ -98,7 +99,7 @@
            password="${exist.pass}"
            failonerror="false">
            <fileset dir="${build.dir}/mishnah-data-master/tosefta"/>
-       </xdb:store>-->
+       </xdb:store>
 
        <!-- store xar-file in eXist-db -->
        <xdb:store xmlns:xdb="http://exist-db.org/ant"
@@ -116,13 +117,15 @@
            uri="${exist.db}"
            user="${exist.user}"
            password="${exist.pass}">
+           import module namespace console="http://exist-db.org/xquery/console";
            (
            if("${project.name}" = repo:list()) then (
                repo:undeploy("${project.name}"),
-               repo:remove("${project.name}")
+               repo:remove("${project.name}"),
+               console:log('this should appear now')
            )
            else (),
-           repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar")
+           console:log(repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar"))
            )
        </xdb:xquery>
      </target>
