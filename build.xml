@@ -5,8 +5,14 @@
     <property name="project.name" value="digitalmishnah"/>
     <property name="project.js" value="js"/>
     <property name="build.dir" value="build"/>
+    <property name="npm" value="npm"/>
 
     <property file="local.build.properties"/>
+
+    <property environment="env" />
+    <available file="npm.cmd"
+               filepath="${env.PATH}"
+               property="npm" value="npm.cmd"/>
 
     <!-- Cleanup task -->
     <target name="clean">
@@ -18,10 +24,10 @@
     <!-- Build Mishnah-Tosefta Viewer JavaScript App -->
     <target name="mtjsviewer">
       <!-- Run NPM -->
-      <exec executable="npm.cmd" dir="${project.js}/mtjsviewer">
+      <exec executable="${npm}" dir="${project.js}/mtjsviewer">
         <arg value="install"/>
       </exec>
-      <exec executable="npm.cmd" dir="${project.js}/mtjsviewer">
+      <exec executable="${npm}" dir="${project.js}/mtjsviewer">
         <arg value="run"/>
         <arg value="build"/>
       </exec>
