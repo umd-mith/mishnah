@@ -6,14 +6,14 @@
     <property name="project.js" value="js"/>
     <property name="build.dir" value="build"/>
     <property name="dist.dir" value="dist"/>
-    <property name="npm" value="npm"/>
 
     <property file="local.build.properties"/>
 
-    <property environment="env" />
-    <available file="npm.cmd"
-               filepath="${env.PATH}"
-               property="npm" value="npm.cmd"/>
+    <condition property="isWindows">
+       <os family="windows" />
+    </condition>
+    <property unless:set="isWindows" name="npm" value="npm"/>
+    <property if:set="isWindows" name="npm" value="npm.cmd"/>
 
     <!-- Cleanup task -->
     <target name="clean">
@@ -38,6 +38,7 @@
     </target>
 
     <target name="dist" depends="mtjsviewer">
+      <delete dir="dist"/>
       <mkdir dir="${dist.dir}"/>
       <copy todir="${dist.dir}">
           <fileset dir=".">
@@ -146,7 +147,6 @@
            uri="${exist.db}"
            user="${exist.user}"
            password="${exist.pass}">
-           import module namespace console="http://exist-db.org/xquery/console";
            (
            if("${project.name}" = repo:list()) then (
                repo:undeploy("${project.name}"),
