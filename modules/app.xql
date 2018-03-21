@@ -16,15 +16,20 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  :)
 declare function app:index-compos($unit as xs:string, $mcite as xs:string) {
     let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
-    let $step1 := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/index-wit-compos.xsl"), 
+    (: let $step1 := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/index-wit-compos.xsl"), 
                     <parameters>
-                       <param name="tei-loc" value="{$config:http-data-root}/mishnah/"/>
+                       <param name="tei-loc" value="{$config:data-root}/mishnah/"/>
                     </parameters>)
     return transform:transform($step1, doc("//exist/apps/digitalmishnah//xsl/groupFromIndex.xsl"), 
             <parameters>
                <param name="unit" value="{$unit}"/>
                <param name="mcite" value="{$mcite}"/>
-            </parameters>)
+            </parameters>):)
+    let $out := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/index-wit-compos.xsl"), 
+                    <parameters>
+                       <param name="tei-loc" value="{$config:data-root}/mishnah/"/>
+                    </parameters>)        
+    return $out
 };
 
 (:~
