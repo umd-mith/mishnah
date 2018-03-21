@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs tei" version="2.0">
+<xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs tei" version="2.0">
     <xsl:preserve-space elements="*"/>
     <xsl:strip-space elements="tei:unclear tei:gap"/>
     <xsl:output indent="yes"/>
@@ -78,6 +78,7 @@
     </xsl:template><!-- elements to process specially -->
     <xsl:template match="tei:w|tei:choice">
         <xsl:text/>
+        <milestone unit="sep"/>
         <xsl:apply-templates/>
         <xsl:text/>
     </xsl:template>

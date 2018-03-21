@@ -10,15 +10,15 @@
          <listWit>
             <xsl:copy-of select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:listWit/*[descendant-or-self::tei:witness/@corresp]"/>
          </listWit>
-         <xsl:apply-templates/>
+         <xsl:apply-templates select="tei:TEI/tei:text/tei:body/tei:div1"/>
       </my:composList>
    </xsl:template>
 
-   <xsl:template match="tei:body/node()">
+   <!--<xsl:template match="tei:body/node()">
       <xsl:copy>
          <xsl:apply-templates select="node()"/>
       </xsl:copy>
-   </xsl:template>
+   </xsl:template>-->
    <xsl:template match="tei:div1">
       <my:ord-compos n="{substring-after(@xml:id,'.')}">
          <xsl:apply-templates/>
@@ -37,7 +37,7 @@
                   <xsl:for-each select="$witList">
                   <xsl:variable name="witID" select="substring-before(.,'.xml')"/>
                   <xsl:if test="doc(concat($tei-loc,.))/id(concat($witID,'.',$abNum))">
-                     <my:wit-compos n="{$abNum}">
+                     <my:wit-compos>
                                 <xsl:value-of select="$witID"/>
                             </my:wit-compos>
                   </xsl:if>
