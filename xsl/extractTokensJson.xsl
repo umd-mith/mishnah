@@ -3,9 +3,9 @@
     <xsl:import href="tei-to-wSeparated.xsl"/>
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="tei-loc"/>
+    <xsl:param name="tei-loc" select="'../../../digitalmishnah-tei/mishnah/'"/>
     <xsl:param name="mcite" select="'4.1.1.1'"/>
-    <xsl:param name="wits" select="'all'"/>
+    <xsl:param name="wits" select="'S00483,S07326'"/>
     <xsl:template match="/">
         <xsl:text>{
 </xsl:text><!-- Add options here -->
@@ -20,7 +20,13 @@
 }</xsl:text>
     </xsl:template>
     <xsl:template match="tei:witness[@corresp]">
+       <xsl:variable name="id" select="@xml:id"/>
         <xsl:if test="$wits = 'all' or contains($wits, substring-before(@corresp,'.xml'))">
+           <xsl:message>
+                <xsl:value-of select="@corresp"/>
+            </xsl:message>
+           <xsl:message>has id <xsl:value-of select="concat($id,'.',$mcite)"/>, <xsl:value-of select="if (document(concat($tei-loc,@corresp))//tei:ab[@xml:id = (concat($id,'.',$mcite))]) then 'yes' else 'no'"/>
+            </xsl:message>
             <xsl:variable name="uri" select="concat($tei-loc,@corresp)"/>
             <xsl:if test="doc-available($uri)">
                 <xsl:variable name="ab" select="concat(substring-before(@corresp,'.'),'.',$mcite)"/>

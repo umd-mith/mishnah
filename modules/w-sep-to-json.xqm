@@ -27,9 +27,9 @@ declare namespace tei = "http://www.tei-c.org/ns/1.0";
 (:declare namespace local = "http://www.digitalmishnah.org/ws2j";:)
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 (:declare option output:method "txt";:)
-
-declare option output:method "json";
-declare option output:media-type "application/json";
+(::)
+(:declare option output:method "json";:)
+(:declare option output:media-type "application/json";:)
 
 
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm";
@@ -558,8 +558,8 @@ for $w in $wElems
                ()
 };
 
-declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string* ) as map(*){
-
+declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string* ){
+let $out := 
 let $witNames := 
    if (not($wits) or $wits = '' or $wits = 'all') 
    then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness/@xml:id/string() 
@@ -583,7 +583,10 @@ let $noComm :=
       else
          $ab
 return
-   map { "witnesses" : for $ab in $noComm 
+    map {
+        (: possibly parameterize options :)
+        "joined" : false(),
+        "witnesses" : for $ab in $noComm 
    return 
       map { "id" : substring-before($ab/@xml:id,'.'),
       "tokens" : array {
@@ -653,11 +656,12 @@ return
                   else
                         () ) else ()
             )
-
-      }
+        }
+      
    }
 }   
-   
-   
-   
+   return    serialize($out, 
+        <output:serialization-parameters>
+            <output:method>json</output:method>
+        </output:serialization-parameters>)
    };

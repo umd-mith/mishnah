@@ -555,7 +555,10 @@ for $w in $wElems
 
 
 declare function local:buildJSON($wSequence as element()+) as map(*){
-   map{ "witnesses" : for $ab in $wSequence return 
+   map{ 
+   (:  could paramterize settings :)
+   "joined" : false(),
+   "witnesses" : for $ab in $wSequence return 
      map { "id" : substring-before($ab/@xml:id,'.'), 
      "tokens" : array {
      let $witnessTokens := 

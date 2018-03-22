@@ -2,11 +2,11 @@ xquery version "3.1";
 module namespace morph = "http://www.digitalmishnah.org/morph";
 (:declare namespace morph = "http://www.digitalmishnah.org/morph";
 :)
+declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 declare namespace local = "http://mylocalfunctions.uri";
-(:declare option output:method "json";
-declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
-declare option output:media-type "application/json"; :)
+declare option output:method "json";
+declare option output:media-type "application/json";
 
 (:declare option output:method "xml";:)
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm";
@@ -175,7 +175,7 @@ declare function morph:pseudoMorph($tkns as xs:string, $expans as xs:string, $ty
          <morph>{$out}</morph>
      else if ($type ="j") then map{"morph" : $outJson}
       (:serialize(map{"morph" : $outJson},<output:serialization-parameters>
-               <output:method>json</output:method>
+               <output:method>text</output:method>
            </output:serialization-parameters>):)
      else <error/>
 

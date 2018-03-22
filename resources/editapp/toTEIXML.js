@@ -29,6 +29,7 @@ function toTEIXML(json_data){
         // w always has only one key
         var word_id = Object.keys(w)[0];
         TEI += 'xml:id="app.'+word_id+'">\n';
+        TEI += '            <rdgGrp type="surface">\n'; //added by HL
         var rdgs = w[word_id];
         rdgs.forEach(function(rdg, i){
             if (rdg.length > 0){
@@ -52,8 +53,11 @@ function toTEIXML(json_data){
                 }
                 TEI += '               </rdg>\n';
             });
-            TEI += '            </rdgGrp>\n';
+             TEI += '            </rdgGrp>\n';
         });
+            TEI += '            </rdgGrp>\n' //added by HL
+            TEI += '            <rdgGrp type="morph">\n'; //added by HL
+            TEI += '            </rdgGrp>\n' //added by HL
         TEI += "          </app>\n";
     })
     TEI += TEI_foot;

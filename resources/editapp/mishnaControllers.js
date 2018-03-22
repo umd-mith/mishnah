@@ -30,7 +30,8 @@ mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 
 //var mcite = $('div[ng-controller=MishnaCtrl]').data('mcite');
 var m = "4.1.1.1";
-var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';
+/*var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';*/
+var data_loc = 'modules/w-sep-to-json.xql?wits=all&mcite=';
 
 var render = function (mcite) {
 
@@ -130,6 +131,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		}
     		var jsonArray = $scope.reversePivotedTable ;
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
+    		console.log("table to be converted")
+    		console.log(retval);
     		//alert( "(Testing...) JSON to be saved: " + retval );    
 //    		console.log(retval)
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
