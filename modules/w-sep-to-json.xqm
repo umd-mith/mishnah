@@ -561,8 +561,9 @@ for $w in $wElems
 declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string* ){
 let $out := 
 let $witNames := 
-   if (not($wits) or $wits = '' or $wits = 'all') 
-   then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness/@xml:id/string() 
+   if (count($wits) > 1) then $wits
+   else if (not($wits) or $wits = '' or $wits = 'all') 
+      then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness/@xml:id/string() 
    else tokenize($wits,',')
 let $nodes  as element()* := ws2j:nodes($mcite, $witNames)
 let $commIDs as element()*:= ws2j:commIDs($nodes)

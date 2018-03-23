@@ -55,8 +55,9 @@ function toTEIXML(json_data){
             });
              TEI += '            </rdgGrp>\n';
         });
-            TEI += '            </rdgGrp>\n' //added by HL
+            TEI += '            </rdgGrp>\n'; //added by HL
             TEI += '            <rdgGrp type="morph">\n'; //added by HL
+            
             TEI += '            </rdgGrp>\n' //added by HL
         TEI += "          </app>\n";
     })

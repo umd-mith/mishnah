@@ -21,11 +21,13 @@
    </xsl:template>-->
    <xsl:template match="tei:div1">
       <my:ord-compos n="{substring-after(@xml:id,'.')}">
+         <xsl:attribute name="xml:id" select="@n"/>
          <xsl:apply-templates/>
       </my:ord-compos>
    </xsl:template>
    <xsl:template match="tei:div2">
       <my:tract-compos n="{substring-after(@xml:id,'.')}">
+         <xsl:attribute name="xml:id" select="@n"/>
          <xsl:apply-templates/>
       </my:tract-compos>
    </xsl:template>

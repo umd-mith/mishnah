@@ -16,9 +16,20 @@ let $unit := if (count(tokenize($mcite, '\.')) = 4) then "m"
              else if (count(tokenize($mcite, '\.')) = 3) then "ch"
              else "all"
 
-let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
-let $tract-compos := app:index-compos($unit, $mcite)
-let $subset := if ($unit = "ch" or $unit = "all") then $tract-compos//my:ch-compos//my:wit-compos/text() 
+let $input := doc(concat($config:data-root, "/mishnah/ref.xml")) 
+let $tract-compos := app:index-compos($unit, $mcite)           (:parameters are unnecessary now:)
+
+(: inserted by HL 3/22/18 :)
+
+let $subset:= if ($unit = 'all') then distinct-values($tract-compos//tei:witness[@corresp]/@xml:id/string())
+              else if ($unit = 'ch') then distinct-values($tract-compos//my:ch-compos[@n eq $mcite]//my:wit-compos/text())
+              else if ($unit = 'm') then distinct-values($tract-compos//my:m-compos[@n eq $mcite]//my:wit-compos/text())
+              else ()
+return 
+   $subset
+
+(: original :)
+(:let $subset := if ($unit = "ch" or $unit = "all") then $tract-compos//my:ch-compos//my:wit-compos/text() 
                else $tract-compos//my:m-active-compos//my:wit-compos/text()
 for $listWit in $input//tei:listWit[parent::tei:listWit]
 return 
@@ -29,7 +40,8 @@ return
             if (contains($subset, $w/@xml:id)) 
             then data($w/@xml:id)
             else ()
-    else ()
+    else () :) 
+    
     
     (: more complex output (requires 3.1) :)
     (:then map {

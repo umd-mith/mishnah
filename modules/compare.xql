@@ -63,7 +63,9 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
             else 
               (: Use Collatex :)
               (: figure out how to replace with ws2j:w-sep-to-json:)
-              let $tokens := dm:getMishnahTksJSON($mcite, $wits)
+              (:string-join a temp kludge?:)
+              let $tokens := ws2j:getTokenData($mcite, string-join($wits,',')) 
+              (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
               let $headers := <headers>
                   <header name="Accept" value="application/json"/> 
                   <header name="Content-type" value="application/json"/>
@@ -120,7 +122,7 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
     let $table := $results("table")
     return <table class="alignment-table" dir="rtl">{
         for $orderedWit in $orderedWits
-        let $wit := array:filter($wits, function($w) {upper-case(substring-before($w, '.xml')) = $orderedWit})
+        let $wit := array:filter($wits, function($w) {$w = $orderedWit})
         let $i := index-of($wits, $wit)
         return
             <tr>
@@ -132,14 +134,14 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
                         let $isVariant := 
                             count(distinct-values(
                                 for $c in 1 to array:size($col)
-                                return if (array:size($col($c))) then $col($c)(1)("n") else ()
+                                return if (array:size($col($c))) then $col($c)(1)("t") else ()
                             )) > 1
                         let $data := $col($i)
                             return element td {
                                 if (array:size($data) > 0)
                                 then ( 
                                     attribute class {if ($isVariant) then 'variant' else 'invariant'},
-                                    $data(1)("n")
+                                    $data(1)("t")
                                     )
                                 else ()
                             }
@@ -234,7 +236,9 @@ declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(
                 let $relevantTokens := 
                     <map>{
                         for $orderedWit in $orderedWits
-                        let $wit := array:filter($wits, function($w) {upper-case(substring-before($w, '.xml')) = $orderedWit})
+                        (:let $wit := array:filter($wits, function($w) {upper-case(substring-before($w, '.xml')) = $orderedWit}):)
+                        (:is this the correct way to use inline functions now that we are not changing text?:)
+                        let $wit := array:filter($wits, function($w) {$w = $orderedWit})
                         let $i := index-of($wits, $wit)
                         return
                             if (array:size($token($i)) > 0)
