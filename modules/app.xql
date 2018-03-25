@@ -14,6 +14,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  : This function returns an XML document with grouped list of witnesses.
  : This is not a templating function.
  :)
+(: really no longer takes attributes, but need to systematically go through all the calls and remove:)
 declare function app:index-compos($unit as xs:string, $mcite as xs:string) {
     let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
 (:     let $step1 := transform:transform($input, doc("//exist/apps/digitalmishnah/xsl/index-wit-compos-old.xsl"), :)
@@ -60,6 +61,8 @@ declare function app:index-compos($unit as xs:string, $mcite as xs:string) {
  : @param $node the HTML node with the attribute which triggered this call
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
+ 
+(: Should use the results of app:index-compos rather than a new calculation? :)
  declare function app:expand-mcite($mcite as xs:string){
     let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
     let $el := $input//*[@xml:id=concat('ref.', $mcite)]
@@ -190,7 +193,7 @@ declare function app:drag_list_wits($node as node(), $model as map(*)) {
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
 declare function app:toc($node as node(), $model as map(*), $level as xs:string, $wholechap as xs:boolean) {
-    let $tract-compos := app:index-compos("all", "")
+    let $tract-compos := app:index-compos("all", " ")
     (:let $index := doc(concat($config:data-root, "/mishnah/index.xml")):)
     return
       <div class="panel-group" role="tablist">
