@@ -131,8 +131,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		}
     		var jsonArray = $scope.reversePivotedTable ;
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
-    		console.log("table to be converted")
-    		console.log(retval);
+    		//console.log("table to be converted")
+    		//console.log(retval);
     		//alert( "(Testing...) JSON to be saved: " + retval );    
 //    		console.log(retval)
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
