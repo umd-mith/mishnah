@@ -30,7 +30,7 @@ mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 
 //var mcite = $('div[ng-controller=MishnaCtrl]').data('mcite');
 var m = "4.1.1.1";
-/*var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';*/
+//var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';
 var data_loc = 'modules/w-sep-to-json.xql?wits=all&mcite=';
 
 var render = function (mcite) {
@@ -40,8 +40,6 @@ $scope.mcite = mcite;
 $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     .success(function(pre_data) {
 		
-    console.log(JSON.stringify(pre_data))
-		
     $http({
         method: 'POST',
         url: 'http://54.152.68.192/collatex/collate',
@@ -50,20 +48,11 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Accept': 'application/json',
         	'Content-Type': 'application/json'}
     })
-    .success(function(data) {
-    
-        // reorder data according to pre_data
-        
-        var witnesses = []
-    
-        for (i=0; i<pre_data.witnesses.length; i++) {
-            witnesses.push(pre_data.witnesses[i].id)
-        }
-    
-//        console.log(JSON.stringify(data))
-        $scope.witnesses = witnesses;
+    .success(function(data) {		
+        $scope.witnesses = data.witnesses;
         $scope.originalWitnesses = data.witnesses;
         $scope.rawColumnData = data.table;
+        console.log(data)
     	$scope.pivotedTable = {};
     
     	$scope.hideShowDeleted = "!deleted";
@@ -129,12 +118,11 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     					$scope.reversePivotedTable[i][columnId][j] = $scope.pivotedTable[$scope.witnesses[j]][i];			}
     
     		}
-    		var jsonArray = $scope.reversePivotedTable ;
+    		var jsonArray = $scope.reversePivotedTable;
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
-    		//console.log("table to be converted")
-    		//console.log(retval);
     		//alert( "(Testing...) JSON to be saved: " + retval );    
 //    		console.log(retval)
+                console.log(jsonArray)
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
     	};
     	
@@ -147,20 +135,17 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		return combined;
     	};
     	
-    	$scope.groupifyColumn = function( col ){    	   
+    	$scope.groupifyColumn = function( col ){
     		var groups = [];
     		for( j=0; j<$scope.witnesses.length; j++ ){
     			var gNum = null;
     			var combinedToken = combine( $scope.pivotedTable[$scope.witnesses[j]][col] );
-    			console.log(combinedToken)
     			for( g=0; g<groups.length; g++ ){
     				if( combinedToken == groups[g] ){
     					gNum = g;
     					break;
     				}
-    				else {console.log('this is different', combinedToken, groups[g])}    				
     			}
-
     			if( gNum == null ){
     				gNum = groups.length;
     				groups.push( combinedToken );
@@ -168,11 +153,9 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     //			$scope.pivotedTable[$scope.witnesses[j]][col].group = (gNum+1) ; // +1 so that group != 0 for color assignment below
     			$scope.pivotedTable[$scope.witnesses[j]][col].forEach( function(tok){tok.group = (gNum+1);}) ; // +1 so that group != 0 for color assignment below
     		}
-    		console.log(groups)
     	};
     	
     	$scope.groupifyAllCols = function(){
-    	console.log($scope.pivotedTable)
     		for( i=0; i<$scope.pivotedTable[$scope.witnesses[0]].length; i++ ){
     			$scope.groupifyColumn(i);
     		}
@@ -260,29 +243,6 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 		  }
             };
       
-                 $scope.onDrop = function($event,$data,array){
-		  $scope.undoPush();
-		  targetNdx = getIndexInRowForModel( $event.target.id );
-		  if( targetNdx == null ) 
-			  targetNdx = $event.target.cellIndex -1;
-		  srcNdx = getIndexInRowForModel( $data.id );
-		  
-		  if( targetNdx != srcNdx ){
-			array[targetNdx].push( $data );
-		  } else { // else... deal w/reordering w/in a cell
-			targetReorderNdx = getIndexInCellForModel( $event.target.id, targetNdx );
-			// NB: possible TO-DO: if event.target is td tag & not a span -> batel! ('cuz not 100% right in such case...)
-			srcReorderNdx = getIndexInCellForModel( $data.id, targetNdx);
-		  	if( targetReorderNdx > srcReorderNdx ){
-				array[targetNdx].splice( targetReorderNdx+1, 0, $data );
-				array[targetNdx].splice( srcReorderNdx, 1);		  
-			} else {
-				array[targetNdx].splice( srcReorderNdx, 1);		  
-				array[targetNdx].splice( targetReorderNdx, 0, $data );
-			}
-		  }
-      };
-
             $scope.rowOnDrop = function($event,$data,array){
       		  $scope.undoPush();
       		  dropNdx = array.indexOf($event.target.id);
@@ -371,10 +331,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 			
 			dialogPromisedResults.closePromise.then(function (dialogData) {
 				if( dialogData.value == 'cancel' ||
-					dialogData.value == '$escape'||dialogData.value == '$closeButton' || dialogData.value == '$document'){
-					$scope.clearShiftHighlighting();
+					dialogData.value == '$escape'||dialogData.value == '$closeButton' || dialogData.value == '$document') 
 					return;
-                                                    }
 				var destCol = 0;
 				if( dialogData.value.match(/^\d+$/) ){
 					destCol = dialogData.value * 1.0;
@@ -401,13 +359,6 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 					if(destCol)
 						i = destCol + dir - 1;
 					if( i-dir != index ){
-							for( var j=0; j<= Math.abs($scope.secondIndex - $scope.firstIndex)&&( i-dir-(j*dir) != index ); j++ ){
-							if( $scope.pivotedTable[witness][i-dir-(j*dir)].length ){
-								alert( "Cannot over-write token  " + $scope.pivotedTable[witness][i-dir-(j*dir)][0].t + "!");
-								$scope.clearShiftHighlighting();
-								return;
-							}
-						}
 						for( var j=0; j<= Math.abs($scope.secondIndex - $scope.firstIndex); j++ ){
 							$scope.pivotedTable[witness][i-dir-(j*dir)] = $scope.pivotedTable[witness][index-(j*dir)];
 							$scope.pivotedTable[witness][index-(j*dir)] = [];
@@ -699,25 +650,6 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
              */
         };
     };	
-    var scrolly;
-	var draggingNow = false;
-	$scope.$watch('ANGULAR_DRAG_START', function(newValue, oldValue) {
-		draggingNow = true;
-	});
-	$scope.$watch('ANGULAR_DRAG_END', function(newValue, oldValue) {
-		draggingNow = false;
-	});
-	$scope.scrollOut = function(){
-		if( !draggingNow ) return;
-		
-			scrolly = setInterval( function(){
-				var element = document.getElementsByClassName("alignment-table")[0];
-				element.scrollLeft = -100;
-			},100 );
-		};
-	$scope.scrollIn = function(){
-			clearInterval(scrolly);
-	};
 	});
 });
 }

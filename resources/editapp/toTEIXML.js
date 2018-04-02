@@ -29,12 +29,14 @@ function toTEIXML(json_data){
         // w always has only one key
         var word_id = Object.keys(w)[0];
         TEI += 'xml:id="app.'+word_id+'">\n';
-        TEI += '            <rdgGrp type="surface">\n'; //added by HL
         var rdgs = w[word_id];
         rdgs.forEach(function(rdg, i){
             if (rdg.length > 0){
                 var grp = rdg[0].group
-                var cnt = {ptr: rdg[0].id, wit:json_data.witnesses[i] };
+                var cnt = {ptr: [], wit:json_data.witnesses[i] };
+                rdg.forEach(function(token){
+                  cnt.ptr.push(token.id)  
+                })
                 if (groups.hasOwnProperty(grp)) {groups[grp].push(cnt)}
                 else groups[grp] = [cnt]
             }
@@ -49,16 +51,14 @@ function toTEIXML(json_data){
             groups[n].forEach(function(rdg){
                 TEI += '               <rdg wit="#'+rdg.wit+'">\n';
                 if (rdg.hasOwnProperty("ptr")) {
-                    TEI += '                  <ptr target="#'+rdg.ptr+'"/>\n'                    
+                    rdg.ptr.forEach(function(p){
+                        TEI += '                  <ptr target="#'+p+'"/>\n'    
+                    })                                        
                 }
                 TEI += '               </rdg>\n';
             });
              TEI += '            </rdgGrp>\n';
         });
-            TEI += '            </rdgGrp>\n'; //added by HL
-            TEI += '            <rdgGrp type="morph">\n'; //added by HL
-            
-            TEI += '            </rdgGrp>\n' //added by HL
         TEI += "          </app>\n";
     })
     TEI += TEI_foot;
