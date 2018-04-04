@@ -85,6 +85,7 @@ $(".wit-remove").click(function(){
 })
 
 $("#compareBtn").click(function(){
+    $("#cmpLoading").show()
     var mcite = $(".nav-link-item.active").attr("href").split("#")[1];
     var sources = [];
     $(".wit-remove:checked").each(function(i, w){
