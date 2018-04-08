@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:my="local-functions.uri" exclude-result-prefixes="xi xd xs its my tei" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:my="local-functions.uri" exclude-result-prefixes="xi xd xs its my tei xi" version="2.0">
    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
-   <xsl:param name="tei-loc" select="'../../../digitalmishnah-tei/mishnah/'"/>
+   <xsl:param name="tei-loc" select="'../../digitalmishnah-tei/mishnah/'"/>
    <xsl:strip-space elements="*"/>
    
    <xsl:variable name="witList" select="tei:TEI//tei:witness/@corresp"/>
@@ -23,7 +23,7 @@
       <my:ord-compos n="{substring-after(@xml:id,'.')}">
          <xsl:attribute name="xml:id" select="@n"/>
          <xsl:apply-templates/>
-      </my:ord-compos>
+      </my:ord-compos>   
    </xsl:template>
    <xsl:template match="tei:div2">
       <my:tract-compos n="{substring-after(@xml:id,'.')}">
