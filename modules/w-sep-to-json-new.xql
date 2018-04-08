@@ -172,14 +172,11 @@ declare function local:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
       typeswitch ($n)
          case element(w)
             return
-            (
                <w
                   xml:id="{$n/@xml:id}"
                   resp="{$resp}">{
                      local:h1h2($n/node(), $resp)
-                  }</w>
-                , <pre>{$n/node()}</pre>, <post>{local:h1h2($n/node(), $resp)}</post>  
-             )     
+                  }</w>   
          case element(addSpan)
             return
                ()
@@ -201,15 +198,33 @@ declare function local:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                switch ($resp)
                   case "h1"
                      return
-                        if (some $s in $n/following::anchor[@type = 'add']/@xml:id
+                        if (: $n between span/del markers :)
+                        (some $s in $n/following::anchor[@type = 'add']/@xml:id
                               satisfies $n/preceding::*[contains(@spanTo, $s)]) then
+                           ()
+                        else if (: $n is the end of an add :)
+                        ($n/following-sibling::*[1][self::anchor[@type = 'add']] 
+                        and not($n/preceding-sibling::node())) then
+                           ()
+                        else if (: $n is the beginning of an add :)
+                        ($n/preceding-sibling::*[1][self::addSpan[@type != 'comm']] 
+                        and not($n/following-sibling::node())) then
                            ()
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
                   case "h2"
                      return
-                        if (some $s in $n/following::anchor[@type = 'add']/@xml:id
+                        if (: $n between span/del markers :)
+                        (some $s in $n/following::anchor[@type = 'del']/@xml:id
                               satisfies $n/preceding::*[contains(@spanTo, $s)]) then
+                           ()
+                        else if (: $n is the end of an del :)
+                        ($n/following-sibling::*[1][self::anchor[@type = 'del']] 
+                        and not($n/preceding-sibling::node())) then
+                           ()
+                        else if (: $n is the beginning of an del :)
+                        ($n/preceding-sibling::*[1][self::delSpan] 
+                        and not($n/following-sibling::node())) then
                            ()
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
@@ -245,7 +260,7 @@ declare function local:processWTokens($ab as element()+) as node()+ {
             if ($el/name() = 'h1h2') then
                (:process twice:)
                let $h1 := 
-                  for $w in $el/*
+                  for $w in $el/*[$del|.[anchor[@type='add']]|.[addSpan[not(@type='comm')]]]
                   return
                      (:if ($w = $del|$w[addSpan[not(@type='comm')] | anchor[@type = 'add']]) then :)
                      if ($w/self::w) then 
@@ -256,7 +271,7 @@ declare function local:processWTokens($ab as element()+) as node()+ {
                         ():)
                let $processedH1 := local:h1h2($h1,'h1')
                let $h2 := 
-                  for $w in $el/*
+                  for $w in $el/*[. = $add | .[anchor[@type = 'del']]|.[delSpan]]
                   return
                      (:if ($w = $add|$w[delSpan | anchor[@type = 'del']]) then:)
                         if ($w/self::w) then
