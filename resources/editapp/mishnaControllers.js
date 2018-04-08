@@ -31,7 +31,7 @@ mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 //var mcite = $('div[ng-controller=MishnaCtrl]').data('mcite');
 var m = "4.1.1.1";
 //var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';
-var data_loc = 'modules/w-sep-to-json.xql?wits=all&mcite=';
+var data_loc = 'modules/w-sep-to-json-new.xql?wits=all&mcite=';
 
 var render = function (mcite) {
 

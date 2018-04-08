@@ -237,14 +237,14 @@
                             <xsl:choose>
                                 <xsl:when test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]">
                                     <xsl:text>; </xsl:text>
-                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/text()"/>&#160;<xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/tei:desc"/>
+                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/text()"/> <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'pointed')]/tei:desc"/>
                                     <xsl:if test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,'pointed')]/ancestor-or-self::tei:handNote/@scribe                                     != 'first'"> (not by primary scribe)</xsl:if>
                                 </xsl:when>
                             </xsl:choose>
                             <xsl:choose>
                                 <xsl:when test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]">
                                     <xsl:text>; </xsl:text>
-                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/text()"/>&#160;<xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/tei:desc"/>
+                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/text()"/> <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc/tei:handNote/tei:desc[contains(.,'cantillation')]/tei:desc"/>
                                     <xsl:if test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:handDesc//tei:desc[contains(.,cantillation)]/ancestor-or-self::tei:handNote/@scribe                                        != 'first'"> (not by primary scribe)</xsl:if>
                                 </xsl:when>
                             </xsl:choose>
@@ -411,7 +411,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>&#160; </xsl:element>
+                            <xsl:attribute name="class">lb-min-marker</xsl:attribute>  </xsl:element>
                     </xsl:when>
                     <xsl:when test="(@n + 1) mod 5 = 0 and (@n +1) mod 2 = 0">
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -419,7 +419,7 @@
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>&#160; </xsl:element>
+                            <xsl:attribute name="class">lb-maj-marker</xsl:attribute>  </xsl:element>
                     </xsl:when>
                     <xsl:otherwise><!-- do nothing --></xsl:otherwise>
                 </xsl:choose>
@@ -427,14 +427,14 @@
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="(./@n + 1) mod 5 = 0">
-                        <br xmlns="http://www.w3.org/1999/xhtml"> &#160;</br>
+                        <br xmlns="http://www.w3.org/1999/xhtml">  </br>
                         <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
                             <xsl:attribute name="class">lb</xsl:attribute>
                             <xsl:value-of select="(./@n + 1)"/>
                         </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
-                        <br xmlns="http://www.w3.org/1999/xhtml"> &#160;</br>
+                        <br xmlns="http://www.w3.org/1999/xhtml">  </br>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:otherwise>
@@ -445,7 +445,7 @@
             <xsl:when test="not($mode='chapter')">
                 <xsl:call-template name="add-char">
                     <xsl:with-param name="howMany" select="./@extent"/>
-                    <xsl:with-param name="char" select="'&#160;'"/>
+                    <xsl:with-param name="char" select="' '"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise><!-- ignore --></xsl:otherwise>
@@ -465,7 +465,7 @@
                         <xsl:if test="./@unit='chars'">
                             <xsl:call-template name="add-char">
                                 <xsl:with-param name="howMany" select="./@extent"/>
-                                <xsl:with-param name="char" select="'&#160;'"/>
+                                <xsl:with-param name="char" select="' '"/>
                             </xsl:call-template>
                         </xsl:if>
                         <xsl:if test="./@unit='lines'">
@@ -497,14 +497,14 @@
                                     <xsl:attribute name="class" select="'missing'"/>
                                     <xsl:call-template name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
-                                        <xsl:with-param name="char" select="'&#160;'"/>
+                                        <xsl:with-param name="char" select="' '"/>
                                     </xsl:call-template>]</xsl:element>
                             </xsl:when>
                             <xsl:when test="following::*[1]/self::tei:lb and                         not(following::node()[1]/text()|tei:unclear)">
                                 <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
                                     <xsl:attribute name="class" select="'missing'"/>[<xsl:call-template name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
-                                        <xsl:with-param name="char" select="'&#160;'"/>
+                                        <xsl:with-param name="char" select="' '"/>
                                     </xsl:call-template>
                                 </xsl:element>
                             </xsl:when>
@@ -513,14 +513,14 @@
                                     <xsl:attribute name="class" select="'missing'"/>
                                     <xsl:call-template name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
-                                        <xsl:with-param name="char" select="'&#160;'"/>
+                                        <xsl:with-param name="char" select="' '"/>
                                     </xsl:call-template>]</xsl:element>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
                                     <xsl:attribute name="class" select="'missing'"/>[<xsl:call-template name="add-char">
                                         <xsl:with-param name="howMany" select="./@extent"/>
-                                        <xsl:with-param name="char" select="'&#160;'"/>
+                                        <xsl:with-param name="char" select="' '"/>
                                     </xsl:call-template>]</xsl:element>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -654,7 +654,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>&#160; </xsl:element>
+            <xsl:attribute name="class">pageNo-ch-marker</xsl:attribute>  </xsl:element>
     </xsl:template>
     <xsl:template match="tei:cb">
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -662,7 +662,7 @@
             <xsl:value-of select="substring-after(@xml:id,concat($wit,'.'))"/>
         </xsl:element>
         <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>&#160; </xsl:element>
+            <xsl:attribute name="class">colNo-ch-marker</xsl:attribute>  </xsl:element>
     </xsl:template>
     <xsl:template match="tei:surplus">
         <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
@@ -838,7 +838,7 @@
                 <xsl:when test="not(string(.))">
                     <xsl:apply-templates select="node()"/>
                 </xsl:when>
-                <xsl:otherwise>&#160;</xsl:otherwise>
+                <xsl:otherwise> </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
     </xsl:template>
@@ -854,7 +854,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:choose>
-                            <xsl:when test="not(string(.))and not(node())">&#160;</xsl:when>
+                            <xsl:when test="not(string(.))and not(node())"> </xsl:when>
                             <xsl:otherwise>
                                 <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
                                     <xsl:attribute name="class" select="'label'"/>
@@ -869,7 +869,7 @@
                 <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
                     <xsl:attribute name="class" select="'label-ch'"/>
                     <xsl:choose>
-                        <xsl:when test="not(string(.))and not(node())">&#160;</xsl:when>
+                        <xsl:when test="not(string(.))and not(node())"> </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="."/>
                         </xsl:otherwise>
@@ -882,9 +882,9 @@
         <xsl:element xmlns="http://www.w3.org/1999/xhtml" name="span">
             <xsl:attribute name="class" select="'label'"/>
             <xsl:choose>
-                <xsl:when test="not(string(.))">&#160;</xsl:when>
+                <xsl:when test="not(string(.))"> </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="*"/>&#160;
+                    <xsl:apply-templates select="*"/> 
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>

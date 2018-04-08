@@ -58,7 +58,7 @@
                 <span xmlns="http://www.w3.org/1999/xhtml" class="lb10"/>
             </xsl:when>
             <xsl:otherwise>
-                <span xmlns="http://www.w3.org/1999/xhtml" class="lb">&#160;</span>
+                <span xmlns="http://www.w3.org/1999/xhtml" class="lb"> </span>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
