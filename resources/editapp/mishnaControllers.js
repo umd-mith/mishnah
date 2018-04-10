@@ -1,5 +1,5 @@
 // This code developed by Alan Gersh for digitalmishnah.
-// Minor adjustments by Raff Viglianti for integration into main site.
+// Adjustments by Raff Viglianti for integration into main site.
 
 var mishnaApp = angular.module('mishnaApp', ['ang-drag-drop','ngDialog'] );
 
@@ -28,17 +28,19 @@ mishnaApp.controller('RegroupingCtrl', function ($scope, ngDialog ){
 
 mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 
-//var mcite = $('div[ng-controller=MishnaCtrl]').data('mcite');
 var m = "4.1.1.1";
-//var data_loc = 'modules/getMishnahTksJSON.xql?mcite=';
 var data_loc = 'modules/passToModule.xql?wits=all&mcite=';
-
 var render = function (mcite) {
 
 $scope.mcite = mcite;
 
 $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     .success(function(pre_data) {
+		
+    var orderedWitnesses = []
+    for (i=0; i < pre_data.witnesses.length; i++) {
+        orderedWitnesses.push(pre_data.witnesses[i].id)
+    }
 		
     $http({
         method: 'POST',
@@ -48,11 +50,24 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Accept': 'application/json',
         	'Content-Type': 'application/json'}
     })
-    .success(function(data) {		
-        $scope.witnesses = data.witnesses;
-        $scope.originalWitnesses = data.witnesses;
-        $scope.rawColumnData = data.table;
-        console.log(data)
+    .success(function(data) {        
+        $scope.witnesses = orderedWitnesses;
+        $scope.originalWitnesses = orderedWitnesses;
+        
+        // Make sure the order of witnesses is preserved
+        var sortedColumnData = []
+        for (i=0; i < data.table.length; i++) {
+            var rowData = []
+            for (j=0; j < data.witnesses.length; j++) {
+              var idx = orderedWitnesses.indexOf(data.witnesses[j]) 
+              rowData.splice(idx, 0, data.table[i][j])
+            }
+            sortedColumnData.push(rowData)
+        } 
+        
+        console.log(data.table, sortedColumnData)
+        
+        $scope.rawColumnData = sortedColumnData;
     	$scope.pivotedTable = {};
     
     	$scope.hideShowDeleted = "!deleted";

@@ -2,6 +2,8 @@ xquery version "3.1";
 
 module namespace cmp = "http://www.digitalmishnah.org/templates/compare";
 
+import module namespace console="http://exist-db.org/xquery/console";
+
 import module namespace templates = "http://exist-db.org/xquery/templates";
 import module namespace httpc = "http://exist-db.org/xquery/httpclient";
 import module namespace content = "http://exist-db.org/xquery/contentextraction"
@@ -158,6 +160,7 @@ declare function cmp:compare-align($collation as xs:string, $mcite as xs:string,
 declare function cmp:compare-align-collatex($results as item(), $orderedWits as xs:string*) {
   let $wits := $results("witnesses")
   let $table := $results("table")
+  let $d := console:log($table)
   return
     <table
       class="alignment-table"
@@ -192,9 +195,9 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
                       (
                       attribute class {
                         if ($isVariant) then
-                          'variant'
+                          concat('variant', if ($data(1)("resp")) then concat(' -', $data(1)("resp")) else ())
                         else
-                          'invariant'
+                          concat('variant', if ($data(1)("resp")) then concat(' -', $data(1)("resp")) else ())
                       },
                       $data(1)("t")
                       )
