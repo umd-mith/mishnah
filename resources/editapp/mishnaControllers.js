@@ -29,7 +29,7 @@ mishnaApp.controller('RegroupingCtrl', function ($scope, ngDialog ){
 mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 
 var m = "4.1.1.1";
-var data_loc = 'modules/passToModule.xql?wits=all&mcite=';
+var data_loc = 'modules/passToModule.xql?&mcite=';
 var render = function (mcite) {
 
 $scope.mcite = mcite;
