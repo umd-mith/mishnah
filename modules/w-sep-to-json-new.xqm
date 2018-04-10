@@ -28,33 +28,31 @@ xquery version "3.1";
  : In addition, the xquery looks for word groups that occur as one or more tokens, but iterating through each token  
  :)
 
+module namespace ws2j = "http://www.digitalmishnah.org/ws2j";
+
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm"; 
 (:  import module namespace morph = "http://www.digitalmishnah.org/morph" at "pseudoMorph.xqm"; :)
 (:  import module namespace console="http://exist-db.org/xquery/console";:)
 
+declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare boundary-space strip;
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
-declare namespace ws2j = "http://www.digitalmishnah.org/ws2j";
-declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
-
-declare option output:method "json";
-declare option output:media-type "application/json"; 
 
 
 
 (: parameters need to be changed to map from templating function :)
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.2.3.1');
-declare variable $wits as item()* := request:get-parameter('wits', '');
+(:declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.2.3.1');
+declare variable $wits as item()* := request:get-parameter('wits', '');:)
 (:declare variable $mCite as xs:string := '4.2.5.1';:)
 (:declare variable $wits as item()* := 'all';:)
 
 (:declare variable $m as item()* := if (not($mCite ='')) then $mCite else '2.3.10.3';:)
 
-declare variable $witNames as xs:string* := 
+(:declare variable $witNames as xs:string* := 
    if (not($wits) or $wits = '' or $wits = 'all')
    then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness[@corresp]/@xml:id/string() 
-   else tokenize($wits,',');
-
+   else tokenize($wits,',');:)
+   
 (:  get tokenized text  :)
 declare function ws2j:nodes ($mCite as xs:string, $witNames as xs:string*) as element()+ {
 for $witName in $witNames
@@ -248,7 +246,6 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
    let $del := ws2j:filter-w-set($ab, 'del')
    let $addDel := $add union $del
    return
-      
       for $items in $ab
       return
          (: starting with first w iterate through and group adjacent add dels:)
@@ -261,26 +258,20 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
             if ($el/name() = 'h1h2') then
                (:process twice:)
                let $h1 := 
-                  for $w in $el/*[$del|.[anchor[@type='add']]|.[addSpan[not(@type='comm')]]]
+                  for $w in $el/*[. = $del|.[anchor[@type='add']]|.[addSpan[not(@type='comm')]]]
                   return
-                     (:if ($w = $del|$w[addSpan[not(@type='comm')] | anchor[@type = 'add']]) then :)
                      if ($w/self::w) then 
                            <w resp='h1'>{($w/@*, $w/node())}</w>
                         else
                            $w
-                    (: else
-                        ():)
                let $processedH1 := ws2j:h1h2($h1,'h1')
                let $h2 := 
                   for $w in $el/*[. = $add | .[anchor[@type = 'del']]|.[delSpan]]
                   return
-                     (:if ($w = $add|$w[delSpan | anchor[@type = 'del']]) then:)
                         if ($w/self::w) then
                            <w resp='h2'>{($w/@xml:id, $w/node())}</w>
                         else 
                            $w
-                     (:else
-                        ():)
                let $processedH2 := ws2j:h1h2($h2,'h2')
                return 
                ($processedH1, $processedH2)
@@ -571,24 +562,34 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
    (: get only ws and string that are not between comm span and anchor:)
    (: instead do this after? :)
    (: get nodes :)
-   let $nodes := ws2j:nodes($mcite, $wits)
-   let $noComm := for $ab in $nodes
-   return
-      <ab
-         xml:id="{$ab/@xml:id}">{
-            $ab/* except ws2j:filter-w-set($ab, 'comm')
-         }</ab>
-   
-   (:simplifiy list, removing elements not required for alignment:)
-   
-   (: get list of tokens with separation of add/del into h1/h2 :)
-   let $listOfTokens :=
-      for $srcTokens in $noComm
+   let $out := 
+      let $m := if (not($mcite) or $mcite = '') then '1.1.1.1' else $mcite
+      let $witNames :=
+         if (count($wits) > 1) then $wits
+         else if (not($wits) or $wits = '' or $wits = 'all') 
+            then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness/@xml:id/string() 
+         else tokenize($wits,',')
+      let $nodes := ws2j:nodes($m, $witNames)
+      let $noComm := for $ab in $nodes
       return
-         ws2j:processWTokens($srcTokens)
-   return
-      ws2j:buildJSON($listOfTokens)
-
+         <ab
+            xml:id="{$ab/@xml:id}">{
+               $ab/* except ws2j:filter-w-set($ab, 'comm')
+            }</ab>
+      
+      (:simplifiy list, removing elements not required for alignment:)
+      
+      (: get list of tokens with separation of add/del into h1/h2 :)
+      let $listOfTokens :=
+         for $srcTokens in $noComm
+         return
+            ws2j:processWTokens($srcTokens)
+      return
+         ws2j:buildJSON($listOfTokens)
+   return    
+      serialize($out, 
+        <output:serialization-parameters>
+            <output:method>json</output:method>
+        </output:serialization-parameters>)      
+(:$out:)
 };
-
-ws2j:getTokenData($mCite, $witNames)

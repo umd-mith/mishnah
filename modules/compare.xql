@@ -10,7 +10,7 @@ import module namespace app = "http://www.digitalmishnah.org/templates" at "app.
 
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm";
 import module namespace dm = "org.digitalmishnah" at "getMishnahTksJSON.xql";
-import module namespace ws2j = "http://www.digitalmishnah.org/ws2j" at "w-sep-to-json.xqm";
+import module namespace ws2j = "http://www.digitalmishnah.org/ws2j" at "w-sep-to-json-new.xqm";
 
 (:import module namespace console="http://exist-db.org/xquery/console";:)
 
@@ -84,9 +84,9 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
           cmp:compare-align($collation, $mcite, $wits)
       else
         (: Use Collatex :)
-        (: figure out how to replace with ws2j:w-sep-to-json:)
-        (:string-join a temp kludge?:)
-        let $tokens := ws2j:getTokenData($mcite, string-join($wits, ','))
+        (: string-join a temp kludge?:)
+        (: let $tokens := ws2j:getTokenData($mcite, string-join($wits, ',')):)
+        let $tokens := ws2j:getTokenData($mcite, $wits)
         (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
         let $headers := <headers>
           <header
