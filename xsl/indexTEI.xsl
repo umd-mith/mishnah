@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xi xd xs its tei" version="2.0">
    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
-   <xsl:param name="tei-loc" select="'../../../digitalmishnah-tei/mishnah/'"/>
+   <xsl:param name="tei-loc" select="'../../digitalmishnah-tei/mishnah/'"/>
    <xsl:strip-space elements="*"/>
 
 
@@ -89,7 +89,7 @@
                <xsl:for-each select="$witList">
                   <xsl:variable name="abExists" select="key('mIndex', concat(substring-before(., '.'), '.', $abNum), $index)"/>
                   <xsl:if test="$abExists">
-                     <link target="{concat('#',$abExists)}"/>
+                     <ptr n="{$abExists}" target="{concat($abExists,'.xml#',$abExists,'.',$abNum,' ',$abExists,'-w-sep.xml#',$abExists,'.',$abNum)}"/>
                   </xsl:if>
                </xsl:for-each>
             </ab>
@@ -112,7 +112,8 @@
             <xsl:variable name="headTrailerExists" select="key('mIndex', concat(substring-before(., '.'), '.', $headTrailNum, $elem), $index)"/>
             <xsl:if test="$headTrailerExists">
                <!--<xsl:for-each select="$headTrailerExists">-->
-               <link target="{concat('#',$headTrailerExists/text())}"/>
+               <ptr n="{$headTrailerExists}" 
+                  target="{concat($headTrailerExists,'.xml#',$headTrailerExists,'.',$headTrailNum,' ', $headTrailerExists,'.w-sep.xml','#',$headTrailerExists,'.',$headTrailNum)}"/>
                <!--</xsl:for-each>-->
 
             </xsl:if>
