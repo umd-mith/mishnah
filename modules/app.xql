@@ -266,8 +266,9 @@ declare function app:drag_list_wits($node as node(), $model as map(*)) {
  : @param $model a map containing arbitrary data - used to pass information between template calls
  :)
 declare function app:toc($node as node(), $model as map(*), $level as xs:string, $wholechap as xs:boolean) {
-  let $tract-compos := app:index-compos("all", " ")
+  (:let $tract-compos := app:index-compos("all", " "):)
   (:let $index := doc(concat($config:data-root, "/mishnah/index.xml")):)
+  let $tract-compos := doc(concat($config:data-root, "/mishnah/index-m.xml"))
   return
     <div
       class="panel-group"
@@ -275,7 +276,7 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
       <div
         class="panel">{
           (:for $order in $index//my:order:)
-          for $order in $tract-compos//my:ord-compos
+          for $order in $tract-compos//tei:div1
           return
             (
             <div
@@ -285,12 +286,12 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                 class="panel-title">
                 <!-- <a href="#{$order/@n}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{string($order/@n)}">{string($order/@n)}  <span class="caret"></span></a> -->
                 <a
-                  href="#{$order/@xml:id}"
+                  href="#{$order/@n}"
                   class="collapsed"
                   role="button"
                   data-toggle="collapse"
                   aria-expanded="false"
-                  aria-controls="{string($order/@xml:id)}">{string($order/@xml:id)}
+                  aria-controls="{string($order/@n)}">{string($order/@n)}
                   <span
                     class="caret"></span></a>
               </div>
@@ -298,19 +299,19 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
             <div
               class="panel-collapse collapse"
               role="tabpanel"
-              id="{$order/@xml:id}"
-              aria-labelledby="{$order/@xml:id}_Heading"
+              id="{$order/@n}"
+              aria-labelledby="{$order/@n}_Heading"
               aria-expanded="false"
               style="height: 0px;">
               <ul
                 class="list-group">{
-                  for $tract in $order/my:tract-compos
+                  for $tract in $order/tei:div2
                   return
                     (:if (substring-after($tract/@xml:id,'ref.') = $tract-compos//my:tract-compos/@n):)
-                    if ($tract-compos//my:wit-compos)
+                    (:if ($tract-compos//my:wit-compos)
                     then
                       (
-                      (: This tractate has chapter children :)
+                      (\: This tractate has chapter children :\):)
                       <li
                         class="list-group-item">
                         <div
@@ -320,12 +321,12 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                             class="panel-title">
                             <!-- <a href="#{$tract/@n}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="{$tract/@n}">{replace($tract/@n,'_',' ')} <span class="caret"></span></a> -->
                             <a
-                              href="#{$tract/@xml:id}"
+                              href="#{$tract/@n}"
                               class="collapsed"
                               role="button"
                               data-toggle="collapse"
                               aria-expanded="false"
-                              aria-controls="{$tract/@xml:id}">{replace($tract/@xml:id, '_', ' ')}
+                              aria-controls="{$tract/@n}">{replace($tract/@n, '_', ' ')}
                               <span
                                 class="caret"></span></a>
                           </div>
@@ -334,21 +335,21 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                         <div
                           class="panel-collapse collapse"
                           role="tabpanel"
-                          id="{$tract/@xml:id}"
-                          aria-labelledby="{$tract/@xml:id}_Heading"
+                          id="{$tract/@n}"
+                          aria-labelledby="{$tract/@n}_Heading"
                           aria-expanded="false"
                           style="height: 0px;">
                           <ul
                             class="list-group">{
-                              for $chap in $tract/my:ch-compos
+                              for $chap in $tract/tei:div3
                               return
                                 (: should not need $level? :)
                                 (:if ($level = "mishnah" and substring-after($chap/@xml:id,'ref.') = $tract-compos//my:ch-compos/@n):)
-                                if ((:$level = "mishnah" and:) $chap//my:wit-compos)
-                                then
+                                (:if ((\:$level = "mishnah" and:\) $chap//my:wit-compos)
+                                then:)
                                   (: This chapter has mishnah children :)
                                   (:let $htmlid := replace(substring-after($chap/@xml:id,'ref.'), "\.", "_"):)
-                                  let $htmlid := replace($chap/@n, "\.", "_")
+                                  let $htmlid := replace(substring-after($chap/@xml:id,'.'), "\.", "_")
                                   return
                                     (
                                     <li
@@ -369,7 +370,7 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                                             data-toggle="collapse"
                                             aria-expanded="false"
                                             aria-controls="{$htmlid}">
-                                            Chapter {substring-after($chap/@n, concat($chap/parent::my:tract-compos/@n, '.'))}
+                                            Chapter {substring-after($chap/@xml:id, concat($chap/parent::tei:div2/@xml:id, '.'))}
                                             <span
                                               class="caret"></span>
                                           </a>
@@ -389,37 +390,37 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                                               (:<a class="list-group-item nav-link-item mishnah_link mishnah_chap" href="#{substring-after($chap/@xml:id,'ref.')}">Whole Chapter</a>:)
                                               <a
                                                 class="list-group-item nav-link-item mishnah_link mishnah_chap"
-                                                href="#{$chap/@n}">Whole Chapter</a>
+                                                href="#{substring-after($chap/@xml:id,'.')}">Whole Chapter</a>
                                             else
                                               (),
-                                            for $mish in $chap/my:m-compos
+                                            for $mish in $chap/tei:ab
                                             return
                                               (:if (substring-after($mish/@xml:id,'ref.') = $tract-compos//my:m-compos/@n):)
-                                              if ($mish/my:wit-compos)
+                                              (:if ($mish/tei:ptr)
                                               then
-                                                (: This Mishnah has text :)
-                                                (:<a class="list-group-item nav-link-item mishnah_link" href="#{substring-after($mish/@xml:id,'ref.')}">
+                                                (\: This Mishnah has text :\)
+                                                (\:<a class="list-group-item nav-link-item mishnah_link" href="#{substring-after($mish/@xml:id,'ref.')}">
                                                      {concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}
-                                                 </a>:)
+                                                 </a>:\):)
                                                 <a
                                                   class="list-group-item nav-link-item mishnah_link"
-                                                  href="#{$mish/@n}">
-                                                  {concat('Mishnah ', substring-after($mish/@n, concat($mish/ancestor::my:tract-compos/@n, '.')))}
+                                                  href="#{substring-after($mish/@xml:id,'.')}">
+                                                  {substring-after($mish/@xml:id, concat($mish/ancestor::tei:div2/@xml:id, '.'))}
                                                 </a>
-                                              else
-                                                (:<a class="list-group-item nav-link-item mishnah_link">{concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}</a>:)
+                                              (: else
+                                                (\:<a class="list-group-item nav-link-item mishnah_link">{concat('Mishnah ',substring-after($mish/@xml:id, concat($mish/ancestor::my:tract/@xml:id, '.')))}</a>:\)
                                                 <a
-                                                  class="list-group-item nav-link-item mishnah_link">{concat('Mishnah ', substring-after($mish/@n, concat($mish/ancestor::my:tract-compos/@n, '.')))}</a>
+                                                  class="list-group-item nav-link-item mishnah_link">{concat('Mishnah ', substring-after($mish/@n, concat($mish/ancestor::my:tract-compos/@n, '.')))}</a>:)
                                           }</ul>
                                       </div>
                                     </li>
                                     )
-                                else
-                                  (:<li class="list-group-item nav-link-item" id="ch_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
+                                (:else
+                                  (\:<li class="list-group-item nav-link-item" id="ch_{replace(substring-after($chap/@xml:id,'ref.'), "\.", "_")}">
                                   <a class="mishnah_link mishnah_chap" href="#{substring-after($chap/@xml:id,'ref.')}">
                                      Chapter {substring-after($chap/@n, concat($chap/parent::my:tract-compos/@n, '.'))}
                                   </a>
-                                </li>:)
+                                </li>:\)
                                   <li
                                     class="list-group-item nav-link-item"
                                     id="ch_{replace($chap/@n, "\.", "_")}">
@@ -428,13 +429,14 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                                       href="#{$chap/@n}">
                                       Chapter {substring-after($chap/@n, concat($chap/parent::my:tract-compos/@n, '.'))}
                                     </a>
-                                  </li>
+                                  </li>:)
                             }</ul>
                         </div>
-                      </li>)
+                      </li>
+                      (:)
                     else
                       <a
-                        class="list-group-item">{replace($tract/@n, '_', ' ')}</a>
+                        class="list-group-item">{replace($tract/@n, '_', ' ')}</a>:)
                 }</ul>
             </div>)
         }</div>

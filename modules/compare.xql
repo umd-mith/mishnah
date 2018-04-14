@@ -14,8 +14,6 @@ import module namespace config = "http://www.digitalmishnah.org/config" at "conf
 import module namespace dm = "org.digitalmishnah" at "getMishnahTksJSON.xql";
 import module namespace ws2j = "http://www.digitalmishnah.org/ws2j" at "w-sep-to-json-new.xqm";
 
-(:import module namespace console="http://exist-db.org/xquery/console";:)
-
 declare namespace my = "local-functions.uri";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
@@ -34,12 +32,14 @@ declare function cmp:compare-view($node as node(), $model as map(*)) {
     let $mode := $compare_path_parts[last()]
     
     (: Is this a chapter or a mishnah? :)
-    return
+    return 
+    (console:log($compare_path_parts[last() - 1]),
       if (count(tokenize($mcite, '\.')) = 3)
       then
         cmp:compare-chapter($node, $mcite, $wits, $mode)
       else
         cmp:compare-mishnah($node, $mcite, $wits, $mode)
+        )
   else
     <div
       class="text-center">choose passage and sources and click compare...</div>
@@ -54,16 +54,17 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
     (: Determine mishnahs contained :)
     (:filter wits based on index  :)
     (:NB: app:index-compos() should not take parameters:)
-    let $compos-index := app:index-compos($mcite, string-join($wits, ','))//my:ch-compos[@n eq $mcite]
-    for $mishnah in $compos-index/my:m-compos
-    return
-      let $witsInM := for $wReq in $wits[. = $mishnah//my:wit-compos]
+    (:let $compos-index := app:index-compos($mcite, string-join($wits, ','))//my:ch-compos[@n eq $mcite]:)
+    let $compos-index := doc(concat($config:data-root,'mishnah/index-m.xml'))//tei:div3[@xml:id eq concat('index-m.',$mcite)]    
+    for $mishnah in $compos-index/tei:ab
       return
-        $wReq
+        let $witsInM := for $wReq in $wits[. = $mishnah//tei:ptr/@n]
+        return
+          $wReq
       
-      return
-        <div
-          class="row">{cmp:compare-mishnah($node, $mishnah/@n, $witsInM, $mode)}</div>
+   return
+     <div
+       class="row">{cmp:compare-mishnah($node, substring-after($mishnah/@xml:id,'.'), $witsInM, $mode)}</div>
 
 
 };
@@ -85,6 +86,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         else
           cmp:compare-align($collation, $mcite, $wits)
       else
+      (console:log($wits),
         (: Use Collatex :)
         (: string-join a temp kludge?:)
         (: let $tokens := ws2j:getTokenData($mcite, string-join($wits, ',')):)
@@ -114,6 +116,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
               cmp:compare-align-collatex($results, $wits)
               )
             })
+            )
 };
 
 (:~
@@ -160,7 +163,7 @@ declare function cmp:compare-align($collation as xs:string, $mcite as xs:string,
 declare function cmp:compare-align-collatex($results as item(), $orderedWits as xs:string*) {
   let $wits := $results("witnesses")
   let $table := $results("table")
-  let $d := console:log($table)
+  (:let $d := console:log($table):)
   return
     <table
       class="alignment-table"
@@ -227,33 +230,38 @@ declare function cmp:compare-syn($mcite as xs:string, $wits as item()+) {
           }</tr>,
         if (count(tokenize($mcite, '\.')) = 3) then
           (:chapter:)
-          let $curr-struct := app:index-compos(' ', ' ')//*[@n eq $mcite]
+          (:let $curr-struct := app:index-compos(' ', ' ')//*[@n eq $mcite]:)
+          let $curr-struct := doc(concat($config:data-root,'mishnah/index-m.xml'))//tei:div3[@xml:id eq concat('index-m.',$mcite)]
           return
-            for $abNum in $curr-struct/my:m-compos/@n
+            for $ab in $curr-struct/tei:ab
             return
               <tr
                 class="synopsis">{
+                
+                  for $wit in $wits return
+                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
+                     let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id($pathData[2])
+                     return
+                       <td
+                         class="text-col">{
+                           transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
+                         }</td>
+                   }</tr>
+        else
+          if (count(tokenize($mcite, '\.')) = 4) then 
+             (: mishnah :)
+            <tr
+              class="synopsis">{
+                let $ab := doc(concat($config:data-root,'mishnah/index-m.xml'))//tei:ab[@xml:id eq concat('index-m.',$mcite)]
+                return
                   for $wit in $wits
-                  let $src := doc(concat($config:data-root, "mishnah/", $wit, ".xml"))//tei:ab[@xml:id eq concat($wit, '.', $abNum)]
+                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
+                       let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id($pathData[2])
                   return
                     <td
                       class="text-col">{
                         transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
                       }</td>
-                }</tr>
-        else
-          if (count(tokenize($mcite, '\.')) = 4) then
-            (: mishnah :)
-            <tr
-              class="synopsis">{
-                
-                for $wit in $wits
-                let $src := doc(concat($config:data-root, "mishnah/", $wit, ".xml"))//tei:ab[@xml:id eq concat($wit, '.', $mcite)]
-                return
-                  <td
-                    class="text-col">{
-                      transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
-                    }</td>
               }</tr>
           else
             () (:error handling?:)
