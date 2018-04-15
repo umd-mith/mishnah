@@ -20,6 +20,7 @@
          <xsl:for-each select="$witList">
             <xsl:for-each
                select="doc(concat($tei-loc, .))//*[self::tei:head | self::tei:trailer | self::tei:ab]/@xml:id">
+               
                <key id="{.}">
                   <xsl:value-of select="substring-before(., '.')"/>
                </key>

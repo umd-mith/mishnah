@@ -62,12 +62,15 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
             else ()
      
          return
+         ((:console:log(ws2j:getTokenData(substring-after($mishnah/@xml:id,'.'),$witsInM)),:)
            <div
              class="row">{cmp:compare-mishnah($node, substring-after($mishnah/@xml:id,'.'), $witsInM, $mode)}</div>
+             )
 
 };
 
 declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits as xs:string*, $mode as xs:string) {
+   (console:log(($mcite,', ',string-join($wits,','),', ', ws2j:getTokenData($mcite, $wits))),
   if ($mode = 'synopsis')
   then
     cmp:compare-syn($mcite, $wits)
@@ -86,8 +89,8 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
       else
         (: Use Collatex :)
         (: string-join a temp kludge?:)
-        (:let $tokens := ws2j:getTokenData($mcite, string-join($wits, ',')):)
-         let $tokens := ws2j:getTokenData($mcite, $wits)
+        let $tokens := ws2j:getTokenData($mcite, string-join($wits, ','))
+        (: let $tokens := ws2j:getTokenData($mcite, $wits):)
         (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
         let $headers := <headers>
           <header
@@ -102,7 +105,6 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers)
         ))
         return
-        (console:log($results),
           if ($mode = 'apparatus')
           then
             cmp:compare-app-collatex($mcite, $results, $wits)
