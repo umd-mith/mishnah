@@ -50,7 +50,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Accept': 'application/json',
         	'Content-Type': 'application/json'}
     })
-    .success(function(data) {        
+    .success(function(data) { 
         $scope.witnesses = orderedWitnesses;
         $scope.originalWitnesses = orderedWitnesses;
         
@@ -65,7 +65,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
             sortedColumnData.push(rowData)
         } 
         
-        console.log(data.table, sortedColumnData)
+        //console.log(data.table, sortedColumnData)
         
         $scope.rawColumnData = sortedColumnData;
     	$scope.pivotedTable = {};
@@ -136,7 +136,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		var jsonArray = $scope.reversePivotedTable;
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
     		//alert( "(Testing...) JSON to be saved: " + retval );    
-//    		console.log(retval)
+    	    //console.log(retval)
                 console.log(jsonArray)
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
     	};

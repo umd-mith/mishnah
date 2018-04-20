@@ -102,7 +102,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         httpc:post(xs:anyURI('http://54.152.68.192/collatex/collate'), $tokens, false(), $headers)
         ))
         return
-        (console:log($results),
+        
           if ($mode = 'apparatus')
           then
             cmp:compare-app-collatex($mcite, $results, $wits)
@@ -114,7 +114,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
               cmp:compare-align-collatex($results, $wits)
               )
             })
-            )
+            
 };
 
 (:~
@@ -334,13 +334,12 @@ declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(
   let $src :=
   <div
     xmlns="http://www.tei-c.org/ns/1.0">{
-      for $wit in $orderedWits
-      return
-        (:doc(concat($config:data-root, "mishnah/w-sep/", $wit, "-w-sep.xml"))//tei:ab[@xml:id = concat($wit, '.', $mcite)]:)
-        doc(concat($config:data-root, "mishnah/", $wit, ".xml"))//tei:ab[@xml:id = concat($wit, '.', $mcite)]
+        doc(concat($config:data-root, "mishnah/w-sep/", $orderedWits[1], "-w-sep.xml"))//tei:ab[@xml:id = concat($orderedWits[1], '.', $mcite)]
+        (:doc(concat($config:data-root, "mishnah/", $orderedWits[1], ".xml"))//tei:ab[@xml:id = concat($orderedWits[1], '.', $mcite)]:)
     }</div>
   return
-    (<h2>{app:expand-mcite($mcite)}</h2>,
+    (console:log($src),
+    <h2>{app:expand-mcite($mcite)}</h2>,
     transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/apparatus.xsl"), ()),
     <div
       class="apparatus"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:my="local-functions.uri" exclude-result-prefixes="xs" version="2.0">
-    <xsl:template match="tei:div">
+    <xsl:template match="*:div">
         <div class="text" dir="rtl">
             <xsl:for-each select="tei:ab[1]/*">
                 <xsl:choose>
@@ -12,7 +12,7 @@
                     </xsl:when>
                     <xsl:when test="self::tei:label">
                         <span class="label">
-                            <xsl:value-of select="normalize-space(text())"/>
+                            <xsl:value-of select="."/>
                             <xsl:text xml:space="preserve"> </xsl:text>
                         </span>
                     </xsl:when>
