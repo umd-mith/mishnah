@@ -166,15 +166,17 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
     <table
       class="alignment-table"
       dir="rtl">{
-        for $orderedWit in $orderedWits
+      for $orderedWit in $orderedWits
         let $wit := array:filter($wits, function ($w) {
-          $w = $orderedWit
+          contains(string($w),string($orderedWit))
         })
+        let $witID := substring-after($wit(1),'-')
         let $i := index-of($wits, $wit)
         return
           <tr>
             <td
-              class="wit">{$wit}</td>
+              class="wit">{$witID}</td>
+        
             {
               for $j in 1 to array:size($table)
               return
@@ -350,10 +352,16 @@ declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(
             for $orderedWit in $orderedWits
             (:let $wit := array:filter($wits, function($w) {upper-case(substring-before($w, '.xml')) = $orderedWit}):)
             (:is this the correct way to use inline functions now that we are not changing text?:)
+            
             let $wit := array:filter($wits, function ($w) {
+               contains(string($w),string($orderedWit))
+             })
+             let $witID := substring-after($wit(1),'-')
+             let $i := index-of($wits, $wit)
+(:            let $wit := array:filter($wits, function ($w) {
               $w = $orderedWit
             })
-            let $i := index-of($wits, $wit)
+            let $i := index-of($wits, $wit):)
             return
               if (array:size($token($i)) > 0)
               then
@@ -399,3 +407,6 @@ declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(
             ()
       }</div>)
 };
+(:
+declare function cmp:trimWitNames($in as item()+){
+}:)

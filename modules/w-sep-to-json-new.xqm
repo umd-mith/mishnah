@@ -485,76 +485,83 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
    map{ 
    (:  could paramterize settings :)
    "joined" : false(),
-   "witnesses" : for $ab in $wSequence return 
-     map { "id" : substring-before($ab/@xml:id,'.'), 
-     "tokens" : array {
-     (:let $witnessTokens := 
-         if ($addIDs[@xml:id = $ab/@xml:id][node()] | $delIDs[@xml:id = $ab/@xml:id][node()]) then
-                  ws2j:doAddDel($ab)
-         else
-            $ab:)
-     let $wGroups := ws2j:wordGroups($ab//w)
-         return
-            for $w in $ab/w[normalize-space()]
-            let $tText:= string-join(ws2j:w-children($w/node(), $ab/@xml:id/string()),'')
-            let $rText := array {
-               if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
-                  string($wGroups[self::keep][@xml:id = $w/@xml:id])
-               else if ($w/@xml:id = $wGroups[self::omit]/@xml:id) then 
-                  '--'
-               else if ($w/*/expan) then
-                  tokenize($w/*/expan/text(), '\s+')
-               else if ($w/*/reg) then
-                  $w/*/reg
-               else
-                  $tText }         
-            return (
-               if (string($tText)) then 
-               (let $tMap:=
-               (: want to make sure we avoid possible empty n values:)
-               (: if n would otherwise be empty we use the first character of t :)
-               (: also want to add suffix -h1 or -h2 to ids in order to disambiguate:)
-                  map {"t":  $tText ,
-                     "n" :  if (normalize-space(ws2j:regHebr($rText?1))) then ws2j:regHebr($rText?1) else substring($tText,1,1),
-                     "id" : if ($w/self::w/@resp) then concat($w/@xml:id/string(),'-',$w/@resp/string()) else $w/@xml:id/string()} 
-               let $respMap:= 
-                  if ($w/self::w/@resp) then
-                     map {"resp": $w/@resp/string()}
-                  else ()
-               let $expMap:= 
-                  if ($w/*/expan) then 
-                     map {"expan" : string-join($w/*/expan/text(),' ')} 
-                  else () 
-               let $wGrpMap:= if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
-                  map {"wGrp" : $rText?1}
-               else 
-                  ()
-               return 
-               let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
-               let $expans:= if ($expMap?expan) then $expMap?expan else ''
-               return
-                  map:merge(($tMap, 
-                     $respMap, 
-                     $expMap, 
-                     $wGrpMap
-                     (:,
-                     if (not($rText = '--')) 
-                        then
-                        (\: get pseudomorphological analysis of tokens and expans; j = json output, x = xml output :\)
-                        morph:pseudoMorph($tokens,$expans,"j") 
-                     else ():)
-                     )),
-                  if (array:size($rText) > 1)
-                     then
-                        for $i in 2 to array:size($rText)
-                        return
-                        map{ "t" : "--",
-                           "n" : ws2j:regHebr($rText($i)),
-                           "id" : concat($w/@xml:id, '-', string($i))}
-                  else
-                        () ) else ()
-            )
-                  }}}
+   "witnesses" : for $ab in $wSequence
+     
+     return
+         let $pref := 
+         (:adapts functx:index-of-node:) 
+            for $seq in (1 to count($wSequence))
+            return $seq[$wSequence[$seq] is $ab]
+         return   
+         map { "id" : concat(string(format-number($pref,"000")),'-',substring-before($ab/@xml:id,'.')), 
+         "tokens" : array {
+         (:let $witnessTokens := 
+             if ($addIDs[@xml:id = $ab/@xml:id][node()] | $delIDs[@xml:id = $ab/@xml:id][node()]) then
+                      ws2j:doAddDel($ab)
+             else
+                $ab:)
+         let $wGroups := ws2j:wordGroups($ab//w)
+             return
+                for $w in $ab/w[normalize-space()]
+                let $tText:= string-join(ws2j:w-children($w/node(), $ab/@xml:id/string()),'')
+                let $rText := array {
+                   if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
+                      string($wGroups[self::keep][@xml:id = $w/@xml:id])
+                   else if ($w/@xml:id = $wGroups[self::omit]/@xml:id) then 
+                      '--'
+                   else if ($w/*/expan) then
+                      tokenize($w/*/expan/text(), '\s+')
+                   else if ($w/*/reg) then
+                      $w/*/reg
+                   else
+                      $tText }         
+                return (
+                   if (string($tText)) then 
+                   (let $tMap:=
+                   (: want to make sure we avoid possible empty n values:)
+                   (: if n would otherwise be empty we use the first character of t :)
+                   (: also want to add suffix -h1 or -h2 to ids in order to disambiguate:)
+                      map {"t":  $tText ,
+                         "n" :  if (normalize-space(ws2j:regHebr($rText?1))) then ws2j:regHebr($rText?1) else substring($tText,1,1),
+                         "id" : if ($w/self::w/@resp) then concat($w/@xml:id/string(),'-',$w/@resp/string()) else $w/@xml:id/string()} 
+                   let $respMap:= 
+                      if ($w/self::w/@resp) then
+                         map {"resp": $w/@resp/string()}
+                      else ()
+                   let $expMap:= 
+                      if ($w/*/expan) then 
+                         map {"expan" : string-join($w/*/expan/text(),' ')} 
+                      else () 
+                   let $wGrpMap:= if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
+                      map {"wGrp" : $rText?1}
+                   else 
+                      ()
+                   return 
+                   let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
+                   let $expans:= if ($expMap?expan) then $expMap?expan else ''
+                   return
+                      map:merge(($tMap, 
+                         $respMap, 
+                         $expMap, 
+                         $wGrpMap
+                         (:,
+                         if (not($rText = '--')) 
+                            then
+                            (\: get pseudomorphological analysis of tokens and expans; j = json output, x = xml output :\)
+                            morph:pseudoMorph($tokens,$expans,"j") 
+                         else ():)
+                         )),
+                      if (array:size($rText) > 1)
+                         then
+                            for $i in 2 to array:size($rText)
+                            return
+                            map{ "t" : "--",
+                               "n" : ws2j:regHebr($rText($i)),
+                               "id" : concat($w/@xml:id, '-', string($i))}
+                      else
+                            () ) else ()
+                )
+                      }}}
 };
 
 

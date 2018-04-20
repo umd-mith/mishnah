@@ -51,10 +51,16 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Content-Type': 'application/json'}
     })
     .success(function(data) { 
-        $scope.witnesses = orderedWitnesses;
+        //trim prefix off of witness sigla, without rewriting all the following functions
+        //$scope.witnesses = orderedWitnesses;
+        var witList = []
+        for (i=0; i < data.witnesses.length; i++){
+           witList.push(data.witnesses[i].slice(4))
+        }
+        $scope.witnesses = witList;
         $scope.originalWitnesses = orderedWitnesses;
-        
-        // Make sure the order of witnesses is preserved
+        console.log($scope.witnesses, witList,orderedWitnesses);
+        /*// Make sure the order of witnesses is preserved
         var sortedColumnData = []
         for (i=0; i < data.table.length; i++) {
             var rowData = []
@@ -63,7 +69,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
               rowData.splice(idx, 0, data.table[i][j])
             }
             sortedColumnData.push(rowData)
-        } 
+        } */
+        var sortedColumnData = data.table
         
         //console.log(data.table, sortedColumnData)
         
@@ -137,7 +144,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
     		//alert( "(Testing...) JSON to be saved: " + retval );    
     	    //console.log(retval)
-                console.log(jsonArray)
+                var tempBlob = new Blob([retval], {type: "text/plain;charset=utf-8"});
+                saveAs(tempBlob, "jsonOut.txt");
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
     	};
     	
