@@ -51,15 +51,17 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Content-Type': 'application/json'}
     })
     .success(function(data) { 
-        //trim prefix off of witness sigla, without rewriting all the following functions
         //$scope.witnesses = orderedWitnesses;
+        //trim prefix off of witness sigla, without rewriting  the functions that refer to them
         var witList = []
         for (i=0; i < data.witnesses.length; i++){
            witList.push(data.witnesses[i].slice(4))
         }
         $scope.witnesses = witList;
         $scope.originalWitnesses = orderedWitnesses;
-        console.log($scope.witnesses, witList,orderedWitnesses);
+        
+        //console.log($scope.witnesses, witList,orderedWitnesses);
+        
         /*// Make sure the order of witnesses is preserved
         var sortedColumnData = []
         for (i=0; i < data.table.length; i++) {

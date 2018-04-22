@@ -490,6 +490,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
      return
          let $pref := 
          (:adapts functx:index-of-node:) 
+         (:is this better than using index-of?:)
             for $seq in (1 to count($wSequence))
             return $seq[$wSequence[$seq] is $ab]
          return   
