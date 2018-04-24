@@ -59,6 +59,8 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         }
         $scope.witnesses = witList;
         $scope.originalWitnesses = orderedWitnesses;
+        var tempBlob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"});
+                saveAs(tempBlob, "jsonOut.json");
         
         //console.log($scope.witnesses, witList,orderedWitnesses);
         
@@ -146,8 +148,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
     		//alert( "(Testing...) JSON to be saved: " + retval );    
     	    //console.log(retval)
-                var tempBlob = new Blob([retval], {type: "text/plain;charset=utf-8"});
-                saveAs(tempBlob, "jsonOut.txt");
+                
     		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
     	};
     	
