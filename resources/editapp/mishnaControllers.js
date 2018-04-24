@@ -37,11 +37,6 @@ $scope.mcite = mcite;
 $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     .success(function(pre_data) {
 		
-    var orderedWitnesses = []
-    for (i=0; i < pre_data.witnesses.length; i++) {
-        orderedWitnesses.push(pre_data.witnesses[i].id)
-    }
-		
     $http({
         method: 'POST',
         url: 'http://54.152.68.192/collatex/collate',
@@ -51,34 +46,17 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
         	'Content-Type': 'application/json'}
     })
     .success(function(data) { 
-        //$scope.witnesses = orderedWitnesses;
         //trim prefix off of witness sigla, without rewriting  the functions that refer to them
         var witList = []
         for (i=0; i < data.witnesses.length; i++){
            witList.push(data.witnesses[i].slice(4))
         }
         $scope.witnesses = witList;
-        $scope.originalWitnesses = orderedWitnesses;
-        var tempBlob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"});
-                saveAs(tempBlob, "jsonOut.json");
+        $scope.originalWitnesses = witList;
+//        var tempBlob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"});
+//                saveAs(tempBlob, "jsonOut.json");
         
-        //console.log($scope.witnesses, witList,orderedWitnesses);
-        
-        /*// Make sure the order of witnesses is preserved
-        var sortedColumnData = []
-        for (i=0; i < data.table.length; i++) {
-            var rowData = []
-            for (j=0; j < data.witnesses.length; j++) {
-              var idx = orderedWitnesses.indexOf(data.witnesses[j]) 
-              rowData.splice(idx, 0, data.table[i][j])
-            }
-            sortedColumnData.push(rowData)
-        } */
-        var sortedColumnData = data.table
-        
-        //console.log(data.table, sortedColumnData)
-        
-        $scope.rawColumnData = sortedColumnData;
+        $scope.rawColumnData = data.table;
     	$scope.pivotedTable = {};
     
     	$scope.hideShowDeleted = "!deleted";
