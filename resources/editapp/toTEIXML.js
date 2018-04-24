@@ -33,7 +33,7 @@ function toTEIXML(json_data){
         rdgs.forEach(function(rdg, i){
             if (rdg.length > 0){
                 var grp = rdg[0].group
-                var cnt = {ptr: [], wit:json_data.witnesses[i] };
+                var cnt = {ptr: [], wit:json_data.witnesses[i].slice(4) };
                 rdg.forEach(function(token){
                   cnt.ptr.push(token.id)  
                 })
