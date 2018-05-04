@@ -1,23 +1,21 @@
 xquery version "3.1";
 
-import module namespace ws2j = "http://www.digitalmishnah.org/ws2j" at "w-sep-to-json-new.xqm";
-
-declare namespace tei="http://www.tei-c.org/ns/1.0"; 
-
+declare namespace test = "http://www.digitalmishnah.org/test";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
-declare option output:method "json";
-declare option output:media-type "application/json";
 
 
+import module namespace console="http://exist-db.org/xquery/console";
 
-  let $url := "http://localhost:8080/exist/apps/digitalmishnah/compare/1.1.1.1/S00483,S07326/synopsis"
-         let $compare_path_parts := tokenize($url, "/")
-         let $mcite := $compare_path_parts[last()-2]
-         let $wits := tokenize($compare_path_parts[last()-1], ',')
-         let $mode := $compare_path_parts[last()]
-        (: dm:getMishnahTksJSON :)
-    
-   
-      return 
-          let $array as map(*) := ws2j:getTokenData($mcite,$wits)
-         return $array
+
+let $mcite := "4.2.5.1"
+let $wits := "S07397,S07326,S00651,S00483,S01520,S08174,P00001,P179204,S07319,S08010,P00002,S07204,S07106,S07394"
+let $src := doc("/db/digitalmishnah-tei/mishnah/collations/4.2.5.1.xml")
+let $xsl := doc("/db/apps/digitalmishnah/xsl/teiAppToAppView.xsl")
+let $params := <parameters><param name="mcite" value="{$mcite}"/>
+<param name="wits" value="{$wits}"/>
+    <param name="data-root" value="/db/digitalmishnah-tei"/>
+</parameters>
+
+return
+<out>{transform:transform($src,$xsl,$params)}</out>
+ 
