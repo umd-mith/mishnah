@@ -340,7 +340,7 @@ declare function cmp:compare-app-collatex($mcite as xs:string, $results as item(
         (:doc(concat($config:data-root, "mishnah/", $orderedWits[1], ".xml"))//tei:ab[@xml:id = concat($orderedWits[1], '.', $mcite)]:)
     }</div>
   return
-    (console:log($src),
+    ((:console:log($src),:)
     <h2>{app:expand-mcite($mcite)}</h2>,
     transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/apparatus.xsl"), ()),
     <div

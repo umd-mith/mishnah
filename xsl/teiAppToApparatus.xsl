@@ -1,15 +1,20 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="xs tei xhtml" version="2.0">
-   
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs tei xhtml" version="2.0">
+
    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
    <xsl:strip-space elements="*"/>
-   <xsl:param name="data-root" select="'file:///c:/users/hlapin/documents/digitalmishnah-tei'"/>
+
    <xsl:param name="mcite" select="'4.2.5.1'"/>
    <xsl:param name="wits" select="'S07397,S07326,S00651,S00483,S01520,S08174,P00001,P179204,S07319,S08010,P00002,S07204,S07106,S07394'"/>
+   
    <xsl:variable name="base" select="tokenize($wits, ',')[1]"/>
    <xsl:variable name="witList" select="tokenize($wits, ',')[position() &gt; 1]"/>
-   <xsl:variable name="data" select="          for $w in ($base,$witList)          return             doc(concat($data-root, '/mishnah/w-sep/', $w, '-w-sep.xml'))//tei:ab/id(concat($w, '.', $mcite))"/>
+   
+   <xsl:variable name="collation" select="*/*[1]"/>
+   <xsl:variable name="w-data" select="//tei:w"/>
    <xsl:template match="/">
-      <xsl:apply-templates/>
+      <!--<xsl:copy-of select="$w-data/id('S07397.4.2.5.1.5')"></xsl:copy-of>-->
+      <xsl:apply-templates select="$collation/*"/>
    </xsl:template>
    <xsl:template match="element() | @* | text()" mode="#all">
       <xsl:copy>
@@ -20,7 +25,7 @@
    <xsl:template match="tei:TEI | tei:text | tei:body">
       <xsl:apply-templates/>
    </xsl:template>
-   <xsl:template match="tei:ab">
+   <xsl:template match="tei:ab[tei:app]">
       <div class="apparatus">
          <xsl:for-each-group select="tei:app" group-adjacent="boolean(tei:rdgGrp[@n = 'empty']/tei:rdg[@wit = $base])">
             <!-- above a bit generic while settling format of target XML.  -->
@@ -63,10 +68,12 @@
             <xsl:for-each select="tei:rdgGrp[not(@n = 'empty')][not(tei:rdg/@wit[contains(., $base)])]">
                <span class="rdgGrp grp-{@n}">
                   <span class="rdg">
-                  <xsl:for-each select="tei:rdg[1]/tei:ptr/@target">
-                     <xsl:variable name="id" select="tokenize(.,' ')"/>
-                     <xsl:apply-templates select="$data/id(substring-after(tokenize($id[1],'-')[1],'#'))"><xsl:with-param name="h" select="if (contains($id,'-h')) then tokenize($id[1],'-')[last()] else ''" tunnel="yes"/></xsl:apply-templates>
-                  </xsl:for-each>
+                     <xsl:for-each select="tei:rdg[1]/tei:ptr/@target">
+                        <xsl:variable name="id" select="tokenize(., ' ')"/>
+                        <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
+                           <xsl:with-param name="h" select="if (contains($id, '-h')) then   tokenize($id[1], '-')[last()] else ''" tunnel="yes"/>
+                        </xsl:apply-templates>
+                     </xsl:for-each>
                   </span>
                   <span class="sigla">
                      <xsl:variable name="witsInGrp" select="tei:rdg/@wit"/>
@@ -89,69 +96,78 @@
    <xsl:template name="baseAbsentAtLocus">
       <!-- base text is absent at this locus -->
       <!-- merge with last preceding locus that has reading -->
-      <div class="locusGrp" id="{@xml:id}"><span class="rdg">
-         <xsl:for-each select="current-group()[1]/preceding-sibling::*[1]/tei:rdgGrp/tei:rdg[@wit = $base]/tei:ptr/@target">
-            <xsl:variable name="id" select="tokenize(.,' ')"/>
-            <xsl:apply-templates select="$data/id(substring-after(tokenize($id[1],'-')[1],'#'))"><xsl:with-param name="h" select="if (contains($id,'-h')) then tokenize($id[1],'-')[last()] else ''" tunnel="yes"/></xsl:apply-templates>
-         </xsl:for-each><xsl:text> ...</xsl:text>
-      </span>
-      <xsl:variable name="groups">
-      <xsl:for-each-group select="(current-group()[1]/preceding-sibling::*[1] | tei:rdg | current-group())//tei:rdg" group-by="@wit">
-         <!-- grp is the group of tokens associated with these columns -->
-         <grp n="{@wit}">
-            <sort><xsl:value-of select="for $t in current-group()/tei:ptr/@target return $data/id(replace(substring-after($t,'#'),'-h[\d]',''))"/></sort>
-            <use>
-               <xsl:for-each select="current-group()/tei:ptr/@target">
-                  <xsl:variable name="id" select="tokenize(.,' ')"/>
-                  <xsl:apply-templates select="$data/id(substring-after(tokenize($id[1],'-')[1],'#'))"><xsl:with-param name="h" select="if (contains($id,'-h')) then tokenize($id[1],'-')[last()] else ''" tunnel="yes"/></xsl:apply-templates>
-               </xsl:for-each>
-            </use>
-         </grp>
-      </xsl:for-each-group>
-      </xsl:variable>
-      <xsl:if test="$groups/xhtml:grp[@n = $base]/xhtml:sort = $groups/xhtml:grp[@n != $base]/xhtml:sort ">
-         <span class="matchesBase merged">
-            <span class="sigla">
-               <!-- too long an expression? -->
-               <xsl:variable name="witsInGrp" select="$groups/xhtml:grp[@n != $base][xhtml:sort = $groups/xhtml:grp[@n = $base]/xhtml:sort]/@n "/>
-               <xsl:value-of select="                   for $i in $witList                   return                   if ($i = $witsInGrp) then                   $i                   else                   ()"/>
-            </span>
+      <div class="locusGrp" id="{@xml:id}">
+         <span class="rdg">
+            <xsl:for-each select="current-group()[1]/preceding-sibling::*[1]/tei:rdgGrp/tei:rdg[@wit = $base]/tei:ptr/@target">
+               <xsl:variable name="id" select="tokenize(., ' ')"/>
+               <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
+                  <xsl:with-param name="h" select="                         if (contains($id, '-h')) then                            tokenize($id[1], '-')[last()]                         else                            ''" tunnel="yes"/>
+               </xsl:apply-templates>
+            </xsl:for-each>
+            <xsl:text> ...</xsl:text>
          </span>
-         
-      </xsl:if>
-         
-      <xsl:for-each-group select="$groups/xhtml:grp" group-by="xhtml:sort">
-         <xsl:choose>
-            <xsl:when test="not($base = current-group()/@n) and current-group()//xhtml:sort[normalize-space(.)]">
-               <span class="rdgGrp merged">
-                  <span class="rdg">
-                     <xsl:copy-of select="current-group()[1]//xhtml:use/*"/>
-                  </span>
-                  <span class="sigla">
-                     <xsl:variable name="witsInGrp" select="current-group()/@n"/>
-                     <xsl:value-of select="                         for $i in $witList                         return                         if ($i = $witsInGrp) then                         $i                         else                         ()"/>
-                  </span>
-               </span>
-            </xsl:when>
-            <xsl:when test="current-group()//xhtml:sort[not( normalize-space(.))]">
-            <span class="rdgGrp empty">
-               <xsl:variable name="witsInGrp" select="current-group()/@n"/>
+         <xsl:variable name="groups">
+            <xsl:for-each-group select="(current-group()[1]/preceding-sibling::*[1] | tei:rdg | current-group())//tei:rdg" group-by="@wit">
+               <!-- grp is the group of tokens associated with these columns -->
+               <grp n="{@wit}">
+                  <sort>
+                     <xsl:value-of select="                            for $t in current-group()/tei:ptr/@target                            return                               $w-data/id(replace(substring-after($t, '#'), '-h[\d]', ''))"/>
+                  </sort>
+                  <use>
+                     <xsl:for-each select="current-group()/tei:ptr/@target">
+                        <xsl:variable name="id" select="tokenize(., ' ')"/>
+                        <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
+                           <xsl:with-param name="h" select="                                  if (contains($id, '-h')) then                                     tokenize($id[1], '-')[last()]                                  else                                     ''" tunnel="yes"/>
+                        </xsl:apply-templates>
+                     </xsl:for-each>
+                  </use>
+               </grp>
+            </xsl:for-each-group>
+         </xsl:variable>
+         <xsl:if test="$groups/xhtml:grp[@n = $base]/xhtml:sort = $groups/xhtml:grp[@n != $base]/xhtml:sort">
+            <span class="matchesBase merged">
                <span class="sigla">
-                  <xsl:value-of select="                      for $i in $witList                      return                      if ($i = $witsInGrp) then                      $i                      else                      ()"/>
+                  <!-- too long an expression? -->
+                  <xsl:variable name="witsInGrp" select="$groups/xhtml:grp[@n != $base][xhtml:sort = $groups/xhtml:grp[@n = $base]/xhtml:sort]/@n"/>
+                  <xsl:value-of select="                         for $i in $witList                         return                            if ($i = $witsInGrp) then                               $i                            else                               ()"/>
                </span>
             </span>
-         </xsl:when></xsl:choose>
-      </xsl:for-each-group></div>
+
+         </xsl:if>
+
+         <xsl:for-each-group select="$groups/xhtml:grp" group-by="xhtml:sort">
+            <xsl:choose>
+               <xsl:when test="not($base = current-group()/@n) and current-group()//xhtml:sort[normalize-space(.)]">
+                  <span class="rdgGrp merged">
+                     <span class="rdg">
+                        <xsl:copy-of select="current-group()[1]//xhtml:use/*"/>
+                     </span>
+                     <span class="sigla">
+                        <xsl:variable name="witsInGrp" select="current-group()/@n"/>
+                        <xsl:value-of select="                               for $i in $witList                               return                                  if ($i = $witsInGrp) then                                     $i                                  else                                     ()"/>
+                     </span>
+                  </span>
+               </xsl:when>
+               <xsl:when test="current-group()//xhtml:sort[not(normalize-space(.))]">
+                  <span class="rdgGrp empty">
+                     <xsl:variable name="witsInGrp" select="current-group()/@n"/>
+                     <span class="sigla">
+                        <xsl:value-of select="                               for $i in $witList                               return                                  if ($i = $witsInGrp) then                                     $i                                  else                                     ()"/>
+                     </span>
+                  </span>
+               </xsl:when>
+            </xsl:choose>
+         </xsl:for-each-group>
+      </div>
    </xsl:template>
 
-   <!-- these templates apply to w tokens drawn from original texts (descendants of $data) -->
+   <!-- these templates apply to w tokens drawn from original texts (descendants of $w-data) -->
    <xsl:template match="tei:w">
       <xsl:param name="h" tunnel="yes"/>
       <xsl:choose>
          <xsl:when test="tei:choice">
             <xsl:apply-templates>
-               <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>-->
-            </xsl:apply-templates>
+               <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>--> </xsl:apply-templates>
          </xsl:when>
          <xsl:otherwise>
             <span class="surface">
@@ -176,11 +192,10 @@
       </xsl:choose>
    </xsl:template>
    <xsl:template match="tei:choice">
-<!--      <xsl:param name="h" tunnel="yes"></xsl:param>-->
+      <!--      <xsl:param name="h" tunnel="yes"></xsl:param>-->
       <span class="choice">
          <xsl:apply-templates>
-            <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>-->
-         </xsl:apply-templates>
+            <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>--> </xsl:apply-templates>
       </span>
    </xsl:template>
    <xsl:template match="tei:abbr | tei:orig">
@@ -199,8 +214,7 @@
             </xsl:when>
             <xsl:otherwise>
                <xsl:apply-templates>
-                  <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>-->
-               </xsl:apply-templates>
+                  <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>--> </xsl:apply-templates>
             </xsl:otherwise>
          </xsl:choose>
       </span>
@@ -208,32 +222,32 @@
    <xsl:template match="tei:expan">
       <xsl:param name="h" tunnel="yes"/>
       <span class="expan">
-      <!--<xsl:attribute name="id"><xsl:if
+         <!--<xsl:attribute name="id"><xsl:if
          test="
             concat(ancestor::tei:w/@xml:id/string(), if ($h) then
                concat('-', $h)
             else
                ())"/></xsl:attribute>-->
          <xsl:apply-templates>
-            <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>-->
-         </xsl:apply-templates>
+            <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>--> </xsl:apply-templates>
       </span>
    </xsl:template>
-   
+
    <xsl:template match="tei:anchor | tei:delSpan | tei:addSpan | tei:damageSpan | tei:reg"/>
-   
-   
+
+
    <xsl:template match="tei:am | tei:c">
       <!--<xsl:param name="h" tunnel="yes"></xsl:param>-->
       <xsl:apply-templates>
-         <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>-->
-      </xsl:apply-templates>
+         <!--<xsl:with-param name="h" select="$h" tunnel="yes"/>--> </xsl:apply-templates>
    </xsl:template>
-   
-   <xsl:template match="tei:lb[@break='no']"><xsl:text>|</xsl:text></xsl:template>
-   
-   
-   
+
+   <xsl:template match="tei:lb[@break = 'no']">
+      <xsl:text>|</xsl:text>
+   </xsl:template>
+
+
+
    <xsl:template match="text()[ancestor::tei:w]">
       <xsl:param name="h" tunnel="yes"/>
       <!-- uses xpath expressions originally worked out for xquery rather than xsl:choice -->
@@ -256,7 +270,7 @@
             <xsl:choose>
                <xsl:when test="$addDel = 'add'">
                   <span>
-                  <xsl:attribute name="class" select="$addDel | $dam" separator=" "/>
+                     <xsl:attribute name="class" select="$addDel | $dam" separator=" "/>
                      <xsl:value-of select="normalize-space(.)"/>
                   </span>
                </xsl:when>
@@ -272,14 +286,16 @@
                      <xsl:value-of select="normalize-space(.)"/>
                   </span>
                </xsl:when>
-               <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+               <xsl:otherwise>
+                  <xsl:value-of select="normalize-space(.)"/>
+               </xsl:otherwise>
             </xsl:choose>
          </xsl:when>
          <xsl:when test="$h = 'h1'">
             <xsl:choose>
                <xsl:when test="$addDel = 'add'"><!-- omit --></xsl:when>
                <xsl:when test="$addDel = 'del' and not($dam = 'damage')">
-                     <xsl:value-of select="normalize-space(.)"/>
+                  <xsl:value-of select="normalize-space(.)"/>
                </xsl:when>
                <xsl:when test="$addDel = 'damage'">
                   <span>
@@ -287,16 +303,21 @@
                      <xsl:value-of select="normalize-space(.)"/>
                   </span>
                </xsl:when>
-               <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+               <xsl:otherwise>
+                  <xsl:value-of select="normalize-space(.)"/>
+               </xsl:otherwise>
             </xsl:choose>
          </xsl:when>
-         <xsl:when test="$dam='damage'"><!-- automatically has already treated cases if h1 and h2 -->
+         <xsl:when test="$dam = 'damage'">
+            <!-- automatically has already treated cases if h1 and h2 -->
             <span>
                <xsl:attribute name="class" select="$dam"/>
                <xsl:value-of select="normalize-space(.)"/>
             </span>
          </xsl:when>
-         <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+         <xsl:otherwise>
+            <xsl:value-of select="normalize-space(.)"/>
+         </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
 </xsl:stylesheet>
