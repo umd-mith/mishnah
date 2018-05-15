@@ -16,7 +16,7 @@ let $src := <src>{
       doc("//exist/digitalmishnah-tei/mishnah/collations/4.2.5.1.xml"),
       for $w in tokenize($wits, ',')
       return
-         doc(concat($config:data-root, 'mishnah/w-sep/', $w, '-w-sep.xml'))/id(concat($w, '.', $mcite))//tei:w
+         doc(concat($config:data-root, 'mishnah/w-sep/', $w, '-w-sep.xml'))/id(concat($w, '.', $mcite))
    }</src>
 let $xsl := doc(concat($config:app-root, "/xsl/teiAppToApparatus.xsl"))
 let $params :=
@@ -28,9 +28,12 @@ let $params :=
       name="wits"
       value="{$wits}"/>
 </parameters>
+let $attribs := <attributes>
+   <attribute name="http://saxon.sf.net/feature/optimizationLevel" value="0"></attribute>
+</attributes>
 
 return
    
-   transform:transform($src, $xsl, $params)
+   transform:transform($src, $xsl, $params, $attribs, ())
    (:for $w in tokenize($wits,',') return doc(concat($config:data-root,'mishnah/w-sep/', $w, '-w-sep.xml'))/id(concat($w, '.', $mcite)):)
 

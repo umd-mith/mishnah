@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+<meta charset="utf-8"/> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
+<script>
+var dataIn = "<test>Test Me</test>";
+$(document).ready(function(){
+    $("button").click(function(){
+        $.ajax({
+    url: 'http://localhost:8080/exist/restxq/js-to-xq-via-restxq',
+    type: 'post',
+    contentType: 'application/xml',
+    data: dataIn,
+    success: function( data, textStatus, jQxhr ){
+        $('#response').html( "success: " + data );
+    },
+    error: function( jqXhr, textStatus, errorThrown ){
+        $('#response').html( "failure: " + errorThrown );
+    }
+    
+});    });
+});
+</script>
+
+<title>Untitled Document</title>
+</head>
+
+<body>
+  
+<button>Send an HTTP POST request to a page and get the result back</button>
+   <div id="response"> </div>
+</body>
+</html>
