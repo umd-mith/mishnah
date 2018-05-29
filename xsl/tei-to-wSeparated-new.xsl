@@ -218,7 +218,7 @@
    <xsl:template match="text()[ancestor::tei:ab or ancestor::tei:head or ancestor::tei:trailer]">
       <xsl:variable name="curr" select="parent::*/name()"/>
       <xsl:choose>
-         <xsl:when test="not(ancestor::tei:surplus | ancestor::tei:fw | ancestor::tei:note | ancestor::tei:surplus | ancestor::tei:w | ancestor::tei:label | ancestor::tei:pc | ancestor::tei:abbr)">
+         <xsl:when test="not(ancestor::tei:surplus | ancestor::tei:fw | ancestor::tei:note | ancestor::tei:w | ancestor::tei:label | ancestor::tei:pc | ancestor::tei:abbr)">
             <xsl:analyze-string select="." regex="\s+">
                <xsl:matching-substring>
                   <xsl:choose>

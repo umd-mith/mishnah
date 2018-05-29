@@ -14,7 +14,7 @@
    <xsl:variable name="index">
       <index>
          <xsl:for-each select="$witList">
-         <xsl:for-each select="doc(concat($tei-loc,.))//*[self::tei:head|self::tei:trailer|self::tei:ab]/@xml:id">
+            <xsl:for-each select="doc(concat($tei-loc,.))//*[self::tei:head|self::tei:trailer|self::tei:ab][.//text()]/@xml:id">
             <key id="{.}">
                         <xsl:value-of select="substring-before(.,'.')"/>
                     </key>
@@ -81,7 +81,7 @@
          <xsl:call-template name="doHeadTrailer">
             <xsl:with-param name="elem" select="'.H'"/>
          </xsl:call-template>
-         <xsl:for-each select="tei:ab">
+         <xsl:for-each select="tei:ab[.//text()]">
             <xsl:variable name="abNum" select="substring-after(@xml:id, '.')"/>
 
             <ab>
@@ -89,7 +89,7 @@
                <xsl:for-each select="$witList">
                   <xsl:variable name="abExists" select="key('mIndex', concat(substring-before(., '.'), '.', $abNum), $index)"/>
                   <xsl:if test="$abExists">
-                     <link target="{concat('#',$abExists)}"/>
+                     <ptr n="{$abExists}" target="{concat($abExists,'.xml#',$abNum,' ',$abExists,'.w-sep.xml#',$abNum)}"/>
                   </xsl:if>
                </xsl:for-each>
             </ab>
@@ -112,7 +112,7 @@
             <xsl:variable name="headTrailerExists" select="key('mIndex', concat(substring-before(., '.'), '.', $headTrailNum, $elem), $index)"/>
             <xsl:if test="$headTrailerExists">
                <!--<xsl:for-each select="$headTrailerExists">-->
-               <link target="{concat('#',$headTrailerExists/text())}"/>
+               <ptr n="{$headTrailerExists}" target="{concat($headTrailerExists,'.xml#',$headTrailNum,$elem,' ',$headTrailerExists,'.w-sep.xml#',$headTrailNum,$elem)}"/>
                <!--</xsl:for-each>-->
 
             </xsl:if>

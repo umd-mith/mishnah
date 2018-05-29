@@ -32,7 +32,7 @@ module namespace ws2j = "http://www.digitalmishnah.org/ws2j";
 
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm"; 
 (:  import module namespace morph = "http://www.digitalmishnah.org/morph" at "pseudoMorph.xqm"; :)
-(:  import module namespace console="http://exist-db.org/xquery/console";:)
+  import module namespace console="http://exist-db.org/xquery/console";
 
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare boundary-space strip;
@@ -386,14 +386,14 @@ declare function ws2j:wordGroups($wElems as element()*) {
       if ($w/reg) then
          $w/reg/text()
       else
-         $w/text()
+         $w/node()
    let $thisPlus1 := if ($w/following-sibling::w[1]/expan) then
       $w/following-sibling::w[1]/expan
    else
       if ($w/following-sibling::w[1]/reg) then
          $w/following-sibling::w[1]/reg
       else
-         $w/following-sibling::w[1]/text()
+         $w/following-sibling::w[1]/node()
    let $thisPlus2 :=
    if ($w/following-sibling::w[2]/expan) then
       $w/following-sibling::w[2]/expan
@@ -401,7 +401,7 @@ declare function ws2j:wordGroups($wElems as element()*) {
       if ($w/following-sibling::w[2]/reg) then
          $w/following-sibling::w[2]/reg
       else
-         $w/following-sibling::w[2]/text()
+         $w/following-sibling::w[2]/node()
          (:  :)
    let $joined2 := normalize-space(string-join($this | $thisPlus1))
    let $joinedOut2 := normalize-space(string-join($this | $thisPlus1, '_'))
@@ -410,7 +410,7 @@ declare function ws2j:wordGroups($wElems as element()*) {
    
    return
       (: shel :)
-      if (matches($w/text(), '^ו?של$'))
+      if (matches(string-join($w/node()), '^ו?של$'))
       then
          (<keep
             
@@ -492,17 +492,18 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
          (:adapts functx:index-of-node:) 
          (:is this better than using index-of?:)
             for $seq in (1 to count($wSequence))
-            return $seq[$wSequence[$seq] is $ab]
+            return 
+            $seq[$wSequence[$seq] is $ab]
+            
          return   
+         (
          map { "id" : concat(string(format-number($pref,"000")),'-',substring-before($ab/@xml:id,'.')), 
          "tokens" : array {
-         (:let $witnessTokens := 
-             if ($addIDs[@xml:id = $ab/@xml:id][node()] | $delIDs[@xml:id = $ab/@xml:id][node()]) then
-                      ws2j:doAddDel($ab)
-             else
-                $ab:)
+
          let $wGroups := ws2j:wordGroups($ab//w)
-             return
+         
+             return 
+             
                 for $w in $ab/w[normalize-space()]
                 let $tText:= string-join(ws2j:w-children($w/node(), $ab/@xml:id/string()),'')
                 let $rText := array {
@@ -561,8 +562,12 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                                "id" : concat($w/@xml:id, '-', string($i))}
                       else
                             () ) else ()
-                )
-                      }}}
+             )   
+                      }})}
+};
+
+declare function ws2j:witnessList ($mcite,$wits) {
+   doc(concat($config:data-root, "/mishnah/index-m.xml"))//tei:ab[contains(@xml:id,$mcite)]/tei:ptr/@n/string()
 };
 
 
@@ -572,19 +577,21 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
    (: get nodes :)
    let $out := 
       let $m := if (not($mcite) or $mcite = '') then '1.1.1.1' else $mcite
-      let $witNames :=
+      let $witNames  as xs:string* :=
          if (count($wits) > 1) then $wits
          else if (not($wits) or $wits = '' or $wits = 'all') 
-            then doc(concat($config:data-root, "/mishnah/index-m.xml"))//tei:witness/@xml:id/string() 
+            then 
+            doc(concat($config:data-root, "/mishnah/index-m.xml"))//tei:ab[@xml:id = concat('index-m.',$m)]/tei:ptr/@n/string() 
          else tokenize($wits,',')
       let $nodes := ws2j:nodes($m, $witNames)
       let $noComm := for $ab in $nodes
       return
+         (console:log(string-join($witNames,',')),
          <ab
             xml:id="{$ab/@xml:id}">{
                $ab/* except ws2j:filter-w-set($ab, 'comm')
             }</ab>
-      
+            )
       (:simplifiy list, removing elements not required for alignment:)
       
       (: get list of tokens with separation of add/del into h1/h2 :)
@@ -601,3 +608,5 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
         </output:serialization-parameters>)      
 (:$out:)
 };
+
+
