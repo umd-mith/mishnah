@@ -18,7 +18,7 @@ let $src := <src>{
       return
          doc(concat($config:data-root, 'mishnah/w-sep/', $w, '-w-sep.xml'))/id(concat($w, '.', $mcite))
    }</src>
-let $xsl := doc(concat($config:app-root, "/xsl/teiAppToApparatus.xsl"))
+let $xsl := doc(concat($config:app-root, "/xsl/testApptoApparatus.xsl"))
 let $params :=
 <parameters>
    <param
@@ -28,12 +28,8 @@ let $params :=
       name="wits"
       value="{$wits}"/>
 </parameters>
-let $attribs := <attributes>
-   <attribute name="http://saxon.sf.net/feature/optimizationLevel" value="0"></attribute>
-</attributes>
 
 return
-   
-   transform:transform($src, $xsl, $params, $attribs, ())
+   transform:transform($src, $xsl , $params)
    (:for $w in tokenize($wits,',') return doc(concat($config:data-root,'mishnah/w-sep/', $w, '-w-sep.xml'))/id(concat($w, '.', $mcite)):)
 

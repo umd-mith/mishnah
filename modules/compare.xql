@@ -254,15 +254,22 @@ declare function cmp:compare-syn($mcite as xs:string, $wits as item()+) {
               class="synopsis">{
                 let $ab := doc(concat($config:data-root,'mishnah/index-m.xml'))//tei:ab[@xml:id eq concat('index-m.',$mcite)]
                 return
+                    
                   for $wit in $wits
-                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
-                       let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id($pathData[2])
+(:                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#'):)
+(:                       let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id(concat($wit, '.', $pathData[2])):)
+                        let $pathData := tokenize(substring-after($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
+                        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $pathData[1]))//tei:ab/id(concat($wit, '.', $pathData[2]))
                   return
+                      ( 
+                        console:log($src),
                     <td
                       class="text-col">{
                         transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
                       }</td>
-              }</tr>
+                      )
+              }
+              </tr>
           else
             () (:error handling?:)
       }</table></div>)

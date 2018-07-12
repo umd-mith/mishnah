@@ -89,7 +89,7 @@
                <xsl:for-each select="$witList">
                   <xsl:variable name="abExists" select="key('mIndex', concat(substring-before(., '.'), '.', $abNum), $index)"/>
                   <xsl:if test="$abExists">
-                     <ptr n="{$abExists}" target="{concat($abExists,'.xml#',$abNum,' ',$abExists,'.w-sep.xml#',$abNum)}"/>
+                     <ptr n="{$abExists}" target="{concat($abExists,'.xml#',$abExists,'.' ,$abNum,' ',$abExists,'-w-sep.xml#',$abExists,'.' ,$abNum)}"/>
                   </xsl:if>
                </xsl:for-each>
             </ab>
@@ -112,7 +112,7 @@
             <xsl:variable name="headTrailerExists" select="key('mIndex', concat(substring-before(., '.'), '.', $headTrailNum, $elem), $index)"/>
             <xsl:if test="$headTrailerExists">
                <!--<xsl:for-each select="$headTrailerExists">-->
-               <ptr n="{$headTrailerExists}" target="{concat($headTrailerExists,'.xml#',$headTrailNum,$elem,' ',$headTrailerExists,'.w-sep.xml#',$headTrailNum,$elem)}"/>
+               <ptr n="{$headTrailerExists}" target="{concat($headTrailerExists,'.xml#',$headTrailerExists,'.',$headTrailNum,$elem,' ',$headTrailerExists,'-w-sep.xml#',$headTrailerExists,'.',$headTrailNum,$elem)}"/>
                <!--</xsl:for-each>-->
 
             </xsl:if>

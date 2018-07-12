@@ -1,129 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs tei xhtml" version="2.0">
-
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs tei xhtml" version="2.0">
    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
    <xsl:strip-space elements="*"/>
-
    <xsl:param name="mcite" select="'4.2.5.1'"/>
    <xsl:param name="wits" select="'S07397,S07326,S00651,S00483,S01520,S08174,P00001,P179204,S07319,S08010,P00002,S07204,S07106,S07394'"/>
-   
+
    <xsl:variable name="base" select="tokenize($wits, ',')[1]"/>
    <xsl:variable name="witList" select="tokenize($wits, ',')[position() &gt; 1]"/>
-   
+
    <xsl:variable name="collation" select="*/*[1]"/>
-   <xsl:variable name="w-data" select="//tei:w"/>
-   <xsl:template match="/">
-      
-      <!--<xsl:copy-of select="$w-data/id('S07397.4.2.5.1.5')"></xsl:copy-of>-->
-      <xsl:apply-templates select="$collation/*"/>
-   </xsl:template>
+   <xsl:variable name="w-data" select="*/*/*"/>
+
    <xsl:template match="element() | @* | text()">
       <xsl:copy>
          <xsl:apply-templates select="element() | text() | @*"/>
       </xsl:copy>
+   </xsl:template>
+   <xsl:template match="/">
+      <xsl:apply-templates select="$collation"/>
    </xsl:template>
    <xsl:template match="tei:teiHeader"/>
    <xsl:template match="tei:TEI | tei:text | tei:body">
       <xsl:apply-templates/>
    </xsl:template>
    <xsl:template match="tei:ab[tei:app]">
-      
-      <!--<div class="apparatus">-->
-         <xsl:for-each-group select="tei:app" group-adjacent="boolean(tei:rdgGrp[@n = 'empty']/tei:rdg[contains(@wit,$base)])">
-            <!-- above a bit generic while settling format of target XML.  -->
-            <xsl:choose>
-               <xsl:when test="current-grouping-key()">
-                  <!-- base text absent at this locus -->
-                  <xsl:call-template name="baseAbsentAtLocus"/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:for-each select="current-group()">
-                     <xsl:choose>
-                        <!-- test for special case where last precedes absent token in following -->
-                        <xsl:when test="following-sibling::*[1]/tei:rdgGrp[@n = 'empty']/tei:rdg[contains(@wit, $base)]">
-                           <!-- do nothing, handled with group where base does not have text --> </xsl:when>
-                        <xsl:otherwise>
-                           <xsl:call-template name="basePresentAtLocus"/>
-                        </xsl:otherwise>
-                     </xsl:choose>
-                  </xsl:for-each>
+      <xsl:for-each-group select="tei:app" group-adjacent="boolean(tei:rdgGrp[@n = 'empty']/tei:rdg[@wit = concat('#', $base)])">
+         <!-- above a bit generic while settling format of target XML.  -->
+         <xsl:choose>
+            <xsl:when test="current-grouping-key()">
+               <!-- base text absent at this locus -->
+               <xsl:call-template name="baseAbsentAtLocus"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:for-each select="current-group()">
+                  <xsl:choose>
+                     <!-- test for special case where last precedes absent token in following -->
+                     <xsl:when test="following-sibling::*[1]/tei:rdgGrp[@n = 'empty']/tei:rdg[contains(@wit, $base)]">
+                        <!-- do nothing, handled with group where base does not have text --> </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:call-template name="basePresentAtLocus"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+               </xsl:for-each>
 
-               </xsl:otherwise>
+            </xsl:otherwise>
 
-            </xsl:choose>
-         </xsl:for-each-group>
-      <!--</div>-->
-   </xsl:template>
-
-   <xsl:template name="basePresentAtLocus">
-      <!-- exclude cases where all readings are identical -->
-      <xsl:if test="count(tei:rdgGrp[1]/tei:rdg) &lt; count($witList) + 1">
-         <div class="locusGrp" id="{@xml:id}">
-            <!-- readings that match base -->
-            <span class="matchesBase">
-               <xsl:call-template name="sigla">
-                  <xsl:with-param name="theseWits" select="tei:rdgGrp[tei:rdg[contains(@wit, $base)]]/tei:rdg/@wit"/>
-               </xsl:call-template>
-            </span>
-            <!-- pre-determined reading groups internally sorted by user order -->
-            <xsl:for-each select="tei:rdgGrp[not(@n = 'empty')][not(tei:rdg/@wit[contains(., $base)])]">
-               <span class="rdgGrp grp-{@n}">
-                  <span class="rdg">
-                     <xsl:for-each select="tei:rdg[1]/tei:ptr/@target">
-                        <xsl:variable name="id" select="tokenize(., ' ')"/>
-                        <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
-                           <xsl:with-param name="h" select="if (contains($id, '-h')) then   tokenize($id[1], '-')[last()] else ''" tunnel="yes"/>
-                        </xsl:apply-templates>
-                     </xsl:for-each>
-                  </span>
-                  <xsl:call-template name="sigla">
-                     <xsl:with-param name="theseWits" select="tei:rdg/@wit"/>
-                  </xsl:call-template>
-               </span>
-            </xsl:for-each>
-            <!-- finally, cases where witness other than base did not have a corresponding reading -->
-            <xsl:if test="current-group()/tei:rdgGrp[@n = 'empty']">
-               <span class="rdgGrp empty">
-                  <xsl:call-template name="sigla">
-                     <xsl:with-param name="theseWits" select="current-group()/tei:rdgGrp[@n = 'empty']/tei:rdg/@wit"/>
-                  </xsl:call-template> 
-               </span>
-            </xsl:if>
-         </div>
-      </xsl:if>
+         </xsl:choose>
+      </xsl:for-each-group>
    </xsl:template>
    <xsl:template name="baseAbsentAtLocus">
       <!-- base text is absent at this locus -->
       <!-- merge with last preceding locus that has reading -->
       <div class="locusGrp" id="{@xml:id}">
          <span class="rdg">
-            <xsl:for-each select="current-group()[1]/preceding-sibling::*[1]/tei:rdgGrp/tei:rdg[contains(@wit,$base)]/tei:ptr/@target">
+            <xsl:for-each select="current-group()[1]/preceding-sibling::*[1]/tei:rdgGrp/tei:rdg[contains(@wit, $base)]/tei:ptr/@target">
                <xsl:variable name="id" select="tokenize(., ' ')"/>
                <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
                   <xsl:with-param name="h" select="                         if (contains($id, '-h')) then                            tokenize($id[1], '-')[last()]                         else                            ''" tunnel="yes"/>
                </xsl:apply-templates>
             </xsl:for-each>
-            <xsl:text> ...</xsl:text>
          </span>
+         <span class="continued">...</span>
          <xsl:variable name="groups">
             <xsl:for-each-group select="(current-group()[1]/preceding-sibling::*[1] | tei:rdg | current-group())//tei:rdg" group-by="@wit">
                <!-- grp is the group of tokens associated with these columns -->
                <grp n="{@wit}">
                   <sort>
-                     <xsl:value-of select="                            for $t in current-group()/tei:ptr/@target                            return                               $w-data/id(replace(substring-after($t, '#'), '-h[\d]', ''))"/>
+                     <xsl:value-of select=" for $t in current-group()/tei:ptr/@target return                          $w-data/id(replace(substring-after($t, '#'), '-h[\d]+', ''))"/>
                   </sort>
                   <use>
-                     <xsl:for-each select="current-group()/tei:ptr/@target">
-                        <xsl:variable name="id" select="tokenize(., ' ')"/>
-                        <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
-                           <xsl:with-param name="h" select="                                  if (contains($id, '-h')) then                                     tokenize($id[1], '-')[last()]                                  else                                     ''" tunnel="yes"/>
-                        </xsl:apply-templates>
-                     </xsl:for-each>
-                  </use>
+                  <xsl:for-each select="current-group()/tei:ptr/@target">
+                     <!-- For some reason when the id function resolving the id inline fails to return anything in this instance -->
+                     <!-- only works when resolved in variable $out, and then used in id() -->
+                     <!-- Does not fail in other cases -->
+                     <xsl:variable name="out" select="substring-after(tokenize(., '-')[1], '#')"/>
+                     <xsl:apply-templates select="$w-data/id($out)">
+                        <xsl:with-param name="h" select="if (contains(., '-h')) then                            tokenize(., '-')[last()]                            else                            ''"/>
+                     </xsl:apply-templates>
+                  </xsl:for-each>
+               </use>
                </grp>
             </xsl:for-each-group>
          </xsl:variable>
-         <xsl:if test="$groups/xhtml:grp[@n = $base]/xhtml:sort = $groups/xhtml:grp[@n != $base]/xhtml:sort">
+         <!--<xsl:copy-of select="$groups"/>-->
+          <xsl:if test="$groups/xhtml:grp[@n = $base]/xhtml:sort = $groups/xhtml:grp[@n != $base]/xhtml:sort">
             <span class="matchesBase merged">
                <span class="sigla">
                   <!-- too long an expression? -->
@@ -131,9 +91,9 @@
                   <xsl:value-of select="                         for $i in $witList                         return                            if ($i = $witsInGrp) then                               $i                            else                               ()"/>
                </span>
             </span>
-
+            
          </xsl:if>
-
+         
          <xsl:for-each-group select="$groups/xhtml:grp" group-by="xhtml:sort">
             <xsl:choose>
                <xsl:when test="not($base = current-group()/@n) and current-group()//xhtml:sort[normalize-space(.)]">
@@ -159,14 +119,51 @@
          </xsl:for-each-group>
       </div>
    </xsl:template>
+   <xsl:template name="basePresentAtLocus">
+      <!-- exclude cases where all readings are identical -->
+      <xsl:if test="count(tei:rdgGrp[1]/tei:rdg) &lt; count($witList) + 1">
+         <div class="locusGrp" id="{@xml:id}">
+            <!-- readings that match base -->
+            <!-- too add: <span class="rdg"> with lemma -->
+            <span class="matchesBase">
+               <xsl:call-template name="sigla">
+                  <xsl:with-param name="theseWits" select="tei:rdgGrp[tei:rdg[contains(@wit, $base)]]/tei:rdg/@wit"/>
+               </xsl:call-template>
+            </span>
+            <!-- pre-determined reading groups internally sorted by user order -->
+            <xsl:for-each select="tei:rdgGrp[not(@n = 'empty')][not(tei:rdg/@wit[contains(., $base)])]">
+               <span class="rdgGrp grp-{@n}">
+                  <span class="rdg">
+                     <xsl:for-each select="tei:rdg[1]/tei:ptr/@target">
+                        <xsl:variable name="id" select="tokenize(., ' ')"/>
+                        <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
+                           <xsl:with-param name="h" select="                                  if (contains($id, '-h')) then                                     tokenize($id[1], '-')[last()]                                  else                                     ''" tunnel="yes"/>
+                        </xsl:apply-templates>
+                     </xsl:for-each>
+                  </span>
+                  <xsl:call-template name="sigla">
+                     <xsl:with-param name="theseWits" select="tei:rdg/@wit"/>
+                  </xsl:call-template>
+               </span>
+            </xsl:for-each>
+            <!-- finally, cases where witness other than base did not have a corresponding reading -->
+            <xsl:if test="current-group()/tei:rdgGrp[@n = 'empty']">
+               <span class="rdgGrp empty">
+                  <xsl:call-template name="sigla">
+                     <xsl:with-param name="theseWits" select="current-group()/tei:rdgGrp[@n = 'empty']/tei:rdg/@wit"/>
+                  </xsl:call-template>
+               </span>
+            </xsl:if>
+         </div>
+      </xsl:if>
+   </xsl:template>
    <xsl:template name="sigla">
       <xsl:param name="theseWits"/>
       <span class="sigla">
-         <xsl:variable name="witsInGrp" select=" for $w in $theseWits return replace($w,'^#','')"/>
-         <xsl:value-of select="                            for $i in $witList                            return                               if ($i = $witsInGrp) then                                  $i                               else                                  ()"/>
+         <xsl:variable name="witsInGrp" select="                for $w in $theseWits                return                   replace($w, '^#', '')"/>
+         <xsl:value-of select="                for $i in $witList                return                   if ($i = $witsInGrp) then                      $i                   else                      ()"/>
       </span>
    </xsl:template>
-
 
    <!-- these templates apply to w tokens drawn from original texts (descendants of $w-data) -->
    <xsl:template match="tei:w">
@@ -327,4 +324,5 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
+
 </xsl:stylesheet>

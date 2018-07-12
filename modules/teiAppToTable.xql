@@ -66,6 +66,8 @@ declare function cmp:filter ($in as item()+, $h as xs:string*) as item()* {
    for $out in $in return cmp:w-to-span($out,$h)
 };
 
+(:This is an attempt to display tokens with internal adds and dels as whole words :)
+(: not sure this is necessary for display, or even desirable :)
 declare function cmp:doText($txtNode as node(), $h as xs:string*) as item()+ {
    let $addDel as xs:string* := 
              let $addSpan := $txtNode/preceding-sibling::tei:addSpan[1][@type='add']
