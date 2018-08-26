@@ -1,6 +1,8 @@
 xquery version "3.1";
 
-(: 
+(: Hayim Lapin 8/24/18
+ : Updated to improve selection of h1/h2 segments
+ : better output of resultant w elements
  : Hayim Lapin 4/9/18
  : Updated to integrate into app.
  : Fixed residual issues in how tokens treated
@@ -10,7 +12,7 @@ xquery version "3.1";
  : Hayim Lapin 3/6/2018 
  : Rewritten to copy nodes of interest to memory, to allow faster processing.
  : Hayim Lapin, 3/1/2018 
- : Adapted to be utilized as function within app
+ : Adapted to be utilized as module within app
  : Hayim Lapin, 12/10/2017 
  : takes word separated data from multiple files based on their common location in Mishnah ($mCite)
  : and creates a single json file that serves as input to CollateX                                 
@@ -37,7 +39,7 @@ import module namespace config = "http://www.digitalmishnah.org/config" at "conf
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare boundary-space strip;
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
-
+declare namespace functx = "http://www.functx.com";
 
 
 (: parameters need to be changed to map from templating function :)
@@ -52,7 +54,31 @@ declare variable $wits as item()* := request:get-parameter('wits', '');:)
    if (not($wits) or $wits = '' or $wits = 'all')
    then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness[@corresp]/@xml:id/string() 
    else tokenize($wits,',');:)
-   
+
+
+(::::::::::::::::::::::::::::::::::::::::::)
+(:  These utility functions for revising IDs :)
+declare function functx:pad-integer-to-length
+  ( $integerToPad as xs:anyAtomicType? ,
+    $length as xs:integer )  as xs:string {
+
+   if ($length < string-length(string($integerToPad)))
+   then error(xs:QName('functx:Integer_Longer_Than_Length'))
+   else concat
+         (functx:repeat-string(
+            '0',$length - string-length(string($integerToPad))),
+          string($integerToPad))
+ } ;
+declare function functx:repeat-string
+  ( $stringToRepeat as xs:string? ,
+    $count as xs:integer )  as xs:string {
+
+   string-join((for $i in 1 to $count return $stringToRepeat),
+                        '')
+ } ;
+(::::::::::::::::::::::::::::::::::::::::::)
+
+
 (:  get tokenized text  :)
 declare function ws2j:nodes ($mCite as xs:string, $witNames as xs:string*) as element()+ {
 for $witName in $witNames
@@ -481,6 +507,35 @@ declare function ws2j:wordGroups($wElems as element()*) {
                            ()
 };
 
+
+
+declare function ws2j:splitToken($w as element()) as item()* {
+   let $idStub := replace($w/@xml:id,'\d+$','')
+   let $abNum := xs:integer(tokenize($w/@xml:id,'\.')[last()])
+   let $t := tokenize($w,'\*')
+   let $num := count($t)
+   return 
+      
+      for $n in 1 to $num 
+      return <w>{
+         ($w/@resp, attribute xml:id {
+            concat($idStub,functx:pad-integer-to-length($abNum + (($n - 1) * 10),5))
+         },$t[$n])
+      }</w>
+};
+
+declare function ws2j:fixIDsInTokenList($wSequence as element()+) as element()+ {
+   (: reassigns IDs for tokens needing special handling :)
+   for $ab in $wSequence 
+      return <ab xml:id="{$ab/@xml:id}">{
+      for $w in $ab/* 
+      return
+         (: tried with switch statement and kept getting errors. reverted to concatenated if-else :)
+         if ($w[self::w[contains(.,'*')]]) then ws2j:splitToken($w)
+         else $w
+    }</ab>
+    
+};
 declare function ws2j:buildJSON($wSequence as element()+) as map(*){
    map{ 
    (:  could paramterize settings :)
@@ -600,8 +655,13 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
          return
             ws2j:processWTokens($srcTokens)
       return
-         ws2j:buildJSON($listOfTokens)
-   return    
+      let $revListOfTokens := ws2j:fixIDsInTokenList($listOfTokens) return
+         ws2j:buildJSON($revListOfTokens)
+         (: Needed
+      to do cleanup in second pass bec XQ does not nec know preceding or following id :)
+      (: Should be fixed.:)
+   return
+      
       serialize($out, 
         <output:serialization-parameters>
             <output:method>json</output:method>
