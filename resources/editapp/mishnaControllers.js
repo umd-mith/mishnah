@@ -127,7 +127,22 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		//alert( "(Testing...) JSON to be saved: " + retval );    
     	    //console.log(retval)
                 
-    		return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });;
+    		// return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });
+    		
+                        
+                     return new Promise(function(res) {
+                         $http({
+                            method: 'POST',
+                                url: 'edit/toTEIXML',
+                                data: { "witnesses": $scope.originalWitnesses, "table": jsonArray },
+                                headers: {
+                                	'Accept': 'application/json',
+                                	'Content-Type': 'application/json'}
+                            })
+                            .success(function(nudata) {
+                               return res(nudata) 
+                            })
+                     })
     	};
     	
     	function combine( token ){
@@ -180,8 +195,12 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     	$scope.saveAs = function(){
     	           $scope.groupifyAllCols();
     		var filename = prompt( "Enter name of file to save", $scope.mcite+".xml");
-    		var blob = new Blob([$scope.unpivotTable()], {type: "text/plain;charset=utf-8"});
-    		saveAs( blob, filename );
+    		$scope.unpivotTable()
+    		.then(function(xmlcontent){
+    		  var blob = new Blob([xmlcontent], {type: "text/plain;charset=utf-8"});    		
+    		  saveAs( blob, filename ); 
+    		})
+    		
     	};
     
     	function getIndexInRowForModel( item ){

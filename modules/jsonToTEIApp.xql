@@ -1,9 +1,9 @@
 
-
 xquery version "3.1";
 import module namespace console = "http://exist-db.org/xquery/console";
+import module namespace util = "http://exist-db.org/xquery/util";
 
-let $in := json-doc('file:/C:/Users/hlapin/Documents/mishnah/data/xslExternal/4.2.5.1.json')
+let $in := parse-json(util:binary-to-string(request:get-data()))
 
 return
    <TEI
