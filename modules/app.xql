@@ -47,7 +47,7 @@ declare function app:page_assets($node as node(), $model as map(*)) {
     <link
       xmlns="http://www.w3.org/1999/xhtml"
       rel="stylesheet"
-      href="$app-root/resources/css/mtjsviewer.css"/>
+      href="$app-root/resources/css/mtalign.css"/>
   else
     if ($model("resource") = "edit") then
       (<link
@@ -437,6 +437,103 @@ declare function app:toc($node as node(), $model as map(*), $level as xs:string,
                     else
                       <a
                         class="list-group-item">{replace($tract/@n, '_', ' ')}</a>:)
+                }</ul>
+            </div>)
+        }</div>
+    </div>
+};
+
+declare function app:mttoc($node as node(), $model as map(*)) {
+  let $tract-compos := doc(concat($config:data-root, "/mishnah/index-m.xml"))
+  return
+    <div
+      class="panel-group"
+      role="tablist">
+      <div
+        class="panel">{
+          (:for $order in $index//my:order:)
+          for $order in $tract-compos//tei:div1
+          return
+            (
+            <div
+              class="panel-heading"
+              role="tab">
+              <div
+                class="panel-title">
+                <a
+                  href="#{$order/@n}"
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  aria-controls="{string($order/@n)}">{string($order/@n)}
+                  <span
+                    class="caret"></span></a>
+              </div>
+            </div>,
+            <div
+              class="panel-collapse collapse"
+              role="tabpanel"
+              id="{$order/@n}"
+              aria-labelledby="{$order/@n}_Heading"
+              aria-expanded="false"
+              style="height: 0px;">
+              <ul
+                class="list-group">{
+                  for $tract in $order/tei:div2
+                  return
+                      <li
+                        class="list-group-item">
+                        <div
+                          class="panel-heading"
+                          role="tab">
+                          <div
+                            class="panel-title">
+                            <a
+                              href="#{$tract/@n}"
+                              class="collapsed"
+                              role="button"
+                              data-toggle="collapse"
+                              aria-expanded="false"
+                              aria-controls="{$tract/@n}">{replace($tract/@n, '_', ' ')}
+                              <span
+                                class="caret"></span></a>
+                          </div>
+                        </div>
+                        <div
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          id="{$tract/@n}"
+                          aria-labelledby="{$tract/@n}_Heading"
+                          aria-expanded="false"
+                          style="height: 0px;">
+                          <ul
+                            class="list-group">{
+                              for $chap in $tract/tei:div3
+                              return
+                                  let $htmlid := substring-after($chap/@xml:id,'.')
+                                  return
+                                    (
+                                    <li
+                                      class="list-group-item">
+                                      <div
+                                        class="panel-heading"
+                                        role="tab">
+                                        <div
+                                          class="panel-title">
+                                          <a
+                                            id="ch_{$htmlid}"
+                                            href="#mt/{$htmlid}"
+                                            role="button">
+                                            Chapter {substring-after($chap/@xml:id, concat($chap/parent::tei:div2/@xml:id, '.'))}
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    )
+                            }</ul>
+                        </div>
+                      </li>
                 }</ul>
             </div>)
         }</div>

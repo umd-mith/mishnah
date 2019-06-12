@@ -9,4 +9,4 @@ let $ch:= request:get-parameter('ch', '')
 let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
 
 return
-    $input//tei:div3[@xml:id=concat('ref.',$ch)]
+    $input//tei:div3/id(concat('ref.',$ch))
