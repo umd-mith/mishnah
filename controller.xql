@@ -186,6 +186,14 @@ else if (matches($exist:path, "/compare/\d+\.\d+\.\d+(\.\d+)?/(\w+,?)+/(align|ap
       </dispatch>
 
 (:
+ : Digital apparatus criticus - view
+ :)
+else if (matches($exist:path, "/edit/toTEIXML")) then
+      <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+          <forward url="{$exist:controller}/modules/jsonToTEIApp.xql"/>
+      </dispatch>
+
+(:
  : Login a user via AJAX. Just returns a 401 if login fails.
  :)
 else if ($exist:resource = 'dologin') then
