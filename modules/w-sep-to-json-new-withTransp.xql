@@ -46,7 +46,7 @@ declare option output:media-type "application/json";
 
 
 (: parameters need to be changed to map from templating function :)
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.1.2.5');
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.1.5.1');
 declare variable $wits as item()* := request:get-parameter('wits', 'S00483');
 (:declare variable $mCite as xs:string := '4.2.5.1';:)
 (:declare variable $wits as item()* := 'all';:)
@@ -89,9 +89,10 @@ for $witName in $witNames
       let $doc := doc(concat($config:data-root, 'mishnah/w-sep/', $witName, '-w-sep.xml')) return
          if ($doc/id(concat($witName,'.',$mCite))) then
              let $extract := (id(concat($witName, '.', $mCite), $doc))
-             let $transpLists := $doc//transpose[contains(ptr/@target,$mcite)]
+             let $localCopy := ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
+             let $transpLists := $doc//transpose[contains(ptr/@target,$mCite)]
             return
-            ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
+            
          else ()
 };
 
@@ -114,6 +115,36 @@ declare function ws2j:copy($n as node()*) as node() {
    else ()         
 };
 
+(: handle transpositons. Could be incorporated in ws2j:copy, but for now keeping the functions separate :)
+declare function ws2j:addTranspositions($n as node()*, $transpSet){
+    if ($n) then
+        for $c in $n
+        return 
+        if (concat('#',$c/@xml:id) = $trasnpSet//@target) then ()
+        else if ($c[self::text()]
+            return $c
+        else if $c[self::element()]
+            return 
+                element {name($c}}
+                    { $e/@*,
+                        for $c in $e/(* | text())
+                    return
+                       ws2j:addTranspositions($c,$transpSet)
+                    }
+   (:typeswitch ($n)
+      case $e as element()
+         return
+            element {name($e)}
+            {
+               $e/@*,
+               for $c in $e/(* | text())
+               return
+                  ws2j:copy($c)
+            }
+      default
+         return
+            $n:)
+   else ()         };
 
 declare function ws2j:filter-w-set($w-set as node()*, $case as xs:string) as node()* {
    (: Filters w elements, selecting that contain or  those wholly within the bounding add or del span and anchor tags :)
