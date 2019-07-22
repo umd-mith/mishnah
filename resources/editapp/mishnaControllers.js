@@ -39,7 +39,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 		
     $http({
         method: 'POST',
-        url: 'http://54.152.68.192:8080/collatex/collate',
+        url: 'http://52.12.26.11:8080/collatex/collate',
         data: pre_data,
         headers: {
         	'Accept': 'application/json',

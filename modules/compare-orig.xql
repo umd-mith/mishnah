@@ -102,7 +102,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         </headers>
         let $results := parse-json(
         content:get-metadata-and-content(
-        httpc:post(xs:anyURI('http://54.152.68.192:8080/collatex/collate'), $tokens, false(), $headers)
+        httpc:post(xs:anyURI('http://52.12.26.11:8080/collatex/collate'), $tokens, false(), $headers)
         ))
         return
           if ($mode = 'apparatus')
