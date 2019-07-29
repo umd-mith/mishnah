@@ -247,7 +247,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 		  
 		  targetNdx = getIndexInRowForModel( $event.target.id );
 		  if( targetNdx == null ) 
-			  targetNdx = $event.target.cellIndex -1;
+			  targetNdx = $event.target.cellIndex -2;// - 1;  //NB: "-2" b/c added extra dummy column 
 		  srcNdx = getIndexInRowForModel( $data.id );
 		  
 		  if( targetNdx != srcNdx ){
@@ -452,7 +452,12 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
 						$scope.pivotedTable[witness][i-dir] = $scope.pivotedTable[witness][index];
 						$scope.pivotedTable[witness][index] = [];
 					}
-					return;
+					// Now (force-)scroll table to show/focus the new location
+                    var colNdx = i + dir;
+                    var colId = "align-pos-" + (colNdx < 4 ? -1: (colNdx > $scope.pivotedTable[witness].length -4 ? $scope.pivotedTable[witness].length: colNdx));
+                    var tgtElement = document.getElementById(colId);
+                    tgtElement.scrollIntoView();
+                    return;
 				}
 				
 		    if( dialogData.value == 'undoEdit' ){

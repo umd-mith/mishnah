@@ -196,12 +196,13 @@ declare function cmp:compare-align-collatex($results as item(), $orderedWits as 
                     if (array:size($data) > 0)
                     then
                       (
-                      attribute class {
+                      attribute class {(
                         if ($isVariant) then
                           concat('variant', if ($data(1)("resp")) then concat(' -', $data(1)("resp")) else ())
                         else
-                          concat('invariant', if ($data(1)("resp")) then concat(' -', $data(1)("resp")) else ())
-                      },
+                          concat('invariant', if ($data(1)("resp")) then concat(' -', $data(1)("resp")) else ()),
+                        if ($data(1)("transp")) then concat(' -', $data(1)("transp")) else () 
+                      )},
                       $data(1)("t")
                       )
                     else
@@ -239,13 +240,15 @@ declare function cmp:compare-syn($mcite as xs:string, $wits as item()+) {
                 class="synopsis">{
                 
                   for $wit in $wits return
-                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
-                     let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id($pathData[2])
+                     let $pathData := tokenize(substring-after($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
+                     let $src := doc(concat($config:data-root, "mishnah/w-sep/", $pathData[1]))//tei:ab/id($pathData[2])
                      return
+                     (console:log($pathData),
                        <td
                          class="text-col">{
                            transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())
                          }</td>
+                         )
                    }</tr>
         else
           if (count(tokenize($mcite, '\.')) = 4) then 
@@ -259,10 +262,10 @@ declare function cmp:compare-syn($mcite as xs:string, $wits as item()+) {
 (:                     let $pathData := tokenize(substring-before($ab/tei:ptr[@n eq $wit]/@target, ' '),'#'):)
 (:                       let $src := doc(concat($config:data-root, "mishnah/", $pathData[1]))//tei:ab/id(concat($wit, '.', $pathData[2])):)
                         let $pathData := tokenize(substring-after($ab/tei:ptr[@n eq $wit]/@target, ' '),'#')
-                        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $pathData[1]))//tei:ab/id(concat($wit, '.', $pathData[2]))
+                        let $src := doc(concat($config:data-root, "mishnah/w-sep/", $pathData[1]))//tei:ab/id($pathData[2])
                   return
                       ( 
-                        console:log($src),
+                        console:log(($src)),
                     <td
                       class="text-col">{
                         transform:transform($src, doc("//exist/apps/digitalmishnah/xsl/synopsis.xsl"), ())

@@ -64,7 +64,7 @@
    <!-- body; generate index of witnesses -->
    <xsl:template match="tei:div1 | tei:div2">
       <xsl:element name="{name()}">
-         <xsl:copy-of select="@n|@type"></xsl:copy-of>
+         <xsl:copy-of select="@n|@type"/>
          <xsl:attribute name="xml:id" select="concat('index-m.', substring-after(@xml:id, '.'))"/>
          <xsl:call-template name="doHeadTrailer">
             <xsl:with-param name="elem" select="'.H'"/>

@@ -1,6 +1,10 @@
 xquery version "3.1";
 
-(: Hayim Lapin 8/24/18
+(: Hayim Lapin, 2/26/19
+ : Fixed some h1h2 problms 
+ : Hayim Lapin, 7/23/19
+ : Added handling of transpositions
+ : Hayim Lapin 8/24/18
  : Updated to improve selection of h1/h2 segments
  : better output of resultant w elements
  : Hayim Lapin 4/9/18
@@ -46,9 +50,9 @@ declare option output:media-type "application/json";
 
 
 (: parameters need to be changed to map from templating function :)
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.1.2.5');
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.4');
 declare variable $wits as item()* := request:get-parameter('wits', 'S00483');
-(:declare variable $mCite as xs:string := '4.2.5.1';:)
+(:declare variable $mCite as xs:string := '3.1.14.4';:)
 (:declare variable $wits as item()* := 'all';:)
 
 (:declare variable $m as item()* := if (not($mCite ='')) then $mCite else '2.3.10.3';:)
@@ -59,8 +63,6 @@ declare variable $witNames as xs:string* :=
    else tokenize($wits,',');
 
 (:  get tokenized text  :)
-
-
 (: These utility functions for revising IDs :)
 declare function functx:pad-integer-to-length
   ( $integerToPad as xs:anyAtomicType? ,
@@ -87,13 +89,21 @@ declare function ws2j:nodes ($mCite as xs:string, $witNames as xs:string*) as el
 for $witName in $witNames
    return
       let $doc := doc(concat($config:data-root, 'mishnah/w-sep/', $witName, '-w-sep.xml')) return
+          (: if instead of try-catch? :)
          if ($doc/id(concat($witName,'.',$mCite))) then
              let $extract := (id(concat($witName, '.', $mCite), $doc))
-             let $transpLists := $doc//transpose[contains(ptr/@target,$mcite)]
+             let $localCopy := ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
+             let $transpLists := $doc//tei:transpose[concat('#',@xml:id) = $extract//tei:milestone/@corresp]
             return
-            ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
+            if ($transpLists) then 
+                let $transpNodes := ws2j:getTransp($localCopy,ws2j:copy($transpLists))
+                    return ws2j:insertTrsToText($localCopy,$transpNodes)
+                    (:$transpNodes:)
+            else $localCopy
+            
          else ()
 };
+
 
 (: makes a local copy to avoid traversing the whole document for processing:)
 declare function ws2j:copy($n as node()*) as node() {
@@ -113,8 +123,129 @@ declare function ws2j:copy($n as node()*) as node() {
             $n
    else ()         
 };
+(::::::::::::::::::::::::::::::::::::::::::::::::::::::::::)
+declare function ws2j:getTransp($nodes as node()+, $transpSets as element()+){
+    for $set in $transpSets
+    return
+    <transpose id="{$set/@xml:id}">{
+        (: get the nodes pointed to in the header :)
+        let $tgtNodes := for $tgt in $set/*/@target return $nodes/*[@xml:id= substring-after($tgt,'#')]
+        return (
+        <transpOrder>{$tgtNodes}</transpOrder>,
+        <origOrder>{$nodes//*[@xml:id = $tgtNodes/@xml:id]}</origOrder>,
+        if ($tgtNodes[self::anchor]) then 
+            for $anch in $tgtNodes[self::anchor] 
+            return
+                <group id="{$anch/@xml:id}">{
+                    let $milest := $anch/preceding::milestone[contains(@spanTo,$anch/@xml:id)]
+                    return
+                        $milest/following-sibling::node() intersect $anch/preceding-sibling::node()
+                }</group>
+        else ()
+        )
+        }</transpose>
+};
 
+declare function ws2j:insertTrsToText($extract as node()+,$transpNodes as element()+ ){
+    (:for $nodes in $transpNodes return:)
+    for $n in $extract return
+        (: parent node :)
+        if ($n[self::ab]) 
+        then 
+        <ab>{$n/@*,ws2j:insertTrsToText($n/*,$transpNodes)}</ab>
+        (: beginnings and ends of virtual seg or w containing transposition :)
+        else if (substring-after($n[self::milestone]/@corresp,'#') = $transpNodes[1]/@id) 
+        (: the milestone element starting a transposition :)
+        then 
+            () (:omit:)
+        else if (
+                   $n[self::anchor]/preceding-sibling::milestone[@spanTo = concat('#',$n/@xml:id)] intersect 
+                   $n/preceding-sibling::milestone[substring-after(@corresp,'#') = $transpNodes/@id]
+                ) 
+        (: the anchor element ending a transposition :)           
+        then             
+             () (:omit:)
+        (: need case for finding w with transposed cs :)
+        else if (substring-after($n[self::w]/@corresp,'#') = $transpNodes[1]/@id)
+        (: assume w with a corresp pointing to listTranspose :)
+        (: recurse for contents of w :)
+            then <w>{$n/@*, ws2j:insertTrsToText($transpNodes, $n/node())}</w> 
+        
+        else if ($n[self::w|self::c][. = $transpNodes//origOrder/*[self::w|self::c]])
+        (: individual words in a word-level transposition :)
+        (: individual chars in a char-level transposition :)
+            then 
+                let $pos := ws2j:getPos($n, $transpNodes/origOrder)
+                return
+                    (<milestone unit="transp" subtype="orig" spanTo="{concat('#',$transpNodes/@id,'-orig')}"/>,
+                    ws2j:transpUpdateIDs($n,'-orig'),
+                    <anchor type="transp" xml:id="{concat($transpNodes/@id,'-orig-',$pos)}"/>,
+                    <milestone unit="transp" subtype="repl" spanTo="{concat('#',$transpNodes/@id,'-repl')}"/>,
+                    ws2j:transpUpdateIDs($transpNodes/transpOrder/*[$pos],'-repl'),
+                    <anchor type="transp" subtype="repl" xml:id="{concat($transpNodes/@id,'-repl')}"/>)
+        else if ($n[self::anchor][. = $transpNodes//origOrder/anchor])
+        (: end of transpGrp: extended transposition :)
+        (: insert original text, ids updated :)
+        (: insert modified milestone :)
+        (: insert block of transposed ids updated :)
+        (: insert modidfied anchor :)
+            then 
+                let $pos := ws2j:getPos($n, $transpNodes/origOrder) 
+                let $pos2 := ws2j:getPos($n, $transpNodes/transpOrder)
+                return (
+                 ws2j:transpUpdateIDs($transpNodes/group[$pos]/*,'-orig'),
+                 <anchor type="transp" subtype="orig" xml:id="{concat($n/@xml:id,'-orig')}"/>,
+                 <milestone unit="transp" subtype="repl" spanTo="{concat('#',$transpNodes/group[$pos]/@id,'-repl-',$pos2)}"/>,
+                 ws2j:transpUpdateIDs($transpNodes/group[$pos2]/*,'-repl'),
+                 <anchor type="transp" subtype="repl" xml:id="{concat($transpNodes/group[$pos2]/@id,'-repl-',$pos)}"/>
+                )
+        else if ($n[self::milestone]/following-sibling::anchor[contains($n/@spanTo,@xml:id)][. = $transpNodes//origOrder/anchor])
+        (: beg of transpGrp: extended transposition :)
+            then 
+                let $pos := ws2j:getPos($n, $transpNodes/origOrder)
+                return (<milestone unit="transp" subtype="orig" spanTo="{concat($n/@spanTo,'-orig')}"/>)
+                
+        else if ($transpNodes//group/*/@xml:id = $n/@xml:id) 
+            (: omit nodes between milestone/anchor to be replaced with in previous step :)
+            then ()
+        else 
+            $n 
+};
 
+declare function ws2j:getPos($test as element(), $list as element()+) as xs:integer  {
+    let $nodeToTest := 
+        if ($test[self::milestone]) 
+        then $test/following-sibling::anchor[contains($list/@spanTo,@xml:id)]
+        else $test
+    return count($list/*[@xml:id = $nodeToTest/@xml:id]/preceding-sibling::*) + 1
+};
+
+declare function ws2j:transpUpdateIDs ($in as node()*, $suff as xs:string) {
+  for $n in $in return
+   typeswitch ($n)
+      case $e as element()
+         return
+            element {name($e)}
+            {
+               
+               if ($e[self::w]) then 
+               attribute {'type'} {substring-after($suff,'-')}
+               else (),
+               $e/@*[name() != 'xml:id'],
+               if ($e/@xml:id ) then 
+               attribute {'xml:id'} {concat($e/@xml:id, $suff)}
+               else (),
+               for $c in $e/(* | text())
+               return
+                  ws2j:transpUpdateIDs($c,$suff)
+            }
+      default
+         return
+            $n      
+    };
+    
+  (:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::)
+(: With nodes copied, and transpositions duplicated continue :)
 declare function ws2j:filter-w-set($w-set as node()*, $case as xs:string) as node()* {
    (: Filters w elements, selecting that contain or  those wholly within the bounding add or del span and anchor tags :)
    (: More efficient than for loop evaluating each w? :)
@@ -239,34 +370,36 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                switch ($resp)
                   case "h1"
                      return
-                        if (: $n between span/del markers :)
-                        (some $s in $n/following::anchor[@type = 'add']/@xml:id
-                              satisfies $n/preceding::*[contains(@spanTo, $s)]) then
+                        if (: do not include any text node that is between matching addspan/anchor pair :)
+                        (some $s in $n/preceding::addSpan/@spanTo 
+                           satisfies                        some $a in                        $n/following::anchor/@xml:id 
+                        satisfies contains($s,$a)) then
                            ()
-                        else if (: $n is the end of an add :)
+                        (:else if (\: $n is the end of an add :\)
                         ($n/following-sibling::*[1][self::anchor[@type = 'add']] 
                         and not($n/preceding-sibling::node())) then
                            ()
-                        else if (: $n is the beginning of an add :)
+                        else if (\: $n is the beginning of an add :\)
                         ($n/preceding-sibling::*[1][self::addSpan[@type != 'comm']] 
                         and not($n/following-sibling::node())) then
-                           ()
+                           ():)
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
                   case "h2"
                      return
-                        if (: $n between span/del markers :)
-                        (some $s in $n/following::anchor[@type = 'del']/@xml:id
-                              satisfies $n/preceding::*[contains(@spanTo, $s)]) then
+                        if (: do not include any text node that is between matching delspan/anchor pair :)
+                        (some $s in $n/preceding::delSpan/@spanTo 
+                           satisfies                        some $a in                        $n/following::anchor/@xml:id 
+                        satisfies contains($s,$a)) then
                            ()
-                        else if (: $n is the end of an del :)
+                        (:else if (\: $n is the end of an del :\)
                         ($n/following-sibling::*[1][self::anchor[@type = 'del']] 
                         and not($n/preceding-sibling::node())) then
                            ()
-                        else if (: $n is the beginning of an del :)
+                        else if (\: $n is the beginning of an del :\)
                         ($n/preceding-sibling::*[1][self::delSpan] 
                         and not($n/following-sibling::node())) then
-                           ()
+                           ():)
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
                   default return
@@ -305,22 +438,21 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
                   return
                      (:if ($w = $del|$w[addSpan[not(@type='comm')] | anchor[@type = 'add']]) then :)
                      if ($w/self::w) then 
-                           <w resp='h1'>{($w/@*, $w/node())}</w>
+                           ws2j:doWsForH1H2($w,'h1')
                         else
                            $w
-                    (: else
-                        ():)
+                    
                let $processedH1 := ws2j:h1h2($h1,'h1')
                let $h2 := 
-                  for $w in $el/*[. = $add | .[anchor[@type = 'del']]|.[delSpan]]
+                  for $w in $el/*
                   return
-                     (:if ($w = $add|$w[delSpan | anchor[@type = 'del']]) then:)
-                        if ($w/self::w) then
-                           <w resp='h2'>{($w/@xml:id, $w/node())}</w>
-                        else 
+                     
+                        if ($w/self::w) then 
+                           ws2j:doWsForH1H2($w,'h2')
+                        else
                            $w
-                     (:else
-                        ():)
+                     
+               
                let $processedH2 := ws2j:h1h2($h2,'h2')
                return 
                ($processedH1, $processedH2)
@@ -335,6 +467,30 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
       )
 };
 
+
+declare function ws2j:doWsForH1H2($w as element(w), $resp as xs:string){
+    if ($resp = 'h1') 
+    then 
+        (: omit any additions that are the whole of the $w, include any deletions :)
+        (: $w is between addSpan and anchor :)
+        if (some $s in concat('#',$w/following::anchor[@type='add']/@xml:id) 
+            satisfies $w/preceding::addSpan[@type='add']/@spanTo/string() = $s) 
+        then () 
+        (: $w contains anchor in last position, but no span :)
+        else if ($w/anchor[not(following-sibling::node()/normalize-space())]
+            [not(some $s in concat('#',$w/anchor/@xml:id)
+            satisfies $w/addSpan[@type='add']/@spanTo = $s)])
+        then ()   
+        (: $w contains span in first position, but no anchor :)
+        else
+        <w resp="{$resp}">{($w/@xml:id, $w/node())}</w>
+    else if ($resp = 'h2') 
+    then <w resp="{$resp}">{($w/@xml:id, $w/node())}</w>
+        (: omit any deletions, include any additions :)
+    else ()
+};
+
+(: Exist does not support grouping in xq :)
 (: These two functions borrow from a method for positional grouping by Michael Kay :)
 (: Iterates w by w testing if should be grouped :)
 declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as element()* {
@@ -342,9 +498,11 @@ declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as 
    return
       if ($w) then
          if (some $ad in $addDel satisfies $w is $ad) then
+            (: start a group :)
             (<h1h2>{$w, ws2j:groupAddDel($w, $addDel)}</h1h2>,
             ws2j:recurseAddDel($w/following-sibling::*[not(. = $addDel)][1], $addDel))
          else
+            (: do not start a group, just keep going :)
             ($w, ws2j:recurseAddDel($next, $addDel))
       else
          ()
@@ -354,7 +512,7 @@ declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as 
 declare function ws2j:groupAddDel($w as element()?, $addDel as element()*) as element()* {
    if ($w) then   
       let $next := $w/following-sibling::*[1]
-         where $next = $addDel
+         where some $ad in $addDel satisfies $ad is $next
       return
          ($next, ws2j:groupAddDel($next, $addDel))
    else ()         
@@ -597,7 +755,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                (: also want to add suffix -h1 or -h2 to ids in order to disambiguate:)
                   map {"t":  $tText ,
                      "n" :  if (normalize-space(ws2j:regHebr($rText?1))) then ws2j:regHebr($rText?1) else substring($tText,1,1),
-                     "id" : if ($w/self::w/@resp) then concat($w/@xml:id/string(),'-',$w/@resp/string()) else $w/@xml:id/string()} 
+                     "id" : string-join(($w/@xml:id/string(),$w/@resp/string()),'-')} 
                let $respMap:= 
                   if ($w/self::w/@resp) then
                      map {"resp": $w/@resp/string()}
@@ -610,12 +768,17 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                   map {"wGrp" : $rText?1}
                else 
                   ()
+               let $transpMap := 
+                  if ($w/@type) then 
+                    map{"transp":$w/@type/string()} 
+                  else ()
                return 
                let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
                let $expans:= if ($expMap?expan) then $expMap?expan else ''
                return
                   map:merge(($tMap, 
                      $respMap, 
+                     $transpMap,
                      $expMap, 
                      $wGrpMap
                      (:,

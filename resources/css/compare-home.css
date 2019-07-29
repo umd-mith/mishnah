@@ -329,14 +329,26 @@ td.invariant{
     padding-right:3px;
     padding-left:3px;
 }
-td.-h1{
+td[class*="-h1"]{
     /*font-weight: bold;*/
     text-decoration:line-through
     
 }
-td.-h2{
+td[class*="-h2"]{
     /*text-decoration: underline;*/
     font-weight: bold;
+}
+td[class*="-orig"]::before{
+    /*font-weight: bold;*/
+    direction:rtl;
+    content:"0";
+    position: relative; top: -0.5em; font-size: 80%;
+    
+}
+td[class*="-repl"]::before{
+    direction:rtl;
+    content:"1";
+    position: relative; top: -0.5em; font-size: 80%;
 }
 .ref-data{
     font-family:"Times New Roman", Times, serif;

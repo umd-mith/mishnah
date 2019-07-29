@@ -46,8 +46,8 @@ declare option output:media-type "application/json";
 
 
 (: parameters need to be changed to map from templating function :)
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.4');
-declare variable $wits as item()* := request:get-parameter('wits', 'S07319');
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.3');
+declare variable $wits as item()* := request:get-parameter('wits', 'S07326');
 (:declare variable $mCite as xs:string := '4.2.5.1';:)
 (:declare variable $wits as item()* := 'all';:)
 
@@ -112,6 +112,7 @@ declare function ws2j:copy($n as node()*) as node() {
             $n
    else ()         
 };
+
 
 declare function ws2j:filter-w-set($w-set as node()*, $case as xs:string) as node()* {
    (: Filters w elements, selecting that contain or  those wholly within the bounding add or del span and anchor tags :)
@@ -223,6 +224,7 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                   else ()
                else ()
          case element(anchor)
+            
             return
                if ($n[@type = 'add'] | $n[@type = 'del']) then
                   ()
@@ -236,36 +238,38 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                switch ($resp)
                   case "h1"
                      return
-                        if (: do not include any text node that is between matching addspan/anchor pair :)
-                        (some $s in $n/preceding::addSpan/@spanTo 
-                            satisfies some $a in $n/following::anchor/@xml:id  
-                            satisfies contains($s,$a)) then
-                           ()
-                        (:else if (\: $n is the end of an add :\)
+                        if (: $n between span/del markers :)
+                        (for $a in concat('#',$n/following::anchor[@type = 'add']/@xml:id)
+                              return
+ some $s in $n/preceding::addSpan/@spanTo/string() satisfies $a = $s 
+                          ) then
+                           ((:console:log($n/preceding::addSpan):))
+                        else if (: $n is the end of an add :)
                         ($n/following-sibling::*[1][self::anchor[@type = 'add']] 
                         and not($n/preceding-sibling::node())) then
                            ()
-                        else if (\: $n is the beginning of an add :\)
+                        else if (: $n is the beginning of an add :)
                         ($n/preceding-sibling::*[1][self::addSpan[@type != 'comm']] 
                         and not($n/following-sibling::node())) then
-                           ():)
+                           ()
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
                   case "h2"
                      return
-                        if (: do not include any text node that is between matching delspan/anchor pair :)
-                        (some $s in $n/preceding::delSpan/@spanTo 
-                            satisfies some $a in $n/following::anchor/@xml:id  
-                            satisfies contains($s,$a)) then
+                        if (: $n between span/del markers :)
+                        (for $a in concat('#',$n/following::anchor[@type = 'del']/@xml:id)
+                              return
+ some $s in $n/preceding::delSpan/@spanTo/string() satisfies $a = $s)
+ then
                            ()
-                        (:else if (\: $n is the end of an del :\)
+                        else if (: $n is the end of an del :)
                         ($n/following-sibling::*[1][self::anchor[@type = 'del']] 
                         and not($n/preceding-sibling::node())) then
                            ()
-                        else if (\: $n is the beginning of an del :\)
+                        else if (: $n is the beginning of an del :)
                         ($n/preceding-sibling::*[1][self::delSpan] 
                         and not($n/following-sibling::node())) then
-                           ():)
+                           ()
                         else
                            string-join(replace($n, '[&#xa;\s+]', ''))
                   default return
@@ -287,11 +291,10 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
    let $del := ws2j:filter-w-set($ab, 'del')
    let $addDel := $add union $del
    return
-         ((:console:log(($ab/* intersect $addDel)),:)
+      
       for $items in $ab
       return
          (: starting with first w iterate through and group adjacent add dels:)
-         ( console:log(($addDel)),
          let $firstH1H2 := $items/*[1]
          let $groupedAddDel := ws2j:recurseAddDel($firstH1H2, $addDel)
          (:take grouped elements and differentiate on h1/h2:)
@@ -301,32 +304,31 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
             if ($el/name() = 'h1h2') then
                (:process twice:)
                let $h1 := 
-                  for $w in $el/*
+                  for $w in $el/*[$del|.[anchor[@type='add']]|.[addSpan[not(@type='comm')]]]
                   return
+                     (:if ($w = $del|$w[addSpan[not(@type='comm')] | anchor[@type = 'add']]) then :)
                      if ($w/self::w) then 
-                           ws2j:doWsForH1H2($w,'h1')
+                           <w resp='h1'>{($w/@*, $w/node())}</w>
                         else
                            $w
-                           
+                    (: else
+                        ():)
                let $processedH1 := ws2j:h1h2($h1,'h1')
                let $h2 := 
-                  for $w in $el/*
+                  for $w in $el/*[. = $add | .[anchor[@type = 'del']]|.[delSpan]]
                   return
-                  
-                      if ($w/self::w) then 
-                           ws2j:doWsForH1H2($w,'h2')
-                        else
+                     (:if ($w = $add|$w[delSpan | anchor[@type = 'del']]) then:)
+                        if ($w/self::w) then
+                           <w resp='h2'>{($w/@xml:id, $w/node())}</w>
+                        else 
                            $w
-                      
-                     
+                     (:else
+                        ():)
                let $processedH2 := ws2j:h1h2($h2,'h2')
                return 
-                ($processedH1, $processedH2)
-               
+               ($processedH1, $processedH2)
             else
-                
                $el
-               
          return
             (
             <ab>{
@@ -334,53 +336,8 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
                }
             </ab>
       )
-      )
-      )
 };
 
-
-declare function ws2j:doWsForH1H2($w as element(w), $resp as xs:string){
-    if ($resp = 'h1') 
-    then 
-        (: omit any additions that are the whole of the $w, include any deletions :)
-        (: $w is between addSpan and anchor :)
-        if (some $a in $w/following::anchor[@type='add']/@xml:id
-            satisfies some $s in $w/preceding::addSpan[@type='add']/@spanTo
-            satisfies contains($s,$a)) 
-        then () 
-        (: $w contains anchor in last position, but no span preceded by text :)
-        else if (not(some $a in $w/anchor[@type='add'][not(following-sibling::node()/normalize-space())]/@xml:id 
-            satisfies some $s in $w/addSpan[@type='add']/@spanTo
-            satisfies contains($s,$a)))
-        then ()   
-        (: $w contains span in first position, but no anchor :)
-        else if (not(some $s in $w/addSpan[@type='add'][not(preceding-sibling::node()/normalize-space())]/@spanTo
-            satisfies some $a in $w/anchor[@type='add']/@xml:id 
-            satisfies contains($s,$a)))
-        then ()
-        else
-        <w resp="{$resp}">{($w/@xml:id, $w/node())}</w>
-    else if ($resp = 'h2') 
-        then 
-        if (some $a in $w/following::anchor[@type='del']/@xml:id
-            satisfies some $s in $w/preceding::delSpan/@spanTo
-            satisfies contains($s,$a))
-        then ()
-        (: $w contains anchor in last position, but no span preceded by text :)
-        else if (not(some $a in $w/anchor[@type='del'][not(following-sibling::node()/normalize-space())]/@xml:id 
-            satisfies some $s in $w/addSpan[@type='del']/@spanTo
-            satisfies contains($s,$a)))
-        then ()   
-        (: $w contains span in first position, but no anchor :)
-        else if (not(some $s in $w/addSpan[@type='del'][not(preceding-sibling::node()/normalize-space())]/@spanTo
-            satisfies some $a in $w/anchor[@type='del']/@xml:id 
-            satisfies contains($s,$a)))
-        then ()   else <w resp="{$resp}">{($w/@xml:id, $w/node())}</w>
-        (: omit any deletions, include any additions :)
-    else ()
-};
-
-(: Exist does not support grouping in xq :)
 (: These two functions borrow from a method for positional grouping by Michael Kay :)
 (: Iterates w by w testing if should be grouped :)
 declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as element()* {
@@ -388,28 +345,23 @@ declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as 
    return
       if ($w) then
          if (some $ad in $addDel satisfies $w is $ad) then
-         (: start a group :)
-            ((:console:log(('ADDDEL',$w)),:)
-            <h1h2>{$w, ws2j:groupAddDel($w, $addDel)}</h1h2>,
-            ws2j:recurseAddDel($w/following-sibling::*[not(. intersect $addDel)][1], $addDel))
+            (: start a group :)
+            (<h1h2>{$w, ws2j:groupAddDel($w, $addDel)}</h1h2>,
+            ws2j:recurseAddDel($w/following-sibling::*[not(. = $addDel)][1], $addDel))
          else
             (: do not start a group, just keep going :)
-            ((:console:log(('notADDDEL',$w)),:)
-            $w, ws2j:recurseAddDel($next, $addDel))
+            ($w, ws2j:recurseAddDel($next, $addDel))
       else
          ()
 };
 
 (: Adds to group as necessary  :)
 declare function ws2j:groupAddDel($w as element()?, $addDel as element()*) as element()* {
-   if ($w and $w/following-sibling::*[1] intersect $addDel) 
-   then   (
-        console:log(('RECURSING',$w)),
-        let $next := $w/following-sibling::*[1]
-        return 
-          if ($next intersect $addDel) then ($next, ws2j:groupAddDel($next, $addDel))
-        else ()
-        )
+   if ($w) then   
+      let $next := $w/following-sibling::*[1]
+         where $next = $addDel
+      return
+         ($next, ws2j:groupAddDel($next, $addDel))
    else ()         
 };
 
@@ -593,7 +545,7 @@ declare function ws2j:splitToken($w as element()) as item()* {
    let $t := tokenize($w,'\*')
    let $num := count($t)
    return 
-      ((:console:log($w),:)
+      (console:log($w),
       for $n in 1 to $num 
       return <w>{
          ($w/@resp, attribute xml:id {
@@ -710,10 +662,7 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
    let $listOfTokens :=
       for $srcTokens in $noComm
       return
-         (
-         (:console:log(ws2j:processWTokens($srcTokens)),:) 
          ws2j:processWTokens($srcTokens)
-         )
    return
       (: Needed to do cleanup in second pass. Should be fixed. :)
       let $revListOfTokens := ws2j:fixIDsInTokenList($listOfTokens)

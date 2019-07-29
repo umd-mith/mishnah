@@ -46,7 +46,7 @@ declare option output:media-type "application/json";
 
 
 (: parameters need to be changed to map from templating function :)
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.2.6.3');
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.1.2.5');
 declare variable $wits as item()* := request:get-parameter('wits', 'S00483');
 (:declare variable $mCite as xs:string := '4.2.5.1';:)
 (:declare variable $wits as item()* := 'all';:)
@@ -59,6 +59,8 @@ declare variable $witNames as xs:string* :=
    else tokenize($wits,',');
 
 (:  get tokenized text  :)
+
+
 (: These utility functions for revising IDs :)
 declare function functx:pad-integer-to-length
   ( $integerToPad as xs:anyAtomicType? ,
@@ -85,21 +87,13 @@ declare function ws2j:nodes ($mCite as xs:string, $witNames as xs:string*) as el
 for $witName in $witNames
    return
       let $doc := doc(concat($config:data-root, 'mishnah/w-sep/', $witName, '-w-sep.xml')) return
-          (: if instead of try-catch? :)
          if ($doc/id(concat($witName,'.',$mCite))) then
              let $extract := (id(concat($witName, '.', $mCite), $doc))
-             let $localCopy := ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
-             let $transpLists := $doc//tei:transpose[concat('#',@xml:id) = $extract//tei:milestone/@corresp]
+             let $transpLists := $doc//transpose[contains(ptr/@target,$mcite)]
             return
-            if ($transpLists) then 
-                let $transpNodes := ws2j:getTransp($localCopy,ws2j:copy($transpLists))
-                    return ws2j:insertTrsToText($localCopy,$transpNodes)
-                    (:$transpNodes:)
-            else $localCopy
-            
+            ws2j:copy($extract/*/parent::*) (: why is this axis necessary? :)
          else ()
 };
-
 
 (: makes a local copy to avoid traversing the whole document for processing:)
 declare function ws2j:copy($n as node()*) as node() {
@@ -119,125 +113,8 @@ declare function ws2j:copy($n as node()*) as node() {
             $n
    else ()         
 };
-(::::::::::::::::::::::::::::::::::::::::::::::::::::::::::)
-declare function ws2j:getTransp($nodes as node()+, $transpSets as element()+){
-    for $set in $transpSets
-    return
-    <transpose id="{$set/@xml:id}">{
-        (: get the nodes pointed to in the header :)
-        let $tgtNodes := for $tgt in $set/*/@target return $nodes/*[@xml:id= substring-after($tgt,'#')]
-        return (
-        <transpOrder>{$tgtNodes}</transpOrder>,
-        <origOrder>{$nodes//*[@xml:id = $tgtNodes/@xml:id]}</origOrder>,
-        if ($tgtNodes[self::anchor]) then 
-            for $anch in $tgtNodes[self::anchor] 
-            return
-                <group id="{$anch/@xml:id}">{
-                    let $milest := $anch/preceding::milestone[contains(@spanTo,$anch/@xml:id)]
-                    return
-                        $milest/following-sibling::node() intersect $anch/preceding-sibling::node()
-                }</group>
-        else ()
-        )
-        }</transpose>
-};
 
-declare function ws2j:insertTrsToText($extract as node()+,$transpNodes as element()+ ){
-    (:for $nodes in $transpNodes return:)
-    for $n in $extract return
-        (: parent node :)
-        if ($n[self::ab]) 
-        then 
-        <ab>{$n/@*,ws2j:insertTrsToText($n/*,$transpNodes)}</ab>
-        (: beginnings and ends of virtual seg or w containing transposition :)
-        else if (substring-after($n[self::milestone]/@corresp,'#') = $transpNodes[1]/@id) 
-        (: the milestone element starting a transposition :)
-        then 
-            () (:omit:)
-        else if (
-                   $n[self::anchor]/preceding-sibling::milestone[@spanTo = concat('#',$n/@xml:id)] intersect 
-                   $n/preceding-sibling::milestone[substring-after(@corresp,'#') = $transpNodes/@id]
-                ) 
-        (: the anchor element ending a transposition :)           
-        then             
-             () (:omit:)
-        (: need case for finding w with transposed cs :)
-        else if (substring-after($n[self::w]/@corresp,'#') = $transpNodes[1]/@id)
-        (: assume w with a corresp pointing to listTranspose :)
-        (: recurse for contents of w :)
-            then <w>{$n/@*, ws2j:insertTrsToText($transpNodes, $n/node())}</w> 
-        
-        else if ($n[self::w|self::c][. = $transpNodes//origOrder/*[self::w|self::c]])
-        (: individual words in a word-level transposition :)
-        (: individual chars in a char-level transposition :)
-            then 
-                let $pos := ws2j:getPos($n, $transpNodes/origOrder)
-                return
-                    (<milestone unit="transp" subtype="orig" spanTo="{concat('#',$transpNodes/@id,'-orig')}"/>,
-                    ws2j:transpUpdateIDs($n,'-orig'),
-                    <anchor type="transp" xml:id="{concat($transpNodes/@id,'-orig-',$pos)}"/>,
-                    <milestone unit="transp" subtype="repl" spanTo="{concat('#',$transpNodes/@id,'-repl')}"/>,
-                    ws2j:transpUpdateIDs($transpNodes/transpOrder/*[$pos],'-repl'),
-                    <anchor type="transp" subtype="repl" xml:id="{concat($transpNodes/@id,'-repl')}"/>)
-        else if ($n[self::anchor][. = $transpNodes//origOrder/anchor])
-        (: end of transpGrp: extended transposition :)
-        (: insert original text, ids updated :)
-        (: insert modified milestone :)
-        (: insert block of transposed ids updated :)
-        (: insert modidfied anchor :)
-            then 
-                let $pos := ws2j:getPos($n, $transpNodes/origOrder) 
-                let $pos2 := ws2j:getPos($n, $transpNodes/transpOrder)
-                return (
-                 ws2j:transpUpdateIDs($transpNodes/group[$pos]/*,'-orig'),
-                 <anchor type="transp" subtype="orig" xml:id="{concat($n/@xml:id,'-orig')}"/>,
-                 <milestone unit="transp" subtype="repl" spanTo="{concat('#',$transpNodes/group[$pos]/@id,'-repl-',$pos2)}"/>,
-                 ws2j:transpUpdateIDs($transpNodes/group[$pos2]/*,'-repl'),
-                 <anchor type="transp" subtype="repl" xml:id="{concat($transpNodes/group[$pos2]/@id,'-repl-',$pos)}"/>
-                )
-        else if ($n[self::milestone]/following-sibling::anchor[contains($n/@spanTo,@xml:id)][. = $transpNodes//origOrder/anchor])
-        (: beg of transpGrp: extended transposition :)
-            then 
-                let $pos := ws2j:getPos($n, $transpNodes/origOrder)
-                return (<milestone unit="transp" subtype="orig" spanTo="{concat($n/@spanTo,'-orig')}"/>)
-                
-        else if ($transpNodes//group/*/@xml:id = $n/@xml:id) 
-            (: omit nodes between milestone/anchor to be replaced with in previous step :)
-            then ()
-        else 
-            $n 
-};
 
-declare function ws2j:getPos($test as element(), $list as element()+) as xs:integer  {
-    let $nodeToTest := 
-        if ($test[self::milestone]) 
-        then $test/following-sibling::anchor[contains($list/@spanTo,@xml:id)]
-        else $test
-    return count($list/*[@xml:id = $nodeToTest/@xml:id]/preceding-sibling::*) + 1
-};
-
-declare function ws2j:transpUpdateIDs ($in as node()*, $suff as xs:string) {
-  for $n in $in return
-   typeswitch ($n)
-      case $e as element()
-         return
-            element {name($e)}
-            {
-               $e/@*[name() != 'xml:id'],
-               if ($e/@xml:id ) then 
-               attribute {'xml:id'} {concat($e/@xml:id, $suff)}
-               else (),
-               for $c in $e/(* | text())
-               return
-                  ws2j:transpUpdateIDs($c,$suff)
-            }
-      default
-         return
-            $n      
-    };
-    
-  (:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::)
-(: With nodes copied, and transpositions duplicated continue :)
 declare function ws2j:filter-w-set($w-set as node()*, $case as xs:string) as node()* {
    (: Filters w elements, selecting that contain or  those wholly within the bounding add or del span and anchor tags :)
    (: More efficient than for loop evaluating each w? :)

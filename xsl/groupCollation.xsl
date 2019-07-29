@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs tei xhtml" version="2.0">
 
    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
@@ -67,7 +68,7 @@
                <span class="rdgGrp grp-{@n}">
                   <span class="rdg">
                      <xsl:for-each select="tei:rdg[1]/tei:ptr/@target">
-                        <xsl:value-of select="." separator=" "></xsl:value-of>
+                        <xsl:value-of select="." separator=" "/>
                         <!--<xsl:variable name="id" select="tokenize(., ' ')"/>
                         <xsl:apply-templates select="$w-data/id(substring-after(tokenize($id[1], '-')[1], '#'))">
                            <xsl:with-param name="h" select="if (contains($id, '-h')) then   tokenize($id[1], '-')[last()] else ''" tunnel="yes"/>
@@ -99,7 +100,9 @@
       <div class="locusGrp" id="{@xml:id}">
          <xsl:for-each-group select="(current-group()[1]/preceding-sibling::*[1] | tei:rdg | current-group())//tei:rdg" group-by="@wit">
             <!-- grp is the group of tokens associated with these columns -->
-            <grp n="{@wit}"><xsl:value-of select=" current-group()/tei:ptr/@target"/></grp>
+            <grp n="{@wit}">
+                    <xsl:value-of select=" current-group()/tei:ptr/@target"/>
+                </grp>
          </xsl:for-each-group>
       </div>
    </xsl:template>
