@@ -47,29 +47,29 @@
 <!--        </span>-->
 <!--    </xsl:template>-->
     <xsl:template match="delSpan">
-        <span xmlns="http://www.w3.org/1999/xhtml" class="del">
+        <span xmlns="http://www.w3.org/1999/xhtml" class="del-synops" dir="rtl">
             <xsl:text>(</xsl:text>
         </span>
     </xsl:template>
     <xsl:template match="tei:addSpan">
-        <span xmlns="http://www.w3.org/1999/xhtml" class="add">
+        <span xmlns="http://www.w3.org/1999/xhtml" class="add-synops" dir="rtl">
             <xsl:text>[</xsl:text>
         </span>
     </xsl:template>
     <xsl:template match="tei:anchor">
         <xsl:choose>
             <xsl:when test="@type='add'">
-                <span xmlns="http://www.w3.org/1999/xhtml" class="add">
+                <span xmlns="http://www.w3.org/1999/xhtml" class="add-synops" dir="rtl">
                     <xsl:text>]</xsl:text>
                 </span>
             </xsl:when>
             <xsl:when test="@type='del'">
-                <span xmlns="http://www.w3.org/1999/xhtml" class="del">
+                <span xmlns="http://www.w3.org/1999/xhtml" class="del-synops" dir="rtl">
                     <xsl:text>)</xsl:text>
                 </span>
             </xsl:when>
             <xsl:when test="@type='damage'">
-                <span xmlns="http://www.w3.org/1999/xhtml" class="dam">
+                <span xmlns="http://www.w3.org/1999/xhtml" class="dam-synops" dir="rtl">
                     <xsl:text>&gt;</xsl:text>
                 </span>
             </xsl:when>
@@ -120,12 +120,12 @@
         <xsl:value-of select="if (@unit = 'stop') then '. ' else if (@unit='unitEnd') then ': ' else ' '"/>
     </xsl:template>
     <xsl:template match="tei:damageSpan">
-        <span xmlns="http://www.w3.org/1999/xhtml" class="damage">
+        <span xmlns="http://www.w3.org/1999/xhtml" class="damage-synops" dir="rtl">
             <xsl:text>&lt;</xsl:text>
         </span>
     </xsl:template>
     <xsl:template match="//tei:unclear">
-        <span xmlns="http://www.w3.org/1999/xhtml" class="unclear">
+        <span xmlns="http://www.w3.org/1999/xhtml" class="unclear-synops" dir="rtl">
             <xsl:apply-templates/>
         </span>
     </xsl:template>
