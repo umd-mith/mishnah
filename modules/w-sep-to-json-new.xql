@@ -347,9 +347,9 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
          case element(delSpan)
             return
                if ($resp = 'h1') then
-                  if ($n[@extent][$n[ancestor::w]]) then 
+                  if ($n[ancestor::w][@extent]) then 
                      for $i in 1 to xs:integer($n/@extent) return '-' 
-                  else if ($n[@extent]) then
+                  else if ($n[not(ancestor::w)][@extent]) then
                      <w xml:id="{substring-after($n/@spanTo,'#')}" 
                      resp="h1"
                      type="del">
@@ -367,51 +367,11 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
             return
                $n
          case text()
-            return
-               switch ($resp)
-                  case "h1"
+            return               replace($n, '[&#xa;\s+]', '')
+                  default
                      return
-                        if (: do not include any text node that is between matching addspan/anchor pair :)
-                        (some $s in $n/preceding::addSpan/@spanTo 
-                           satisfies
-                        some $a in                        $n/following::anchor/@xml:id 
-                        satisfies contains($s,$a))
- then
-                           ()
-                        (:else if (\: $n is the end of an add :\)
-                        ($n/following-sibling::*[1][self::anchor[@type = 'add']] 
-                        and not($n/preceding-sibling::node())) then
-                           ()
-                        else if (\: $n is the beginning of an add :\)
-                        ($n/preceding-sibling::*[1][self::addSpan[@type != 'comm']] 
-                        and not($n/following-sibling::node())) then
-                           ():)
-                        else
-                           string-join(replace($n, '[&#xa;\s+]', ''))
-                  case "h2"
-                     return
-                        if (: do not include any text node that is between matching delspan/anchor pair :)
-                        (some $s in $n/preceding::delSpan/@spanTo 
-                           satisfies                        
-                                some $a in                        $n/following::anchor/@xml:id 
-                        satisfies contains($s,$a)) then
-                           ()
-                        (:else if (\: $n is the end of an del :\)
-                        ($n/following-sibling::*[1][self::anchor[@type = 'del']] 
-                        and not($n/preceding-sibling::node())) then
-                           ()
-                        else if (\: $n is the beginning of an del :\)
-                        ($n/preceding-sibling::*[1][self::delSpan] 
-                        and not($n/following-sibling::node())) then
-                           ():)
-                        else
-                           string-join(replace($n, '[&#xa;\s+]', ''))
-                  default return
-                     "error"
-      default
-         return
-            $n
-
+                        $n 
+                           
 };
 
 declare function ws2j:wdNo($str as xs:string) as xs:integer {
@@ -441,24 +401,27 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
                   for $w in $el/*
                   return
                      
-                     if ($w/self::w) then 
-                           (:ws2j:doWsForH1H2($w,'h1'):)
-                           <w resp='h1'>{$w/@*,$w/node()[not(self::note)]}</w>
-                        else
+                     if (ws2j:keepOrSkip($w, 'h1')) then 
+                           
+                           if ($w[self::w]) then
+                             <w resp='h1'>{($w/@*, 
+                                for $c in $w/node() return ws2j:keepOrSkip($c, 'h1')) 
+                             }</w>
+                        else 
                            $w
-                    
-               let $processedH1 := ws2j:h1h2($h1,'h1')
-               let $h2 := 
-                  for $w in $el/*
-                  return
-                     
-                        if ($w/self::w) then 
-                           (:ws2j:doWsForH1H2($w,'h2'):)
-                           <w resp='h2'>{$w/@*,$w/node()[not(self::note)]}</w>
-                        else
-                           $w
-                     
+                    else ()
                
+               let $processedH1 := ws2j:h1h2($h1,'h1')
+               let $h2 := for $w in $el/*
+                  return
+                     if (ws2j:keepOrSkip($w, 'h2')) then
+                        if ($w[self::w]) then
+                           <w resp='h2'>{$w/@*, 
+                             for $c in $w/node() return ws2j:keepOrSkip($c, 'h2') 
+                             }</w>
+                        else 
+                           $w
+                     else               ()
                let $processedH2 := ws2j:h1h2($h2,'h2')
                return 
                ($processedH1, $processedH2)
@@ -472,6 +435,29 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
             </ab>
       )
 };
+
+declare function ws2j:keepOrSkip($test as node(),$resp as xs:string) as item()* {
+    
+    if ($resp = 'h1') 
+    then 
+        (: $test is between addSpan and anchor :)
+        if (some $a in $test/following::anchor/@xml:id
+            satisfies some $s in $test/preceding::addSpan/@spanTo
+            satisfies contains($s,$a)) 
+        then () (: omit :)
+        else $test
+    else if($resp='h2')
+    then 
+        (: $test is between delSpan and anchor :)
+        if (some $a in $test/following::anchor/@xml:id
+            satisfies some $s in $test/preceding::delSpan/@spanTo
+            satisfies contains($s,$a))
+        then () (: omit :)
+        else $test
+    else ()
+    
+};
+
 
 (: NOT USING ..... :)
 declare function ws2j:doWsForH1H2($w as element(w), $resp as xs:string){
@@ -836,9 +822,8 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                   else
                         () ) else ()
             )
-            
-                  }})
-                  }
+            }}
+                  )}
 };
 
 
