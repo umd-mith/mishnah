@@ -26,15 +26,15 @@
     <!-- Build Mishnah-Tosefta Viewer JavaScript App -->
     <target name="mtjsviewer">
       <!-- Run NPM -->
-      <exec executable="${npm}" dir="${project.js}/mtjsviewer">
+      <!--<exec executable="${npm}" dir="${project.js}/mtjsviewer">
         <arg value="install"/>
       </exec>
       <exec executable="${npm}" dir="${project.js}/mtjsviewer">
         <arg value="run"/>
         <arg value="build"/>
-      </exec>
+      </exec> -->
       <!-- Move dist files to resources -->
-      <copy file="${project.js}/mtjsviewer/dist/mtjsviewer.js" todir="resources/js"/>
+      <!--<copy file="${project.js}/mtjsviewer/dist/mtjsviewer.js" todir="resources/js"/>-->
     </target>
 
     <target name="dist" depends="mtjsviewer">
