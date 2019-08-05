@@ -325,7 +325,7 @@ declare function ws2j:regHebr($str as xs:string) as xs:string {
 
 
 declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
-   
+   ((:console:log($h1h2),:)
    for $n in $h1h2
    return
       typeswitch ($n)
@@ -345,6 +345,7 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
          case element(delSpan)
             return
                if ($resp = 'h1') then
+                  ((:console:log($n/ancestor::node()),:)
                   if ($n[ancestor::w][@extent]) then 
                      for $i in 1 to xs:integer($n/@extent) return '-' 
                   else if ($n[not(ancestor::w)][@extent]) then
@@ -353,7 +354,9 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                      type="del">
                      {for $i in 1 to xs:integer($n/@extent) return '-' }</w>
                   else ()
+                  )
                else ()
+               
          case element(anchor)
             
             return
@@ -369,7 +372,7 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
       default
          return
             $n 
-        
+        )
 };
 
 declare function ws2j:wdNo($str as xs:string) as xs:integer {
