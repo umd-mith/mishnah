@@ -10,7 +10,7 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare option output:method "text";
 declare option output:media-type "text/javascript";
 
-declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.1.1.1');
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.4');
 declare variable $wits as item()* := request:get-parameter('wits', 'all');
 
 ws2j:getTokenData($mCite,$wits)
