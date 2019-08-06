@@ -22,12 +22,12 @@ declare function dm:getTMalign($chapter as xs:string) {
             map:merge(
                 for $t in tokenize($link/@target)
                 return
-                    for $aptr in $align//tei:ptr/id($t)
+                    for $aptr in $align//tei:ptr/id(substring-after($t, '#'))
                     group by $isT := contains($aptr/@target, 'ref-t')   
                     return
                         if ($isT) 
-                        then map {'t' : tokenize($aptr/@target/data())}
-                        else map {'m' : tokenize($aptr/@target/data())}
+                        then map {'t' : tokenize(replace($aptr/@target/data(), '#', ''))}
+                        else map {'m' : tokenize(replace($aptr/@target/data(), '#', ''))}
             )
     }
 };

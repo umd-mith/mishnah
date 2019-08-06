@@ -20,8 +20,9 @@ return <TEI xmlns="http://www.tei-c.org/ns/1.0">{
     )
     for $ab in $abs
         let $ab_el := $tosefta//id($ab)
+        let $n := $ab_el/ancestor::tei:div2/@n
         return element ab {
-            attribute n { concat($ab_el/ancestor::tei:div2/@n/data(), ' ', replace($ab_el/@xml:id/data(), '^.*?\.(\d+\.\d+)$', '$1')) },
+            attribute n { concat(if ($n) then $n/data() else 'Unknown', ' ', replace($ab_el/@xml:id/data(), '^.*?\.(\d+\.\d+)$', '$1')) },
             $ab_el/@*,
             $ab_el/node()
         }

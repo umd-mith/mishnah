@@ -17,12 +17,12 @@ declare function dm:getMTalign($chapter as xs:string) {
             map:merge(
                 for $t in tokenize($link/@target)
                 return
-                    for $ptr in $align//tei:ptr/id($t)
+                    for $ptr in $align//tei:ptr/id(substring-after($t, '#'))
                     group by $isT := contains($ptr/@target, 'ref-t')   
                     return
                         if ($isT) 
-                        then map {'t' : tokenize($ptr/@target/data())}
-                        else map {'m' : tokenize($ptr/@target/data())}
+                        then map {'t' : tokenize(replace($ptr/@target/data(), '#', ''))}
+                        else map {'m' : tokenize(replace($ptr/@target/data(), '#', ''))}
             )
     }
 };
