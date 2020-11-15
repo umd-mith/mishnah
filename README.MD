@@ -9,6 +9,12 @@ The Digital Mishnah Project aims to create a digital critical edition of the Mis
 
 This is the eXist web application for the project website. The TEI data for the project is located in [this GitHub repository](https://github.com/umd-mith/mishnah-data).
 
+All project repositories:
+* [mishnah](https://github.com/umd-mith/mishnah). This repository with an eXist webapp and framework.
+* [mishnah-data](https://github.com/umd-mith/mishnah-data). The TEI data for the project.
+* [mishnah-align](https://github.com/umd-mith/mishnah-align). NodeJS program for converting Mishnah-Tosefta alignment data from CSV to TEI.
+* [mishnah-align-app](https://github.com/umd-mith/mishnah-align-app). React webapp for rendering alingment data between Mishnah and Tosefta using CETEIcean for TEI rendering. The built app is integrated into the eXist framework.
+
 # Installation
 
 Pre-requisites:
