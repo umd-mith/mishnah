@@ -1,6 +1,9 @@
 xquery version "3.1";
 
-(: Hayim Lapin, 7/26/19
+(: Hayim Lapin 11/14/2020
+ : inserted skeleton of algorithm selection (needleman-wunsch default)
+ : fixed some whitespace issues causing errors in collation (normalize-space(expan/text()))
+ : Hayim Lapin, 7/26/19
  : Fixed some h1h2 problms 
  : Hayim Lapin, 7/23/19
  : Added handling of transpositions
@@ -737,9 +740,15 @@ declare function ws2j:fixIDsInTokenList($wSequence as element()+) as element()+ 
     
 };
 
-declare function ws2j:buildJSON($wSequence as element()+) as map(*){
+declare function ws2j:buildJSON($wSequence as element()+, $algo as xs:string* ) as map(*){
+    (: make Needelman-Wunsch default request :)
    map{ 
    (:  could paramterize settings :)
+   
+   "algorithm" : if ($algo eq 'nw') then 'needleman-wunsch'
+                 else if ($algo eq 'd') then 'dekker'
+                 else if ($algo eq 'med') then 'medite'
+                 else 'needleman-wunsch',
    "joined" : false(),
    "witnesses" : for $ab in $wSequence 
    
@@ -766,7 +775,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                    else if ($w/@xml:id = $wGroups[self::omit]/@xml:id) then 
                       '--'
                    else if ($w/*/expan) then
-                      tokenize($w/*/expan/text(), '\s+')
+                      tokenize(normalize-space($w/*/expan/text()), '\s+')
                    else if ($w/*/reg) then
                       $w/*/reg
                    else
@@ -786,7 +795,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                       else ()
                    let $expMap:= 
                       if ($w/*/expan) then 
-                         map {"expan" : string-join($w/*/expan/text(),' ')} 
+                         map {"expan" : string-join(normalize-space($w/*/expan/text()),' ')} 
                       else () 
                    let $wGrpMap:= if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
                       map {"wGrp" : $rText?1}
@@ -798,7 +807,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
                       else ()
                    return 
                    let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
-                   let $expans:= if ($expMap?expan) then $expMap?expan else ''
+                   let $expans:= if ($expMap?expan) then normalize-space($expMap?expan) else ''
                    return
                       map:merge(($tMap, 
                          $respMap, 
@@ -827,7 +836,7 @@ declare function ws2j:buildJSON($wSequence as element()+) as map(*){
 };
 
 
-declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
+declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*, $algo as xs:string*) {
    (: get only ws and string that are not between comm span and anchor:)
    (: instead do this after? :)
    (: get nodes :)
@@ -860,11 +869,11 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
       (: Needed to do cleanup in second pass. Should be fixed. :)
       let $revListOfTokens := ws2j:fixIDsInTokenList($listOfTokens)
       return
-      ws2j:buildJSON($revListOfTokens)
+      ws2j:buildJSON($revListOfTokens, $algo)
          (: Needed to do cleanup in second pass bec XQ does not nec know preceding or following id :)
       (: Should be fixed.:)
    return
-     ( (:console:log($out),:)
+      ( (: console:log($out), :)
       serialize(
       $out, 
         <output:serialization-parameters>
