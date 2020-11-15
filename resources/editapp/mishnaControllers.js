@@ -29,7 +29,7 @@ mishnaApp.controller('RegroupingCtrl', function ($scope, ngDialog ){
 mishnaApp.controller('MishnaCtrl', function ($scope, ngDialog, $http) {
 
 var m = "4.1.1.1";
-var data_loc = 'modules/passToModule.xql?&mcite=';
+var data_loc = 'modules/passToModule.xql?algo=nw&mcite=';
 var render = function (mcite) {
 
 $scope.mcite = mcite;
@@ -104,7 +104,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     			// get/create classification / column ID
     			var columnId = "";
     			var j = 0;
-    			while( ! columnId ){
+    			while (!columnId && j < $scope.witnesses.length) {
     				if( $scope.pivotedTable[$scope.witnesses[j]][i].length > 0 && $scope.pivotedTable[$scope.witnesses[j]][i][0] )
     					columnId = $scope.pivotedTable[$scope.witnesses[j]][i][0].id;
     					j++;

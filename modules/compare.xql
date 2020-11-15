@@ -68,6 +68,7 @@ declare function cmp:compare-chapter($node as node(), $mcite as xs:string, $wits
 };
 
 declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits as xs:string*, $mode as xs:string) {
+  ((: console:log($wits), :)
   if ($mode = 'synopsis')
   then
     cmp:compare-syn($mcite, $wits)
@@ -87,7 +88,8 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         (: Use Collatex :)
         (: string-join a temp kludge?:)
         (:let $tokens := ws2j:getTokenData($mcite, string-join($wits, ',')):)
-         let $tokens := ws2j:getTokenData($mcite, $wits)
+        (: for now default algo is nw :)
+         let $tokens := ws2j:getTokenData($mcite, $wits, 'nw')
         (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
         let $headers := <headers>
           <header
@@ -115,7 +117,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
               )
             })
             
-};
+)};
 
 (:~
  : This templating function generates a table of variants from a TEI stand-off collation

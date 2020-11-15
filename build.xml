@@ -76,7 +76,8 @@
 
     <target name="deploy" depends="xar, data">
       <path id="classpath.core">
-           <fileset dir="${exist.home}/lib/core">
+          <fileset dir="${exist.home}/lib/core">
+          <!--<fileset dir="${exist.home}/lib">-->
                <include name="*.jar"/>
            </fileset>
            <pathelement path="${exist.home}/exist.jar"/>

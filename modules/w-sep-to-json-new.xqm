@@ -864,12 +864,13 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
          (: Needed to do cleanup in second pass bec XQ does not nec know preceding or following id :)
       (: Should be fixed.:)
    return
-      (:(console:log($out),:)
+     ( (:console:log($out),:)
       serialize(
       $out, 
         <output:serialization-parameters>
             <output:method>json</output:method>
         </output:serialization-parameters>)   
         (:):)
+    )
 (:$out:)
 };
