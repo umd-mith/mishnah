@@ -12,5 +12,6 @@ declare option output:media-type "text/javascript";
 
 declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.4');
 declare variable $wits as item()* := request:get-parameter('wits', 'all');
+declare variable $algo as xs:string* := request:get-parameter('algo','nw');
 
-ws2j:getTokenData($mCite,$wits)
+ws2j:getTokenData($mCite,$wits,$algo)
