@@ -14,7 +14,7 @@ var updateList = function (unit, sources) {
     $.get("$app-root/modules/filterWitsJSON.xql?mcite="+unit, function(wits){        
         $("#select-wits li").each(function(i, el){
             var $el = $(el);
-            if ($.inArray($el.attr("id").split("-").pop(), wits) == -1) {
+            if ($.inArray($el.attr("id").replace(/^wit-item-/, ""), wits) == -1) {
                 $el.hide();
             }
             else {
