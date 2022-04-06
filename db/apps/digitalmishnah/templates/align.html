@@ -1,0 +1,31 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h2>Mishnah - Tosefta Alignment</h2>
+            </div>
+            <p id="instructions">Choose a book and a chapter to see the alignment.</p>
+        </div>
+    </div>
+    <div id="MTV" class="container">
+        <div class="row" id="dm-align-nav" style="display:none;">
+            <div class="btn-group pull-right" role="group">
+                <a href="#" class="btn btn-default" role="button">
+                    <i class="glyphicon glyphicon-chevron-left"/>
+                </a>
+                <a href="#" class="btn btn-default" role="button">
+                    <i class="glyphicon glyphicon-chevron-right"/>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="passages" class="col-xs-2">
+                <div data-template="app:mttoc"/>
+            </div>
+            <div id="mtviewer"/>
+        </div>
+    </div>
+    <script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f&lt;n.length;f++)t=n[f],p[t]&amp;&amp;i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&amp;&amp;(l[r]=o[r]);for(s&amp;&amp;s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r&lt;c.length;r++){for(var t=c[r],n=!0,o=1;o&lt;t.length;o++){var u=t[o];0!==p[u]&amp;&amp;(n=!1)}n&amp;&amp; (c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){"undefined"!=typeof Symbol&amp;&amp;Symbol.toStringTag&amp;&amp;Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},f.t=function(r,e){if(1&amp;e&amp;&amp;(r=f(r)),8&amp;e)return r;if(4&amp;e&amp;&amp;"object"==typeof r&amp;&amp;r&amp;&amp;r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&amp;e&amp;&amp;"string"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&amp;&amp;e.__esModule?function(){return e.default}:function(){return e};return f.d(r,"a",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p="/";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o&lt;r.length;o++)e(r[o]);var s=n;a()}([])</script>
+    <script src="$app-root/resources/js/mtalign/2.mtalign.js"/>
+    <script src="$app-root/resources/js/mtalign/main.mtalign.js"/>
+</div>

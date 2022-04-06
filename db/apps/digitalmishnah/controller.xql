@@ -174,7 +174,7 @@ else if ($exist:path eq "/compare") then
 (:
  : Digital apparatus criticus - view
  :)
-else if (matches($exist:path, "/compare/\d+\.\d+\.\d+(\.\d+)?/([-\w]+,?)+/(align|apparatus|synopsis)")) then
+else if (matches($exist:path, "/compare/\d+\.\d+\.\d+(\.\d+)?/(\w+,?)+/(align|apparatus|synopsis)")) then
       <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
           <forward url="{$exist:controller}/templates/compare.html"/>
           <view>

@@ -124,8 +124,11 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     		}
     		var jsonArray = $scope.reversePivotedTable;
     		var retval =  JSON.stringify( { "witnesses": $scope.originalWitnesses, "table": jsonArray } ) ;
-    		//alert( "(Testing...) JSON to be saved: " + retval );    
-    	    //console.log(retval)
+            // save a copy of edited Json
+            // this is a kludge. Should deal appropriately with save parameterized function
+    		// console.log(retval)
+            var tempBlob = new Blob([JSON.stringify(retval)], {type: "application/json"});
+                    saveAs(tempBlob, "app-" + mcite + "-edited.json");
                 
     		// return toTEIXML({ "witnesses": $scope.originalWitnesses, "table": jsonArray });
     		
@@ -194,7 +197,7 @@ $http.get(data_loc+mcite, { params: { 'foobar': new Date().getTime() } })
     	
     	$scope.saveAs = function(){
     	           $scope.groupifyAllCols();
-    		var filename = prompt( "Enter name of file to save", $scope.mcite+".xml");
+    		var filename = prompt( "Enter name of file to save", "app-" + $scope.mcite+".xml");
     		$scope.unpivotTable()
     		.then(function(xmlcontent){
     		  var blob = new Blob([xmlcontent], {type: "text/plain;charset=utf-8"});    		

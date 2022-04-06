@@ -5,7 +5,7 @@ module namespace app = "http://www.digitalmishnah.org/templates";
 import module namespace templates = "http://exist-db.org/xquery/templates";
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm";
 
-(:import module namespace console="http://exist-db.org/xquery/console";:)
+import module namespace console="http://exist-db.org/xquery/console";
 
 declare namespace my = "local-functions.uri";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
@@ -145,7 +145,7 @@ declare function app:list_wits($node as node(), $model as map(*)) {
         return
           <tr>
             <td
-              align="left"
+              aling="left"
               valign="middle"
               style="font-weight:bold; padding-right:5;">
               <a
@@ -235,7 +235,7 @@ declare function app:read-title($node as node(), $model as map(*)) {
 (: TODO MERGE WITH app:list_wits :)
 declare function app:drag_list_wits($node as node(), $model as map(*)) {
   let $input := doc(concat($config:data-root, "/mishnah/ref.xml"))
-  return
+  return 
     element ul {
       ($node/@*[not(starts-with(name(), 'data-'))],
       for $lw in $input//tei:listWit[tei:witness]
@@ -257,6 +257,7 @@ declare function app:drag_list_wits($node as node(), $model as map(*)) {
         )
       )
     }
+
 };
 
 (:~

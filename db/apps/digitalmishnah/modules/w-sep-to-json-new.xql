@@ -50,10 +50,10 @@ declare option output:media-type "application/json";
 
 
 (: parameters need to be changed to map from templating function :)
-(:declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.');
-declare variable $wits as item()* := request:get-parameter('wits', 'all');:)
-declare variable $mCite as xs:string := '3.1.14.4';
-declare variable $wits as item()* := 'all';
+declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.4');
+declare variable $wits as item()* := request:get-parameter('wits', 'S00483');
+(:declare variable $mCite as xs:string := '3.1.14.4';:)
+(:declare variable $wits as item()* := 'all';:)
 
 (:declare variable $m as item()* := if (not($mCite ='')) then $mCite else '2.3.10.3';:)
 

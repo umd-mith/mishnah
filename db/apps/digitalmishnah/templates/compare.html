@@ -1,0 +1,106 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="about" title="Digital Mishnah Project: Browse Witnesses">
+        <h2>Compare Witnesses</h2>
+        <div id="shown" style="direction:ltr;">
+            <p>
+                <a class="toggle" data-toggle="collapse" href="#about">About this Page</a>
+            </p>
+        </div>
+        <div class="collapse" id="about" style="direction:ltr">
+            <p>This page allows users to select passages to compare witnesses. As the texts in
+                the database expand functionalities will as well.</p>
+            <p>Use the dropdown menu on the left to select passages. All passages where the
+                database currently have text have active links. Bava Metsia (fourth order,
+                second tractate), Chapter 2 has the most encoded witnesses, and is the best
+                locus for exploring the functions of the site.</p>
+            <p>After selecting witnesses, the selection list in the middle area will refresh
+                with only those witnesses that have text for the selected passage, and the input
+                fields and buttons will be active. Select a witness by entering a <hi style="font-weight:bold; text-style:italic;">numeral</hi> in the input
+                field. This allows the user to choose the order that the witnesses are presented
+                in output.</p>
+            <p>Use the buttons in the righthand area to specify whether comparison is done by
+                chapter ("div3" in TEI speak) or mishnah ("ab") and the type of output
+                requested.</p>
+            <p>Output types are as follows: <ul>
+                    <li>
+                        <hi style="font-weight:bold; text-style:italic;">Alignment table</hi>,
+                in which each each witness is presented horizontally, and each token
+                (word) is aligned with its corresponding element in the other witnesses.
+                Alignment is done using <a href="http://www.collatex.net/">CollateX</a>.</li>
+                    <li>
+                        <hi style="font-weight:bold; text-style:italic;">Text with
+                    Apparatus</hi>. The witness selected with the lowest selection
+                    number (typically 1) is the default base text. The apparatus coordinates
+                    the alignment output from CollateX to the base text.</li>
+                    <li>
+                        <hi style="font-weight:bold; text-style:italic;">Parallel-Column
+                    Synopsis</hi>. Using the order from the selection list, this section
+                    of the output page presents the selected text in parallel
+                    columns.</li>
+                </ul>
+            </p>
+            <p>This is a demo. There is <hi style="font-weight:bold; text-style:italic;">no
+                error-checking</hi> on user input, for instance. And much work remains to be
+                done, especially on processing fragmentary texts. Feedback is requested.</p>
+        </div>
+    </div>
+    <div id="compare" class="container">
+        <div class="row">
+            <div id="passages" class="col-md-2 col-xs-12">
+                <h4>Select Passages</h4>
+                <div class="just-padding">
+                    <div class="list-group list-group-root well">
+                        <span data-template="app:toc" data-template-level="mishnah" data-template-wholechap="true"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div>
+                    <h4>Choose mode</h4>
+                    <div class="row" id="options">
+                        <div class="btn-group col-xs-10" data-toggle="buttons">
+                            <label class="btn btn-default active" id="opt_align">
+                                <input type="radio" name="options" value="align" autocomplete="off" checked="checked"/> Alignment
+                            </label>
+                            <label class="btn btn-default" id="opt_apparatus">
+                                <input type="radio" name="options" value="apparatus" autocomplete="off"/> Text/Apparatus
+                            </label>
+                            <label class="btn btn-default" id="opt_synopsis">
+                                <input type="radio" name="options" value="synopsis" autocomplete="off"/> Synopsis
+                            </label>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary disabled" id="compareBtn">
+                                <i class="glyphicon glyphicon-refresh"/> Compare</button>
+                        </div>
+                    </div>
+                    <div id="cmpLoading" style="display: none; text-align: center">Comparing <img src="$app-root/resources/images/spinner.gif" width="150" height="150"/> (this may take a few seconds)</div>
+                </div>
+                <div id="compareView">
+                    <div class="row" id="dm-compare-nav" style="display:none;">
+                        <div class="btn-group pull-right" role="group">
+                            <a href="#" class="btn btn-default" role="button">
+                                <i class="glyphicon glyphicon-chevron-left"/> Next
+                            </a>
+                            <a href="#" class="btn btn-default" role="button">
+                                <i class="glyphicon glyphicon-chevron-right"/> Prev
+                            </a>
+                        </div>
+                    </div>                    
+                    <div class="alignment-table" dir="rtl" data-template="cmp:compare-view"/>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-12">
+                <h4>Select and Order Witnesses</h4>
+                <button type="button" class="btn btn-default" id="toggle_boxes">
+                    Toggle checkboxes
+                </button>
+                <ul id="select-wits" class="list-group" data-template="app:drag_list_wits"/>
+                <div id="wits-loading">
+                    <img src="$app-root/resources/images/spinner.gif" width="150" height="150"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="$app-root/resources/js/compare.js"/>
+</div>

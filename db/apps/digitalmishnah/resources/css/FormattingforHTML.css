@@ -1,0 +1,429 @@
+@charset "UTF-8";
+
+div.meta{
+    width:50em;
+    position:relative;
+    padding-top:1em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:100%;
+    vertical-align:top;
+    clear:both;
+}
+div.page{
+    width:70em;
+    position:relative;
+    padding-top:12pt;
+    margin-left:4em;
+    margin-right:4em;
+    /*overflow-x:scroll;*/
+
+
+}
+div.nav{
+    line-height:16pt;
+    font-size:75%;
+    font-family:Arial, Helvetica, sans-serif;
+    display:block;
+    direction:ltr;
+    width:65em;
+    margin:40px auto 0px auto;
+
+}
+
+div.browse-container{
+    /*width:75%;*/
+    overflow-x:scroll;
+    overflow-y:hidden; /*why did height start causing trouble?*/
+    margin:0 10% 0 10%;
+    border-left:#722C25 dashed 1px;
+    border-right:#722C25 solid 1px;
+    border-top:#722C25 solid 1px;
+    border-bottom:#722C25 solid 1px;
+
+}
+div.oneCol{
+    width:45em;
+    direction:rtl;
+    position:relative;
+    padding:1em;
+    margin-right:3em;
+    margin-left:3em;
+    line-height:0.5;
+}
+div.chap{
+    width:50%;
+    position:relative;
+    padding:1em;
+    margin-right:5%;
+}
+
+/*hr{
+    color:#ddd;
+}
+
+div.hr{
+    clear:both;
+    width:75%;
+    margin:20px auto;
+    height:5px;
+    color:#722C25;
+    border:#722C25;
+    background-color:#722C25;
+}*/
+div.columnA{
+    float:right;
+    position:relative;
+    font-size:16px;
+    padding:1em;
+    width:22em;
+    margin-right:2em;
+    margin-left:2.5em;
+    direction:rtl;
+    line-height:0.5;
+}
+div.columnB{
+    float:left;
+    position:relative;
+    padding:1em;
+    width:22em;
+    margin-right:2.5em;
+    margin-left:2em;
+    direction:rtl;
+    line-height:0.5;
+}
+table.meta{
+    padding:4px 0px;
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+    vertical-align:top;
+    table-layout:fixed;
+
+
+}
+td.data{
+    width:8em;
+    font-weight:bold;
+    padding-right:1em;
+    vertical-align:top;
+
+}
+td.descr{
+    width:17em;
+    padding-right:1em;
+    vertical-align:top;
+}
+h1,
+h2,
+h3{
+    color:#55211B;
+}
+/*h1{
+    font-size:larger;
+    direction:ltr;
+    margin-top:1em;
+    text-align:center;
+}*/
+
+/*h2,
+h3{
+    font-size:medium;
+    direction:ltr;
+    margin-top:1em;
+    text-align:center;
+}*/
+
+p{
+    direction:ltr;
+    text-align:left;
+    /* margin-left:8em; */
+}
+br{
+    line-height:1;
+
+}
+
+.current-block{
+    padding:12px;
+    direction:ltr;
+    text-align:left;
+    float:left;
+    width:57%;
+    border:solid #ddd 0.5pt;
+    clear:none;
+    line-height:1;
+}
+div.current{
+    direction:ltr;
+    display:inline-block;
+    width:auto;
+}
+span.next{
+    width:10%;
+    float:left;
+    margin:auto;
+    top:auto;
+    font-weight:bold;
+}
+span.last{
+    width:8%;
+    float:left;
+    text-align:left;
+    margin:auto;
+    top:auto;
+    font-weight:bold;
+}
+span.first{
+    width:8%;
+    text-align:right;
+    float:right;
+    margin:auto;
+    top:auto;
+    font-weight:bold;
+}
+span.prev{
+    width:10%;
+    float:right;
+    margin:auto;
+    position:relative;
+    top:auto;
+    text-align:right;
+    font-weight:bold;
+}
+span.selMode{
+    width:auto;
+    /*float:left;*/
+    display:inline-block;
+    margin:auto;
+    position:relative;
+    text-align:left;
+    margin:0em 1em;
+}
+.submForm{
+    float:right;
+    margin-top:0;
+
+}
+span.ord{
+    display:none;
+}
+span.tr{
+    display:none;
+}
+span.surplus:before{
+    content:"/"
+}
+span.surplus:after{
+    content:"/"
+}
+span.quote{
+    color:#F00
+}
+span.persName{
+    color:#00F
+}
+
+span.bibQuote{
+    display:none;
+}
+span.add:before{
+    content:"["
+}
+span.add:after{
+    content:"]"
+}
+span.del:before{
+    content:"("
+}
+span.del:after{
+    content:")"
+}
+span.metamark:before{
+    content:"["
+}
+span.metamark:after{
+    content:"]";
+}
+span.metamark{
+    font-size:70%;
+    vertical-align:top;
+}
+span.missing{
+    color:#999;
+    direction:rtl;
+}
+
+span.gap-ch:after{
+    content:"]";
+    color:#999;
+    direction:ltr;
+}
+span.gap-ch:before{
+    content:"[±";
+    color:#999;
+    direction:ltr;
+}
+span.gap-ch{
+    color:#999;
+    direction:ltr;
+}
+
+
+span.skipped{
+    display:none;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:smaller;
+}
+span.skipped:before{
+    content:"[";
+}
+span.skipped:after{
+    content:" lines]";
+}
+
+span.supplied{
+    color:#999;
+    border-top:dotted thin #999;
+}
+span.unclear{
+    color:#999;
+}
+span.damage{
+    border-top:dotted thin;
+    direction:rtl
+}
+
+span.lb{
+    position:absolute;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+
+    text-align:right;
+    top:auto;
+    right:-1em;
+}
+span.lb-min-marker:before{
+    content:"|";
+    font-size:larger;
+    font-weight:bold;
+}
+span.lb-ch-min{
+    position:absolute;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+    text-align:right;
+    top:auto;
+    right:-1em;
+}
+span.lb-maj-marker:before{
+    content:"||";
+    font-size:larger;
+    font-weight:bold;
+}
+span.lb-ch-maj{
+    position:absolute;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+
+    text-align:right;
+    top:auto;
+    right:-1em;
+}
+span.expan{
+    display:none;
+}
+span.unpointed{
+    display:none;
+}
+span.pageNo{
+    direction:ltr;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+    text-align:left;
+    position:absolute;
+    margin-top:-14pt;
+    top:auto;
+    right:-2em;
+}
+span.colNo{
+    direction:ltr;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+    position:absolute;
+    top:auto;
+    right:-2em;
+    text-align:left;
+}
+span.pageNo-ch{
+    direction:ltr;
+    font:9pt bold, Arial, Helvetica, sans-serif;
+    text-align:left;
+    position:absolute;
+    margin-top:-14pt;
+    top:auto;
+    right:-2em;
+}
+span.pageNo-ch-marker:before{
+    content:"¶";
+    font-size:larger;
+    font-weight:bold;
+
+}
+span.colNo-ch-marker:before{
+    content:"|";
+    font-size:larger;
+    font-weight:bold;
+}
+
+span.colNo-ch{
+    direction:ltr;
+    font:9pt bold, Arial, Helvetica, sans-serif;
+    position:absolute;
+    top:auto;
+    right:-2em;
+    text-align:left;
+}
+span.chapter{
+    direction:ltr;
+    text-align:right;
+    font:14pt bold, Arial, Helvetica, sans-serif;
+    position:absolute;
+    top:auto;
+    left:-2.5em;
+}
+span.chapter-ch{
+    direction:ltr;
+    text-align:right;
+    font:14pt bold, Arial, Helvetica, sans-serif;
+    position:absolute;
+    top:auto;
+    left:-2.5em;
+}
+
+
+span.mishnah{
+    position:absolute;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+    top:auto;
+    left:-1em;
+}
+span.mishnah-ch{
+    position:absolute;
+    font:10pt bold, Arial, Helvetica, sans-serif;
+    top:auto;
+    left:-1em;
+}
+
+span.label{
+    font-size:larger;
+    letter-spacing:2px;
+    padding-left:1em;
+    padding-right:1em;
+}
+span.label-ch{
+    text-decoration:underline;
+}
+span.marg-label-r{
+
+    position:absolute;
+    text-align:right;
+    top:auto;
+    right:.2em;
+}
+
+/* CSS Document */

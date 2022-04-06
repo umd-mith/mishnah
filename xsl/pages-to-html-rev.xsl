@@ -19,8 +19,8 @@
     <!-- Need to run flattening stylsheet then unflattentopages -->
     <!--Updated transformations to result in valid TEI in xml output and valid HTML in html output -->
     <!--<xsl:param name="rqs">ch=4.2.10&pg=163r&col=163rA&mode=col</xsl:param>-->
-    <xsl:param name="num" select="'0016r'"/>
     <xsl:param name="mode" select="'page'"/>
+    <xsl:param name="num" select="'0153r'"/>
     <xsl:param name="tei-loc"
         select="'file:///C:/Users/hlapin/Documents/GitHub/digitalmishnah-tei/mishnah/'"/>
     <xsl:variable name="wit"
@@ -40,52 +40,38 @@
             </xsl:when>
         </xsl:choose>
     </xsl:variable>
+    
     <xsl:variable xmlns="http://www.tei-c.org/ns/1.0" name="thisPgColCh">
-        <xsl:variable name="thisElement">
-            <xsl:copy-of select="$sourceDoc//*[@xml:id = $thisId]"/>
+        <xsl:message select="$thisId"></xsl:message>
+        <xsl:variable name="thisElement" select="$sourceDoc/id($thisId)">
+            <!--<xsl:copy-of select="$sourceDoc/id($thisId)"></xsl:copy-of>-->
         </xsl:variable>
-        <xsl:variable name="name" select="$thisElement/element()/name()"/>
-        <xsl:variable name="id" select="$thisElement/element()/@xml:id"/>
+        <xsl:message select="$thisElement"></xsl:message>
+        
+        <xsl:variable name="name" select="$thisElement/*/name()" as="xs:string"/>
+        <xsl:variable name="id" select="$thisElement/@xml:id"/>
         <this>
             <xsl:value-of select="$id"/>
         </this>
         <first>
-            <xsl:choose>
-                <xsl:when test="$sourceDoc/*/*//*/preceding::element()[name() = $name]">
-                    <xsl:value-of select="(($sourceDoc/*/*//*)[name() = $name])[1]/@xml:id"/>
-                </xsl:when>
-                <xsl:otherwise>null</xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="if ($thisElement/preceding::*[name() eq $thisElement/name()])
+                then ($thisElement/preceding::*[name() eq $thisElement/name()])[1]
+                else $thisElement/@xml:id"></xsl:value-of>
         </first>
         <last>
-            <xsl:choose>
-                <xsl:when test="$sourceDoc/*/*//*/following::element()[name() = $name]">
-                    <xsl:value-of select="(($sourceDoc/*/*//*)[name() = $name])[last()]/@xml:id"/>
-                </xsl:when>
-                <xsl:otherwise>null</xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="if ($thisElement/following::*[name() eq $thisElement/name()])
+                then ($thisElement/following::*[name() eq $thisElement/name()])[last()]/@xml:id
+                else $thisElement/@xml:id"></xsl:value-of>
         </last>
         <prev>
-            <xsl:choose>
-                <xsl:when
-                    test="($sourceDoc/*/*//*)[@xml:id = $id]/preceding::element()[name() = $name][1]">
-                    <xsl:value-of
-                        select="($sourceDoc/*/*//*)[@xml:id = $id]/preceding::element()[name() = $name][1]/@xml:id"
-                    />
-                </xsl:when>
-                <xsl:otherwise>null</xsl:otherwise>
-            </xsl:choose>
+            <xsl:copy-of select="if ($thisElement/preceding::*[name() eq $thisElement/name()])
+                then $thisElement/preceding::*[name() eq $thisElement/name()][1]
+                else 'null'"></xsl:copy-of>
         </prev>
         <next>
-            <xsl:choose>
-                <xsl:when
-                    test="($sourceDoc/*/*//*)[@xml:id = $id]/following::element()[name() = $name][1]">
-                    <xsl:value-of
-                        select="(($sourceDoc/*/*//*)[@xml:id = $id]/following::element()[name() = $name])[1]/@xml:id"
-                    />
-                </xsl:when>
-                <xsl:otherwise>null</xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="if ($thisElement/following::*[name() eq $thisElement/name()])
+                then ($thisElement/following::*[name() eq $thisElement/name()])[1]/@xml:id
+                else 'null'"></xsl:value-of>
         </next>
     </xsl:variable>
     <xsl:template match="@* | * | text() | processing-instruction()">
@@ -128,6 +114,7 @@
         </xsl:choose>
     </xsl:template>
     <xsl:template match="/">
+        <xsl:message select="$thisPgColCh"></xsl:message>
         <div xsl:exclude-result-prefixes="tei" dir="rtl" class="row">
             <!--<xsl:attribute name="title">
                 <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title" exclude-result-prefixes="#all"/>
@@ -164,7 +151,7 @@
                                     class="caret"/>
                             </a>
                             <ul class="dropdown-menu scrollable-menu">
-                                <xsl:for-each select="$sourceDoc//tei:div3">
+                                <xsl:for-each select="$sourceDoc//tei:cb">
                                     <li>
                                         <xsl:variable name="isFirst" as="xs:boolean"
                                             select="not(preceding::tei:div3)"/>

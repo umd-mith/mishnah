@@ -1,6 +1,9 @@
 xquery version "3.1";
 
-(: Hayim Lapin, 7/26/19
+(: Hayim Lapin 11/14/2020
+ : inserted skeleton of algorithm selection (needleman-wunsch default)
+ : fixed some whitespace issues causing errors in collation (normalize-space(expan/text()))
+ : Hayim Lapin, 7/26/19
  : Fixed some h1h2 problms 
  : Hayim Lapin, 7/23/19
  : Added handling of transpositions
@@ -33,6 +36,7 @@ xquery version "3.1";
  : by using the addSpan|delSpan and corresponding anchors to identify the the added and deleted text. 
  : In addition, the xquery looks for word groups that occur as one or more tokens, but iterating through each token  
  :)
+module namespace ws2j = "http://www.digitalmishnah.org/ws2j";
 
 import module namespace config = "http://www.digitalmishnah.org/config" at "config.xqm"; 
 (:  import module namespace morph = "http://www.digitalmishnah.org/morph" at "pseudoMorph.xqm"; :)
@@ -40,30 +44,26 @@ import module namespace config = "http://www.digitalmishnah.org/config" at "conf
 
 declare boundary-space strip;
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
-declare namespace ws2j = "http://www.digitalmishnah.org/ws2j";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace functx = "http://www.functx.com";
 
-declare option output:method "json";
-declare option output:media-type "application/json"; 
-
-
-
 (: parameters need to be changed to map from templating function :)
-(:declare variable $mCite as xs:string :=  request:get-parameter('mcite', '3.1.14.');
-declare variable $wits as item()* := request:get-parameter('wits', 'all');:)
-declare variable $mCite as xs:string := '3.1.14.4';
-declare variable $wits as item()* := 'all';
+(:declare variable $mCite as xs:string :=  request:get-parameter('mcite', '4.2.6.3');
+declare variable $wits as item()* := request:get-parameter('wits', 'S00483');:)
+(:declare variable $mCite as xs:string := '4.2.5.1';:)
+(:declare variable $wits as item()* := 'all';:)
 
 (:declare variable $m as item()* := if (not($mCite ='')) then $mCite else '2.3.10.3';:)
 
-declare variable $witNames as xs:string* := 
+(:declare variable $witNames as xs:string* := 
    if (not($wits) or $wits = '' or $wits = 'all')
    then doc(concat($config:data-root, "/mishnah/ref.xml"))//tei:witness[@corresp]/@xml:id/string() 
-   else tokenize($wits,',');
+   else tokenize($wits,',');:)
 
-(:  get tokenized text  :)
+
+(::::::::::::::::::::::::::::::::::::::::::)
 (: These utility functions for revising IDs :)
+(:  get tokenized text  :)
 declare function functx:pad-integer-to-length
   ( $integerToPad as xs:anyAtomicType? ,
     $length as xs:integer )  as xs:string {
@@ -106,7 +106,7 @@ for $witName in $witNames
 
 
 (: makes a local copy to avoid traversing the whole document for processing:)
-declare function ws2j:copy($n as node()*) as node() {
+declare function ws2j:copy($n as node()*) as node()* {
    if ($n) then
    typeswitch ($n)
       case $e as element()
@@ -122,7 +122,7 @@ declare function ws2j:copy($n as node()*) as node() {
       default
          return
             $n
-   else ()         
+   else ()        
 };
 (::::::::::::::::::::::::::::::::::::::::::::::::::::::::::)
 declare function ws2j:getTransp($nodes as node()+, $transpSets as element()+){
@@ -328,6 +328,7 @@ declare function ws2j:regHebr($str as xs:string) as xs:string {
 
 
 declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
+   ((:console:log($h1h2),:)
    for $n in $h1h2
    return
       typeswitch ($n)
@@ -347,6 +348,7 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
          case element(delSpan)
             return
                if ($resp = 'h1') then
+                  ((:console:log($n/ancestor::node()),:)
                   if ($n[ancestor::w][@extent]) then 
                      for $i in 1 to xs:integer($n/@extent) return '-' 
                   else if ($n[not(ancestor::w)][@extent]) then
@@ -355,7 +357,9 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
                      type="del">
                      {for $i in 1 to xs:integer($n/@extent) return '-' }</w>
                   else ()
+                  )
                else ()
+               
          case element(anchor)
             
             return
@@ -367,11 +371,11 @@ declare function ws2j:h1h2($h1h2 as node()*, $resp as xs:string) as item()* {
             return
                $n
          case text()
-            return               replace($n, '[&#xa;\s+]', '')
-                  default
-                     return
-                        $n 
-                           
+            return replace($n, '[&#xa;\s+]', '')
+      default
+         return
+            $n 
+        )
 };
 
 declare function ws2j:wdNo($str as xs:string) as xs:integer {
@@ -397,31 +401,30 @@ declare function ws2j:processWTokens($ab as element()+) as node()+ {
          return
             if ($el/name() = 'h1h2') then
                (:process twice:)
-               let $h1 := 
-                  for $w in $el/*
-                  return
+               let $h1 := for $w in $el/*
+                     return
                      
-                     if (ws2j:keepOrSkip($w, 'h1')) then 
-                           
+                        if (ws2j:keepOrSkip($w, 'h1')) then 
+                        
                            if ($w[self::w]) then
                              <w resp='h1'>{($w/@*, 
                                 for $c in $w/node() return ws2j:keepOrSkip($c, 'h1')) 
                              }</w>
-                        else 
+                           else 
                            $w
-                    else ()
-               
+                        else ()
+                    
                let $processedH1 := ws2j:h1h2($h1,'h1')
                let $h2 := for $w in $el/*
-                  return
-                     if (ws2j:keepOrSkip($w, 'h2')) then
-                        if ($w[self::w]) then
-                           <w resp='h2'>{$w/@*, 
+                     return
+                        if (ws2j:keepOrSkip($w, 'h2')) then
+                           if ($w[self::w]) then
+                             <w resp='h2'>{$w/@*, 
                              for $c in $w/node() return ws2j:keepOrSkip($c, 'h2') 
                              }</w>
-                        else 
+                           else 
                            $w
-                     else               ()
+                      else ()
                let $processedH2 := ws2j:h1h2($h2,'h2')
                return 
                ($processedH1, $processedH2)
@@ -467,7 +470,7 @@ declare function ws2j:doWsForH1H2($w as element(w), $resp as xs:string){
         (: $w is between addSpan and anchor :)
         if (some $a in $w/following::anchor[@type='add']/@xml:id
             satisfies some $s in $w/preceding::addSpan[@type='add']/@spanTo
- satisfies contains($s,$a)) 
+            satisfies contains($s,$a)) 
         then () 
         (: $w contains anchor in last position, but no span preceded by text :)
         else if (not(some $a in $w/anchor[@type='add'][not(following-sibling::node()/normalize-space())]/@xml:id 
@@ -477,12 +480,12 @@ declare function ws2j:doWsForH1H2($w as element(w), $resp as xs:string){
         (: $w contains span in first position, but no anchor :)
         else if (not(some $s in $w/addSpan[@type='add'][not(preceding-sibling::node()/normalize-space())]/@spanTo
             satisfies some $a in $w/anchor[@type='add']/@xml:id 
- satisfies contains($s,$a)))
+            satisfies contains($s,$a)))
         then ()
         else
         <w resp="{$resp}">{($w/@xml:id, $w/node())}</w>
     else if ($resp = 'h2') 
-    then 
+        then 
         if (some $a in $w/following::anchor[@type='del']/@xml:id
             satisfies some $s in $w/preceding::delSpan/@spanTo
             satisfies contains($s,$a))
@@ -511,7 +514,7 @@ declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as 
       if ($w) then
          if ($addDel intersect $w) then
             (: start a group :)
-            (
+            ( 
             <h1h2>{$w, ws2j:groupAddDel($w, $addDel)}</h1h2>,
             ws2j:recurseAddDel($w/following-sibling::*[not(. intersect $addDel)][1], $addDel)
             )
@@ -524,14 +527,14 @@ declare function ws2j:recurseAddDel($w as element()?, $addDel as element()*) as 
 
 (: Adds to group as necessary  :)
 declare function ws2j:groupAddDel($w as element()?, $addDel as element()*) as element()* {
-   let $next := $w/following-sibling::*[1]
-         return 
- if ($w) 
- then 
- ((:console:log('continue group: '),:)
- if ($next      intersect         $addDel) then ((:console:log($next),:)$next, ws2j:groupAddDel($next, $addDel))
-   else ()
-         )
+    let $next := $w/following-sibling::*[1]
+    return 
+   if ($w)  
+   then   
+        ((:console:log('continue group: '),:)
+         if ($next intersect $addDel) then ((:console:log($next),:)$next, ws2j:groupAddDel($next, $addDel))
+           else ()
+                 )
    else ()         
 };
 
@@ -737,108 +740,124 @@ declare function ws2j:fixIDsInTokenList($wSequence as element()+) as element()+ 
     
 };
 
-declare function ws2j:buildJSON($wSequence as element()+) as map(*){
+declare function ws2j:buildJSON($wSequence as element()+, $algo as xs:string* ) as map(*){
+    (: make Needelman-Wunsch default request :)
    map{ 
    (:  could paramterize settings :)
+   
+   "algorithm" : if ($algo eq 'nw') then 'needleman-wunsch'
+                 else if ($algo eq 'd') then 'dekker'
+                 else if ($algo eq 'med') then 'medite'
+                 else 'needleman-wunsch',
    "joined" : false(),
    "witnesses" : for $ab in $wSequence 
- 
-     return 
- let $pref := 
-     (:adapts functx:index-of-node:) 
-     (:is this better than using index-of?:)
-         for $seq in (1 to count($wSequence))
+   
+   return 
+    let $pref := 
+         (:adapts functx:index-of-node:) 
+         (:is this better than using index-of?:)
+            for $seq in (1 to count($wSequence))
             return 
             $seq[$wSequence[$seq] is $ab]
             
          return 
          (
- map                  { "id" : concat(string(format-number($pref,"000")),'-',substring-before($ab/@xml:id,'.')),         
-            "tokens" : array {
-     
+         map { "id" : concat(string(format-number($pref,"000")),'-',substring-before($ab/@xml:id,'.')), 
+         "tokens" : array {
+         
          let $wGroups := ws2j:wordGroups($ab//w)
-         return
-            for $w in $ab/w[normalize-space()]
-            let $tText:= string-join(ws2j:w-children($w/node(), $ab/@xml:id/string()),'')
-            let $rText := array {
-               if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
-                  string($wGroups[self::keep][@xml:id = $w/@xml:id])
-               else if ($w/@xml:id = $wGroups[self::omit]/@xml:id) then 
-                  '--'
-               else if ($w/*/expan) then
-                  tokenize($w/*/expan/text(), '\s+')
-               else if ($w/*/reg) then
-                  $w/*/reg
-               else
-                  $tText }         
-            return (
-               if (string($tText)) then 
-               (let $tMap:=
-               (: want to make sure we avoid possible empty n values:)
-               (: if n would otherwise be empty we use the first character of t :)
-               (: also want to add suffix -h1 or -h2 to ids in order to disambiguate:)
-                  map {"t":  $tText ,
-                     "n" :  if (normalize-space(ws2j:regHebr($rText?1))) then ws2j:regHebr($rText?1) else substring($tText,1,1),
-                     "id" : string-join(($w/@xml:id/string(),$w/@resp/string()),'-')} 
-               let $respMap:= 
-                  if ($w/self::w/@resp) then
-                     map {"resp": $w/@resp/string()}
-                  else ()
-               let $expMap:= 
-                  if ($w/*/expan) then 
-                     map {"expan" : string-join($w/*/expan/text(),' ')} 
-                  else () 
-               let $wGrpMap:= if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
-                  map {"wGrp" : $rText?1}
-               else 
-                  ()
-               let $transpMap := 
-                  if ($w/@type) then 
-                    map{"transp":$w/@type/string()} 
-                  else ()
-               return 
-               let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
-               let $expans:= if ($expMap?expan) then $expMap?expan else ''
-               return
-                  map:merge(($tMap, 
-                     $respMap, 
-                     $transpMap,
-                     $expMap, 
-                     $wGrpMap
-                     (:,
-                     if (not($rText = '--')) 
-                        then
-                        (\: get pseudomorphological analysis of tokens and expans; j = json output, x = xml output :\)
-                        morph:pseudoMorph($tokens,$expans,"j") 
-                     else ():)
-                     )),
-                  if (array:size($rText) > 1)
-                     then
-                        for $i in 2 to array:size($rText)
-                        return
-                        map{ "t" : "--",
-                           "n" : ws2j:regHebr($rText($i)),
-                           "id" : concat($w/@xml:id, '-', string($i))}
-                  else
-                        () ) else ()
-            )
-            }}
-                  )}
+             return
+                for $w in $ab/w[normalize-space()]
+                let $tText:= string-join(ws2j:w-children($w/node(), $ab/@xml:id/string()),'')
+                let $rText := array {
+                   if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
+                      string($wGroups[self::keep][@xml:id = $w/@xml:id])
+                   else if ($w/@xml:id = $wGroups[self::omit]/@xml:id) then 
+                      '--'
+                   else if ($w/*/expan) then
+                      tokenize(normalize-space($w/*/expan/text()), '\s+')
+                   else if ($w/*/reg) then
+                      $w/*/reg
+                   else
+                      replace($tText, '[&#xa;\s+]', '') }         
+                return (
+                   if (string($tText)) then 
+                   (let $tMap:=
+                   (: want to make sure we avoid possible empty n values:)
+                   (: if n would otherwise be empty we use the first character of t :)
+                   (: also want to add suffix -h1 or -h2 to ids in order to disambiguate:)
+                      map {"t":  $tText ,
+                         "n" :  if (normalize-space(ws2j:regHebr($rText?1))) then ws2j:regHebr($rText?1) else substring($tText,1,1),
+                         "id" : string-join(($w/@xml:id/string(),$w/@resp/string()),'-')} 
+                   let $respMap:= 
+                      if ($w/self::w/@resp) then
+                         map {"resp": $w/@resp/string()}
+                      else ()
+                   let $expMap:= 
+                      if ($w/*/expan) then 
+                         map {"expan" : string-join(normalize-space($w/*/expan/text()),' ')} 
+                      else () 
+                   let $wGrpMap:= if ($w/@xml:id = $wGroups[self::keep]/@xml:id) then 
+                      map {"wGrp" : $rText?1}
+                   else 
+                      ()
+                   let $transpMap := 
+                      if ($w/@type) then 
+                        map{"transp":$w/@type/string()} 
+                      else ()
+                   return 
+                   let $tokens:= if (contains($wGrpMap?wGrp,'_')) then $wGrpMap?wGrp else $tMap?t
+                   let $expans:= if ($expMap?expan) then normalize-space($expMap?expan) else ''
+                   return
+                      map:merge(($tMap, 
+                         $respMap, 
+                         $transpMap,
+                         $expMap, 
+                         $wGrpMap
+                         (:,
+                         if (not($rText = '--')) 
+                            then
+                            (\: get pseudomorphological analysis of tokens and expans; j = json output, x = xml output :\)
+                            morph:pseudoMorph($tokens,$expans,"j") 
+                         else ():)
+                         )),
+                      if (array:size($rText) > 1)
+                         then
+                            for $i in 2 to array:size($rText)
+                            return
+                            map{ "t" : "--",
+                               "n" : ws2j:regHebr($rText($i)),
+                               "id" : concat($w/@xml:id, '-', string($i))}
+                      else
+                            () ) else ()
+                )
+                      }}
+                      )}
 };
 
 
-declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
+declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*, $algo as xs:string*) {
    (: get only ws and string that are not between comm span and anchor:)
    (: instead do this after? :)
    (: get nodes :)
-   let $nodes := ws2j:nodes($mcite, $wits)
-   let $noComm := for $ab in $nodes
-   return
-      <ab
-         xml:id="{$ab/@xml:id}">{
-            $ab/* except ws2j:filter-w-set($ab, 'comm')
-         }</ab>
-   
+   let $out := 
+      let $m := if (not($mcite) or $mcite = '') then '1.1.1.1' else $mcite
+      let $witNames  as xs:string* :=
+         if (count($wits) > 1) then $wits
+         else if (not($wits) or $wits = '' or $wits = 'all') 
+            then 
+            doc(concat($config:data-root, "/mishnah/index-m.xml"))//tei:ab[@xml:id = concat('index-m.',$m)]/tei:ptr/@n/string() 
+         else tokenize($wits,',')
+      let $nodes := ws2j:nodes($m, $witNames)
+      let $noComm := for $ab in $nodes
+      return
+         ((:console:log(string-join($witNames,',')),:)           
+         <ab
+              xml:id="{$ab/@xml:id}">{
+                 $ab/* except ws2j:filter-w-set($ab, 'comm')
+              }</ab>
+              )
+        
    (:simplifiy list, removing elements not required for alignment:)
    
    (: get list of tokens with separation of add/del into h1/h2 :)
@@ -850,7 +869,17 @@ declare function ws2j:getTokenData($mcite as xs:string, $wits as xs:string*) {
       (: Needed to do cleanup in second pass. Should be fixed. :)
       let $revListOfTokens := ws2j:fixIDsInTokenList($listOfTokens)
       return
-      ws2j:buildJSON($revListOfTokens)
+      ws2j:buildJSON($revListOfTokens, $algo)
+         (: Needed to do cleanup in second pass bec XQ does not nec know preceding or following id :)
+      (: Should be fixed.:)
+   return
+      ( (: console:log($out), :)
+      serialize(
+      $out, 
+        <output:serialization-parameters>
+            <output:method>json</output:method>
+        </output:serialization-parameters>)   
+        (:):)
+    )
+(:$out:)
 };
-
-ws2j:getTokenData($mCite, $witNames)
