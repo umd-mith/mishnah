@@ -29,7 +29,8 @@ declare variable $config:app-root :=
         substring-before($modulePath, "/modules")
 ;
 
-declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/";
+(:declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/";:)
+declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/mishnah/";
 
 declare variable $config:http-data-root := concat(request:get-scheme(), "://", request:get-server-name(),":",request:get-server-port(),"/exist/rest/db/digitalmishnah-tei");
 

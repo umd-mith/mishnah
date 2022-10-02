@@ -29,9 +29,10 @@ declare variable $config:app-root :=
         substring-before($modulePath, "/modules")
 ;
 
-declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/";
+declare variable $config:data-root := "xmldb:exist:///db/apps/digitalmishnah-data/";
+(:declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/";:)
 
-declare variable $config:http-data-root := concat(request:get-scheme(), "://", request:get-server-name(),":",request:get-server-port(),"/exist/rest/db/digitalmishnah-tei");
+declare variable $config:http-data-root := concat(request:get-scheme(), "://", request:get-server-name(),":",request:get-server-port(),"/exist/rest/db/apps/digitalmishnah-data");
 
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 

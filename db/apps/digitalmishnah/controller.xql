@@ -44,7 +44,7 @@ declare function local:fallback-login($domain as xs:string, $maxAge as xs:dayTim
             if ($user) then
                 let $isLoggedIn := xmldb:login("/db", $user, $password, true())
                 return
-                    if ($isLoggedIn and (not($asDba) or xmldb:is-admin-user($user))) then (
+                    if ($isLoggedIn and (not($asDba) or sm:is-dba($user))) then (
                         session:set-attribute("digitalmishnah.user", $user),
                         session:set-attribute("digitalmishnah.password", $password),
                         request:set-attribute($domain || ".user", $user),
@@ -206,7 +206,7 @@ else if ($exist:resource = 'dologin') then
             if ($user) then
                 <status>
                     <user>{request:get-attribute("org.exist.login.user")}</user>
-                    <isAdmin json:literal="true">{ xmldb:is-admin-user((request:get-attribute("org.exist.login.user"),request:get-attribute("xquery.user"), 'nobody')[1]) }</isAdmin>
+                    <isAdmin json:literal="true">{ sm:is-dba((request:get-attribute("org.exist.login.user"),request:get-attribute("xquery.user"), 'nobody')[1]) }</isAdmin>
                 </status>
             else (
                 response:set-status-code(401),

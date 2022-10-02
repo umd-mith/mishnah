@@ -90,8 +90,6 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         (: Use Collatex :)
         (: string-join a temp kludge?:)
         let $tokens := ws2j:getTokenData($mcite, string-join($wits, ','))
-        (: let $tokens := ws2j:getTokenData($mcite, $wits):)
-        (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
         let $headers := <headers>
           <header
             name="Accept"
