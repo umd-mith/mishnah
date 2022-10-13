@@ -32,7 +32,7 @@ declare variable $config:app-root :=
 declare variable $config:data-root := "xmldb:exist:///db/apps/digitalmishnah-data/";
 (:declare variable $config:data-root := "xmldb:exist:///db/digitalmishnah-tei/";:)
 
-declare variable $config:http-data-root := concat(request:get-scheme(), "://", request:get-server-name(),":",request:get-server-port(),"/exist/rest/db/apps/digitalmishnah-data");
+declare variable $config:http-data-root := concat(request:get-scheme(), "://", request:get-server-name(),":",request:get-server-port(),"/exist/rest/db/digitalmishnah-tei");
 
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
@@ -76,7 +76,7 @@ declare function config:app-meta($node as node(), $model as map(*)) as element()
 
 (:~
  : For debugging: generates a table showing all properties defined
- : in the application descriptors.
+ : in the application descriptdors.
  :)
 declare function config:app-info($node as node(), $model as map(*)) {
     let $expath := config:expath-descriptor()

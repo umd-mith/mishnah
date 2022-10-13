@@ -5,7 +5,8 @@ module namespace cmp = "http://www.digitalmishnah.org/templates/compare";
 import module namespace console="http://exist-db.org/xquery/console";
 
 import module namespace templates = "http://exist-db.org/xquery/templates";
-import module namespace httpc = "http://exist-db.org/xquery/httpclient";
+(: import module namespace httpc = "http://exist-db.org/xquery/httpclient"; :)
+import module namespace http="http://expath.org/ns/http-client" at "java:org.exist.xquery.modules.httpclient.HTTPClientModule";
 import module namespace content = "http://exist-db.org/xquery/contentextraction"
 at "java:org.exist.contentextraction.xquery.ContentExtractionModule";
 import module namespace app = "http://www.digitalmishnah.org/templates" at "app.xql";
@@ -91,20 +92,22 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
         (: for now default algo is nw :)
          let $tokens := ws2j:getTokenData($mcite, $wits, 'nw')
         (:let $tokens := dm:getMishnahTksJSON($mcite, $wits):)
-        let $headers := <headers>
-          <header
+        let $post-request := <http:request href="http://52.12.26.11:8080/collatex/collate" method="post">
+          <http:header
             name="Accept"
             value="application/json"/>
-          <header
+          <http:header
             name="Content-type"
             value="application/json"/>
-        </headers>
-        let $results := parse-json(
-        content:get-metadata-and-content(
-        httpc:post(xs:anyURI('http://52.12.26.11:8080/collatex/collate'), $tokens, false(), $headers)
-        ))
-        return
+          <http:body media-type="text/plain">{$tokens}</http:body>
+        </http:request>
         
+        let $response := http:send-request($post-request)
+        let  $results := parse-json(
+        content:get-metadata-and-content($response[2]))
+        return
+        (
+            (: console:log($results), :)
           if ($mode = 'apparatus')
           then
             cmp:compare-app-collatex($mcite, $results, $wits)
@@ -116,6 +119,7 @@ declare function cmp:compare-mishnah($node as node(), $mcite as xs:string, $wits
               cmp:compare-align-collatex($results, $wits)
               )
             })
+        )
             
 )};
 
